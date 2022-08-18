@@ -2,11 +2,18 @@ package com.cg.model.dto;
 
 import com.cg.model.Product;
 import com.cg.model.ProductMedia;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Accessors(chain = true)
 @Data
 public class ProductDTO {
     private String id;
@@ -37,7 +44,12 @@ public class ProductDTO {
     
     public Product toProduct(){
         return new Product()
-                .setId(id);
+                .setId(id)
+                .setTitle(title)
+                .setPrice(price)
+                .setQuantity(quantity)
+                .setStatus(status)
+                .setDescription(description);
     }
 
     public ProductMedia toProductmedia(){

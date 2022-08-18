@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import com.cg.model.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.access.method.P;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -64,5 +66,15 @@ public class Product extends  BaseEntity{
                 ", ts=" + ts +
                 ", productMedia=" + productMedia +
                 '}';
+    }
+
+    public ProductDTO toProductDTO(){
+        return new ProductDTO()
+                .setId(id)
+                .setTitle(title)
+                .setPrice(price)
+                .setQuantity(quantity)
+                .setStatus(status)
+                .setDescription(description);
     }
 }
