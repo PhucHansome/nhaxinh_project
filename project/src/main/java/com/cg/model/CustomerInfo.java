@@ -10,6 +10,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
@@ -27,9 +28,10 @@ public class CustomerInfo extends BaseEntity{
 
     private String userName;
 
-    private String password;
     
-    private Long phone;
+    private String phone;
+
+    private BigDecimal debt;
 
     @OneToOne
     @JoinColumn(name = "location_region_id", nullable = false)
@@ -39,9 +41,9 @@ public class CustomerInfo extends BaseEntity{
         return  new CustomerInfoDTO()
                 .setId(id)
                 .setUserName(userName)
-                .setPassword(password)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegionDTO())
+                .setDebt(debt)
                 ;
     }
 

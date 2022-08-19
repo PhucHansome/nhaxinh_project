@@ -44,34 +44,25 @@ public class UserDTO  {
     private Date updatedAt;
 
 
-    @NotBlank(message = "Trạng thái không được để trống")
-    private String status;
 
-//    @NotBlank(message = "Url Ảnh không được để trống")
-    private String image;
-
-    public UserDTO(Long id, String username, String status) {
+    public UserDTO(Long id, String username) {
         this.id = id;
         this.username = username;
-        this.status = status;
     }
 
-    public UserDTO(Long id, String username, Role role, String status, String image) {
+    public UserDTO(Long id, String username, Role role) {
         this.id = id;
         this.username = username;
 //        this.password = password;
         this.role = role.toRoleDTO();
-        this.status = status;
-        this.image = image;
     }
 
-    public UserDTO(Long id, String username,String password, Role role, String status, String image) {
+    public UserDTO(Long id, String username,String password, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role.toRoleDTO();
-        this.status = status;
-        this.image = image;
+
     }
 
 
@@ -81,8 +72,6 @@ public class UserDTO  {
                 .setUsername(username)
                 .setPassword(password)
                 .setRole(role.toRole())
-                .setStatus(status)
-                .setImage(image)
                 ;
 
     }

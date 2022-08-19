@@ -35,11 +35,6 @@ public class User extends BaseEntity {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @Column(name = "status")
-    private String status;
-
-    @Column
-    private String image;
 
     @Override
     public String toString() {
@@ -48,8 +43,6 @@ public class User extends BaseEntity {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", status='" + status + '\'' +
-                ", image='" + image + '\'' +
                 '}';
     }
     public UserDTO toUserDTO() {
@@ -57,9 +50,7 @@ public class User extends BaseEntity {
                 .setId(id)
                 .setUsername(username)
                 .setPassword(password)
-                .setRole(role.toRoleDTO())
-                .setStatus(status)
-                .setImage(image);
+                .setRole(role.toRoleDTO());
 
     }
 

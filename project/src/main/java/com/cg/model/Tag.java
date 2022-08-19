@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -22,10 +23,16 @@ public class Tag extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String Slug;
+
+    @ManyToMany
+    @JoinColumn(name = "product_id")
+    private List<Product> product;
 
     public TagDTO toTagDTO() {
         return new TagDTO()
                 .setId(id)
-                .setName(name);
+                .setName(name)
+                .setProduct(product);
     }
 }

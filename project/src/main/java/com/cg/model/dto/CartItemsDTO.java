@@ -25,7 +25,7 @@ public class CartItemsDTO {
 
     private ProductDTO product;
 
-    private UserDTO user;
+    private CartDTO cart;
 
     private BigDecimal price;
 
@@ -37,7 +37,7 @@ public class CartItemsDTO {
         return new CartItem()
                 .setId(id)
                 .setProduct(product.toProduct())
-                .setUser(user.toUser())
+                .setCart(cart.toCart())
                 .setPrice(price)
                 .setQuantity(quantity)
                 .setContent(content);

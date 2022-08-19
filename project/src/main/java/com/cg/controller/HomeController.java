@@ -27,6 +27,26 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView getHome(){
-        return new ModelAndView("index");
+        return new ModelAndView("/customerView/homepage");
+    }
+
+    @GetMapping("/detail")
+    public ModelAndView getDetail(){
+        return new ModelAndView("/customerView/detail");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView getLogin(){
+        return new ModelAndView("/customerView/dangnhap_dangky");
+    }
+
+    @GetMapping("/search")
+    public ModelAndView getSearch(){
+        return new ModelAndView("/customerView/Search");
+    }
+
+    @GetMapping("/HomeDashboard")
+    public ModelAndView getDashboard(){
+        return new ModelAndView("/dashboard/product/home");
     }
 }

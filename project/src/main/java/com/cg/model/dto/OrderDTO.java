@@ -1,6 +1,7 @@
 package com.cg.model.dto;
 
 
+import com.cg.model.CustomerInfo;
 import com.cg.model.LocationRegion;
 import com.cg.model.Order;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class OrderDTO {
 
     private String email;
 
-    private LocationRegionDTO locationRegion;
+    private CustomerInfoDTO customerInfo;
 
     public Order toOrder(){
         return new Order()
@@ -41,7 +42,7 @@ public class OrderDTO {
                 .setFullName(fullName)
                 .setPhone(phone)
                 .setEmail(email)
-                .setLocationRegion(locationRegion.toLocationRegion());
+                .setCustomerInfo(customerInfo.toCustomerInfo());
 
     }
 }

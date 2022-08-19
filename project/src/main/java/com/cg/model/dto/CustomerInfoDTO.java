@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,9 +21,9 @@ public class CustomerInfoDTO {
 
     private String userName;
 
-    private String password;
+    private String phone;
 
-    private Long phone;
+    private BigDecimal debt;
 
     private LocationRegionDTO locationRegion;
 
@@ -29,9 +31,9 @@ public class CustomerInfoDTO {
         return  new CustomerInfo()
                 .setId(id)
                 .setUserName(userName)
-                .setPassword(password)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegion())
+                .setDebt(debt)
                 ;
     }
 

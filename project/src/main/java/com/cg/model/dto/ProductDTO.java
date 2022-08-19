@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -27,6 +28,12 @@ public class ProductDTO {
     private String status;
 
     private String description;
+
+    private String size;
+
+    private String material;
+
+    private String slug;
 
     private String fileName;
     
@@ -49,7 +56,11 @@ public class ProductDTO {
                 .setPrice(price)
                 .setQuantity(quantity)
                 .setStatus(status)
-                .setDescription(description);
+                .setDescription(description)
+                .setSize(size)
+                .setMaterial(material)
+                .setSlug(slug)
+                ;
     }
 
     public ProductMedia toProductmedia(){

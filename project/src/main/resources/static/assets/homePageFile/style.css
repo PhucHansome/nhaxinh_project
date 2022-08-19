@@ -1,0 +1,520 @@
+.ocwma_table_bill .billing_address button.form_option_edit {
+    background-color: inherit;
+    color: #000;
+    font-weight: 500;
+    border-bottom: 1px solid #000;
+    padding: 0px;
+}
+.ocwma_table_bill .billing_address span.delete_bill_address {
+    float: right;
+}
+.ocwma_table_bill .billing_address span.delete_bill_address a {
+    text-decoration: none;
+}
+.ocwma_table_bill .billing_address {
+    padding: 15px;
+    background: #f1f1f1;
+    margin-bottom: 10px;
+}
+.ocwma_table_ship .shipping_address button.form_option_ship_edit {
+    background-color: inherit;
+    color: #000;
+    font-weight: 500;
+    border-bottom: 1px solid #000;
+    padding: 0px;
+}
+.ocwma_table_ship .shipping_address span.delete_ship_address {
+    float: right;
+}
+.ocwma_table_ship .shipping_address span.delete_ship_address a {
+    text-decoration: none;
+}
+.ocwma_table_ship .shipping_address {
+    padding: 15px;
+    background: #f1f1f1;
+    margin-bottom: 10px;
+}
+#ocwma_billing_popup ::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#ocwma_billing_popup ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+   border-radius: 5px;
+}
+
+.checkeddd {
+    opacity: 0.5;
+    pointer-events: none;
+}
+button.defalut_address {
+    padding: 4px 3px;
+    font-size: 10px;
+    margin-right: 14px;
+}
+ button.defalt_addd_shipping {
+    padding: 4px 3px;
+    font-size: 10px;
+    margin-right: 14px;
+}
+/* Handle */
+#ocwma_billing_popup ::-webkit-scrollbar-thumb {
+  background: #b5b5b5; 
+  width: 10px;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+#ocwma_billing_popup ::-webkit-scrollbar-thumb:hover {
+  background: #b5b5b5; 
+  width: 10px;
+}
+#ocwma_shipping_popup ::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#ocwma_shipping_popup ::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+   border-radius: 5px;
+}
+ 
+/* Handle */
+#ocwma_shipping_popup ::-webkit-scrollbar-thumb {
+  background: #b5b5b5; 
+  width: 10px;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+#ocwma_shipping_popup ::-webkit-scrollbar-thumb:hover {
+  background: #b5b5b5; 
+  width: 10px;
+}
+.ocwma_billing_popup_class {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgb(0 0 0 / 52%) /* Black w/ opacity */
+}
+.ocwma_shipping_popup_class{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgb(0 0 0 / 52%) /* Black w/ opacity */
+}
+
+.ocwma_billing_popup_body{overflow: hidden; position: relative;}
+.ocwma_billing_popup_body:after {
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    content: "";
+    width: 100%; height: 100%; left: 0; top: 0;
+}
+.ocwma_shipping_popup_body{overflow: hidden; position: relative;}
+.ocwma_shipping_popup_body:after {
+    position: absolute;
+    background-color: rgba(255,255,255,0.5);
+    content: "";
+    width: 100%; height: 100%; left: 0; top: 0;
+}
+img.ocma_loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+	 z-index: 999999999;
+}
+.ocwma_close:hover, .ocwma_close:focus {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ocwma_close {
+    font-size: 23px;
+    font-weight: bold;
+    position: absolute;
+    right: 2%;
+    top: 1%;
+    height: 25px;
+    line-height: 26px;
+    width: 25px;
+    vertical-align: middle;
+    background-color: #000;
+    text-align: center;
+    color: #fff;
+    z-index: 9999999;
+    border-radius: 50%;
+    font-family: arial;
+}
+.ocwma_modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 5px;
+    padding: 37px 20px 80px 20px;
+}
+.select2-container{ z-index: 9999999; }
+
+.woocommerce .select2-container{ z-index: 777; }
+
+.ocwma_bill_table td {
+    padding: 0px;
+    border:none;
+}
+.ocwma_ship_table td {
+    padding: 0px;
+        border:none;
+}
+table.ocwma_bill_table {
+    width: 100%;
+    border: none;
+   
+}
+table.ocwma_ship_table{
+    width: 100%;
+    border: none;
+}
+.ocwma_bill_table tr {
+    border: none;
+}
+.ocwma_ship_table tr {
+    border: none;
+}
+.cus_menu .shipping-button {
+    width: 48%;
+    float: right;
+    display: inline-block;
+    padding-left: 10px;
+}
+.cus_menu .billling-button {
+    width: 48%;
+    float: left;
+    display: inline-block;
+}
+.cus_menu {
+    width: 100%;
+    display: inline-block;
+    float: left;
+}
+/*.ocwma_bill_table tr:first-child {
+    font-size: 23px;
+}*/
+
+select.ocwma_select {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.ocwma_select_shipping{
+width: 100%;
+    margin-bottom: 5px;
+}
+h3.ocwma_border {
+    border: 4px solid red;
+    padding: 10px;
+    font-weight: bolder;
+    text-align: center;
+}
+.ocwma_table_ship {
+    width: 48%;
+    display: inline-block;
+    float: right;
+    padding-left: 10px;
+}
+.ocwma_table_bill {
+    width: 48%;
+    float: left;
+    display: inline-block;
+    padding-right: 10px;
+}
+.ocwma_table_custom {
+    width: 100%;
+    display: inline-block;
+    float: left;
+}
+.form_option_billing, .form_option_shipping {
+  display: inline-block;
+  margin: 15px 0;
+}
+.ocwma_modal-content .ocwma_inerror {
+	border: 3px solid red;
+}
+
+
+/* choice address in checkou page popup css start */
+a.choice_bil_address {
+    text-decoration: none !important;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+a.choice_bil_address:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+.address_selection_popup_main {
+    display: none;
+    position: fixed;
+    z-index: 999999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgb(0 0 0 / 52%) /* Black w/ opacity */;
+}
+.address_selection_popup_inner {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 55%;
+    border-radius: 5px;
+    padding: 37px 20px 80px 20px;
+}
+span.ocwma_close_choice_section {
+    font-size: 23px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: -45px;
+    height: 25px;
+    line-height: 26px;
+    width: 25px; 
+    vertical-align: middle;
+    background-color: #fff;
+    text-align: center;
+    color: #000;
+    z-index: 9999999;
+    border-radius: 50%;
+    font-family: arial;
+    cursor: pointer;
+}
+.ocwma_choice_bil_address {
+    overflow: hidden;
+    position: relative;
+}
+.address_line ul {
+    list-style: none;
+    margin: auto;
+    padding: 10px 20px;
+}
+.address_line {
+    display: inline-block;
+    width: 32.8%;
+    padding: 10px;
+    font-size: 17px;
+}
+.address_line_inner {
+    border: 1px solid #ccc;
+}
+.address_line_inner h5 {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.address_select_button {
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+a.choice_address {
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+a.choice_address:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+a.choice_address:focus {
+    outline: none;
+    text-decoration: none;
+}
+a.choice_bil_address:focus {
+    outline: none;
+    text-decoration: none;
+}
+.billing_popup_header {
+    position: relative;
+    background-color: #000000;
+    margin: auto;
+    border: 1px solid #000;
+    width: 55%;
+    top: 4px;
+    color: #fff;
+    z-index: 999999;
+    padding: 0 20px;
+}
+.billing_popup_header h3 {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+a#choice_bil_address {
+    text-decoration: none !important;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+}
+a#choice_sheep_address {
+    text-decoration: none !important;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+}
+
+
+
+a.choice_sheep_address {
+    text-decoration: none !important;
+    color: #000000;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+}
+a.choice_sheep_address:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+a.choice_sheep_address:focus {
+    outline: none;
+    text-decoration: none;
+}
+.ocwma_choice_ship_address {
+    overflow: hidden;
+    position: relative;
+}
+.shipping_address_selection_popup_main {
+    display: none;
+    position: fixed;
+    z-index: 999999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgb(0 0 0 / 52%) /* Black w/ opacity */;
+}
+.shipping_address_selection_popup_inner {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 55%;
+    border-radius: 5px;
+    padding: 37px 20px 80px 20px;
+}
+span.shipping_ocwma_close_choice_section {
+    font-size: 23px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: -45px;
+    height: 25px;
+    line-height: 26px;
+    width: 25px; 
+    vertical-align: middle;
+    background-color: #fff;
+    text-align: center;
+    color: #000;
+    z-index: 9999999;
+    border-radius: 50%;
+    font-family: arial;
+    cursor: pointer;
+}
+.shipping_address_line ul {
+    list-style: none;
+    margin: auto;
+    padding: 10px 20px;
+}
+.shipping_address_line {
+    display: inline-block;
+    width: 32.8%;
+    padding: 10px;
+    font-size: 17px;
+}
+.shipping_address_line_inner {
+    border: 1px solid #ccc;
+}
+.shipping_address_line_inner h5 {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+.shipping_address_select_button {
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+a.choice_shipping_address {
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+a.choice_shipping_address:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+a.choice_shipping_address:focus {
+    outline: none;
+    text-decoration: none;
+}
+.shipping_popup_header {
+    position: relative;
+    background-color: #000000;
+    margin: auto;
+    border: 1px solid #000;
+    width: 55%;
+    top: 4px;
+    color: #fff;
+    z-index: 999999;
+}
+.shipping_popup_header h3 {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+/* choice address in checkou page popup css end */
+
+@media screen and (max-width: 767px){
+  .ocwma_modal-content {
+      width: 96%;
+  }
+}

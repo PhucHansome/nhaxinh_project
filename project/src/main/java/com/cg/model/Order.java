@@ -35,8 +35,8 @@ public class Order extends BaseEntity{
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "location_region_id", nullable = false)
-    private LocationRegion locationRegion;
+    @JoinColumn(name = "customerifs_id", nullable = false)
+    private CustomerInfo customerInfo;
 
     public OrderDTO toOrderDTO(){
         return new OrderDTO()
@@ -46,7 +46,7 @@ public class Order extends BaseEntity{
                 .setFullName(fullName)
                 .setPhone(phone)
                 .setEmail(email)
-                .setLocationRegion(locationRegion.toLocationRegionDTO());
+                .setCustomerInfo(customerInfo.toCustomerinfoDTO());
 
     }
 }

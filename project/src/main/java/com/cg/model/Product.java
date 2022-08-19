@@ -7,14 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
-import org.springframework.security.access.method.P;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -40,17 +37,19 @@ public class Product extends  BaseEntity{
 
     private String description;
 
+    private String slug;
+
+    private String size;
+
+    private String material;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToOne
-    @JoinColumn(name = "productSize_id")
-    private ProductSize productSize;
-
-    @ManyToOne
-    @JoinColumn(name = "tag_id")
-    private Tag tag;
+    @JoinColumn(name = "productColor_id")
+    private ProductColor productColor;
 
 
     @Column(columnDefinition = "BIGINT(20) DEFAULT 0")
@@ -75,6 +74,10 @@ public class Product extends  BaseEntity{
                 .setPrice(price)
                 .setQuantity(quantity)
                 .setStatus(status)
-                .setDescription(description);
+                .setDescription(description)
+                .setSlug(slug)
+                .setSize(size)
+                .setMaterial(material)
+                ;
     }
 }

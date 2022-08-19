@@ -2,6 +2,7 @@ package com.cg.model;
 
 
 import com.cg.model.dto.CartDTO;
+import com.cg.model.dto.CustomerInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,8 +37,8 @@ public class Cart extends BaseEntity {
     private String content;
 
     @OneToOne
-    @JoinColumn(name = "location_region_id", nullable = false)
-    private LocationRegion locationRegion;
+    @JoinColumn(name = "customerins_id", nullable = false)
+    private CustomerInfo customerInfo;
 
 
     public CartDTO toCartDTO(){
@@ -47,6 +48,6 @@ public class Cart extends BaseEntity {
                 .setStatus(status)
                 .setPhone(phone)
                 .setContent(content)
-                .setLocationRegion(locationRegion.toLocationRegionDTO());
+                .setCustomerInfo(customerInfo.toCustomerinfoDTO());
     }
 }

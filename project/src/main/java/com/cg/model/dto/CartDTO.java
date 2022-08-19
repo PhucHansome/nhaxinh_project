@@ -32,7 +32,7 @@ public class CartDTO {
 
     private String content;
 
-    private LocationRegionDTO locationRegion;
+    private CustomerInfoDTO customerInfo;
 
     public Cart toCart() {
         return new Cart()
@@ -41,6 +41,6 @@ public class CartDTO {
                 .setStatus(status)
                 .setPhone(phone)
                 .setContent(content)
-                .setLocationRegion(locationRegion.toLocationRegion());
+                .setCustomerInfo(customerInfo.toCustomerInfo());
     }
 }

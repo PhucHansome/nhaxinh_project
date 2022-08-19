@@ -27,8 +27,8 @@ public class CartItem extends BaseEntity{
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
-    private User user;
+    @JoinColumn(name="cart_id", nullable = false)
+    private Cart cart;
 
     private BigDecimal price;
 
@@ -40,7 +40,7 @@ public class CartItem extends BaseEntity{
         return new CartItemsDTO()
                 .setId(id)
                 .setProduct(product.toProductDTO())
-                .setUser(user.toUserDTO())
+                .setCart(cart.toCartDTO())
                 .setPrice(price)
                 .setQuantity(quantity)
                 .setContent(content);
