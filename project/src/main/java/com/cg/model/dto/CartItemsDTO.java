@@ -31,15 +31,18 @@ public class CartItemsDTO {
 
     private BigDecimal quantity;
 
+    private boolean deleted;
+
     private String content;
 
     public CartItem toCartItem() {
         return new CartItem()
-                .setId(id)
+                .setId(Long.valueOf(id))
                 .setProduct(product.toProduct())
                 .setCart(cart.toCart())
                 .setPrice(price)
                 .setQuantity(quantity)
-                .setContent(content);
+                .setContent(content)
+                .setDeleted(deleted);
     }
 }

@@ -41,7 +41,7 @@ public class CartItem {
 
     public CartItemsDTO toCartItemDTO() {
         return new CartItemsDTO()
-                .setId(id)
+                .setId(String.valueOf(id))
                 .setProduct(product.toProductDTO())
                 .setCart(cart.toCartDTO())
                 .setPrice(price)

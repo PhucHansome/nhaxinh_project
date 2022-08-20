@@ -46,7 +46,7 @@ public class Cart  {
 
     public CartDTO toCartDTO(){
         return new CartDTO()
-                .setId(id)
+                .setId(String.valueOf(id))
                 .setFullName(fullName)
                 .setStatus(status)
                 .setPhone(phone)
