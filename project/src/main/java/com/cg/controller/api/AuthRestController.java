@@ -43,40 +43,10 @@ public class AuthRestController {
     private IRoleService roleService;
 
     @Autowired
-    private com.cg.util.AppUtil appUtils;
+    private com.cg.utils.AppUtil appUtils;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors())
-            return appUtils.mapErrorToResponse(bindingResult);
-
-        Optional<UserDTO> optUser = userService.findUserDTOByUsername(userDTO.getUsername());
-
-        if (optUser.isPresent()) {
-            throw new EmailExistsException("Email này đã tồn tại");
-        }
-
-        Optional<Role> optRole = roleService.findById(userDTO.getRole().getId());
-
-        Boolean existRole = roleService.existById(userDTO.getRole().getId());
-
-        if (!existRole) {
-            throw new DataInputException("Invalid account role");
-        }
-        try {
-
-            User newUser = userService.save(userDTO.toUser());
-
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-
-        } catch (DataIntegrityViolationException e) {
-            throw new DataInputException("Account information is not valid, please check the information again");
-        }
-    }
-
-    @PostMapping("/registerdefaulimage")
-    public ResponseEntity<?> registerDefautlimage(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> registerRegister(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
 
 
         if (bindingResult.hasErrors())

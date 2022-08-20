@@ -49,4 +49,9 @@ public class HomeController {
     public ModelAndView getDashboard(){
         return new ModelAndView("/dashboard/home/home");
     }
+
+    @GetMapping("/login_admin")
+    public ModelAndView getLoginAdmin(){
+        return new ModelAndView("/dashboard/loginDashboard/login");
+    }
 }

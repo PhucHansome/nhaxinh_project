@@ -1,6 +1,4 @@
 package com.cg.model;
-
-
 import com.cg.model.dto.OrderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
