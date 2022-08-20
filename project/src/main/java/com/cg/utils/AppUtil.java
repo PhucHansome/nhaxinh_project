@@ -1,4 +1,4 @@
-package com.cg.util;
+package com.cg.utils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

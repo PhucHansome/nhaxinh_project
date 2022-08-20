@@ -9,6 +9,7 @@ import com.cg.model.dto.UserDTO;
 import com.cg.service.jwt.JwtService;
 import com.cg.service.role.IRoleService;
 import com.cg.service.user.IUserService;
+import com.cg.utils.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
@@ -43,7 +44,7 @@ public class AuthRestController {
     private IRoleService roleService;
 
     @Autowired
-    private com.cg.util.AppUtil appUtils;
+    private AppUtil appUtils;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
