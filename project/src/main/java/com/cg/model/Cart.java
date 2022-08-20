@@ -40,7 +40,7 @@ public class Cart  {
     private boolean deleted;
 
     @OneToOne
-    @JoinColumn(name = "customerins_id", nullable = false)
+    @JoinColumn(name = "customerinf_id", nullable = false)
     private CustomerInfo customerInfo;
 
 
@@ -51,7 +51,7 @@ public class Cart  {
                 .setStatus(status)
                 .setPhone(phone)
                 .setContent(content)
-                .setCustomerInfo(customerInfo.toCustomerinfoDTO())
+                .setCustomerInfo(customerInfo.toCustomerInfoDTO())
                 .setDeleted(deleted);
     }
 }
