@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Column;
 import java.util.List;
 
 @Setter
@@ -18,12 +19,14 @@ import java.util.List;
 public class TagDTO {
     private Long id;
     private String name;
+    private boolean deleted;
     private List<Product> product;
 
     public Tag toTag(){
         return new Tag()
                 .setId(id)
                 .setName(name)
-                .setProduct(product);
+                .setProduct(product)
+                .setDeleted(deleted);
     }
 }

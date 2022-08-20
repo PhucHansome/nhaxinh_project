@@ -31,14 +31,12 @@ public class OrderDetail extends BaseEntity{
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    private BigDecimal payment;
-
 
     public OrderDetailDTO toOrderDetailDTO(){
         return new OrderDetailDTO()
                 .setId(id)
                 .setOrder(order.toOrderDTO())
                 .setProduct(product.toProductDTO())
-                .setPayment(payment);
+                ;
     }
 }

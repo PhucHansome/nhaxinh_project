@@ -1,0 +1,1158 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="script">
+    <script>
+        jQuery(function ($) {
+
+
+        });
+    </script>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js#xfbml=1&version=v6.0&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Instagram Feed JS -->
+    <script type="text/javascript">
+        var sbiajaxurl = "https://nhaxinh.com/wp-admin/admin-ajax.php";
+    </script>
+    <div id="ocwma_billing_popup" class="ocwma_billing_popup_class">
+    </div>
+    <div id="ocwma_shipping_popup" class="ocwma_shipping_popup_class">
+    </div>
+
+    <div id="address_selection_popup_main" class="address_selection_popup_main">
+        <div class="billing_popup_header">
+            <h3>Choice Billing Address</h3>
+        </div>
+        <div class="address_selection_popup_inner">
+            <span class="ocwma_close_choice_section">×</span>
+            <div class="address_selection_popup_body">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" language="javascript">
+        jQuery(function () {
+            jQuery(this).bind("contextmenu", function (e) {
+                //e.preventDefault();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();
+    </script>
+    <style id="global-styles-inline-css" type="text/css">
+        body {
+            --wp--preset--color--black: #000000;
+            --wp--preset--color--cyan-bluish-gray: #abb8c3;
+            --wp--preset--color--white: #ffffff;
+            --wp--preset--color--pale-pink: #f78da7;
+            --wp--preset--color--vivid-red: #cf2e2e;
+            --wp--preset--color--luminous-vivid-orange: #ff6900;
+            --wp--preset--color--luminous-vivid-amber: #fcb900;
+            --wp--preset--color--light-green-cyan: #7bdcb5;
+            --wp--preset--color--vivid-green-cyan: #00d084;
+            --wp--preset--color--pale-cyan-blue: #8ed1fc;
+            --wp--preset--color--vivid-cyan-blue: #0693e3;
+            --wp--preset--color--vivid-purple: #9b51e0;
+            --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+            --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+            --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+            --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+            --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+            --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+            --wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+            --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+            --wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+            --wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+            --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+            --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+            --wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');
+            --wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');
+            --wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');
+            --wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');
+            --wp--preset--duotone--midnight: url('#wp-duotone-midnight');
+            --wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');
+            --wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');
+            --wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');
+            --wp--preset--font-size--small: 13px;
+            --wp--preset--font-size--medium: 20px;
+            --wp--preset--font-size--large: 36px;
+            --wp--preset--font-size--x-large: 42px;
+        }
+
+        .has-black-color {
+            color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-color {
+            color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-color {
+            color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-color {
+            color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-color {
+            color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-color {
+            color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-color {
+            color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-color {
+            color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-color {
+            color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-color {
+            color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-color {
+            color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-color {
+            color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-background-color {
+            background-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-background-color {
+            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-background-color {
+            background-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-background-color {
+            background-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-background-color {
+            background-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-background-color {
+            background-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-background-color {
+            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-background-color {
+            background-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-border-color {
+            border-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-border-color {
+            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-border-color {
+            border-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-border-color {
+            border-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-border-color {
+            border-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-border-color {
+            border-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-border-color {
+            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-border-color {
+            border-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+        }
+
+        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+        }
+
+        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+        }
+
+        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+        }
+
+        .has-cool-to-warm-spectrum-gradient-background {
+            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+        }
+
+        .has-blush-light-purple-gradient-background {
+            background: var(--wp--preset--gradient--blush-light-purple) !important;
+        }
+
+        .has-blush-bordeaux-gradient-background {
+            background: var(--wp--preset--gradient--blush-bordeaux) !important;
+        }
+
+        .has-luminous-dusk-gradient-background {
+            background: var(--wp--preset--gradient--luminous-dusk) !important;
+        }
+
+        .has-pale-ocean-gradient-background {
+            background: var(--wp--preset--gradient--pale-ocean) !important;
+        }
+
+        .has-electric-grass-gradient-background {
+            background: var(--wp--preset--gradient--electric-grass) !important;
+        }
+
+        .has-midnight-gradient-background {
+            background: var(--wp--preset--gradient--midnight) !important;
+        }
+
+        .has-small-font-size {
+            font-size: var(--wp--preset--font-size--small) !important;
+        }
+
+        .has-medium-font-size {
+            font-size: var(--wp--preset--font-size--medium) !important;
+        }
+
+        .has-large-font-size {
+            font-size: var(--wp--preset--font-size--large) !important;
+        }
+
+        .has-x-large-font-size {
+            font-size: var(--wp--preset--font-size--x-large) !important;
+        }
+    </style>
+    <script type="text/javascript" src="/assets/HomePageFile/regenerator-runtime.min.js.tải xuống"
+            id="regenerator-runtime-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/wp-polyfill.min.js.tải xuống" id="wp-polyfill-js"></script>
+    <script type="text/javascript" id="contact-form-7-js-extra">
+        /* <![CDATA[ */
+        var wpcf7 = {
+            "api": {"root": "https:\/\/nhaxinh.com\/wp-json\/", "namespace": "contact-form-7\/v1"},
+            "cached": "1"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/index.js.tải xuống" id="contact-form-7-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/select2.full.min.js.tải xuống" id="select2-js"></script>
+    <script type="text/javascript" id="devvn_tinhthanhpho-js-extra">
+        /* <![CDATA[ */
+        var vncheckout_array = {
+            "admin_ajax": "https:\/\/nhaxinh.com\/wp-admin\/admin-ajax.php",
+            "get_address": "https:\/\/nhaxinh.com\/wp-content\/plugins\/devvn-woo-address-selectbox\/vietnam-checkout\/get-address.php",
+            "home_url": "https:\/\/nhaxinh.com",
+            "formatNoMatches": "No value",
+            "phone_error": "Phone number is incorrect",
+            "loading_text": "Loading...",
+            "loadaddress_error": "Phone number does not exist",
+            "enabled_free_shipping": "",
+            "has_vtp": "0"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/devvn_tinhthanh.js.tải xuống"
+            id="devvn_tinhthanhpho-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/hooks.min.js.tải xuống" id="wp-hooks-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/i18n.min.js.tải xuống" id="wp-i18n-js"></script>
+    <script type="text/javascript" id="wp-i18n-js-after">
+        wp.i18n.setLocaleData({'text direction\u0004ltr': ['ltr']});
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/jquery.form.min.js.tải xuống" id="jquery-form-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/jquery.blockUI.min.js.tải xuống"
+            id="jquery-blockui-js"></script>
+    <script type="text/javascript" id="wc-add-to-cart-js-extra">
+        /* <![CDATA[ */
+        var wc_add_to_cart_params = {
+            "ajax_url": "\/wp-admin\/admin-ajax.php",
+            "wc_ajax_url": "\/?wc-ajax=%%endpoint%%",
+            "i18n_view_cart": "Xem gi\u1ecf h\u00e0ng",
+            "cart_url": "https:\/\/nhaxinh.com\/gio-hang\/",
+            "is_cart": "",
+            "cart_redirect_after_add": "no"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/add-to-cart.min.js.tải xuống"
+            id="wc-add-to-cart-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/js.cookie.min.js.tải xuống" id="js-cookie-js"></script>
+    <script type="text/javascript" id="woocommerce-js-extra">
+        /* <![CDATA[ */
+        var woocommerce_params = {"ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/woocommerce.min.js.tải xuống" id="woocommerce-js"></script>
+    <script type="text/javascript" id="wc-cart-fragments-js-extra">
+        /* <![CDATA[ */
+        var wc_cart_fragments_params = {
+            "ajax_url": "\/wp-admin\/admin-ajax.php",
+            "wc_ajax_url": "\/?wc-ajax=%%endpoint%%",
+            "cart_hash_key": "wc_cart_hash_dad88cd80e8b5dcb30763391856f9c1b-vi",
+            "fragment_name": "wc_fragments_dad88cd80e8b5dcb30763391856f9c1b",
+            "request_timeout": "5000"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/cart-fragments.min.js.tải xuống"
+            id="wc-cart-fragments-js"></script>
+    <script type="text/javascript" id="rocket-browser-checker-js-after">
+        "use strict";
+        var _createClass = function () {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor)
+                }
+            }
+
+            return function (Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), Constructor
+            }
+        }();
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        var RocketBrowserCompatibilityChecker = function () {
+            function RocketBrowserCompatibilityChecker(options) {
+                _classCallCheck(this, RocketBrowserCompatibilityChecker), this.passiveSupported = !1, this._checkPassiveOption(this), this.options = !!this.passiveSupported && options
+            }
+
+            return _createClass(RocketBrowserCompatibilityChecker, [{
+                key: "_checkPassiveOption", value: function (self) {
+                    try {
+                        var options = {
+                            get passive() {
+                                return !(self.passiveSupported = !0)
+                            }
+                        };
+                        window.addEventListener("test", null, options), window.removeEventListener("test", null, options)
+                    } catch (err) {
+                        self.passiveSupported = !1
+                    }
+                }
+            }, {
+                key: "initRequestIdleCallback", value: function () {
+                    !1 in window && (window.requestIdleCallback = function (cb) {
+                        var start = Date.now();
+                        return setTimeout(function () {
+                            cb({
+                                didTimeout: !1, timeRemaining: function () {
+                                    return Math.max(0, 50 - (Date.now() - start))
+                                }
+                            })
+                        }, 1)
+                    }), !1 in window && (window.cancelIdleCallback = function (id) {
+                        return clearTimeout(id)
+                    })
+                }
+            }, {
+                key: "isDataSaverModeOn", value: function () {
+                    return "connection" in navigator && !0 === navigator.connection.saveData
+                }
+            }, {
+                key: "supportsLinkPrefetch", value: function () {
+                    var elem = document.createElement("link");
+                    return elem.relList && elem.relList.supports && elem.relList.supports("prefetch") && window.IntersectionObserver && "isIntersecting" in IntersectionObserverEntry.prototype
+                }
+            }, {
+                key: "isSlowConnection", value: function () {
+                    return "connection" in navigator && "effectiveType" in navigator.connection && ("2g" === navigator.connection.effectiveType || "slow-2g" === navigator.connection.effectiveType)
+                }
+            }]), RocketBrowserCompatibilityChecker
+        }();
+    </script>
+    <script type="text/javascript" id="rocket-preload-links-js-extra">
+        /* <![CDATA[ */
+        var RocketPreloadLinksConfig = {
+            "excludeUris": "\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/thanh-toan\/|\/gio-hang\/|\/tai-khoan\/|\/wc-api\/v(.*)|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php",
+            "usesTrailingSlash": "1",
+            "imageExt": "jpg|jpeg|gif|png|tiff|bmp|webp|avif",
+            "fileExt": "jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm",
+            "siteUrl": "https:\/\/nhaxinh.com",
+            "onHoverDelay": "100",
+            "rateThrottle": "3"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" id="rocket-preload-links-js-after">
+        (function () {
+            "use strict";
+            var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
+                return typeof e
+            } : function (e) {
+                return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+            }, e = function () {
+                function i(e, t) {
+                    for (var n = 0; n < t.length; n++) {
+                        var i = t[n];
+                        i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(e, i.key, i)
+                    }
+                }
+
+                return function (e, t, n) {
+                    return t && i(e.prototype, t), n && i(e, n), e
+                }
+            }();
+
+            function i(e, t) {
+                if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+            }
+
+            var t = function () {
+                function n(e, t) {
+                    i(this, n), this.browser = e, this.config = t, this.options = this.browser.options, this.prefetched = new Set, this.eventTime = null, this.threshold = 1111, this.numOnHover = 0
+                }
+
+                return e(n, [{
+                    key: "init", value: function () {
+                        !this.browser.supportsLinkPrefetch() || this.browser.isDataSaverModeOn() || this.browser.isSlowConnection() || (this.regex = {
+                            excludeUris: RegExp(this.config.excludeUris, "i"),
+                            images: RegExp(".(" + this.config.imageExt + ")$", "i"),
+                            fileExt: RegExp(".(" + this.config.fileExt + ")$", "i")
+                        }, this._initListeners(this))
+                    }
+                }, {
+                    key: "_initListeners", value: function (e) {
+                        -1 < this.config.onHoverDelay && document.addEventListener("mouseover", e.listener.bind(e), e.listenerOptions), document.addEventListener("mousedown", e.listener.bind(e), e.listenerOptions), document.addEventListener("touchstart", e.listener.bind(e), e.listenerOptions)
+                    }
+                }, {
+                    key: "listener", value: function (e) {
+                        var t = e.target.closest("a"), n = this._prepareUrl(t);
+                        if (null !== n) switch (e.type) {
+                            case"mousedown":
+                            case"touchstart":
+                                this._addPrefetchLink(n);
+                                break;
+                            case"mouseover":
+                                this._earlyPrefetch(t, n, "mouseout")
+                        }
+                    }
+                }, {
+                    key: "_earlyPrefetch", value: function (t, e, n) {
+                        var i = this, r = setTimeout(function () {
+                            if (r = null, 0 === i.numOnHover) setTimeout(function () {
+                                return i.numOnHover = 0
+                            }, 1e3); else if (i.numOnHover > i.config.rateThrottle) return;
+                            i.numOnHover++, i._addPrefetchLink(e)
+                        }, this.config.onHoverDelay);
+                        t.addEventListener(n, function e() {
+                            t.removeEventListener(n, e, {passive: !0}), null !== r && (clearTimeout(r), r = null)
+                        }, {passive: !0})
+                    }
+                }, {
+                    key: "_addPrefetchLink", value: function (i) {
+                        return this.prefetched.add(i.href), new Promise(function (e, t) {
+                            var n = document.createElement("link");
+                            n.rel = "prefetch", n.href = i.href, n.onload = e, n.onerror = t, document.head.appendChild(n)
+                        }).catch(function () {
+                        })
+                    }
+                }, {
+                    key: "_prepareUrl", value: function (e) {
+                        if (null === e || "object" !== (void 0 === e ? "undefined" : r(e)) || !1 in e || -1 === ["http:", "https:"].indexOf(e.protocol)) return null;
+                        var t = e.href.substring(0, this.config.siteUrl.length), n = this._getPathname(e.href, t),
+                            i = {original: e.href, protocol: e.protocol, origin: t, pathname: n, href: t + n};
+                        return this._isLinkOk(i) ? i : null
+                    }
+                }, {
+                    key: "_getPathname", value: function (e, t) {
+                        var n = t ? e.substring(this.config.siteUrl.length) : e;
+                        return n.startsWith("/") || (n = "/" + n), this._shouldAddTrailingSlash(n) ? n + "/" : n
+                    }
+                }, {
+                    key: "_shouldAddTrailingSlash", value: function (e) {
+                        return this.config.usesTrailingSlash && !e.endsWith("/") && !this.regex.fileExt.test(e)
+                    }
+                }, {
+                    key: "_isLinkOk", value: function (e) {
+                        return null !== e && "object" === (void 0 === e ? "undefined" : r(e)) && (!this.prefetched.has(e.href) && e.origin === this.config.siteUrl && -1 === e.href.indexOf("?") && -1 === e.href.indexOf("#") && !this.regex.excludeUris.test(e.href) && !this.regex.images.test(e.href))
+                    }
+                }], [{
+                    key: "run", value: function () {
+                        "undefined" != typeof RocketPreloadLinksConfig && new n(new RocketBrowserCompatibilityChecker({
+                            capture: !0,
+                            passive: !0
+                        }), RocketPreloadLinksConfig).init()
+                    }
+                }]), n
+            }();
+            t.run();
+        }());
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/hoverIntent.min.js.tải xuống" id="hoverIntent-js"></script>
+    <script type="text/javascript" id="flatsome-js-js-extra">
+        /* <![CDATA[ */
+        var flatsomeVars = {
+            "theme": {"version": "3.14.3"},
+            "ajaxurl": "https:\/\/nhaxinh.com\/wp-admin\/admin-ajax.php",
+            "rtl": "",
+            "sticky_height": "70",
+            "assets_url": "https:\/\/nhaxinh.com\/wp-content\/themes\/flatsome\/assets\/js\/",
+            "lightbox": {
+                "close_markup": "<button title=\"%title%\" type=\"button\" class=\"mfp-close\"><svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"><\/line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"><\/line><\/svg><\/button>",
+                "close_btn_inside": false
+            },
+            "user": {"can_edit_pages": false},
+            "i18n": {"mainMenu": "Main Menu"},
+            "options": {
+                "cookie_notice_version": "1",
+                "swatches_layout": false,
+                "swatches_box_select_event": false,
+                "swatches_box_behavior_selected": false,
+                "swatches_box_update_urls": "1",
+                "swatches_box_reset": false,
+                "swatches_box_reset_extent": false,
+                "swatches_box_reset_time": 300,
+                "search_result_latency": "0"
+            },
+            "is_mini_cart_reveal": "1"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/flatsome.js.tải xuống" id="flatsome-js-js"></script>
+    <script type="text/javascript" id="get_recently_products_script-js-extra">
+        /* <![CDATA[ */
+        var qhAjax = {"ajaxurl": "https:\/\/nhaxinh.com\/wp-admin\/admin-ajax.php"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/qh-get-recently-products.js.tải xuống"
+            id="get_recently_products_script-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/wishlist.js.tải xuống"
+            id="flatsome-woocommerce-wishlist-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/yith-wishlist.js.tải xuống"
+            id="qh-woocommerce-wishlist-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/flatsome-wp-rocket.js.tải xuống"
+            id="flatsome-wp-rocket-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/flatsome-instant-page.js.tải xuống"
+            id="flatsome-instant-page-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/flatsome-live-search.js.tải xuống"
+            id="flatsome-live-search-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/front-scripts.min.js.tải xuống"
+            id="wcml-front-scripts-js"></script>
+    <script type="text/javascript" id="cart-widget-js-extra">
+        /* <![CDATA[ */
+        var actions = {"is_lang_switched": "0", "force_reset": "0"};
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/cart_widget.min.js.tải xuống" id="cart-widget-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/api.js.tải xuống" id="google-recaptcha-js"></script>
+    <script type="text/javascript" id="wpcf7-recaptcha-js-extra">
+        /* <![CDATA[ */
+        var wpcf7_recaptcha = {
+            "sitekey": "6LfnF2scAAAAABJ5Zn_nWyxHgx9H3y7AzMGzloSl",
+            "actions": {"homepage": "homepage", "contactform": "contactform"}
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/index.js(1).tải xuống" id="wpcf7-recaptcha-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/flatsome-lazy-load.js.tải xuống"
+            id="flatsome-lazy-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/woocommerce.js.tải xuống"
+            id="flatsome-theme-woocommerce-js-js"></script>
+    <!--[if IE]>
+    <script type='text/javascript'
+            src='https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.0.1/ie11CustomProperties.min.js?ver=4.0.1'
+            id='css-vars-polyfill-js'></script>
+    <![endif]-->
+    <script type="text/javascript" src="/assets/HomePageFile/packery.pkgd.min.js.tải xuống"
+            id="flatsome-masonry-js-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/jquery.selectBox.min.js.tải xuống"
+            id="jquery-selectBox-js"></script>
+    <script type="text/javascript" src="/assets/HomePageFile/jquery.prettyPhoto.min.js.tải xuống"
+            id="prettyPhoto-js"></script>
+    <script type="text/javascript" id="jquery-yith-wcwl-js-extra">
+        /* <![CDATA[ */
+        var yith_wcwl_l10n = {
+            "ajax_url": "\/wp-admin\/admin-ajax.php",
+            "redirect_to_cart": "no",
+            "multi_wishlist": "",
+            "hide_add_button": "1",
+            "enable_ajax_loading": "1",
+            "ajax_loader_url": "https:\/\/nhaxinh.com\/wp-content\/plugins\/yith-woocommerce-wishlist\/assets\/images\/ajax-loader-alt.svg",
+            "remove_from_wishlist_after_add_to_cart": "1",
+            "is_wishlist_responsive": "1",
+            "time_to_close_prettyphoto": "3000",
+            "fragments_index_glue": ".",
+            "reload_on_found_variation": "1",
+            "mobile_media_query": "768",
+            "labels": {
+                "cookie_disabled": "We are sorry, but this feature is available only if cookies on your browser are enabled.",
+                "added_to_cart_message": "<div class=\"woocommerce-notices-wrapper\"><div class=\"woocommerce-message\" role=\"alert\">Product added to cart successfully<\/div><\/div>"
+            },
+            "actions": {
+                "add_to_wishlist_action": "add_to_wishlist",
+                "remove_from_wishlist_action": "remove_from_wishlist",
+                "reload_wishlist_and_adding_elem_action": "reload_wishlist_and_adding_elem",
+                "load_mobile_action": "load_mobile",
+                "delete_item_action": "delete_item",
+                "save_title_action": "save_title",
+                "save_privacy_action": "save_privacy",
+                "load_fragments": "load_fragments"
+            },
+            "nonce": {
+                "add_to_wishlist_nonce": "1826fd25ac",
+                "remove_from_wishlist_nonce": "fb81a8aa89",
+                "reload_wishlist_and_adding_elem_nonce": "b528b8d9a6",
+                "load_mobile_nonce": "2ea2da0ce3",
+                "delete_item_nonce": "3207739081",
+                "save_title_nonce": "a36741e67d",
+                "save_privacy_nonce": "6158b17620",
+                "load_fragments_nonce": "baca50d88d"
+            }
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/jquery.yith-wcwl.min.js.tải xuống"
+            id="jquery-yith-wcwl-js"></script>
+    <script type="text/javascript" id="sbi_scripts-js-extra">
+        /* <![CDATA[ */
+        var sb_instagram_js_options = {
+            "font_method": "svg",
+            "resized_url": "https:\/\/nhaxinh.com\/wp-content\/uploads\/sb-instagram-feed-images\/",
+            "placeholder": "https:\/\/nhaxinh.com\/wp-content\/plugins\/instagram-feed\/img\/placeholder.png",
+            "ajax_url": "https:\/\/nhaxinh.com\/wp-admin\/admin-ajax.php"
+        };
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="/assets/HomePageFile/sbi-scripts.min.js.tải xuống" id="sbi_scripts-js"></script>
+    <script type="text/javascript">(function (undefined) {
+        var _localizedStrings = {
+            "redirect_overlay_title": "Hold On",
+            "redirect_overlay_text": "You are being redirected to another page,<br>it may take a few seconds."
+        };
+        var _targetWindow = "prefer-popup";
+        var _redirectOverlay = "overlay-with-spinner-and-message";
+        window.NSLPopup = function (url, title, w, h) {
+            var userAgent = navigator.userAgent,
+                mobile = function () {
+                    return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
+                        /\b(iP[ao]d)/.test(userAgent) ||
+                        /Android/i.test(userAgent) ||
+                        /Mobile/i.test(userAgent);
+                },
+                screenX = window.screenX !== undefined ? window.screenX : window.screenLeft,
+                screenY = window.screenY !== undefined ? window.screenY : window.screenTop,
+                outerWidth = window.outerWidth !== undefined ? window.outerWidth : document.documentElement.clientWidth,
+                outerHeight = window.outerHeight !== undefined ? window.outerHeight : document.documentElement.clientHeight - 22,
+                targetWidth = mobile() ? null : w,
+                targetHeight = mobile() ? null : h,
+                V = screenX < 0 ? window.screen.width + screenX : screenX,
+                left = parseInt(V + (outerWidth - targetWidth) / 2, 10),
+                right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
+                features = [];
+            if (targetWidth !== null) {
+                features.push('width=' + targetWidth);
+            }
+            if (targetHeight !== null) {
+                features.push('height=' + targetHeight);
+            }
+            features.push('left=' + left);
+            features.push('top=' + right);
+            features.push('scrollbars=1');
+
+            var newWindow = window.open(url, title, features.join(','));
+
+            if (window.focus) {
+                newWindow.focus();
+            }
+
+            return newWindow;
+        };
+
+        var isWebView = null;
+
+        function checkWebView() {
+            if (isWebView === null) {
+                function _detectOS(ua) {
+                    if (/Android/.test(ua)) {
+                        return "Android";
+                    } else if (/iPhone|iPad|iPod/.test(ua)) {
+                        return "iOS";
+                    } else if (/Windows/.test(ua)) {
+                        return "Windows";
+                    } else if (/Mac OS X/.test(ua)) {
+                        return "Mac";
+                    } else if (/CrOS/.test(ua)) {
+                        return "Chrome OS";
+                    } else if (/Firefox/.test(ua)) {
+                        return "Firefox OS";
+                    }
+                    return "";
+                }
+
+                function _detectBrowser(ua) {
+                    var android = /Android/.test(ua);
+
+                    if (/Opera Mini/.test(ua) || / OPR/.test(ua) || / OPT/.test(ua)) {
+                        return "Opera";
+                    } else if (/CriOS/.test(ua)) {
+                        return "Chrome for iOS";
+                    } else if (/Edge/.test(ua)) {
+                        return "Edge";
+                    } else if (android && /Silk\//.test(ua)) {
+                        return "Silk";
+                    } else if (/Chrome/.test(ua)) {
+                        return "Chrome";
+                    } else if (/Firefox/.test(ua)) {
+                        return "Firefox";
+                    } else if (android) {
+                        return "AOSP";
+                    } else if (/MSIE|Trident/.test(ua)) {
+                        return "IE";
+                    } else if (/Safari\//.test(ua)) {
+                        return "Safari";
+                    } else if (/AppleWebKit/.test(ua)) {
+                        return "WebKit";
+                    }
+                    return "";
+                }
+
+                function _detectBrowserVersion(ua, browser) {
+                    if (browser === "Opera") {
+                        return /Opera Mini/.test(ua) ? _getVersion(ua, "Opera Mini/") :
+                            / OPR/.test(ua) ? _getVersion(ua, " OPR/") :
+                                _getVersion(ua, " OPT/");
+                    } else if (browser === "Chrome for iOS") {
+                        return _getVersion(ua, "CriOS/");
+                    } else if (browser === "Edge") {
+                        return _getVersion(ua, "Edge/");
+                    } else if (browser === "Chrome") {
+                        return _getVersion(ua, "Chrome/");
+                    } else if (browser === "Firefox") {
+                        return _getVersion(ua, "Firefox/");
+                    } else if (browser === "Silk") {
+                        return _getVersion(ua, "Silk/");
+                    } else if (browser === "AOSP") {
+                        return _getVersion(ua, "Version/");
+                    } else if (browser === "IE") {
+                        return /IEMobile/.test(ua) ? _getVersion(ua, "IEMobile/") :
+                            /MSIE/.test(ua) ? _getVersion(ua, "MSIE ")
+                                :
+                                _getVersion(ua, "rv:");
+                    } else if (browser === "Safari") {
+                        return _getVersion(ua, "Version/");
+                    } else if (browser === "WebKit") {
+                        return _getVersion(ua, "WebKit/");
+                    }
+                    return "0.0.0";
+                }
+
+                function _getVersion(ua, token) {
+                    try {
+                        return _normalizeSemverString(ua.split(token)[1].trim().split(/[^\w\.]/)[0]);
+                    } catch (o_O) {
+                    }
+                    return "0.0.0";
+                }
+
+                function _normalizeSemverString(version) {
+                    var ary = version.split(/[\._]/);
+                    return (parseInt(ary[0], 10) || 0) + "." +
+                        (parseInt(ary[1], 10) || 0) + "." +
+                        (parseInt(ary[2], 10) || 0);
+                }
+
+                function _isWebView(ua, os, browser, version, options) {
+                    switch (os + browser) {
+                        case "iOSSafari":
+                            return false;
+                        case "iOSWebKit":
+                            return _isWebView_iOS(options);
+                        case "AndroidAOSP":
+                            return false;
+                        case "AndroidChrome":
+                            return parseFloat(version) >= 42 ? /; wv/.test(ua) : /\d{2}\.0\.0/.test(version) ? true : _isWebView_Android(options);
+                    }
+                    return false;
+                }
+
+                function _isWebView_iOS(options) {
+                    var document = (window["document"] || {});
+
+                    if ("WEB_VIEW" in options) {
+                        return options["WEB_VIEW"];
+                    }
+                    return !("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || false);
+                }
+
+                function _isWebView_Android(options) {
+                    if ("WEB_VIEW" in options) {
+                        return options["WEB_VIEW"];
+                    }
+                    return !("requestFileSystem" in window || "webkitRequestFileSystem" in window || false);
+                }
+
+                var options = {};
+                var nav = window.navigator || {};
+                var ua = nav.userAgent || "";
+                var os = _detectOS(ua);
+                var browser = _detectBrowser(ua);
+                var browserVersion = _detectBrowserVersion(ua, browser);
+
+                isWebView = _isWebView(ua, os, browser, browserVersion, options);
+            }
+
+            return isWebView;
+        }
+
+        function isAllowedWebViewForUserAgent(provider) {
+            var googleAllowedWebViews = [
+                'Instagram',
+                'FBAV',
+                'FBAN',
+                'Line',
+            ], facebookAllowedWebViews = [
+                'Instagram',
+                'FBAV',
+                'FBAN'
+            ], whitelist = [];
+
+            switch (provider) {
+                case 'facebook':
+                    whitelist = facebookAllowedWebViews;
+                    break;
+                case 'google':
+                    whitelist = googleAllowedWebViews;
+                    break;
+            }
+
+            var nav = window.navigator || {};
+            var ua = nav.userAgent || "";
+
+            if (whitelist.length && ua.match(new RegExp(whitelist.join('|')))) {
+                return true;
+            }
+
+            return false;
+        }
+
+        window._nslDOMReady(function () {
+
+            window.nslRedirect = function (url) {
+                if (_redirectOverlay) {
+                    var overlay = document.createElement('div');
+                    overlay.id = "nsl-redirect-overlay";
+                    var overlayHTML = '',
+                        overlayContainer = "<div id='nsl-redirect-overlay-container'>",
+                        overlayContainerClose = "</div>",
+                        overlaySpinner = "<div id='nsl-redirect-overlay-spinner'></div>",
+                        overlayTitle = "<p id='nsl-redirect-overlay-title'>" + _localizedStrings.redirect_overlay_title + "</p>",
+                        overlayText = "<p id='nsl-redirect-overlay-text'>" + _localizedStrings.redirect_overlay_text + "</p>";
+
+                    switch (_redirectOverlay) {
+                        case "overlay-only":
+                            break;
+                        case "overlay-with-spinner":
+                            overlayHTML = overlayContainer + overlaySpinner + overlayContainerClose;
+                            break;
+                        default:
+                            overlayHTML = overlayContainer + overlaySpinner + overlayTitle + overlayText + overlayContainerClose;
+                            break;
+                    }
+
+                    overlay.insertAdjacentHTML("afterbegin", overlayHTML);
+                    document.body.appendChild(overlay);
+                }
+
+                window.location = url;
+            };
+
+            var targetWindow = _targetWindow || 'prefer-popup',
+                lastPopup = false;
+
+
+            var buttonLinks = document.querySelectorAll(' a[data-plugin="nsl"][data-action="connect"], a[data-plugin="nsl"][data-action="link"]');
+            buttonLinks.forEach(function (buttonLink) {
+                buttonLink.addEventListener('click', function (e) {
+                    if (lastPopup && !lastPopup.closed) {
+                        e.preventDefault();
+                        lastPopup.focus();
+                    } else {
+
+                        var href = this.href,
+                            success = false;
+                        if (href.indexOf('?') !== -1) {
+                            href += '&';
+                        } else {
+                            href += '?';
+                        }
+
+                        var redirectTo = this.dataset.redirect;
+                        if (redirectTo === 'current') {
+                            href += 'redirect=' + encodeURIComponent(window.location.href) + '&';
+                        } else if (redirectTo && redirectTo !== '') {
+                            href += 'redirect=' + encodeURIComponent(redirectTo) + '&';
+                        }
+
+                        if (targetWindow !== 'prefer-same-window' && checkWebView()) {
+                            targetWindow = 'prefer-same-window';
+                        }
+
+                        if (targetWindow === 'prefer-popup') {
+                            lastPopup = NSLPopup(href + 'display=popup', 'nsl-social-connect', this.dataset.popupwidth, this.dataset.popupheight);
+                            if (lastPopup) {
+                                success = true;
+                                e.preventDefault();
+                            }
+                        } else if (targetWindow === 'prefer-new-tab') {
+                            var newTab = window.open(href + 'display=popup', '_blank');
+                            if (newTab) {
+                                if (window.focus) {
+                                    newTab.focus();
+                                }
+                                success = true;
+                                e.preventDefault();
+                            }
+                        }
+
+                        if (!success) {
+                            window.location = href;
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+
+            var googleLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="google"]');
+            if (googleLoginButtons.length && checkWebView() && !isAllowedWebViewForUserAgent('google')) {
+                googleLoginButtons.forEach(function (googleLoginButton) {
+                    googleLoginButton.remove();
+                });
+            }
+
+            var facebookLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="facebook"]');
+            if (facebookLoginButtons.length && checkWebView() && /Android/.test(window.navigator.userAgent) && !isAllowedWebViewForUserAgent('facebook')) {
+                facebookLoginButtons.forEach(function (facebookLoginButton) {
+                    facebookLoginButton.remove();
+                });
+            }
+        });
+    })();</script>
+
+
+    <script type="text/javascript">-1 != window.location.href.indexOf("thanh-toan/") && jQuery("input[name\x3d'billing_email'],input[name\x3d'billing_phone']").change(function () {
+        var a = jQuery("input[name\x3d'billing_email']").val(), b = jQuery("input[name\x3d'billing_phone']").val();
+        window.localStorage.setItem("email", a);
+        window.localStorage.setItem("phone_number", b)
+    });</script>
+    <script type="text/javascript">var product = -1 != window.location.href.indexOf("/san-pham/"), dr_items = [],
+        dr_value = "";
+    if (product) {
+        var itemId = jQuery('[id*\x3d"product-"].product.type-product').attr("id").replace(/[product-]/g, "").trim();
+        item = {id: itemId, google_business_vertical: "custom"};
+        dr_items.push(item);
+        dr_value = parseFloat(jQuery('[id*\x3d"product-"].product.type-product .summary.entry-summary .woocommerce-Price-amount.amount').text().replace(/[\u20ab,]/g, "").trim());
+        dataLayer.push({
+            dr_event_type: "view_item",
+            dr_items: dr_items,
+            dr_value: dr_value,
+            event: "dynamic_remarketing"
+        });
+        jQuery(".single_add_to_cart_button, .single_add_to_cart_button *").on("click",
+            function () {
+                dataLayer.push({
+                    dr_event_type: "add_to_cart",
+                    dr_items: dr_items,
+                    dr_value: dr_value,
+                    event: "dynamic_remarketing"
+                })
+            })
+    }
+    ;</script>
+    <div>
+        <div class="grecaptcha-badge" data-style="bottomright"
+             style="width: 256px; height: 60px; position: fixed; visibility: hidden; display: block; transition: right 0.3s ease 0s; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
+            <div class="grecaptcha-logo">
+                <iframe title="reCAPTCHA" src="/assets/HomePageFile/anchor.html" width="256" height="60"
+                        role="presentation"
+                        name="a-doxkdhhu4957" frameborder="0" scrolling="no"
+                        sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+            </div>
+            <div class="grecaptcha-error"></div>
+            <textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response"
+                      style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+        </div>
+        <iframe style="display: none;" src="/assets/HomePageFile/saved_resource.html"></iframe>
+    </div>
+    <div id="eJOY__extension_root" class="eJOY__extension_root_class" style="all: unset;"></div>
+    <iframe id="nr-ext-rsicon"
+            style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"
+            src="/assets/HomePageFile/saved_resource(1).html"></iframe>
+    <div id="shadowMeasureIt"></div>
+    <div id="divCoordMeasureIt"></div>
+    <div id="divRectangleMeasureIt">
+        <div id="divRectangleBGMeasureIt"></div>
+    </div>
+    <script src="/assets/js_css/js/app.js"></script>
+    <script src="/assets/js_css/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js_css/js/iziToast.min.js"></script>
+    <script src="/assets/js_css/js/jquery.validate-1.19.3.min.js"></script>
+    <script src="/assets/js_css/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js_css/js/jquery-ui.min.js"></script>
+    <script src="/assets/js_css/js/sweetalert2.min.js"></script>
+
+    <script>
+        $("#cart_").on("click", function () {
+            let str = `<div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+    <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1" style="overflow: hidden auto;"><div class="mfp-container mfp-s-ready mfp-inline-holder"><div class="mfp-content off-canvas-cart"><div id="cart-popup" class="widget_shopping_cart">
+        <div class="cart-popup-inner inner-padding">
+            <div class="cart-popup-title text-center">
+                <h4 class="uppercase">Cart</h4>
+                <div class="is-divider"></div>
+            </div>
+            <div class="widget_shopping_cart_content">
+
+                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                    <li class="woocommerce-mini-cart-item mini_cart_item">
+                        <a href="https://nhaxinh.com/gio-hang/?remove_item=98ac07a2cd794965eb4f22bae53c3516&amp;_wpnonce=d4eb84976a" class="remove remove_from_cart_button" aria-label="Remove this item" data-product_id="37076" data-cart_item_key="98ac07a2cd794965eb4f22bae53c3516" data-product_sku="3*105078">×</a>\t\t\t\t\t\t\t\t\t\t\t<a href="https://nhaxinh.com/san-pham/ban-an-peak-hien-dai-mat-ceramic-van-may/">
+                        <img width="300" height="200" src="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-300x200.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic.jpg 1000w" sizes="(max-width: 300px) 100vw, 300px">Bàn ăn Peak hiện đại mặt Ceramic vân mây&nbsp;\t\t\t\t\t\t</a>
+                        <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><bdi>44,900,000<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>\t\t\t\t</li>
+                </ul>
+
+                <p class="woocommerce-mini-cart__total total">
+                    <strong>Thành tiền:</strong> <span class="woocommerce-Price-amount amount"><bdi>44,900,000<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>\t</p>
+
+
+                <p class="woocommerce-mini-cart__buttons buttons"><a href="https://nhaxinh.com/gio-hang/" class="button wc-forward">Xem giỏ hàng</a><a href="https://nhaxinh.com/thanh-toan/" class="button checkout wc-forward">Checkout</a></p>
+
+
+
+            </div>
+            <div class="cart-sidebar-content relative"></div>  </div>
+    </div></div><div class="mfp-preloader">Loading...</div></div><button title="Close (Esc)" type="button" class="mfp-close"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>`
+            $(".chua_cart").html(str);
+            handleCloseCart()
+        })
+
+        const handleCloseCart = () => {
+            $(".mfp-close").on("click", () => {
+                $(".chua_cart").html("")
+            })
+        }
+
+
+        $(".menu_bar").on("click", () => {
+            let str = `
+            <div class="mfp-bg off-canvas off-canvas-left main-menu-overlay mfp-ready"></div>
+<div class="mfp-wrap mfp-auto-cursor off-canvas off-canvas-left mfp-ready" tabindex="-1" style="overflow: hidden auto;"><div class="mfp-container mfp-s-ready mfp-inline-holder"><div class="mfp-content"><div id="product-categories-menu" class="mobile-sidebar no-scrollbar">
+<div class="sidebar-menu no-scrollbar ">
+        <div class="product-categories-menu-containter"><ul id="menu-danh-muc-sp" class="menu"><li id="menu-item-24213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24213 has-child" aria-expanded="false"><a href="#">Sofa và Armchair</a>
+<button class="toggle"></button><ul class="sub-menu">
+</ul>
+</li>
+<li id="menu-item-24214" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24214 has-child" aria-expanded="false"><a href="#">Bàn</a>
+<button class="toggle"></button><ul class="sub-menu">
+</ul>
+</li>
+<li id="menu-item-28026" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28026 has-child" aria-expanded="false"><a href="#">Ghế</a>
+<button class="toggle"></button><ul class="sub-menu">
+<li id="menu-item-28024" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28024"><a href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">Ghế ăn</a></li>
+<li id="menu-item-3365" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3365"><a href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">Ghế bar</a></li>
+<li id="menu-item-3388" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3388"><a href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">Ghế làm việc</a></li>
+</ul>
+</li>
+<li id="menu-item-28344" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28344 has-child" aria-expanded="false"><a href="#">Giường ngủ</a>
+<button class="toggle"></button><ul class="sub-menu">
+
+</ul>
+</li>
+<li id="menu-item-24217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24217 has-child" aria-expanded="false"><a href="#">Tủ và kệ</a>
+<button class="toggle"></button><ul class="sub-menu">
+</ul>
+</li>
+<li id="menu-item-28027" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28027 has-child" aria-expanded="false"><a href="#">Bếp</a>
+<button class="toggle"></button><ul class="sub-menu">
+</ul>
+</li>
+<li id="menu-item-3351" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3351 has-child" aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a>
+<button class="toggle"></button><ul class="sub-menu">
+
+</ul>
+</li>
+<li id="menu-item-3773" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3773 has-child" aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a>
+<button class="toggle"></button><ul class="sub-menu">
+</ul>
+</li>
+</ul></div></div>
+</div></div><div class="mfp-preloader">Loading...</div></div><button title="Close (Esc)" type="button" class="mfp-close"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+`
+            $(".chua_cart").html(str);
+            handleCloseCart()
+        })
+    </script>
+</th:block>

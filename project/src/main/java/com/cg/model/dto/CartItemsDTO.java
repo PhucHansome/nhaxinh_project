@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class CartItemsDTO {
 
-    private Long id;
+    private String id;
 
     private ProductDTO product;
 

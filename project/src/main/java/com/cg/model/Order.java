@@ -29,7 +29,7 @@ public class Order extends BaseEntity{
     private BigDecimal grandTotal;
 
     private String fullName;
-    
+
     private String phone;
 
     private String email;

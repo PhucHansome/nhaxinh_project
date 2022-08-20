@@ -19,8 +19,8 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Boolean existById(Long id) {
@@ -69,9 +69,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User save(User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        return userRepository.save(user);
-        return null;
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+//        return null;
     }
 
     @Override

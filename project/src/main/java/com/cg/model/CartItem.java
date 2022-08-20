@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "cartItems")
 @Accessors(chain = true)
-public class CartItem extends BaseEntity{
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +35,9 @@ public class CartItem extends BaseEntity{
     private BigDecimal quantity;
 
     private String content;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean deleted;
 
     public CartItemsDTO toCartItemDTO() {
         return new CartItemsDTO()

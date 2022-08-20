@@ -27,26 +27,26 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView getHome(){
-        return new ModelAndView("/customerView/homepage");
+        return new ModelAndView("/customerView/homepage/homepage");
     }
 
     @GetMapping("/detail")
     public ModelAndView getDetail(){
-        return new ModelAndView("/customerView/detail");
+        return new ModelAndView("/customerView/detail/detail");
     }
 
     @GetMapping("/login")
     public ModelAndView getLogin(){
-        return new ModelAndView("/customerView/dangnhap_dangky");
+        return new ModelAndView("/customerView/dangnhap_dangky/dangnhap_dangky");
     }
 
     @GetMapping("/search")
     public ModelAndView getSearch(){
-        return new ModelAndView("/customerView/Search");
+        return new ModelAndView("/customerView/search/Search");
     }
 
-    @GetMapping("/HomeDashboard")
+    @GetMapping("/homedashboard")
     public ModelAndView getDashboard(){
-        return new ModelAndView("/dashboard/product/home");
+        return new ModelAndView("/dashboard/home/home");
     }
 }

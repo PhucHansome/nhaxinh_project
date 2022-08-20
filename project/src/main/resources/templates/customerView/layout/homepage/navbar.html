@@ -1,0 +1,953 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="navbar">
+    <header id="header" class="header has-sticky sticky-jump">
+        <div class="header-wrapper">
+
+            <div id="top-bar" class="header-top hide-for-sticky">
+                <div class="flex-row container">
+                    <div class="flex-col hide-for-medium flex-left">
+                        <ul class="nav nav-left medium-nav-center nav-small  nav-">
+                            <div class="lang">
+                                <i class="image-icon"><img src="/assets/HomePageFile/vi.png" alt="Tiếng Việt"></i> <a
+                                    href="https://nhaxinh.com/" hreflang="vi" class="curent_lang"> vn</a><a
+                                    href="https://nhaxinh.com/?lang=en" hreflang="en"> en</a></div>
+                            <li class="html custom html_topbar_left"><p class="hotline"><a href="tel:1800 7200"><i
+                                    class="fas fa-phone-volume"></i> 1800 7200</a></p></li>
+                            <li id="menu-item-594"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594 menu-item-design-default">
+                                <a href="https://nhaxinh.com/gioi-thieu/" class="nav-top-link">Giới thiệu</a></li>
+                            <li id="menu-item-573"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573 menu-item-design-default">
+                                <a href="https://nhaxinh.com/khuyen-mai/" class="nav-top-link">Khuyến mãi</a></li>
+                            <li id="menu-item-27798"
+                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27798 menu-item-design-default">
+                                <a href="https://nhaxinh.com/danh-muc/giam-gia-dac-biet/" class="nav-top-link">Giảm giá
+                                    đặc biệt</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-center">
+                        <ul class="nav nav-center nav-small  nav-">
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="nav top-bar-nav nav-right nav-small  nav-">
+                            <li class="html custom html_topbar_right"><a
+                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i
+                                    class="fa-solid fa-location-dot"></i></a></li>
+                            <li class="header-wishlist-icon">
+                                <a href="https://nhaxinh.com/#" data-open="#overlay-right-sidebar" data-pos="right"
+                                   data-bg="main-menu-overlay" data-color="" class="is-small wishlist-link"
+                                   aria-label="Wishlist" aria-controls="overlay-right-sidebar" aria-expanded="false">
+
+                                    <i class="fa-solid fa-heart"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li class="cart-item has-icon">
+
+                                <a href="#" id="cart_"
+                                   class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                   data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
+
+
+  		<span class="image-icon header-cart-icon" data-icon-label="2">
+			<img class="cart-img-icon" alt="Cart" src="/assets/HomePageFile/ic-shopping.png">
+		</span>
+
+                                </a>
+
+
+                                <!-- Cart Sidebar Popup -->
+                                <div id="cart-popup" class="mfp-hide widget_shopping_cart">
+                                    <div class="cart-popup-inner inner-padding">
+                                        <div class="cart-popup-title text-center">
+                                            <h4 class="uppercase">Cart</h4>
+                                            <div class="is-divider"></div>
+                                        </div>
+                                        <div class="widget_shopping_cart_content">
+
+                                            <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                    <a href="https://nhaxinh.com/gio-hang/?remove_item=f1c10a243994461f1e1cdd6d661b05d6&amp;_wpnonce=264af009be"
+                                                       class="remove remove_from_cart_button"
+                                                       aria-label="Remove this item" data-product_id="37254"
+                                                       data-cart_item_key="f1c10a243994461f1e1cdd6d661b05d6"
+                                                       data-product_sku="3*106391">×</a> <a
+                                                        href="https://nhaxinh.com/san-pham/sofa-combo-goc-trai-vai-2041-9/">
+                                                    <img width="300" height="200"
+                                                         src="/assets/HomePageFile/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-300x200.jpg"
+                                                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                         alt=""
+                                                         srcset="https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4.jpg 1000w"
+                                                         sizes="(max-width: 300px) 100vw, 300px">Sofa Combo góc trái vải
+                                                    2041 9&nbsp; </a>
+                                                    <span class="quantity">1 × <span
+                                                            class="woocommerce-Price-amount amount"><bdi>37,900,000<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                                </li>
+                                                <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                    <a href="https://nhaxinh.com/gio-hang/?remove_item=73fed7fd472e502d8908794430511f4d&amp;_wpnonce=264af009be"
+                                                       class="remove remove_from_cart_button"
+                                                       aria-label="Remove this item" data-product_id="3470"
+                                                       data-cart_item_key="73fed7fd472e502d8908794430511f4d"
+                                                       data-product_sku="3*95168">×</a> <a
+                                                        href="https://nhaxinh.com/san-pham/ban-an-tokyo/">
+                                                    <img width="300" height="200"
+                                                         src="/assets/HomePageFile/ban-an-tokyo-300x200.jpg"
+                                                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                         alt=""
+                                                         srcset="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo.jpg 1000w"
+                                                         sizes="(max-width: 300px) 100vw, 300px">Bàn ăn Tokyo&nbsp; </a>
+                                                    <span class="quantity">1 × <span
+                                                            class="woocommerce-Price-amount amount"><bdi>43,930,000<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                                </li>
+                                            </ul>
+
+                                            <p class="woocommerce-mini-cart__total total">
+                                                <strong>Thành tiền:</strong> <span
+                                                    class="woocommerce-Price-amount amount"><bdi>81,830,000<span
+                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></p>
+
+
+                                            <p class="woocommerce-mini-cart__buttons buttons"><a
+                                                    href="https://nhaxinh.com/gio-hang/" class="button wc-forward">Xem
+                                                giỏ hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                                               class="button checkout wc-forward">Checkout</a></p>
+
+
+                                        </div>
+                                        <div class="cart-sidebar-content relative"></div>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="account-item has-icon
+     has-dropdown">
+
+                                <a href="https://nhaxinh.com/tai-khoan/" class="account-link account-login
+  is-small" title="Tài khoản của tôi">
+
+			<span class="header-account-title">
+		Tài khoản của tôi		</span>
+
+                                    <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
+                                </a>
+
+
+                                <ul class="nav-dropdown  nav-dropdown-default">
+
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
+                                        <a href="https://nhaxinh.com/tai-khoan/edit-account/">Thông tin của tôi</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                        <a href="https://nhaxinh.com/tai-khoan/orders/">Đơn hàng</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
+                                        <a href="https://nhaxinh.com/tai-khoan/recently-viewed-products/">Sản phẩm vừa
+                                            xem</a>
+                                    </li>
+                                    <li class="wishlist-account-element ">
+                                        <a href="https://nhaxinh.com/tai-khoan/wishlist/?wishlist-action">Wishlist</a>
+                                    </li>
+                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                                        <a href="https://nhaxinh.com/tai-khoan/customer-logout/">Đăng xuất</a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-col show-for-medium flex-grow">
+                        <ul class="nav nav-center nav-small mobile-nav  nav-">
+                            <li class="html custom html_topbar_left"><p class="hotline"><a href="tel:1800 7200"><i
+                                    class="fas fa-phone-volume"></i> 1800 7200</a></p></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div id="masthead" class="header-main ">
+                <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+                    <!-- Menu Icon -->
+                    <div id="menu-icon" class="flex-col menu-icon">
+                        <div class="nav-icon has-icon menu_bar desktop">
+                            <a href="#" data-open="#product-categories-menu" data-pos="left" data-bg="main-menu-overlay"
+                               data-color="" class="is-small" aria-label="Menu" aria-controls="product-categories-menu"
+                               aria-expanded="false">
+
+                                <img src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/menu-bar.png"
+                                     alt="Menu bar">
+
+                            </a>
+                        </div>
+
+                        <div class="nav-icon has-icon menu_bar mobile">
+                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay" data-color=""
+                               class="is-small" aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
+
+                                <img src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/menu-bar.png"
+                                     alt="Menu bar">
+
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Logo -->
+                    <div id="logo" class="flex-col logo">
+                        <!-- Header logo -->
+                        <a href="https://nhaxinh.com/" title="Nội thất Nhà Xinh - Đồ gỗ nội thất" rel="home">
+                            <img width="169" height="90"
+                                 src="https://nhaxinh.com/wp-content/uploads/2022/04/logo-nha-xinh-moi-200422.png"
+                                 class="header_logo header-logo" alt="Nội thất Nhà Xinh"><img width="169" height="90"
+                                                                                              src="https://nhaxinh.com/wp-content/uploads/2022/04/logo-nha-xinh-moi-200422.png"
+                                                                                              class="header-logo-dark"
+                                                                                              alt="Nội thất Nhà Xinh"></a>
+                    </div>
+
+                    <!-- Mobile Left Elements -->
+                    <div class="flex-col show-for-medium flex-left">
+                        <ul class="mobile-nav nav nav-left ">
+                            <div class="nav-icon has-icon menu_bar desktop">
+                                <a href="#" data-open="#product-categories-menu" data-pos="left"
+                                   data-bg="main-menu-overlay" data-color="" class="is-small" aria-label="Menu"
+                                   aria-controls="product-categories-menu" aria-expanded="false">
+
+                                    <img src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/menu-bar.png"
+                                         alt="Menu bar">
+
+                                </a>
+                            </div>
+
+                            <div class="nav-icon has-icon menu_bar mobile">
+                                <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay"
+                                   data-color="" class="is-small" aria-label="Menu" aria-controls="main-menu"
+                                   aria-expanded="false">
+
+                                    <img src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/menu-bar.png"
+                                         alt="Menu bar">
+
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- Left Elements -->
+                    <div class="flex-col hide-for-medium flex-left
+            flex-grow">
+                        <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
+                            <li id="menu-item-287"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
+                                <a href="https://nhaxinh.com/cua-hang/" class="nav-top-link">Sản phẩm</a>
+                                <div class="sub-menu nav-dropdown" style="">
+                                    <section class="section" id="section_942358139">
+                                        <div class="bg section-bg fill bg-fill bg-loaded">
+
+
+                                        </div>
+
+                                        <div class="section-content relative">
+
+
+                                            <div class="row" id="row-2015653999">
+
+
+                                                <div id="col-1917920354" class="col medium-9 small-12 large-9">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="row" id="row-818885023">
+
+
+                                                            <div id="col-456283064"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa/">
+						<span class="ux-menu-link__text">
+				Sofa			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa-goc/">
+						<span class="ux-menu-link__text">
+				Sofa góc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-thu-gian/">
+						<span class="ux-menu-link__text">
+				Ghế thư giãn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/armchair/">
+						<span class="ux-menu-link__text">
+				Armchair			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-dai-don/">
+						<span class="ux-menu-link__text">
+				Ghế dài &amp; đôn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-ben/">
+						<span class="ux-menu-link__text">
+				Bàn bên			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-nuoc/">
+						<span class="ux-menu-link__text">
+				Bàn nước			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-console/">
+						<span class="ux-menu-link__text">
+				Bàn Console			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-tivi/">
+						<span class="ux-menu-link__text">
+				Tủ tivi			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ke-phong-khach/">
+						<span class="ux-menu-link__text">
+				Kệ trưng bày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-giay/">
+						<span class="ux-menu-link__text">
+				Tủ giày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-104142418"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ban-an/">
+						<span class="ux-menu-link__text">
+				Bàn ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">
+						<span class="ux-menu-link__text">
+				Ghế ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">
+						<span class="ux-menu-link__text">
+				Ghế Bar			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/tu-ly/">
+						<span class="ux-menu-link__text">
+				Tủ ly			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/xe-day/">
+						<span class="ux-menu-link__text">
+				Xe đẩy			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/tu-bep/">
+						<span class="ux-menu-link__text">
+				Tủ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/phu-kien-bep/">
+						<span class="ux-menu-link__text">
+				Thiết bị bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-122420374"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/giuong/">
+						<span class="ux-menu-link__text">
+				Giường ngủ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-dau-giuong/">
+						<span class="ux-menu-link__text">
+				Bàn đầu giường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-trang-diem/">
+						<span class="ux-menu-link__text">
+				Bàn trang điểm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-ao/">
+						<span class="ux-menu-link__text">
+				Tủ áo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-am-tuong/">
+						<span class="ux-menu-link__text">
+				Tủ âm tường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-hoc-keo/">
+						<span class="ux-menu-link__text">
+				Tủ hộc kéo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/nem/">
+						<span class="ux-menu-link__text">
+				Nệm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-1028236013"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ban-lam-viec/">
+						<span class="ux-menu-link__text">
+				Bàn làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">
+						<span class="ux-menu-link__text">
+				Ghế làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ke-sach/">
+						<span class="ux-menu-link__text">
+				Kệ sách			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ban-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Bàn ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ghe-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Ghế ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-342729837"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/den/">
+						<span class="ux-menu-link__text">
+				Đèn trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tham/">
+						<span class="ux-menu-link__text">
+				Thảm trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/hang-trang-tri-michael-aram/">
+						<span class="ux-menu-link__text">
+				Michael Aram			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/binh-trang-tri/">
+						<span class="ux-menu-link__text">
+				Bình trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tranh/">
+						<span class="ux-menu-link__text">
+				Tranh			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-guong/">
+						<span class="ux-menu-link__text">
+				Gương			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hoa-cay/">
+						<span class="ux-menu-link__text">
+				Hoa và cây			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dong-ho-hang-trang-tri/">
+						<span class="ux-menu-link__text">
+				Đồng hồ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-hinh/">
+						<span class="ux-menu-link__text">
+				Khung hình			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tuong-trang-tri/">
+						<span class="ux-menu-link__text">
+				Tượng trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/goi-va-thu-bong/">
+						<span class="ux-menu-link__text">
+				Gối và thú bông			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/nen/">
+						<span class="ux-menu-link__text">
+				Nến &amp; chân nến			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-1271804477"
+                                                                 class="col medium-2 small-12 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dung-cu-bep/">
+						<span class="ux-menu-link__text">
+				Dụng cụ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hang-trang-tri-khac/">
+						<span class="ux-menu-link__text">
+				Hàng trang trí khác			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div id="col-494778435" class="col medium-3 small-12 large-3">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="img has-hover img_menu_mega x md-x lg-x y md-y lg-y"
+                                                             id="image_1269085530">
+                                                            <div class="img-inner dark">
+                                                                <img width="1020" height="680"
+                                                                     src="https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg"
+                                                                     class="attachment-large size-large"
+                                                                     alt="phòng khách hiện đại poppy"
+                                                                     srcset="https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg 1200w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-768x512.jpg 768w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1.jpg 1500w"
+                                                                     sizes="(max-width: 1020px) 100vw, 1020px">
+                                                            </div>
+
+                                                            <style>
+                                                                #image_1269085530 {
+                                                                    width: 100%;
+                                                                }
+                                                            </style>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <style>
+                                                    #row-2015653999 > .col > .col-inner {
+                                                        background-color: rgb(246, 247, 248);
+                                                    }
+                                                </style>
+                                            </div>
+
+                                        </div>
+
+
+                                        <style>
+                                            #section_942358139 {
+                                                padding-top: 30px;
+                                                padding-bottom: 30px;
+                                                background-color: rgb(246, 247, 248);
+                                            }
+                                        </style>
+                                    </section>
+                                </div>
+                            </li>
+                            <li id="menu-item-8010"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8010 menu-item-design-default has-dropdown">
+                                <a href="https://nhaxinh.com/phong-khach/" class="nav-top-link">Phòng</a>
+                                <ul class="sub-menu nav-dropdown nav-dropdown-default" style="">
+                                    <li id="menu-item-8199"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8199">
+                                        <a href="https://nhaxinh.com/phong-khach/">Phòng khách</a></li>
+                                    <li id="menu-item-24423"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24423">
+                                        <a href="https://nhaxinh.com/phong-an/">Phòng ăn</a></li>
+                                    <li id="menu-item-24304"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24304">
+                                        <a href="https://nhaxinh.com/phong-ngu/">Phòng ngủ</a></li>
+                                    <li id="menu-item-27857"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27857">
+                                        <a href="https://nhaxinh.com/danh-muc/phong-lam-viec/">Phòng làm việc</a></li>
+                                    <li id="menu-item-37292"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-37292">
+                                        <a href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                                    <li id="menu-item-27856"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27856">
+                                        <a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a></li>
+                                    <li id="menu-item-27855"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27855">
+                                        <a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-24226"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24226 menu-item-design-default">
+                                <a href="https://nhaxinh.com/bo-suu-tap/" class="nav-top-link">Bộ sưu tập</a></li>
+                            <li id="menu-item-290"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-290 menu-item-design-default">
+                                <a href="/thiet-ke-noi-that/" class="nav-top-link">Thiết kế nội thất</a></li>
+                            <li id="menu-item-288"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288 menu-item-design-default">
+                                <a href="https://nhaxinh.com/showroom-ao/" class="nav-top-link">Showroom ảo</a></li>
+                            <li id="menu-item-27825"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27825 menu-item-design-default">
+                                <a href="/cam-hung-nha-xinh-y-tuong/" class="nav-top-link">Góc cảm hứng</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Elements -->
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="header-nav header-nav-main nav nav-right  nav-size-medium nav-uppercase">
+                            <li class="header-search-form search-form html relative has-icon">
+                                <div class="header-search-form-wrapper">
+                                    <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                        <form role="search" method="get" class="searchform"
+                                              action="https://nhaxinh.com/">
+                                            <div class="flex-row relative">
+                                                <div class="flex-col flex-grow">
+                                                    <label class="screen-reader-text"
+                                                           for="woocommerce-product-search-field-0">Search for:</label>
+                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                           class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                           name="s" autocomplete="off">
+                                                    <input type="hidden" name="post_type" value="product">
+                                                    <input type="hidden" name="lang" value="vi">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <button type="submit" value="Search"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            aria-label="Submit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="live-search-results text-left z-top">
+                                                <div class="autocomplete-suggestions"
+                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                            </div>
+                                            <input type="hidden" name="lang" value="vi"></form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Right Elements -->
+                    <div class="flex-col show-for-medium flex-right">
+                        <ul class="mobile-nav nav nav-right huan ">
+                            <li class="header-search header-search-dropdown has-icon has-dropdown menu-item-has-children">
+                                <div class="header-button"><a href="#" aria-label="Search"
+                                                              class="icon button round is-outline is-small"><i
+                                        class="icon-search"></i></a>
+                                </div>
+                                <ul class="nav-dropdown nav-dropdown-default">
+                                    <li class="header-search-form search-form html relative has-icon">
+                                        <div class="header-search-form-wrapper">
+                                            <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                                <form role="search" method="get" class="searchform"
+                                                      action="https://nhaxinh.com/">
+                                                    <div class="flex-row relative">
+                                                        <div class="flex-col flex-grow">
+                                                            <label class="screen-reader-text"
+                                                                   for="woocommerce-product-search-field-1">Search
+                                                                for:</label>
+                                                            <input type="search" id="woocommerce-product-search-field-1"
+                                                                   class="search-field mb-0" placeholder="Tìm sản phẩm"
+                                                                   value="" name="s" autocomplete="off">
+                                                            <input type="hidden" name="post_type" value="product">
+                                                            <input type="hidden" name="lang" value="vi">
+                                                        </div>
+                                                        <div class="flex-col">
+                                                            <button type="submit" value="Search"
+                                                                    class="ux-search-submit submit-button secondary button icon mb-0"
+                                                                    aria-label="Submit">
+                                                                <i class="icon-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="live-search-results text-left z-top">
+                                                        <div class="autocomplete-suggestions"
+                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                    </div>
+                                                    <input type="hidden" name="lang" value="vi"></form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="html custom html_topbar_right"><a href="/he-thong-cua-hang/"><i
+                                    class="fal fa-map-marker-alt"></i></a></li>
+                            <li class="cart-item has-icon">
+
+                                <a href="https://nhaxinh.com/gio-hang/"
+                                   class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                   data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
+
+  		<span class="image-icon header-cart-icon" data-icon-label="0">
+			<img class="cart-img-icon" alt="Cart" src="https://nhaxinh.com/wp-content/uploads/2021/09/ic-shopping.png">
+		</span>
+
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <div class="top-divider full-width"></div>
+                </div>
+            </div>
+            <div class="header-bg-container fill">
+                <div class="header-bg-image fill"></div>
+                <div class="header-bg-color fill"></div>
+            </div>
+        </div>
+    </header>
+</th:block>

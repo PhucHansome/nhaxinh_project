@@ -50,52 +50,52 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(10);
     }
 
-//    @Autowired
-//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-//    }
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().ignoringAntMatchers("/**");
-//        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
+        http.csrf().ignoringAntMatchers("/**");
+        http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
 
-//        http.authorizeRequests()
-//                .antMatchers("/","/homecustomer" ,"/api/auth/login", "/api/auth//registerdefaulimage", "/login").permitAll()
+        http.authorizeRequests()
+                .antMatchers("/", "/detail","/login", "/search", "/homedashboard","/api/auth/login").permitAll()
 //                .antMatchers("/order", "/user", "/product").hasAnyAuthority("ADMIN")
-//                .antMatchers("/assets/**").permitAll()
-//                .antMatchers("https://zunezx.com/public/asset/**").permitAll()
-//                .antMatchers(
-//                        "/v2/api-docs",
-//                        "/swagger-resources/configuration/ui",
-//                        "/configuration/ui",
-//                        "/swagger-resources",
-//                        "/swagger-resources/configuration/security",
-//                        "/configuration/security",
-//                        "/swagger-ui.html",
-//                        "/webjars/**"
-//                ).permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginProcessingUrl("/login")
-//                .loginPage("/login")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .defaultSuccessUrl("/")
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/login")
-//                .deleteCookies("JWT")
-//                .invalidateHttpSession(true)
-//                .and()
-//                .csrf().disable();
+                .antMatchers("/assets/**", "/META-INF").permitAll()
+                .antMatchers("https://nhaxinh.com/public/asset/**").permitAll()
+                .antMatchers(
+                        "/v2/api-docs",
+                        "/swagger-resources/configuration/ui",
+                        "/configuration/ui",
+                        "/swagger-resources",
+                        "/swagger-resources/configuration/security",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**"
+                ).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JWT")
+                .invalidateHttpSession(true)
+                .and()
+                .csrf().disable();
 
-//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
-//
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.cors();
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler());
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.cors();
     }
 }

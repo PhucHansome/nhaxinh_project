@@ -27,7 +27,6 @@ public class CustomerInfo extends BaseEntity{
     private String id;
 
     private String userName;
-
     
     private String phone;
 

@@ -1,0 +1,17 @@
+label.error {
+    display: list-item;
+    margin-top: -22px;
+    color: #842029;
+    margin-left: 20px;
+    background: #e7a9a9;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.show{
+display: block !important;
+
+}
+.modal-alert-danger{
+    margin-top: 11px
+}

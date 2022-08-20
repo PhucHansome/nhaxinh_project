@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "carts")
 @Accessors(chain = true)
-public class Cart extends BaseEntity {
+public class Cart  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,9 @@ public class Cart extends BaseEntity {
 
     private String content;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean deleted;
+
     @OneToOne
     @JoinColumn(name = "customerins_id", nullable = false)
     private CustomerInfo customerInfo;
@@ -48,6 +51,7 @@ public class Cart extends BaseEntity {
                 .setStatus(status)
                 .setPhone(phone)
                 .setContent(content)
-                .setCustomerInfo(customerInfo.toCustomerinfoDTO());
+                .setCustomerInfo(customerInfo.toCustomerinfoDTO())
+                .setDeleted(deleted);
     }
 }

@@ -43,6 +43,8 @@ public class Product extends  BaseEntity{
 
     private String material;
 
+    private String image;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -78,6 +80,7 @@ public class Product extends  BaseEntity{
                 .setSlug(slug)
                 .setSize(size)
                 .setMaterial(material)
+                .setImage(image)
                 ;
     }
 }

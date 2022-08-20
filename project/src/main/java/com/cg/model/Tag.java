@@ -18,12 +18,14 @@ import java.util.List;
 @Getter
 @Accessors(chain = true)
 @Table(name = "tags")
-public class Tag extends BaseEntity{
+public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String Slug;
+    @Column(columnDefinition = "boolean default false")
+    private boolean deleted;
 
     @ManyToMany
     @JoinColumn(name = "product_id")
@@ -33,6 +35,7 @@ public class Tag extends BaseEntity{
         return new TagDTO()
                 .setId(id)
                 .setName(name)
-                .setProduct(product);
+                .setProduct(product)
+                .setDeleted(deleted);
     }
 }

@@ -35,6 +35,8 @@ public class ProductDTO {
 
     private String slug;
 
+    private String image;
+
     private String fileName;
     
     private String fileFolder;
@@ -60,6 +62,7 @@ public class ProductDTO {
                 .setSize(size)
                 .setMaterial(material)
                 .setSlug(slug)
+                .setImage(image)
                 ;
     }
 

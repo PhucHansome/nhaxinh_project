@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -20,7 +21,7 @@ import javax.persistence.OneToOne;
 @Accessors(chain = true)
 public class CartDTO {
 
-    private Long id;
+    private String id;
 
     private User user;
 
@@ -32,15 +33,18 @@ public class CartDTO {
 
     private String content;
 
+    private boolean deleted;
+
     private CustomerInfoDTO customerInfo;
 
     public Cart toCart() {
         return new Cart()
-                .setId(id)
+                .setId(Long.valueOf(id))
                 .setFullName(fullName)
                 .setStatus(status)
                 .setPhone(phone)
                 .setContent(content)
-                .setCustomerInfo(customerInfo.toCustomerInfo());
+                .setCustomerInfo(customerInfo.toCustomerInfo())
+                .setDeleted(deleted);
     }
 }

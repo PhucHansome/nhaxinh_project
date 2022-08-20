@@ -32,6 +32,6 @@ public class OrderDetailDTO {
                 .setId(id)
                 .setOrder(order.toOrder())
                 .setProduct(product.toProduct())
-                .setPayment(payment);
+               ;
     }
 }
