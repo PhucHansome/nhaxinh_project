@@ -46,7 +46,7 @@ public class Order extends BaseEntity{
                 .setFullName(fullName)
                 .setPhone(phone)
                 .setEmail(email)
-                .setCustomerInfo(customerInfo.toCustomerinfoDTO());
+                .setCustomerInfo(customerInfo.toCustomerInfoDTO());
 
     }
 }

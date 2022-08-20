@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @Accessors(chain = true)
-@Table(name = "customerIfs")
+@Table(name = "customerInfos")
 public class CustomerInfo extends BaseEntity{
 
     @javax.persistence.Id
@@ -36,7 +36,7 @@ public class CustomerInfo extends BaseEntity{
     @JoinColumn(name = "location_region_id", nullable = false)
     private LocationRegion locationRegion;
 
-    public CustomerInfoDTO toCustomerinfoDTO(){
+    public CustomerInfoDTO toCustomerInfoDTO(){
         return  new CustomerInfoDTO()
                 .setId(id)
                 .setUserName(userName)
