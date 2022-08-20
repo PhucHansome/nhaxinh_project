@@ -17,8 +17,7 @@ public class HomeController {
 
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
-        }
-        else {
+        } else {
             username = principal.toString();
         }
 
@@ -26,32 +25,37 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView getHome(){
+    public ModelAndView getHome() {
         return new ModelAndView("/customerView/homepage/homepage");
     }
 
     @GetMapping("/detail")
-    public ModelAndView getDetail(){
+    public ModelAndView getDetail() {
         return new ModelAndView("/customerView/detail/detail");
     }
 
     @GetMapping("/login")
-    public ModelAndView getLogin(){
+    public ModelAndView getLogin() {
         return new ModelAndView("/customerView/dangnhap_dangky/dangnhap_dangky");
     }
 
     @GetMapping("/search")
-    public ModelAndView getSearch(){
+    public ModelAndView getSearch() {
         return new ModelAndView("/customerView/search/Search");
     }
 
     @GetMapping("/homedashboard")
-    public ModelAndView getDashboard(){
+    public ModelAndView getDashboard() {
         return new ModelAndView("/dashboard/home/home");
     }
 
+
+
+
     @GetMapping("/login_admin")
-    public ModelAndView getLoginAdmin(){
+    public ModelAndView getLoginAdmin() {
         return new ModelAndView("/dashboard/loginDashboard/login");
+
+
     }
 }
