@@ -41,12 +41,15 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public ModelAndView getSearch(){
+    public ModelAndView getSearch(){;
         return new ModelAndView("/customerView/search/Search");
     }
 
     @GetMapping("/homedashboard")
     public ModelAndView getDashboard(){
+        ModelAndView modelAndView = new ModelAndView();
+        String username = getPrincipal();
+        modelAndView.addObject("user",username);
         return new ModelAndView("/dashboard/home/home");
     }
 

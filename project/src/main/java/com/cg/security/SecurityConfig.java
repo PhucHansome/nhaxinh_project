@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/detail","/login", "/search", "/login_admin","/api/auth/register","/homedashboard","/api/auth/login").permitAll()
 //                .antMatchers("/order", "/user", "/product").hasAnyAuthority("ADMIN")
-                .antMatchers("/assets/**", "/META-INF").permitAll()
+                .antMatchers("/assets/**","/assets_dashboard/**", "/META-INF").permitAll()
                 .antMatchers("https://nhaxinh.com/public/asset/**").permitAll()
                 .antMatchers(
                         "/v2/api-docs",

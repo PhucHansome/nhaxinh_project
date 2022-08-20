@@ -1,161 +1,161 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" id="body">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/assets/js_css/css/iziToast.css">
-    <link rel="stylesheet" href="/assets/js_css/font-awesome/v4.7.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/js_css/css/bootstrap.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/iziToast.css">
+    <link rel="stylesheet" href="/assets/font-awesome/v4.7.0/css/all.min.css">
 
 </head>
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
 
-    body, html {
-        background: #34495e; /* #34495e */
-        font-family: 'Open Sans', sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-    }
+<body >
 
-    .wrap {
-        margin: 0 auto;
-    }
-
-    .login {
-        width: 340px;
-        margin-top: 10vh;
-    }
-
-    .login input[type=text],
-    .login input[type=password] {
-        opacity: 1;
-        display: block;
-        border: none;
-        outline: none;
-        width: 280px;
-        padding: 10px;
-        margin: 20px 0 0 0;
-        border-radius: 2px;
-    }
-
-    .login input[type=text] {
-        animation: bounce 1s;
-        -webkit-appearance: none;
-    }
-
-    .login input[type=text]:focus:valid {
-        box-shadow: 0 0 0 10000px #2ecc71;
-    }
-
-    .login input[type=text]:focus:valid ~ input[type=button] {
-        background: #27ae60;
-        color: #2ecc71;
-    }
-
-    .login input[type=text]:focus:valid ~ input[type=submit] {
-        color: #2ecc71;
-    }
-
-    .login input[type=text]:invalid {
-        box-shadow: 0 0 0 10000px #e74c3c;
-    }
-
-    .login input[type=text]:invalid ~ input[type=button] {
-        background: #c0392b;
-        color: #e74c3c;
-    }
-
-    .login input[type=text]:invalid ~ input[type=submit] {
-        color: #e74c3c;
-    }
-
-    .login input[type=password] {
-        animation: bounce1 1.3s;
-    }
-
-    .login input[type=submit],
-    .login input[type=button] {
-        border: 0;
-        outline: 0;
-        padding: 13px 18px;
-        margin: 40px 0 0 0;
-        border-radius: 2px;
-        font-weight: 600;
-        animation: bounce2 1.6s;
-    }
-
-    .login input[type=submit] {
-        float: right;
-        background: #fff;
-        color: #34495e;
-        outline: none;
-    }
-
-    .login input[type=button] {
-        background: #2C3E50;
-        color: #34495e;
-    }
-
-    @keyframes bounce {
-        0% {
-            transform: translateY(-250px);
-            opacity: 0;
-        }
-    }
-
-    @keyframes bounce1 {
-        0% {
-            opacity: 0;
-        }
-        40% {
-            transform: translateY(-100px);
-            opacity: 0;
-        }
-    }
-
-    @keyframes bounce2 {
-        0% {
-            opacity: 0;
-        }
-        70% {
-            transform: translateY(-20px);
-            opacity: 0;
-        }
-    }
-
-</style>
-<body>
 <div class="container">
-    <div class="row">
-
-        <div class="login wrap">
-            <div class="col-5"></div>
-            <div class="col-2"><img
-                    width="150px"
-                    src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.15752-9/293284976_740552950574153_2751099586394007705_n.png?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_ohc=04H1NsQzNIAAX-smE5T&_nc_ht=scontent.fsgn2-4.fna&oh=03_AVKuoI8pK4S4mGqZrMA-924d6TJcf6BS3z8pkJM-TmeaFA&oe=6327C83E"
-                    alt="">
+    <div class="backbox">
+        <div class="loginMsg">
+            <div class="textcontent">
+                <p class="title">Don't have an account?</p>
+                <p>Sign up to save all your graph.</p>
+                <button id="switch1">Sign Up</button>
             </div>
-            <div class="col-5"></div>
-            <input type="text" name="email" id="email" placeholder="Email"
-                   pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"/>
-            <input type="password" name="password" id="password" placeholder="Password"/>
-            <input type="submit" class="btn-login" value="Log in"/>
+        </div>
+        <div class="signupMsg visibility">
+            <div class="textcontent">
+                <p class="title">Have an account?</p>
+                <p>Log in to see all your collection.</p>
+                <button id="switch2">LOG IN</button>
+            </div>
         </div>
     </div>
-</div>
+    <!-- backbox -->
 
+    <div class="frontbox">
+        <div class="login">
+            <h2>LOG IN</h2>
+            <div class="inputbox">
+                <input type="email" id="usernameLo" name="usernameLo" placeholder="  EMAIL">
+                <input type="password" id="passwordLo" name="passwordLo" placeholder="  PASSWORD">
+            </div>
+            <p>FORGET PASSWORD?</p>
+            <button id="btn_sign_in">LOG IN</button>
+        </div>
+
+        <div class="signup hide">
+            <h2>SIGN UP</h2>
+            <div class="inputbox">
+                <input type="email" id="usernameReg" name="usernameReg" placeholder="EMAIL">
+                <input type="password" id="passwordReg" name="passwordReg" placeholder="PASSWORD">
+                <input type="password" id="passwordReg1" name="passwordReg1" placeholder="CONFIRM PASSWORD">
+            </div>
+            <button id="btn_sign_up">SIGN UP</button>
+        </div>
+
+    </div>
+    <!-- frontbox -->
+</div>
 </body>
-<script src="/assets/js_css/js/iziToast.min.js"></script>
-<script src="/assets/js_css/js/jquery-3.6.0.min.js"></script>
-<script src="/assets/js_css/font-awesome/v4.7.0/css/fontawesome.css"></script>
-<script src="/assets/js_css/js/app.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+
+
+<script src="/assets/js/iziToast.min.js"></script>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/font-awesome/v4.7.0/js/all.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<!--<script src="/assets/js/login.js"></script>-->
+
 <script>
 
-    $('.btn-login').on("click", function () {
-        let username = $('#email').val();
-        let password = $('#password').val();
+    var $loginMsg = $('.loginMsg'),
+        $login = $('.login'),
+        $signupMsg = $('.signupMsg'),
+        $signup = $('.signup'),
+        $frontbox = $('.frontbox');
+
+    $('#switch1').on('click', function () {
+        $loginMsg.toggleClass("visibility");
+        $frontbox.addClass("moving");
+        $signupMsg.toggleClass("visibility");
+
+        $signup.toggleClass('hide');
+        $login.toggleClass('hide');
+    })
+
+    $('#switch2').on('click', function () {
+        $loginMsg.toggleClass("visibility");
+        $frontbox.removeClass("moving");
+        $signupMsg.toggleClass("visibility");
+
+        $signup.toggleClass('hide');
+        $login.toggleClass('hide');
+    })
+
+    setTimeout(function () {
+        $('#switch1')
+    }, 3000)
+
+    setTimeout(function () {
+        $('#switch2')
+    }, 3000)
+
+
+    let btn_sign_in = $('#btn_sign_in');
+    let btn_sign_up = $('#btn_sign_up');
+
+
+    btn_sign_up.on("click", () => {
+        let username = $('#usernameReg').val();
+        let password = $('#passwordReg').val();
+        let passwordConfirm = $("#passwordReg1").val();
+
+        if (password !== passwordConfirm){
+            App.IziToast.showErrorAlert("password nhập vào không khớp!!");
+            return
+        }
+
+        let user = {
+            username: username,
+            password: password,
+            role: {
+                id: 1
+            },
+        }
+
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: "http://localhost:8080/api/auth/register",
+            data: JSON.stringify(user)
+        }).done((data) => {
+
+            App.IziToast.showSuccessAlert("Đăng ký thành công!!");
+            setTimeout(function () {
+                $loginMsg.toggleClass("visibility");
+                $frontbox.removeClass("moving");
+                $signupMsg.toggleClass("visibility");
+
+                $signup.toggleClass('hide');
+                $login.toggleClass('hide');
+                $('#usernameLo').val($('#usernameReg').val())
+                $('#passwordLo').val($('#passwordReg').val())
+            }, 1000);
+
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+           if (jqXHR.responseJSON) {
+                $.each(jqXHR.responseJSON, (key, item) => {
+                    App.IziToast.showErrorAlert(item) ;
+                })
+
+            }
+        })
+    })
+
+    btn_sign_in.on("click", () => {
+        let username = $('#usernameLo').val();
+        let password = $('#passwordLo').val();
 
         let user = {
             username: username,
@@ -168,7 +168,7 @@
                 "content-type": "application/json"
             },
             type: "POST",
-            url: "http://localhost:8092/api/auth/login",
+            url: "http://localhost:8080/api/auth/login",
             data: JSON.stringify(user)
         }).done((data) => {
             App.IziToast.showSuccessAlert("Đăng nhập thành công!!");
@@ -181,12 +181,16 @@
             setTimeout(function () {
                 if (jqXHR.responseJSON) {
                     $.each(jqXHR.responseJSON, (key, item) => {
-                        App.IziToast.showErrorAlert(item);
+                        App.IziToast.showErrorAlert(item) ;
                     })
                 }
             }, 500);
 
         })
     })
+
+
 </script>
+
+
 </html>
