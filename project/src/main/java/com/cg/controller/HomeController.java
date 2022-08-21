@@ -40,19 +40,11 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public ModelAndView getSearch(){;
-        return new ModelAndView("/customerView/search/Search");
-    }
+    public ModelAndView getSearch() { return new ModelAndView("/customerView/search/Search");}
 
     @GetMapping("/homedashboard")
-    public ModelAndView getDashboard(){
-        return new ModelAndView("/dashboard/home/home");
-    }
+    public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
 
     @GetMapping("/login_admin")
-    public ModelAndView getLoginAdmin() {
-        return new ModelAndView("/dashboard/loginDashboard/login");
-
-
-    }
+    public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}
 }
