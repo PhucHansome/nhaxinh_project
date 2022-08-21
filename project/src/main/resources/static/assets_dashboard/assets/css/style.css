@@ -182,3 +182,36 @@ a:hover {
      border-spacing: 0;
      border-collapse: collapse;
  }
+.jss1555 {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    flex-direction: row;
+}
+
+ .jss1680 .MuiOutlinedInput-input {
+     color: #0F1824;
+     padding: 9.5px 14px 9.5px 0;
+ }
+ .MuiOutlinedInput-inputAdornedStart {
+     padding-left: 0;
+ }
+
+ .MuiOutlinedInput-input {
+     padding: 18.5px 14px;
+ }
+ .MuiInputBase-input {
+     font: inherit;
+     color: currentColor;
+     width: 100%;
+     border: 0;
+     height: 1.1876em;
+     margin: 0;
+     display: block;
+     padding: 6px 0 7px;
+     min-width: 0;
+     background: none;
+     box-sizing: content-box;
+     animation-name: mui-auto-fill-cancel;
+     -webkit-tap-highlight-color: transparent;
+ }
