@@ -61,10 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
 
         http.authorizeRequests()
-                .antMatchers("/", "/detail","/login", "/search", "/login_admin","/productdashboard", "/homedashboard","/api/auth/register","/homedashboard","/api/auth/login").permitAll()
-
-//                .antMatchers("/", "/detail","/login", "/search","/productdashboard", "/homedashboard","/api/auth/login","/dashboardLogin").permitAll()
-
+                .antMatchers("/", "/detail","/login", "/search", "/login_admin","/api/auth/register","/homedashboard","/api/auth/login").permitAll()
 //                .antMatchers("/order", "/user", "/product").hasAnyAuthority("ADMIN")
                 .antMatchers("/assets/**","/assets_dashboard/**", "/META-INF").permitAll()
                 .antMatchers("https://nhaxinh.com/public/asset/**").permitAll()
