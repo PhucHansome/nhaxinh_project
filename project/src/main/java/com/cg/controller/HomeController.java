@@ -49,6 +49,9 @@ public class HomeController {
     @GetMapping("/productdashboard")
     public ModelAndView getProductDashboard() {return new ModelAndView("/dashboard/productDashboard/product");}
 
+    @GetMapping("/createProductdashboard")
+    public ModelAndView getCreateProductDashboard() {return new ModelAndView("/dashboard/productDashboard/create-product");}
+
     @GetMapping("/login_admin")
     public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}
 }
