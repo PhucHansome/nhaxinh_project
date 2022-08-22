@@ -1154,5 +1154,21 @@
             $(".chua_cart").html(str);
             handleCloseCart()
         })
+
+        $(".phong_dropdown").on("mouseenter", function(){
+            $(".menu-item-8010").addClass("current-dropdown")
+        })
+        $(".phong_dropdown").on("mouseleave", function(){
+            $(".menu-item-8010").removeClass("current-dropdown")
+        })
+
+        $(".sanpham_dropdown").on("mouseenter", function(){
+            $(".menu-item-287").addClass("current-dropdown")
+            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top':'64.6042px'});
+        })
+        $(".sanpham_dropdown").on("mouseleave", function(){
+            $(".menu-item-287").removeClass("current-dropdown")
+            $(".nav-dropdown").removeAttr("style");
+        })
     </script>
 </th:block>
