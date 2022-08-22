@@ -176,7 +176,7 @@
             App.IziToast.showSuccessAlert("Đăng nhập thành công!!");
             App.catchIdLogin(data.id);
             setTimeout(function () {
-                window.location.href = "/homedashboard";
+                window.location.href = "/home-dashboard";
             }, 750);
         }).fail((jqXHR) => {
             App.IziToast.showErrorAlert("Đăng nhập thất bại!")
