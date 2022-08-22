@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row shadow-lg p-3 mb-5 bg-body rounded" style="margin-top: 10px">
+                    <div class="col-md-5">
+                        <h6><a href="product.html">Quay lại danh sách sản phẩm</a></h6>
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" style="margin-bottom: 10px"
+                                class="btn btn-outline-primary float-right ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Sửa sản phẩm
+                        </button>
+                        <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                                class="btn btn-outline-danger float-right ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Xoá
+                        </button>
+                        <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                                class="btn btn-outline-primary float-right ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Thoát
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" style="top: -25px; position: relative;">
+                    <div class="col-md-12">
+                        <h4>Kirby Hoover</h4>
+                    </div>
+                </div>
+                    <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+
+                        <div class="col-md-10">
+
+                            <div class="row ">
+                                 <h6>Thông tin sản phẩm</h6>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5" style="  padding-left: 35px;">
+                        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                            <div class="col-md-12">
+                                <h6>Thông tin bổ sung</h6>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Loại sản phẩm</label>
+                                <select class="form-control">
+                                    <option>Chọn loại sản phẩm </option>
+                                    <option>Thêm mới loại sản phẩm </option>
+                                    <option>Báo </option>
+                                    <option>Vở </option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-12">
+                                <label>Nhãn hiệu</label>
+                                <select class="form-control">
+                                    <option>Chọn loại nhãn hiệu </option>
+                                    <option>Thêm mới loại nhãn hiệu</option>
+                                    <option>Báo </option>
+                                    <option>Vở </option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-12">
+                                <label>Tags</label>
+                            </div>
+                            <div class="col-md-12">
+
+                            <textarea type= class="form-control" style=" width: 100%;height: 70px">
+
+                            </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-12">
+                        <button type="button" style="margin-bottom: 10px"
+                                class="btn btn-outline-primary float-right ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Lưu
+                        </button>
+                        <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                                class="btn btn-outline-primary float-right ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Thoát
+                        </button>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- Start Content-->
+
+        </div> <!-- end content -->
+
+
+
+        <!-- Footer Start -->
+        <th:block th:replace="/dashboard/layout/footer::footer"/>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
+</body>
+</html>

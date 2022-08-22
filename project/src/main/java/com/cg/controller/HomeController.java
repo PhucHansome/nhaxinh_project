@@ -42,15 +42,22 @@ public class HomeController {
     @GetMapping("/search")
     public ModelAndView getSearch() { return new ModelAndView("/customerView/search/Search");}
 
-    @GetMapping("/homedashboard")
+    @GetMapping("/home-dashboard")
     public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
 
 
-    @GetMapping("/productdashboard")
+    @GetMapping("/product-dashboard")
     public ModelAndView getProductDashboard() {return new ModelAndView("/dashboard/productDashboard/product");}
 
-    @GetMapping("/createProductdashboard")
+    @GetMapping("/create-product-dashboard")
     public ModelAndView getCreateProductDashboard() {return new ModelAndView("/dashboard/productDashboard/create-product");}
+
+    @GetMapping("/edit-product-dashboard")
+    public ModelAndView getEditProductDashboard() {return new ModelAndView("/dashboard/productDashboard/edit-product");}
+
+    @GetMapping("/detail-product-dashboard")
+    public ModelAndView getDetailProductDashboard() {return new ModelAndView("/dashboard/productDashboard/detail-product");}
+
 
     @GetMapping("/login_admin")
     public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}
