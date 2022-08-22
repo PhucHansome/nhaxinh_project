@@ -52,7 +52,7 @@ public class HomeController {
 
     //==dashBoard===//
 
-    @GetMapping("/homedashboard")
+    @GetMapping("/home-dashboard")
     public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
 
     @GetMapping("/login_admin")
