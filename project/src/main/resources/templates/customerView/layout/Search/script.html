@@ -1137,20 +1137,20 @@
 
     <script>
 
-        $(".phong_dropdown").on("mouseenter", function(){
+        $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
 
-        $(".phong_dropdown").on("mouseleave", function(){
+        $(".phong_dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
-        $(".sanpham_dropdown").on("mouseenter", function(){
+        $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top':'64.6042px'});
+            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
 
-        $(".sanpham_dropdown").on("mouseleave", function(){
+        $(".sanpham_dropdown").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
@@ -1192,7 +1192,6 @@
                 $(".chua_cart").html("")
             })
         }
-
 
         $(".menu_bar").on("click", () => {
             let str = `

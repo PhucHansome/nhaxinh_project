@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="js yes-js js_active mdl-js"><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Thanh toán - Nội thất Nhà Xinh</title>
+    <th:block th:replace="/customerView/layout/chitiet_giohang/head::head"/>
+</head>
+
+<body data-rsssl="1"
+      class="page-template-default page page-id-61 theme-flatsome woocommerce-checkout woocommerce-page woocommerce-js yith-wcan-pro lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border"
+      style="">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M87KMWC"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-dark-grayscale">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 0.49803921568627"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.49803921568627"></fefuncg>
+                <fefuncb type="table" tableValues="0 0.49803921568627"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-grayscale">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0 1"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-yellow">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.54901960784314 0.98823529411765"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0.71764705882353 0.25490196078431"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-red">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.27843137254902"></fefuncg>
+                <fefuncb type="table" tableValues="0.5921568627451 0.27843137254902"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-midnight">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 0"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.64705882352941"></fefuncg>
+                <fefuncb type="table" tableValues="0 1"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-magenta-yellow">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.78039215686275 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.94901960784314"></fefuncg>
+                <fefuncb type="table" tableValues="0.35294117647059 0.47058823529412"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-green">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.65098039215686 0.40392156862745"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0.44705882352941 0.4"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-orange">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.098039215686275 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.66274509803922"></fefuncg>
+                <fefuncb type="table" tableValues="0.84705882352941 0.41960784313725"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<a class="skip-link screen-reader-text" href="https://nhaxinh.com/thanh-toan/#main">Skip to content</a>
+
+<div id="wrapper">
+
+
+    <header id="header" class="header has-sticky sticky-jump">
+        <div class="header-wrapper">
+
+            <div id="top-bar" class="header-top hide-for-sticky">
+                <div class="flex-row container">
+                    <div class="flex-col hide-for-medium flex-left">
+                        <ul class="nav nav-left medium-nav-center nav-small  nav-">
+                            <div class="lang">
+                                <i class="image-icon"><img src="./assets/chitiet_giohang_files/vi.png" alt="Tiếng Việt"></i>
+                                <a href="https://nhaxinh.com/thanh-toan/" hreflang="vi" class="curent_lang"> vn</a><a
+                                    href="https://nhaxinh.com/checkout/?lang=en" hreflang="en"> en</a></div>
+                            <li class="html custom html_topbar_left"><p class="hotline"><a href="tel:1800 7200"><i
+                                    class="fas fa-phone-volume"></i> 1800 7200</a></p></li>
+                            <li id="menu-item-594"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594 menu-item-design-default">
+                                <a href="https://nhaxinh.com/gioi-thieu/" class="nav-top-link">Giới thiệu</a></li>
+                            <li id="menu-item-573"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573 menu-item-design-default">
+                                <a href="https://nhaxinh.com/khuyen-mai/" class="nav-top-link">Khuyến mãi</a></li>
+                            <li id="menu-item-27798"
+                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27798 menu-item-design-default">
+                                <a href="https://nhaxinh.com/danh-muc/giam-gia-dac-biet/" class="nav-top-link">Giảm giá
+                                    đặc biệt</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-center">
+                        <ul class="nav nav-center nav-small  nav-">
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="nav top-bar-nav nav-right nav-small  nav-">
+                            <li class="html custom html_topbar_right"><a
+                                    href="#"><i class="fa-solid fa-location-dot"></i></a>
+                            </li>
+                            <li class="header-wishlist-icon">
+                                <a href="#" data-open="#overlay-right-sidebar"
+                                   data-pos="right" data-bg="main-menu-overlay" data-color=""
+                                   class="is-small wishlist-link" aria-label="Wishlist"
+                                   aria-controls="overlay-right-sidebar" aria-expanded="false">
+
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </li>
+                            <li class="cart-item has-icon">
+
+                                <a href="#" id="cart_" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
+
+
+
+  		<span class="image-icon header-cart-icon" data-icon-label="1">
+			<img class="cart-img-icon" alt="Cart" src="./assets/chitiet_giohang_files/ic-shopping.png">
+		</span>
+
+                                </a>
+
+
+                            </li>
+                            <li class="account-item has-icon
+    ">
+
+                                <a href="http://localhost:8092/login"
+                                   class="nav-top-link nav-top-not-logged-in is-small">
+    <span>
+    Đăng nhập        <i style="font-size: 10px; height: 5px;" class="fa-solid fa-user"></i> </span>
+
+                                </a>
+
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-col show-for-medium flex-grow">
+                        <ul class="nav nav-center nav-small mobile-nav  nav-">
+                            <li class="html custom html_topbar_left"><p class="hotline"><a href="tel:1800 7200"><i
+                                    class="fas fa-phone-volume"></i> 1800 7200</a></p></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div id="masthead" class="header-main ">
+                <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+                    <!-- Menu Icon -->
+                    <div id="menu-icon" class="flex-col menu-icon">
+                        <div class="nav-icon has-icon menu_bar desktop">
+                            <a href="#" data-open="#product-categories-menu" data-pos="left" data-bg="main-menu-overlay" data-color="" class="is-small" aria-label="Menu" aria-controls="product-categories-menu" aria-expanded="false">
+
+                                <img src="./assets/chitiet_giohang_files/menu-bar.png" alt="Menu bar">
+
+                            </a>
+                        </div>
+
+                        <div class="nav-icon has-icon menu_bar mobile">
+                            <a href="https://nhaxinh.com/thanh-toan/#" data-open="#main-menu" data-pos="left"
+                               data-bg="main-menu-overlay" data-color="" class="is-small" aria-label="Menu"
+                               aria-controls="main-menu" aria-expanded="false">
+
+                                <img src="./assets/chitiet_giohang_files/menu-bar.png" alt="Menu bar">
+
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Logo -->
+                    <div id="logo" class="flex-col logo">
+                        <!-- Header logo -->
+                        <a href="https://nhaxinh.com/" title="Nội thất Nhà Xinh - Đồ gỗ nội thất" rel="home">
+                            <img width="169" height="90"
+                                 src="./assets/chitiet_giohang_files/logo-nha-xinh-moi-200422.png"
+                                 class="header_logo header-logo" alt="Nội thất Nhà Xinh"><img width="169" height="90"
+                                                                                              src="./assets/chitiet_giohang_files/logo-nha-xinh-moi-200422.png"
+                                                                                              class="header-logo-dark"
+                                                                                              alt="Nội thất Nhà Xinh"></a>
+                    </div>
+
+                    <!-- Mobile Left Elements -->
+                    <div class="flex-col show-for-medium flex-left">
+                        <ul class="mobile-nav nav nav-left ">
+                            <div class="nav-icon has-icon menu_bar desktop">
+                                <a href="https://nhaxinh.com/thanh-toan/#" data-open="#product-categories-menu"
+                                   data-pos="left" data-bg="main-menu-overlay" data-color="" class="is-small"
+                                   aria-label="Menu" aria-controls="product-categories-menu" aria-expanded="false">
+
+                                    <img src="./assets/chitiet_giohang_files/menu-bar.png" alt="Menu bar">
+
+                                </a>
+                            </div>
+
+                            <div class="nav-icon has-icon menu_bar mobile">
+                                <a href="https://nhaxinh.com/thanh-toan/#" data-open="#main-menu" data-pos="left"
+                                   data-bg="main-menu-overlay" data-color="" class="is-small" aria-label="Menu"
+                                   aria-controls="main-menu" aria-expanded="false">
+
+                                    <img src="./assets/chitiet_giohang_files/menu-bar.png" alt="Menu bar">
+
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- Left Elements -->
+                    <div class="flex-col hide-for-medium flex-left
+            flex-grow">
+                        <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
+                            <li id="menu-item-287"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
+                                <a href="https://nhaxinh.com/cua-hang/" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
+                                <div class="sub-menu nav-dropdown">
+                                    <section class="section" id="section_2101747625">
+                                        <div class="bg section-bg fill bg-fill  bg-loaded">
+
+
+                                        </div>
+
+                                        <div class="section-content relative">
+
+
+                                            <div class="row" id="row-1015825327">
+
+
+                                                <div id="col-882007866" class="col medium-9 small-12 large-9">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="row" id="row-1297247697">
+
+
+                                                            <div id="col-1122735657"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa/">
+						<span class="ux-menu-link__text">
+				Sofa			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa-goc/">
+						<span class="ux-menu-link__text">
+				Sofa góc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-thu-gian/">
+						<span class="ux-menu-link__text">
+				Ghế thư giãn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/armchair/">
+						<span class="ux-menu-link__text">
+				Armchair			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-dai-don/">
+						<span class="ux-menu-link__text">
+				Ghế dài &amp; đôn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-ben/">
+						<span class="ux-menu-link__text">
+				Bàn bên			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-nuoc/">
+						<span class="ux-menu-link__text">
+				Bàn nước			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-console/">
+						<span class="ux-menu-link__text">
+				Bàn Console			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-tivi/">
+						<span class="ux-menu-link__text">
+				Tủ tivi			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ke-phong-khach/">
+						<span class="ux-menu-link__text">
+				Kệ trưng bày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-giay/">
+						<span class="ux-menu-link__text">
+				Tủ giày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-1845685289"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ban-an/">
+						<span class="ux-menu-link__text">
+				Bàn ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">
+						<span class="ux-menu-link__text">
+				Ghế ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">
+						<span class="ux-menu-link__text">
+				Ghế Bar			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/tu-ly/">
+						<span class="ux-menu-link__text">
+				Tủ ly			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/xe-day/">
+						<span class="ux-menu-link__text">
+				Xe đẩy			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/tu-bep/">
+						<span class="ux-menu-link__text">
+				Tủ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/phu-kien-bep/">
+						<span class="ux-menu-link__text">
+				Thiết bị bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-89367839" class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/giuong/">
+						<span class="ux-menu-link__text">
+				Giường ngủ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-dau-giuong/">
+						<span class="ux-menu-link__text">
+				Bàn đầu giường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-trang-diem/">
+						<span class="ux-menu-link__text">
+				Bàn trang điểm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-ao/">
+						<span class="ux-menu-link__text">
+				Tủ áo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-am-tuong/">
+						<span class="ux-menu-link__text">
+				Tủ âm tường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-hoc-keo/">
+						<span class="ux-menu-link__text">
+				Tủ hộc kéo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/nem/">
+						<span class="ux-menu-link__text">
+				Nệm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-1937997790"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ban-lam-viec/">
+						<span class="ux-menu-link__text">
+				Bàn làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">
+						<span class="ux-menu-link__text">
+				Ghế làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ke-sach/">
+						<span class="ux-menu-link__text">
+				Kệ sách			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ban-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Bàn ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ghe-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Ghế ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-174994689"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/den/">
+						<span class="ux-menu-link__text">
+				Đèn trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tham/">
+						<span class="ux-menu-link__text">
+				Thảm trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/hang-trang-tri-michael-aram/">
+						<span class="ux-menu-link__text">
+				Michael Aram			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/binh-trang-tri/">
+						<span class="ux-menu-link__text">
+				Bình trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tranh/">
+						<span class="ux-menu-link__text">
+				Tranh			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-guong/">
+						<span class="ux-menu-link__text">
+				Gương			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hoa-cay/">
+						<span class="ux-menu-link__text">
+				Hoa và cây			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dong-ho-hang-trang-tri/">
+						<span class="ux-menu-link__text">
+				Đồng hồ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-hinh/">
+						<span class="ux-menu-link__text">
+				Khung hình			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tuong-trang-tri/">
+						<span class="ux-menu-link__text">
+				Tượng trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/goi-va-thu-bong/">
+						<span class="ux-menu-link__text">
+				Gối và thú bông			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/nen/">
+						<span class="ux-menu-link__text">
+				Nến &amp; chân nến			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-870970880"
+                                                                 class="col medium-2 small-12 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dung-cu-bep/">
+						<span class="ux-menu-link__text">
+				Dụng cụ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hang-trang-tri-khac/">
+						<span class="ux-menu-link__text">
+				Hàng trang trí khác			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div id="col-2131441903" class="col medium-3 small-12 large-3">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="img has-hover img_menu_mega x md-x lg-x y md-y lg-y"
+                                                             id="image_41445183">
+                                                            <div class="img-inner dark">
+                                                                <img width="1020" height="680"
+                                                                     src="./assets/chitiet_giohang_files/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg"
+                                                                     class="attachment-large size-large"
+                                                                     alt="phòng khách hiện đại poppy"
+                                                                     srcset="https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg 1200w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-768x512.jpg 768w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1.jpg 1500w"
+                                                                     sizes="(max-width: 1020px) 100vw, 1020px">
+                                                            </div>
+
+                                                            <style>
+                                                                #image_41445183 {
+                                                                    width: 100%;
+                                                                }
+                                                            </style>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <style>
+                                                    #row-1015825327 > .col > .col-inner {
+                                                        background-color: rgb(246, 247, 248);
+                                                    }
+                                                </style>
+                                            </div>
+
+                                        </div>
+
+
+                                        <style>
+                                            #section_2101747625 {
+                                                padding-top: 30px;
+                                                padding-bottom: 30px;
+                                                background-color: rgb(246, 247, 248);
+                                            }
+                                        </style>
+                                    </section>
+                                </div>
+                            </li>
+                            <li id="menu-item-8010"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8010 menu-item-design-default has-dropdown">
+                                <a href="https://nhaxinh.com/phong-khach/" class="nav-top-link phong_dropdown">Phòng</a>
+                                <ul class="sub-menu nav-dropdown nav-dropdown-default">
+                                    <li id="menu-item-8199"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8199">
+                                        <a href="https://nhaxinh.com/phong-khach/">Phòng khách</a></li>
+                                    <li id="menu-item-24423"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24423">
+                                        <a href="https://nhaxinh.com/phong-an/">Phòng ăn</a></li>
+                                    <li id="menu-item-24304"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24304">
+                                        <a href="https://nhaxinh.com/phong-ngu/">Phòng ngủ</a></li>
+                                    <li id="menu-item-27857"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27857">
+                                        <a href="https://nhaxinh.com/danh-muc/phong-lam-viec/">Phòng làm việc</a></li>
+                                    <li id="menu-item-37292"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-37292">
+                                        <a href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                                    <li id="menu-item-27856"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27856">
+                                        <a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a></li>
+                                    <li id="menu-item-27855"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27855">
+                                        <a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-24226"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24226 menu-item-design-default">
+                                <a href="https://nhaxinh.com/bo-suu-tap/" class="nav-top-link">Bộ sưu tập</a></li>
+                            <li id="menu-item-290"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-290 menu-item-design-default">
+                                <a href="https://nhaxinh.com/thiet-ke-noi-that/" class="nav-top-link">Thiết kế nội
+                                    thất</a></li>
+                            <li id="menu-item-288"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288 menu-item-design-default">
+                                <a href="https://nhaxinh.com/showroom-ao/" class="nav-top-link">Showroom ảo</a></li>
+                            <li id="menu-item-27825"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27825 menu-item-design-default">
+                                <a href="https://nhaxinh.com/cam-hung-nha-xinh-y-tuong/" class="nav-top-link">Góc cảm
+                                    hứng</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Elements -->
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="header-nav header-nav-main nav nav-right  nav-size-medium nav-uppercase">
+                            <li class="header-search-form search-form html relative has-icon">
+                                <div class="header-search-form-wrapper">
+                                    <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                        <form role="search" method="get" class="searchform"
+                                              action="https://nhaxinh.com/">
+                                            <div class="flex-row relative">
+                                                <div class="flex-col flex-grow">
+                                                    <label class="screen-reader-text"
+                                                           for="woocommerce-product-search-field-0">Search for:</label>
+                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                           class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                           name="s" autocomplete="off">
+                                                    <input type="hidden" name="post_type" value="product">
+                                                    <input type="hidden" name="lang" value="vi">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <button type="submit" value="Search"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            aria-label="Submit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="live-search-results text-left z-top">
+                                                <div class="autocomplete-suggestions"
+                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                            </div>
+                                            <input type="hidden" name="lang" value="vi"></form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Right Elements -->
+                    <div class="flex-col show-for-medium flex-right">
+                        <ul class="mobile-nav nav nav-right huan ">
+                            <li class="header-search header-search-dropdown has-icon has-dropdown menu-item-has-children">
+                                <div class="header-button"><a href="https://nhaxinh.com/thanh-toan/#"
+                                                              aria-label="Search"
+                                                              class="icon button round is-outline is-small"><i
+                                        class="icon-search"></i></a>
+                                </div>
+                                <ul class="nav-dropdown nav-dropdown-default">
+                                    <li class="header-search-form search-form html relative has-icon">
+                                        <div class="header-search-form-wrapper">
+                                            <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                                <form role="search" method="get" class="searchform"
+                                                      action="https://nhaxinh.com/">
+                                                    <div class="flex-row relative">
+                                                        <div class="flex-col flex-grow">
+                                                            <label class="screen-reader-text"
+                                                                   for="woocommerce-product-search-field-1">Search
+                                                                for:</label>
+                                                            <input type="search" id="woocommerce-product-search-field-1"
+                                                                   class="search-field mb-0" placeholder="Tìm sản phẩm"
+                                                                   value="" name="s" autocomplete="off">
+                                                            <input type="hidden" name="post_type" value="product">
+                                                            <input type="hidden" name="lang" value="vi">
+                                                        </div>
+                                                        <div class="flex-col">
+                                                            <button type="submit" value="Search"
+                                                                    class="ux-search-submit submit-button secondary button icon mb-0"
+                                                                    aria-label="Submit">
+                                                                <i class="icon-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="live-search-results text-left z-top">
+                                                        <div class="autocomplete-suggestions"
+                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                    </div>
+                                                    <input type="hidden" name="lang" value="vi"></form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="html custom html_topbar_right"><a
+                                    href="#"><i class="fa-solid fa-location-dot"></i></a>
+                            </li>
+                            <li class="cart-item has-icon">
+
+                                <a href="https://nhaxinh.com/gio-hang/" title="Cart" class="header-cart-link is-small">
+  
+  		<span class="image-icon header-cart-icon" data-icon-label="1">
+			<img class="cart-img-icon" alt="Cart" src="./assets/chitiet_giohang_files/ic-shopping.png">
+		</span>
+
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <div class="top-divider full-width"></div>
+                </div>
+            </div>
+            <div class="header-bg-container fill">
+                <div class="header-bg-image fill"></div>
+                <div class="header-bg-color fill"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <main id="main" class="">
+
+        <div class="chua_cart"></div>
+        <div class="checkout-page-title page-title">
+            <!-- <h1 class="cart-title">Checkout details</h1> -->
+        </div>
+        <div class="cart-container container page-wrapper page-checkout">
+            <div class="woocommerce">
+                <div class="woocommerce-notices-wrapper"></div>
+                <div class="woocommerce-notices-wrapper"></div>
+                <form name="checkout" method="post" class="checkout woocommerce-checkout "
+                      action="https://nhaxinh.com/thanh-toan/" enctype="multipart/form-data" novalidate="novalidate">
+
+                    <div class="row pt-0 ">
+                        <div class="large-7 col  ">
+
+
+                            <div id="customer_details">
+                                <div class="clear">
+                                    <div class="woocommerce-billing-fields">
+
+                                        <h3>Địa chỉ giao hàng</h3>
+
+
+                                        <div class="woocommerce-billing-fields__field-wrapper">
+                                            <p class="form-row form-row-wide validate-required"
+                                               id="billing_first_name_field" data-priority="10"><label
+                                                    for="billing_first_name" class="">Họ và tên&nbsp;<abbr
+                                                    class="required" title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                                                             class="input-text "
+                                                                                             name="billing_first_name"
+                                                                                             id="billing_first_name"
+                                                                                             placeholder="Nhập họ và tên"
+                                                                                             value=""></span></p>
+                                            <p class="form-row form-row-first validate-required validate-phone"
+                                               id="billing_phone_field" data-priority="20"><label for="billing_phone"
+                                                                                                  class="">Số điện thoại&nbsp;<abbr
+                                                    class="required" title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><input type="tel"
+                                                                                             class="input-text "
+                                                                                             name="billing_phone"
+                                                                                             id="billing_phone"
+                                                                                             placeholder="Nhập số điện thoại của bạn"
+                                                                                             value=""
+                                                                                             autocomplete="tel"></span>
+                                            </p>
+                                            <p class="form-row form-row-last validate-required validate-email"
+                                               id="billing_email_field" data-priority="21"><label for="billing_email"
+                                                                                                  class="">Địa chỉ email&nbsp;<abbr
+                                                    class="required" title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><input type="email"
+                                                                                             class="input-text "
+                                                                                             name="billing_email"
+                                                                                             id="billing_email"
+                                                                                             placeholder="Nhập email"
+                                                                                             value=""
+                                                                                             autocomplete="email username"></span>
+                                            </p>
+                                            <p class="form-row form-row-first devvn-address-field validate-required"
+                                               id="billing_state_field" data-priority="30"><label for="billing_state"
+                                                                                                  class="">Tỉnh / Thành
+                                                phố&nbsp;<abbr class="required" title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><select name="billing_state"
+                                                                                              id="billing_state"
+                                                                                              class="select select2-hidden-accessible"
+                                                                                              data-allow_clear="true"
+                                                                                              data-placeholder="Chọn tỉnh / thành phố"
+                                                                                              tabindex="-1"
+                                                                                              aria-hidden="true">
+							<option value="" selected="selected">Chọn tỉnh / thành phố</option><option value="HANOI">Hà Nội</option><option
+                                                    value="HOCHIMINH">Tp. Hồ Chí Minh</option><option value="ANGIANG">An Giang</option><option
+                                                    value="BACGIANG">Bắc Giang</option><option
+                                                    value="BACKAN">Bắc Kạn</option><option
+                                                    value="BACLIEU">Bạc Liêu</option><option
+                                                    value="BACNINH">Bắc Ninh</option><option value="BARIAVUNGTAU">Bà Rịa - Vũng Tàu</option><option
+                                                    value="BENTRE">Bến Tre</option><option
+                                                    value="BINHDINH">Bình Định</option><option value="BINHDUONG">Bình Dương</option><option
+                                                    value="BINHPHUOC">Bình Phước</option><option value="BINHTHUAN">Bình Thuận</option><option
+                                                    value="CAMAU">Cà Mau</option><option value="CANTHO">Cần Thơ</option><option
+                                                    value="CAOBANG">Cao Bằng</option><option
+                                                    value="DAKLAK">Đắk Lắk</option><option
+                                                    value="DAKNONG">Đắk Nông</option><option
+                                                    value="DANANG">Đà Nẵng</option><option
+                                                    value="DIENBIEN">Điện Biên</option><option
+                                                    value="DONGNAI">Đồng Nai</option><option
+                                                    value="DONGTHAP">Đồng Tháp</option><option
+                                                    value="GIALAI">Gia Lai</option><option
+                                                    value="HAGIANG">Hà Giang</option><option
+                                                    value="HAIDUONG">Hải Dương</option><option value="HAIPHONG">Hải Phòng</option><option
+                                                    value="HANAM">Hà Nam</option><option value="HATINH">Hà Tĩnh</option><option
+                                                    value="HAUGIANG">Hậu Giang</option><option
+                                                    value="HOABINH">Hòa Bình</option><option
+                                                    value="HUNGYEN">Hưng Yên</option><option
+                                                    value="KHANHHOA">Khánh Hòa</option><option value="KIENGIANG">Kiên Giang</option><option
+                                                    value="KONTUM">Kon Tum</option><option
+                                                    value="LAICHAU">Lai Châu</option><option
+                                                    value="LAMDONG">Lâm Đồng</option><option
+                                                    value="LANGSON">Lạng Sơn</option><option
+                                                    value="LAOCAI">Lào Cai</option><option
+                                                    value="LONGAN">Long An</option><option
+                                                    value="NAMDINH">Nam Định</option><option
+                                                    value="NGHEAN">Nghệ An</option><option
+                                                    value="NINHBINH">Ninh Bình</option><option value="NINHTHUAN">Ninh Thuận</option><option
+                                                    value="PHUTHO">Phú Thọ</option><option
+                                                    value="PHUYEN">Phú Yên</option><option
+                                                    value="QUANGBINH">Quảng Bình</option><option value="QUANGNAM">Quảng Nam</option><option
+                                                    value="QUANGNGAI">Quảng Ngãi</option><option value="QUANGNINH">Quảng Ninh</option><option
+                                                    value="QUANGTRI">Quảng Trị</option><option value="SOCTRANG">Sóc Trăng</option><option
+                                                    value="SONLA">Sơn La</option><option
+                                                    value="TAYNINH">Tây Ninh</option><option
+                                                    value="THAIBINH">Thái Bình</option><option value="THAINGUYEN">Thái Nguyên</option><option
+                                                    value="THANHHOA">Thanh Hóa</option><option value="THUATHIENHUE">Thừa Thiên Huế</option><option
+                                                    value="TIENGIANG">Tiền Giang</option><option value="TRAVINH">Trà Vinh</option><option
+                                                    value="TUYENQUANG">Tuyên Quang</option><option value="VINHLONG">Vĩnh Long</option><option
+                                                    value="VINHPHUC">Vĩnh Phúc</option><option
+                                                    value="YENBAI">Yên Bái</option>
+						</select><span class="select2 select2-container select2-container--default" dir="ltr"
+                                       style="width: 339.323px;"><span class="selection"><span
+                                                    class="select2-selection select2-selection--single" role="combobox"
+                                                    aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                                    aria-labelledby="select2-billing_state-container"><span
+                                                    class="select2-selection__rendered"
+                                                    id="select2-billing_state-container"><span
+                                                    class="select2-selection__placeholder">Chọn tỉnh / thành phố</span></span><span
+                                                    class="select2-selection__arrow" role="presentation"><b
+                                                    role="presentation"></b></span></span></span><span
+                                                    class="dropdown-wrapper" aria-hidden="true"></span></span></span>
+                                            </p>
+                                            <p class="form-row form-row-last address-field update_totals_on_change validate-required validate-required"
+                                               id="billing_city_field" data-priority="40"><label for="billing_city"
+                                                                                                 class="">Quận / Huyện
+                                                <abbr class="required" title="required">*</abbr></label><select
+                                                    name="billing_city" id="billing_city"
+                                                    class="select select2-hidden-accessible" data-allow_clear="true"
+                                                    data-placeholder="Chọn quận / huyện" tabindex="-1"
+                                                    aria-hidden="true">
+                                                <option value="" selected="selected">Chọn quận / huyện</option>
+                                            </select><span class="select2 select2-container select2-container--default"
+                                                           dir="ltr" style="width: 339.323px;"><span
+                                                    class="selection"><span
+                                                    class="select2-selection select2-selection--single" role="combobox"
+                                                    aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                                    aria-labelledby="select2-billing_city-container"><span
+                                                    class="select2-selection__rendered"
+                                                    id="select2-billing_city-container"><span
+                                                    class="select2-selection__placeholder">Chọn quận / huyện</span></span><span
+                                                    class="select2-selection__arrow" role="presentation"><b
+                                                    role="presentation"></b></span></span></span><span
+                                                    class="dropdown-wrapper" aria-hidden="true"></span></span></p>
+                                            <p class="form-row form-row-wide validate-required"
+                                               id="billing_address_1_field" data-priority="60"><label
+                                                    for="billing_address_1" class="">Địa chỉ&nbsp;<abbr class="required"
+                                                                                                        title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                                                             class="input-text "
+                                                                                             name="billing_address_1"
+                                                                                             id="billing_address_1"
+                                                                                             placeholder="Nhập địa chỉ"
+                                                                                             value=""
+                                                                                             autocomplete="address-line1"></span>
+                                            </p></div>
+
+                                    </div>
+
+                                    <div class="woocommerce-account-fields">
+
+                                        <p class="form-row form-row-wide create-account woocommerce-validated">
+                                            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+                                                <input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
+                                                       id="createaccount" type="checkbox" name="createaccount"
+                                                       value="1"> <span>Create an account?</span>
+                                            </label>
+                                        </p>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="clear">
+                                    <div class="woocommerce-shipping-fields">
+                                    </div>
+                                    <div class="woocommerce-additional-fields">
+
+
+                                        <h3>Thông tin thêm</h3>
+
+
+                                        <div class="woocommerce-additional-fields__field-wrapper">
+                                            <p class="form-row notes" id="order_comments_field" data-priority=""><label
+                                                    for="order_comments" class="">Lưu ý cho đơn hàng&nbsp;<span
+                                                    class="optional">(tuỳ chọn)</span></label><span
+                                                    class="woocommerce-input-wrapper"><textarea name="order_comments"
+                                                                                                class="input-text "
+                                                                                                id="order_comments"
+                                                                                                placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."
+                                                                                                rows="2"
+                                                                                                cols="5"></textarea></span>
+                                            </p></div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h3>Phương thức thanh toán</h3>
+                            <div class="wc_payment_methods payment_methods methods">
+                                <div class="payment-method-wrapper">
+                                    <div class="wc_payment_method payment_method_cod">
+                                        <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod" data-order_button_text="">
+
+                                        <label for="payment_method_cod">
+                                            <img class="lazy-load-active" src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/ic-cod.png" data-src="https://nhaxinh.com/wp-content/themes/flatsome-child/assets/images/ic-cod.png" alt="cod">
+                                            Thanh toán khi nhận hàng 	</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="large-5 col">
+
+                            <div class="col-inner has-border">
+                                <div class="checkout-sidebar sm-touch-scroll">
+
+
+                                    <h3 id="order_review_heading">Tóm tắt đơn hàng</h3>
+
+
+                                    <div id="order_review" class="woocommerce-checkout-review-order">
+                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                            <tbody>
+                                            <tr class="cart-subtotal">
+                                                <th>Thành tiền</th>
+                                                <td><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
+                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr class="woocommerce-shipping-totals shipping ">
+                                                <td class="shipping__inner" colspan="2">
+                                                    <table class="shipping__table ">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>Vận chuyển</th>
+                                                            <td data-title="Vận chuyển">
+                                                                <ul id="shipping_method"
+                                                                    class="shipping__list woocommerce-shipping-methods">
+                                                                    <li class="shipping__list_item">
+                                                                        <input type="hidden" name="shipping_method[0]"
+                                                                               data-index="0"
+                                                                               id="shipping_method_0_flat_rate4"
+                                                                               value="flat_rate:4"
+                                                                               class="shipping_method"><label
+                                                                            class="shipping__list_label"
+                                                                            for="shipping_method_0_flat_rate4">Liên hệ
+                                                                        phí vận chuyển sau</label></li>
+                                                                </ul>
+
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr class="order-total">
+                                                <th>Tổng cộng</th>
+                                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
+                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="product-title">
+                                                <th colspan="2">Sản phẩm<span class="total_count">1</span></th>
+                                            </tr>
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    <div class="product-thumbnails">
+                                                        <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/"><img
+                                                                width="300" height="200"
+                                                                src="./assets/chitiet_giohang_files/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg"
+                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                alt=""
+                                                                srcset="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2.jpg 1000w"
+                                                                sizes="(max-width: 300px) 100vw, 300px"></a></div>
+                                                    Armchair Osaka bọc vải SO65&nbsp;&nbsp; <strong
+                                                        class="product-quantity">×&nbsp;1</strong></td>
+                                                <td class="product-total">
+                                                    <span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
+                                                </td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                        <input type="hidden" name="lang" value="vi">
+                                        <div id="payment" class="woocommerce-checkout-payment">
+                                            <div class="form-row place-order">
+                                                <noscript>
+                                                    Since your browser does not support JavaScript, or it is disabled,
+                                                    please ensure you click the <em>Update Totals</em> button before
+                                                    placing your order. You may be charged more than the amount stated
+                                                    above if you fail to do so. <br/>
+                                                    <button type="submit" class="button alt"
+                                                            name="woocommerce_checkout_update_totals"
+                                                            value="Cập nhật giá tiền">Cập nhật giá tiền
+                                                    </button>
+                                                </noscript>
+
+                                                <div class="woocommerce-terms-and-conditions-wrapper">
+                                                    <div class="woocommerce-terms-and-conditions"
+                                                         style="display: none; max-height: 200px; overflow: auto;">
+                                                        <section class="section" id="section_2015270937">
+                                                            <div class="bg section-bg fill bg-fill  bg-loaded">
+
+
+                                                            </div>
+
+                                                            <div class="section-content relative">
+                                                                <p></p>
+                                                                <p></p>
+                                                                <div class="row" id="row-502025820"><p></p>
+                                                                    <p>
+                                                                    </p>
+                                                                    <div id="col-1803405323"
+                                                                         class="col small-12 large-12">
+                                                                        <div class="col-inner">
+
+                                                                            <p></p>
+                                                                            <p><strong>CHÍNH SÁCH BÁN HÀNG</strong></p>
+                                                                            <p><strong>1<span style="font-size: 14.4px">.</span>
+                                                                                Thanh toán</strong></p>
+                                                                            <div id="content" class="content-area"
+                                                                                 role="main">
+                                                                                <p>Nhà Xinh chỉ áp dụng duy nhất một
+                                                                                    hình thức thanh toán online qua thẻ
+                                                                                    tín dụng, chuyển khoản, cụ thể:</p>
+                                                                                <ul>
+                                                                                    <li>Bước 1: Khách hàng tìm hiểu
+                                                                                        thông tin về sản phẩm.
+                                                                                    </li>
+                                                                                    <li>Bước 2: Khách hàng xác thực đơn
+                                                                                        hàng (điện thoại, tin nhắn,
+                                                                                        email).
+                                                                                    </li>
+                                                                                    <li>Bước 3: Khách hàng đồng ý các
+                                                                                        điều khoản mua hàng, chi phí
+                                                                                        giao hàng và lắp đặt.
+                                                                                    </li>
+                                                                                    <li>Bước 4: Khách hàng thanh toán
+                                                                                        qua các thẻ ATM/VISA/CREDIT
+                                                                                        CARD.
+                                                                                    </li>
+                                                                                    <li>Bước 5: Hệ thống Nhà Xinh xác
+                                                                                        nhận thông tin khách hàng và
+                                                                                        giao hàng.
+                                                                                    </li>
+                                                                                    <li>Bước 6: Khách hàng nhận hàng,
+                                                                                        kiểm tra và xác nhận với nhân
+                                                                                        viên.
+                                                                                    </li>
+                                                                                </ul>
+                                                                                <p><strong>2. Chính sách lưu kho (Bên
+                                                                                    mua gửi/ lưu giữ hàng hóa tại kho
+                                                                                    của bên bán).</strong></p>
+                                                                                <p>Thỏa thuận lưu kho, phí lưu kho và
+                                                                                    điều kiện lưu kho sẽ được ký kết nếu
+                                                                                    khách hàng có nhu cầu kí gửi hàng
+                                                                                    hóa.</p>
+                                                                                <p>3<strong>. ĐƠN HÀNG CÓ HIỆU
+                                                                                    LỰC.</strong></p>
+                                                                                <p>Đơn hàng có hiệu lực là đơn hàng sau
+                                                                                    khi Quý khách đã thanh toán và nhận
+                                                                                    được xác nhận của nhân viên bán hàng
+                                                                                    Nhà Xinh.</p>
+                                                                                <p>Quý khách không được hủy đơn hàng sau
+                                                                                    khi đã thanh toán và nhận được xác
+                                                                                    nhận của nhân viên bán hàng Nhà
+                                                                                    Xinh.</p>
+                                                                                <p>4<strong>. QUY ĐỊNH ĐỔI TRẢ HÀNG
+                                                                                    HÓA.</strong></p>
+                                                                                <p>4.1. Các trường hợp h<strong>ợp được
+                                                                                    đổi hàng:</strong></p>
+                                                                                <p>Nhà Xinh sẽ thực hiện việc đổi, trả
+                                                                                    hàng hóa theo các điều kiện sau:</p>
+                                                                                <ul>
+                                                                                    <li>Hàng không đủ số lượng, đủ bộ,
+                                                                                        hoặc không đúng chủng loại theo
+                                                                                        như trong đơn đặt hàng của Quý
+                                                                                        khách.
+                                                                                    </li>
+                                                                                    <li>Hàng bị lỗi, không đạt chất
+                                                                                        lượng.
+                                                                                    </li>
+                                                                                </ul>
+                                                                                <p><strong>4.2. Các trường hợp KHÔNG
+                                                                                    được đổi trả hàng hóa:</strong></p>
+                                                                                <ul>
+                                                                                    <li>– Sản phẩm đã sử dụng, dơ bẩn,
+                                                                                        hoặc hư hại.
+                                                                                    </li>
+                                                                                    <li>– Sản phẩm không có đầy đủ chứng
+                                                                                        từ, hóa đơn.
+                                                                                    </li>
+                                                                                    <li>– Sản phẩm mua theo các diện
+                                                                                        thanh lý, khuyến mại, bán hiện
+                                                                                        trạng.
+                                                                                    </li>
+                                                                                    <li>– Sản phẩm đã được Quý khách ký
+                                                                                        vào biên bản nhận hàng.
+                                                                                    </li>
+                                                                                </ul>
+                                                                                <p><strong>CHÍNH SÁCH GIAO HÀNG</strong>
+                                                                                </p>
+                                                                                <p>1.<strong> PHẠM VI ÁP DỤNG</strong>
+                                                                                </p>
+                                                                                <p>Tất cả các đơn hàng có nhu cầu giao
+                                                                                    hàng và lắp đặt tại nhà được đặt mua
+                                                                                    theo hình thức mua online (qua
+                                                                                    website nhaxinh.com, điện thoại,
+                                                                                    fanpage…).</p>
+                                                                                <p><strong>2. THỜI GIAN GIAO
+                                                                                    HÀNG.</strong></p>
+                                                                                <p>– Chính sách giao hàng được áp dụng
+                                                                                    trong giờ hành chính từ thứ 2 đến
+                                                                                    hết thứ 7 (trừ chủ nhật, ngày lễ,
+                                                                                    tết).</p>
+                                                                                <p>– Đối với các đơn hàng có sản phẩm
+                                                                                    cần lắp đặt, nhân viên giao hàng và
+                                                                                    kỹ thuật sẽ đến tận nhà lắp đặt cho
+                                                                                    Quý khách.</p>
+                                                                                <p>– Đơn hàng giao tại nội thành Hà Nội,
+                                                                                    Hồ Chí Minh:</p>
+                                                                                <p>• Đối với các sản phẩm có sẵn tại kho
+                                                                                    và showroom: khách hàng đặt hàng từ
+                                                                                    09h-17h sẽ được giao vào ngày hôm
+                                                                                    sau.</p>
+                                                                                <p>• Đối với đơn hàng phát sinh sau 17h:
+                                                                                    sẽ được giao trong 02 ngày làm
+                                                                                    việc.</p>
+                                                                                <p>• Đối với các sản phẩm đặt hàng: thời
+                                                                                    gian giao hàng sẽ được thỏa thuận
+                                                                                    giữa hai bên.</p>
+                                                                                <p>– Đơn hàng đi tỉnh hoặc khu vực ngoại
+                                                                                    thành Hà Nội, Hồ Chí Minh sẽ được
+                                                                                    hoàn tất trong 02 – 04 ngày làm việc
+                                                                                    (trừ trường hợp chờ hàng).</p>
+                                                                                <p>– Lịch giao hàng trong thời gian diễn
+                                                                                    ra chương trình khuyến mại sẽ được
+                                                                                    nhân viên chúng tôi thông báo cụ thể
+                                                                                    tới quý khách.</p>
+                                                                                <p><strong>3. BIỂU PHÍ GIAO HÀNG – LẮP
+                                                                                    ĐẶT.</strong></p>
+                                                                                <p>– Biểu phí giao hàng bao gồm chi phí
+                                                                                    vận chuyển và chi phí nhân công giao
+                                                                                    hàng – lắp đặt (nếu có và đã bao gồm
+                                                                                    VAT).</p>
+                                                                                <p>– Áp dụng lắp đặt cho các nhóm hàng
+                                                                                    nội thất. Không bao gồm nhóm đèn
+                                                                                    điện và các nhóm hàng khác.</p>
+                                                                                <p>– Biểu phí giao hàng:</p>
+                                                                                <p>• Đơn hàng dưới 10 triệu đồng:
+                                                                                    250.000đ/ 1 chuyến trong nội thành
+                                                                                    Hà Nội và Hồ Chí Minh.</p>
+                                                                                <p>• Đơn hàng từ 10 triệu đồng trở lên:
+                                                                                    miễn phí vận chuyển và lắp đặt trong
+                                                                                    nội thành Hà Nội và Hồ Chí Minh.</p>
+                                                                                <p>• Đơn hàng đi tỉnh hoặc khu vực ngoại
+                                                                                    thành Hà Nội, Hồ Chí Minh sẽ được
+                                                                                    thông báo mức phí cụ thể tới Quý
+                                                                                    khách sau khi Nhà Xinh tiếp nhận
+                                                                                    thông tin đơn hàng.</p>
+                                                                                <p>– Lưu ý: Các loại phụ phí khác như
+                                                                                    lưu kho, phí khoan tường, phí tháo
+                                                                                    dỡ, phí giao tới địa điểm không
+                                                                                    thuận lợi như trên tầng/ lầu cao
+                                                                                    không có hoặc không sử dụng được
+                                                                                    thang máy; hoặc khu vực lắp đặt phải
+                                                                                    thuê xe cẩu đưa hàng hóa lên cao;
+                                                                                    hoặc mặt bằng khu vực lắp đặt không
+                                                                                    đảm bảo điều kiện có phát sinh chi
+                                                                                    phí vận chuyển; hoặc các trường hợp
+                                                                                    khác,… Chúng tôi sẽ thông báo mức
+                                                                                    phí cụ thể tới quý khách.</p>
+                                                                                <p>4. <strong>CÁC ĐIỀU KIỆN
+                                                                                    KHÁC.</strong></p>
+                                                                                <p>– Quý khách vui lòng kiểm tra hàng
+                                                                                    hóa trước khi ký nhận hàng hóa. Quý
+                                                                                    khách có thể từ chối nhận hàng nếu
+                                                                                    hàng hóa đã bị vỡ hỏng do quá trình
+                                                                                    vận chuyển hoặc Quý khách liên hệ
+                                                                                    trực tiếp với nhân viên bán hàng để
+                                                                                    được tư vấn cụ thể.</p>
+                                                                                <p>– Trường hợp công ty đã vận chuyển
+                                                                                    đến địa điểm giao nhận như thỏa
+                                                                                    thuận, nhưng vì một lý do khách hàng
+                                                                                    thay đổi địa điểm nhận hàng; khách
+                                                                                    hàng phải chịu chi phí vận chuyển
+                                                                                    cho việc đổi địa điểm giao hàng theo
+                                                                                    biểu phí của công ty. Mức phí này sẽ
+                                                                                    được nhân viên Nhà Xinh thông báo
+                                                                                    đến Quý khách.</p>
+                                                                                <p>– Trong trường hợp khách hàng có thay
+                                                                                    đổi về thời gian nhận hàng so với
+                                                                                    thỏa thuận khi mua hàng, cần báo
+                                                                                    trước cho chúng tôi ít nhất trước
+                                                                                    24h với khách hàng nội thành và ít
+                                                                                    nhất 48h đối với khách hàng có
+                                                                                    khoảng cách trên 30km từ showroom
+                                                                                    mua hàng.</p>
+                                                                                <p>– Trường hợp công ty đã vận chuyển
+                                                                                    đến địa điểm giao nhận nhưng không
+                                                                                    liên lạc được với quý khách, chúng
+                                                                                    tôi sẽ để lại tin nhắn thông báo.
+                                                                                    Chúng tôi sẽ tính phí giao hàng nếu
+                                                                                    giao hàng không thành công.</p>
+                                                                                <p>– Trong một số trường hợp khách quan
+                                                                                    chúng tôi có thể giao hàng chậm do
+                                                                                    điều kiện bất khả kháng: thời tiết
+                                                                                    xấu, thiên tai, điều kiện giao
+                                                                                    thông, giờ cấm đường hoặc vào thời
+                                                                                    điểm lễ tết, sự kiện đặc biệt dẫn
+                                                                                    tới thay đổi thời gian giao hàng,
+                                                                                    công ty sẽ liên lạc thông báo và
+                                                                                    điều chỉnh thời gian giao hàng cụ
+                                                                                    thể cho khách hàng.</p>
+                                                                                <p>– Nhân viên của chúng tôi chỉ lắp đặt
+                                                                                    sản phẩm trong điều kiện mặt bằng sử
+                                                                                    dụng đã sẵn sàng. Nhân viên không
+                                                                                    được phép thực hiện bất kỳ công việc
+                                                                                    nào khác ngoài việc lắp đặt sản
+                                                                                    phẩm.</p>
+                                                                                <p>– Nhân viên giao hàng – lắp đặt không
+                                                                                    được phép thu thêm bất cứ khoản chi
+                                                                                    phí nào ngoài các chi phí được thông
+                                                                                    báo từ bộ phận bán hàng.</p>
+                                                                                <p>– Với tất cả các điều kiện trên, quý
+                                                                                    khách hàng có yêu cầu khác, vui lòng
+                                                                                    hệ với nhân viên chăm sóc khách hàng
+                                                                                    hoặc cửa hàng để được tư vấn, hỗ trợ
+                                                                                    đầy đủ nhất.</p>
+                                                                                <p>– Các chính sách và điều khoản có thể
+                                                                                    được chúng tôi thay đổi cho phù hợp
+                                                                                    nhất mà không cần báo trước.</p>
+                                                                                <p><strong>CHÍNH SÁCH BẢO HÀNH</strong>
+                                                                                </p>
+                                                                                <p><strong>1. ĐIỀU KHOẢN CHUNG VỀ THỜI
+                                                                                    HẠN BẢO HÀNH.</strong></p>
+                                                                                <p>– Thời gian bảo hành các sản phẩm: 01
+                                                                                    năm, kể từ khi nhận hàng. Nếu có
+                                                                                    trường hợp đặc biệt, nhân viên Nhà
+                                                                                    Xinh sẽ thông báo đến Quý khách.</p>
+                                                                                <p>– Các sản phẩm hàng trang trí không
+                                                                                    áp dụng bảo hành nhưng áp dụng theo
+                                                                                    chính sách đổi trả hàng hoá.</p>
+                                                                                <p>– Chính sách bảo hành có hiệu lực từ
+                                                                                    thời điểm bên mua nhận sản phẩm (Căn
+                                                                                    cứ theo Phiếu xuất kho kiêm biên bản
+                                                                                    bàn giao &amp; phiếu bảo hành).</p>
+                                                                                <p>2<strong>. ĐIỀU KIỆN BẢO
+                                                                                    HÀNH.</strong></p>
+                                                                                <p>– Các sản phẩm vẫn nằm trong thời
+                                                                                    gian bảo hành của bên bán.</p>
+                                                                                <p>– Khách hàng cung cấp đầy đủ Phiếu
+                                                                                    xuất kho kiêm biên bản bàn giao
+                                                                                    &amp; phiếu bảo hành.</p>
+                                                                                <p>– Bên bán chỉ bảo hành cho các lỗi
+                                                                                    phát sinh trong quá trình sản xuất
+                                                                                    sản phẩm.</p>
+                                                                                <p><strong>3. QUY TRÌNH BẢO
+                                                                                    HÀNH.</strong></p>
+                                                                                <p>– Cửa hàng phụ trách kiểm tra sản
+                                                                                    phẩm, xác định các trường hợp thuộc
+                                                                                    phạm vi bảo hành.</p>
+                                                                                <p>– Với sản phẩm thuộc phạm vi bảo
+                                                                                    hành, cửa hàng sẽ quyết định việc
+                                                                                    sửa chữa hoặc thay thế hoặc hoàn đổi
+                                                                                    lại sản phẩm.</p>
+                                                                                <p>– Đối với các sản phẩm không còn tiếp
+                                                                                    tục kinh doanh, nếu nằm trong phạm
+                                                                                    vi bảo hành, không thể sửa chữa thì
+                                                                                    bên bán sẽ thay thế bằng sản phẩm có
+                                                                                    giá trị tương đồng.</p>
+                                                                                <p>– Bên bán kiểm tra sản phẩm trong
+                                                                                    vòng 48h, hoàn tất bảo hành trong
+                                                                                    vòng 48h tiếp theo. Với trường hợp
+                                                                                    đặc biệt bên mua và bên bán thống
+                                                                                    nhất thời gian bảo hành.</p>
+                                                                                <p>4.<strong> PHẠM VI BẢO HÀNH.</strong>
+                                                                                </p>
+                                                                                <p>Nhà Xinh bảo hành cho các sản phẩm
+                                                                                    đáp ứng đủ hai điều kiện sau:</p>
+                                                                                <p>• Sản phẩm hư hỏng do lỗi kỹ thuật
+                                                                                    của nhà sản xuất và;</p>
+                                                                                <p>• Sản phẩm còn trong thời hạn bảo
+                                                                                    hành.</p>
+                                                                                <p>Nhà Xinh không bảo hành trong các
+                                                                                    trường hợp sau:</p>
+                                                                                <p>• Khách hàng tự ý sửa chữa khi sản
+                                                                                    phẩm gặp trục trặc.</p>
+                                                                                <p>• Sản phẩm trầy xước, hư hỏng do
+                                                                                    khách hàng không sử dụng theo đúng
+                                                                                    hướng dẫn.</p>
+                                                                                <p>• Sản phẩm được xử lý chống mọt từ
+                                                                                    bên trong, mọi tác động do môi
+                                                                                    trường bên ngoài như: ẩm ướt, mối,
+                                                                                    chuột,… sẽ không được bảo hành.</p>
+                                                                                <p>• Sản phẩm bị ngập nước, gây nở,
+                                                                                    cong, vênh.</p>
+                                                                                <p>• Sản phẩm bị tác động của hơi nước,
+                                                                                    lửa,… do việc lắp đặt của các thiết
+                                                                                    bị điện nước của khách hàng không
+                                                                                    đảm bảo an toàn.</p>
+                                                                                <p>• Sản phẩm không có phiếu bảo hành
+                                                                                    của công ty.</p>
+                                                                                <p>• Sản phẩm bị hao mòn tự nhiên theo
+                                                                                    tính chất của từng loại vật
+                                                                                    liệu.</p>
+                                                                                <p>• Sản phẩm không được bảo dưỡng đúng
+                                                                                    cách.</p>
+                                                                                <p>Để biết thêm thông tin, vui lòng liên
+                                                                                    hệ với cửa hàng hoặc liên hệ trực
+                                                                                    tiếp bộ phận chăm sóc khách
+                                                                                    hàng:</p>
+                                                                                <p>• Hotline: 1800 7200</p>
+                                                                                <p>• Email: <a
+                                                                                        href="mailto:nhaxinhcare@akacompany.com.vn">nhaxinhcare@akacompany.com.vn</a>
+                                                                                </p>
+                                                                                <p>• Website: <a
+                                                                                        href="https://nhaxinh.com/">www.nhaxinh.com</a>
+                                                                                </p>
+                                                                            </div>
+                                                                            <p><strong>CHÍNH SÁCH BẢO MẬT THANH
+                                                                                TOÁN</strong></p>
+                                                                            <p><strong>1. CAM KẾT BẢO MẬT.</strong></p>
+                                                                            <p>Hệ thống thanh toán thẻ được cung cấp bởi
+                                                                                các đối tác cổng thanh toán (“Đối Tác
+                                                                                Cổng Thanh Toán”) đã được cấp phép hoạt
+                                                                                động hợp pháp tại Việt Nam. Theo đó, các
+                                                                                tiêu chuẩn bảo mật thanh toán thẻ tại
+                                                                                Nhà Xinh đảm bảo tuân thủ theo các tiêu
+                                                                                chuẩn bảo mật ngành.</p>
+                                                                            <p><strong>2. QUY ĐỊNH BẢO MẬT.</strong></p>
+                                                                            <p>– Chính sách giao dịch thanh toán bằng
+                                                                                thẻ quốc tế và thẻ nội địa (internet
+                                                                                banking) đảm bảo tuân thủ các tiêu chuẩn
+                                                                                bảo mật của các Đối Tác Cổng Thanh Toán
+                                                                                gồm:</p>
+                                                                            <ul>
+                                                                                <li>Thông tin tài chính của Khách hàng
+                                                                                    sẽ được bảo vệ trong suốt quá trình
+                                                                                    giao dịch bằng giao thức SSL (Secure
+                                                                                    Sockets Layer).
+                                                                                </li>
+                                                                                <li>Chứng nhận tiêu chuẩn bảo mật dữ
+                                                                                    liệu thông tin thanh toán (PCI DSS)
+                                                                                    do Trustwave cung cấp.
+                                                                                </li>
+                                                                                <li>Mật khẩu sử dụng một lần (OTP) được
+                                                                                    gửi qua SMS để đảm bảo việc truy cập
+                                                                                    tài khoản được xác thực.
+                                                                                </li>
+                                                                                <li>Tiêu chuẩn mã hóa MD5 128 bit.</li>
+                                                                                <li>Các nguyên tắc và quy định bảo mật
+                                                                                    thông tin trong ngành tài chính ngân
+                                                                                    hàng theo quy định của Ngân hàng nhà
+                                                                                    nước Việt Nam.
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p>– Chính sách bảo mật giao dịch trong
+                                                                                thanh toán của Nhà Xinh áp dụng với
+                                                                                Khách hàng:</p>
+                                                                            <ul>
+                                                                                <li>Nhà Xinh cung cấp tiện ích lưu giữ
+                                                                                    token – chỉ lưu chuỗi đã được mã hóa
+                                                                                    bởi Đối Tác Cổng Thanh Toán cung
+                                                                                    cấp. Nhà Xinh không trực tiếp lưu
+                                                                                    trữ thông tin thẻ khách hàng. Việc
+                                                                                    bảo mật thông tin thẻ thanh toán
+                                                                                    Khách hàng được thực hiện bởi Đối
+                                                                                    Tác Cổng Thanh Toán đã được cấp
+                                                                                    phép.
+                                                                                </li>
+                                                                                <li>Đối với thẻ quốc tế: thông tin thẻ
+                                                                                    thanh toán của Khách hàng mà có khả
+                                                                                    năng sử dụng để xác lập giao dịch
+                                                                                    không được lưu trên hệ thống của
+                                                                                    www.nhaxinh.com . Đối Tác Cổng Thanh
+                                                                                    Toán sẽ lưu trữ và bảo mật.
+                                                                                </li>
+                                                                                <li>Đối với thẻ nội địa (internet
+                                                                                    banking), Nhà Xinh chỉ lưu trữ mã
+                                                                                    đơn hàng, mã giao dịch và tên ngân
+                                                                                    hàng.
+                                                                                </li>
+                                                                            </ul>
+                                                                            <p>Nhà Xinh cam kết đảm bảo thực hiện nghiêm
+                                                                                túc các biện pháp bảo mật cần thiết cho
+                                                                                mọi hoạt động thanh toán thực hiện trên
+                                                                                website www.nhaxinh.com.</p>
+                                                                            <p>Tôi đã đọc và đồng ý điều kiện đổi trả
+                                                                                hàng, giao hàng, chính sách bảo mật,
+                                                                                điều khoản dịch vụ mua hàng online.</p>
+                                                                            <p></p></div>
+                                                                    </div>
+
+                                                                    <p></p>
+                                                                    <p></p></div>
+                                                                <p></p>
+                                                                <p></p></div>
+
+
+                                                            <style>
+                                                                #section_2015270937 {
+                                                                    padding-top: 0px;
+                                                                    padding-bottom: 0px;
+                                                                }
+                                                            </style>
+                                                        </section>
+
+                                                    </div>
+                                                    <p class="form-row validate-required">
+                                                        <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+                                                            <input type="checkbox"
+                                                                   class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
+                                                                   name="terms" id="terms">
+                                                            <span class="woocommerce-terms-and-conditions-checkbox-text">Tôi đã đọc và đồng ý <a
+                                                                    class="woocommerce-terms-and-conditions-link"
+                                                                    target="_blank"
+                                                                    href="https://nhaxinh.com/dieu-khoan-ban-hang-online/">điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản dịch vụ mua hàng online</a></span>&nbsp;<span
+                                                                class="required">*</span>
+                                                        </label>
+                                                        <input type="hidden" name="terms-field" value="1">
+                                                    </p>
+                                                </div>
+
+
+                                                <button type="submit" class="button alt"
+                                                        name="woocommerce_checkout_place_order" id="place_order"
+                                                        value="Đặt mua" data-value="Đặt mua">Đặt mua
+                                                </button>
+
+                                                <input type="hidden" id="woocommerce-process-checkout-nonce"
+                                                       name="woocommerce-process-checkout-nonce"
+                                                       value="a75743aaed"><input type="hidden" name="_wp_http_referer"
+                                                                                 value="/?wc-ajax=update_order_review">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <th:block th:replace="/customerView/layout/chitiet_giohang/footer::footer"/>
+
+
+</div>
+
+<div id="overlay-right-sidebar" class="mobile-sidebar no-scrollbar mfp-hide">
+    <div class="sidebar-menu no-scrollbar ">
+
+        <div class="wishlist-view-sidebar">
+            <div class="wishlist-view-sidebar-header">
+                <h4>Wishlist <span>0</span></h4>
+            </div>
+            <div class="wishlist-view-sidebar-content wishlist_table cart" data-token="">
+            </div>
+            <div class="wishlist-view-sidebar-footer">
+                <div class="total_price_wrapper"><span>Tổng cộng</span> <strong><span
+                        class="woocommerce-Price-amount amount"><bdi>0<span
+                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong></div>
+                <a href="https://nhaxinh.com/tai-khoan/wishlist/?wishlist-action" class="wishlist-link is-small">
+                    Xem Wishlist </a>
+                <a href="https://nhaxinh.com/tai-khoan/" class="btn btn-login is-small">
+                    Đăng nhập </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="product-categories-menu" class="mobile-sidebar no-scrollbar mfp-hide">
+    <div class="sidebar-menu no-scrollbar ">
+        <div class="product-categories-menu-containter">
+            <ul id="menu-danh-muc-sp" class="menu">
+                <li id="menu-item-24213"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24213 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Sofa và Armchair</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3785"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3785"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/sofa/">Sofa</a></li>
+                        <li id="menu-item-3786"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3786"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/sofa-goc/">Sofa góc</a></li>
+                        <li id="menu-item-24359"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24359"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/armchair/">Armchair</a></li>
+                        <li id="menu-item-3377"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3377"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/ghe-dai-don/">Ghế dài &amp; đôn</a></li>
+                        <li id="menu-item-3378"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3378"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/ghe-thu-gian/">Ghế thư giãn</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-24214"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24214 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Bàn</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-24417"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24417"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/ban-nuoc/">Bàn nước</a></li>
+                        <li id="menu-item-3362"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3362"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/ban-an/">Bàn ăn</a></li>
+                        <li id="menu-item-3372"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3372"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/ban-ben/">Bàn bên</a></li>
+                        <li id="menu-item-3387"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3387"><a
+                                href="https://nhaxinh.com/danh-muc/phong-lam-viec/ban-lam-viec/">Bàn làm việc</a></li>
+                        <li id="menu-item-3382"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3382"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/ban-trang-diem/">Bàn trang điểm</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-28026"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28026 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Ghế</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-28024"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28024"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">Ghế ăn</a></li>
+                        <li id="menu-item-3365"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3365"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">Ghế bar</a></li>
+                        <li id="menu-item-3388"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3388"><a
+                                href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">Ghế làm việc</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="menu-item-28344"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28344 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Giường ngủ</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-28345"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28345"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/giuong/">Giường</a></li>
+                        <li id="menu-item-3381"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3381"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/ban-dau-giuong/">Bàn đầu giường</a></li>
+                        <li id="menu-item-3795"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3795"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/nem/">Nệm</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-24217"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24217 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Tủ và kệ</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3790"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3790"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/tu-tivi/">Tủ tivi</a></li>
+                        <li id="menu-item-3776"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3776"><a
+                                href="https://nhaxinh.com/danh-muc/outlet/tu-trung-bay/">Tủ trưng bày</a></li>
+                        <li id="menu-item-3779"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3779"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/tu-ly/">Tủ ly</a></li>
+                        <li id="menu-item-3780"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3780"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/tu-ruou/">Tủ rượu</a></li>
+                        <li id="menu-item-3781"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3781"><a
+                                href="https://nhaxinh.com/danh-muc/phong-an/xe-day/">Xe đẩy</a></li>
+                        <li id="menu-item-3798"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3798"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/tu-hoc-keo/">Tủ hộc kéo</a></li>
+                        <li id="menu-item-3797"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3797"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/tu-ao/">Tủ áo</a></li>
+                        <li id="menu-item-3796"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3796"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/tu-am-tuong/">Tủ âm tường</a></li>
+                        <li id="menu-item-3788"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3788"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/tu-giay/">Tủ giầy</a></li>
+                        <li id="menu-item-3380"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3380"><a
+                                href="https://nhaxinh.com/danh-muc/phong-khach/ke-phong-khach/">Kệ phòng khách</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-28027"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28027 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Bếp</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3813"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3813"><a
+                                href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                        <li id="menu-item-3810"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3810"><a
+                                href="https://nhaxinh.com/danh-muc/bep/phu-kien-bep/">Phụ kiện bếp</a></li>
+                        <li id="menu-item-3349"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3349"><a
+                                href="https://nhaxinh.com/danh-muc/bep/dao-bep/">Đảo bếp</a></li>
+                        <li id="menu-item-3811"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3811"><a
+                                href="https://nhaxinh.com/danh-muc/bep/quay-bar/">Quầy bar</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-3351"
+                    class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3351 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3353"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3353"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/binh-trang-tri/">Bình trang trí</a>
+                        </li>
+                        <li id="menu-item-3354"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3354"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/den/">Đèn trang trí</a></li>
+                        <li id="menu-item-3355"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3355"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/do-trang-tri-noel/">Đồ trang trí
+                            Noel</a></li>
+                        <li id="menu-item-3356"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3356"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/dong-ho-hang-trang-tri/">Đồng hồ</a>
+                        </li>
+                        <li id="menu-item-3357"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3357"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/dung-cu-bep/">Dụng cụ bếp</a></li>
+                        <li id="menu-item-3358"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3358"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/goi-va-thu-bong/">Gối và thú bông</a>
+                        </li>
+                        <li id="menu-item-3359"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3359"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/hang-trang-tri-khac/">Hàng trang trí
+                            khác</a></li>
+                        <li id="menu-item-3360"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3360"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/hoa-cay/">Hoa &amp; Cây</a></li>
+                        <li id="menu-item-3800"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3800"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-guong/">Khung gương</a></li>
+                        <li id="menu-item-3801"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3801"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-hinh/">Khung hình</a></li>
+                        <li id="menu-item-3802"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3802"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/nem-hang-trang-tri/">Nệm</a></li>
+                        <li id="menu-item-3804"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3804"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/san-pham-khac/">Sản phẩm khác</a></li>
+                        <li id="menu-item-3805"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3805"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/tham/">Thảm</a></li>
+                        <li id="menu-item-3794"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3794"><a
+                                href="https://nhaxinh.com/danh-muc/phong-ngu/men/">Mền</a></li>
+                        <li id="menu-item-3806"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3806"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/tranh/">Tranh</a></li>
+                        <li id="menu-item-3807"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3807"><a
+                                href="https://nhaxinh.com/danh-muc/hang-trang-tri/tuong-trang-tri/">Tượng trang trí</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="menu-item-3773"
+                    class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3773 has-child"
+                    aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a>
+                    <button class="toggle"><i class="icon-angle-down"></i></button>
+                    <ul class="sub-menu">
+                        <li id="menu-item-3391"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3391"><a
+                                href="https://nhaxinh.com/danh-muc/ngoai-that/ban-ngoai-troi/">Bàn ngoài trời</a></li>
+                        <li id="menu-item-3393"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3393"><a
+                                href="https://nhaxinh.com/danh-muc/ngoai-that/ghe-ngoai-troi/">Ghế ngoài trời</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="main-menu" class="mobile-sidebar no-scrollbar mfp-hide">
+    <div class="sidebar-menu no-scrollbar ">
+        <ul class="nav nav-sidebar nav-vertical nav-uppercase">
+            <li id="menu-item-24092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24092"><a
+                    href="https://nhaxinh.com/cua-hang/">Sản phẩm</a></li>
+            <li id="menu-item-24210"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24210 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Sofa và Armchair</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24155"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24155"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/sofa/">Sofa</a></li>
+                    <li id="menu-item-24156"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24156"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/sofa-goc/">Sofa góc</a></li>
+                    <li id="menu-item-24360"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24360"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/armchair/">Armchair</a></li>
+                    <li id="menu-item-24126"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24126"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ghe-thu-gian/">Ghế thư giãn</a></li>
+                    <li id="menu-item-24125"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24125"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ghe-dai-don/">Ghế dài &amp; đôn</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24212"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24212 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Bàn</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-28010"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28010"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/ban-an/">Bàn ăn</a></li>
+                    <li id="menu-item-24415"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24415"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ban-nuoc/">Bàn nước</a></li>
+                    <li id="menu-item-24120"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24120"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ban-ben/">Bàn bên</a></li>
+                    <li id="menu-item-24135"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24135"><a
+                            href="https://nhaxinh.com/danh-muc/phong-lam-viec/ban-lam-viec/">Bàn làm việc</a></li>
+                    <li id="menu-item-24130"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24130"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/ban-trang-diem/">Bàn trang điểm</a></li>
+                    <li id="menu-item-30268"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-30268"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ban-console/">Bàn console</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24147"
+                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-24147 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/phong-an/">Ghế</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24111"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24111"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">Ghế ăn</a></li>
+                    <li id="menu-item-24113"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24113"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">Ghế bar</a></li>
+                    <li id="menu-item-24151"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24151"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/xe-day/">Xe đẩy</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24209"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24209 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Giường ngủ</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24775"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24775"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/giuong/">Giường</a></li>
+                    <li id="menu-item-24129"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24129"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/ban-dau-giuong/">Bàn đầu giường</a></li>
+                    <li id="menu-item-24164"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24164"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/nem/">Nệm</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24211"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24211 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Tủ và Kệ</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24160"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24160"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/tu-tivi/">Tủ tivi</a></li>
+                    <li id="menu-item-24158"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24158"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/tu-giay/">Tủ giầy</a></li>
+                    <li id="menu-item-24167"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24167"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/tu-hoc-keo/">Tủ hộc kéo</a></li>
+                    <li id="menu-item-24159"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24159"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/tu-thap/">Tủ thấp</a></li>
+                    <li id="menu-item-24149"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24149"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/tu-ly/">Tủ ly</a></li>
+                    <li id="menu-item-24150"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24150"><a
+                            href="https://nhaxinh.com/danh-muc/phong-an/tu-ruou/">Tủ rượu</a></li>
+                    <li id="menu-item-24128"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24128"><a
+                            href="https://nhaxinh.com/danh-muc/phong-khach/ke-phong-khach/">Kệ phòng khách</a></li>
+                    <li id="menu-item-39704"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-39704"><a
+                            href="https://nhaxinh.com/danh-muc/phong-lam-viec/ke-sach/">Kệ sách</a></li>
+                    <li id="menu-item-24166"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24166"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/tu-ao/">Tủ áo</a></li>
+                    <li id="menu-item-24165"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24165"><a
+                            href="https://nhaxinh.com/danh-muc/phong-ngu/tu-am-tuong/">Tủ âm tường</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24093"
+                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-24093 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/bep/">Bếp</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24182"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24182"><a
+                            href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                    <li id="menu-item-24097"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24097"><a
+                            href="https://nhaxinh.com/danh-muc/bep/dao-bep/">Đảo bếp</a></li>
+                    <li id="menu-item-24180"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24180"><a
+                            href="https://nhaxinh.com/danh-muc/bep/quay-bar/">Quầy bar</a></li>
+                    <li id="menu-item-24179"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24179"><a
+                            href="https://nhaxinh.com/danh-muc/bep/phu-kien-bep/">Phụ kiện bếp</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24099"
+                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-24099 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24102"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24102"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/den/">Đèn trang trí</a></li>
+                    <li id="menu-item-24174"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24174"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/tham/">Thảm</a></li>
+                    <li id="menu-item-36693"
+                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36693"><a
+                            href="https://nhaxinh.com/hang-trang-tri-michael-aram/">Michael Aram</a></li>
+                    <li id="menu-item-24103"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24103"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/do-trang-tri-noel/">Đồ trang trí Noel</a>
+                    </li>
+                    <li id="menu-item-24101"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24101"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/binh-trang-tri/">Bình trang trí</a></li>
+                    <li id="menu-item-24104"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24104"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/dong-ho-hang-trang-tri/">Đồng hồ</a></li>
+                    <li id="menu-item-24106"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24106"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/goi-va-thu-bong/">Gối và thú bông</a></li>
+                    <li id="menu-item-24107"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24107"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/hang-trang-tri-khac/">Hàng trang trí
+                        khác</a></li>
+                    <li id="menu-item-24108"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24108"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/hoa-cay/">Hoa &amp; Cây</a></li>
+                    <li id="menu-item-24169"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24169"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-guong/">Khung gương</a></li>
+                    <li id="menu-item-24170"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24170"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-hinh/">Khung hình</a></li>
+                    <li id="menu-item-24172"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24172"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/nen/">Nến</a></li>
+                    <li id="menu-item-24175"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24175"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/tranh/">Tranh</a></li>
+                    <li id="menu-item-24176"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24176"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/tuong-trang-tri/">Tượng trang trí</a></li>
+                    <li id="menu-item-24173"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24173"><a
+                            href="https://nhaxinh.com/danh-muc/hang-trang-tri/san-pham-khac/">Sản phẩm khác</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24143"
+                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-24143 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24141"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24141"><a
+                            href="https://nhaxinh.com/danh-muc/ngoai-that/ghe-ngoai-troi/">Ghế ngoài trời</a></li>
+                    <li id="menu-item-24139"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-24139"><a
+                            href="https://nhaxinh.com/danh-muc/ngoai-that/ban-ngoai-troi/">Bàn ngoài trời</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-24183"
+                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24183 has-child"
+                aria-expanded="false"><a href="https://nhaxinh.com/thanh-toan/#">Phòng</a>
+                <button class="toggle"><i class="icon-angle-down"></i></button>
+                <ul class="sub-menu nav-sidebar-ul children">
+                    <li id="menu-item-24469"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24469"><a
+                            href="https://nhaxinh.com/phong-khach/">Phòng khách</a></li>
+                    <li id="menu-item-27882"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27882"><a
+                            href="https://nhaxinh.com/phong-an/">Phòng ăn</a></li>
+                    <li id="menu-item-27881"
+                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27881"><a
+                            href="https://nhaxinh.com/phong-ngu/">Phòng ngủ</a></li>
+                    <li id="menu-item-27883"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27883"><a
+                            href="https://nhaxinh.com/danh-muc/phong-lam-viec/">Phòng làm việc</a></li>
+                </ul>
+            </li>
+            <li id="menu-item-30269" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-30269"><a
+                    href="https://nhaxinh.com/he-thong-cua-hang/">TÌM CỬA HÀNG &gt;&gt;</a></li>
+            <li id="menu-item-24192" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24192"><a
+                    href="https://nhaxinh.com/thiet-ke-noi-that/">Thiết kế nội thất</a></li>
+            <li id="menu-item-24229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24229"><a
+                    href="https://nhaxinh.com/bo-suu-tap/">Bộ sưu tập</a></li>
+            <li id="menu-item-24191" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24191"><a
+                    href="https://nhaxinh.com/showroom-ao/">Showroom ảo</a></li>
+            <li id="menu-item-27841" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27841"><a
+                    href="https://nhaxinh.com/cam-hung-nha-xinh-y-tuong/">Góc cảm hứng</a></li>
+            <li class="header-divider"></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594"><a
+                    href="https://nhaxinh.com/gioi-thieu/">Giới thiệu</a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573"><a
+                    href="https://nhaxinh.com/khuyen-mai/">Khuyến mãi</a></li>
+            <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27798"><a
+                    href="https://nhaxinh.com/danh-muc/giam-gia-dac-biet/">Giảm giá đặc biệt</a></li>
+            <li class="account-item has-icon menu-item">
+                <a href="https://nhaxinh.com/tai-khoan/" class="nav-top-link nav-top-not-logged-in">
+    <span class="header-account-title">
+    Đăng nhập  </span>
+                </a>
+
+            </li>
+            <li class="html custom html_topbar_right"><a href="#"><i class="fa-solid fa-location-dot"></i></a></li>
+        </ul>
+    </div>
+</div>
+<th:block th:replace="/customerView/layout/chitiet_giohang/script::script"/>
+</body>
+</html>
