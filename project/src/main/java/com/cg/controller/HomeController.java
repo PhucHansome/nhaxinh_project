@@ -44,7 +44,6 @@ public class HomeController {
     @GetMapping("/search")
     public ModelAndView getSearch() { return new ModelAndView("/customerView/search/Search");}
 
-
     @GetMapping("/cart_details")
     public ModelAndView getCartDetails() { return new ModelAndView("/customerView/chitiet_giohang/chitiet_giohang");}
 
@@ -52,7 +51,6 @@ public class HomeController {
     public ModelAndView getCart() { return new ModelAndView("/customerView/giohang/cart");}
 
     //==dashBoard===//
-
 
     @GetMapping("/home-dashboard")
     public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
@@ -69,7 +67,6 @@ public class HomeController {
 
     @GetMapping("/detail-product-dashboard")
     public ModelAndView getDetailProductDashboard() {return new ModelAndView("/dashboard/productDashboard/detail-product");}
-
 
     @GetMapping("/login_admin")
     public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}

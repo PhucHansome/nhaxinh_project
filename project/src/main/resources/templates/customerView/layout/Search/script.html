@@ -1136,7 +1136,6 @@
     </div>
 
     <script>
-
         $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
@@ -1241,5 +1240,64 @@
             $(".chua_cart").html(str);
             handleCloseCart()
         })
+
+        function handleDownSelection() {
+            $(".btn-dropdown-search").on("click", function () {
+                $(".dropdown_1 ").removeClass("close").addClass("open");
+                $(".dropdown_2").html("")
+                let str = `
+                        <button style="text-transform: unset" class="btn-dropdown-search"> Theo mức độ phổ biến
+                              <i class="fa-solid fa-angle-up tha_selection" style="color:white"></i>
+                        </button>
+            `
+                $(".dropdown_2").html(str);
+                handleUpSelection()
+            })
+        }
+
+        function handleUpSelection() {
+            $(".btn-dropdown-search").on("click", function () {
+                $(".dropdown_1 ").removeClass("open").addClass("close");
+                $(".dropdown_2").html("")
+                let str = `
+                        <button style="text-transform: unset" class="btn-dropdown-search"> Theo mức độ phổ biến
+                             <i class="fa-solid fa-angle-down tha_selection"style="color:white"></i>
+                        </button>
+            `
+                $(".dropdown_2").html(str)
+                handleDownSelection();
+            })
+        }
+
+        function handleDownMaterial() {
+            $(".btn-dropdown-material").on("click", function () {
+                $(".dropdown_3 ").removeClass("close").addClass("open");
+                $(".dropdown_4").html("")
+                let str = `
+                        <button style="text-transform: unset" class="btn-dropdown-material"> Tất cả
+                              <i class="fa-solid fa-angle-up tha_selection" style="color:white"></i>
+                        </button>
+            `
+                $(".dropdown_4").html(str);
+                handleUpMaterial()
+            })
+        }
+
+        function handleUpMaterial() {
+            $(".btn-dropdown-material").on("click", function () {
+                $(".dropdown_3 ").removeClass("open").addClass("close");
+                $(".dropdown_4").html("")
+                let str = `
+                        <button style="text-transform: unset" class="btn-dropdown-material"> Tất cả
+                             <i class="fa-solid fa-angle-down tha_selection" style="color:white"></i>
+                        </button>
+            `
+                $(".dropdown_4").html(str)
+                handleDownMaterial();
+            })
+        }
+
+        handleDownMaterial()
+        handleDownSelection();
     </script>
 </th:block>
