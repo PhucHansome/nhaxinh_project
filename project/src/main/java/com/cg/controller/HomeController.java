@@ -24,6 +24,8 @@ public class HomeController {
         return username;
     }
 
+    //==CustomerView===//
+
     @GetMapping("/")
     public ModelAndView getHome() {
         return new ModelAndView("/customerView/homepage/homepage");
@@ -41,6 +43,14 @@ public class HomeController {
 
     @GetMapping("/search")
     public ModelAndView getSearch() { return new ModelAndView("/customerView/search/Search");}
+
+    @GetMapping("/cart_details")
+    public ModelAndView getCartDetails() { return new ModelAndView("/customerView/chitiet_giohang/chitiet_giohang");}
+
+    @GetMapping("/cart")
+    public ModelAndView getCart() { return new ModelAndView("/customerView/giohang/cart");}
+
+    //==dashBoard===//
 
     @GetMapping("/homedashboard")
     public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
