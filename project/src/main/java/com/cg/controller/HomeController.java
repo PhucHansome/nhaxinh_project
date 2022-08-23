@@ -110,6 +110,7 @@ public class HomeController {
         return  modelAndView;
     }
 
+
     //==dashBoard===//
 
     @GetMapping("/home-dashboard")
@@ -157,6 +158,20 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+
+
+    @GetMapping("/user-dashboard")
+    public ModelAndView getUserDashboard() {return new ModelAndView("/dashboard/userDashboard/user");}
+
+    @GetMapping("/create-user-dashboard")
+    public ModelAndView getCreateUserDashboard() {return new ModelAndView("/dashboard/userDashboard/create-user");}
+
+    @GetMapping("/edit-user-dashboard")
+    public ModelAndView getEditUserDashboard() {return new ModelAndView("/dashboard/userDashboard/edit-user");}
+
+    @GetMapping("/detail-user-dashboard")
+    public ModelAndView getDetailUserDashboard() {return new ModelAndView("/dashboard/userDashboard/detail-user");}
+
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {
