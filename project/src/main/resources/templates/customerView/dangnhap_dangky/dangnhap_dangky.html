@@ -182,7 +182,8 @@
                     <div class="flex-col hide-for-medium flex-right">
                         <ul class="nav top-bar-nav nav-right nav-small  nav-">
                             <li class="html custom html_topbar_right"><a
-                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i class="fa-solid fa-location-dot"></i></a>
+                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i
+                                    class="fa-solid fa-location-dot"></i></a>
                             </li>
                             <li class="header-wishlist-icon">
                                 <a href="https://nhaxinh.com/tai-khoan/edit-account/#"
@@ -319,7 +320,8 @@
                         <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
                             <li id="menu-item-287"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
-                                <a href="https://nhaxinh.com/cua-hang/" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
+                                <a href="https://nhaxinh.com/cua-hang/" class="nav-top-link sanpham_dropdown">Sản
+                                    phẩm</a>
                                 <div class="sub-menu nav-dropdown">
                                     <section class="section" id="section_818679108">
                                         <div class="bg section-bg fill bg-fill  bg-loaded">
@@ -1003,7 +1005,8 @@
                                 </ul>
                             </li>
                             <li class="html custom html_topbar_right"><a
-                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i class="fa-solid fa-location-dot"></i></a>
+                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i
+                                    class="fa-solid fa-location-dot"></i></a>
                             </li>
                             <li class="cart-item has-icon">
 
@@ -1092,99 +1095,40 @@
 
                                     <h3 class="uppercase">Đăng nhập</h3>
 
-                                    <form class="woocommerce-form woocommerce-form-login login" method="post">
 
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="username">Tên đăng nhập hoặc địa chỉ email&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="text"
+                                               class="woocommerce-Input woocommerce-Input--text input-text"
+                                               name="username" id="username" autocomplete="username" value=""></p>
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="passwordLo">Mật khẩu&nbsp;<span class="required">*</span></label>
+                                        <span class="password-input"><input
+                                                class="woocommerce-Input woocommerce-Input--text input-text"
+                                                type="password" name="passwordLo" id="passwordLo"
+                                                autocomplete="current-password"><span
+                                                class="show-password-input"></span></span>
+                                    </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="username">Tên đăng nhập hoặc địa chỉ email&nbsp;<span
-                                                    class="required">*</span></label>
-                                            <input type="text"
-                                                   class="woocommerce-Input woocommerce-Input--text input-text"
-                                                   name="username" id="username" autocomplete="username" value=""></p>
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="password">Mật khẩu&nbsp;<span class="required">*</span></label>
-                                            <span class="password-input"><input
-                                                    class="woocommerce-Input woocommerce-Input--text input-text"
-                                                    type="password" name="password" id="password"
-                                                    autocomplete="current-password"><span
-                                                    class="show-password-input"></span></span>
-                                        </p>
+                                    <p class="form-row">
+                                        <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+                                            <input class="woocommerce-form__input woocommerce-form__input-checkbox"
+                                                   name="rememberme" type="checkbox" id="rememberme"
+                                                   value="forever"> <span>Lưu thông tin đăng nhập</span>
+                                        </label>
+                                        <input type="hidden" id="woocommerce-login-nonce"
+                                               name="woocommerce-login-nonce" value="7ff9e4450f"><input
+                                            type="hidden" name="_wp_http_referer" value="/tai-khoan/edit-account/">
+                                        <button type="submit"
+                                                class="woocommerce-button button woocommerce-form-login__submit"
+                                                name="login" value="Đăng nhập" >Đăng nhập
+                                        </button>
+                                    </p>
+                                    <p class="woocommerce-LostPassword lost_password">
+                                        <a href="https://nhaxinh.com/tai-khoan/reset-password/">Quên mật khẩu?</a>
+                                    </p>
 
-                                        <script>
-                                            function submitEnable() {
-                                                var button = document.getElementById('wp-submit');
-                                                if (button === null) {
-                                                    button = document.getElementById('submit');
-                                                }
-                                                if (button !== null) {
-                                                    button.removeAttribute('disabled');
-                                                }
-                                                var woo_buttons = [".woocommerce-form-login button", ".woocommerce-form-register button", ".woocommerce-ResetPassword button"];
-                                                if (typeof jQuery != 'undefined') {
-                                                    jQuery.each(woo_buttons, function (i, btn) {
-                                                        jQuery(btn).removeAttr('disabled');
-                                                    });
-                                                }
-                                            }
-
-                                            function submitDisable() {
-                                                var button = document.getElementById('wp-submit');
-                                                if (button === null) {
-                                                    button = document.getElementById('submit');
-                                                }
-                                                if (button !== null) {
-                                                    button.setAttribute('disabled', 'disabled');
-                                                }
-                                                var woo_buttons = [".woocommerce-form-login button", ".woocommerce-form-register button", ".woocommerce-ResetPassword button"];
-                                                if (typeof jQuery != 'undefined') {
-                                                    jQuery.each(woo_buttons, function (i, btn) {
-                                                        jQuery(btn).attr('disabled', 'disabled');
-                                                    });
-                                                }
-                                            }
-                                        </script>
-                                        <noscript>
-                                            <div style="width: 100%; height: 473px;">
-                                                <div style="width: 100%; height: 422px; position: relative;">
-                                                    <div style="width: 302px; height: 422px; position: relative;">
-                                                        <iframe src="https://www.google.com/recaptcha/api/fallback?k=6LczGWscAAAAAMCKCCd_T-bWUZTOO5qALwgjPjuj"
-                                                                frameborder="0" title="captcha" scrolling="no"
-                                                                style="width: 302px; height:422px; border-style: none;">
-                                                        </iframe>
-                                                    </div>
-                                                    <div style="width: 100%; height: 60px; border-style: none;
-              bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
-              <textarea id="g-recaptcha-response" name="g-recaptcha-response"
-                        title="response" class="g-recaptcha-response"
-                        style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
-                  margin: 10px 25px; padding: 0px; resize: none;" value="">
-              </textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </noscript>
-
-                                        <p class="form-row">
-                                            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
-                                                <input class="woocommerce-form__input woocommerce-form__input-checkbox"
-                                                       name="rememberme" type="checkbox" id="rememberme"
-                                                       value="forever"> <span>Lưu thông tin đăng nhập</span>
-                                            </label>
-                                            <input type="hidden" id="woocommerce-login-nonce"
-                                                   name="woocommerce-login-nonce" value="7ff9e4450f"><input
-                                                type="hidden" name="_wp_http_referer" value="/tai-khoan/edit-account/">
-                                            <button type="submit"
-                                                    class="woocommerce-button button woocommerce-form-login__submit"
-                                                    name="login" value="Đăng nhập" disabled="disabled">Đăng nhập
-                                            </button>
-                                        </p>
-                                        <p class="woocommerce-LostPassword lost_password">
-                                            <a href="https://nhaxinh.com/tai-khoan/reset-password/">Quên mật khẩu?</a>
-                                        </p>
-
-
-                                    </form>
                                 </div>
 
 
@@ -1196,102 +1140,37 @@
 
                                     <h3 class="uppercase">Đăng ký</h3>
 
-                                    <form method="post" class="woocommerce-form woocommerce-form-register register">
 
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="reg_email">Địa chỉ email&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="email"
+                                               class="woocommerce-Input woocommerce-Input--text input-text"
+                                               name="email" id="reg_email" autocomplete="email" value=""></p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_email">Địa chỉ email&nbsp;<span
-                                                    class="required">*</span></label>
-                                            <input type="email"
-                                                   class="woocommerce-Input woocommerce-Input--text input-text"
-                                                   name="email" id="reg_email" autocomplete="email" value=""></p>
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="passwordReg">Mật khẩu<span
+                                                class="required">*</span></label>
+                                        <input type="password"
+                                               class="woocommerce-Input woocommerce-Input--text input-text"
+                                               name="passwordReg" id="passwordReg" autocomplete="email" value=""></p>
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="passwordCon">Nhập lại mật khẩu<span
+                                                class="required">*</span></label>
+                                        <input type="password"
+                                               class="woocommerce-Input woocommerce-Input--text input-text"
+                                               name="passwordCon" id="passwordCon" autocomplete="email" value=""></p>
+                                    <div class="woocommerce-privacy-policy-text"><p>Dữ liệu cá nhân của bạn sẽ được
+                                        sử dụng để hỗ trợ trải nghiệm của bạn trên toàn bộ trang web này, để quản lý
+                                        quyền truy cập vào tài khoản của bạn và cho các mục đích khác được mô tả
+                                        trong chính sách bảo mật của chúng tôi.</p>
+                                    </div>
+                                    <p>
+                                        <button class="btn-register"
+                                                name="register" value="Đăng ký">Đăng ký
+                                        </button>
+                                    </p>
 
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_email">Mật khẩu<span
-                                                    class="required">*</span></label>
-                                            <input type="password"
-                                                   class="woocommerce-Input woocommerce-Input--text input-text"
-                                                   name="passwordReal" id="passwordReal" autocomplete="email" value=""></p>
-                                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                            <label for="reg_email">Nhập lại mật khẩu<span
-                                                    class="required">*</span></label>
-                                            <input type="password"
-                                                   class="woocommerce-Input woocommerce-Input--text input-text"
-                                                   name="passwordCon" id="passwordCon" autocomplete="email" value=""></p>
-
-
-
-                                        <script>
-                                            function submitEnable() {
-                                                var button = document.getElementById('wp-submit');
-                                                if (button === null) {
-                                                    button = document.getElementById('submit');
-                                                }
-                                                if (button !== null) {
-                                                    button.removeAttribute('disabled');
-                                                }
-                                                var woo_buttons = [".woocommerce-form-login button", ".woocommerce-form-register button", ".woocommerce-ResetPassword button"];
-                                                if (typeof jQuery != 'undefined') {
-                                                    jQuery.each(woo_buttons, function (i, btn) {
-                                                        jQuery(btn).removeAttr('disabled');
-                                                    });
-                                                }
-                                            }
-
-                                            function submitDisable() {
-                                                var button = document.getElementById('wp-submit');
-                                                if (button === null) {
-                                                    button = document.getElementById('submit');
-                                                }
-                                                if (button !== null) {
-                                                    button.setAttribute('disabled', 'disabled');
-                                                }
-                                                var woo_buttons = [".woocommerce-form-login button", ".woocommerce-form-register button", ".woocommerce-ResetPassword button"];
-                                                if (typeof jQuery != 'undefined') {
-                                                    jQuery.each(woo_buttons, function (i, btn) {
-                                                        jQuery(btn).attr('disabled', 'disabled');
-                                                    });
-                                                }
-                                            }
-                                        </script>
-                                        <noscript>
-                                            <div style="width: 100%; height: 473px;">
-                                                <div style="width: 100%; height: 422px; position: relative;">
-                                                    <div style="width: 302px; height: 422px; position: relative;">
-                                                        <iframe src="https://www.google.com/recaptcha/api/fallback?k=6LczGWscAAAAAMCKCCd_T-bWUZTOO5qALwgjPjuj"
-                                                                frameborder="0" title="captcha" scrolling="no"
-                                                                style="width: 302px; height:422px; border-style: none;">
-                                                        </iframe>
-                                                    </div>
-                                                    <div style="width: 100%; height: 60px; border-style: none;
-              bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
-              <textarea id="g-recaptcha-response" name="g-recaptcha-response"
-                        title="response" class="g-recaptcha-response"
-                        style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
-                  margin: 10px 25px; padding: 0px; resize: none;" value="">
-              </textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </noscript>
-                                        <div class="woocommerce-privacy-policy-text"><p>Dữ liệu cá nhân của bạn sẽ được
-                                            sử dụng để hỗ trợ trải nghiệm của bạn trên toàn bộ trang web này, để quản lý
-                                            quyền truy cập vào tài khoản của bạn và cho các mục đích khác được mô tả
-                                            trong chính sách bảo mật của chúng tôi.</p>
-                                        </div>
-                                        <p class="woocommerce-form-row form-row">
-                                            <input type="hidden" id="woocommerce-register-nonce"
-                                                   name="woocommerce-register-nonce" value="991e44fda8"><input
-                                                type="hidden" name="_wp_http_referer" value="/tai-khoan/edit-account/">
-                                            <button type="submit"
-                                                    class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"
-                                                    name="register" value="Đăng ký" disabled="disabled">Đăng ký
-                                            </button>
-                                        </p>
-
-
-                                    </form>
 
                                 </div>
 
@@ -1805,6 +1684,106 @@
     </div>
 </div>
 <th:block th:replace="/customerView/layout/dangnhap_dangky/script::script"/>
+<script>
+    let page = {
+        url: {
+            CreateUser: App.BASE_URL_USER + "/register",
+            LoginUser: App.BASE_URL_USER + "/login"
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+    page.element.emailReg = $("#reg_email");
+    page.element.passwordReg = $("#passwordReg")
+    page.element.passwordCon = $("#passwordCon");
+    page.element.passwordLo = $("#passwordLo");
+    page.element.emailLo = $("#username");
 
+    page.element.buttonRegister = $(".btn-register");
+    page.element.buttonLogin = $(".woocommerce-form-login__submit")
+
+    let user = new User();
+    let role = new Role();
+
+
+    page.dialogs.commands.creatUser = () => {
+        page.element.buttonRegister.on("click", function () {
+            delete user.id;
+            user.username = page.element.emailReg.val();
+            user.password = page.element.passwordReg.val();
+            role.id = 2;
+            user.role = role;
+            $.ajax({
+                headers: {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                type: "POST",
+                url: page.url.CreateUser,
+                data: JSON.stringify(user)
+            }).then((data) => {
+                console.log(data);
+                page.element.emailLo.val(page.element.emailReg.val())
+                page.element.passwordLo.val(page.element.passwordReg.val())
+                App.IziToast.showSuccessAlert("Bạn đã tạo tài khoản thành công")
+            }).fail((jqXHR) => {
+                App.IziToast.showErrorAlert("Đăng nhập thất bại!")
+                setTimeout(function () {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            App.IziToast.showErrorAlert(item) ;
+                        })
+                    }
+                }, 500);
+
+            })
+        })
+    }
+
+    page.dialogs.commands.login = () => {
+        page.element.buttonLogin.on("click", function () {
+            user.username = page.element.emailLo.val();
+            user.password = page.element.passwordLo.val();
+            $.ajax({
+                headers: {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                type: "POST",
+                url: page.url.LoginUser,
+                data: JSON.stringify(user)
+            }).then((data) => {
+                App.IziToast.showSuccessAlert("Bạn đã đăng nhập thành công")
+                setTimeout(function () {
+                    window.location.href = "/";
+                }, 750);
+            }).fail((jqXHR) => {
+                App.IziToast.showErrorAlert("Đăng nhập thất bại!")
+                setTimeout(function () {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            App.IziToast.showErrorAlert(item) ;
+                        })
+                    }
+                }, 500);
+
+            })
+        })
+    }
+
+    $(function(){
+        page.dialogs.commands.creatUser();
+        page.dialogs.commands.login();
+    })
+</script>
 </body>
 </html>
