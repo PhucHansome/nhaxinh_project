@@ -31,11 +31,6 @@ public class LocationRegion extends BaseEntity {
     @Column(name = "district_name")
     private String districtName;
 
-    @Column(name = "ward_id")
-    private String wardId;
-
-    @Column(name = "ward_name")
-    private String wardName;
 
     private String address;
 
@@ -49,8 +44,6 @@ public class LocationRegion extends BaseEntity {
                 .setProvinceName(provinceName)
                 .setDistrictId(districtId)
                 .setDistrictName(districtName)
-                .setWardId(wardId)
-                .setWardName(wardName)
                 .setAddress(address);
     }
 

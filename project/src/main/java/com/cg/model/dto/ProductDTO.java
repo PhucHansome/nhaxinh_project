@@ -47,6 +47,8 @@ public class ProductDTO {
 
     private String fileProductId;
 
+    private List<MultipartFile> files;
+
     private MultipartFile file;
 
     private String fileType;

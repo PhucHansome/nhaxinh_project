@@ -1,6 +1,9 @@
 package com.cg.controller;
 
 
+import com.cg.model.dto.UserDTO;
+import com.cg.service.user.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -8,9 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("")
 public class HomeController {
+    @Autowired
+    private IUserService userService;
+
     private String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -24,50 +32,139 @@ public class HomeController {
         return username;
     }
 
+
     //==CustomerView===//
 
     @GetMapping("/")
     public ModelAndView getHome() {
-        return new ModelAndView("/customerView/homepage/homepage");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/homepage/homepage");
+        String email = getPrincipal();
+        if(email == "anonymousUser"){
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
     }
 
     @GetMapping("/detail")
     public ModelAndView getDetail() {
-        return new ModelAndView("/customerView/detail/detail");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/detail/detail");
+        String email = getPrincipal();
+        if(email == "anonymousUser"){
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
     }
 
     @GetMapping("/login")
-    public ModelAndView getLogin() {
-        return new ModelAndView("/customerView/dangnhap_dangky/dangnhap_dangky");
+    public String getLogin() {
+        String email = getPrincipal();
+        Optional<UserDTO> userDTOOptional = userService.findUserDTOByUsername(email);
+        if (userDTOOptional.isPresent()) {
+            return "redirect:/";
+        }
+        return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
     @GetMapping("/search")
-    public ModelAndView getSearch() { return new ModelAndView("/customerView/search/Search");}
+    public ModelAndView getSearch() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/search/Search");
+        String email = getPrincipal();
+        if(email == "anonymousUser"){
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return  modelAndView;
+    }
 
     @GetMapping("/cart_details")
-    public ModelAndView getCartDetails() { return new ModelAndView("/customerView/chitiet_giohang/chitiet_giohang");}
+    public ModelAndView getCartDetails() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/chitiet_giohang/chitiet_giohang");
+        String email = getPrincipal();
+        if(email == "anonymousUser"){
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return  modelAndView;
+    }
 
     @GetMapping("/cart")
-    public ModelAndView getCart() { return new ModelAndView("/customerView/giohang/cart");}
+    public ModelAndView getCart() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/giohang/cart");
+        String email = getPrincipal();
+        if(email == "anonymousUser"){
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return  modelAndView;
+    }
 
     //==dashBoard===//
 
     @GetMapping("/home-dashboard")
-    public ModelAndView getDashboard() {return new ModelAndView("/dashboard/home/home");}
+    public ModelAndView getDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/home/home");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
 
     @GetMapping("/product-dashboard")
-    public ModelAndView getProductDashboard() {return new ModelAndView("/dashboard/productDashboard/product");}
+    public ModelAndView getProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/productDashboard/product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/create-product-dashboard")
-    public ModelAndView getCreateProductDashboard() {return new ModelAndView("/dashboard/productDashboard/create-product");}
+    public ModelAndView getCreateProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/productDashboard/create-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/edit-product-dashboard")
-    public ModelAndView getEditProductDashboard() {return new ModelAndView("/dashboard/productDashboard/edit-product");}
+    public ModelAndView getEditProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/productDashboard/edit-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/detail-product-dashboard")
-    public ModelAndView getDetailProductDashboard() {return new ModelAndView("/dashboard/productDashboard/detail-product");}
+    public ModelAndView getDetailProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/productDashboard/detail-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/login_admin")
-    public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}
+    public String getLoginAdmin() {
+        String email = getPrincipal();
+        Optional<UserDTO> userDTOOptional = userService.findUserDTOByUsername(email);
+        if (userDTOOptional.isPresent()) {
+            return "redirect:/home-dashboard";
+        }
+        return "/dashboard/loginDashboard/login";
+    }
 }

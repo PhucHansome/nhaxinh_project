@@ -212,11 +212,15 @@
                             <li class="account-item has-icon
     ">
 
-                                <a href="http://localhost:8092/login"
-                                   class="nav-top-link nav-top-not-logged-in is-small" data-open="#login-form-popup">
-    <span>
-    Đăng nhập        <i style="font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>  </span>
+                                <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
+  is-small" title="Tài khoản của tôi">
 
+
+			<span th:text="${userDTO}" class="header-account-title">
+		</span>
+
+
+                                    <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
                                 </a>
 
 
@@ -1252,7 +1256,7 @@
                                 </div>
                                 <div class="wc-proceed-to-checkout">
 
-                                    <a href="http://localhost:8092      /cart_details"
+                                    <a href="http://localhost:8092/cart_details"
                                        class="checkout-button button alt wc-forward">
                                         Đặt hàng</a>
                                 </div>

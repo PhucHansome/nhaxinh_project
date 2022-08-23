@@ -22,8 +22,6 @@ public class LocationRegionDTO {
     private String provinceName;
     private String districtId;
     private String districtName;
-    private String wardId;
-    private String wardName;
 
     @NotBlank(message = "Address is not blank")
     private String address;
@@ -35,8 +33,6 @@ public class LocationRegionDTO {
                 .setProvinceName(provinceName)
                 .setDistrictId(districtId)
                 .setDistrictName(districtName)
-                .setWardId(wardId)
-                .setWardName(wardName)
                 .setAddress(address);
     }
 }

@@ -127,15 +127,16 @@
                             <li class="account-item has-icon
      has-dropdown">
 
-                                <a href="http://localhost:8092/login" class="account-link account-login
+                                <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
   is-small" title="Tài khoản của tôi">
 
-			<span class="header-account-title">
-		Tài khoản của tôi		</span>
+
+			<span th:text="${userDTO}" class="header-account-title">
+		</span>
+
 
                                     <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
                                 </a>
-
 
                                 <ul class="nav-dropdown  nav-dropdown-default">
 
