@@ -76,6 +76,13 @@ public class HomeController {
 
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {return new ModelAndView("/dashboard/userDashboard/create-user");}
+
+    @GetMapping("/edit-user-dashboard")
+    public ModelAndView getEditUserDashboard() {return new ModelAndView("/dashboard/userDashboard/edit-user");}
+
+    @GetMapping("/detail-user-dashboard")
+    public ModelAndView getDetailUserDashboard() {return new ModelAndView("/dashboard/userDashboard/detail-user");}
+
     @GetMapping("/login_admin")
     public ModelAndView getLoginAdmin() {return new ModelAndView("/dashboard/loginDashboard/login");}
 }
