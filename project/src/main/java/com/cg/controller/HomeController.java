@@ -22,16 +22,13 @@ public class HomeController {
     private String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else {
             username = principal.toString();
         }
-
         return username;
     }
-
 
     //==CustomerView===//
 
@@ -110,7 +107,6 @@ public class HomeController {
         return modelAndView;
     }
 
-
     //==dashBoard===//
 
     @GetMapping("/home-dashboard")
@@ -121,7 +117,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/product-dashboard")
     public ModelAndView getProductDashboard() {
@@ -195,7 +190,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {
