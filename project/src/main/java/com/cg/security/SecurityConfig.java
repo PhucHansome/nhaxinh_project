@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/detail","/login", "/search", "/login_admin","/api/auth/register","/api/auth/login","/cart","/cart_details").permitAll()
 
+
 //                .antMatchers("/order", "/user", "/product").hasAnyAuthority("ADMIN")
                 .antMatchers("/assets/**", "/assets_dashboard/**", "/META-INF").permitAll()
                 .antMatchers("https://nhaxinh.com/public/asset/**").permitAll()

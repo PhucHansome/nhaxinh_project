@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+  <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+  <!-- Topbar Start -->
+  <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+  <!-- end Topbar -->
+
+
+  <!-- ========== Left Sidebar Start ========== -->
+  <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+  <!-- Left Sidebar End -->
+
+  <!-- ============================================================== -->
+  <!-- Start Page Content here -->
+  <!-- ============================================================== -->
+
+  <div class="content-page">
+    <div class="content">
+      <div class="container-fluid">
+
+        <div class="row shadow-lg p-3 mb-5 bg-body rounded" style="margin-top: 10px">
+          <div class="col-md-5">
+            <h6><a href="product.html">Quay lại danh sách khách hàng</a></h6>
+          </div>
+          <div class="col-md-7">
+            <button type="button" style="margin-bottom: 10px"
+                    class="btn btn-outline-primary float-right ">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              Lưu
+            </button>
+            <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                    class="btn btn-outline-primary float-right ">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              Huỷ
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="top: -25px; position: relative;">
+          <div class="col-md-7">
+            <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+              <div class="col-md-12">
+                <h6>Thông tin chung</h6>
+              </div>
+              <div class="col-md-12">
+                <label >Tên khách hàng</label>
+                <input type="text" placeholder="Nhập tên khách hàng" class="form-control" >
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px" >Mã khách hàng</label>
+                <input type="text"  class="form-control" placeholder="Nhập mã khách hàng" >
+              </div>
+              <div class="col-md-6">
+                <label>Nhóm khách hàng</label>
+                <select class="form-control">
+                  <option>Chọn nhóm khách hàng </option>
+                  <option>Vip </option>
+                  <option>Bán buôn </option>
+                  <option>Bán lẻ </option>
+                </select>
+
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px" >Số điện thoại</label>
+                <input type="text"  class="form-control" placeholder="Nhập số điện thoại" >
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Email</label>
+                <input type="text"  class="form-control" placeholder="Nhập địa chỉ email" >
+
+
+              </div>
+
+            </div>
+
+
+            <div class="row shadow-lg p-3 mb-5 bg-body rounded" style=" position: relative; top: -25px;" >
+              <div class="col-md-12">
+                <h6>Thông tin bổ sung</h6>
+              </div>
+
+              <div class="col-md-6">
+                <label style="margin-top: 5px" >Ngày sinh</label>
+                <input type="date"  class="form-control" value="0" style="text-align: right">
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Giới tính</label>
+                <select class="form-control">
+                  <option>Nam</option>
+                  <option>Nữ</option>
+                  <option>Khác</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Số Fax</label>
+                <input type="text"  class="form-control"   placeholder="Nhập số fax">
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Mã số thuế</label>
+                <input type="text"  class="form-control"   placeholder="Nhập mã số thuế">
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Công nợ</label>
+                <input type="text"  class="form-control"   placeholder="Nhập công nợ khách hàng">
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Tổng chi tiêu</label>
+                <input type="text"  class="form-control"   placeholder="Nhập tổng chi tiêu khách hàng">
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-5" style="  padding-left: 35px;">
+            <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+              <div class="col-md-12">
+                <h6>Thông tin khác</h6>
+              </div>
+              <div class="col-md-12">
+                <label>Nhân viên phụ trách</label>
+                <select class="form-control">
+                  <option> </option>
+                </select>
+
+              </div>
+              <div class="col-md-12">
+                <label>Mô tả</label>
+              </div>
+              <div class="col-md-12">
+                <textarea type= class="form-control" style=" width: 100%;height: 70px" placeholder="Nhập mô tả"></textarea>
+              </div>
+              <div class="col-md-12">
+                <label>Tags</label>
+              </div>
+              <div class="col-md-12">
+
+                            <textarea type= class="form-control" style=" width: 100%;height: 70px">
+
+                            </textarea>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Start Content-->
+
+    </div> <!-- end content -->
+
+
+
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
+
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- End Page content -->
+  <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
+</body>
+</html>
