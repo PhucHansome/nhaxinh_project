@@ -32,6 +32,7 @@ public class CustomerInfo extends BaseEntity{
 
     private BigDecimal debt;
 
+
     @OneToOne
     @JoinColumn(name = "location_region_id", nullable = false)
     private LocationRegion locationRegion;
@@ -43,6 +44,7 @@ public class CustomerInfo extends BaseEntity{
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegionDTO())
                 .setDebt(debt)
+
                 ;
     }
 

@@ -63,7 +63,7 @@
 
                     <div class="col-md-3">
                         <button type="button" style="margin-bottom: 10px;border-radius: 8px"
-                                class="btn btn-danger float-right ">
+                                class="btn btn-danger float-right btn-go-add-customer">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             Thêm khách hàng
                         </button>
@@ -106,11 +106,10 @@
                     </div>
                     <div class="row" style=" margin-top: 15px;">
                         <div class="col-lg-12">
-                            <table id="tableListProducts" class="table table-hover">
+                            <table id="tableListCustomerInfo" class="table table-hover">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th class="align-middle text-center"></th>
-                                    <th class="align-middle text-center">#</th>
                                     <th class="align-middle text-center">Tên khách hàng</th>
                                     <th class="align-middle text-center">Số điện thoại</th>
                                     <th class="align-middle text-center">Ngày khởi tạo</th>
@@ -155,6 +154,67 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:include="/dashboard/userDashboard/frm_list_user::frm_list_user"/>
 
+<script>
+
+    let page = {
+        url: {
+            CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getCustomerInfo: App.BASE_URL_CUSTOMERINFO
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    page.element.frmListCustomer = $("#tableListCustomerInfo tbody");
+    page.element.tempUser = $("#tempUser");
+    page.element.btnGoCreateCustomer = $(".btn-go-add-customer");
+
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+    let user = new User();
+
+    let tempCustomerInfo = jQuery.validator.format($.trim(page.element.tempUser.val().toString()));
+    page.commands.addRow = () => {
+        page.element.frmListCustomer.prepend($(tempCustomerInfo(customerInfo.id,customerInfo.userName,customerInfo.phone,customerInfo.createAt)));
+    }
+
+    page.dialogs.commands.getAllCustomerInfo = () => {
+        $.ajax({
+            "method" : "GET",
+            "url": page.url.getCustomerInfo
+        }).done((data) =>{
+            $.each(data, (i,item) =>{
+                console.log(item)
+                customerInfo = item;
+                console.log(item)
+                page.commands.addRow();
+                console.log(data)
+            })
+        }).fail((e) =>{
+            console.log(e);
+        })
+    }
+
+    page.dialogs.commands.goCreateCustomer = () => {
+        page.element.btnGoCreateCustomer.on("click", function (){
+            window.location.href = "/create-user-dashboard";
+        })
+    }
+    $(function (){
+        page.dialogs.commands.goCreateCustomer();
+        page.dialogs.commands.getAllCustomerInfo();
+    })
+</script>
 </body>
 </html>

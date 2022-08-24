@@ -3,6 +3,7 @@ class App {
     static DOMAIN = location.origin;
 
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
+    static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
@@ -67,8 +68,29 @@ class User {
         this.password = password;
         this.role = role;
     }
+
 }
 
+class LocationRegion {
+    constructor(id, provinceId, provinceName, districtId, districtName, address) {
+        this.id = id;
+        this.provinceId = provinceId;
+        this.provinceName = provinceName;
+        this.districtId = districtId;
+        this.districtName = districtName;
+        this.address = address;
+    }
+}
+class CustomerInfo {
+    constructor(id,userName,phone,debt,locationRegion,createAt) {
+        this.id = id;
+        this.userName = userName;
+        this.phone = phone;
+        this.debt =debt;
+        this.locationRegion = locationRegion;
+        this.createAt = createAt;
+    }
+}
 class Category{
     constructor(id , name) {
         this.id = id;
