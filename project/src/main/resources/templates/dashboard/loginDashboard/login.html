@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" id="body">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/assets/js_css/css/login.css">
+    <link rel="stylesheet" href="/assets/js_css/css/iziToast.css">
+    <link rel="stylesheet" href="/assets/js_css/font-awesome/v4.7.0/css/all.min.css">
+
+</head>
+
+<body >
+
+<div class="container">
+    <div class="backbox">
+        <div class="loginMsg">
+            <div class="textcontent">
+                <p class="title">Don't have an account?</p>
+                <p>Sign up to save all your graph.</p>
+                <button id="switch1">Sign Up</button>
+            </div>
+        </div>
+        <div class="signupMsg visibility">
+            <div class="textcontent">
+                <p class="title">Have an account?</p>
+                <p>Log in to see all your collection.</p>
+                <button id="switch2">LOG IN</button>
+            </div>
+        </div>
+    </div>
+    <!-- backbox -->
+
+    <div class="frontbox">
+        <div class="login">
+            <h2>LOG IN</h2>
+            <div class="inputbox">
+                <input type="email" id="usernameLo" name="usernameLo" placeholder="  EMAIL">
+                <input type="password" id="passwordLo" name="passwordLo" placeholder="  PASSWORD">
+            </div>
+            <p>FORGET PASSWORD?</p>
+            <button id="btn_sign_in">LOG IN</button>
+        </div>
+
+        <div class="signup hide">
+            <h2>SIGN UP</h2>
+            <div class="inputbox">
+                <input type="email" id="usernameReg" name="usernameReg" placeholder="EMAIL">
+                <input type="password" id="passwordReg" name="passwordReg" placeholder="PASSWORD">
+                <input type="password" id="passwordReg1" name="passwordReg1" placeholder="CONFIRM PASSWORD">
+            </div>
+            <button id="btn_sign_up">SIGN UP</button>
+        </div>
+
+    </div>
+    <!-- frontbox -->
+</div>
+</body>
+
+
+<script src="/assets/js_css/js/app.js"></script>
+<script src="/assets/js_css/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js_css/js/iziToast.min.js"></script>
+<!--<script src="/assets/js_css/js/jquery.validate-1.19.3.min.js"></script>-->
+<script src="/assets/js_css/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js_css/js/jquery-ui.min.js"></script>
+<script src="/assets/js_css/js/sweetalert2.min.js"></script>
+
+<script>
+
+    var $loginMsg = $('.loginMsg'),
+        $login = $('.login'),
+        $signupMsg = $('.signupMsg'),
+        $signup = $('.signup'),
+        $frontbox = $('.frontbox');
+
+    $('#switch1').on('click', function () {
+        $loginMsg.toggleClass("visibility");
+        $frontbox.addClass("moving");
+        $signupMsg.toggleClass("visibility");
+
+        $signup.toggleClass('hide');
+        $login.toggleClass('hide');
+    })
+
+    $('#switch2').on('click', function () {
+        $loginMsg.toggleClass("visibility");
+        $frontbox.removeClass("moving");
+        $signupMsg.toggleClass("visibility");
+
+        $signup.toggleClass('hide');
+        $login.toggleClass('hide');
+    })
+
+    setTimeout(function () {
+        $('#switch1')
+    }, 3000)
+
+    setTimeout(function () {
+        $('#switch2')
+    }, 3000)
+
+
+    let btn_sign_in = $('#btn_sign_in');
+    let btn_sign_up = $('#btn_sign_up');
+
+
+    btn_sign_up.on("click", () => {
+        let username = $('#usernameReg').val();
+        let password = $('#passwordReg').val();
+        let passwordConfirm = $("#passwordReg1").val();
+
+        if (password !== passwordConfirm){
+            App.IziToast.showErrorAlert("password nhập vào không khớp!!");
+            return
+        }
+
+        let user = {
+            username: username,
+            password: password,
+            role: {
+                id: 1
+            },
+        }
+
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: "http://localhost:8092/api/auth/register",
+            data: JSON.stringify(user)
+        }).done((data) => {
+
+            App.IziToast.showSuccessAlert("Đăng ký thành công!!");
+            setTimeout(function () {
+                $loginMsg.toggleClass("visibility");
+                $frontbox.removeClass("moving");
+                $signupMsg.toggleClass("visibility");
+
+                $signup.toggleClass('hide');
+                $login.toggleClass('hide');
+                $('#usernameLo').val($('#usernameReg').val())
+                $('#passwordLo').val($('#passwordReg').val())
+            }, 1000);
+
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+           if (jqXHR.responseJSON) {
+                $.each(jqXHR.responseJSON, (key, item) => {
+                    App.IziToast.showErrorAlert(item) ;
+                })
+
+            }
+        })
+    })
+
+    btn_sign_in.on("click", () => {
+        let username = $('#usernameLo').val();
+        let password = $('#passwordLo').val();
+
+        let user = {
+            username: username,
+            password: password
+        }
+
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: "http://localhost:8092/api/auth/login",
+            data: JSON.stringify(user)
+        }).done((data) => {
+            App.IziToast.showSuccessAlert("Đăng nhập thành công!!");
+            App.catchIdLogin(data.id);
+            setTimeout(function () {
+                window.location.href = "/home-dashboard";
+            }, 750);
+        }).fail((jqXHR) => {
+            App.IziToast.showErrorAlert("Đăng nhập thất bại!")
+            setTimeout(function () {
+                if (jqXHR.responseJSON) {
+                    $.each(jqXHR.responseJSON, (key, item) => {
+                        App.IziToast.showErrorAlert(item) ;
+                    })
+                }
+            }, 500);
+
+        })
+    })
+</script>
+
+
+</html>

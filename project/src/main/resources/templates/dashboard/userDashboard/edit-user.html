@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+  <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+  <!-- Topbar Start -->
+  <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+  <!-- end Topbar -->
+
+
+  <!-- ========== Left Sidebar Start ========== -->
+  <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+  <!-- Left Sidebar End -->
+
+  <!-- ============================================================== -->
+  <!-- Start Page Content here -->
+  <!-- ============================================================== -->
+
+  <div class="content-page">
+    <div class="content">
+      <div class="container-fluid">
+
+        <div class="row shadow-lg p-3 mb-5 bg-body rounded" style="margin-top: 10px">
+          <div class="col-md-5">
+            <h6><a href="/user-dashboard">Quay lại danh sách khách hàng</a></h6>
+          </div>
+          <div class="col-md-7">
+            <button type="button" style="margin-bottom: 10px"
+                    class="btn btn-success float-right ">
+              <i class="fas fa-save" style="margin-right: 5px;"></i>Lưu
+            </button>
+            <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                    class="btn btn-danger float-right ">
+              <i class="fas fa-window-close" style="margin-right: 5px;"></i>Huỷ
+            </button>
+          </div>
+        </div>
+
+        <div class="row" style="top: -25px; position: relative;">
+          <div class="col-md-12">
+            <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+              <div class="col-md-12">
+                <h6 style="text-align: center">Thông tin chung</h6>
+              </div>
+              <div class="col-md-12">
+                <label >Tên khách hàng <span style="color: red">*</span></label>
+                <input type="text" placeholder="Nhập tên khách hàng" class="form-control" >
+              </div>
+
+              <div class="col-md-6">
+                <label style="margin-top: 5px" >Số điện thoại</label>
+                <input type="text"  class="form-control" placeholder="Nhập số điện thoại" >
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Email</label>
+                <input type="text"  class="form-control" placeholder="Nhập địa chỉ email" >
+
+
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px" >Khu vực </label>
+                <select class="form-control"> Chọn tỉnh/thành phố
+                  <option></option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label style="margin-top: 5px">Quận huyện</label>
+                <select class="form-control"> Chọn quận/huyện
+                  <option></option>
+                </select>
+
+              </div>
+              <div class="col-md-12">
+                <label>Địa chỉ cụ thể</label>
+                <textarea class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end content -->
+  <!-- Footer Start -->
+  <th:block th:replace="/dashboard/layout/footer::footer"/>
+  <!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
+</body>
+</html>
