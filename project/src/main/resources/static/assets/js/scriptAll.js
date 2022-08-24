@@ -3,7 +3,7 @@ class App {
     static DOMAIN = location.origin;
 
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
-
+    static BASE_URL_PRODUCT = this.DOMAIN + "/api/products"
 
     static SweetAlert = class {
         static showSuccessAlert(t) {
@@ -63,6 +63,38 @@ class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+}
+
+class Category{
+    constructor(id , name) {
+        this.id = id;
+        this.name = name ;
+    }
+
+}
+
+class ProductColor {
+    constructor(id, color) {
+        this.id = id;
+        this.color = color;
+    }
+}
+
+class Product{
+    constructor(id, title, price, quantity, status, description, slug, size, material, image, category, productColor) {
+    this.id = id;
+    this.title = title;
+    this.price = price;
+    this.quantity = quantity;
+    this.status = status;
+    this.description = description;
+    this.slug = slug;
+    this.size = size;
+    this.material = material;
+    this.image = image;
+    this.category = category;
+    this.productColor = productColor;
     }
 }
 
