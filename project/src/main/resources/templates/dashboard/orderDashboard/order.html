@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row  row-cols-4 shadow-lg p-3 mb-5 bg-body rounded" style="margin-top: 10px">
+                            <div class="col">
+                                <li class="d-none d-sm-block">
+                                    <form class="app-search">
+                                        <div class="app-search-box">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search...">
+                                                <div class="input-group-append">
+                                                    <button class="btn" type="submit" style="color: #0a0a0a;
+                                                        position: relative;
+                                                        right: 40px;
+                                                        background: white;
+                                                        border-bottom: 1px solid #a5a9ab7d;
+                                                        border-right: 1px solid white;
+                                                        border-left: 1px solid white;
+                                                        border-top: 1px solid #a5a9ab7d;">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+
+                            </div>
+
+                            <div class="col">
+                                <select class="form-control" >
+                                <option>Chọn sản phẩm... </option>
+                            </select>
+                            </div>
+
+                            <div class="col">
+                                <select class="form-control" >
+                                    <option>Chọn trạng thái... </option>
+                                </select>
+                            </div>
+                            <div class="col" >
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col">
+                                <button type="button" style="margin-bottom: 10px"
+                                        class="btn btn-success float-right "  >
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Export  </button>
+                            </div>
+
+                        </div>
+
+                        <div class="row row-cols-4 shadow-lg p-3 mb-5 bg-body rounded">
+                            <div class="col-lg-12">
+                                <table id="tableListProducts" class="table table-hover">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th class="align-middle text-center">Order</th>
+                                        <th class="align-middle text-center">Title</th>
+                                        <th class="align-middle text-center">Product</th>
+                                        <th class="align-middle text-center">Customer</th>
+                                        <th class="align-middle text-center">Last activity</th>
+                                        <th class="align-middle text-center">Status</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="align-middle text-center">#0078</td>
+                                        <td class="align-middle text-center">Phòng khách</td>
+                                        <td class="align-middle text-center">Ghế sofa</td>
+                                        <td class="align-middle text-center">Vinh123</td>
+                                        <td class="align-middle text-center">12 minutes</td>
+                                        <td class="align-middle text-center">New</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Start Content-->
+
+        </div> <!-- end content -->
+
+
+
+        <!-- Footer Start -->
+        <th:block th:replace="/dashboard/layout/footer::footer"/>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
+</body>
+</html>

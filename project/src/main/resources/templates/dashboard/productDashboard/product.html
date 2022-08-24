@@ -44,41 +44,29 @@
                 </div>
 
 
-                <div class="row">
+                <div class="row" style="margin-bottom: 5px; margin-top: -16px;">
                     <div class="col-md-9" >
-                        <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-outline-primary float-left ">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Combo
-                        </button>
-                        <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-outline-primary float-left ">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Sản phẩm quy đổi
-                        </button>
 
                         <button type="button" style="margin-bottom: 10px; margin-left: 5px;" id="modalAddProduct"
-                                class="btn btn-outline-primary float-left  modalAddProduct">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                class="btn btn-success float-left  modalAddProduct">
+                            <i class="fas fa-file-upload"></i>
                             Xuất file
                         </button>
                         <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-outline-primary float-left ">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                class="btn btn-primary float-left ">
+                            <i class="fas fa-file-download"></i>
                             Nhập file
                         </button>
                         <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-outline-primary float-left ">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                class="btn btn-warning float-left ">
+                            <i class="fas fa-tag"></i>
                             Loại sản phẩm
                         </button>
-
                     </div>
-
 
                         <div class="col-md-3">
                             <button type="button" style="margin-bottom: 10px"
-                                    class="btn btn-outline-primary float-right btn-go-add-product " >
+                                    class="btn btn-danger float-right btn-go-add-product " >
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Thêm sản phẩm
                             </button>
@@ -91,7 +79,7 @@
                          <h5 class="page-title">Tất cả sản phẩm</h5>
                      </div>
                  </div>
-                 <div class="row">
+                 <div class="row" style=" margin-bottom: 10px">
                      <div class="col-md-3">
                          <li class="d-none d-sm-block">
                              <form class="app-search">
@@ -114,33 +102,6 @@
                                  </div>
                              </form>
                          </li>
-                     </div>
-                         <div class="col-md-9">
-                             <button type="button" style="margin-bottom: 10px;margin-left: 5px;"
-                                     class="btn btn-outline-primary float-right ">
-                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                 Loại sản phẩm
-                             </button>
-                             <button type="button" style="margin-bottom: 10px;margin-left: 5px;"
-                                     class="btn btn-outline-primary float-right ">
-                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                 Ngày tạo
-                             </button>
-                             <button type="button" style="margin-bottom: 10px;margin-left: 5px;"
-                                     class="btn btn-outline-primary float-right ">
-                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                 Nhãn hiệu
-                             </button>
-                             <button type="button" style="margin-bottom: 10px;margin-left: 5px;"
-                                     class="btn btn-outline-primary float-right ">
-                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                 Bộ lọc khác
-                             </button>
-                             <button type="button" style="margin-bottom: 10px;margin-left: 5px;"
-                                     class="btn btn-outline-primary float-right ">
-                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                Lưu bộ lọc
-                             </button>
                      </div>
                  </div>
                  <div class="row">
@@ -196,6 +157,7 @@
         url: {
             CreateProduct: App.BASE_URL_PRODUCT,
             GetProduct: App.BASE_URL_PRODUCT
+
         },
         element: {},
         loadData: {},

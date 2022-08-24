@@ -173,6 +173,7 @@ public class HomeController {
         return modelAndView;
     }
 
+
     @GetMapping("/edit-user-dashboard")
     public ModelAndView getEditUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
@@ -190,6 +191,16 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+
+    @GetMapping("/order-dashboard")
+    public ModelAndView getOrderDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/orderDashboard/order");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {
