@@ -49,6 +49,10 @@ public class Product extends  BaseEntity{
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "tag_id")
+    private Tag tag;
+
     @OneToOne
     @JoinColumn(name = "productColor_id")
     private ProductColor productColor;
@@ -81,6 +85,7 @@ public class Product extends  BaseEntity{
                 .setSize(size)
                 .setMaterial(material)
                 .setImage(image)
+                .setTag(tag.toTagDTO())
                 ;
     }
 }

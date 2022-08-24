@@ -78,7 +78,7 @@
 
                         <div class="col-md-3">
                             <button type="button" style="margin-bottom: 10px"
-                                    class="btn btn-outline-primary float-right " >
+                                    class="btn btn-outline-primary float-right btn-go-add-product " >
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Thêm sản phẩm
                             </button>
@@ -159,17 +159,6 @@
                              </tr>
                              </thead>
                              <tbody>
-                             <tr>
-                                 <td class="align-middle text-center"></td>
-                                 <td class="align-middle text-center">Đây là ảnh</td>
-                                 <td class="align-middle text-center">tên Sản phẩm</td>
-                                 <td class="align-middle text-center">Category (loại)</td>
-                                 <td class="align-middle text-center">Nhãn hiệu</td>
-                                 <td class="align-middle text-center">Giá tiền</td>
-                                 <td class="align-middle text-center">Trạng thái</td>
-                                 <td class="align-middle text-center">Ngày tạo</td>
-                             </tr>
-
                              </tbody>
                          </table>
                      </div>
@@ -200,10 +189,13 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:include="/dashboard/productDashboard/frm_list_product::frm_list_product"/>
+
 <script>
     let page = {
         url: {
-
+            CreateProduct: App.BASE_URL_PRODUCT,
+            GetProduct: App.BASE_URL_PRODUCT
         },
         element: {},
         loadData: {},
@@ -217,6 +209,57 @@
             inputError: {}
         }
     }
+    page.element.frmListProduct = $("#tableListProducts tbody");
+    page.element.tempProduct = $("#tempProduct");
+    page.element.btnGoCreateProduct = $(".btn-go-add-product")
+
+    let product = new Product();
+    let category = new Category();
+    let productColor=  new ProductColor();
+    let tag = new Tag();
+
+    let tempProduct = jQuery.validator.format($.trim(page.element.tempProduct.val().toString()));
+
+    page.commands.addRow = () => {
+        page.element.frmListProduct.prepend($(tempProduct(product.id,product.fileUrl,product.title,product.category,product.tag,product.price,product.status,product.createdAt)));
+    }
+
+    page.dialogs.commands.getProductById = (id) => {
+        $.ajax({
+            "method" : "GET",
+            "url" : page.url.GetProduct + "/" + id
+        }).done((data)=>{
+            console.log(data);
+            let product = data;
+        })
+    }
+
+    page.dialogs.commands.getAllProduct = () => {
+        $.ajax({
+            "method" : "GET",
+            "url" : page.url.GetProduct
+        }).done((data) => {
+            $.each(data, (i, item) => {
+                console.log(item)
+                product = item;
+                page.commands.addRow();
+            });
+        }).fail((e) =>{
+            console.log(e);
+        })
+
+    }
+
+    page.dialogs.commands.goCreateProduct = () => {
+        page.element.btnGoCreateProduct.on("click", function (){
+            window.location.href = "/create-product-dashboard";
+        })
+    }
+
+    $(function (){
+        page.dialogs.commands.getAllProduct();
+        page.dialogs.commands.goCreateProduct();
+    })
 </script>
 </body>
 </html>

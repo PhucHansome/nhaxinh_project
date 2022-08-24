@@ -37,6 +37,12 @@ public class ProductDTO {
 
     private String image;
 
+    private CategoryDTO category;
+
+    private ProductColorDTO productColor;
+
+    private TagDTO tag;
+
     private String fileName;
     
     private String fileFolder;
@@ -52,7 +58,9 @@ public class ProductDTO {
     private MultipartFile file;
 
     private String fileType;
-    
+
+
+
     public Product toProduct(){
         return new Product()
                 .setId(id)
@@ -65,6 +73,9 @@ public class ProductDTO {
                 .setMaterial(material)
                 .setSlug(slug)
                 .setImage(image)
+                .setProductColor(productColor.toProductColor())
+                .setCategory(category.toCategory())
+                .setTag(tag.toTag())
                 ;
     }
 

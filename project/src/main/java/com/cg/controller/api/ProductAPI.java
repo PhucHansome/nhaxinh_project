@@ -41,6 +41,17 @@ public class ProductAPI {
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findProductById(@PathVariable String id){
+        IProductDTO productDTOOptional = productService.findIProductDTOById(id);
+        if (productDTOOptional == null) {
+            throw new DataInputException("Product is not found");
+        }
+
+        return new ResponseEntity<>(productDTOOptional, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> create(ProductDTO productDTO, BindingResult bindingResult) {
 

@@ -3,7 +3,10 @@ class App {
     static DOMAIN = location.origin;
 
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
-    static BASE_URL_PRODUCT = this.DOMAIN + "/api/products"
+    static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
+    static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
+    static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
+    static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
 
     static SweetAlert = class {
         static showSuccessAlert(t) {
@@ -81,8 +84,17 @@ class ProductColor {
     }
 }
 
+class Tag {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+
+    }
+
+}
+
 class Product{
-    constructor(id, title, price, quantity, status, description, slug, size, material, image, category, productColor) {
+    constructor(id ,title ,price ,quantity ,status ,description ,slug ,size ,material ,image ,category ,productColor ,tag ,createdAt ,fileId ,fileName ,fileFolder ,fileType ,fileUrl) {
     this.id = id;
     this.title = title;
     this.price = price;
@@ -95,6 +107,13 @@ class Product{
     this.image = image;
     this.category = category;
     this.productColor = productColor;
+    this.tag = tag;
+    this.createdAt = createdAt;
+    this.fileId = fileId;
+    this.fileName = fileName;
+    this.fileFolder = fileFolder;
+    this.fileType = fileType;
+    this.fileUrl = fileUrl;
     }
 }
 

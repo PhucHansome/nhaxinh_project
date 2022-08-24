@@ -67,27 +67,27 @@ class User {
     }
 }
 
-class Category{
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-    }
-}
+// class Category{
+//     constructor(id, name) {
+//         this.id = id;
+//         this.name = name;
+//     }
+// }
 
-class Product{
-    constructor(id, productCode, productName, category, quantityProduct, productDescription, priceProduct, image, createdAt,updatedAt){
-        this.id = id;
-        this.productCode = productCode;
-        this.productName = productName;
-        this.category = category;
-        this.quantityProduct = quantityProduct;
-        this.productDescription = productDescription;
-        this.priceProduct = priceProduct;
-        this.image = image;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-}
+// class Product{
+//     constructor(id, productCode, productName, category, quantityProduct, productDescription, priceProduct, image, createdAt,updatedAt){
+//         this.id = id;
+//         this.productCode = productCode;
+//         this.productName = productName;
+//         this.category = category;
+//         this.quantityProduct = quantityProduct;
+//         this.productDescription = productDescription;
+//         this.priceProduct = priceProduct;
+//         this.image = image;
+//         this.createdAt = createdAt;
+//         this.updatedAt = updatedAt;
+//     }
+// }
 
 class CustomerInfo{
     constructor(id ,fullName ,phone ,birthDate ,address) {
