@@ -22,7 +22,6 @@ public class HomeController {
     private String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else {
@@ -31,7 +30,6 @@ public class HomeController {
         return username;
     }
 
-
     //==CustomerView===//
 
     @GetMapping("/")
@@ -39,7 +37,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/homepage/homepage");
         String email = getPrincipal();
-        if(email == "anonymousUser"){
+        if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
@@ -52,7 +50,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/detail/detail");
         String email = getPrincipal();
-        if(email == "anonymousUser"){
+        if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
@@ -75,12 +73,12 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
-        if(email == "anonymousUser"){
+        if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
-        return  modelAndView;
+        return modelAndView;
     }
 
     @GetMapping("/cart_details")
@@ -88,12 +86,12 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/chitiet_giohang/chitiet_giohang");
         String email = getPrincipal();
-        if(email == "anonymousUser"){
+        if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
-        return  modelAndView;
+        return modelAndView;
     }
 
     @GetMapping("/cart")
@@ -101,14 +99,13 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/giohang/cart");
         String email = getPrincipal();
-        if(email == "anonymousUser"){
+        if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
-        return  modelAndView;
+        return modelAndView;
     }
-
 
     //==dashBoard===//
 
@@ -120,7 +117,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/product-dashboard")
     public ModelAndView getProductDashboard() {
@@ -176,15 +172,16 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+
+
     @GetMapping("/edit-user-dashboard")
     public ModelAndView getEditUserDashboard() {
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("/dashboard/userDashboard/edit-user");
-            String email = getPrincipal();
-            modelAndView.addObject("userDTO", email);
-            return modelAndView;
-        }
-
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/userDashboard/edit-user");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/detail-user-dashboard")
     public ModelAndView getDetailUserDashboard() {
@@ -193,7 +190,7 @@ public class HomeController {
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         return modelAndView;
-        }
+    }
 
     @GetMapping("/order-dashboard")
     public ModelAndView getOrderDashboard() {
@@ -203,7 +200,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
 
     @GetMapping("/login_admin")
