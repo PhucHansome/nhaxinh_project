@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -58,20 +60,29 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(ProductDTO productDTO) {
-        String fileType = productDTO.getFile().getContentType();
-        assert fileType != null;
-        fileType = fileType.substring(0, 5);
+        List<MultipartFile> fileList = productDTO.getFiles();
 
-        productDTO.setFileType(fileType);
         Product product = productRepository.save(productDTO.toProduct());
 
-        ProductMedia productMedia = productMediaRepository.save(productDTO.toProductmedia());
+        for (MultipartFile file : fileList) {
+            String fileType = file.getContentType();
 
-        if(fileType.equals(FileType.IMAGE.getValue())){
-            uploadAndSaveProductImage(productDTO, product, productMedia);
-        }
-        if (fileType.equals(FileType.VIDEO.getValue())) {
-            uploadAndSaveProductVideo(productDTO, product, productMedia);
+            assert fileType != null;
+
+            fileType = fileType.substring(0, 5);
+
+            productDTO.setFileType(fileType);
+            productDTO.setFile(file);
+
+            ProductMedia productMedia = productMediaRepository.save(productDTO.toProductmedia());
+
+            if (fileType.equals(FileType.IMAGE.getValue())) {
+                uploadAndSaveProductImage(productDTO, product, productMedia);
+            }
+
+            if (fileType.equals(FileType.VIDEO.getValue())) {
+                uploadAndSaveProductVideo(productDTO, product, productMedia);
+            }
         }
 
         return product;

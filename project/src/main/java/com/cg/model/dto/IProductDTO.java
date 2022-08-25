@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public interface IProductDTO {
     String getId();
+    String getCode();
     String getTitle();
     BigDecimal getPrice();
     BigDecimal getQuantity();
@@ -11,7 +12,6 @@ public interface IProductDTO {
     String getSlug();
     String getColor();
     String getCategory();
-    String getTag();
     String getCreatedAt();
     String getSize();
     String getMaterial();

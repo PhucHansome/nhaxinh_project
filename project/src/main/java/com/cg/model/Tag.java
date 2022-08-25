@@ -27,12 +27,16 @@ public class Tag {
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 
     public TagDTO toTagDTO() {
         return new TagDTO()
                 .setId(id)
                 .setName(name)
-                .setDeleted(deleted);
+                .setDeleted(deleted)
+                .setProduct(product.toProductDTO());
     }
 }

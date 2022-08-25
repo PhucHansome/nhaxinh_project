@@ -27,6 +27,8 @@ public class Product extends  BaseEntity{
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
+    private String code;
+
     private String title;
 
     private BigDecimal price;
@@ -48,10 +50,6 @@ public class Product extends  BaseEntity{
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "tag_id")
-    private Tag tag;
 
     @OneToOne
     @JoinColumn(name = "productColor_id")
@@ -76,6 +74,7 @@ public class Product extends  BaseEntity{
     public ProductDTO toProductDTO(){
         return new ProductDTO()
                 .setId(id)
+                .setCode(code)
                 .setTitle(title)
                 .setPrice(price)
                 .setQuantity(quantity)
@@ -85,7 +84,6 @@ public class Product extends  BaseEntity{
                 .setSize(size)
                 .setMaterial(material)
                 .setImage(image)
-                .setTag(tag.toTagDTO())
                 ;
     }
 }

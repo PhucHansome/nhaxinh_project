@@ -293,3 +293,26 @@ MuiTypography-colorSecondary {
     border-radius: 3px;
     justify-content: center;
 }
+
+.image_container {
+    height: 120px;
+    width: 200px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.image_container img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.image_container span {
+    top: -8px;
+    right: 8px;
+    color: red;
+    font-size: 28px;
+    font-weight: normal;
+    cursor: pointer;
+}
+

@@ -2,8 +2,12 @@ package com.cg.controller.api;
 
 import com.cg.exception.DataInputException;
 import com.cg.model.Product;
+import com.cg.model.dto.CategoryDTO;
 import com.cg.model.dto.IProductDTO;
+import com.cg.model.dto.ProductColorDTO;
 import com.cg.model.dto.ProductDTO;
+import com.cg.service.category.CategoryService;
+import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productservice.ProductService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +24,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/products")
 public class ProductAPI {
+    @Autowired
+    private ProductColorService productColorService;
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
+
 
     @Autowired
     private AppUtils appUtils;
@@ -52,18 +62,34 @@ public class ProductAPI {
         return new ResponseEntity<>(productDTOOptional, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> create(ProductDTO productDTO, BindingResult bindingResult) {
+    @GetMapping("/product-color")
+    private ResponseEntity<?> findAllProductColor() {
+        try {
+            List<ProductColorDTO> productColorDTOS = productColorService.findAllProductColorDTO();
+
+            return new ResponseEntity<>(productColorDTOS, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/{idCategory}/{idProductColor}")
+    public ResponseEntity<?> create(ProductDTO productDTO,@PathVariable Long idCategory,@PathVariable Long idProductColor,  BindingResult bindingResult) {
+        Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
+        productDTO.setCategory(optionalCategoryDTO.get());
+
+        Optional<ProductColorDTO> productColorDTO = productColorService.findProductColorDTOById(idProductColor);
+        productDTO.setProductColor(productColorDTO.get());
 
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
 
         try {
+
             Product createdProduct = productService.create(productDTO);
 
-            IProductDTO iProductDTO =  productService.findIProductDTOById(createdProduct.getId());
-
-            return new ResponseEntity<>(iProductDTO, HttpStatus.CREATED);
+            return new ResponseEntity<>(createdProduct,HttpStatus.CREATED);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Product creation information is not valid, please check the information again");

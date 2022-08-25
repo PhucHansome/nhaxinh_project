@@ -1,11 +1,14 @@
 package com.cg.service.productmedia;
 
 import com.cg.model.ProductMedia;
+import com.cg.model.dto.ProductMediaDTO;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Transactional
@@ -22,6 +25,11 @@ public class ProductMediaServiceImpl implements ProductMediaService{
     @Override
     public ProductMedia create(ProductMedia productMedia) {
         return productMediaRepository.save(productMedia);
+    }
+
+    @Override
+    public List<ProductMediaDTO> findAllByProductId(String productId) {
+        return productMediaRepository.findAllByProductId(productId);
     }
 
     @Override

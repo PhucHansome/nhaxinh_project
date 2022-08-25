@@ -14,6 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     @Query("SELECT " +
             "pm.product.id AS id, " +
+            "pm.product.code AS code, " +
             "pm.product.title As title, " +
             "pm.product.price As price, " +
             "pm.product.quantity As quantity, " +
@@ -23,7 +24,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "pm.product.status As status , " +
             "pm.product.category.name As category,  " +
             "pm.product.productColor.color As color, " +
-            "pm.product.tag.name As tag," +
             "pm.product.createdAt as createdAt, " +
             "pm.id AS fileId, " +
             "pm.fileName AS fileName, " +
@@ -38,6 +38,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     @Query("SELECT " +
             "pm.product.id AS id, " +
+            "pm.product.code AS code, " +
             "pm.product.title As title, " +
             "pm.product.price As price, " +
             "pm.product.quantity As quantity, " +
@@ -47,7 +48,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "pm.product.status As status , " +
             "pm.product.category.name As category,  " +
             "pm.product.productColor.color As color, " +
-            "pm.product.tag.name As tag, " +
+            "pm.product.createdAt as createdAt, " +
             "pm.id AS fileId, " +
             "pm.fileName AS fileName, " +
             "pm.fileFolder AS fileFolder, " +

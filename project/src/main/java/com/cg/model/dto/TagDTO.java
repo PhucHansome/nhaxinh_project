@@ -20,11 +20,13 @@ public class TagDTO {
     private Long id;
     private String name;
     private boolean deleted;
+    private ProductDTO product;
 
     public Tag toTag(){
         return new Tag()
                 .setId(id)
                 .setName(name)
-                .setDeleted(deleted);
+                .setDeleted(deleted)
+                .setProduct(product.toProduct());
     }
 }
