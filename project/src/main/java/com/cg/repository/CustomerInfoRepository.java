@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Long> {
 
-    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName, c.phone,c.debt,c.locationRegion,c.createdAt)  FROM CustomerInfo c  WHERE c.deleted = false ")
+    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.debt,c.locationRegion,c.createdAt)  FROM CustomerInfo c  WHERE c.deleted = false ")
     List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse();
 
 }

@@ -23,6 +23,8 @@ public class CustomerInfoDTO {
 
     private String userName;
 
+    private String fullName;
+
     private String phone;
 
     private BigDecimal debt;
@@ -38,9 +40,10 @@ public class CustomerInfoDTO {
         this.locationRegion = locationRegion.toLocationRegionDTO();
     }
 
-    public CustomerInfoDTO(String id, String userName, String phone, BigDecimal debt, LocationRegion locationRegion, Date createAt) {
+    public CustomerInfoDTO(String id, String userName, String fullName, String phone, BigDecimal debt, LocationRegion locationRegion, Date createAt) {
         this.id = id;
         this.userName = userName;
+        this.fullName = fullName;
         this.phone = phone;
         this.debt = debt;
         this.locationRegion = locationRegion.toLocationRegionDTO();
@@ -51,6 +54,7 @@ public class CustomerInfoDTO {
         return  new CustomerInfo()
                 .setId(id)
                 .setUserName(userName)
+                .setFullName(fullName)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegion())
                 .setDebt(debt)

@@ -1,6 +1,7 @@
 package com.cg.service.locationRegion;
 
 import com.cg.model.LocationRegion;
+import com.cg.model.dto.LocationRegionDTO;
 import com.cg.repository.LocationRegionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,6 @@ public class LocationRegionServiceImpl implements ILocationRegionService{
     public void softDelete(LocationRegion locationRegion) {
 
     }
+
+
 }

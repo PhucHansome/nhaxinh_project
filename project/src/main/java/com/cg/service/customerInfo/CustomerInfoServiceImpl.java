@@ -1,8 +1,10 @@
 package com.cg.service.customerInfo;
 
 import com.cg.model.CustomerInfo;
+import com.cg.model.LocationRegion;
 import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.repository.CustomerInfoRepository;
+import com.cg.repository.LocationRegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
 
     @Autowired
     private CustomerInfoRepository customerInfoRepository;
+
+    @Autowired
+    private LocationRegionRepository locationRegionRepository;
     @Override
     public List<CustomerInfo> findAll() {
         return null;
@@ -36,6 +41,8 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
 
     @Override
     public CustomerInfo save(CustomerInfo customerInfo) {
+        LocationRegion locationRegion = locationRegionRepository.save(customerInfo.getLocationRegion());
+        customerInfo.setLocationRegion(locationRegion);
         return customerInfoRepository.save(customerInfo);
     }
 

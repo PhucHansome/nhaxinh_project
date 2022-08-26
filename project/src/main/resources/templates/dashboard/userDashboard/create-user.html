@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-7">
                         <button type="button" style="margin-bottom: 10px"
-                                class="btn btn-success float-right ">
+                                class="btn btn-success float-right createCustomer " id="createCustomer">
                             <i class="fas fa-save" style="margin-right: 5px;"></i>Lưu
                         </button>
 
@@ -49,35 +49,30 @@
                             </div>
                             <div class="col-md-12">
                                 <label >Tên khách hàng <span style="color: red">*</span></label>
-                                <input type="text" placeholder="Nhập tên khách hàng" class="form-control" >
+                                <input type="text" id="fullNameCre" name="fullNameCre" placeholder="Nhập tên khách hàng" class="form-control" >
                             </div>
 
                             <div class="col-md-6">
                                 <label style="margin-top: 5px" >Số điện thoại</label>
-                                <input type="text"  class="form-control" placeholder="Nhập số điện thoại" >
+                                <input type="text"  class="form-control" id="phoneCre" name="phoneCre" placeholder="Nhập số điện thoại" >
                             </div>
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Email</label>
-                                <input type="text"  class="form-control" placeholder="Nhập địa chỉ email" >
+                                <input type="text"  class="form-control" id="emailCre" name="emailCre" placeholder="Nhập địa chỉ email" >
 
 
                             </div>
                             <div class="col-md-6">
-                                <label style="margin-top: 5px" >Khu vực </label>
-                                <select class="form-control"> Chọn tỉnh/thành phố
-                                <option></option>
-                                </select>
+                                <label style="margin-top: 5px" >Tỉnh/thành phố </label>
+                                <select class="form-control" id="provinceCre" name="provinceCre"> Chọn tỉnh/thành phố</select>
                             </div>
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Quận huyện</label>
-                                <select class="form-control"> Chọn quận/huyện
-                                <option></option>
-                                </select>
-
+                                <select class="form-control" id="districtCre" name="districtCre"> Chọn quận/huyện</select>
                             </div>
                             <div class="col-md-12">
                                 <label>Địa chỉ cụ thể</label>
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" id="addressCre" name="addressCre"></textarea>
                             </div>
                         </div>
                     </div>

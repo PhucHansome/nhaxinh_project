@@ -4,6 +4,7 @@ class App {
 
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
     static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
+    static BASE_URL_PROVINCE =  "https://vapi.vnappmob.com/api/province";
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
@@ -82,9 +83,10 @@ class LocationRegion {
     }
 }
 class CustomerInfo {
-    constructor(id,userName,phone,debt,locationRegion,createAt) {
+    constructor(id,userName,fullName,phone,debt,locationRegion,createAt) {
         this.id = id;
         this.userName = userName;
+        this.fullName = fullName;
         this.phone = phone;
         this.debt =debt;
         this.locationRegion = locationRegion;
