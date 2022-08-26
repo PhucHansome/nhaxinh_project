@@ -426,6 +426,7 @@
                 url: page.url.PostProduct + "/" + page.element.category.val() + "/" + page.element.colorProduct.val(),
                 data: formData
             }).done((data) => {
+                console.log(data)
                 $(".mla").remove()
                 page.element.priceProduct.val("")
                 page.element.productName.val("")

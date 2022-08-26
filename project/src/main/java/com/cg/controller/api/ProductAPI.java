@@ -42,14 +42,6 @@ public class ProductAPI {
     private ResponseEntity<?> findAll() {
         try {
             List<ProductDTO> productDTOS = productService.findAllProductDTONoImage();
-            for (ProductDTO productDTO : productDTOS) {
-                List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductId(productDTO.getId());
-                for (ProductMediaDTO productMediaDTO1 : productMediaDTO) {
-                        productDTO.setImage(productMediaDTO1.getFileUrl());
-                        Optional<Product> productabc = productService.findById(productDTO.getId());
-                        productService.save(productabc.get());
-                }
-            }
 
             return new ResponseEntity<>(productDTOS, HttpStatus.OK);
 
@@ -92,11 +84,18 @@ public class ProductAPI {
             return appUtils.mapErrorToResponse(bindingResult);
 
         try {
-
             Product createdProduct = productService.create(productDTO);
-
-            return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
-
+            List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductId(createdProduct.getId());
+            for (ProductMediaDTO productMediaDTO1 : productMediaDTO) {
+                if(createdProduct.getImage().contains("null")) {
+                    createdProduct.setImage(productMediaDTO1.getFileUrl());
+                    Optional<Product> productUpdateImage = productService.findById(createdProduct.getId());
+                    productUpdateImage.get().setImage(productMediaDTO1.getFileUrl());
+                    productService.save(productUpdateImage.get());
+                    return new ResponseEntity<>(productUpdateImage.get().toProductDTO(), HttpStatus.CREATED);
+                }
+            }
+            return new ResponseEntity<>(createdProduct, HttpStatus.ACCEPTED);
         } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Product creation information is not valid, please check the information again");
         }
