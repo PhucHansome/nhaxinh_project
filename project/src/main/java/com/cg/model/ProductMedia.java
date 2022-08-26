@@ -1,5 +1,6 @@
 package com.cg.model;
 
+import com.cg.model.dto.ProductMediaDTO;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
@@ -43,5 +44,19 @@ public class ProductMedia {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public ProductMediaDTO toProductMediaDTO(){
+        return new ProductMediaDTO()
+                .setFileUrl(fileUrl)
+                .setFileType(fileType)
+                .setCloundId(cloundId)
+                .setProduct(product.toProductDTO())
+                .setFileFolder(fileFolder)
+                .setTs(ts)
+                .setId(id)
+                .setFileName(fileName)
+                ;
+    }
+
 
 }

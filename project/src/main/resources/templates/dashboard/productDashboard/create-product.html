@@ -38,22 +38,27 @@
         background: #396570;
         animation-delay: 0.2s;
     }
+
     .loading span:nth-of-type(3) {
         background: #009B9E;
         animation-delay: 0.4s;
     }
+
     .loading span:nth-of-type(4) {
         background: #00A77D;
         animation-delay: 0.6s;
     }
+
     .loading span:nth-of-type(5) {
         background: #00B247;
         animation-delay: 0.8s;
     }
+
     .loading span:nth-of-type(6) {
         background: #5AB027;
         animation-delay: 1.0s;
     }
+
     .loading span:nth-of-type(7) {
         background: #c9324e;
         animation-delay: 1.2s;
@@ -97,9 +102,11 @@
             <div class="container-fluid">
 
                 <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
-                        <div class="col-10">
-                        </div>
-                        <div class="col-2"><div class="mla float-right" style="font-size: 20px;"></div></div>
+                    <div class="col-10">
+                    </div>
+                    <div class="col-2">
+                        <div class="mla float-right" style="font-size: 20px;"></div>
+                    </div>
                     <div class="col-md-5">
                         <h6><a href="/product-dashboard">Quay lại danh sách sản phẩm</a></h6>
                     </div>
@@ -122,7 +129,8 @@
 
                             <div class="col-md-6">
                                 <label>Tên sản phẩm<span style="color: red">*</span></label>
-                                <input type="text" id="productName" placeholder="Nhập tên sản phẩm" class="form-control">
+                                <input type="text" id="productName" placeholder="Nhập tên sản phẩm"
+                                       class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Số lượng</label>
@@ -155,8 +163,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Trạng thái/status</label>
-                                <select id="productStatus"  class="form-control">
-                                    <option >Đã Hết Hàng</option>
+                                <select id="productStatus" class="form-control">
+                                    <option>Đã Hết Hàng</option>
                                     <option>Còn Hàng</option>
                                 </select>
                             </div>
@@ -228,6 +236,84 @@
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
 <script>
+    function Ticker(elem) {
+        elem.lettering();
+        this.done = false;
+        this.cycleCount = 5;
+        this.cycleCurrent = 0;
+        this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+{}|[]\\;\':"<>?,./`~'.split('');
+        this.charsCount = this.chars.length;
+        this.letters = elem.find('span');
+        this.letterCount = this.letters.length;
+        this.letterCurrent = 0;
+
+        this.letters.each(function () {
+            var $this = $(this);
+            $this.attr('data-orig', $this.text());
+            $this.text('-');
+        });
+    }
+
+    Ticker.prototype.getChar = function () {
+        return this.chars[Math.floor(Math.random() * this.charsCount)];
+    };
+
+    Ticker.prototype.reset = function () {
+        this.done = false;
+        this.cycleCurrent = 0;
+        this.letterCurrent = 0;
+        this.letters.each(function () {
+            var $this = $(this);
+            $this.text($this.attr('data-orig'));
+            $this.removeClass('done');
+        });
+        this.loop();
+    };
+
+    Ticker.prototype.loop = function () {
+        var self = this;
+
+        this.letters.each(function (index, elem) {
+            var $elem = $(elem);
+            if (index >= self.letterCurrent) {
+                if ($elem.text() !== ' ') {
+                    $elem.text(self.getChar());
+                    $elem.css('opacity', Math.random());
+                }
+            }
+        });
+
+        if (this.cycleCurrent < this.cycleCount) {
+            this.cycleCurrent++;
+        } else if (this.letterCurrent < this.letterCount) {
+            var currLetter = this.letters.eq(this.letterCurrent);
+            this.cycleCurrent = 0;
+            currLetter.text(currLetter.attr('data-orig')).css('opacity', 1).addClass('done');
+            this.letterCurrent++;
+        } else {
+            this.done = true;
+        }
+
+        if (!this.done) {
+            requestAnimationFrame(function () {
+                self.loop();
+            });
+        } else {
+            setTimeout(function () {
+                self.reset();
+            }, 750);
+        }
+    };
+
+    $words = $('.word');
+
+    $words.each(function () {
+        var $this = $(this),
+            ticker = new Ticker($this).reset();
+        $this.data('ticker', ticker);
+    });
+</script>
+<script>
     let page = {
         url: {
             CreateProduct: App.BASE_URL_PRODUCT,
@@ -281,8 +367,8 @@
             page.element.category.html('');
             $.each(data, (i, item) => {
                 let str = `
-                                <option value="${item.id}">${item.name}</option>
-                               `;
+                            <option value="${item.id}">${item.name}</option>
+                           `;
                 page.element.category.append(str);
             })
         }).fail((jqXHR) => {
@@ -307,24 +393,7 @@
         })
     }
 
-    page.commands.image_select = () => {
-        images = []
-        formData = new FormData()
-        let fileInput = $("#image")[0].files;
-        if (fileInput.length > 4) {
-            return alert("Should be have max 4 images")
-        }
-        formData.append("files", fileInput[0]);
-        formData.append("files", fileInput[1]);
-        formData.append("files", fileInput[2]);
-        formData.append("files", fileInput[3]);
-        for (let i = 0; i < fileInput.length; i++) {
-            images.push({
-                "name": fileInput[i].name,
-                "url": URL.createObjectURL(fileInput[i]),
-                "file": fileInput[i],
-            });
-        }
+    page.commands.handleCreateProduct = () =>{
         page.element.btnSave.on('click', function () {
             formData.append("code", page.element.codeProduct.val());
             formData.append("title", page.element.productName.val());
@@ -335,7 +404,7 @@
             formData.append("slug", "chua biet lam");
             formData.append("size", page.element.productSize.val());
             formData.append("material", page.element.materialProduct.val());
-            formData.append("image", "null" );
+            formData.append("image", "null");
             let str = `
             <div class="loading">
                     <h2>Loading</h2>
@@ -369,9 +438,33 @@
                 page.element.materialProduct.val("")
                 page.element.descriptionProduct.val("")
                 App.IziToast.showSuccessAlert("Bạn Đã Tạo Sản Phẩm Thành công")
-                images = [];
+                images = []
+                document.getElementById('container_').innerHTML = page.commands.image_show()
+            }).fail(()=>{
+                App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
             })
         })
+    }
+
+    page.commands.image_select = () => {
+        images = []
+        formData = new FormData()
+        let fileInput = $("#image")[0].files;
+        if (fileInput.length > 10) {
+            App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
+            return
+        }
+        for (let k = 0; k < fileInput.length; k++) {
+            formData.append("files", fileInput[k]);
+        }
+        for (let i = 0; i < fileInput.length; i++) {
+            images.push({
+                "name": fileInput[i].name,
+                "url": URL.createObjectURL(fileInput[i]),
+                "file": fileInput[i],
+            });
+        }
+        page.commands.handleCreateProduct();
         document.getElementById('container_').innerHTML = page.commands.image_show()
     }
 
@@ -401,87 +494,7 @@
     $(function () {
         page.dialogs.loadData.drawListCategory();
         page.dialogs.loadData.drawListProductColor();
-
-
     })
-</script>
-<script>
-    function Ticker( elem ) {
-        elem.lettering();
-        this.done = false;
-        this.cycleCount = 5;
-        this.cycleCurrent = 0;
-        this.chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+{}|[]\\;\':"<>?,./`~'.split('');
-        this.charsCount = this.chars.length;
-        this.letters = elem.find( 'span' );
-        this.letterCount = this.letters.length;
-        this.letterCurrent = 0;
-
-        this.letters.each( function() {
-            var $this = $( this );
-            $this.attr( 'data-orig', $this.text() );
-            $this.text( '-' );
-        });
-    }
-
-    Ticker.prototype.getChar = function() {
-        return this.chars[ Math.floor( Math.random() * this.charsCount ) ];
-    };
-
-    Ticker.prototype.reset = function() {
-        this.done = false;
-        this.cycleCurrent = 0;
-        this.letterCurrent = 0;
-        this.letters.each( function() {
-            var $this = $( this );
-            $this.text( $this.attr( 'data-orig' ) );
-            $this.removeClass( 'done' );
-        });
-        this.loop();
-    };
-
-    Ticker.prototype.loop = function() {
-        var self = this;
-
-        this.letters.each( function( index, elem ) {
-            var $elem = $( elem );
-            if( index >= self.letterCurrent ) {
-                if( $elem.text() !== ' ' ) {
-                    $elem.text( self.getChar() );
-                    $elem.css( 'opacity', Math.random() );
-                }
-            }
-        });
-
-        if( this.cycleCurrent < this.cycleCount ) {
-            this.cycleCurrent++;
-        } else if( this.letterCurrent < this.letterCount ) {
-            var currLetter = this.letters.eq( this.letterCurrent );
-            this.cycleCurrent = 0;
-            currLetter.text( currLetter.attr( 'data-orig' ) ).css( 'opacity', 1 ).addClass( 'done' );
-            this.letterCurrent++;
-        } else {
-            this.done = true;
-        }
-
-        if( !this.done ) {
-            requestAnimationFrame( function() {
-                self.loop();
-            });
-        } else {
-            setTimeout( function() {
-                self.reset();
-            }, 750 );
-        }
-    };
-
-    $words = $( '.word' );
-
-    $words.each( function() {
-        var $this = $( this ),
-            ticker = new Ticker( $this ).reset();
-        $this.data( 'ticker', ticker  );
-    });
 </script>
 </body>
 </html>

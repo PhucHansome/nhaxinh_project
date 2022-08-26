@@ -62,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
     public Product create(ProductDTO productDTO) {
         List<MultipartFile> fileList = productDTO.getFiles();
 
+
         Product product = productRepository.save(productDTO.toProduct());
 
         for (MultipartFile file : fileList) {
@@ -106,6 +107,17 @@ public class ProductServiceImpl implements ProductService {
         }
         productRepository.delete(product);
     }
+
+    @Override
+    public List<ProductDTO> findAllProductDTONoImage() {
+        return productRepository.findAllProductDTONoImage();
+    }
+
+    @Override
+    public Product save(Product Product) {
+        return productRepository.save(Product);
+    }
+
     private void uploadAndSaveProductImage(ProductDTO productDTO, Product product, ProductMedia productMedia) {
         try {
             Map uploadResult = uploadService.uploadImage(productDTO.getFile(), uploadUtils.buildImageUploadParams(productMedia));

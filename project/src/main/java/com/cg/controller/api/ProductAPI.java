@@ -2,12 +2,11 @@ package com.cg.controller.api;
 
 import com.cg.exception.DataInputException;
 import com.cg.model.Product;
-import com.cg.model.dto.CategoryDTO;
-import com.cg.model.dto.IProductDTO;
-import com.cg.model.dto.ProductColorDTO;
-import com.cg.model.dto.ProductDTO;
+import com.cg.model.ProductMedia;
+import com.cg.model.dto.*;
 import com.cg.service.category.CategoryService;
 import com.cg.service.productColor.ProductColorService;
+import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.productservice.ProductService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,27 +32,34 @@ public class ProductAPI {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ProductMediaService productMediaService;
 
     @Autowired
     private AppUtils appUtils;
 
     @GetMapping
-    public ResponseEntity<Iterable<?>> findAll(){
-        try{
-            Iterable<IProductDTO> iProductDTOS = productService.findAllIProductDTO();
-
-            if(((List) iProductDTOS).isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    private ResponseEntity<?> findAll() {
+        try {
+            List<ProductDTO> productDTOS = productService.findAllProductDTONoImage();
+            for (ProductDTO productDTO : productDTOS) {
+                List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductId(productDTO.getId());
+                for (ProductMediaDTO productMediaDTO1 : productMediaDTO) {
+                        productDTO.setImage(productMediaDTO1.getFileUrl());
+                        Optional<Product> productabc = productService.findById(productDTO.getId());
+                        productService.save(productabc.get());
+                }
             }
-            
-            return new ResponseEntity<>(iProductDTOS, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+
+            return new ResponseEntity<>(productDTOS, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findProductById(@PathVariable String id){
+    public ResponseEntity<?> findProductById(@PathVariable String id) {
         IProductDTO productDTOOptional = productService.findIProductDTOById(id);
         if (productDTOOptional == null) {
             throw new DataInputException("Product is not found");
@@ -75,7 +81,7 @@ public class ProductAPI {
     }
 
     @PostMapping("/{idCategory}/{idProductColor}")
-    public ResponseEntity<?> create(ProductDTO productDTO,@PathVariable Long idCategory,@PathVariable Long idProductColor,  BindingResult bindingResult) {
+    public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());
 
@@ -89,7 +95,7 @@ public class ProductAPI {
 
             Product createdProduct = productService.create(productDTO);
 
-            return new ResponseEntity<>(createdProduct,HttpStatus.CREATED);
+            return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Product creation information is not valid, please check the information again");

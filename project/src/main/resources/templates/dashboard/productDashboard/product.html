@@ -182,7 +182,7 @@
     let tempProduct = jQuery.validator.format($.trim(page.element.tempProduct.val().toString()));
 
     page.commands.addRow = () => {
-        page.element.frmListProduct.prepend($(tempProduct(product.id,product.fileUrl,product.title,product.category,product.price,product.status,product.createdAt)));
+        page.element.frmListProduct.prepend($(tempProduct(product.id,product.image,product.title,product.category.name,product.price,product.status,product.createdAt)));
     }
 
     page.dialogs.commands.getProductById = (id) => {
