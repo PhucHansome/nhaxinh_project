@@ -27,10 +27,13 @@ public class CustomerInfo extends BaseEntity{
     private String id;
 
     private String userName;
+
+   private String fullName;
     
     private String phone;
 
     private BigDecimal debt;
+
 
     @OneToOne
     @JoinColumn(name = "location_region_id", nullable = false)
@@ -40,9 +43,11 @@ public class CustomerInfo extends BaseEntity{
         return  new CustomerInfoDTO()
                 .setId(id)
                 .setUserName(userName)
+                .setFullName(fullName)
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegionDTO())
                 .setDebt(debt)
+
                 ;
     }
 

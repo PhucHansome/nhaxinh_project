@@ -3,6 +3,8 @@ class App {
     static DOMAIN = location.origin;
 
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
+    static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
+    static BASE_URL_PROVINCE =  "https://vapi.vnappmob.com/api/province";
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CATEGORY = this.DOMAIN + "/api/category"
     static BASE_URL_PRODUCTCOLOR = this.DOMAIN + "/api/products/product-color"
@@ -70,8 +72,30 @@ class User {
         this.password = password;
         this.role = role;
     }
+
 }
 
+class LocationRegion {
+    constructor(id, province_id, province_name, district_id, district_name, address) {
+        this.id = id;
+        this.province_id = province_id;
+        this.province_name = province_name;
+        this.district_id = district_id;
+        this.district_name = district_name;
+        this.address = address;
+    }
+}
+class CustomerInfo {
+    constructor(id,userName,fullName,phone,debt,locationRegion,createAt) {
+        this.id = id;
+        this.userName = userName;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.debt =debt;
+        this.locationRegion = locationRegion;
+        this.createAt = createAt;
+    }
+}
 class Category{
     constructor(id , name) {
         this.id = id;
