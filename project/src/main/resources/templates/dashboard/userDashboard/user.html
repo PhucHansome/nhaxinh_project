@@ -23,7 +23,7 @@
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
-
+    <!-- Start Content-->
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
@@ -47,7 +47,7 @@
                 <div class="row" style="margin-bottom: 5px;  margin-top: -16px;">
                     <div class="col-md-9">
 
-                        <button type="button" style="margin-bottom: 10px;border-radius: 8px" id="modalAddProduct"
+                        <button type="button" style="margin-bottom: 10px;border-radius: 8px" id="modalAddUser"
                                 class="btn btn-success float-left  modalAddProduct">
                             <i class="fas fa-file-upload"></i>
                             Xuất file
@@ -60,10 +60,9 @@
 
                     </div>
 
-
                     <div class="col-md-3">
                         <button type="button" style="margin-bottom: 10px;border-radius: 8px"
-                                class="btn btn-danger float-right ">
+                                class="btn btn-danger float-right btn-go-add-customer">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             Thêm khách hàng
                         </button>
@@ -104,37 +103,28 @@
 
                         </div>
                     </div>
-                    <div class="row" style=" margin-top: 15px;">
-                        <div class="col-lg-12">
-                            <table id="tableListProducts" class="table table-hover">
-                                <thead class="thead-dark">
+                <div class="row" style=" margin-top: 15px;">
+                    <div class="col-lg-12">
+                        <table id="tableListCustomerInfo" class="table table-hover">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th class="align-middle text-center"></th>
-                                    <th class="align-middle text-center">#</th>
                                     <th class="align-middle text-center">Tên khách hàng</th>
                                     <th class="align-middle text-center">Số điện thoại</th>
                                     <th class="align-middle text-center">Ngày khởi tạo</th>
-
-<!--                                    <th class="align-middle text-center">Địa chỉ</th>-->
-<!--                                    <th class="align-middle text-center">Email</th>-->
-<!--                                    <th class="align-middle text-center">Ngày cập nhật</th>-->
-
-
                                 </tr>
-                                </thead>
+                            </thead>
                                 <tbody>
 
 
                                 </tbody>
-                            </table>
-                        </div>
-
+                        </table>
                     </div>
                 </div>
-
-                <!-- Start Content-->
             </div>
-        </div> <!-- end content -->
+        </div>
+    </div>
+        <!-- end content -->
 
 
 
@@ -155,6 +145,211 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:include="/dashboard/userDashboard/frm_list_user::frm_list_user"/>
 
+<script>
+
+    let page = {
+        url: {
+            CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllProvinces: App.BASE_URL_PROVINCE + "/",
+            getAllDistricts: App.BASE_URL_PROVINCE + "/district/"
+
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    page.element.frmListCustomer = $("#tableListCustomerInfo tbody");
+
+    // page.element.goDetailCustomer = $("#tableListCustomerInfo tbody tr");
+
+    page.element.tempUser = $("#tempUser");
+    page.element.btnGoCreateCustomer = $(".btn-go-add-customer");
+    page.element.btnCreateCustomer = $(".createCustomer")
+
+
+
+
+
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+    let user = new User();
+    let customerInfoId = null;
+
+
+
+    let tempCustomerInfo = jQuery.validator.format($.trim(page.element.tempUser.val().toString()));
+
+
+    page.commands.addRow = () => {
+        page.element.frmListCustomer.prepend($(tempCustomerInfo(customerInfo.id,customerInfo.fullName,customerInfo.phone,customerInfo.createAt)));
+    }
+
+    page.dialogs.commands.getAllCustomerInfo = () => {
+        $.ajax({
+            "method" : "GET",
+            "url": page.url.getAllCustomerInfo
+        }).done((data) =>{
+            $.each(data, (i,item) =>{
+                customerInfo = item;
+                // locationRegion = customerInfo.locationRegion;
+                page.commands.addRow();
+            })
+        }).fail((e) =>{
+            console.log(e);
+        })
+    }
+
+
+    // function drawProvinces() {
+    //     return $.ajax({
+    //         header: {
+    //             "accept": "application/json",
+    //             "content-type": "application/json"
+    //         },
+    //         type: "GET",
+    //         url: "https://vapi.vnappmob.com/api/province/",
+    //     })
+    //         .done((data) => {
+    //             $.each(data.results, (i, item) => {
+    //                 let str = `<option  class="form-control" value="${item.province_id}"> ${item.province_name} </option> `;
+    //
+    //                 $('#provinceCre').prepend(str);
+    //                 // $('#provinceUp').prepend(str);
+    //             })
+    //         })
+    //         .fail((jqXHR) => {
+    //             console.log(jqXHR);
+    //         })
+    // }
+    //
+    // function drawDistricts(provinceId) {
+    //     return $.ajax({
+    //         headers: {
+    //             "accept": "application/json",
+    //             "content-type": "application/json"
+    //         },
+    //         type: "GET",
+    //         url: "https://vapi.vnappmob.com/api/province/district/" + provinceId,
+    //     })
+    //         .done((data) => {
+    //             $('#districtCre').html('');
+    //             // $('#districtUp').html('');
+    //             $.each(data.results, (i, item) => {
+    //                 let str = `<option value="${item.district_id}"> ${item.district_name} </option>`;
+    //
+    //                 $('#districtCre').prepend(str);
+    //                 // $('#districtUp').prepend(str);
+    //             })
+    //         })
+    //         .fail((jqXHR) => {
+    //             console.log(jqXHR);
+    //         })
+    // }
+    // drawProvinces().then(() => {
+    //     let districtId = $('#provinceCre').val();
+    //     drawDistricts(districtId)
+    // });
+
+    // $('#provinceCre').on('change', function () {
+    //     let provinceId = $('#provinceCre').val();
+    //     drawDistricts(provinceId).then(() => {
+    //         let districtId = $('#districtCre').val()
+    //     })
+    // })
+    // $('#districtCre').on('change', function () {
+    //     let districtId = $('#districtCre').val()
+    // })
+
+    // drawProvinces();
+    // drawDistricts();
+
+     // function showDetailUser(){
+     //            $('#tableListCustomerInfo tbody tr').click(function (){
+     //                customerInfoId = $(this).attr('id').replace('tr_' ,'');
+     //                $('#tableListCustomerInfo tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
+     //                $(`#tableListCustomerInfo tbody tr#tr_${customerInfoId} td span.select-tab`).removeClass("unselected").addClass("selected");
+     //                window.location.href = "/detail-user-dashboard";
+     //            })
+     //        }
+     //
+     //        showDetailUser();
+
+
+    // $("#provinceCre").on('change', ()=>{
+    //     let provinceId = $('#provinceCre').val();
+    //     drawDistricts(provinceId).then(() => {
+    //         let districtId = $('#districtCre').val();
+    //     });
+    // })
+    // $("#provinceUp").on('change', ()=>{
+    //     let provinceId = $('#provinceUp').val();
+    //     drawDistricts(provinceId).then(() => {
+    //         let districtId = $('#districtUp').val();
+    //     });
+    // })
+    //   $("#createCustomer").on('click', () => {
+    //       locationRegion.provinceId = $('#provinceCre').val();
+    //       locationRegion.provinceName = $('#provinceCre :selected').text();
+    //       locationRegion.districtId = $('#districtCre').val();
+    //       locationRegion.districtName = $('#districtCre :selected').text();
+    //       locationRegion.address = $('#addressCre').val();
+    //
+    //       delete customerInfo.id;
+    //       customerInfo.fullName = $('#fullNameCre').val();
+    //       customerInfo.phone = $('#phoneCre').val();
+    //       customerInfo.userName = $('#emailCre').val();
+    //       customerInfo.locationRegion = locationRegion;
+    //       $.ajax({
+    //           "headers": {
+    //               "accept": "application/json",
+    //               "content-type": "application/json"
+    //           },
+    //           "type": "POST",
+    //           "url": "http://localhost:8092/api/customerInfo/create",
+    //           "data": JSON.stringify(customerInfo)
+    //       })
+    //
+    //           .done((data) => {
+    //               customerInfo = data;
+    //               locationRegion = customerInfo.locationRegion
+    //               page.commands.addRow();
+    //               App.SweetAlert.showSuccessAlert("Thêm mới user thành công");
+    //           })
+    //           .fail( (jqXHR) => {
+    //               App.SweetAlert.showErrorAlert("Thêm mới user thất bại")
+    //               console.log(jqXHR)
+    //           } )
+    //   })
+
+    page.dialogs.commands.goCreateCustomer = () => {
+        page.element.btnGoCreateCustomer.on("click", function (){
+            window.location.href = "/create-user-dashboard";
+        })
+    }
+    // page.dialogs.commands.DetailCustomer = () => {
+    //     page.element.goDetailCustomer.on("click",function (){
+    //         window.location.href = "/detail-user-dashboard"
+    //     })
+    // }
+    $(function (){
+        page.dialogs.commands.goCreateCustomer();
+        page.dialogs.commands.getAllCustomerInfo();
+
+
+    })
+</script>
 </body>
 </html>

@@ -111,7 +111,7 @@
                              <tr>
                                  <th class="align-middle text-center"></th>
                                  <th class="align-middle text-center">Ảnh</th>
-                                 <th class="align-middle text-center">Sản phẩm</th>
+                                 <th class="align-middle text-center">Tên Sản phẩm</th>
                                  <th class="align-middle text-center">Loại</th>
                                  <th class="align-middle text-center">Giá tiền</th>
                                  <th class="align-middle text-center">Trạng thái</th>
@@ -123,9 +123,8 @@
                              <tfoot><button id="abcc">123</button></tfoot>
                          </table>
                      </div>
-
              </div>
-             </div>
+         </div>
 
                 <!-- Start Content-->
             </div>
@@ -224,6 +223,7 @@
                 if(i > 1){return}
                 product = item;
                 page.commands.addRow();
+                console.log(data)
             });
         }).fail((e) =>{
             console.log(e);
