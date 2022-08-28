@@ -47,29 +47,35 @@
                             <div class="col-md-12">
                                 <h6 style="text-align: center">Thông tin chung</h6>
                             </div>
+
                             <div class="col-md-12">
-                                <label >Tên khách hàng <span style="color: red">*</span></label>
-                                <input type="text" id="fullNameCre" name="fullNameCre" placeholder="Nhập tên khách hàng" class="form-control" >
+                                <label>Tên khách hàng <span style="color: red">*</span></label>
+                                <input type="text" id="fullNameCre" name="fullNameCre" placeholder="Nhập tên khách hàng"
+                                       class="form-control">
                             </div>
 
                             <div class="col-md-6">
-                                <label style="margin-top: 5px" >Số điện thoại</label>
-                                <input type="text"  class="form-control" id="phoneCre" name="phoneCre" placeholder="Nhập số điện thoại" >
+                                <label style="margin-top: 5px">Số điện thoại</label>
+                                <input type="text" class="form-control" id="phoneCre" name="phoneCre"
+                                       placeholder="Nhập số điện thoại">
                             </div>
+
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Email</label>
-                                <input type="text"  class="form-control" id="emailCre" name="emailCre" placeholder="Nhập địa chỉ email" >
+                                <input type="text" class="form-control" id="emailCre" name="emailCre"
+                                       placeholder="Nhập địa chỉ email">
+                            </div>
 
+                            <div class="col-md-6">
+                                <label class="form-label" style="margin-top: 5px">Tỉnh/thành phố </label>
+                                <select class="form-control" id="provinceCre" name="provinceCre"> </select>
+                            </div>
 
-                            </div>
                             <div class="col-md-6">
-                                <label style="margin-top: 5px" >Tỉnh/thành phố </label>
-                                <select class="form-control" id="provinceCre" name="provinceCre"> Chọn tỉnh/thành phố</select>
+                                <label class="form-label" style="margin-top: 5px">Quận huyện</label>
+                                <select class="form-control" id="districtCre" name="districtCre"> </select>
                             </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Quận huyện</label>
-                                <select class="form-control" id="districtCre" name="districtCre"> Chọn quận/huyện</select>
-                            </div>
+
                             <div class="col-md-12">
                                 <label>Địa chỉ cụ thể</label>
                                 <textarea class="form-control" id="addressCre" name="addressCre"></textarea>
@@ -80,15 +86,15 @@
             </div>
         </div>
     </div> <!-- end content -->
-        <!-- Footer Start -->
-        <th:block th:replace="/dashboard/layout/footer::footer"/>
-        <!-- end Footer -->
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
 
-    </div>
+</div>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 
 </div>
 <!-- END wrapper -->
@@ -98,5 +104,138 @@
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
 
+
+<script>
+    let page = {
+        url: {
+            CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllProvinces: App.BASE_URL_PROVINCE + "/",
+            getAllDistricts: App.BASE_URL_PROVINCE + "/district/"
+
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    page.dialogs.element.fullNameCre = $("#fullNameCre");
+    page.dialogs.element.phoneCre = $("#phoneCre");
+    page.dialogs.element.emailCre = $("#emailCre");
+    page.dialogs.element.provinceCre = $("#provinceCre");
+    page.element.provinceText = $("#provinceCre :selected");
+    page.dialogs.element.districtCre = $("#districtCre");
+    page.element.districText = $("#districtCre :selected");
+    page.dialogs.element.addressCre = $("#addressCre");
+
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+    let user = new User();
+    let customerInfoId = null;
+
+    page.dialogs.commands.drawProvinces = () => {
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": "https://vapi.vnappmob.com/api/province/"
+        })
+            .done((data) => {
+                console.log(data)
+                page.dialogs.element.provinceCre.html("")
+                $.each(data.results, (i, item) => {
+                    console.log(item)
+                    let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+                    page.dialogs.element.provinceCre.append(str);
+                })
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
+    }
+
+
+    page.dialogs.commands.drawDistricts = (provinceId) => {
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": "https://vapi.vnappmob.com/api/province/district/" + provinceId
+        }).done((data) => {
+            if (data.results.length === 0) {
+                App.IziToast.showErrorAlert("Loading of districts is fail");
+            } else {
+                page.dialogs.element.districtCre.html("");
+                $.each(data.results, (i, item) => {
+                    let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
+
+                    page.dialogs.element.districtCre.append(str)
+                })
+            }
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+        })
+    }
+
+    page.dialogs.element.provinceCre.on('change', function () {
+        page.dialogs.commands.drawDistricts(page.dialogs.element.provinceCre.val())
+    })
+
+    $("#createCustomer").on('click', () => {
+        locationRegion.provinceId = page.dialogs.element.provinceCre.val();
+        locationRegion.provinceName = page.element.provinceText.text();
+        locationRegion.districtId = page.dialogs.element.districtCre.val();
+        locationRegion.districtName = page.element.districText.text();
+        locationRegion.address = page.dialogs.element.addressCre.val();
+
+        delete customerInfo.id;
+        customerInfo.fullName = page.dialogs.element.fullNameCre.val();
+        customerInfo.phone = page.dialogs.element.phoneCre.val();
+        customerInfo.userName = page.dialogs.element.emailCre.val();
+        customerInfo.locationRegion = locationRegion;
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "POST",
+            "url": "http://localhost:8092/api/customerInfo/create",
+            "data": JSON.stringify(customerInfo)
+        }).done((data) => {
+            page.dialogs.element.provinceCre.val(92);
+            page.dialogs.element.addressCre.val("");
+            page.dialogs.element.fullNameCre.val("");
+            page.dialogs.element.phoneCre.val("");
+            page.dialogs.element.emailCre.val("");
+            App.IziToast.showSuccessAlert("Thêm mới user thành công");
+        }).fail((jqXHR) => {
+            App.IziToast.showErrorAlert("Thêm mới user thất bại")
+            console.log(jqXHR)
+        })
+    })
+
+
+    $(function () {
+        page.dialogs.commands.drawProvinces().then(() => {
+            page.dialogs.commands.drawDistricts(page.dialogs.element.provinceCre.val());
+        })
+
+
+    })
+
+</script>
 </body>
 </html>

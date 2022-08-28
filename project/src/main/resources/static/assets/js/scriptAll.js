@@ -73,12 +73,12 @@ class User {
 }
 
 class LocationRegion {
-    constructor(id, provinceId, provinceName, districtId, districtName, address) {
+    constructor(id, province_id, province_name, district_id, district_name, address) {
         this.id = id;
-        this.provinceId = provinceId;
-        this.provinceName = provinceName;
-        this.districtId = districtId;
-        this.districtName = districtName;
+        this.province_id = province_id;
+        this.province_name = province_name;
+        this.district_id = district_id;
+        this.district_name = district_name;
         this.address = address;
     }
 }

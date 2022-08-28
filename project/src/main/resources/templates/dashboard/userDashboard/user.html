@@ -173,30 +173,13 @@
 
     page.element.frmListCustomer = $("#tableListCustomerInfo tbody");
 
-    page.element.goDetailCustomer = $("#tableListCustomerInfo tbody tr");
+    // page.element.goDetailCustomer = $("#tableListCustomerInfo tbody tr");
 
     page.element.tempUser = $("#tempUser");
     page.element.btnGoCreateCustomer = $(".btn-go-add-customer");
     page.element.btnCreateCustomer = $(".createCustomer")
 
-    page.dialogs.element.fullNameCre = $("#fullNameCre");
-    page.dialogs.element.phoneCre = $("#phoneCre");
-    page.dialogs.element.emailCre = $("#emailCre");
 
-    page.dialogs.element.provinceCre = $("#provinceCre");
-    page.element.provinceText = $("#provinceCre :selected");
-
-    page.dialogs.element.provinceUp = $("#provinceUp")
-    page.element.provinceUpText = $("#provinceUp :selected");
-
-    page.dialogs.element.districtCre = $("#districtCre");
-    page.element.districText = $("#districtCre :selected");
-
-    page.dialogs.element.districtUp = $("#districtUp");
-    page.element.districUpText = $("#districtUp :selected");
-
-    page.dialogs.element.addressCre = $("#addressCre");
-    page.dialogs.element.addressUp = $("#addressUp");
 
 
 
@@ -208,7 +191,6 @@
 
 
     let tempCustomerInfo = jQuery.validator.format($.trim(page.element.tempUser.val().toString()));
-    // let tempOption = jQuery.validator.format($.trim(page.dialogs.element.tempOption.val().toString()));
 
 
     page.commands.addRow = () => {
@@ -222,74 +204,29 @@
         }).done((data) =>{
             $.each(data, (i,item) =>{
                 customerInfo = item;
-                locationRegion = customerInfo.locationRegion;
+                // locationRegion = customerInfo.locationRegion;
                 page.commands.addRow();
             })
         }).fail((e) =>{
             console.log(e);
         })
     }
-    page.commands.drawProvinces = () => {
-        return $.ajax({
-            "headers": {
-                "accept": "application/json",
-                "content-type": "application/json"
-            },
-            "type": "GET",
-            "url": page.url.getAllProvinces
-        })
-            .done((data) => {
-                $.each(data, (i, item) => {
-                    let str = `<option value="${item.province_id}">${item.province_name}</option>`;
 
-                    page.elements.provinceCre.append(str);
-                    // page.elements.provinceUp.append(str);
-                })
-            })
-            .fail((jqxHR) => {
-                console.log(jqxHR);
-            })
-    }
-
-    page.commands.drawDistricts = (provinceId) => {
-        return $.ajax({
-            "headers": {
-                accept: "application/json",
-                "content-type": "application/json"
-            },
-            "type": "GET",
-            "url": page.url.getAllDistricts + provinceId
-        })
-            .done((data) => {
-
-                if (data.results.length === 0) {
-                    App.IziToast.showErrorAlert("Loading of districts is fail");
-                }else {
-                    $.each(data, (i, item) => {
-                        let str = `<option value="${item.district_id}">${item.district_name}</option>`;
-
-                        page.elements.districtCre.append(str)
-                         page.elements.districtUp.append(str)
-                    })
-                }
-            })
-    }
 
     // function drawProvinces() {
     //     return $.ajax({
-    //         "headers": {
+    //         header: {
     //             "accept": "application/json",
     //             "content-type": "application/json"
     //         },
-    //         "type": "GET",
-    //         "url": "https://vapi.vnappmob.com/api/province/",
+    //         type: "GET",
+    //         url: "https://vapi.vnappmob.com/api/province/",
     //     })
     //         .done((data) => {
     //             $.each(data.results, (i, item) => {
-    //                 let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+    //                 let str = `<option  class="form-control" value="${item.province_id}"> ${item.province_name} </option> `;
     //
     //                 $('#provinceCre').prepend(str);
-    //                 console.log(item)
     //                 // $('#provinceUp').prepend(str);
     //             })
     //         })
@@ -300,19 +237,18 @@
     //
     // function drawDistricts(provinceId) {
     //     return $.ajax({
-    //         "headers": {
+    //         headers: {
     //             "accept": "application/json",
     //             "content-type": "application/json"
     //         },
-    //         "type": "GET",
-    //         "url": "https://vapi.vnappmob.com/api/province/district/" + provinceId,
+    //         type: "GET",
+    //         url: "https://vapi.vnappmob.com/api/province/district/" + provinceId,
     //     })
     //         .done((data) => {
     //             $('#districtCre').html('');
     //             // $('#districtUp').html('');
-    //
     //             $.each(data.results, (i, item) => {
-    //                 let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+    //                 let str = `<option value="${item.district_id}"> ${item.district_name} </option>`;
     //
     //                 $('#districtCre').prepend(str);
     //                 // $('#districtUp').prepend(str);
@@ -322,6 +258,23 @@
     //             console.log(jqXHR);
     //         })
     // }
+    // drawProvinces().then(() => {
+    //     let districtId = $('#provinceCre').val();
+    //     drawDistricts(districtId)
+    // });
+
+    // $('#provinceCre').on('change', function () {
+    //     let provinceId = $('#provinceCre').val();
+    //     drawDistricts(provinceId).then(() => {
+    //         let districtId = $('#districtCre').val()
+    //     })
+    // })
+    // $('#districtCre').on('change', function () {
+    //     let districtId = $('#districtCre').val()
+    // })
+
+    // drawProvinces();
+    // drawDistricts();
 
      // function showDetailUser(){
      //            $('#tableListCustomerInfo tbody tr').click(function (){
@@ -347,62 +300,55 @@
     //         let districtId = $('#districtUp').val();
     //     });
     // })
-      $("#createCustomer").on('click', () => {
-          locationRegion.provinceId = $('#provinceCre').val()
-          locationRegion.provinceName = $('#provinceCre :selected').text()
-          locationRegion.districtId = $('#districtCre').val()
-          locationRegion.districtName = $('#districtCre :selected').text()
-          locationRegion.address = $('#addressCre').val();
-
-          delete customerInfo.id;
-          customerInfo.fullName = $('#fullNameCre').val();
-          customerInfo.phone = $('#phoneCre').val();
-          customerInfo.userName = $('#emailCre').val();
-          customerInfo.locationRegion = locationRegion;
-          $.ajax({
-              "headers": {
-                  "accept": "application/json",
-                  "content-type": "application/json"
-              },
-              "type": "POST",
-              "url": "http://localhost:8092/api/customerInfo/create",
-              "data": JSON.stringify(customerInfo)
-          })
-
-              .done((data) => {
-                  customerInfo = data;
-                  locationRegion = customerInfo.locationRegion
-                  page.commands.addRow();
-                  App.SweetAlert.showSuccessAlert("Thêm mới user thành công");
-              })
-              .fail( (jqXHR) => {
-                  App.SweetAlert.showErrorAlert("Thêm mới user thất bại")
-                  console.log(jqXHR)
-
-              } )
-
-
-
-
-
-
-
-      })
+    //   $("#createCustomer").on('click', () => {
+    //       locationRegion.provinceId = $('#provinceCre').val();
+    //       locationRegion.provinceName = $('#provinceCre :selected').text();
+    //       locationRegion.districtId = $('#districtCre').val();
+    //       locationRegion.districtName = $('#districtCre :selected').text();
+    //       locationRegion.address = $('#addressCre').val();
+    //
+    //       delete customerInfo.id;
+    //       customerInfo.fullName = $('#fullNameCre').val();
+    //       customerInfo.phone = $('#phoneCre').val();
+    //       customerInfo.userName = $('#emailCre').val();
+    //       customerInfo.locationRegion = locationRegion;
+    //       $.ajax({
+    //           "headers": {
+    //               "accept": "application/json",
+    //               "content-type": "application/json"
+    //           },
+    //           "type": "POST",
+    //           "url": "http://localhost:8092/api/customerInfo/create",
+    //           "data": JSON.stringify(customerInfo)
+    //       })
+    //
+    //           .done((data) => {
+    //               customerInfo = data;
+    //               locationRegion = customerInfo.locationRegion
+    //               page.commands.addRow();
+    //               App.SweetAlert.showSuccessAlert("Thêm mới user thành công");
+    //           })
+    //           .fail( (jqXHR) => {
+    //               App.SweetAlert.showErrorAlert("Thêm mới user thất bại")
+    //               console.log(jqXHR)
+    //           } )
+    //   })
 
     page.dialogs.commands.goCreateCustomer = () => {
         page.element.btnGoCreateCustomer.on("click", function (){
             window.location.href = "/create-user-dashboard";
         })
     }
-    page.dialogs.commands.DetailCustomer = () => {
-        page.element.goDetailCustomer.on("click",function (){
-            window.location.href = "/detail-user-dashboard"
-        })
-    }
+    // page.dialogs.commands.DetailCustomer = () => {
+    //     page.element.goDetailCustomer.on("click",function (){
+    //         window.location.href = "/detail-user-dashboard"
+    //     })
+    // }
     $(function (){
         page.dialogs.commands.goCreateCustomer();
         page.dialogs.commands.getAllCustomerInfo();
-        page.dialogs.commands.DetailCustomer();
+
+
     })
 </script>
 </body>

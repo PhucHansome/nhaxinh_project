@@ -2,6 +2,7 @@ package com.cg.service.locationRegion;
 
 import com.cg.model.LocationRegion;
 import com.cg.model.dto.LocationRegionDTO;
+import com.cg.repository.CustomerInfoRepository;
 import com.cg.repository.LocationRegionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class LocationRegionServiceImpl implements ILocationRegionService{
 
     @Autowired
     private LocationRegionRepository locationRegionRepository;
+
+
 
     @Override
     public List<LocationRegion> findAll() {
