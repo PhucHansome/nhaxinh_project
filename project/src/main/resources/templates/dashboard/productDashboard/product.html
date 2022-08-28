@@ -120,6 +120,7 @@
                              </thead>
                              <tbody>
                              </tbody>
+                             <tfoot><button id="abcc">123</button></tfoot>
                          </table>
                      </div>
 
@@ -173,6 +174,7 @@
     page.element.frmListProduct = $("#tableListProducts tbody");
     page.element.tempProduct = $("#tempProduct");
     page.element.btnGoCreateProduct = $(".btn-go-add-product")
+    page.element.btnShowMore = $("#abcc")
 
     let product = new Product();
     let category = new Category();
@@ -193,6 +195,24 @@
             let product = data;
         })
     }
+    page.dialogs.commands.showMore = () =>{
+        page.element.btnShowMore.on("click",() =>{
+            $.ajax({
+                "method" : "GET",
+                "url" : page.url.GetProduct
+            }).done((data) => {
+                console.log(data)
+                $.each(data, (i, item) => {
+                    if(i < 9){return}
+                    product = item;
+                    page.commands.addRow();
+                });
+            }).fail((e) =>{
+                console.log(e);
+            })
+
+        })
+    }
 
     page.dialogs.commands.getAllProduct = () => {
         $.ajax({
@@ -201,6 +221,7 @@
         }).done((data) => {
             console.log(data)
             $.each(data, (i, item) => {
+                if(i > 1){return}
                 product = item;
                 page.commands.addRow();
             });

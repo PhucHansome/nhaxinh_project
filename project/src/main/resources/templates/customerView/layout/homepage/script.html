@@ -1215,6 +1215,8 @@
             }).done((data) => {
                 console.log(data)
                 $.each(data, (i, item) => {
+                    if(i > 7){return}
+                    console.log(i)
                     product = item;
                     page.commands.addCartBotLine();
                 })
