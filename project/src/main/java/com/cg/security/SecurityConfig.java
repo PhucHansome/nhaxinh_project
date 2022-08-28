@@ -62,12 +62,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/detail","/login", "/search", "/login_admin",
-                        "/api/auth/register","/api/auth/login","/cart","/cart_details").permitAll()
+                        "/api/auth/register","/api/auth/login","/cart","/cart_details"
+                ,"/api/products").permitAll()
                 .antMatchers("/product-dashboard", "/create-product-dashboard", "/edit-product-dashboard","/detail-product-dashboard",
                         "/user-dashboard","/create-user-dashboard",
                         "/edit-user-dashboard","/detail-user-dashboard","/home-dashboard").hasAnyAuthority("ADMIN")
                 .antMatchers("/assets/**", "/assets_dashboard/**", "/META-INF").permitAll()
-                .antMatchers("https://nhaxinh.com/public/asset/**").permitAll()
+                .antMatchers("https://nhaxinh.com/public/assets/**").permitAll()
                 .antMatchers(
                         "/v2/api-docs",
                         "/swagger-resources/configuration/ui",

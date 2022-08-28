@@ -328,9 +328,6 @@
             id="devvn_tinhthanhpho-js"></script>
     <script type="text/javascript" src="/assets/HomePageFile/hooks.min.js.tải xuống" id="wp-hooks-js"></script>
     <script type="text/javascript" src="/assets/HomePageFile/i18n.min.js.tải xuống" id="wp-i18n-js"></script>
-    <script type="text/javascript" id="wp-i18n-js-after">
-        wp.i18n.setLocaleData({'text direction\u0004ltr': ['ltr']});
-    </script>
     <script type="text/javascript" src="/assets/HomePageFile/jquery.form.min.js.tải xuống" id="jquery-form-js"></script>
     <script type="text/javascript" src="/assets/HomePageFile/jquery.blockUI.min.js.tải xuống"
             id="jquery-blockui-js"></script>
@@ -1058,14 +1055,15 @@
     <div id="divRectangleMeasureIt">
         <div id="divRectangleBGMeasureIt"></div>
     </div>
-    <script src="/assets/js_css/js/app.js"></script>
+    <!--    <script src="/assets/js_css/js/app.js"></script>-->
     <script src="/assets/js_css/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js_css/js/iziToast.min.js"></script>
-    <script src="/assets/js_css/js/jquery.validate-1.19.3.min.js"></script>
     <script src="/assets/js_css/js/jquery-3.6.0.min.js"></script>
     <script src="/assets/js_css/js/jquery-ui.min.js"></script>
-    <script src="/assets/js_css/js/sweetalert2.min.js"></script>
-
+    <!--    <script src="/assets/js_css/js/sweetalert2.min"></script>-->
+    <script src="/assets/js_css/js/jquery.validate-1.19.3.min.js"></script>
+    <script src="/assets/js/scriptAll.js"></script>
+    <script src="/assets/js/magnific-popup-1.1.0.js"></script>
     <script>
         $("#cart_").on("click", function () {
             let str = `<div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
@@ -1155,20 +1153,78 @@
             handleCloseCart()
         })
 
-        $(".phong_dropdown").on("mouseenter", function(){
+        $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
-        $(".phong_dropdown").on("mouseleave", function(){
+        $(".phong_dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
-        $(".sanpham_dropdown").on("mouseenter", function(){
+        $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top':'64.6042px'});
+            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
-        $(".sanpham_dropdown").on("mouseleave", function(){
+        $(".sanpham_dropdown").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
+        })
+    </script>
+    <script>
+        // let product = new Product();
+        let page = {
+            url: {
+                CreateProduct: App.BASE_URL_PRODUCT,
+                GetProduct: App.BASE_URL_PRODUCT,
+                GetImageProduct: App.BASE_URL_PRODUCT + "/product-image",
+                GetCategory: App.BASE_URL_CATEGORY,
+                GetProductColor: App.BASE_URL_PRODUCTCOLOR,
+                PostProduct: App.BASE_URL_PRODUCT,
+                PostTag: App.BASE_URL_TAG + "/id"
+            },
+            element: {},
+            loadData: {},
+            commands: {},
+            dialogs: {
+                element: {},
+                loadData: {},
+                commands: {},
+                close: {},
+                alertDanger: {},
+                inputError: {}
+            }
+        }
+
+        page.element.cart_product = $("#cart_product")
+        page.element.cart_cartBotLine = $("#product-grid-1457246667")
+        page.element.imagePare = $("#imagePare")
+
+        let cart_product = jQuery.validator.format($.trim(page.element.cart_product.val().toString()));
+
+        page.commands.addCartBotLine = () => {
+            page.element.cart_cartBotLine.prepend($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(product.price))));
+        }
+
+
+        page.dialogs.loadData.getAllProduct = () => {
+            $.ajax({
+                "method": "GET",
+                "url": page.url.GetProduct
+            }).done((data) => {
+                console.log(data)
+                $.each(data, (i, item) => {
+                    product = item;
+                    page.commands.addCartBotLine();
+                })
+            }).fail((e) => {
+                console.log(e)
+            })
+        }
+
+        $(function () {
+            page.dialogs.loadData.getAllProduct()
         })
     </script>
 </th:block>

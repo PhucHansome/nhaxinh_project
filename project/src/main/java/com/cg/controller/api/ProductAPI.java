@@ -72,6 +72,12 @@ public class ProductAPI {
         }
     }
 
+    @GetMapping("/product-image/{product_mediaID}")
+    private ResponseEntity<?> getProductImage(@PathVariable String product_mediaID){
+        List<ProductMediaDTO> productMedia = productMediaService.findAllByProductId(product_mediaID);
+        return new ResponseEntity<>(productMedia, HttpStatus.OK);
+    }
+
     @PostMapping("/{idCategory}/{idProductColor}")
     public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
