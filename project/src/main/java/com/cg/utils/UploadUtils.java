@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Component
 public class UploadUtils {
-    public static final String IMAGE_UPLOAD_FOLDER = "product_images";
+    public static final String IMAGE_UPLOAD_FOLDER = "Product_Image_Nhaxinh";
     public static final String VIDEO_UPLOAD_FOLDER = "product_videos";
 
     public Map buildImageUploadParams(ProductMedia productMedia) {

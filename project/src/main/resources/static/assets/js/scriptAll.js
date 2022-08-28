@@ -6,6 +6,7 @@ class App {
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CATEGORY = this.DOMAIN + "/api/category"
     static BASE_URL_PRODUCTCOLOR = this.DOMAIN + "/api/products/product-color"
+    static BASE_URL_TAG = this.DOMAIN + "/api/tag"
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
     static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
@@ -86,14 +87,6 @@ class ProductColor {
     }
 }
 
-class Tag {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-
-    }
-
-}
 
 class Product{
     constructor(id ,title ,code ,price ,quantity ,status ,description ,slug ,size ,material ,image ,category ,productColor ,tag ,createdAt ,fileId ,fileName ,fileFolder ,fileType ,fileUrl) {
@@ -118,6 +111,14 @@ class Product{
     this.fileType = fileType;
     this.fileUrl = fileUrl;
     }
+}
+
+class Tag {
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
+
 }
 
 

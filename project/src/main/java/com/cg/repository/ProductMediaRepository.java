@@ -5,10 +5,13 @@ import com.cg.model.ProductMedia;
 import com.cg.model.dto.ProductMediaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Repository
 public interface ProductMediaRepository extends JpaRepository<ProductMedia, String> {
 
     Optional<ProductMedia> findByProduct(Product product);
@@ -20,5 +23,9 @@ public interface ProductMediaRepository extends JpaRepository<ProductMedia, Stri
             "WHERE pm.product.id = ?1"
     )
     List<ProductMediaDTO> findAllByProductId(String id);
+
+
+    Optional<ProductMedia> findTopByProductOrderByTsAsc(Product product);
+
 
 }

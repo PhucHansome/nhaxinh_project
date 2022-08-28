@@ -27,4 +27,6 @@ public interface ProductService {
 
     Product save(Product Product);
 
+    Optional<ProductDTO> findProductDTOById (String id);
+
 }

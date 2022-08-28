@@ -190,7 +190,6 @@
             "method" : "GET",
             "url" : page.url.GetProduct + "/" + id
         }).done((data)=>{
-            console.log(data);
             let product = data;
         })
     }
@@ -202,7 +201,6 @@
         }).done((data) => {
             console.log(data)
             $.each(data, (i, item) => {
-                console.log(item)
                 product = item;
                 page.commands.addRow();
             });

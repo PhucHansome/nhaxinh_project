@@ -1,9 +1,11 @@
 package com.cg.service.productmedia;
 
+import com.cg.model.Product;
 import com.cg.model.ProductMedia;
 import com.cg.model.dto.ProductMediaDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductMediaService {
 
@@ -13,5 +15,8 @@ public interface ProductMediaService {
 
     List<ProductMediaDTO> findAllByProductId(String productId);
 
+    Optional<ProductMedia> findTopByProductOrderByTsAsc(Product product);
+
     void delete(ProductMedia productMedia);
+
 }

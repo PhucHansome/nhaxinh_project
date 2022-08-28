@@ -85,17 +85,18 @@ public class ProductAPI {
 
         try {
             Product createdProduct = productService.create(productDTO);
-            List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductId(createdProduct.getId());
-            for (ProductMediaDTO productMediaDTO1 : productMediaDTO) {
-                if(createdProduct.getImage().contains("null")) {
-                    createdProduct.setImage(productMediaDTO1.getFileUrl());
-                    Optional<Product> productUpdateImage = productService.findById(createdProduct.getId());
-                    productUpdateImage.get().setImage(productMediaDTO1.getFileUrl());
-                    productService.save(productUpdateImage.get());
-                    return new ResponseEntity<>(productUpdateImage.get().toProductDTO(), HttpStatus.CREATED);
-                }
+
+            Optional<ProductMedia> productMediaOptional = productMediaService.findTopByProductOrderByTsAsc(createdProduct);
+
+            if (!productMediaOptional.isPresent()) {
+                throw new DataInputException("Product creation information is not valid, please check the information again");
             }
-            return new ResponseEntity<>(createdProduct, HttpStatus.ACCEPTED);
+
+            createdProduct.setImage(productMediaOptional.get().getFileUrl());
+            productService.save(createdProduct);
+
+            return new ResponseEntity<>(createdProduct.toProductDTO(), HttpStatus.CREATED);
+
         } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Product creation information is not valid, please check the information again");
         }

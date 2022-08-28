@@ -118,6 +118,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(Product);
     }
 
+    @Override
+    public Optional<ProductDTO> findProductDTOById(String id) {
+        return productRepository.findProductDTOById(id);
+    }
+
     private void uploadAndSaveProductImage(ProductDTO productDTO, Product product, ProductMedia productMedia) {
         try {
             Map uploadResult = uploadService.uploadImage(productDTO.getFile(), uploadUtils.buildImageUploadParams(productMedia));
