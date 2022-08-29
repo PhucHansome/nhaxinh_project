@@ -116,10 +116,13 @@
                                  <th class="align-middle text-center">Giá tiền</th>
                                  <th class="align-middle text-center">Trạng thái</th>
                                  <th class="align-middle text-center">Ngày khởi tạo</th>
+
                              </tr>
                              </thead>
                              <tbody>
+
                              </tbody>
+                             <tfoot> <button id="abc">t</button></tfoot>
                          </table>
                      </div>
              </div>
@@ -172,6 +175,7 @@
     page.element.frmListProduct = $("#tableListProducts tbody");
     page.element.tempProduct = $("#tempProduct");
     page.element.btnGoCreateProduct = $(".btn-go-add-product")
+    page.element.btnShowMore = $('#abc');
 
     let product = new Product();
     let category = new Category();
@@ -217,8 +221,12 @@
             "method" : "GET",
             "url" : page.url.GetProduct
         }).done((data) => {
+
             console.log(data)
             $.each(data, (i, item) => {
+                if (i>9){
+                    return
+                }
                 product = item;
                 page.commands.addRow();
                 console.log(data)
@@ -227,6 +235,25 @@
             console.log(e);
         })
 
+    }
+    page.dialogs.commands.showMore = () => {
+        page.element.btnShowMore.on("click", () => {
+            $.ajax({
+                "method": "GET",
+                "url": page.url.GetProduct
+            }).done((data) => {
+                console.log(data)
+                $.each(data, (i, item) => {
+                    if (i < 9) {
+                        return
+                    }
+                    product = item;
+                    page.commands.addRow();
+                });
+            }).fail((e) => {
+                console.log(e);
+            })
+        })
     }
 
     page.dialogs.commands.goCreateProduct = () => {
@@ -238,7 +265,9 @@
     $(function (){
         page.dialogs.commands.getAllProduct();
         page.dialogs.commands.goCreateProduct();
+        page.dialogs.commands.showMore();
     })
+
 </script>
 </body>
 </html>

@@ -1189,9 +1189,10 @@
             }).done((data) => {
                 console.log(data)
                 $.each(data, (i, item) => {
-                    // if(i > 7){return}
                     console.log(i)
                     product = item;
+                    if(i > 7){return}
+
                     page.commands.addCartBotLine();
                 })
                 page.commands.handleCreateCart()
@@ -1308,4 +1309,5 @@
             page.commands.handleShowCart()
         })
     </script>
+
 </th:block>

@@ -33,6 +33,8 @@ public class CustomerInfoDTO {
 
     private Date createAt;
 
+    private Date updatedAt ;
+
 
 
     public CustomerInfoDTO(String id, String userName, String fullName, String phone, BigDecimal debt, LocationRegion locationRegion, Date createAt) {
@@ -43,6 +45,16 @@ public class CustomerInfoDTO {
         this.debt = debt;
         this.locationRegion = locationRegion.toLocationRegionDTO();
         this.createAt = createAt;
+    }
+
+    public CustomerInfoDTO(String id, String userName, String fullName, String phone, LocationRegion locationRegion, Date createAt, Date updatedAt) {
+        this.id = id;
+        this.userName = userName;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.locationRegion = locationRegion.toLocationRegionDTO();
+        this.createAt = createAt;
+        this.updatedAt = updatedAt;
     }
 
     public CustomerInfo toCustomerInfo() {

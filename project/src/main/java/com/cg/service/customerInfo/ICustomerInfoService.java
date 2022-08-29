@@ -6,9 +6,13 @@ import com.cg.model.dto.UserDTO;
 import com.cg.service.IGeneralService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ICustomerInfoService extends IGeneralService<CustomerInfo> {
 
     List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse();
+
+    Optional<CustomerInfoDTO> findUserDTOById(Long id);
+
 
 }
