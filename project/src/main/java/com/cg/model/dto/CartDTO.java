@@ -2,6 +2,7 @@ package com.cg.model.dto;
 
 
 import com.cg.model.Cart;
+import com.cg.model.CartItem;
 import com.cg.model.LocationRegion;
 import com.cg.model.User;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,6 +39,8 @@ public class CartDTO {
 
     private CustomerInfoDTO customerInfo;
 
+    private CartItemsDTO cartItems;
+
     public Cart toCart() {
         return new Cart()
                 .setId(Long.valueOf(id))
@@ -45,6 +49,8 @@ public class CartDTO {
                 .setPhone(phone)
                 .setContent(content)
                 .setCustomerInfo(customerInfo.toCustomerInfo())
-                .setDeleted(deleted);
+                .setDeleted(deleted)
+                .setCartItems((List<CartItem>) cartItems)
+               ;
     }
 }

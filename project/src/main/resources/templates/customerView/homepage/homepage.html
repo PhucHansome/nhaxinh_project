@@ -153,8 +153,47 @@
     <!--navbar end-->
 
     <main id="main" class="">
-        <div class="chua_cart"></div>
+        <div class="chua_cart">
+            <div class="showCart" style="display: none;">
+                <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+                <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1"
+                     style="overflow: hidden auto;">
+                    <div class="mfp-container mfp-s-ready mfp-inline-holder">
+                        <div class="mfp-content off-canvas-cart">
+                            <div id="cart-popup" class="widget_shopping_cart">
+                                <div class="cart-popup-inner inner-padding">
+                                    <div class="cart-popup-title text-center">
+                                        <h4 class="uppercase">Cart</h4>
+                                        <div class="is-divider"></div>
+                                    </div>
+                                    <div class="widget_shopping_cart_content" id="seeCartItems">
 
+                                    </div>
+                                    <div id="seeGrandTotal">
+
+                                    </div>
+                                    <p class="woocommerce-mini-cart__buttons buttons"><a
+                                            href="http://localhost:8092/cart"
+                                            class="button wc-forward">Xem giỏ
+                                        hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                                   class="button checkout wc-forward">Checkout</a></p>
+                                    <div class="cart-sidebar-content relative"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mfp-preloader">Loading...</div>
+                    </div>
+                    <button title="Close (Esc)" type="button" class="mfp-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-x">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div id="content" role="main" class="content-area">
 
 
@@ -555,7 +594,8 @@
                                 <div class="ct_design">
                                     <h2>Đồ trang trí</h2>
                                     <p>Mang lại những nguồn cảm hứng và nét sinh động cho không gian</p>
-                                    <p><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">KHÁM PHÁ <i class="fa-solid fa-arrow-right"></i></a></p>
+                                    <p><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">KHÁM PHÁ <i
+                                            class="fa-solid fa-arrow-right"></i></a></p>
                                 </div>
 
                             </div>
@@ -609,7 +649,8 @@
                                                 <h2>Không gian phòng ngủ</h2>
                                                 <p>Những mẫu phòng ngủ của Nhà Xinh mang đến cảm giác ấm cúng, gần gũi
                                                     và thoải mái</p>
-                                                <p><a href="https://nhaxinh.com/phong-ngu/">MẪU PHÒNG NGỦ <i class="fa-solid fa-arrow-right"></i></a></p>
+                                                <p><a href="https://nhaxinh.com/phong-ngu/">MẪU PHÒNG NGỦ <i
+                                                        class="fa-solid fa-arrow-right"></i></a></p>
                                             </div>
 
                                         </div>
@@ -650,7 +691,8 @@
                                     <h2>Không gian phòng ăn</h2>
                                     <p>Một bữa ăn ngon luôn là mong ước của mỗi gia đình. Không gian phòng ăn đóng vai
                                         trò rất quan trọng trong văn hóa Việt</p>
-                                    <p><a href="https://nhaxinh.com/phong-an/">MẪU PHÒNG ĂN <i class="fa-solid fa-arrow-right"></i></a></p>
+                                    <p><a href="https://nhaxinh.com/phong-an/">MẪU PHÒNG ĂN <i
+                                            class="fa-solid fa-arrow-right"></i></a></p>
                                 </div>
 
                             </div>
@@ -814,7 +856,8 @@
             <div class="container section-title-container" style="margin-top:50px;"><h3
                     class="section-title section-title-normal"><b></b><span
                     class="section-title-main">Sản phẩm mới</span><b></b><a href="https://nhaxinh.com/cua-hang"
-                                                                            target="">xem tất cả<i class="fa-solid fa-angle-right"></i></a></h3></div>
+                                                                            target="">xem tất cả<i
+                    class="fa-solid fa-angle-right"></i></a></h3></div>
 
 
             <div id="product-grid-1457246667"
@@ -4376,6 +4419,7 @@ Có nhiều người thích trang trí nhà với những chậu cây xanh, vài
 <th:block th:replace="/customerView/layout/homepage/mobie-sidebar::mobie-sidebar"/>
 <th:block th:replace="/customerView/layout/homepage/categorymenu::categorymenu"/>
 <th:block th:replace="/customerView/homepage/list-see-product::list-see-product"/>
+<th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
 
 <th:block th:replace="/customerView/layout/homepage/script::script"/>
 </body>

@@ -22,30 +22,29 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    private String userName;
 
     @ManyToOne
-    @JoinColumn(name="cart_id", nullable = false)
-    private Cart cart;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     private BigDecimal price;
 
     private BigDecimal quantity;
 
-    private String content;
+    private BigDecimal grandTotal;
 
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
     public CartItemsDTO toCartItemDTO() {
         return new CartItemsDTO()
-                .setId(String.valueOf(id))
+                .setId(id)
                 .setProduct(product.toProductDTO())
-                .setCart(cart.toCartDTO())
                 .setPrice(price)
                 .setQuantity(quantity)
-                .setContent(content);
+                .setGrandTotal(grandTotal)
+                .setUserName(userName);
+
     }
 }

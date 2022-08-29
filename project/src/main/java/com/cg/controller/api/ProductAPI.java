@@ -52,12 +52,12 @@ public class ProductAPI {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findProductById(@PathVariable String id) {
-        IProductDTO productDTOOptional = productService.findIProductDTOById(id);
-        if (productDTOOptional == null) {
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        if (!productDTOOptional.isPresent()) {
             throw new DataInputException("Product is not found");
         }
 
-        return new ResponseEntity<>(productDTOOptional, HttpStatus.OK);
+        return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
     }
 
     @GetMapping("/product-color")

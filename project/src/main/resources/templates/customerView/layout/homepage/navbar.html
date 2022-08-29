@@ -52,9 +52,7 @@
                                    data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
 
 
-  		<span class="image-icon header-cart-icon" data-icon-label="2">
-			<img class="cart-img-icon" alt="Cart" src="/assets/HomePageFile/ic-shopping.png">
-		</span>
+
 
                                 </a>
 
@@ -128,10 +126,10 @@
      has-dropdown">
 
                                 <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
-  is-small" title="Tài khoản của tôi">
+  is-small" >
 
 
-			<span th:text="${userDTO}" class="header-account-title">
+			<span th:text="${userDTO}" id="EmailLogin" class="header-account-title">
 		</span>
 
 

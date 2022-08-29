@@ -81,6 +81,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "And c.deleted = false")
     Optional<ProductDTO> findProductDTOById (String id);
 
+
+
+
     @Query("SELECT " +
             "pm.product.id AS id, " +
             "pm.product.code AS code, " +

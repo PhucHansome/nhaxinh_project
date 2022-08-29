@@ -1,6 +1,7 @@
 package com.cg.model.dto;
 
 
+import com.cg.model.Cart;
 import com.cg.model.CartItem;
 import com.cg.model.Product;
 import com.cg.model.User;
@@ -21,28 +22,38 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class CartItemsDTO {
 
-    private String id;
+    private Long id;
+
+    private String userName;
 
     private ProductDTO product;
-
-    private CartDTO cart;
 
     private BigDecimal price;
 
     private BigDecimal quantity;
 
+    private BigDecimal grandTotal;
+
     private boolean deleted;
 
-    private String content;
+    public CartItemsDTO(Long id, String userName, Product product, BigDecimal price, BigDecimal quantity, BigDecimal grandTotal) {
+        this.id = id;
+        this.userName = userName;
+        this.product = product.toProductDTO();
+        this.price = price;
+        this.quantity = quantity;
+        this.grandTotal = grandTotal;
+    }
 
     public CartItem toCartItem() {
         return new CartItem()
-                .setId(Long.valueOf(id))
+                .setId(id)
                 .setProduct(product.toProduct())
-                .setCart(cart.toCart())
                 .setPrice(price)
                 .setQuantity(quantity)
-                .setContent(content)
-                .setDeleted(deleted);
+                .setGrandTotal(grandTotal)
+                .setDeleted(deleted)
+                .setUserName(userName)
+                ;
     }
 }
