@@ -1215,7 +1215,10 @@
             }).done((data) => {
                 console.log(data)
                 $.each(data, (i, item) => {
+                    console.log(item)
                     product = item;
+                    if(i > 7){return}
+
                     page.commands.addCartBotLine();
                 })
             }).fail((e) => {
@@ -1227,4 +1230,5 @@
             page.dialogs.loadData.getAllProduct()
         })
     </script>
+
 </th:block>

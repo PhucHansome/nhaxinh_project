@@ -366,6 +366,21 @@
 
     page.element.listProductColor = $(".productColorList")
 
+
+    page.commands.formatNumber = () => {
+
+        $(document).on('input', '.num-space',function (e) {
+            $(this).val(App.formatNumberSpace($(this).val()));
+        })
+        $('input.num-space').on("keypress",function (e){
+            let charCode = (e.which) ? e.which : e.keyCode
+
+            if (String.fromCharCode(charCode).match(/[^0-9]/g))
+                return false;
+        });
+    }
+
+
     page.dialogs.loadData.drawListCategory = () => {
         $.ajax({
             "type": "GET",
@@ -447,6 +462,18 @@
                 }).done((item) => {
                     console.log(item)
                     $(".mla").remove()
+                    formData.delete("files")
+                    formData.delete("code");
+                    formData.delete("title");
+                    formData.delete("price");
+                    formData.delete("quantity");
+                    formData.delete("status");
+                    formData.delete("description");
+                    formData.delete("slug");
+                    formData.delete("size");
+                    formData.delete("material");
+                    formData.delete("image");
+                    page.element.btnSave.off()
                     page.element.priceProduct.val("")
                     page.element.productName.val("")
                     page.element.quantityProduct.val("")
@@ -474,6 +501,8 @@
 
     page.commands.image_select = () => {
         images = []
+        page.element.btnSave.off()
+
         formData = new FormData()
         let fileInput = $("#image")[0].files;
         if (fileInput.length > 4) {
@@ -519,6 +548,8 @@
     $(function () {
         page.dialogs.loadData.drawListCategory();
         page.dialogs.loadData.drawListProductColor();
+        page.commands.formatNumber();
+
     })
 </script>
 </body>

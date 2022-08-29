@@ -56,7 +56,34 @@ class App {
             });
         }
     }
+
+    static formatNumber() {
+        $(".num-space").number(true, 0, ',', ' ');
+        $(".num-point").number(true, 0, ',', '.');
+        $(".num-comma").number(true, 0, ',', ',');
+    }
+
+    static formatNumberSpace(x) {
+        if (x == null) {
+            return x;
+        }
+        return x.toString().replace(/ /g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    static removeFormatNumberSpace(x) {
+        if (x == null) {
+            return x;
+        }
+        return x.toString().replace(/ /g, "")
+    }
+
+    static formatTooltip() {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
+
 }
+
 
 class Role{
     constructor(id, code) {

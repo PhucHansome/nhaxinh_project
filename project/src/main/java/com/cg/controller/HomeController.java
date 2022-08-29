@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
@@ -164,6 +168,26 @@ public class HomeController {
         return modelAndView;
     }
 
+
+
+    @RequestMapping("/")
+    public String detailCustomerinfo(){
+        return "/dashboard/userDashboard/user";
+    }
+
+    @RequestMapping("/redirect")
+    public RedirectView redirect(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
+        System.out.println(name);
+        redirectAttributes.addAttribute("name", name);
+        return new RedirectView("/dashboard/userDashboard/detail-user");
+    }
+    @RequestMapping("/detail-user-dashboard")
+    public String page2(@RequestParam("name") String name, Model model) {
+        model.addAttribute("name", name.toUpperCase());
+        return "/detail-user-dashboard";
+    }
+
+
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
@@ -189,6 +213,7 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/userDashboard/detail-user");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+
         return modelAndView;
     }
 
