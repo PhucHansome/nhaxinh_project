@@ -149,7 +149,7 @@
 <div id="wrapper">
 
 
-    <header id="header" class="header has-sticky sticky-jump">
+    <header id="header" class="header has-sticky sticky-jump" >
         <div class="header-wrapper">
 
             <div id="top-bar" class="header-top hide-for-sticky">
@@ -215,7 +215,7 @@
   is-small" title="Tài khoản của tôi">
 
 
-			<span th:text="${userDTO}" class="header-account-title">
+			<span th:text="${userDTO}"  id="EmailLogin" class="header-account-title">
 		</span>
 
 
@@ -1014,9 +1014,50 @@
     </header>
 
 
-    <main id="main" class="">
+    <main id="main" style="
+    bottom: -140px;
+" class="">
 
-        <div class="chua_cart"></div>
+        <div class="chua_cart"><div class="showCart" style="display: none;">
+            <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+            <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1"
+                 style="overflow: hidden auto;">
+                <div class="mfp-container mfp-s-ready mfp-inline-holder">
+                    <div class="mfp-content off-canvas-cart">
+                        <div id="cart-popup" class="widget_shopping_cart">
+                            <div class="cart-popup-inner inner-padding">
+                                <div class="cart-popup-title text-center">
+                                    <h4 class="uppercase">Cart</h4>
+                                    <div class="is-divider"></div>
+                                </div>
+                                <div class="widget_shopping_cart_content" id="seeCartItems">
+
+                                </div>
+                                <div id="seeGrandTotal">
+
+                                </div>
+                                <p class="woocommerce-mini-cart__buttons buttons"><a
+                                        href="http://localhost:8092/cart"
+                                        class="button wc-forward">Xem giỏ
+                                    hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                               class="button checkout wc-forward">Checkout</a></p>
+                                <div class="cart-sidebar-content relative"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mfp-preloader">Loading...</div>
+                </div>
+                <button title="Close (Esc)" type="button" class="mfp-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        </div>
         <div class="checkout-page-title page-title">
             <!-- <h1 class="cart-title">Checkout details</h1> -->
         </div>
@@ -2282,6 +2323,7 @@
         </ul>
     </div>
 </div>
+<th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
 <th:block th:replace="/customerView/layout/chitiet_giohang/script::script"/>
 </body>
 </html>

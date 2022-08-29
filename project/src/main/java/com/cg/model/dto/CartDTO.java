@@ -1,10 +1,7 @@
 package com.cg.model.dto;
 
 
-import com.cg.model.Cart;
-import com.cg.model.CartItem;
-import com.cg.model.LocationRegion;
-import com.cg.model.User;
+import com.cg.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,32 +22,17 @@ public class CartDTO {
 
     private String id;
 
-    private User user;
-
-    private String fullName;
-
-    private String status;
-
-    private String phone;
-
-    private String content;
-
-    private boolean deleted;
+    private UserDTO user;
 
     private CustomerInfoDTO customerInfo;
 
-    private CartItemsDTO cartItems;
+    private Product product;
 
     public Cart toCart() {
         return new Cart()
                 .setId(Long.valueOf(id))
-                .setFullName(fullName)
-                .setStatus(status)
-                .setPhone(phone)
-                .setContent(content)
+                .setUser(user.toUser())
                 .setCustomerInfo(customerInfo.toCustomerInfo())
-                .setDeleted(deleted)
-                .setCartItems((List<CartItem>) cartItems)
                ;
     }
 }

@@ -30,7 +30,7 @@ public interface CartItemRepository extends JpaRepository<CartItem,Long> {
             "c.product , " +
             "c.price ," +
             "c.quantity, " +
-            "c.grandTotal" +
+            "c.grandTotal " +
             " )  " +
             "FROM CartItem c  WHERE c.userName Like ?1 And c.product.code like ?2  And c.deleted = false ")
     Optional<CartItemsDTO> getCartItemDTOById(String userName, String code);

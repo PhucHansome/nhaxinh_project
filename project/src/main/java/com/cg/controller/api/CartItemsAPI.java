@@ -59,4 +59,9 @@ public class CartItemsAPI {
             throw new RuntimeException("Out");
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteCartItem(@PathVariable Long id){
+        cartItemService.remove(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

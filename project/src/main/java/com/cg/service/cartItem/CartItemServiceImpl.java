@@ -1,8 +1,11 @@
 package com.cg.service.cartItem;
 
+import com.cg.model.Cart;
 import com.cg.model.CartItem;
 import com.cg.model.dto.CartItemsDTO;
 import com.cg.repository.CartItemRepository;
+import com.cg.repository.CartRepoSitory;
+import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +54,7 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     public void remove(Long id) {
-
+        cartItemRepository.deleteById(id);
     }
 
     @Override

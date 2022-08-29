@@ -37,6 +37,7 @@ public class CartItem {
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
 
+
     public CartItemsDTO toCartItemDTO() {
         return new CartItemsDTO()
                 .setId(id)
