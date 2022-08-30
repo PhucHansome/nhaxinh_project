@@ -1,6 +1,7 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.CustomerInfo;
 import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.service.customerInfo.ICustomerInfoService;
@@ -15,8 +16,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/customerInfo")
@@ -51,4 +54,15 @@ public class CustomerInfoAPI {
           CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
         return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
       }
+
+    @GetMapping("/{id}")
+    public ModelAndView showCustomerInfoDetail(@PathVariable long id) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/userDashboard/detail-user");
+        Optional<CustomerInfo> customerInfo = customerInfoService.findById(id);
+        modelAndView.addObject("customerInfo", customerInfo);
+        return modelAndView;
+    }
+
 }

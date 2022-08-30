@@ -60,4 +60,9 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
     public List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse() {
         return customerInfoRepository.findAllCustomerInfoDTOByDeletedIsFailse();
     }
+
+    @Override
+    public Optional<CustomerInfoDTO> findUserDTOById(Long id) {
+        return customerInfoRepository.findUserDTOById(id);
+    }
 }
