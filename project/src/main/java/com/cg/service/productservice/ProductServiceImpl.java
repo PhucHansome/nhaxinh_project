@@ -61,10 +61,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product create(ProductDTO productDTO) {
         List<MultipartFile> fileList = productDTO.getFiles();
-
-
         Product product = productRepository.save(productDTO.toProduct());
-
         for (MultipartFile file : fileList) {
             String fileType = file.getContentType();
 

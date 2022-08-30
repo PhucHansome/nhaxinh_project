@@ -1340,8 +1340,6 @@
     <script src="/assets/js_css/js/jquery.validate-1.19.3.min.js"></script>
     <script src="/assets/js/scriptAll.js"></script>
     <script src="/assets/js/magnific-popup-1.1.0.js"></script>
-
-
     <script>
         $(".menu_bar").on("click", () => {
             let str = `
@@ -1392,18 +1390,18 @@
             handleCloseCart()
         })
 
-        $(".phong_dropdown").on("mouseenter", function(){
+        $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
-        $(".phong_dropdown").on("mouseleave", function(){
+        $(".phong_dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
-        $(".sanpham_dropdown").on("mouseenter", function(){
+        $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top':'64.6042px'});
+            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
-        $(".sanpham_dropdown").on("mouseleave", function(){
+        $(".sanpham_dropdown").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
@@ -1414,10 +1412,13 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
+                GetCartItemsId: App.BASE_URL_CARTITEM +"/id",
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
-                DeleteCartItem : App.BASE_URL_CARTITEM
+                PutCartReduce: App.BASE_URL_CARTITEM + "/reduce",
+                PutCartIncreasing: App.BASE_URL_CARTITEM + "/increasing",
+                DeleteCartItem: App.BASE_URL_CARTITEM
             },
             element: {},
             loadData: {},
@@ -1431,6 +1432,7 @@
                 inputError: {}
             }
         }
+
         let carItem = new CartItems();
 
         page.element.cart_product = $("#cart_product_view")
@@ -1438,17 +1440,37 @@
         page.element.userNameLo = $("#header-account-title");
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
+        page.element.tableListCartItem = $(".woocommerce-cart-form__contents tbody")
+        page.element.list_total_All = $(".total_All tbody")
+        page.element.cart_product_line = $("#cart_product_line")
+        page.element.cart_product_total = $("#cart_product_total")
 
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
 
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
+        let cart_item_product_inline = jQuery.validator.format($.trim(page.element.cart_product_line.val().toString()));
+        let cart_item_product_inline_total = jQuery.validator.format($.trim(page.element.cart_product_total.val().toString()));
+
+        page.commands.totalCartProduct = (sum) => {
+            page.element.list_total_All.prepend($(cart_item_product_inline_total(new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(sum))))
+        }
+
+        page.commands.showCartInline = () => {
+            page.element.tableListCartItem.prepend($(cart_item_product_inline(carItem.product.image, carItem.product.title, new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(carItem.price), carItem.quantity, carItem.id)));
+        }
 
         page.commands.addCartRow = () => {
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price),carItem.id)));
+            }).format(carItem.price), carItem.id)));
         }
 
         page.commands.getProductById = (id) => {
@@ -1471,7 +1493,27 @@
             })
         }
 
-        page.commands.showIconCart = () =>{
+        page.commands.getCartItemById = (id) => {
+            return $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                "method": "GET",
+                "url": page.url.GetCartItemsId + "/" + id
+            }).done((data) => {
+                console.log(data);
+                carItem = data;
+            }).fail((e) => {
+                console.log(e)
+                App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                setTimeout(function () {
+                    window.location.href = "/login"
+                }, 500);
+            })
+        }
+
+        page.commands.showIconCart = () => {
             $.ajax({
                 "type": "GET",
                 "url": page.url.GetCartItems,
@@ -1496,7 +1538,9 @@
                     page.commands.handleCloseCart()
                     let sum = 0
                     console.log(data)
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1511,17 +1555,17 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                     page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
                 })
             })
         }
 
-        page.commands.deleteCartById = (id) =>{
+        page.commands.deleteCartById = (id) => {
             $.ajax({
                 "method": "DELETE",
                 "url": page.url.DeleteCartItem + "/" + id
-            }).done(()=>{
+            }).done(() => {
                 App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
                 $.ajax({
                     "type": "GET",
@@ -1532,7 +1576,9 @@
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
                     let sum = 0
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1547,8 +1593,38 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                 })
+            })
+        }
+
+        page.commands.deleteInline = (id) => {
+            $.ajax({
+                "method": "DELETE",
+                "url": page.url.DeleteCartItem + "/" + id
+            }).done(() => {
+                App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
+                page.commands.showAllElementPage()
+            })
+        }
+
+        page.commands.showAllElementPage = () =>{
+            $.ajax({
+                "type": "GET",
+                "url": page.url.GetCartItems,
+            }).done((data) => {
+                page.element.tableListCartItem.html("")
+                if (data.length === 0) {
+                    page.element.tableListCartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                }
+                $(".total_count").text(data.length);
+                $.each(data, (i, item) => {
+                    carItem = item
+                    page.commands.showCartInline()
+                })
+                page.commands.showIconCart()
+                page.commands.handleShowCart();
+            }).fail(() => {
             })
         }
 
@@ -1558,10 +1634,89 @@
             })
         }
 
+        page.commands.handleReduceCartItem = (id) => {
+            page.commands.getCartItemById(id).then(() => {
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "PUT",
+                    "url": page.url.PutCartReduce,
+                    "data": JSON.stringify(carItem)
+                }).done((data) => {
+                    App.IziToast.showSuccessAlert("Giảm số lượng thành công")
+                    page.loadData.getAllItemOrder()
+                }).fail((jqXHR) => {
+                    console.log(jqXHR);
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            App.IziToast.showErrorAlert(item) ;
+                        })
+
+                    }
+                })
+            })
+        }
+
+        page.commands.handleIncreasingCartItem = (id) => {
+            page.commands.getCartItemById(id).then(() => {
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "PUT",
+                    "url": page.url.PutCartIncreasing,
+                    "data": JSON.stringify(carItem)
+                }).done((data) => {
+                    App.IziToast.showSuccessAlert("Tăng số lượng thành công")
+                    page.loadData.getAllItemOrder()
+                }).fail((jqXHR) => {
+                    console.log(jqXHR);
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            App.IziToast.showErrorAlert(item) ;
+                        })
+
+                    }
+                })
+            })
+        }
+
+        page.loadData.getAllItemOrder = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.GetCartItems,
+            }).done((data) => {
+                page.element.list_total_All.html("")
+                page.element.tableListCartItem.html("")
+                $(".total_count").text(data.length);
+                if (data.length === 0) {
+                    page.element.tableListCartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                }
+                let sum = 0
+                $.each(data, (i, item) => {
+                    carItem = item;
+                    sum += carItem.grandTotal
+                    page.commands.showCartInline()
+                })
+                page.commands.totalCartProduct(sum)
+            }).fail((jqXHR) => {
+                console.log(jqXHR);
+                if (jqXHR.responseJSON) {
+                    $.each(jqXHR.responseJSON, (key, item) => {
+                        App.IziToast.showErrorAlert(item) ;
+                    })
+
+                }
+            })
+        }
+
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
-
+            page.loadData.getAllItemOrder()
         })
     </script>
 </th:block>

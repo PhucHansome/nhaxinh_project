@@ -46,6 +46,5 @@ public class CartItem {
                 .setQuantity(quantity)
                 .setGrandTotal(grandTotal)
                 .setUserName(userName);
-
     }
 }

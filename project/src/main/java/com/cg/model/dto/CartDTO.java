@@ -26,11 +26,10 @@ public class CartDTO {
 
     private CustomerInfoDTO customerInfo;
 
-    private Product product;
 
     public Cart toCart() {
         return new Cart()
-                .setId(Long.valueOf(id))
+                .setId(id)
                 .setUser(user.toUser())
                 .setCustomerInfo(customerInfo.toCustomerInfo())
                ;

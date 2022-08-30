@@ -34,8 +34,6 @@ public class CartItemsDTO {
 
     private BigDecimal grandTotal;
 
-    private CartDTO cart;
-
     private boolean deleted;
 
     public CartItemsDTO(Long id, String userName, Product product, BigDecimal price, BigDecimal quantity, BigDecimal grandTotal) {

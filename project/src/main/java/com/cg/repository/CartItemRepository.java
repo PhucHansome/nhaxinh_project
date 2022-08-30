@@ -1,9 +1,7 @@
 package com.cg.repository;
 
 import com.cg.model.CartItem;
-import com.cg.model.Category;
 import com.cg.model.dto.CartItemsDTO;
-import com.cg.model.dto.CategoryDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -33,5 +31,16 @@ public interface CartItemRepository extends JpaRepository<CartItem,Long> {
             "c.grandTotal " +
             " )  " +
             "FROM CartItem c  WHERE c.userName Like ?1 And c.product.code like ?2  And c.deleted = false ")
-    Optional<CartItemsDTO> getCartItemDTOById(String userName, String code);
+    Optional<CartItemsDTO> getCartItemDTOByCode(String userName, String code);
+
+    @Query("SELECT NEW com.cg.model.dto.CartItemsDTO(" +
+            "c.id, " +
+            "c.userName, " +
+            "c.product , " +
+            "c.price ," +
+            "c.quantity, " +
+            "c.grandTotal " +
+            " )  " +
+            "FROM CartItem c  WHERE c.id = ?1  And c.deleted = false ")
+    Optional<CartItemsDTO> getCartItemDTOById(Long id);
 }
