@@ -1137,7 +1137,7 @@
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
-                DeleteCartItem : App.BASE_URL_CARTITEM
+                DeleteCartItem: App.BASE_URL_CARTITEM
             },
             element: {},
             loadData: {},
@@ -1178,8 +1178,8 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price),carItem.id)));
-
+            }).format(carItem.price), carItem.id)));
+        }
         page.commands.getProductById = (id) => {
             return $.ajax({
                 headers: {
@@ -1209,7 +1209,7 @@
             })
         }
 
-        page.commands.showIconCart = () =>{
+        page.commands.showIconCart = () => {
             $.ajax({
                 "type": "GET",
                 "url": page.url.GetCartItems,
@@ -1244,7 +1244,7 @@
                     }).done((data) => {
                         App.IziToast.showSuccessAlert("Đã thêm vào giỏ hàng thành công")
                         page.commands.showIconCart();
-                    }).fail(()=>{
+                    }).fail(() => {
                         page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
                     })
                 })
@@ -1263,7 +1263,9 @@
                     page.commands.handleCloseCart()
                     let sum = 0
                     console.log(data)
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1278,45 +1280,47 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                     page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
                 })
             })
         }
 
-        page.commands.deleteCartById = (id) =>{
-          $.ajax({
-              "method": "DELETE",
-              "url": page.url.DeleteCartItem + "/" + id
-          }).done(()=>{
-              App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
-              $.ajax({
-                  "type": "GET",
-                  "url": page.url.GetCartItems,
-              }).done((data) => {
-                  $("#seeGrandTotal").html("")
-                  page.element.container_cartItem.html("")
-                  $(".showCart").css({'display': 'block'})
-                  page.commands.handleCloseCart()
-                  let sum = 0
-                  if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
-                  $.each(data, (i, item) => {
-                      carItem = item
-                      sum += carItem.grandTotal;
-                      page.commands.addCartRow()
-                  })
-                  let str = `
+        page.commands.deleteCartById = (id) => {
+            $.ajax({
+                "method": "DELETE",
+                "url": page.url.DeleteCartItem + "/" + id
+            }).done(() => {
+                App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
+                $.ajax({
+                    "type": "GET",
+                    "url": page.url.GetCartItems,
+                }).done((data) => {
+                    $("#seeGrandTotal").html("")
+                    page.element.container_cartItem.html("")
+                    $(".showCart").css({'display': 'block'})
+                    page.commands.handleCloseCart()
+                    let sum = 0
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
+                    $.each(data, (i, item) => {
+                        carItem = item
+                        sum += carItem.grandTotal;
+                        page.commands.addCartRow()
+                    })
+                    let str = `
                        <p class="woocommerce-mini-cart__total total"     >
                        <strong>Thành tiền:</strong> <span class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                      style: 'currency',
-                      currency: 'VND'
-                  }).format(sum)}</bdi></span></p>`
-                  $("#seeGrandTotal").prepend(str)
-                  page.commands.showIconCart()
-                  page.commands.handleShowCart();
-              }).fail(()=>{
-              })
-          })
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(sum)}</bdi></span></p>`
+                    $("#seeGrandTotal").prepend(str)
+                    page.commands.showIconCart()
+                    page.commands.handleShowCart();
+                }).fail(() => {
+                })
+            })
         }
 
         page.commands.handleCloseCart = () => {
@@ -1332,7 +1336,9 @@
             }).done((data) => {
                 console.log(data)
                 $.each(data, (i, item) => {
-                    if(i > 7){return}
+                    if (i > 7) {
+                        return
+                    }
                     console.log(i)
                     product = item;
                     page.commands.addCartBotLine();
