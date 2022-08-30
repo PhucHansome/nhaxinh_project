@@ -1189,7 +1189,7 @@
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
-                DeleteCartItem : App.BASE_URL_CARTITEM
+                DeleteCartItem: App.BASE_URL_CARTITEM
             },
             element: {},
             loadData: {},
@@ -1210,17 +1210,38 @@
         page.element.userNameLo = $("#header-account-title");
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
+        page.element.total_OrderSumary= $("#total_OrderSumary")
+        page.element.line_item_orderSumary = $("#line_item_orderSumary")
+        page.element.orderSummary = $(".woocommerce-checkout-review-order-table tbody")
 
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
 
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
 
+        let total_allCartItem = jQuery.validator.format($.trim(page.element.total_OrderSumary.val().toString()));
+
+        let line_item_order = jQuery.validator.format($.trim(page.element.line_item_orderSumary.val().toString()));
+
         page.commands.addCartRow = () => {
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price),carItem.id)));
+            }).format(carItem.price), carItem.id)));
+        }
+
+        page.commands.lineOrderSummary = () => {
+            page.element.orderSummary.prepend($(line_item_order(carItem.product.image,carItem.product.title, carItem.quantity ,new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(carItem.price))));
+        }
+
+        page.commands.totalCartItem = (sum, data) => {
+            page.element.orderSummary.prepend($(total_allCartItem(new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(sum),data)));
         }
 
         page.commands.getProductById = (id) => {
@@ -1243,7 +1264,7 @@
             })
         }
 
-        page.commands.showIconCart = () =>{
+        page.commands.showIconCart = () => {
             $.ajax({
                 "type": "GET",
                 "url": page.url.GetCartItems,
@@ -1268,7 +1289,9 @@
                     page.commands.handleCloseCart()
                     let sum = 0
                     console.log(data)
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1283,17 +1306,17 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                     page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
                 })
             })
         }
 
-        page.commands.deleteCartById = (id) =>{
+        page.commands.deleteCartById = (id) => {
             $.ajax({
                 "method": "DELETE",
                 "url": page.url.DeleteCartItem + "/" + id
-            }).done(()=>{
+            }).done(() => {
                 App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
                 $.ajax({
                     "type": "GET",
@@ -1304,7 +1327,9 @@
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
                     let sum = 0
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1319,7 +1344,7 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                 })
             })
         }
@@ -1330,9 +1355,27 @@
             })
         }
 
+        page.loadData.getOrderSummary = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.GetCartItems,
+            }).done((data) => {
+                page.element.orderSummary.html("")
+                let sum = 0
+                $.each(data, (i, item) => {
+                    carItem = item;
+                    page.commands.lineOrderSummary();
+                    sum += carItem.grandTotal
+                })
+                page.commands.totalCartItem(sum,data.length)
+            }).fail(() => {
+            })
+        }
+
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
+            page.loadData.getOrderSummary();
         })
     </script>
 </th:block>

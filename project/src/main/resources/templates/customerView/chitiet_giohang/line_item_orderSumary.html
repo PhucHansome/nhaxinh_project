@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="line_item_orderSumary">
+    <textarea style="display:none" id="line_item_orderSumary">
+        <tr class="cart_item">
+            <td class="product-name">
+                <div class="product-thumbnails">
+                    <a href="#"><img
+                            width="300" height="200"
+                            src="{0}"
+                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                            alt=""
+                            srcset="{0} 300w, {0} 601w, {0} 768w, {0} 600w, {0} 1000w"
+                            sizes="(max-width: 300px) 100vw, 300px"></a></div>
+               {1}&nbsp;&nbsp; <strong
+                    class="product-quantity">×&nbsp;{2}</strong></td>
+            <td class="product-total">
+                <span class="woocommerce-Price-amount amount"><bdi><strong>{3}</strong></bdi></span>
+            </td>
+        </tr>
+    </textarea>
+</th:block>

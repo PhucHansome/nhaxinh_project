@@ -1681,6 +1681,7 @@
                     sum += carItem.grandTotal
                     page.commands.showCartInline()
                 })
+                page.commands.showIconCart()
                 page.commands.totalCartProduct(sum)
             }).fail((jqXHR) => {
                 console.log(jqXHR);

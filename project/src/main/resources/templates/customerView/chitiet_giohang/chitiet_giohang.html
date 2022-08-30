@@ -197,13 +197,6 @@
                             <li class="cart-item has-icon">
 
                                 <a href="#" id="cart_" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
-
-
-
-  		<span class="image-icon header-cart-icon" data-icon-label="1">
-			<img class="cart-img-icon" alt="Cart" src="./assets/chitiet_giohang_files/ic-shopping.png">
-		</span>
-
                                 </a>
 
 
@@ -1013,10 +1006,7 @@
         </div>
     </header>
 
-
-    <main id="main" style="
-    bottom: -140px;
-" class="">
+    <main id="main" class="">
 
         <div class="chua_cart"><div class="showCart" style="display: none;">
             <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
@@ -1039,7 +1029,7 @@
                                 <p class="woocommerce-mini-cart__buttons buttons"><a
                                         href="http://localhost:8092/cart"
                                         class="button wc-forward">Xem giỏ
-                                    hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                    hàng</a><a href="/cart_details"
                                                class="button checkout wc-forward">Checkout</a></p>
                                 <div class="cart-sidebar-content relative"></div>
                             </div>
@@ -1219,19 +1209,6 @@
                                             </p></div>
 
                                     </div>
-
-                                    <div class="woocommerce-account-fields">
-
-                                        <p class="form-row form-row-wide create-account woocommerce-validated">
-                                            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                                                <input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
-                                                       id="createaccount" type="checkbox" name="createaccount"
-                                                       value="1"> <span>Create an account?</span>
-                                            </label>
-                                        </p>
-
-
-                                    </div>
                                 </div>
 
                                 <div class="clear">
@@ -1289,70 +1266,6 @@
                                     <div id="order_review" class="woocommerce-checkout-review-order">
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <tbody>
-                                            <tr class="cart-subtotal">
-                                                <th>Thành tiền</th>
-                                                <td><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="woocommerce-shipping-totals shipping ">
-                                                <td class="shipping__inner" colspan="2">
-                                                    <table class="shipping__table ">
-                                                        <tbody>
-                                                        <tr>
-                                                            <th>Vận chuyển</th>
-                                                            <td data-title="Vận chuyển">
-                                                                <ul id="shipping_method"
-                                                                    class="shipping__list woocommerce-shipping-methods">
-                                                                    <li class="shipping__list_item">
-                                                                        <input type="hidden" name="shipping_method[0]"
-                                                                               data-index="0"
-                                                                               id="shipping_method_0_flat_rate4"
-                                                                               value="flat_rate:4"
-                                                                               class="shipping_method"><label
-                                                                            class="shipping__list_label"
-                                                                            for="shipping_method_0_flat_rate4">Liên hệ
-                                                                        phí vận chuyển sau</label></li>
-                                                                </ul>
-
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="order-total">
-                                                <th>Tổng cộng</th>
-                                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product-title">
-                                                <th colspan="2">Sản phẩm<span class="total_count">1</span></th>
-                                            </tr>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    <div class="product-thumbnails">
-                                                        <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/"><img
-                                                                width="300" height="200"
-                                                                src="./assets/chitiet_giohang_files/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt=""
-                                                                srcset="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2.jpg 1000w"
-                                                                sizes="(max-width: 300px) 100vw, 300px"></a></div>
-                                                    Armchair Osaka bọc vải SO65&nbsp;&nbsp; <strong
-                                                        class="product-quantity">×&nbsp;1</strong></td>
-                                                <td class="product-total">
-                                                    <span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
-                                                </td>
-                                            </tr>
 
                                             </tbody>
                                         </table>
@@ -2324,6 +2237,8 @@
     </div>
 </div>
 <th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
+<th:block th:replace="/customerView/chitiet_giohang/total_OrderSumary::total_OrderSumary"/>
+<th:block th:replace="/customerView/chitiet_giohang/line_item_orderSumary::line_item_orderSumary"/>
 <th:block th:replace="/customerView/layout/chitiet_giohang/script::script"/>
 </body>
 </html>

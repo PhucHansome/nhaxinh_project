@@ -22,6 +22,8 @@ public class CartDTO {
 
     private String id;
 
+    private String content;
+
     private UserDTO user;
 
     private CustomerInfoDTO customerInfo;
@@ -30,6 +32,7 @@ public class CartDTO {
     public Cart toCart() {
         return new Cart()
                 .setId(id)
+                .setContent(content)
                 .setUser(user.toUser())
                 .setCustomerInfo(customerInfo.toCustomerInfo())
                ;

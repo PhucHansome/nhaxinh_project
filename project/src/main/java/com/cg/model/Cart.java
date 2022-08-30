@@ -27,6 +27,8 @@ public class Cart  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
+    private String content;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -39,6 +41,7 @@ public class Cart  {
     public CartDTO toCartDTO(){
         return new CartDTO()
                 .setId(String.valueOf(id))
+                .setContent(content)
                 .setUser(user.toUserDTO())
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO())
                 ;
