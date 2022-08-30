@@ -1604,27 +1604,7 @@
                 "url": page.url.DeleteCartItem + "/" + id
             }).done(() => {
                 App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
-                page.commands.showAllElementPage()
-            })
-        }
-
-        page.commands.showAllElementPage = () =>{
-            $.ajax({
-                "type": "GET",
-                "url": page.url.GetCartItems,
-            }).done((data) => {
-                page.element.tableListCartItem.html("")
-                if (data.length === 0) {
-                    page.element.tableListCartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                }
-                $(".total_count").text(data.length);
-                $.each(data, (i, item) => {
-                    carItem = item
-                    page.commands.showCartInline()
-                })
-                page.commands.showIconCart()
-                page.commands.handleShowCart();
-            }).fail(() => {
+                page.loadData.getAllItemOrder()
             })
         }
 
