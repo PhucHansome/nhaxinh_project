@@ -54,7 +54,7 @@ class App {
                 // icon: '', // icon class
                 transitionIn: 'flipInX',
                 transitionOut: 'flip',
-                position: 'topRight',
+                position: 'topLeft',
                 message: m,
             });
         }
@@ -185,19 +185,6 @@ class CartItems {
         this.quantity = quantity;
         this.grandTotal = grandTotal;
         this.userName = userName;
-    }
-}
-
-class Cart{
-    constructor(id ,userId ,fullName ,status ,phone ,content ,customerInfo, cartItems) {
-        this.id = id;
-        this.userId = userId ;
-        this.fullname = fullName;
-        this.status = status;
-        this.phone = phone;
-        this.content = content;
-        this.customerInfo = customerInfo;
-        this.cartItems = cartItems;
     }
 }
 

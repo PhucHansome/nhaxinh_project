@@ -150,7 +150,7 @@
 <div id="wrapper">
 
 
-    <header id="header" class="header has-sticky sticky-jump" style="">
+    <header id="header" class="header has-sticky sticky-jump" >
         <div class="header-wrapper">
 
             <div id="top-bar" class="header-top hide-for-sticky">
@@ -216,7 +216,7 @@
   is-small" title="Tài khoản của tôi">
 
 
-			<span th:text="${userDTO}" class="header-account-title">
+			<span th:text="${userDTO}" id="EmailLogin" class="header-account-title">
 		</span>
 
 
@@ -1019,9 +1019,49 @@
 
     <main id="main" class="">
 
-        <div class="chua_cart"></div>
+        <div class="chua_cart">
+            <div class="showCart" style="display: none;">
+                <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+                <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1"
+                     style="overflow: hidden auto;">
+                    <div class="mfp-container mfp-s-ready mfp-inline-holder">
+                        <div class="mfp-content off-canvas-cart">
+                            <div id="cart-popup" class="widget_shopping_cart">
+                                <div class="cart-popup-inner inner-padding">
+                                    <div class="cart-popup-title text-center">
+                                        <h4 class="uppercase">Cart</h4>
+                                        <div class="is-divider"></div>
+                                    </div>
+                                    <div class="widget_shopping_cart_content" id="seeCartItems">
+
+                                    </div>
+                                    <div id="seeGrandTotal">
+
+                                    </div>
+                                    <p class="woocommerce-mini-cart__buttons buttons"><a
+                                            href="http://localhost:8092/cart"
+                                            class="button wc-forward">Xem giỏ
+                                        hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                                   class="button checkout wc-forward">Checkout</a></p>
+                                    <div class="cart-sidebar-content relative"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mfp-preloader">Loading...</div>
+                    </div>
+                    <button title="Close (Esc)" type="button" class="mfp-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="feather feather-x">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="checkout-page-title page-title">
-            <h1 class="cart-title">Giỏ hàng<span class="total_count">1</span></h1>
+            <h1 class="cart-title">Giỏ hàng<span class="total_count"></span></h1>
         </div>
         <div class="cart-container container page-wrapper page-checkout">
             <div class="woocommerce">
@@ -1038,81 +1078,10 @@
                                        cellspacing="0">
                                     <tbody>
 
-                                    <tr class="woocommerce-cart-form__cart-item cart_item">
-                                        <td class="product-thumbnail">
-                                            <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/"><img width="300"
-                                                                                                            height="200"
-                                                                                                            src="./assets/cart_files/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg"
-                                                                                                            data-src="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg"
-                                                                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazy-load-active"
-                                                                                                            alt=""
-                                                                                                            srcset="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2.jpg 1000w"
-                                                                                                            data-srcset="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2.jpg 1000w"
-                                                                                                            sizes="(max-width: 300px) 100vw, 300px"></a>
-                                        </td>
-                                        <td class="product-description">
-                                            <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/">Armchair Osaka
-                                                bọc vải SO65</a>
-                                            <div class="product-attributes-wrapper">
-                                                <div class="product-attribute product-attribute-item product-attribute-item-5">
-                                                    <span class="product-attribute-name">pa_vat-lieu:</span>
-                                                    <span class="product-attribute-option">747</span>
-                                                </div>
-                                                <div class="product-attribute product-attribute-item product-attribute-item-6">
-                                                    <span class="product-attribute-name">pa_kich-thuoc:</span>
-                                                    <span class="product-attribute-option">748</span>
-                                                </div>
-                                                <div class="product-attribute product-attribute-item product-attribute-item-4">
-                                                    <span class="product-attribute-name">pa_collection:</span>
-                                                    <span class="product-attribute-option">340</span>
-                                                </div>
-                                            </div>
-                                            <span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
-                                            <div class="wishlist-icon">
-                                                <button class="wishlist-button button is-outline circle icon"
-                                                        aria-label="Wishlist">
-                                                    <i class="icon-heart-o"></i> Thêm vào Wishlist
-                                                </button>
-                                                <div class="wishlist-popup dark">
 
-                                                    <div class="yith-wcwl-add-to-wishlist add-to-wishlist-36507  wishlist-fragment on-first-load"
-                                                         data-fragment-ref="36507"
-                                                         data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:&quot;36507&quot;,&quot;parent_product_id&quot;:&quot;36507&quot;,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
 
-                                                        <!-- ADD TO WISHLIST -->
-
-                                                        <div class="yith-wcwl-add-button">
-                                                            <a href="https://nhaxinh.com/gio-hang/?add_to_wishlist=36507&amp;_wpnonce=d55c90e4ae"
-                                                               class="add_to_wishlist single_add_to_wishlist"
-                                                               data-product-id="36507" data-product-type="simple"
-                                                               data-original-product-id="36507"
-                                                               data-title="Add to wishlist" rel="nofollow">
-                                                                <i class="yith-wcwl-icon fa fa-heart-o"></i> <span>Add to wishlist</span>
-                                                            </a>
-                                                        </div>
-
-                                                        <!-- COUNT TEXT -->
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <a href="https://nhaxinh.com/gio-hang/?remove_item=7eed86ac830118194de9b380748eb311&amp;_wpnonce=e74adb7e65"
-                                               class="remove" aria-label="Remove this item" data-product_id="36507"
-                                               data-product_sku="3*104916"><i class="fa-solid fa-xmark"></i></a>
-                                            <div class="quantity buttons_added">
-                                                <input type="button" value="-" class="minus button is-form"> <label
-                                                    class="screen-reader-text" for="quantity_630301a2308b9">Armchair
-                                                Osaka bọc vải SO65 quantity</label>
-                                                <input type="number" id="quantity_630301a2308b9"
-                                                       class="input-text qty text" step="1" min="0" max="10"
-                                                       name="cart[7eed86ac830118194de9b380748eb311][qty]" value="1"
-                                                       title="Qty" size="4" placeholder="" inputmode="numeric">
-                                                <input type="button" value="+" class="plus button is-form"></div>
-                                        </td>
-                                    </tr>
+                                    </tbody>
+                                    <tfoot>
                                     <tr>
                                         <td colspan="3" class="actions clear">
 
@@ -1128,22 +1097,7 @@
                                                                                                            value="/gio-hang/">
                                         </td>
                                     </tr>
-                                    <!--
-                        <tr>
-                            <td colspan="6" class="actions clear">
-
-
-            <div class="continue-shopping pull-left text-left">
-                <a class="button-continue-shopping button primary is-outline"  href="https://nhaxinh.com/cua-hang/">
-                    &#8592;&nbsp;Tiếp tục mua hàng	</a>
-            </div>
-
-                                <button type="submit" class="button primary mt-0 pull-left small" name="update_cart" value="Cập nhật giỏ hàng">Cập nhật giỏ hàng</button>
-
-                                <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="e74adb7e65" /><input type="hidden" name="_wp_http_referer" value="/gio-hang/" />				</td>
-                        </tr>
-                        -->
-                                    </tbody>
+                                    </tfoot>
                                 </table>
                             </div>
                         </form>
@@ -1167,71 +1121,9 @@
 
                                 <h2>Tóm tắt đơn hàng</h2>
 
-                                <table cellspacing="0" class="shop_table shop_table_responsive">
+                                <table cellspacing="0" class="shop_table shop_table_responsive total_All">
 
                                     <tbody>
-                                    <tr class="cart-subtotal">
-                                        <th>Thành tiền</th>
-                                        <td data-title="Thành tiền"><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                class="woocommerce-Price-currencySymbol">₫</span></bdi></span></td>
-                                    </tr>
-
-
-                                    <tr class="woocommerce-shipping-totals shipping ">
-                                        <td class="shipping__inner" colspan="2">
-                                            <table class="shipping__table ">
-                                                <tbody>
-                                                <tr>
-                                                    <th>Vận chuyển</th>
-                                                    <td data-title="Vận chuyển">
-                                                        <ul id="shipping_method"
-                                                            class="shipping__list woocommerce-shipping-methods">
-                                                            <li class="shipping__list_item">
-                                                                <input type="hidden" name="shipping_method[0]"
-                                                                       data-index="0"
-                                                                       id="shipping_method_0_devvn_district_zone_shipping_3"
-                                                                       value="devvn_district_zone_shipping_3"
-                                                                       class="shipping_method"><label
-                                                                    class="shipping__list_label"
-                                                                    for="shipping_method_0_devvn_district_zone_shipping_3">Liên
-                                                                hệ phí vận chuyển sau</label></li>
-                                                        </ul>
-                                                        <p class="woocommerce-shipping-destination">
-                                                            Giao hàng đến <strong>Huyện Cần Giờ, Tp. Hồ Chí
-                                                            Minh</strong>. </p>
-
-
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr class="coupon">
-                                        <td colspan="2">
-                                            <form class="checkout_coupon mb-0" method="post">
-                                                <h3 class="widget-title"><i class="icon-tag"></i> Coupon</h3><input
-                                                    type="text" name="coupon_code" class="input-text" id="coupon_code"
-                                                    value="" placeholder="Mã giảm giá"> <input type="submit"
-                                                                                               class="is-form expand"
-                                                                                               name="apply_coupon"
-                                                                                               value="Sử dụng">
-                                            </form>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr class="order-total">
-                                        <th>Tổng cộng</th>
-                                        <td data-title="Tổng cộng"><strong><span
-                                                class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong>
-                                        </td>
-                                    </tr>
-
-
                                     </tbody>
                                 </table>
 
@@ -1773,7 +1665,9 @@
         </ul>
     </div>
 </div>
+<th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
+<th:block th:replace="/customerView/giohang/cart_inline::cart_inline"/>
+<th:block th:replace="/customerView/giohang/total_allCart::total_allCart"/>
 <th:block th:replace="/customerView/layout/giohang/script::script"/>
-
 </body>
 </html>

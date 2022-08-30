@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="cart_inline">
+    <textarea style="display:none" id="cart_product_line">
+        <tr class="woocommerce-cart-form__cart-item cart_item">
+            <td class="product-thumbnail">
+                <a href="#">
+                    <img width="300"
+                        height="200"
+                        src="{0}"
+                        data-src="{0}"
+                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazy-load-active"
+                        alt=""
+                        srcset="{0} 300w, {0} 601w, {0} 768w, {0} 600w, {0} 1000w"
+                        data-srcset="{0} 300w, {0} 601w, {0} 768w, {0} 600w, {0} 1000w"
+                        sizes="(max-width: 300px) 100vw, 300px"></a>
+            </td>
+            <td class="product-description">
+                <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/">{1}</a>
+                    <span class="woocommerce-Price-amount amount"><bdi>{2}</bdi></span>
+                </td>
+                <td class="product-quantity">
+                    <a href="#" onclick="page.commands.deleteInline({4})"
+                       class="remove" aria-label="Remove this item" data-product_id="36507"
+                       data-product_sku="3*104916"><i class="fa-solid fa-xmark"></i></a>
+                    <div class="quantity buttons_added">
+                        <input type="button" onclick="page.commands.handleReduceCartItem({4})" value="-" class="minus button is-form"> <label
+                            class="screen-reader-text" for="quantity_630301a2308b9">{1} quantity</label>
+                        <input type="number" id="quantity_630301a2308b9"
+                               class="input-text qty text"
+                               name="cart[7eed86ac830118194de9b380748eb311][qty]" value="{3}"
+                               title="Qty"  placeholder="" inputmode="numeric">
+                        <input type="button" onclick="page.commands.handleIncreasingCartItem({4})"  value="+" class="plus button is-form"></div>
+                </td>
+            </tr>
+    </textarea>
+</th:block>

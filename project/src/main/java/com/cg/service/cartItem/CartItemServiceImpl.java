@@ -1,5 +1,6 @@
 package com.cg.service.cartItem;
 
+import com.cg.exception.DataInputException;
 import com.cg.model.CartItem;
 import com.cg.model.dto.CartItemsDTO;
 import com.cg.repository.CartItemRepository;
@@ -42,7 +43,7 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     public CartItem saveOp(CartItem cartItem) {
-        Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOById(cartItem.getUserName(), cartItem.getProduct().getCode());
+        Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(), cartItem.getProduct().getCode());
         cartItem.setId(cartItem1.get().getId());
         cartItem.setQuantity(new BigDecimal(String.valueOf(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)))));
         cartItem.setGrandTotal(new BigDecimal(String.valueOf(cartItem.getQuantity().multiply(cartItem.getPrice()))));
@@ -50,8 +51,13 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
-    public void remove(Long id) {
+    public Optional<CartItemsDTO> getCartItemDTOById(Long id) {
+        return cartItemRepository.getCartItemDTOById(id);
+    }
 
+    @Override
+    public void remove(Long id) {
+        cartItemRepository.deleteById(id);
     }
 
     @Override
@@ -65,7 +71,27 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
-    public Optional<CartItemsDTO> getCartItemDTOById(String userName , String code) {
-        return cartItemRepository.getCartItemDTOById(userName,code);
+    public Optional<CartItemsDTO> getCartItemDTOByCode(String userName , String code) {
+        return cartItemRepository.getCartItemDTOByCode(userName,code);
+    }
+
+    @Override
+    public CartItem SaveReduce(CartItem cartItem) {
+        if(new BigDecimal(1).equals(cartItem.getQuantity())){
+            throw new DataInputException("Số lượng không nhỏ hơn 1 Sản Phẩm");
+        }
+        cartItem.setQuantity(cartItem.getQuantity().subtract(BigDecimal.valueOf(1)));
+        cartItem.setGrandTotal(cartItem.getGrandTotal().subtract(cartItem.getPrice()));
+        return cartItemRepository.save(cartItem);
+    }
+
+    @Override
+    public CartItem SaveIncreasing(CartItem cartItem) {
+        if(new BigDecimal(5).equals(cartItem.getQuantity())){
+            throw new DataInputException("Số lượng không lớn hơn 5 Sản phẩm!");
+        }
+        cartItem.setQuantity(cartItem.getQuantity().add(BigDecimal.valueOf(1)));
+        cartItem.setGrandTotal(cartItem.getGrandTotal().add(cartItem.getPrice()));
+        return cartItemRepository.save(cartItem);
     }
 }

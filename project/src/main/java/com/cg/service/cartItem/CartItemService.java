@@ -11,7 +11,13 @@ public interface CartItemService extends IGeneralService<CartItem> {
 
     List<CartItemsDTO> findCartItemDTOById(String userName);
 
-    Optional<CartItemsDTO> getCartItemDTOById(String userName, String code);
+    Optional<CartItemsDTO> getCartItemDTOByCode(String userName, String code);
 
     CartItem saveOp(CartItem cartItem);
+
+    Optional<CartItemsDTO> getCartItemDTOById(Long id);
+
+    CartItem SaveReduce(CartItem cartItem);
+
+    CartItem SaveIncreasing(CartItem cartItem);
 }

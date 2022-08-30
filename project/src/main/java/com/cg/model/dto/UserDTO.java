@@ -64,8 +64,6 @@ public class UserDTO  {
         this.role = role.toRoleDTO();
 
     }
-
-
     public User toUser() {
         return new User()
                 .setId(id)

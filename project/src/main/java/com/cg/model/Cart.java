@@ -25,40 +25,22 @@ public class Cart  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String fullName;
-
-    private String status;
-
-    private String phone;
-
-    private String content;
-
-    @Column(columnDefinition = "boolean default false")
-    private boolean deleted;
-
     @OneToOne
     @JoinColumn(name = "customerinf_id")
     private CustomerInfo customerInfo;
 
-    @OneToMany
-    @JoinColumn(name = "cart_item_id")
-    private List<CartItem> cartItems;
 
     public CartDTO toCartDTO(){
         return new CartDTO()
                 .setId(String.valueOf(id))
-                .setFullName(fullName)
-                .setStatus(status)
-                .setPhone(phone)
-                .setContent(content)
+                .setUser(user.toUserDTO())
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO())
-                .setDeleted(deleted)
-                .setCartItems((CartItemsDTO) cartItems);
+                ;
     }
 }
