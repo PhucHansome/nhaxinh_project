@@ -106,12 +106,12 @@ class User {
 }
 
 class LocationRegion {
-    constructor(id, province_id, province_name, district_id, district_name, address) {
+    constructor(id, provinceId, provinceName, districtId, districtName, address) {
         this.id = id;
-        this.province_id = province_id;
-        this.province_name = province_name;
-        this.district_id = district_id;
-        this.district_name = district_name;
+        this.provinceId = provinceId;
+        this.provinceName = provinceName;
+        this.districtId = districtId;
+        this.districtName = districtName;
         this.address = address;
     }
 }
@@ -123,7 +123,6 @@ class CustomerInfo {
         this.phone = phone;
         this.debt =debt;
         this.locationRegion = locationRegion;
-        this.createAt = createAt;
     }
 }
 class Category{
@@ -186,5 +185,15 @@ class CartItems {
         this.grandTotal = grandTotal;
         this.userName = userName;
     }
+}
+
+class Cart {
+    constructor(id, content, user, customerInfo) {
+        this.id = id;
+        this.content = content;
+        this.user = user
+        this.customerInfo = customerInfo
+    }
+
 }
 

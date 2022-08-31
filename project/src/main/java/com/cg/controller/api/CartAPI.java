@@ -25,15 +25,14 @@ public class CartAPI {
     @Autowired
     private AppUtils appUtils;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> doCreate(@RequestBody CartDTO cartDTO, BindingResult bindingResult){
 
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        cartDTO.setId(String.valueOf(0));
-        Cart cart = cartService.save(cartDTO.toCart());
-        return new ResponseEntity<> (cart.toCartDTO(), HttpStatus.CREATED);
+        Cart createCart = cartService.save(cartDTO.toCart());
+        return new ResponseEntity<> (createCart.toCartDTO(), HttpStatus.CREATED);
     }
 
 }

@@ -13,10 +13,10 @@ import java.util.Optional;
 @Repository
 public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Long> {
 
-    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.debt,c.locationRegion,c.createdAt)  FROM CustomerInfo c  WHERE c.deleted = false ")
+    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.debt,c.locationRegion)  FROM CustomerInfo c  WHERE c.deleted = false ")
     List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse();
 
-    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.locationRegion,c.createdAt,c.updatedAt) FROM CustomerInfo c WHERE c.id = ?1")
+    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.locationRegion) FROM CustomerInfo c WHERE c.id = ?1")
     Optional<CustomerInfoDTO> findUserDTOById(Long id);
 
 }
