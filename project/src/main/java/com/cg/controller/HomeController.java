@@ -1,7 +1,9 @@
 package com.cg.controller;
 
 
+import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.model.dto.UserDTO;
+import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +25,9 @@ import java.util.Optional;
 public class HomeController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private ICustomerInfoService customerInfoService;
 
     private String getPrincipal() {
         String username;
@@ -236,4 +242,17 @@ public class HomeController {
         }
         return "/dashboard/loginDashboard/login";
     }
+
+    @GetMapping("/api/customerInfo/edit/{id}")
+    public ModelAndView showCustomerInfoDetail(@PathVariable String id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/userDashboard/detail-user");
+        Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(id);
+        modelAndView.addObject("locationRegion", customerInfo.get().getLocationRegion());
+        modelAndView.addObject("customerInfo", customerInfo.get().toCustomerInfo());
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
 }

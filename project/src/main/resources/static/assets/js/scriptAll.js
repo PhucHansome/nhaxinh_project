@@ -116,14 +116,15 @@ class LocationRegion {
     }
 }
 class CustomerInfo {
-    constructor(id,userName,fullName,phone,debt,locationRegion,createAt) {
+    constructor(id,userName,fullName,phone,debt,locationRegion,createdAt, updatedAt) {
         this.id = id;
         this.userName = userName;
         this.fullName = fullName;
         this.phone = phone;
         this.debt =debt;
         this.locationRegion = locationRegion;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }
 class Category{

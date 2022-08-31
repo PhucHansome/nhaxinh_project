@@ -5,15 +5,12 @@ import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.CustomerInfo;
 import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.service.customerInfo.ICustomerInfoService;
-import com.cg.service.jwt.JwtService;
 import com.cg.service.locationRegion.ILocationRegionService;
-import com.cg.utils.AppUtil;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.stereotype.Repository;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,6 +40,16 @@ public class CustomerInfoAPI {
         return new ResponseEntity<>(customerInfos, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable String id) {
+        Optional<CustomerInfoDTO> userOptional = customerInfoService.findUserDTOById(id);
+        if (!userOptional.isPresent()) {
+            throw new ResourceNotFoundException("Invalid User ID");
+        }
+        return new ResponseEntity<>(userOptional.get().toCustomerInfo(), HttpStatus.OK);
+    }
+
+
 
       @PostMapping("/create")
       public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult){
@@ -55,14 +62,18 @@ public class CustomerInfoAPI {
         return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
       }
 
-    @GetMapping("/{id}")
-    public ModelAndView showCustomerInfoDetail(@PathVariable long id) {
+      @PutMapping("/edit")
+    private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){
+          if (bindingResult.hasFieldErrors()) {
+              return appUtils.mapErrorToResponse(bindingResult);
+          }
+          customerInfoDTO.getLocationRegion().setId(0L);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/detail-user");
-        Optional<CustomerInfo> customerInfo = customerInfoService.findById(id);
-        modelAndView.addObject("customerInfo", customerInfo);
-        return modelAndView;
-    }
+          CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());
+          return new ResponseEntity<>(customerInfoUpdate.toCustomerInfoDTO(), HttpStatus.ACCEPTED);
+      }
+
+
+
 
 }

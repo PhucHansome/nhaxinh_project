@@ -115,18 +115,6 @@
                                 </tr>
                             </thead>
                                 <tbody>
-
-                                <th:block th:each="customerInfo, count : ${customerInfo}">
-                                    <tr>
-                                        <td class="text-center" th:text="${count.count}"></td>
-                                        <td class="text-center" th:text="${customerInfo.fullName}"><a th:href="@{/detail-user-dashboard}"></a></td>
-                                        <td class="text-center" th:text="${customerInfo.phone}"></td>
-                                        <td class="text-center" th:text="${customerInfo.userName}"></td>
-                                    </tr>
-
-                                </th:block>
-
-
                                 </tbody>
                         </table>
                     </div>
@@ -221,6 +209,7 @@
                 customerInfo = item;
                 page.commands.addRow();
             })
+            page.dialogs.commands.goDetailCustomer();
         }).fail((e) =>{
             console.log(e);
         })
@@ -233,19 +222,13 @@
         })
     }
 
+
     page.dialogs.commands.goDetailCustomer = () =>{
         $("#tableListCustomerInfo tbody tr ").on('click', function () {
             customerInfoId = $(this).attr('id').replace('tr_', '');
-            console.log(customerInfoId)
-            $('#tableListCustomerInfo tbody tr td span.select-tab').removeClass("selected").addClass("unselected");
-            $(`#tableListCustomerInfo tbody tr#tr_${customerInfoId} td span.select-tab`).removeClass("unselected").addClass("selected");
-       // page.element.detailCustomer.on('click',function () {
-           window.location.href = "/detail-user-dashboard";
-        // })
+           window.location.href = "/api/customerInfo/edit/" + customerInfoId ;
     })
     }
-
-
 
     $(function (){
         page.dialogs.commands.goCreateCustomer();

@@ -12,7 +12,7 @@ public interface ICustomerInfoService extends IGeneralService<CustomerInfo> {
 
     List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse();
 
-    Optional<CustomerInfoDTO> findUserDTOById(Long id);
+    Optional<CustomerInfoDTO> findUserDTOById(String id);
 
 
 }

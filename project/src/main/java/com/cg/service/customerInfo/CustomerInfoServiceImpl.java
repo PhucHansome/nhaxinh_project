@@ -62,7 +62,7 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
     }
 
     @Override
-    public Optional<CustomerInfoDTO> findUserDTOById(Long id) {
+    public Optional<CustomerInfoDTO> findUserDTOById(String  id) {
         return customerInfoRepository.findUserDTOById(id);
     }
 }

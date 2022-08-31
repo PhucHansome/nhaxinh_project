@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
-  <th:block th:replace="/dashboard/layout/header::header"/>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
 </head>
 
 <body>
@@ -11,172 +11,139 @@
 <div id="wrapper">
 
 
-  <!-- Topbar Start -->
-  <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
-  <!-- end Topbar -->
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
 
 
-  <!-- ========== Left Sidebar Start ========== -->
-  <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
-  <!-- Left Sidebar End -->
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
 
-  <!-- ============================================================== -->
-  <!-- Start Page Content here -->
-  <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
 
-  <div class="content-page">
-    <div class="content">
-      <div class="container-fluid">
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
 
-        <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
-          <div class="col-md-5">
-            <h6><a href="/user-dashboard">Quay lại danh sách khách hàng</a></h6>
-          </div>
-          <div class="col-md-7">
-            <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
-                    class="btn btn-success float-right ">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-              Tạo phiếu thu chi
-            </button>
-            <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
-                    class="btn btn-danger float-right ">
-              <i class="fas fa-trash"></i>
-              Xoá khách hàng
-            </button>
-          </div>
-        </div>
+                <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
+                    <div class="col-md-7">
+                        <h6><a href="/user-dashboard">Quay lại danh sách khách hàng</a></h6>
+                    </div>
+                    <div class="col-md-5">
 
-        <div class="row" style="top: -25px; position: relative;">
-          <div class="col-md-12" style="margin-top: -15px;">
-            <h4>Khách Hàng</h4>
-          </div>
-        </div>
+                        <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
+                                class="btn btn-danger float-right ">
+                            <i class="fas fa-trash"></i>
+                            Xoá khách hàng
+                        </button>
+                    </div>
+                </div>
 
-        <div class="row" style="top: -25px; position: relative;">
-          <th:block th:each="customerInfo, count : ${customerInfo}">
+                <div class="row" style="top: -25px; position: relative;">
+                    <div class="col-md-12" style="margin-top: -15px;">
+                        <h4>Khách Hàng</h4>
+                    </div>
+                </div>
 
-            <div class="row shadow-lg p-3 mb-5 bg-body rounded">
-              <div class="col-md-6">
-                <h6>Thông tin cá nhân</h6>
+                <div class="row shadow-lg p-3 mb-5 bg-body rounded" style="top: -25px; position: relative;">
 
+                    <th:block th:each="customerInfo, count : ${customerInfo}">
 
-              </div>
+                        <div class="col-md-6">
+                            <h6>Thông tin cá nhân</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" style="margin-bottom: 10px"
+                                    class="btn btn-warning float-right btnUpdate">Cập nhật
+                            </button>
+                        </div>
+                        <input type="hidden" name="id" th:field="*{customerInfo.id}">
 
+                        <div class="col-md-6">
+                            <label>Tên khách hàng:</label>
+                            <p th:text="*{customerInfo.fullName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Số điện thoại:</label>
+                            <p th:text="*{customerInfo.phone}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email:</label>
+                            <p th:text="*{customerInfo.userName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Thành phố:</label>
+                            <p th:text="*{customerInfo.locationRegion.provinceName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Quận/huyện:</label>
+                            <p th:text="*{customerInfo.locationRegion.districtName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Địa chỉ:</label>
+                            <p th:text="*{customerInfo.locationRegion.address}"></p>
+                        </div>
 
-              <div class="col-md-6">
-                <button type="button" style="margin-bottom: 10px"
-                        class="btn btn-warning float-right ">Cập nhật
-                </button>
-              </div>
-              <input type="hidden" name="id" value="<%= customerInfo.getId() %>">
+                    </th:block>
 
-              <div class="col-md-6">
-                <label>Tên khách hàng:</label> <p th:text="*{customerInfo.fullName}"></p>
+                    <!--          <div class="col-md-12">-->
+                    <!--          </div>-->
 
+                </div>
 
-              </div>
-              <div class="col-md-6">
-                <label>Số điện thoại:</label> <p th:text="*{customerInfo.phone}"></p>
+                <div class="row" style="top: -25px; position: relative;">
+                    <div class="col-md-12">
+                        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                            <div class="col-md-6">
+                                <h6>Thông tin mua hàng</h6>
 
+                            </div>
 
-              </div>
-              <div class="col-md-6">
-                <label>Email:</label><p th:text="*{customerInfo.userName}"></p>
+                            <div class="col-md-6">
+                                <button type="button" style="margin-bottom: 10px"
+                                        class="btn btn-primary float-right ">Chi tiết
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng chi tiêu:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng SL sản phẩm đã mua:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng SL đơn hàng:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng SL sản phẩm hoàn trả:</label>
+                            </div>
 
+                        </div>
 
-              </div>
-              <div class="col-md-6">
-                <label>Thành phố:</label>   <p th:text="*{customerInfo.provinceName}"></p>
+                    </div>
+                    <div class="col-md-5" style="  padding-left: 35px;">
+                        <div class="row ">
 
+                        </div>
 
-              </div>
-              <div class="col-md-6">
-                <label>Quận/huyện:</label><p th:text="*{customerInfo.districtName}"></p>
+                    </div>
 
-
-              </div>
-              <div class="col-md-6">
-                <label>Địa chỉ:</label> <p th:text="*{customerInfo.address}"></p>
-
-
-              </div>
-              <div class="col-md-6">
-                <label>Ngày khởi tạo:</label><p th:text="*{customerInfo.createAt}"></p>
-
-
-              </div>
-              <div class="col-md-6">
-                <label>Ngày cập nhật:  </label><p th:text="*{customerInfo.updateAt}"></p>
-
-
-
-              </div>
-
-
-            </div>
-
-          </th:block>
-          <div class="col-md-12">
-          </div>
-
-        </div>
-
-        <div class="row" style="top: -25px; position: relative;">
-          <div class="col-md-12">
-            <div class="row shadow-lg p-3 mb-5 bg-body rounded">
-              <div class="col-md-6">
-                <h6>Thông tin mua hàng</h6>
-
-              </div>
-
-              <div class="col-md-6">
-                <button type="button" style="margin-bottom: 10px"
-                        class="btn btn-primary float-right ">Chi tiết
-                </button>
-              </div>
-              <div class="col-md-6">
-                <label>Tổng chi tiêu:</label>
-              </div>
-              <div class="col-md-6">
-                <label>Tổng SL sản phẩm đã mua:</label>
-              </div>
-              <div class="col-md-6">
-                <label>Tổng SL đơn hàng:</label>
-              </div>
-              <div class="col-md-6">
-                <label>Tổng SL sản phẩm hoàn trả:</label>
-              </div>
-<!--              <div class="col-md-6">-->
-<!--                <label>Đơn hàng đã đặt:</label>-->
-<!--              </div>-->
-<!--              <div class="col-md-6">-->
-<!--                <label>Số đơn hàng:</label>-->
-<!--              </div>-->
-            </div>
-
-          </div>
-          <div class="col-md-5" style="  padding-left: 35px;">
-            <div class="row ">
+                </div>
 
             </div>
 
-          </div>
 
         </div>
+        <!-- Start Content-->
 
-      </div>
-
-
-    </div>
-    <!-- Start Content-->
-
-  </div> <!-- end content -->
+    </div> <!-- end content -->
 
 
-
-  <!-- Footer Start -->
-  <th:block th:replace="/dashboard/layout/footer::footer"/>
-  <!-- end Footer -->
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
 
 </div>
 
@@ -191,6 +158,159 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+
+<th:block th:replace="/dashboard/userDashboard/modalupdate-user :: modal_update"/>
+
+<script>
+
+    let page = {
+        url: {
+            CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getAllProvinces: App.BASE_URL_PROVINCE + "/",
+            getAllDistricts: App.BASE_URL_PROVINCE + "/district/"
+
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    page.dialogs.element.fullNameUp = $("#fullNameUp");
+    page.dialogs.element.phoneUp = $("#phoneUp");
+    page.dialogs.element.emailUp = $("#emailUp");
+    page.dialogs.element.provinceUp = $("#provinceUp");
+    page.element.provinceText = $("#provinceUp :selected");
+    page.dialogs.element.districtUp = $("#districtUp");
+    page.element.districText = $("#districtUp :selected");
+    page.dialogs.element.addressUp = $("#addressUp");
+
+    page.element.btnUpdateCustomer = $(".btnUpdate")
+
+
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+    let user = new User();
+    let customerInfoId = null;
+
+
+
+    page.dialogs.commands.getCustomerInfoById = (id) => {
+        $.ajax({
+            "method" : "GET",
+            "url" : page.url.getAllCustomerInfo + "/" + id
+        }).done((data)=>{
+            let customerInfo = data;
+        })
+    }
+
+        page.dialogs.commands.goModalUpdateCustomer = () => {
+        page.element.btnUpdateCustomer.on('click', function () {
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "GET",
+                "url":page.url.getAllCustomerInfo +"/" + customerInfoId,
+
+                "data": JSON.stringify(customerInfo)
+            }).done((data) => {
+                customerInfo = data;
+                console.log(data)
+                locationRegion = customerInfo.locationRegion;
+                page.dialogs.element.fullNameUp.val(customerInfo.fullName)
+                page.dialogs.element.emailUp.val(customerInfo.userName)
+                page.dialogs.element.phoneUp.val(customerInfo.phone)
+
+                page.dialogs.element.provinceUp.val(locationRegion.provinceId)
+
+                page.dialogs.commands.drawProvinces(locationRegion.provinceId).then(() => {
+
+                page.dialogs.element.districtUp(locationRegion.districtId);
+                })
+
+                page.dialogs.element.addressUp.val(locationRegion.address)
+
+            })
+
+
+            $('#modalUpdateUser').modal('show')
+
+        })
+    }
+
+    page.dialogs.commands.drawProvinces = () => {
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": "https://vapi.vnappmob.com/api/province/"
+        })
+            .done((data) => {
+                console.log(data)
+                page.dialogs.element.provinceUp.html("")
+                $.each(data.results, (i, item) => {
+                    console.log(item)
+                    let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+                    page.dialogs.element.provinceUp.append(str);
+                })
+            })
+            .fail((jqxHR) => {
+                console.log(jqxHR);
+            })
+    }
+
+    page.dialogs.commands.drawDistricts = (provinceId) => {
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": "https://vapi.vnappmob.com/api/province/district/" + provinceId
+        }).done((data) => {
+            if (data.results.length === 0) {
+                App.IziToast.showErrorAlert("Loading of districts is fail");
+            } else {
+                page.dialogs.element.districtUp.html("");
+                $.each(data.results, (i, item) => {
+                    let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
+
+                    page.dialogs.element.districtUp.append(str)
+                })
+            }
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+        })
+    }
+
+    page.dialogs.element.provinceUp.on('change', function () {
+        page.dialogs.commands.drawDistricts(page.dialogs.element.provinceUp.val())
+    })
+
+    $(function () {
+        page.dialogs.commands.goModalUpdateCustomer();
+        page.dialogs.commands.getCustomerInfoById();
+        page.dialogs.commands.drawProvinces().then(() => {
+        page.dialogs.commands.drawDistricts(page.dialogs.element.provinceUp.val());
+        })
+    })
+
+
+</script>
 
 </body>
 </html>

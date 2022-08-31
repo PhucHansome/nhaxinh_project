@@ -206,6 +206,7 @@
         customerInfo.phone = page.dialogs.element.phoneCre.val();
         customerInfo.userName = page.dialogs.element.emailCre.val();
         customerInfo.locationRegion = locationRegion;
+        customerInfo.debt = 0;
         $.ajax({
             "headers": {
                 "accept": "application/json",
