@@ -165,7 +165,6 @@
             })
     }
 
-
     page.dialogs.commands.drawDistricts = (provinceId) => {
         $.ajax({
             "headers": {
@@ -228,13 +227,10 @@
         })
     })
 
-
     $(function () {
         page.dialogs.commands.drawProvinces().then(() => {
             page.dialogs.commands.drawDistricts(page.dialogs.element.provinceCre.val());
         })
-
-
     })
 
 </script>

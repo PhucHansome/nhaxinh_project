@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="total_OrderSumary">
+    <textarea style="display:none" id="total_OrderSumary">
+        <tr class="cart-subtotal">
+                        <th>Thành tiền</th>
+                        <td><span class="woocommerce-Price-amount amount"><bdi><strong>{0}</strong></bdi></span>
+                        </td>
+                    </tr>
+
+
+                    <tr class="woocommerce-shipping-totals shipping ">
+                        <td class="shipping__inner" colspan="2">
+                            <table class="shipping__table ">
+                                <tbody>
+                                <tr>
+                                    <th>Vận chuyển</th>
+                                    <td data-title="Vận chuyển">
+                                        <ul id="shipping_method"
+                                            class="shipping__list woocommerce-shipping-methods">
+                                            <li class="shipping__list_item">
+                                                <input type="hidden" name="shipping_method[0]"
+                                                       data-index="0"
+                                                       id="shipping_method_0_flat_rate4"
+                                                       value="flat_rate:4"
+                                                       class="shipping_method"><label
+                                                    class="shipping__list_label"
+                                                    for="shipping_method_0_flat_rate4">Liên hệ
+                                                phí vận chuyển sau</label></li>
+                                        </ul>
+
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <th>Tổng cộng</th>
+                        <td><strong><span class="woocommerce-Price-amount amount"><strong>{0}</strong></span></strong>
+                        </td>
+                    </tr>
+                    <tr class="product-title">
+                        <th colspan="2">Sản phẩm<span class="total_count">{1}</span></th>
+                    </tr>
+    </textarea>
+</th:block>

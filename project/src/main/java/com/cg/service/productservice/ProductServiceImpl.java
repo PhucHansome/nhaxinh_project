@@ -63,8 +63,8 @@ public class ProductServiceImpl implements ProductService {
         List<MultipartFile> fileList = productDTO.getFiles();
         Product product = productRepository.save(productDTO.toProduct());
         for (MultipartFile file : fileList) {
-            String fileType = file.getContentType();
 
+            String fileType = file.getContentType();
             assert fileType != null;
 
             fileType = fileType.substring(0, 5);

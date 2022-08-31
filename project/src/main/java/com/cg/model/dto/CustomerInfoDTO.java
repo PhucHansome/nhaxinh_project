@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Accessors(chain = true)
@@ -47,6 +47,7 @@ public class CustomerInfoDTO {
         this.fullName = fullName;
         this.phone = phone;
         this.locationRegion = locationRegion.toLocationRegionDTO();
+
     }
 
     public CustomerInfo toCustomerInfo() {

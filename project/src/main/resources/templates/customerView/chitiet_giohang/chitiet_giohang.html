@@ -197,13 +197,6 @@
                             <li class="cart-item has-icon">
 
                                 <a href="#" id="cart_" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
-
-
-
-  		<span class="image-icon header-cart-icon" data-icon-label="1">
-			<img class="cart-img-icon" alt="Cart" src="./assets/chitiet_giohang_files/ic-shopping.png">
-		</span>
-
                                 </a>
 
 
@@ -988,7 +981,7 @@
                             </li>
                             <li class="cart-item has-icon">
 
-                                <a href="https://nhaxinh.com/gio-hang/" title="Cart" class="header-cart-link is-small">
+                                <a href="#" title="Cart" class="header-cart-link is-small">
   
   		<span class="image-icon header-cart-icon" data-icon-label="1">
 			<img class="cart-img-icon" alt="Cart" src="./assets/chitiet_giohang_files/ic-shopping.png">
@@ -1013,10 +1006,7 @@
         </div>
     </header>
 
-
-    <main id="main" style="
-    bottom: -140px;
-" class="">
+    <main id="main" class="">
 
         <div class="chua_cart"><div class="showCart" style="display: none;">
             <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
@@ -1039,7 +1029,7 @@
                                 <p class="woocommerce-mini-cart__buttons buttons"><a
                                         href="http://localhost:8092/cart"
                                         class="button wc-forward">Xem giỏ
-                                    hàng</a><a href="https://nhaxinh.com/thanh-toan/"
+                                    hàng</a><a href="/cart_details"
                                                class="button checkout wc-forward">Checkout</a></p>
                                 <div class="cart-sidebar-content relative"></div>
                             </div>
@@ -1065,14 +1055,12 @@
             <div class="woocommerce">
                 <div class="woocommerce-notices-wrapper"></div>
                 <div class="woocommerce-notices-wrapper"></div>
-                <form name="checkout" method="post" class="checkout woocommerce-checkout "
-                      action="https://nhaxinh.com/thanh-toan/" enctype="multipart/form-data" novalidate="novalidate">
 
-                    <div class="row pt-0 ">
+                    <div class="row pt-0 " style="bottom: -20px;position: relative;">
                         <div class="large-7 col  ">
 
 
-                            <div id="customer_details">
+                            <div id="customer_details" style="width: 95%;border-bottom: 1px solid #00000047;margin-bottom: 25px;">
                                 <div class="clear">
                                     <div class="woocommerce-billing-fields">
 
@@ -1082,129 +1070,60 @@
                                         <div class="woocommerce-billing-fields__field-wrapper">
                                             <p class="form-row form-row-wide validate-required"
                                                id="billing_first_name_field" data-priority="10"><label
-                                                    for="billing_first_name" class="">Họ và tên&nbsp;<abbr
+                                                    for="fullNameCus" class="">Họ và tên&nbsp;<abbr
                                                     class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                    class="woocommerce-input-wrapper"><input autofocus type="text"
                                                                                              class="input-text "
-                                                                                             name="billing_first_name"
-                                                                                             id="billing_first_name"
+                                                                                             name="fullNameCus"
+                                                                                             id="fullNameCus"
                                                                                              placeholder="Nhập họ và tên"
                                                                                              value=""></span></p>
                                             <p class="form-row form-row-first validate-required validate-phone"
-                                               id="billing_phone_field" data-priority="20"><label for="billing_phone"
+                                               id="billing_phone_field" data-priority="20"><label for="phoneCus"
                                                                                                   class="">Số điện thoại&nbsp;<abbr
                                                     class="required" title="required">*</abbr></label><span
                                                     class="woocommerce-input-wrapper"><input type="tel"
                                                                                              class="input-text "
-                                                                                             name="billing_phone"
-                                                                                             id="billing_phone"
+                                                                                             name="phoneCus"
+                                                                                             id="phoneCus"
                                                                                              placeholder="Nhập số điện thoại của bạn"
                                                                                              value=""
                                                                                              autocomplete="tel"></span>
                                             </p>
                                             <p class="form-row form-row-last validate-required validate-email"
-                                               id="billing_email_field" data-priority="21"><label for="billing_email"
+                                               id="billing_email_field" data-priority="21"><label for="emailCus"
                                                                                                   class="">Địa chỉ email&nbsp;<abbr
                                                     class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="email"
+                                                    class="woocommerce-input-wrapper"><input readonly type="email"
                                                                                              class="input-text "
-                                                                                             name="billing_email"
-                                                                                             id="billing_email"
+                                                                                             name="emailCus"
+                                                                                             id="emailCus"
                                                                                              placeholder="Nhập email"
                                                                                              value=""
                                                                                              autocomplete="email username"></span>
                                             </p>
                                             <p class="form-row form-row-first devvn-address-field validate-required"
-                                               id="billing_state_field" data-priority="30"><label for="billing_state"
+                                               id="billing_state_field" data-priority="30"><label for="provinceCUS"
                                                                                                   class="">Tỉnh / Thành
                                                 phố&nbsp;<abbr class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><select name="billing_state"
-                                                                                              id="billing_state"
-                                                                                              class="select select2-hidden-accessible"
+                                                    class="woocommerce-input-wrapper"><select style="cursor: pointer" name="provinceCUS"
+                                                                                              id="provinceCUS"
+                                                                                              class="select form-select-a"
                                                                                               data-allow_clear="true"
                                                                                               data-placeholder="Chọn tỉnh / thành phố"
-                                                                                              tabindex="-1"
-                                                                                              aria-hidden="true">
-							<option value="" selected="selected">Chọn tỉnh / thành phố</option><option value="HANOI">Hà Nội</option><option
-                                                    value="HOCHIMINH">Tp. Hồ Chí Minh</option><option value="ANGIANG">An Giang</option><option
-                                                    value="BACGIANG">Bắc Giang</option><option
-                                                    value="BACKAN">Bắc Kạn</option><option
-                                                    value="BACLIEU">Bạc Liêu</option><option
-                                                    value="BACNINH">Bắc Ninh</option><option value="BARIAVUNGTAU">Bà Rịa - Vũng Tàu</option><option
-                                                    value="BENTRE">Bến Tre</option><option
-                                                    value="BINHDINH">Bình Định</option><option value="BINHDUONG">Bình Dương</option><option
-                                                    value="BINHPHUOC">Bình Phước</option><option value="BINHTHUAN">Bình Thuận</option><option
-                                                    value="CAMAU">Cà Mau</option><option value="CANTHO">Cần Thơ</option><option
-                                                    value="CAOBANG">Cao Bằng</option><option
-                                                    value="DAKLAK">Đắk Lắk</option><option
-                                                    value="DAKNONG">Đắk Nông</option><option
-                                                    value="DANANG">Đà Nẵng</option><option
-                                                    value="DIENBIEN">Điện Biên</option><option
-                                                    value="DONGNAI">Đồng Nai</option><option
-                                                    value="DONGTHAP">Đồng Tháp</option><option
-                                                    value="GIALAI">Gia Lai</option><option
-                                                    value="HAGIANG">Hà Giang</option><option
-                                                    value="HAIDUONG">Hải Dương</option><option value="HAIPHONG">Hải Phòng</option><option
-                                                    value="HANAM">Hà Nam</option><option value="HATINH">Hà Tĩnh</option><option
-                                                    value="HAUGIANG">Hậu Giang</option><option
-                                                    value="HOABINH">Hòa Bình</option><option
-                                                    value="HUNGYEN">Hưng Yên</option><option
-                                                    value="KHANHHOA">Khánh Hòa</option><option value="KIENGIANG">Kiên Giang</option><option
-                                                    value="KONTUM">Kon Tum</option><option
-                                                    value="LAICHAU">Lai Châu</option><option
-                                                    value="LAMDONG">Lâm Đồng</option><option
-                                                    value="LANGSON">Lạng Sơn</option><option
-                                                    value="LAOCAI">Lào Cai</option><option
-                                                    value="LONGAN">Long An</option><option
-                                                    value="NAMDINH">Nam Định</option><option
-                                                    value="NGHEAN">Nghệ An</option><option
-                                                    value="NINHBINH">Ninh Bình</option><option value="NINHTHUAN">Ninh Thuận</option><option
-                                                    value="PHUTHO">Phú Thọ</option><option
-                                                    value="PHUYEN">Phú Yên</option><option
-                                                    value="QUANGBINH">Quảng Bình</option><option value="QUANGNAM">Quảng Nam</option><option
-                                                    value="QUANGNGAI">Quảng Ngãi</option><option value="QUANGNINH">Quảng Ninh</option><option
-                                                    value="QUANGTRI">Quảng Trị</option><option value="SOCTRANG">Sóc Trăng</option><option
-                                                    value="SONLA">Sơn La</option><option
-                                                    value="TAYNINH">Tây Ninh</option><option
-                                                    value="THAIBINH">Thái Bình</option><option value="THAINGUYEN">Thái Nguyên</option><option
-                                                    value="THANHHOA">Thanh Hóa</option><option value="THUATHIENHUE">Thừa Thiên Huế</option><option
-                                                    value="TIENGIANG">Tiền Giang</option><option value="TRAVINH">Trà Vinh</option><option
-                                                    value="TUYENQUANG">Tuyên Quang</option><option value="VINHLONG">Vĩnh Long</option><option
-                                                    value="VINHPHUC">Vĩnh Phúc</option><option
-                                                    value="YENBAI">Yên Bái</option>
-						</select><span class="select2 select2-container select2-container--default" dir="ltr"
-                                       style="width: 339.323px;"><span class="selection"><span
-                                                    class="select2-selection select2-selection--single" role="combobox"
-                                                    aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                                    aria-labelledby="select2-billing_state-container"><span
-                                                    class="select2-selection__rendered"
-                                                    id="select2-billing_state-container"><span
-                                                    class="select2-selection__placeholder">Chọn tỉnh / thành phố</span></span><span
-                                                    class="select2-selection__arrow" role="presentation"><b
-                                                    role="presentation"></b></span></span></span><span
-                                                    class="dropdown-wrapper" aria-hidden="true"></span></span></span>
+                                                                                              tabindex="-1"></select></span>
                                             </p>
                                             <p class="form-row form-row-last address-field update_totals_on_change validate-required validate-required"
-                                               id="billing_city_field" data-priority="40"><label for="billing_city"
+                                               id="billing_city_field" data-priority="40"><label for="districtCus"
                                                                                                  class="">Quận / Huyện
                                                 <abbr class="required" title="required">*</abbr></label><select
-                                                    name="billing_city" id="billing_city"
-                                                    class="select select2-hidden-accessible" data-allow_clear="true"
+                                                    style="cursor: pointer"
+                                                    name="districtCus" id="districtCus"
+                                                    class="select " data-allow_clear="true"
                                                     data-placeholder="Chọn quận / huyện" tabindex="-1"
                                                     aria-hidden="true">
-                                                <option value="" selected="selected">Chọn quận / huyện</option>
-                                            </select><span class="select2 select2-container select2-container--default"
-                                                           dir="ltr" style="width: 339.323px;"><span
-                                                    class="selection"><span
-                                                    class="select2-selection select2-selection--single" role="combobox"
-                                                    aria-haspopup="true" aria-expanded="false" tabindex="0"
-                                                    aria-labelledby="select2-billing_city-container"><span
-                                                    class="select2-selection__rendered"
-                                                    id="select2-billing_city-container"><span
-                                                    class="select2-selection__placeholder">Chọn quận / huyện</span></span><span
-                                                    class="select2-selection__arrow" role="presentation"><b
-                                                    role="presentation"></b></span></span></span><span
-                                                    class="dropdown-wrapper" aria-hidden="true"></span></span></p>
+                                            </select>
+                                            </p>
                                             <p class="form-row form-row-wide validate-required"
                                                id="billing_address_1_field" data-priority="60"><label
                                                     for="billing_address_1" class="">Địa chỉ&nbsp;<abbr class="required"
@@ -1212,24 +1131,11 @@
                                                     class="woocommerce-input-wrapper"><input type="text"
                                                                                              class="input-text "
                                                                                              name="billing_address_1"
-                                                                                             id="billing_address_1"
+                                                                                             id="addressCus"
                                                                                              placeholder="Nhập địa chỉ"
                                                                                              value=""
                                                                                              autocomplete="address-line1"></span>
                                             </p></div>
-
-                                    </div>
-
-                                    <div class="woocommerce-account-fields">
-
-                                        <p class="form-row form-row-wide create-account woocommerce-validated">
-                                            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                                                <input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
-                                                       id="createaccount" type="checkbox" name="createaccount"
-                                                       value="1"> <span>Create an account?</span>
-                                            </label>
-                                        </p>
-
 
                                     </div>
                                 </div>
@@ -1249,7 +1155,7 @@
                                                     class="optional">(tuỳ chọn)</span></label><span
                                                     class="woocommerce-input-wrapper"><textarea name="order_comments"
                                                                                                 class="input-text "
-                                                                                                id="order_comments"
+                                                                                                id="contentCart"
                                                                                                 placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."
                                                                                                 rows="2"
                                                                                                 cols="5"></textarea></span>
@@ -1277,9 +1183,9 @@
 
                         </div>
 
-                        <div class="large-5 col">
+                        <div class="large-5 col" >
 
-                            <div class="col-inner has-border">
+                            <div class="col-inner has-border" style="border: 1px solid #0a0a0b29;" >
                                 <div class="checkout-sidebar sm-touch-scroll">
 
 
@@ -1289,70 +1195,6 @@
                                     <div id="order_review" class="woocommerce-checkout-review-order">
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <tbody>
-                                            <tr class="cart-subtotal">
-                                                <th>Thành tiền</th>
-                                                <td><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="woocommerce-shipping-totals shipping ">
-                                                <td class="shipping__inner" colspan="2">
-                                                    <table class="shipping__table ">
-                                                        <tbody>
-                                                        <tr>
-                                                            <th>Vận chuyển</th>
-                                                            <td data-title="Vận chuyển">
-                                                                <ul id="shipping_method"
-                                                                    class="shipping__list woocommerce-shipping-methods">
-                                                                    <li class="shipping__list_item">
-                                                                        <input type="hidden" name="shipping_method[0]"
-                                                                               data-index="0"
-                                                                               id="shipping_method_0_flat_rate4"
-                                                                               value="flat_rate:4"
-                                                                               class="shipping_method"><label
-                                                                            class="shipping__list_label"
-                                                                            for="shipping_method_0_flat_rate4">Liên hệ
-                                                                        phí vận chuyển sau</label></li>
-                                                                </ul>
-
-
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="order-total">
-                                                <th>Tổng cộng</th>
-                                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                        class="woocommerce-Price-currencySymbol">₫</span></bdi></span></strong>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="product-title">
-                                                <th colspan="2">Sản phẩm<span class="total_count">1</span></th>
-                                            </tr>
-                                            <tr class="cart_item">
-                                                <td class="product-name">
-                                                    <div class="product-thumbnails">
-                                                        <a href="https://nhaxinh.com/san-pham/armchair-osaka-vai/"><img
-                                                                width="300" height="200"
-                                                                src="./assets/chitiet_giohang_files/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt=""
-                                                                srcset="https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/armchair-osaka-hien-dai-sang-trong-2.jpg 1000w"
-                                                                sizes="(max-width: 300px) 100vw, 300px"></a></div>
-                                                    Armchair Osaka bọc vải SO65&nbsp;&nbsp; <strong
-                                                        class="product-quantity">×&nbsp;1</strong></td>
-                                                <td class="product-total">
-                                                    <span class="woocommerce-Price-amount amount"><bdi>14,900,000<span
-                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span>
-                                                </td>
-                                            </tr>
 
                                             </tbody>
                                         </table>
@@ -1360,16 +1202,6 @@
                                         <input type="hidden" name="lang" value="vi">
                                         <div id="payment" class="woocommerce-checkout-payment">
                                             <div class="form-row place-order">
-                                                <noscript>
-                                                    Since your browser does not support JavaScript, or it is disabled,
-                                                    please ensure you click the <em>Update Totals</em> button before
-                                                    placing your order. You may be charged more than the amount stated
-                                                    above if you fail to do so. <br/>
-                                                    <button type="submit" class="button alt"
-                                                            name="woocommerce_checkout_update_totals"
-                                                            value="Cập nhật giá tiền">Cập nhật giá tiền
-                                                    </button>
-                                                </noscript>
 
                                                 <div class="woocommerce-terms-and-conditions-wrapper">
                                                     <div class="woocommerce-terms-and-conditions"
@@ -1794,20 +1626,14 @@
                                                                     href="https://nhaxinh.com/dieu-khoan-ban-hang-online/">điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản dịch vụ mua hàng online</a></span>&nbsp;<span
                                                                 class="required">*</span>
                                                         </label>
-                                                        <input type="hidden" name="terms-field" value="1">
                                                     </p>
                                                 </div>
 
 
-                                                <button type="submit" class="button alt"
-                                                        name="woocommerce_checkout_place_order" id="place_order"
-                                                        value="Đặt mua" data-value="Đặt mua">Đặt mua
+                                                <button class="btn-order"
+                                                        style=" color: white;width: 100%;background: #0A0A0B;"
+                                                       >Đặt mua
                                                 </button>
-
-                                                <input type="hidden" id="woocommerce-process-checkout-nonce"
-                                                       name="woocommerce-process-checkout-nonce"
-                                                       value="a75743aaed"><input type="hidden" name="_wp_http_referer"
-                                                                                 value="/?wc-ajax=update_order_review">
                                             </div>
                                         </div>
 
@@ -1819,7 +1645,6 @@
                         </div>
 
                     </div>
-                </form>
 
             </div>
         </div>
@@ -2324,6 +2149,8 @@
     </div>
 </div>
 <th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
+<th:block th:replace="/customerView/chitiet_giohang/total_OrderSumary::total_OrderSumary"/>
+<th:block th:replace="/customerView/chitiet_giohang/line_item_orderSumary::line_item_orderSumary"/>
 <th:block th:replace="/customerView/layout/chitiet_giohang/script::script"/>
 </body>
 </html>

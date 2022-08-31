@@ -26,11 +26,9 @@ public class OrderDTO {
 
     private BigDecimal grandTotal;
 
-    private String fullName;
+    private BigDecimal quantity;
 
-    private String phone;
-
-    private String email;
+    private String productCode;
 
     private CustomerInfoDTO customerInfo;
 
@@ -39,9 +37,8 @@ public class OrderDTO {
                 .setId(id)
                 .setDescription(description)
                 .setGrandTotal(grandTotal)
-                .setFullName(fullName)
-                .setPhone(phone)
-                .setEmail(email)
+                .setQuantity(quantity)
+                .setProductCode(productCode)
                 .setCustomerInfo(customerInfo.toCustomerInfo());
 
     }

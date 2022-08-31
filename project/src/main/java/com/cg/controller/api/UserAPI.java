@@ -33,4 +33,13 @@ public class UserAPI {
         }
         throw new RuntimeException("khong co user");
     }
+
+    @GetMapping("/username/{userName}")
+    public ResponseEntity<?> getAllElementUserByUserName(@PathVariable String userName){
+        Optional<User> user = userService.findByUsername(userName);
+        if (user.isPresent()){
+            return new ResponseEntity<>(user.get().toUserDTO(), HttpStatus.OK);
+        }
+        throw new RuntimeException("khong co user");
+    }
 }

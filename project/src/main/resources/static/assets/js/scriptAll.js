@@ -12,6 +12,7 @@ class App {
     static BASE_URL_CART = this.DOMAIN + "/api/cart"
     static BASE_URL_CARTITEM = this.DOMAIN + "/api/cart-item"
     static BASE_URL_USER_ABC = this.DOMAIN + "/api/user"
+    static BASE_URL_ORDER = this.DOMAIN + "/api/order"
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
     static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
@@ -106,25 +107,24 @@ class User {
 }
 
 class LocationRegion {
-    constructor(id, province_id, province_name, district_id, district_name, address) {
+    constructor(id, provinceId, provinceName, districtId, districtName, address) {
         this.id = id;
-        this.province_id = province_id;
-        this.province_name = province_name;
-        this.district_id = district_id;
-        this.district_name = district_name;
+        this.provinceId = provinceId;
+        this.provinceName = provinceName;
+        this.districtId = districtId;
+        this.districtName = districtName;
         this.address = address;
     }
 }
 class CustomerInfo {
-    constructor(id,userName,fullName,phone,debt,locationRegion,createdAt, updatedAt) {
+    constructor(id,userName,fullName,phone,debt,locationRegion) {
         this.id = id;
         this.userName = userName;
         this.fullName = fullName;
         this.phone = phone;
         this.debt =debt;
         this.locationRegion = locationRegion;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 }
 class Category{
@@ -189,3 +189,23 @@ class CartItems {
     }
 }
 
+class Cart {
+    constructor(id, content, user, customerInfo) {
+        this.id = id;
+        this.content = content;
+        this.user = user
+        this.customerInfo = customerInfo
+    }
+
+}
+
+class Order {
+    constructor(id ,description ,grandTotal ,quantity ,productCode ,customerInfo ) {
+        this.id = id;
+        this.description = description;
+        this.grandTotal = grandTotal;
+        this.quantity = quantity;
+        this.productCode = productCode;
+        this.customerInfo = customerInfo;
+    }
+}

@@ -34,7 +34,7 @@ public class CustomerInfoAPI {
     @GetMapping()
     public ResponseEntity<?> showListCustomerInfo() {
         List<CustomerInfoDTO> customerInfos = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
-        if (customerInfos.isEmpty()){
+        if (customerInfos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(customerInfos, HttpStatus.OK);
@@ -51,16 +51,23 @@ public class CustomerInfoAPI {
 
 
 
-      @PostMapping("/create")
-      public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult){
-        if (bindingResult.hasFieldErrors()){
+    @PostMapping("/create")
+    public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-          customerInfoDT0.getLocationRegion().setId(0L);
+        customerInfoDT0.getLocationRegion().setId(0L);
 
-          CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
+        CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
         return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
-      }
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long id){
+        Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(String.valueOf(id));
+        return new ResponseEntity<>(customerInfo.get().toCustomerInfo(), HttpStatus.OK);
+    }
+
 
       @PutMapping("/edit")
     private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){

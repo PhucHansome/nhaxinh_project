@@ -25,7 +25,9 @@ public class Cart  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
+    private String content;
 
 
 
@@ -40,7 +42,8 @@ public class Cart  {
 
     public CartDTO toCartDTO(){
         return new CartDTO()
-                .setId(String.valueOf(id))
+                .setId(id)
+                .setContent(content)
                 .setUser(user.toUserDTO())
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO())
                 ;

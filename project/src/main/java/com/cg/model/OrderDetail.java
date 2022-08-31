@@ -31,7 +31,6 @@ public class OrderDetail{
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-
     public OrderDetailDTO toOrderDetailDTO(){
         return new OrderDetailDTO()
                 .setId(id)
