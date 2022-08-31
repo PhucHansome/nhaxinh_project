@@ -20,7 +20,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class CartDTO {
 
-    private String id;
+    private Long id;
 
     private String content;
 
@@ -28,6 +28,12 @@ public class CartDTO {
 
     private CustomerInfoDTO customerInfo;
 
+    public CartDTO(Long id, String content,User user, CustomerInfo customerInfo){
+        this.id = id;
+        this.content = content;
+        this.user = user.toUserDTO();
+        this.customerInfo = customerInfo.toCustomerInfoDTO();
+    }
 
     public Cart toCart() {
         return new Cart()

@@ -1188,7 +1188,8 @@
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
-                PostCart: App.BASE_URL_CART +"/create",
+                PostCart: App.BASE_URL_CART + "/create",
+                PostOrder: App.BASE_URL_ORDER,
                 DeleteCartItem: App.BASE_URL_CARTITEM
             },
             element: {},
@@ -1208,6 +1209,7 @@
         let customerInfo = new CustomerInfo();
         let locationRegion = new LocationRegion();
         let user = new User();
+        let order = new Order();
 
         page.element.userNameLogin = $("#EmailLogin")
         page.element.cart_product = $("#cart_product_view")
@@ -1273,7 +1275,6 @@
                 .done((data) => {
                     page.element.select_provinceCUS.html("")
                     $.each(data.results, (i, item) => {
-                        console.log(item)
                         let str = `<option value="${item.province_id}">${item.province_name}</option>`;
                         page.element.select_provinceCUS.append(str);
                     })
@@ -1424,7 +1425,7 @@
         page.commands.handleOrder = () => {
             page.element.btnOrder.on("click", () => {
                 page.commands.getUserByEmail().then(() => {
-                    delete locationRegion.id ;
+                    delete locationRegion.id;
                     locationRegion.provinceId = $("#provinceCUS").val();
                     locationRegion.provinceName = $("#provinceCUS :selected").text();
                     locationRegion.districtId = $("#districtCus").val();
@@ -1438,7 +1439,7 @@
                     customerInfo.debt = 0;
                     customerInfo.locationRegion = locationRegion;
 
-                    delete cart.id ;
+                    delete cart.id;
                     cart.content = page.element.contentCart.val();
                     cart.user = user
                     cart.customerInfo = customerInfo
@@ -1450,10 +1451,35 @@
                         "type": "POST",
                         "url": page.url.PostCart,
                         "data": JSON.stringify(cart)
-                    }).done((data)=>{
+                    }).done((data) => {
                         console.log(data);
+                        cart = data;
+                        page.commands.createOrder(cart);
                     })
                 })
+            })
+        }
+
+        page.commands.createOrder = (cart) => {
+            delete order.id;
+            order.description = cart.content;
+            order.grandTotal = 0;
+            order.quantity = 0;
+            order.productCode = "null";
+            order.customerInfo = cart.customerInfo;
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.PostOrder,
+                "data": JSON.stringify(order)
+            }).done((dataOrder) => {
+                App.IziToast.showSuccessAlert("Order sản phẩm Thành công!")
+                page.loadData.getOrderSummary()
+            }).fail(() => {
+                App.IziToast.showErrorAlert("Order sản phẩm thất bại!")
             })
         }
 
@@ -1462,6 +1488,15 @@
                 "type": "GET",
                 "url": page.url.GetCartItems,
             }).done((data) => {
+                if (data.length === 0) {
+                    setTimeout(function () {
+                        App.IziToast.showErrorAlert("giỏ hàng trống! trở về trang giỏ hàng sau 1s")
+                        setTimeout(function () {
+                            App.IziToast.showSuccessAlert("Trở về trang giỏ hàng");
+                            window.location.href = "/cart";
+                        }, 1000);
+                    }, 1000);
+                }
                 page.element.emailCus.val(page.element.userNameLogin.text())
                 page.element.orderSummary.html("")
                 let sum = 0
@@ -1472,6 +1507,7 @@
                 })
                 page.commands.totalCartItem(sum, data.length)
             }).fail(() => {
+
             })
         }
 
@@ -1483,6 +1519,7 @@
                 user = data;
             })
         }
+
 
         $(function () {
             page.commands.handleShowCart()

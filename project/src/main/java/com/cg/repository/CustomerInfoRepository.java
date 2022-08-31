@@ -19,4 +19,7 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Long>
     @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.locationRegion) FROM CustomerInfo c WHERE c.id = ?1")
     Optional<CustomerInfoDTO> findUserDTOById(Long id);
 
+    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName, c.phone,c.locationRegion) FROM CustomerInfo c WHERE c.userName = ?1")
+    Optional<CustomerInfoDTO> findUserDTOByUserName(String userName);
+
 }

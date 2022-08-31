@@ -1,11 +1,13 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.DataInputException;
 import com.cg.model.Cart;
-import com.cg.model.CartItem;
+import com.cg.model.Order;
 import com.cg.model.dto.CartDTO;
-import com.cg.model.dto.CartItemsDTO;
-import com.cg.service.cart.CartService;
+import com.cg.model.dto.OrderDTO;
+import com.cg.repository.CartRepository;
+import com.cg.service.order.OrderService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,24 +21,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/cart")
-public class CartAPI {
-    @Autowired
-    private CartService cartService;
-
+@RequestMapping("/api/order")
+public class OrderAPI {
     @Autowired
     private AppUtils appUtils;
 
-    @PostMapping("/create")
-    public ResponseEntity<?> doCreate(@RequestBody CartDTO cartDTO, BindingResult bindingResult){
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private CartRepository cartRepository;
+
+
+    @PostMapping
+    public ResponseEntity<?> doCreateOrder(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-
-
-        Cart createCart = cartService.save(cartDTO.toCart());
-        return new ResponseEntity<> (createCart.toCartDTO(), HttpStatus.CREATED);
+       orderService.save(orderDTO.toOrder());
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
 }

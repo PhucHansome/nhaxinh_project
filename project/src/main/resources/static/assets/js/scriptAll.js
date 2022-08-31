@@ -12,6 +12,7 @@ class App {
     static BASE_URL_CART = this.DOMAIN + "/api/cart"
     static BASE_URL_CARTITEM = this.DOMAIN + "/api/cart-item"
     static BASE_URL_USER_ABC = this.DOMAIN + "/api/user"
+    static BASE_URL_ORDER = this.DOMAIN + "/api/order"
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
     static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
@@ -116,7 +117,7 @@ class LocationRegion {
     }
 }
 class CustomerInfo {
-    constructor(id,userName,fullName,phone,debt,locationRegion,createAt) {
+    constructor(id,userName,fullName,phone,debt,locationRegion) {
         this.id = id;
         this.userName = userName;
         this.fullName = fullName;
@@ -197,3 +198,13 @@ class Cart {
 
 }
 
+class Order {
+    constructor(id ,description ,grandTotal ,quantity ,productCode ,customerInfo ) {
+        this.id = id;
+        this.description = description;
+        this.grandTotal = grandTotal;
+        this.quantity = quantity;
+        this.productCode = productCode;
+        this.customerInfo = customerInfo;
+    }
+}

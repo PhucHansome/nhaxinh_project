@@ -25,8 +25,6 @@ public class OrderDetailDTO {
 
     private ProductDTO product;
 
-    private BigDecimal payment;
-
     public OrderDetail toOrderDetail(){
         return new OrderDetail()
                 .setId(id)

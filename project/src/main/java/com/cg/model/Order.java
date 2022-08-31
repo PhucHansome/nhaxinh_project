@@ -26,11 +26,10 @@ public class Order extends BaseEntity{
 
     private BigDecimal grandTotal;
 
-    private String fullName;
+    private BigDecimal quantity;
 
-    private String phone;
+    private String productCode;
 
-    private String email;
 
     @OneToOne
     @JoinColumn(name = "customerifs_id", nullable = false)
@@ -41,9 +40,8 @@ public class Order extends BaseEntity{
                 .setId(id)
                 .setDescription(description)
                 .setGrandTotal(grandTotal)
-                .setFullName(fullName)
-                .setPhone(phone)
-                .setEmail(email)
+                .setQuantity(quantity)
+                .setProductCode(productCode)
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO());
 
     }
