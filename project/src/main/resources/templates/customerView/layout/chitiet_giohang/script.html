@@ -1186,6 +1186,7 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
+                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text() ,
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART + "/create",
@@ -1520,6 +1521,19 @@
             })
         }
 
+        page.commands.getCustomerInfoByEmail = () => {
+            return $.ajax({
+                "method": "GET",
+                "url": page.url.GetCustomer
+            }).done((data) => {
+                customerInfo = data;
+                page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
+                page.element.fullNameCus.val(customerInfo.fullName);
+                page.element.phoneCus.val(customerInfo.phone);
+                page.element.addressCus.val(customerInfo.locationRegion.address);
+                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val())
+            })
+        }
 
         $(function () {
             page.commands.handleShowCart()
@@ -1528,6 +1542,7 @@
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
             })
+            page.commands.getCustomerInfoByEmail();
             page.commands.handleOrder();
         })
     </script>

@@ -14,5 +14,5 @@ public interface ICustomerInfoService extends IGeneralService<CustomerInfo> {
 
     Optional<CustomerInfoDTO> findUserDTOById(String id);
 
-
+    Optional<CustomerInfoDTO> findUserDTOByUserName(String userName);
 }
