@@ -60,6 +60,12 @@ public class ProductAPI {
         return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/productmedia/{id}")
+    public ResponseEntity<?> findProductMediaByIdProduct(@PathVariable String id) {
+        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        return new ResponseEntity<>(productMediaDTOList, HttpStatus.OK);
+    }
+
     @GetMapping("/product-color")
     private ResponseEntity<?> findAllProductColor() {
         try {

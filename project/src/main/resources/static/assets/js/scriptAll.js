@@ -209,3 +209,10 @@ class Order {
         this.customerInfo = customerInfo;
     }
 }
+
+class ProductMedia{
+    constructor(id, fileUrl) {
+        this.id = id;
+        this.fileUrl = fileUrl;
+    }
+}

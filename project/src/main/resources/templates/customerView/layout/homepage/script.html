@@ -1180,6 +1180,7 @@
                 currency: 'VND'
             }).format(carItem.price), carItem.id)));
         }
+
         page.commands.getProductById = (id) => {
             return $.ajax({
                 headers: {
@@ -1244,8 +1245,13 @@
                     }).done((data) => {
                         App.IziToast.showSuccessAlert("Đã thêm vào giỏ hàng thành công")
                         page.commands.showIconCart();
-                    }).fail(() => {
-                        page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
+                    }).fail((jqXHR) => {
+                        console.log(jqXHR);
+                        if (jqXHR.responseJSON) {
+                            $.each(jqXHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
                     })
                 })
             })
@@ -1345,8 +1351,16 @@
                 })
                 page.commands.handleCreateCart()
                 page.commands.showIconCart();
+                page.commands.handleGoDetailProduct()
             }).fail((e) => {
                 console.log(e)
+            })
+        }
+
+        page.commands.handleGoDetailProduct = () => {
+            $(".view_Product").on("click", function () {
+                let id = $(this).data("id");
+                window.location.href = "/detail/" + id;
             })
         }
 

@@ -41,7 +41,6 @@ public class TagAPI {
 
         Tag tagDTO1 = tagService.save(tagDTO.toTag());
         return  new ResponseEntity<>(tagDTO1.toTagDTO(), HttpStatus.CREATED);
-
     }
 
 }

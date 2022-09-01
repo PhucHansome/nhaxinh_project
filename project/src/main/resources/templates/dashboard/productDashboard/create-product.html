@@ -187,7 +187,7 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="card-body d-flex justify-content-start" id="container_"></div>
+                                    <div class="row" id="container_"></div>
                                 </div>
                             </div>
                         </div>
@@ -472,7 +472,7 @@
                     formData.delete("image");
                     page.element.btnSave.off()
                     console.log(item)
-                    $(".mla").remove()
+                    $(".mla").html("")
                     formData.delete("files")
                     formData.delete("code");
                     formData.delete("title");
@@ -501,11 +501,11 @@
                     document.getElementById('container_').innerHTML = page.commands.image_show()
                 }).fail((e) => {
                     console.log(e)
-                    $(".mla").remove()
+                    $(".mla").html("")
                     App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
                 })
             }).fail(() => {
-                $(".mla").remove()
+                $(".mla").html("")
                 App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
             })
         })
@@ -516,10 +516,10 @@
         page.element.btnSave.off()
         formData = new FormData()
         let fileInput = $("#image")[0].files;
-        if (fileInput.length > 4) {
-            App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
-            return
-        }
+        // if (fileInput.length > 4) {
+        //     App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
+        //     return
+        // }
         for (let k = 0; k < fileInput.length; k++) {
             formData.append("files", fileInput[k]);
         }
@@ -537,9 +537,12 @@
     page.commands.image_show = () => {
         var image = "";
         images.forEach((i) => {
-            image += `<div class="image_container d-flex justify-content-center position-relative">
-                        <img src="` + i.url + `"  alt="" />
-                         <span class="position-absolute" onclick="page.commands.delete_image(` + images.indexOf(i) + `)">&times;</span>
+            image += `
+                       <div class="col-3 " style="margin-right: 10px" >
+                           <div class="image_container d-flex justify-content-center position-relative">
+                            <img style="height: 110px;width: 150px;"  src="` + i.url + `"  alt="" />
+                             <span class="position-absolute" onclick="page.commands.delete_image(` + images.indexOf(i) + `)">&times;</span>
+                          </div>
                       </div>
                     `;
         })

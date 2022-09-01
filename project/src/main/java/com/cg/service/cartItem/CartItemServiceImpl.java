@@ -51,6 +51,13 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
+    public CartItem saveInDetail(CartItem cartItem) {
+        Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(), cartItem.getProduct().getCode());
+        cartItem.setId(cartItem1.get().getId());
+        return cartItemRepository.save(cartItem);
+    }
+
+    @Override
     public Optional<CartItemsDTO> getCartItemDTOById(Long id) {
         return cartItemRepository.getCartItemDTOById(id);
     }

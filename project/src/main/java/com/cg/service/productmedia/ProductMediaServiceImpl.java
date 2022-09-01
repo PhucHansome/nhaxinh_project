@@ -43,4 +43,9 @@ public class ProductMediaServiceImpl implements ProductMediaService{
     public void delete(ProductMedia productMedia) {
         productMediaRepository.delete(productMedia);
     }
+
+    @Override
+    public List<ProductMediaDTO> findAllByProductIdOrderByTsAsc(String id) {
+        return productMediaRepository.findAllByProductIdOrderByTsAsc(id);
+    }
 }

@@ -40,6 +40,12 @@ public class ProductMediaDTO {
         this.fileUrl = fileUrl;
     }
 
+    public ProductMediaDTO(String id, Long ts , String fileUrl) {
+        this.id = id;
+        this.ts = ts;
+        this.fileUrl = fileUrl;
+    }
+
     public ProductMedia toProductMedia() {
        return new ProductMedia()
                .setId(id)

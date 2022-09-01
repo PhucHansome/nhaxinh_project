@@ -2,8 +2,12 @@ package com.cg.controller;
 
 
 import com.cg.model.dto.CustomerInfoDTO;
+import com.cg.model.dto.ProductDTO;
+import com.cg.model.dto.TagDTO;
 import com.cg.model.dto.UserDTO;
+import com.cg.service.Tag.TagService;
 import com.cg.service.customerInfo.ICustomerInfoService;
+import com.cg.service.productservice.ProductService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +29,12 @@ import java.util.Optional;
 public class HomeController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private ICustomerInfoService customerInfoService;
@@ -117,7 +127,28 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("/detail/{id}")
+    public ModelAndView goDetailProduct(@PathVariable String id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/detail/detail");
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
+        modelAndView.addObject("product", productDTOOptional.get());
+        modelAndView.addObject("tag", tagDTO.get());
+        String email = getPrincipal();
+        if (email == "anonymousUser") {
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
+
+
     //==dashBoard===//
+
+
 
     @GetMapping("/home-dashboard")
     public ModelAndView getDashboard() {
@@ -164,7 +195,6 @@ public class HomeController {
         return modelAndView;
     }
 
-
     @GetMapping("/user-dashboard")
     public ModelAndView getUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
@@ -173,8 +203,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
-
 
     @RequestMapping("/")
     public String detailCustomerinfo(){
@@ -187,12 +215,12 @@ public class HomeController {
         redirectAttributes.addAttribute("name", name);
         return new RedirectView("/dashboard/userDashboard/detail-user");
     }
+
     @RequestMapping("/detail-user-dashboard")
     public String page2(@RequestParam("name") String name, Model model) {
         model.addAttribute("name", name.toUpperCase());
         return "/detail-user-dashboard";
     }
-
 
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {
@@ -231,7 +259,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {

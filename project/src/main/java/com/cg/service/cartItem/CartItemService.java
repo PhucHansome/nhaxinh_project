@@ -15,6 +15,8 @@ public interface CartItemService extends IGeneralService<CartItem> {
 
     CartItem saveOp(CartItem cartItem);
 
+    CartItem saveInDetail(CartItem cartItem);
+
     Optional<CartItemsDTO> getCartItemDTOById(Long id);
 
     CartItem SaveReduce(CartItem cartItem);

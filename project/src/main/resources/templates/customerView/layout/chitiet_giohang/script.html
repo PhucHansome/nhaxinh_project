@@ -1232,6 +1232,7 @@
         page.element.addressCus = $("#addressCus")
         page.element.contentCart = $('#contentCart')
 
+
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
 
@@ -1390,6 +1391,7 @@
                     "type": "GET",
                     "url": page.url.GetCartItems,
                 }).done((data) => {
+                    page.loadData.getOrderSummary();
                     $("#seeGrandTotal").html("")
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
