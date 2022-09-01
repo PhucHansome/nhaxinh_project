@@ -64,6 +64,13 @@ public class OrderServiceImpl implements OrderService{
             cartItemRepository.deleteById(cartItemsDTO.getId());
             orderRepository.save(order);
         }
+        List<CartDTO> cartDTOList = cartRepoSitory.getCartItemDTOByIdCustomerInfo(order.getCustomerInfo().getId());
+        for (CartDTO cartDTO : cartDTOList){
+            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())){
+                cartRepoSitory.deleteById(cartDTO.getId());
+            }
+        }
+
         return null;
     }
 
