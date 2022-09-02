@@ -1800,8 +1800,8 @@
                 inputError: {}
             }
         }
+
         let carItem = new CartItems();
-        let productMedia = new ProductMedia()
         let locationRegion = new LocationRegion();
         let customerInfo = new CustomerInfo();
         let user = new User();
@@ -1811,7 +1811,6 @@
         page.element.userNameLo = $("#header-account-title");
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
-        page.element.idProduct = $("#productId")
         page.element.userNameLogin = $("#EmailLogin")
         page.element.valueInput = $("#valueInput")
         page.element.valueQuantity = $("#quantity_62fc4b3185e6c")
@@ -1875,7 +1874,6 @@
                 "type": "GET",
                 "url": page.url.GetUser,
             }).done((data) => {
-                console.log(data)
                 user = data;
             })
 
