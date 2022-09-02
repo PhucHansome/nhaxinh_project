@@ -16,7 +16,6 @@ public class CartItemServiceImpl implements CartItemService{
     @Autowired
     private CartItemRepository cartItemRepository;
 
-
     @Override
     public List<CartItem> findAll() {
         return cartItemRepository.findAll();

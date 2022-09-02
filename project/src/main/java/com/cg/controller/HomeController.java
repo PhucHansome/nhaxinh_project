@@ -144,7 +144,18 @@ public class HomeController {
         return modelAndView;
     }
 
-
+    @GetMapping("/account")
+    public ModelAndView getAccount() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/myaccount/account");
+        String email = getPrincipal();
+        if (email == "anonymousUser") {
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     //==dashBoard===//
 

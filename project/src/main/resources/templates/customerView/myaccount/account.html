@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="js yes-js js_active mdl-js"><!--<![endif]-->
+<head>
+    <title>My Account - Nội thất Nhà Xinh</title>
+    <th:block th:replace="/customerView/layout/myaccount/head::head"/>
+</head>
+
+<body data-rsssl="1"
+      class="page-template-default page page-id-60 page-parent logged-in theme-flatsome woocommerce-account woocommerce-page woocommerce-edit-account woocommerce-js yith-wcan-pro lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M87KMWC"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-dark-grayscale">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 0.49803921568627"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.49803921568627"></fefuncg>
+                <fefuncb type="table" tableValues="0 0.49803921568627"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-grayscale">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0 1"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-yellow">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.54901960784314 0.98823529411765"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0.71764705882353 0.25490196078431"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-red">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.27843137254902"></fefuncg>
+                <fefuncb type="table" tableValues="0.5921568627451 0.27843137254902"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-midnight">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0 0"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.64705882352941"></fefuncg>
+                <fefuncb type="table" tableValues="0 1"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-magenta-yellow">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.78039215686275 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.94901960784314"></fefuncg>
+                <fefuncb type="table" tableValues="0.35294117647059 0.47058823529412"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-purple-green">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.65098039215686 0.40392156862745"></fefuncr>
+                <fefuncg type="table" tableValues="0 1"></fefuncg>
+                <fefuncb type="table" tableValues="0.44705882352941 0.4"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none"
+     style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;">
+    <defs>
+        <filter id="wp-duotone-blue-orange">
+            <fecolormatrix color-interpolation-filters="sRGB" type="matrix"
+                           values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix>
+            <fecomponenttransfer color-interpolation-filters="sRGB">
+                <fefuncr type="table" tableValues="0.098039215686275 1"></fefuncr>
+                <fefuncg type="table" tableValues="0 0.66274509803922"></fefuncg>
+                <fefuncb type="table" tableValues="0.84705882352941 0.41960784313725"></fefuncb>
+                <fefunca type="table" tableValues="1 1"></fefunca>
+            </fecomponenttransfer>
+            <fecomposite in2="SourceGraphic" operator="in"></fecomposite>
+        </filter>
+    </defs>
+</svg>
+<a class="skip-link screen-reader-text" href="https://nhaxinh.com/tai-khoan/edit-account/#main">Skip to content</a>
+
+<div id="wrapper">
+
+
+    <header id="header" class="header has-sticky sticky-jump" style="">
+        <div class="header-wrapper">
+
+            <div id="top-bar" class="header-top hide-for-sticky">
+                <div class="flex-row container">
+                    <div class="flex-col hide-for-medium flex-left">
+                        <ul class="nav nav-left medium-nav-center nav-small  nav-">
+                            <div class="lang">
+                                <i class="image-icon"><img src="./assets/My Account - Nội thất Nhà Xinh_files/vi.png"
+                                                           alt="Tiếng Việt"></i> <a
+                                    href="https://nhaxinh.com/tai-khoan/" hreflang="vi" class="curent_lang"> vn</a><a
+                                    href="https://nhaxinh.com/my-account/edit-account/?lang=en" hreflang="en"> en</a>
+                            </div>
+                            <li class="html custom html_topbar_left"><p class="hotline"><a href="tel:1800 7200"><i
+                                    class="fas fa-phone-volume"></i> 1800 7200</a></p></li>
+                            <li id="menu-item-594"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594 menu-item-design-default">
+                                <a href="https://nhaxinh.com/gioi-thieu/" class="nav-top-link">Giới thiệu</a></li>
+                            <li id="menu-item-573"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-573 menu-item-design-default">
+                                <a href="https://nhaxinh.com/khuyen-mai/" class="nav-top-link">Khuyến mãi</a></li>
+                            <li id="menu-item-27798"
+                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27798 menu-item-design-default">
+                                <a href="https://nhaxinh.com/danh-muc/giam-gia-dac-biet/" class="nav-top-link">Giảm giá
+                                    đặc biệt</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-center">
+                        <ul class="nav nav-center nav-small  nav-">
+                        </ul>
+                    </div>
+
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="nav top-bar-nav nav-right nav-small  nav-">
+                            <li class="html custom html_topbar_right"><a
+                                    href="#"><i class="fa-solid fa-location-dot"></i></a>
+                            </li>
+                            <li class="header-wishlist-icon">
+                                <a href="https://nhaxinh.com/tai-khoan/edit-account/#"
+                                   data-open="#overlay-right-sidebar" data-pos="right" data-bg="main-menu-overlay"
+                                   data-color="" class="is-small wishlist-link" aria-label="Wishlist"
+                                   aria-controls="overlay-right-sidebar" aria-expanded="false">
+
+                                    <i class="fa-solid fa-heart"></i>
+                                    </i>
+                                </a>
+                            </li>
+                            <li class="cart-item has-icon">
+
+                                <a href="#" id="cart_" class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                   data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
+                                    <span class="image-icon header-cart-icon" id="dataLabelIcon"
+                                          data-icon-label="1"><img class="cart-img-icon" alt="Cart"
+                                                                   src="/assets/HomePageFile/ic-shopping.png"></span>
+                                </a>
+
+
+                                <!-- Cart Sidebar Popup -->
+                                <div id="cart-popup" class="mfp-hide widget_shopping_cart">
+                                    <div class="cart-popup-inner inner-padding">
+                                        <div class="cart-popup-title text-center">
+                                            <h4 class="uppercase">Cart</h4>
+                                            <div class="is-divider"></div>
+                                        </div>
+                                        <div class="widget_shopping_cart_content">
+
+                                            <ul class="woocommerce-mini-cart cart_list product_list_widget ">
+                                                <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                    <a href="https://nhaxinh.com/gio-hang/?remove_item=f1c10a243994461f1e1cdd6d661b05d6&amp;_wpnonce=55f07df98e"
+                                                       class="remove remove_from_cart_button"
+                                                       aria-label="Remove this item" data-product_id="37254"
+                                                       data-cart_item_key="f1c10a243994461f1e1cdd6d661b05d6"
+                                                       data-product_sku="3*106391">×</a> <a
+                                                        href="https://nhaxinh.com/san-pham/sofa-combo-goc-trai-vai-2041-9/">
+                                                    <img width="300" height="200"
+                                                         src="/assets/detail_files/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-300x200.jpg"
+                                                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                         alt=""
+                                                         srcset="https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/07/sofa-combo-goc-boc-vai-xanh-dep-hien-dai-4.jpg 1000w"
+                                                         sizes="(max-width: 300px) 100vw, 300px">Sofa Combo góc trái vải
+                                                    2041 9&nbsp; </a>
+                                                    <span class="quantity">1 × <span
+                                                            class="woocommerce-Price-amount amount"><bdi>37,900,000<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                                </li>
+                                                <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                    <a href="https://nhaxinh.com/gio-hang/?remove_item=73fed7fd472e502d8908794430511f4d&amp;_wpnonce=55f07df98e"
+                                                       class="remove remove_from_cart_button"
+                                                       aria-label="Remove this item" data-product_id="3470"
+                                                       data-cart_item_key="73fed7fd472e502d8908794430511f4d"
+                                                       data-product_sku="3*95168">×</a> <a
+                                                        href="https://nhaxinh.com/san-pham/ban-an-tokyo/">
+                                                    <img width="300" height="200"
+                                                         src="/assets/detail_files/ban-an-tokyo-300x200.jpg"
+                                                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                         alt=""
+                                                         srcset="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-tokyo.jpg 1000w"
+                                                         sizes="(max-width: 300px) 100vw, 300px">Bàn ăn Tokyo&nbsp; </a>
+                                                    <span class="quantity">1 × <span
+                                                            class="woocommerce-Price-amount amount"><bdi>43,930,000<span
+                                                            class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>
+                                                </li>
+                                            </ul>
+
+                                            <p class="woocommerce-mini-cart__total total">
+                                                <strong>Thành tiền:</strong> <span
+                                                    class="woocommerce-Price-amount amount"><bdi>81,830,000<span
+                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></p>
+
+
+                                            <p class="woocommerce-mini-cart__buttons buttons"><a
+                                                    href="https://nhaxinh.com/gio-hang/" class="button wc-forward">Xem
+                                                giỏ hàng</a><a href="/cart_details" class="button checkout wc-forward">Checkout</a>
+                                            </p>
+
+
+                                        </div>
+                                        <div class="cart-sidebar-content relative"></div>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="account-item has-icon
+   active   has-dropdown">
+
+                                <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
+  is-small">
+
+
+			<span th:text="${userDTO}" id="EmailLogin" class="header-account-title">
+
+		</span>
+                                    <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
+
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div id="masthead" class="header-main ">
+                <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+                    <!-- Menu Icon -->
+                    <div id="menu-icon" class="flex-col menu-icon">
+                        <div class="nav-icon has-icon menu_bar desktop">
+                            <a href="#" data-open="#product-categories-menu"
+                               data-pos="left" data-bg="main-menu-overlay" data-color="" class="is-small"
+                               aria-label="Menu" aria-controls="product-categories-menu" aria-expanded="false">
+
+                                <img src="./assets/My Account - Nội thất Nhà Xinh_files/menu-bar.png" alt="Menu bar">
+
+                            </a>
+                        </div>
+
+                        <div class="nav-icon has-icon menu_bar mobile">
+                            <a href="https://nhaxinh.com/tai-khoan/edit-account/#" data-open="#main-menu"
+                               data-pos="left" data-bg="main-menu-overlay" data-color="" class="is-small"
+                               aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
+
+                                <img src="./assets/My Account - Nội thất Nhà Xinh_files/menu-bar.png" alt="Menu bar">
+
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Logo -->
+                    <div id="logo" class="flex-col logo">
+                        <!-- Header logo -->
+                        <a href="/" title="Nội thất Nhà Xinh - Đồ gỗ nội thất" rel="home">
+                            <img width="169" height="90"
+                                 src="./assets/My Account - Nội thất Nhà Xinh_files/logo-nha-xinh-moi-200422.png"
+                                 class="header_logo header-logo" alt="Nội thất Nhà Xinh"><img width="169" height="90"
+                                                                                              src="./assets/My Account - Nội thất Nhà Xinh_files/logo-nha-xinh-moi-200422.png"
+                                                                                              class="header-logo-dark"
+                                                                                              alt="Nội thất Nhà Xinh"></a>
+                    </div>
+
+                    <!-- Mobile Left Elements -->
+                    <div class="flex-col show-for-medium flex-left">
+                        <ul class="mobile-nav nav nav-left ">
+                            <div class="nav-icon has-icon menu_bar desktop">
+                                <a href="https://nhaxinh.com/tai-khoan/edit-account/#"
+                                   data-open="#product-categories-menu" data-pos="left" data-bg="main-menu-overlay"
+                                   data-color="" class="is-small" aria-label="Menu"
+                                   aria-controls="product-categories-menu" aria-expanded="false">
+
+                                    <img src="./assets/My Account - Nội thất Nhà Xinh_files/menu-bar.png"
+                                         alt="Menu bar">
+
+                                </a>
+                            </div>
+
+                            <div class="nav-icon has-icon menu_bar mobile">
+                                <a href="https://nhaxinh.com/tai-khoan/edit-account/#" data-open="#main-menu"
+                                   data-pos="left" data-bg="main-menu-overlay" data-color="" class="is-small"
+                                   aria-label="Menu" aria-controls="main-menu" aria-expanded="false">
+
+                                    <img src="./assets/My Account - Nội thất Nhà Xinh_files/menu-bar.png"
+                                         alt="Menu bar">
+
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- Left Elements -->
+                    <div class="flex-col hide-for-medium flex-left
+            flex-grow">
+                        <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
+                            <li id="menu-item-287"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
+                                <a href="/search" class="nav-top-link sanpham_dropdown">Sản
+                                    phẩm</a>
+                                <div class="sub-menu nav-dropdown">
+                                    <section class="section" id="section_750385559">
+                                        <div class="bg section-bg fill bg-fill  bg-loaded">
+
+
+                                        </div>
+
+                                        <div class="section-content relative">
+
+
+                                            <div class="row" id="row-1828211476">
+
+
+                                                <div id="col-1000988357" class="col medium-9 small-12 large-9">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="row" id="row-25741">
+
+
+                                                            <div id="col-975851455"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa/">
+						<span class="ux-menu-link__text">
+				Sofa			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/sofa-goc/">
+						<span class="ux-menu-link__text">
+				Sofa góc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-thu-gian/">
+						<span class="ux-menu-link__text">
+				Ghế thư giãn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/armchair/">
+						<span class="ux-menu-link__text">
+				Armchair			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ghe-dai-don/">
+						<span class="ux-menu-link__text">
+				Ghế dài &amp; đôn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-ben/">
+						<span class="ux-menu-link__text">
+				Bàn bên			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-nuoc/">
+						<span class="ux-menu-link__text">
+				Bàn nước			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ban-console/">
+						<span class="ux-menu-link__text">
+				Bàn Console			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-tivi/">
+						<span class="ux-menu-link__text">
+				Tủ tivi			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/ke-phong-khach/">
+						<span class="ux-menu-link__text">
+				Kệ trưng bày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-khach/tu-giay/">
+						<span class="ux-menu-link__text">
+				Tủ giày			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-1730121102"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ban-an/">
+						<span class="ux-menu-link__text">
+				Bàn ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">
+						<span class="ux-menu-link__text">
+				Ghế ăn			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">
+						<span class="ux-menu-link__text">
+				Ghế Bar			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/tu-ly/">
+						<span class="ux-menu-link__text">
+				Tủ ly			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-an/xe-day/">
+						<span class="ux-menu-link__text">
+				Xe đẩy			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/tu-bep/">
+						<span class="ux-menu-link__text">
+				Tủ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/bep/phu-kien-bep/">
+						<span class="ux-menu-link__text">
+				Thiết bị bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-394918981"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/giuong/">
+						<span class="ux-menu-link__text">
+				Giường ngủ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-dau-giuong/">
+						<span class="ux-menu-link__text">
+				Bàn đầu giường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/ban-trang-diem/">
+						<span class="ux-menu-link__text">
+				Bàn trang điểm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-ao/">
+						<span class="ux-menu-link__text">
+				Tủ áo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-am-tuong/">
+						<span class="ux-menu-link__text">
+				Tủ âm tường			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/tu-hoc-keo/">
+						<span class="ux-menu-link__text">
+				Tủ hộc kéo			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-ngu/nem/">
+						<span class="ux-menu-link__text">
+				Nệm			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-452450455"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ban-lam-viec/">
+						<span class="ux-menu-link__text">
+				Bàn làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">
+						<span class="ux-menu-link__text">
+				Ghế làm việc			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/phong-lam-viec/ke-sach/">
+						<span class="ux-menu-link__text">
+				Kệ sách			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ban-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Bàn ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/ngoai-that/ghe-ngoai-troi/">
+						<span class="ux-menu-link__text">
+				Ghế ngoài trời			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-736891910"
+                                                                 class="col medium-2 small-6 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/den/">
+						<span class="ux-menu-link__text">
+				Đèn trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tham/">
+						<span class="ux-menu-link__text">
+				Thảm trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/hang-trang-tri-michael-aram/">
+						<span class="ux-menu-link__text">
+				Michael Aram			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/binh-trang-tri/">
+						<span class="ux-menu-link__text">
+				Bình trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tranh/">
+						<span class="ux-menu-link__text">
+				Tranh			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-guong/">
+						<span class="ux-menu-link__text">
+				Gương			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hoa-cay/">
+						<span class="ux-menu-link__text">
+				Hoa và cây			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dong-ho-hang-trang-tri/">
+						<span class="ux-menu-link__text">
+				Đồng hồ			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/khung-hinh/">
+						<span class="ux-menu-link__text">
+				Khung hình			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/tuong-trang-tri/">
+						<span class="ux-menu-link__text">
+				Tượng trang trí			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/goi-va-thu-bong/">
+						<span class="ux-menu-link__text">
+				Gối và thú bông			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/nen/">
+						<span class="ux-menu-link__text">
+				Nến &amp; chân nến			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div id="col-496672979"
+                                                                 class="col medium-2 small-12 large-2">
+                                                                <div class="col-inner">
+
+
+                                                                    <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/dung-cu-bep/">
+						<span class="ux-menu-link__text">
+				Dụng cụ bếp			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                        <div class="ux-menu-link flex menu-item">
+                                                                            <a class="ux-menu-link__link flex"
+                                                                               href="https://nhaxinh.com/danh-muc/hang-trang-tri/hang-trang-tri-khac/">
+						<span class="ux-menu-link__text">
+				Hàng trang trí khác			</span>
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div id="col-788476531" class="col medium-3 small-12 large-3">
+                                                    <div class="col-inner">
+
+
+                                                        <div class="img has-hover img_menu_mega x md-x lg-x y md-y lg-y"
+                                                             id="image_1530601523">
+                                                            <div class="img-inner dark">
+                                                                <img width="1020" height="680"
+                                                                     src="./assets/My Account - Nội thất Nhà Xinh_files/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg"
+                                                                     class="attachment-large size-large"
+                                                                     alt="phòng khách hiện đại poppy"
+                                                                     srcset="https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-1200x800.jpg 1200w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1-768x512.jpg 768w, https://nhaxinh.com/wp-content/uploads/2021/10/nha-xinh-phong-khach-hien-dai-poppy-1.jpg 1500w"
+                                                                     sizes="(max-width: 1020px) 100vw, 1020px">
+                                                            </div>
+
+                                                            <style>
+                                                                #image_1530601523 {
+                                                                    width: 100%;
+                                                                }
+                                                            </style>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                                <style>
+                                                    #row-1828211476 > .col > .col-inner {
+                                                        background-color: rgb(246, 247, 248);
+                                                    }
+                                                </style>
+                                            </div>
+
+                                        </div>
+
+
+                                        <style>
+                                            #section_750385559 {
+                                                padding-top: 30px;
+                                                padding-bottom: 30px;
+                                                background-color: rgb(246, 247, 248);
+                                            }
+                                        </style>
+                                    </section>
+                                </div>
+                            </li>
+                            <li id="menu-item-8010"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-8010 menu-item-design-default has-dropdown">
+                                <a href="/search" class="nav-top-link phong_dropdown">Phòng</a>
+                                <ul class="sub-menu nav-dropdown nav-dropdown-default">
+                                    <li id="menu-item-8199"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8199">
+                                        <a href="https://nhaxinh.com/phong-khach/">Phòng khách</a></li>
+                                    <li id="menu-item-24423"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24423">
+                                        <a href="https://nhaxinh.com/phong-an/">Phòng ăn</a></li>
+                                    <li id="menu-item-24304"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24304">
+                                        <a href="https://nhaxinh.com/phong-ngu/">Phòng ngủ</a></li>
+                                    <li id="menu-item-27857"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27857">
+                                        <a href="https://nhaxinh.com/danh-muc/phong-lam-viec/">Phòng làm việc</a></li>
+                                    <li id="menu-item-37292"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-37292">
+                                        <a href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                                    <li id="menu-item-27856"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27856">
+                                        <a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a></li>
+                                    <li id="menu-item-27855"
+                                        class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27855">
+                                        <a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a></li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-24226"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24226 menu-item-design-default">
+                                <a href="https://nhaxinh.com/bo-suu-tap/" class="nav-top-link">Bộ sưu tập</a></li>
+                            <li id="menu-item-290"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-290 menu-item-design-default">
+                                <a href="https://nhaxinh.com/thiet-ke-noi-that/" class="nav-top-link">Thiết kế nội
+                                    thất</a></li>
+                            <li id="menu-item-288"
+                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288 menu-item-design-default">
+                                <a href="https://nhaxinh.com/showroom-ao/" class="nav-top-link">Showroom ảo</a></li>
+                            <li id="menu-item-27825"
+                                class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27825 menu-item-design-default">
+                                <a href="https://nhaxinh.com/cam-hung-nha-xinh-y-tuong/" class="nav-top-link">Góc cảm
+                                    hứng</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Elements -->
+                    <div class="flex-col hide-for-medium flex-right">
+                        <ul class="header-nav header-nav-main nav nav-right  nav-size-medium nav-uppercase">
+                            <li class="header-search-form search-form html relative has-icon">
+                                <div class="header-search-form-wrapper">
+                                    <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                        <form role="search" method="get" class="searchform"
+                                              action="https://nhaxinh.com/">
+                                            <div class="flex-row relative">
+                                                <div class="flex-col flex-grow">
+                                                    <label class="screen-reader-text"
+                                                           for="woocommerce-product-search-field-0">Search for:</label>
+                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                           class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                           name="s" autocomplete="off">
+                                                    <input type="hidden" name="post_type" value="product">
+                                                    <input type="hidden" name="lang" value="vi">
+                                                </div>
+                                                <div class="flex-col">
+                                                    <button type="submit" value="Search"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            aria-label="Submit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="live-search-results text-left z-top">
+                                                <div class="autocomplete-suggestions"
+                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                            </div>
+                                            <input type="hidden" name="lang" value="vi"></form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mobile Right Elements -->
+                    <div class="flex-col show-for-medium flex-right">
+                        <ul class="mobile-nav nav nav-right huan ">
+                            <li class="header-search header-search-dropdown has-icon has-dropdown menu-item-has-children">
+                                <div class="header-button"><a href="https://nhaxinh.com/tai-khoan/edit-account/#"
+                                                              aria-label="Search"
+                                                              class="icon button round is-outline is-small"><i
+                                        class="icon-search"></i></a>
+                                </div>
+                                <ul class="nav-dropdown nav-dropdown-default">
+                                    <li class="header-search-form search-form html relative has-icon">
+                                        <div class="header-search-form-wrapper">
+                                            <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
+                                                <form role="search" method="get" class="searchform"
+                                                      action="https://nhaxinh.com/">
+                                                    <div class="flex-row relative">
+                                                        <div class="flex-col flex-grow">
+                                                            <label class="screen-reader-text"
+                                                                   for="woocommerce-product-search-field-1">Search
+                                                                for:</label>
+                                                            <input type="search" id="woocommerce-product-search-field-1"
+                                                                   class="search-field mb-0" placeholder="Tìm sản phẩm"
+                                                                   value="" name="s" autocomplete="off">
+                                                            <input type="hidden" name="post_type" value="product">
+                                                            <input type="hidden" name="lang" value="vi">
+                                                        </div>
+                                                        <div class="flex-col">
+                                                            <button type="submit" value="Search"
+                                                                    class="ux-search-submit submit-button secondary button icon mb-0"
+                                                                    aria-label="Submit">
+                                                                <i class="icon-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="live-search-results text-left z-top">
+                                                        <div class="autocomplete-suggestions"
+                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                    </div>
+                                                    <input type="hidden" name="lang" value="vi"></form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="html custom html_topbar_right"><a
+                                    href="https://nhaxinh.com/he-thong-cua-hang/"><i class="fal fa-map-marker-alt"></i></a>
+                            </li>
+                            <li class="cart-item has-icon">
+
+                                <a href="https://nhaxinh.com/gio-hang/"
+                                   class="header-cart-link off-canvas-toggle nav-top-link is-small"
+                                   data-open="#cart-popup" data-class="off-canvas-cart" title="Cart" data-pos="right">
+
+
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <div class="top-divider full-width"></div>
+                </div>
+            </div>
+            <div class="header-bg-container fill">
+                <div class="header-bg-image fill"></div>
+                <div class="header-bg-color fill"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <main id="main" class="">
+
+
+        <div class="my-account-header page-title normal-title
+		">
+
+
+            <div class="page-title-inner flex-row container
+	 text-left">
+                <div class="flex-col flex-grow medium-text-center">
+
+                    <!-- <h1 class="uppercase mb-0">My Account</h1> -->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="page-wrapper my-account mb">
+            <div class="container" role="main">
+                <div class="chua_cart">
+                    <div class="showCart" style="display: none;">
+                        <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+                        <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide"
+                             tabindex="-1"
+                             style="overflow: hidden auto;">
+                            <div class="mfp-container mfp-s-ready mfp-inline-holder">
+                                <div class="mfp-content off-canvas-cart">
+                                    <div id="cart-popup" class="widget_shopping_cart">
+                                        <div class="cart-popup-inner inner-padding">
+                                            <div class="cart-popup-title text-center">
+                                                <h4 class="uppercase">Cart</h4>
+                                                <div class="is-divider"></div>
+                                            </div>
+                                            <div class="widget_shopping_cart_content" id="seeCartItems">
+
+                                            </div>
+                                            <div id="seeGrandTotal">
+
+                                            </div>
+                                            <p class="woocommerce-mini-cart__buttons buttons"><a
+                                                    href="http://localhost:8092/cart"
+                                                    class="button wc-forward">Xem giỏ
+                                                hàng</a><a href="/cart_details"
+                                                           class="button checkout wc-forward">Checkout</a></p>
+                                            <div class="cart-sidebar-content relative"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mfp-preloader">Loading...</div>
+                            </div>
+                            <button title="Close (Esc)" type="button" class="mfp-close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row vertical-tabs">
+
+                    <div class="large-2 col col-border">
+
+                        <div class="account-user">
+	<span class="image mr-half inline-block">
+			</span>
+                            <span class="user-name inline-block">
+				Tài khoản cá nhân	</span>
+
+                        </div>
+                        <ul id="my-account-nav" class="account-nav nav nav-line nav-uppercase nav-vertical mt-half">
+
+                            <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account is-active active">
+                                <a href="/account">Thông tin của tôi</a>
+                            </li>
+                            <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                <button style="    text-transform: none;
+                                                    color: #4B4E51;
+                                                    font-size: 14px;
+                                                    font-weight: 600;
+                                                    position: relative;
+                                                    left: -16px;"
+                                        class="btn-get-page-order"
+                                >Đơn hàng
+                                </button>
+                            </li>
+                            <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
+                                <button style="    text-transform: none;
+                                                    color: #4B4E51;
+                                                    font-size: 14px;
+                                                    font-weight: 600;
+                                                    position: relative;
+                                                    left: -16px;"
+                                        class="btn-get-page-password"
+                                >Thay đổi mật khẩu
+                                </button>
+                            </li>
+                            <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
+                                <a href="/logout">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="large-10 col">
+
+                        <div class="woocommerce">
+                            <div class="woocommerce-MyAccount-content">
+                                <div class="woocommerce-notices-wrapper"></div>
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <h3>Thông tin chi tiết</h3>
+                                        <div class="ocwma_table_bill"></div>
+
+                                        <div class="woocommerce-address-fields">
+
+                                            <div class="woocommerce-address-fields__field-wrapper">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <p class="form-row form-row-wide validate-required"
+                                                           id="billing_first_name_field" data-priority=""><label
+                                                                for="fullNameCus" class="">Họ và tên&nbsp;<abbr
+                                                                class="required" title="required">*</abbr></label><span
+                                                                class="woocommerce-input-wrapper"><input type="text"
+                                                                                                         class="input-text "
+                                                                                                         name="billing_first_name"
+                                                                                                         id="fullNameCus"
+                                                                                                         placeholder="Nhập họ và tên"
+                                                                                                         value=""></span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-1"></div>
+                                                    <div class="col-5">
+                                                        <p class="form-row form-row-wide validate-required validate-email"
+                                                           id="billing_email_field" data-priority="110"><label
+                                                                for="emailCus" class="">Địa chỉ email&nbsp;<abbr
+                                                                class="required" title="required">*</abbr></label><span
+                                                                class="woocommerce-input-wrapper"><input type="email"
+                                                                                                         class="input-text "
+                                                                                                         name="emailCus"
+                                                                                                         readonly
+                                                                                                         id="emailCus"
+                                                                                                         placeholder="Nhập email"
+                                                                                                         value=""
+                                                                                                         autocomplete="email username"></span>
+                                                        </p></div>
+
+                                                </div>
+                                                <div class="col-1"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p class="form-row form-row-wide address-field validate-required validate-state"
+                                                       id="billing_state_field" data-priority="41"><label
+                                                            for="provinceCUS" class="">Tỉnh / Thành phố&nbsp;<abbr
+                                                            class="required" title="required">*</abbr></label><span
+                                                            class="woocommerce-input-wrapper"><select
+                                                            name="billing_state" id="provinceCUS"
+                                                            class="select"
+                                                            autocomplete="address-level1"
+                                                            data-placeholder="Vui lòng chọn..."
+                                                            data-input-classes=""
+                                                            data-label="Tỉnh / Thành phố" tabindex="-1"
+                                                            aria-hidden="true"></select>
+                                                        </span></p>
+                                                </div>
+                                                <div class="col-1"></div>
+                                                <div class="col-5">
+                                                    <div class="col-1"></div>
+                                                    <input type="hidden" name="billing_country" value="VN">
+                                                    <p class="form-row form-row-wide validate-required validate-required"
+                                                       id="billing_city_field" data-priority=""><label
+                                                            for="districtCus" class="">Quận / Huyện <abbr
+                                                            class="required"
+                                                            title="required">*</abbr></label><select
+                                                            name="billing_city" id="districtCus"
+                                                            class="select"
+                                                            data-allow_clear="true"
+                                                            data-placeholder="Chọn quận / huyện"
+                                                            tabindex="-1" aria-hidden="true">
+                                                    </select>
+                                                    </p>
+                                                </div>
+                                                <div class="col-1"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p class="form-row form-row-wide validate-required validate-phone"
+                                                       id="billing_phone_field" data-priority="100"><label
+                                                            for="phoneCus" class="">Số điện thoại&nbsp;<abbr
+                                                            class="required" title="required">*</abbr></label><span
+                                                            class="woocommerce-input-wrapper"><input type="tel"
+                                                                                                     class="input-text "
+                                                                                                     name="billing_phone"
+                                                                                                     id="phoneCus"
+                                                                                                     placeholder="Nhập số điện thoại"
+                                                                                                     value=""
+                                                                                                     autocomplete="tel"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-1"></div>
+
+                                                <div class="col-5">
+                                                    <p class="form-row form-row-wide validate-required"
+                                                       id="billing_address_1_field" data-priority="44"><label
+                                                            for="addressCus" class="">Địa chỉ&nbsp;<abbr
+                                                            class="required" title="required">*</abbr></label><span
+                                                            class="woocommerce-input-wrapper"><input type="text"
+                                                                                                     class="input-text "
+                                                                                                     name="billing_address_1"
+                                                                                                     id="addressCus"
+                                                                                                     placeholder="Nhập địa chỉ"
+                                                                                                     value=""
+                                                                                                     autocomplete="address-line1"></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-1"></div>
+                                            </div>
+                                            <div class="ocwma_footer_fields" style="display:none;">
+                                                <input type="hidden" id="billing_ocwma_option_id"
+                                                       name="billing_ocwma_option_id" value="">
+                                                <input type="hidden" id="billing_ocwma_reference_field"
+                                                       name="billing_ocwma_reference_field" value="">
+                                                <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first"
+                                                   id="billing_is_default_address_field">
+                                                    <input type="checkbox" id="billing_is_default_address"
+                                                           name="billing_is_default_address" value="1">
+                                                    <label for="billing_is_default_address"> Đặt làm địa chỉ mặc
+                                                        định</label>
+                                                </p>
+                                                <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last"
+                                                   id="billing_delete_ocwma_option_field">
+                                                    <a id="billing_delete_ocwma_option"
+                                                       class="btn_ocwma_option btn_delete_ocwma_option">
+                                                        <i class="fal fa-trash-alt"></i> Xoá địa chỉ </a>
+                                                </p>
+                                                <div class="clear"></div>
+                                            </div>
+
+                                            <p>
+                                                <button type="submit" class="button" name="save_address"
+                                                        value="Cập nhật">Cập nhật
+                                                </button>
+                                                <input type="hidden" id="woocommerce-edit-address-nonce"
+                                                       name="woocommerce-edit-address-nonce"
+                                                       value="05adda90d6"><input type="hidden"
+                                                                                 name="_wp_http_referer"
+                                                                                 value="/tai-khoan/edit-account/">
+                                                <input type="hidden" name="action" value="edit_address">
+                                            </p>
+                                        </div>
+                                        <!--                                        <div class="clear"></div>-->
+                                        <!--                                        <fieldset>-->
+                                        <!--                                            <legend>Thay đổi mật khẩu</legend>-->
+
+                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                        <!--                                                <label for="password_current">Mật khẩu hiện tại (để trống nếu không-->
+                                        <!--                                                    có thay đổi)</label>-->
+                                        <!--                                                <span class="password-input"><input type="password"-->
+                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
+                                        <!--                                                                                    name="password_current"-->
+                                        <!--                                                                                    id="password_current"-->
+                                        <!--                                                                                    autocomplete="off"><span-->
+                                        <!--                                                        class="show-password-input"></span></span>-->
+                                        <!--                                            </p>-->
+                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                        <!--                                                <label for="password_1">Mật khẩu mới (để trống nếu không có thay-->
+                                        <!--                                                    đổi)</label>-->
+                                        <!--                                                <span class="password-input"><input type="password"-->
+                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
+                                        <!--                                                                                    name="password_1"-->
+                                        <!--                                                                                    id="password_1"-->
+                                        <!--                                                                                    autocomplete="off"><span-->
+                                        <!--                                                        class="show-password-input"></span></span>-->
+                                        <!--                                            </p>-->
+                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                        <!--                                                <label for="password_2">Xác nhận mật khẩu mới</label>-->
+                                        <!--                                                <span class="password-input"><input type="password"-->
+                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
+                                        <!--                                                                                    name="password_2"-->
+                                        <!--                                                                                    id="password_2"-->
+                                        <!--                                                                                    autocomplete="off"><span-->
+                                        <!--                                                        class="show-password-input"></span></span>-->
+                                        <!--                                            </p>-->
+                                        <!--                                        </fieldset>-->
+                                        <!--                                        <p>-->
+                                        <!--                                            <input type="hidden" id="save-account-details-nonce"-->
+                                        <!--                                                   name="save-account-details-nonce" value="fdcdf8412e"><input-->
+                                        <!--                                                type="hidden" name="_wp_http_referer"-->
+                                        <!--                                                value="/tai-khoan/edit-account/">-->
+                                        <!--                                            <button type="submit" class="woocommerce-Button button"-->
+                                        <!--                                                    name="save_account_details" value="Lưu thay đổi">Lưu thay đổi-->
+                                        <!--                                            </button>-->
+                                        <!--                                            <input type="hidden" name="action" value="save_account_details">-->
+                                        <!--                                        </p>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </main>
+    <th:block th:replace="/customerView/layout/myaccount/footer::footer"/>
+</div>
+<th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
+<th:block th:replace="/customerView/layout/myaccount/script::script"/>
+</body>
+</html>
