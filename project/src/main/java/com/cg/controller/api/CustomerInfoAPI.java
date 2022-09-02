@@ -72,7 +72,7 @@ public class CustomerInfoAPI {
 
 
 
-      @PutMapping("/edit")
+    @PutMapping("/edit")
     private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){
           if (bindingResult.hasFieldErrors()) {
               return appUtils.mapErrorToResponse(bindingResult);

@@ -122,7 +122,7 @@ class CustomerInfo {
         this.userName = userName;
         this.fullName = fullName;
         this.phone = phone;
-        this.debt =debt;
+        this.debt = debt;
         this.locationRegion = locationRegion;
 
     }

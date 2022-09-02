@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -42,4 +39,14 @@ public class UserAPI {
         }
         throw new RuntimeException("khong co user");
     }
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassWord (@RequestBody UserDTO userDTO,BindingResult bindingResult ){
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        userService.save(userDTO.toUser());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

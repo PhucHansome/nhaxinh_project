@@ -1186,7 +1186,7 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
-                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text() ,
+                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART + "/create",
@@ -1287,7 +1287,7 @@
         }
 
         page.dialogs.commands.drawDistricts = (provinceId) => {
-            $.ajax({
+            return $.ajax({
                 "headers": {
                     "accept": "application/json",
                     "content-type": "application/json"
@@ -1533,19 +1533,23 @@
                 page.element.fullNameCus.val(customerInfo.fullName);
                 page.element.phoneCus.val(customerInfo.phone);
                 page.element.addressCus.val(customerInfo.locationRegion.address);
-                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val())
+                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val()).then(()=>{
+                    page.element.select_districtCus.val(customerInfo.locationRegion.districtId)
+                })
+
             })
         }
 
         $(function () {
-            page.commands.handleShowCart()
-            page.commands.showIconCart()
-            page.loadData.getOrderSummary();
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
+                page.commands.handleShowCart()
+                page.commands.showIconCart()
+                page.loadData.getOrderSummary();
+                page.commands.getCustomerInfoByEmail();
+                page.commands.handleOrder();
             })
-            page.commands.getCustomerInfoByEmail();
-            page.commands.handleOrder();
+
         })
     </script>
 </th:block>

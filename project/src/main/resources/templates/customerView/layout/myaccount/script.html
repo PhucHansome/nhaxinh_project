@@ -1647,12 +1647,13 @@
         });
 
 
-    <script type="text/javascript"
-            id="">-1 != window.location.href.indexOf("thanh-toan/") && jQuery("input[name\x3d'billing_email'],input[name\x3d'billing_phone']").change(function () {
-        var a = jQuery("input[name\x3d'billing_email']").val(), b = jQuery("input[name\x3d'billing_phone']").val();
-        window.localStorage.setItem("email", a);
-        window.localStorage.setItem("phone_number", b)
-    });</script>
+        <script type="text/javascript"
+                id="">-1 != window.location.href.indexOf("thanh-toan/") && jQuery("input[name\x3d'billing_email'],input[name\x3d'billing_phone']").change(function () {
+            var a = jQuery("input[name\x3d'billing_email']").val(), b = jQuery("input[name\x3d'billing_phone']").val();
+            window.localStorage.setItem("email", a);
+            window.localStorage.setItem("phone_number", b)
+        })
+            ;</script>
     <script type="text/javascript" id="">var product = -1 != window.location.href.indexOf("/san-pham/"), dr_items = [],
         dr_value = "";
     if (product) {
@@ -1779,10 +1780,13 @@
         let page = {
             url: {
                 GetProduct: App.BASE_URL_PRODUCT,
-                GetUser: App.BASE_URL_USER_ABC + "/" + $("#EmailLogin").text(),
+                GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
-                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text() ,
+                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
+                PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
+                PutUser: App.BASE_URL_USER_ABC + "/change-password",
                 DeleteCartItem: App.BASE_URL_CARTITEM
+
             },
             element: {},
             loadData: {},
@@ -1800,6 +1804,7 @@
         let productMedia = new ProductMedia()
         let locationRegion = new LocationRegion();
         let customerInfo = new CustomerInfo();
+        let user = new User();
 
         page.element.cart_product = $("#cart_product_view")
         page.element.cart_cartBotLine = $("#product-grid-1457246667")
@@ -1807,15 +1812,28 @@
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
         page.element.idProduct = $("#productId")
+        page.element.userNameLogin = $("#EmailLogin")
         page.element.valueInput = $("#valueInput")
-        page.element.valueQuantity =  $("#quantity_62fc4b3185e6c")
+        page.element.valueQuantity = $("#quantity_62fc4b3185e6c")
         page.element.select_provinceCUS = $("#provinceCUS")
         page.element.select_districtCus = $("#districtCus")
         page.element.fullNameCus = $("#fullNameCus")
         page.element.phoneCus = $("#phoneCus")
         page.element.emailCus = $("#emailCus")
         page.element.addressCus = $("#addressCus")
+        page.element.idCustomer = $("#idCustomer");
+        page.element.debtCustomer = $("#debtCustomer")
+        page.element.passWordOld = $("#passWordOld")
+        page.element.newPassword = $("#newPassword")
+        page.element.newPasswordCon = $("#newPasswordCon")
 
+        page.element.container_infomation = $(".information")
+        page.element.pagePassword = $(".changePassword")
+
+        page.element.btnSavePasword = $(".btn-Save-PassWord")
+        page.element.btnChangePagePassword = $(".btn-get-page-password")
+        page.element.btnchangPageInfomation = $(".btn-change-page-infomation")
+        page.element.btnUpdate = $(".btn-update")
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
         page.element.main_photo = $(".main_photo")
@@ -1852,6 +1870,39 @@
             })
         }
 
+        page.commands.getUserByUsername = () => {
+            return $.ajax({
+                "type": "GET",
+                "url": page.url.GetUser,
+            }).done((data) => {
+                console.log(data)
+                user = data;
+            })
+
+        }
+
+        page.commands.getCustomerInfoByEmail = () => {
+            return $.ajax({
+                "method": "GET",
+                "url": page.url.GetCustomer
+            }).done((data) => {
+                let customerInfo = data;
+                console.log(customerInfo)
+                page.element.idCustomer.val(customerInfo.id)
+                page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
+                page.element.fullNameCus.val(customerInfo.fullName);
+                page.element.emailCus.val(customerInfo.userName)
+                page.element.phoneCus.val(customerInfo.phone);
+                page.element.debtCustomer.val(customerInfo.debt)
+                page.element.addressCus.val(customerInfo.locationRegion.address);
+                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val()).then(() => {
+                    page.element.select_districtCus.val(customerInfo.locationRegion.districtId)
+                })
+
+
+            })
+        }
+
         page.dialogs.commands.drawProvinces = () => {
             return $.ajax({
                 "headers": {
@@ -1874,7 +1925,7 @@
         }
 
         page.dialogs.commands.drawDistricts = (provinceId) => {
-            $.ajax({
+            return $.ajax({
                 "headers": {
                     "accept": "application/json",
                     "content-type": "application/json"
@@ -1992,29 +2043,93 @@
             })
         }
 
-        page.commands.getCustomerInfoByEmail = () => {
-            return $.ajax({
-                "method": "GET",
-                "url": page.url.GetCustomer
-            }).done((data) => {
-                let customerInfo = data;
-                console.log(customerInfo)
-                page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
-                page.element.fullNameCus.val(customerInfo.fullName);
-                page.element.emailCus.val(customerInfo.userName)
-                page.element.phoneCus.val(customerInfo.phone);
-                page.element.addressCus.val(customerInfo.locationRegion.address);
-                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val())
+        page.commands.handleUpdateCustomer = () => {
+            page.element.btnUpdate.on("click", () => {
+                delete locationRegion.id;
+                locationRegion.provinceId = $("#provinceCUS").val();
+                locationRegion.provinceName = $("#provinceCUS :selected").text();
+                locationRegion.districtId = $("#districtCus").val();
+                locationRegion.districtName = $("#districtCus :selected").text();
+                locationRegion.address = page.element.addressCus.val();
+
+                customerInfo.id = page.element.idCustomer.val();
+                customerInfo.userName = page.element.userNameLogin.text();
+                customerInfo.fullName = page.element.fullNameCus.val();
+                customerInfo.debt = page.element.debtCustomer.val()
+                customerInfo.phone = page.element.phoneCus.val();
+                customerInfo.locationRegion = locationRegion;
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "PUT",
+                    "url": page.url.PutCustomer,
+                    "data": JSON.stringify(customerInfo)
+                }).done((data) => {
+                    App.IziToast.showSuccessAlert("Bạn đã Cập Nhật thành công")
+                }).fail((e) => {
+                    App.IziToast.showSuccessAlert("Bạn đã Cập Nhật Thất Bại")
+                })
+
+            })
+        }
+
+        page.commands.handleChangPagePassword = () => {
+            page.element.btnChangePagePassword.on("click", () => {
+                page.element.container_infomation.addClass("d-none")
+                page.element.pagePassword.removeClass("d-none")
+                page.commands.handleChangPageInformation();
+                page.commands.handleSavePassword()
+            })
+        }
+
+        page.commands.handleChangPageInformation = () => {
+            page.element.btnchangPageInfomation.on("click", () => {
+                page.element.pagePassword.addClass("d-none")
+                page.element.container_infomation.removeClass("d-none")
+                page.commands.handleChangPagePassword();
+                page.commands.handleUpdateCustomer();
+            })
+        }
+
+        page.commands.handleSavePassword = () => {
+            page.element.btnSavePasword.on("click", function () {
+                page.commands.getUserByUsername().then(() => {
+                    if (page.element.newPasswordCon.val() !== page.element.newPassword.val()) {
+                        App.IziToast.showErrorAlert("Mật khẩu không giống nhau")
+                        return;
+                    }
+
+                    user.password = page.element.newPassword.val();
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "type": "PUT",
+                        "url": page.url.PutUser,
+                        "data": JSON.stringify(user)
+                    }).done((data) => {
+                        App.IziToast.showSuccessAlert("Bạn đã Thay đổi mật khẩu thành công")
+                    }).fail((e) => {
+                        console.log(e);
+                    })
+                })
             })
         }
 
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
+                page.commands.handleShowCart();
+                page.commands.showIconCart();
+                page.commands.getCustomerInfoByEmail();
+                page.commands.handleUpdateCustomer();
+                page.commands.handleChangPageInformation();
+                page.commands.handleChangPagePassword();
+                page.commands.getUserByUsername();
             })
-            page.commands.handleShowCart()
-            page.commands.showIconCart()
-            page.commands.getCustomerInfoByEmail()
         })
 
     </script>

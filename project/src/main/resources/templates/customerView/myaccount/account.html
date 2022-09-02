@@ -1152,7 +1152,15 @@
                         <ul id="my-account-nav" class="account-nav nav nav-line nav-uppercase nav-vertical mt-half">
 
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account is-active active">
-                                <a href="/account">Thông tin của tôi</a>
+                                <button style="text-transform: none;
+                                                color: #4B4E51;
+                                                font-size: 14px;
+                                                font-weight: 600;
+                                                position: relative;
+                                                left: -16px;"
+                                        class="btn-change-page-infomation"
+                                >Thông tin của tôi
+                                </button>
                             </li>
                             <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
                                 <button style="    text-transform: none;
@@ -1189,44 +1197,45 @@
                                 <div class="woocommerce-notices-wrapper"></div>
                                 <div class="row">
                                     <div class="col-12">
+                                        <div class="information ">
+                                            <h3>Thông tin chi tiết</h3>
+                                            <div class="ocwma_table_bill"></div>
 
-                                        <h3>Thông tin chi tiết</h3>
-                                        <div class="ocwma_table_bill"></div>
+                                            <div class="woocommerce-address-fields">
 
-                                        <div class="woocommerce-address-fields">
-
-                                            <div class="woocommerce-address-fields__field-wrapper">
-                                                <div class="row">
-                                                    <div class="col-5">
-                                                        <p class="form-row form-row-wide validate-required"
-                                                           id="billing_first_name_field" data-priority=""><label
-                                                                for="fullNameCus" class="">Họ và tên&nbsp;<abbr
-                                                                class="required" title="required">*</abbr></label><span
-                                                                class="woocommerce-input-wrapper"><input type="text"
-                                                                                                         class="input-text "
-                                                                                                         name="billing_first_name"
-                                                                                                         id="fullNameCus"
-                                                                                                         placeholder="Nhập họ và tên"
-                                                                                                         value=""></span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-1"></div>
-                                                    <div class="col-5">
-                                                        <p class="form-row form-row-wide validate-required validate-email"
-                                                           id="billing_email_field" data-priority="110"><label
-                                                                for="emailCus" class="">Địa chỉ email&nbsp;<abbr
-                                                                class="required" title="required">*</abbr></label><span
-                                                                class="woocommerce-input-wrapper"><input type="email"
-                                                                                                         class="input-text "
-                                                                                                         name="emailCus"
-                                                                                                         readonly
-                                                                                                         id="emailCus"
-                                                                                                         placeholder="Nhập email"
-                                                                                                         value=""
-                                                                                                         autocomplete="email username"></span>
-                                                        </p></div>
+                                                <div class="woocommerce-address-fields__field-wrapper">
 
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p class="form-row form-row-wide validate-required"
+                                                       id="billing_first_name_field" data-priority=""><label
+                                                            for="fullNameCus" class="">Họ và tên&nbsp;<abbr
+                                                            class="required" title="required">*</abbr></label><span
+                                                            class="woocommerce-input-wrapper"><input type="text"
+                                                                                                     class="input-text "
+                                                                                                     name="billing_first_name"
+                                                                                                     id="fullNameCus"
+                                                                                                     placeholder="Nhập họ và tên"
+                                                                                                     value=""></span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-1"></div>
+                                                <div class="col-5">
+                                                    <p class="form-row form-row-wide validate-required validate-email"
+                                                       id="billing_email_field" data-priority="110"><label
+                                                            for="emailCus" class="">Địa chỉ email&nbsp;<abbr
+                                                            class="required" title="required">*</abbr></label><span
+                                                            class="woocommerce-input-wrapper"><input type="email"
+                                                                                                     class="input-text "
+                                                                                                     name="emailCus"
+                                                                                                     readonly
+                                                                                                     id="emailCus"
+                                                                                                     placeholder="Nhập email"
+                                                                                                     value=""
+                                                                                                     autocomplete="email username"></span>
+                                                    </p></div>
                                                 <div class="col-1"></div>
                                             </div>
                                             <div class="row">
@@ -1319,7 +1328,7 @@
                                             </div>
 
                                             <p>
-                                                <button type="submit" class="button" name="save_address"
+                                                <button type="submit" class="button btn-update" name="save_address"
                                                         value="Cập nhật">Cập nhật
                                                 </button>
                                                 <input type="hidden" id="woocommerce-edit-address-nonce"
@@ -1330,58 +1339,45 @@
                                                 <input type="hidden" name="action" value="edit_address">
                                             </p>
                                         </div>
-                                        <!--                                        <div class="clear"></div>-->
-                                        <!--                                        <fieldset>-->
-                                        <!--                                            <legend>Thay đổi mật khẩu</legend>-->
-
-                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
-                                        <!--                                                <label for="password_current">Mật khẩu hiện tại (để trống nếu không-->
-                                        <!--                                                    có thay đổi)</label>-->
-                                        <!--                                                <span class="password-input"><input type="password"-->
-                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
-                                        <!--                                                                                    name="password_current"-->
-                                        <!--                                                                                    id="password_current"-->
-                                        <!--                                                                                    autocomplete="off"><span-->
-                                        <!--                                                        class="show-password-input"></span></span>-->
-                                        <!--                                            </p>-->
-                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
-                                        <!--                                                <label for="password_1">Mật khẩu mới (để trống nếu không có thay-->
-                                        <!--                                                    đổi)</label>-->
-                                        <!--                                                <span class="password-input"><input type="password"-->
-                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
-                                        <!--                                                                                    name="password_1"-->
-                                        <!--                                                                                    id="password_1"-->
-                                        <!--                                                                                    autocomplete="off"><span-->
-                                        <!--                                                        class="show-password-input"></span></span>-->
-                                        <!--                                            </p>-->
-                                        <!--                                            <p class="woocommerce-form-row woocommerce-form-row&#45;&#45;wide form-row form-row-wide">-->
-                                        <!--                                                <label for="password_2">Xác nhận mật khẩu mới</label>-->
-                                        <!--                                                <span class="password-input"><input type="password"-->
-                                        <!--                                                                                    class="woocommerce-Input woocommerce-Input&#45;&#45;password input-text"-->
-                                        <!--                                                                                    name="password_2"-->
-                                        <!--                                                                                    id="password_2"-->
-                                        <!--                                                                                    autocomplete="off"><span-->
-                                        <!--                                                        class="show-password-input"></span></span>-->
-                                        <!--                                            </p>-->
-                                        <!--                                        </fieldset>-->
-                                        <!--                                        <p>-->
-                                        <!--                                            <input type="hidden" id="save-account-details-nonce"-->
-                                        <!--                                                   name="save-account-details-nonce" value="fdcdf8412e"><input-->
-                                        <!--                                                type="hidden" name="_wp_http_referer"-->
-                                        <!--                                                value="/tai-khoan/edit-account/">-->
-                                        <!--                                            <button type="submit" class="woocommerce-Button button"-->
-                                        <!--                                                    name="save_account_details" value="Lưu thay đổi">Lưu thay đổi-->
-                                        <!--                                            </button>-->
-                                        <!--                                            <input type="hidden" name="action" value="save_account_details">-->
-                                        <!--                                        </p>-->
+                                        <div class="changePassword d-none">
+                                            <fieldset>
+                                                <legend>Thay đổi mật khẩu</legend>
+                                                <div class="row">
+                                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                    <label for="newPassword">Mật khẩu mới (để trống nếu không có thay
+                                                        đổi)</label>
+                                                    <span class="password-input"><input type="password"
+                                                                                        class="woocommerce-Input woocommerce-Input--password input-text"
+                                                                                        name="password_1"
+                                                                                        id="newPassword"
+                                                                                        autocomplete="off"><span
+                                                            class="show-password-input"></span></span>
+                                                </p>
+                                                </div>
+                                                <div class="row">
+                                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                                    <label for="newPasswordCon">Xác nhận mật khẩu mới</label>
+                                                    <span class="password-input"><input type="password"
+                                                                                        class="woocommerce-Input woocommerce-Input--password input-text"
+                                                                                        name="password_2"
+                                                                                        id="newPasswordCon"
+                                                                                        autocomplete="off"><span
+                                                            class="show-password-input"></span></span>
+                                                </p>
+                                                </div>
+                                            </fieldset>
+                                            <p>
+                                                <button class="woocommerce-Button button btn-Save-PassWord"
+                                                        name="save_account_details" value="Lưu thay đổi">Lưu thay đổi
+                                                </button>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
