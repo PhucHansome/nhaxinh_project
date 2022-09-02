@@ -1248,7 +1248,7 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
         }
 
         page.commands.lineOrderSummary = () => {
@@ -1264,6 +1264,8 @@
                 currency: 'VND'
             }).format(sum), data)));
         }
+
+
 
         page.dialogs.commands.drawProvinces = () => {
             return $.ajax({
@@ -1469,6 +1471,8 @@
             order.grandTotal = 0;
             order.quantity = 0;
             order.productCode = "null";
+            order.productImage = "null";
+            order.productTitle = "null";
             order.customerInfo = cart.customerInfo;
             $.ajax({
                 "headers": {

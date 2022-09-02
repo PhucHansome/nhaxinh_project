@@ -2,11 +2,10 @@ package com.cg.controller.api;
 
 
 import com.cg.model.Tag;
-import com.cg.model.dto.IProductDTO;
 import com.cg.model.dto.ProductDTO;
 import com.cg.model.dto.TagDTO;
 import com.cg.service.Tag.TagService;
-import com.cg.service.productservice.ProductService;
+import com.cg.service.product.ProductService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
-import java.nio.file.OpenOption;
 import java.util.Optional;
 
 @RestController

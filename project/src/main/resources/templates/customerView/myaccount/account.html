@@ -1207,7 +1207,7 @@
 
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" style="position: relative; bottom: -10px;">
                                                 <div class="col-5">
                                                     <p class="form-row form-row-wide validate-required"
                                                        id="billing_first_name_field" data-priority=""><label
@@ -1326,17 +1326,10 @@
                                                 </p>
                                                 <div class="clear"></div>
                                             </div>
-
                                             <p>
                                                 <button type="submit" class="button btn-update" name="save_address"
                                                         value="Cập nhật">Cập nhật
                                                 </button>
-                                                <input type="hidden" id="woocommerce-edit-address-nonce"
-                                                       name="woocommerce-edit-address-nonce"
-                                                       value="05adda90d6"><input type="hidden"
-                                                                                 name="_wp_http_referer"
-                                                                                 value="/tai-khoan/edit-account/">
-                                                <input type="hidden" name="action" value="edit_address">
                                             </p>
                                         </div>
                                         <div class="changePassword d-none">
@@ -1371,6 +1364,30 @@
                                                         name="save_account_details" value="Lưu thay đổi">Lưu thay đổi
                                                 </button>
                                             </p>
+                                        </div>
+                                        <div class="order d-none">
+                                            <div class="row">
+                                                <div class="my-orders-title">
+                                                    <h2>Đơn hàng của tôi</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <table class="table table-hover border- table-bordered border-white listOrder">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="text-center align-middle"></th>
+                                                        <th class="text-center align-middle">#</th>
+                                                        <th class="text-center align-middle">Ảnh sản phẩm</th>
+                                                        <th class="text-center align-middle">Tên Sản phẩm</th>
+                                                        <th class="text-center align-middle">Số lượng sản phẩm</th>
+                                                        <th class="text-center align-middle">Giá tiền Sản phẩm</th>
+                                                        <th class="text-center align-middle">Ngày tạo đơn hàng</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

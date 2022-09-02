@@ -1,13 +1,10 @@
 package com.cg.controller;
 
 
-import com.cg.model.dto.CustomerInfoDTO;
-import com.cg.model.dto.ProductDTO;
-import com.cg.model.dto.TagDTO;
-import com.cg.model.dto.UserDTO;
+import com.cg.model.dto.*;
 import com.cg.service.Tag.TagService;
 import com.cg.service.customerInfo.ICustomerInfoService;
-import com.cg.service.productservice.ProductService;
+import com.cg.service.product.ProductService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller

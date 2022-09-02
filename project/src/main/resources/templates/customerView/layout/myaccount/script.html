@@ -1653,7 +1653,8 @@
             window.localStorage.setItem("email", a);
             window.localStorage.setItem("phone_number", b)
         })
-            ;</script>
+            ;
+            }</script>
     <script type="text/javascript" id="">var product = -1 != window.location.href.indexOf("/san-pham/"), dr_items = [],
         dr_value = "";
     if (product) {
@@ -1783,6 +1784,7 @@
                 GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
                 GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
+                GetOrder: App.BASE_URL_ORDER + "/" + $("#EmailLogin").text(),
                 PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
                 PutUser: App.BASE_URL_USER_ABC + "/change-password",
                 DeleteCartItem: App.BASE_URL_CARTITEM
@@ -1805,6 +1807,7 @@
         let locationRegion = new LocationRegion();
         let customerInfo = new CustomerInfo();
         let user = new User();
+        let order = new Order();
 
         page.element.cart_product = $("#cart_product_view")
         page.element.cart_cartBotLine = $("#product-grid-1457246667")
@@ -1825,13 +1828,16 @@
         page.element.passWordOld = $("#passWordOld")
         page.element.newPassword = $("#newPassword")
         page.element.newPasswordCon = $("#newPasswordCon")
+        page.element.listOrder = $(".listOrder tbody")
 
         page.element.container_infomation = $(".information")
         page.element.pagePassword = $(".changePassword")
+        page.element.pageOrder = $(".order")
 
         page.element.btnSavePasword = $(".btn-Save-PassWord")
         page.element.btnChangePagePassword = $(".btn-get-page-password")
         page.element.btnchangPageInfomation = $(".btn-change-page-infomation")
+        page.element.btnGetPageOrder = $(".btn-get-page-order")
         page.element.btnUpdate = $(".btn-update")
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
@@ -1846,7 +1852,11 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
+        }
+
+        page.commands.handleGodetailInTagA = (id) => {
+            window.location.href = "/detail/" + id;
         }
 
         page.commands.getProductById = (id) => {
@@ -1859,6 +1869,21 @@
                 "url": page.url.GetProduct + "/" + id
             }).done((data) => {
                 console.log(data);
+                product = data;
+            }).fail((e) => {
+                console.log(e)
+                App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                setTimeout(function () {
+                    window.location.href = "/login"
+                }, 500);
+            })
+        }
+
+        page.commands.getProductByCode = (code) => {
+            return $.ajax({
+                "method": "GET",
+                "url": page.url.GetProduct + "/product/" + code
+            }).done((data) => {
                 product = data;
             }).fail((e) => {
                 console.log(e)
@@ -2075,8 +2100,10 @@
         page.commands.handleChangPagePassword = () => {
             page.element.btnChangePagePassword.on("click", () => {
                 page.element.container_infomation.addClass("d-none")
+                page.element.pageOrder.addClass("d-none")
                 page.element.pagePassword.removeClass("d-none")
                 page.commands.handleChangPageInformation();
+                page.commands.handleChangPageOrder()
                 page.commands.handleSavePassword()
             })
         }
@@ -2084,9 +2111,53 @@
         page.commands.handleChangPageInformation = () => {
             page.element.btnchangPageInfomation.on("click", () => {
                 page.element.pagePassword.addClass("d-none")
+                page.element.pageOrder.addClass("d-none")
                 page.element.container_infomation.removeClass("d-none")
                 page.commands.handleChangPagePassword();
+                page.commands.handleChangPageOrder()
                 page.commands.handleUpdateCustomer();
+            })
+        }
+
+        page.commands.handleChangPageOrder = () => {
+            page.element.btnGetPageOrder.on("click", () => {
+                page.element.pagePassword.addClass("d-none")
+                page.element.container_infomation.addClass("d-none")
+                page.element.pageOrder.removeClass("d-none")
+                page.commands.handleChangPagePassword();
+                page.commands.handleChangPageInformation();
+                page.commands.handleUpdateCustomer();
+            })
+        }
+
+        page.loadData.getOrder = () => {
+            $.ajax({
+                "type": "GET",
+                "url": page.url.GetOrder,
+            }).done((dataOrder) => {
+                $.each(dataOrder, (i, items) => {
+                    order = items;
+
+
+                    let str = `
+                            <tr>
+                                <td class="text-center align-middle"></td>
+                                <td class="text-center align-middle">${order.productCode}</td>
+                                <td class="text-center align-middle"><img width="150px" src="${order.productImage}" alt=""></td>
+                                <td class="text-center align-middle">${order.productTitle}</td>
+                                <td class="text-center align-middle">${order.quantity}</td>
+                                <td class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(order.grandTotal)}</td>
+                                <td class="text-center align-middle">${order.createdAt}</td>
+                            </tr>
+                        `
+                    page.element.listOrder.prepend(str);
+                })
+
+            }).fail((e) => {
+                console.log(e);
             })
         }
 
@@ -2126,8 +2197,9 @@
                 page.commands.handleChangPageInformation();
                 page.commands.handleChangPagePassword();
                 page.commands.getUserByUsername();
+                page.commands.handleChangPageOrder();
+                page.loadData.getOrder()
             })
         })
-
     </script>
 </th:block>

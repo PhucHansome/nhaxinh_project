@@ -1,13 +1,9 @@
 package com.cg.controller.api;
 
-import com.cg.model.Category;
 import com.cg.model.dto.CategoryDTO;
 import com.cg.service.category.CategoryService;
-import com.cg.service.productservice.ProductService;
 import com.cg.utils.AppUtils;
-import org.hibernate.loader.plan.spi.Return;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

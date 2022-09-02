@@ -1,4 +1,4 @@
-package com.cg.service.productservice;
+package com.cg.service.product;
 
 import com.cg.exception.DataInputException;
 import com.cg.model.Product;
@@ -9,10 +9,8 @@ import com.cg.model.enums.FileType;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
 import com.cg.service.upload.UploadService;
-import com.cg.utils.AppUtils;
 import com.cg.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -118,6 +116,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<ProductDTO> findProductDTOById(String id) {
         return productRepository.findProductDTOById(id);
+    }
+
+    @Override
+    public Optional<ProductDTO> findProductDTOByCode(String code) {
+        return productRepository.findProductDTOByCode(code);
     }
 
     private void uploadAndSaveProductImage(ProductDTO productDTO, Product product, ProductMedia productMedia) {

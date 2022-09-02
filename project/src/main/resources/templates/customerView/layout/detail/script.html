@@ -1303,8 +1303,9 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
         }
+
 
         page.commands.getProductById = (id) => {
             return $.ajax({

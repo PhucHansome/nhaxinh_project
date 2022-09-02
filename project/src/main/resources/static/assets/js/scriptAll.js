@@ -200,13 +200,16 @@ class Cart {
 }
 
 class Order {
-    constructor(id ,description ,grandTotal ,quantity ,productCode ,customerInfo ) {
+    constructor(id ,description ,grandTotal ,quantity ,productCode ,productImage,productTitle ,customerInfo,createdAt ) {
         this.id = id;
         this.description = description;
         this.grandTotal = grandTotal;
         this.quantity = quantity;
         this.productCode = productCode;
+        this.productImage = productImage;
+        this.productTitle = productTitle;
         this.customerInfo = customerInfo;
+        this.createdAt = createdAt;
     }
 }
 

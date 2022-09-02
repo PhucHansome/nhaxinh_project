@@ -7,7 +7,7 @@ import com.cg.model.dto.*;
 import com.cg.service.category.CategoryService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
-import com.cg.service.productservice.ProductService;
+import com.cg.service.product.ProductService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -53,6 +53,15 @@ public class ProductAPI {
     @GetMapping("/{id}")
     public ResponseEntity<?> findProductById(@PathVariable String id) {
         Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        if (!productDTOOptional.isPresent()) {
+            throw new DataInputException("Product is not found");
+        }
+
+        return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
+    }
+    @GetMapping("/product/{code}")
+    public ResponseEntity<?> findProductByCode(@PathVariable String code) {
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOByCode(code);
         if (!productDTOOptional.isPresent()) {
             throw new DataInputException("Product is not found");
         }
