@@ -70,8 +70,6 @@ public class CustomerInfoAPI {
         return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
     }
 
-
-
     @PutMapping("/edit")
     private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){
           if (bindingResult.hasFieldErrors()) {

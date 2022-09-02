@@ -1885,7 +1885,6 @@
                 "url": page.url.GetCustomer
             }).done((data) => {
                 let customerInfo = data;
-                console.log(customerInfo)
                 page.element.idCustomer.val(customerInfo.id)
                 page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
                 page.element.fullNameCus.val(customerInfo.fullName);

@@ -46,7 +46,7 @@ public class UserAPI {
         }
         userService.save(userDTO.toUser());
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 }
