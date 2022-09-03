@@ -73,8 +73,8 @@ public class HomeController {
         return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
-    @GetMapping("/search")
-    public ModelAndView getSearch() {
+    @GetMapping("/search/{query}")
+    public ModelAndView getSearchByTitle(@PathVariable String query) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -83,6 +83,8 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
+
+        modelAndView.addObject("query", query);
         return modelAndView;
     }
 

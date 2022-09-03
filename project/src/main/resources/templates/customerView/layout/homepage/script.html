@@ -1356,6 +1356,7 @@
                 page.commands.showIconCart();
                 page.commands.handleGoDetailProduct();
                 page.commands.searchFunction();
+                page.commands.handleGoSearch();
             }).fail((e) => {
                 console.log(e)
             })
@@ -1400,9 +1401,9 @@
                                                         </div>
                                                         <span class="search-price"><ins><span style="font-size: 12px;"
                                                                 class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                                                                                                                    style: 'currency',
-                                                                                                                    currency: 'VND'
-                                                                                                                }).format(product.price)}
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
                                                                 </bdi></span></ins></span></span>
                                                         </a></div>
                     `;
@@ -1422,10 +1423,17 @@
             })
         }
 
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function () {
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
+
         $(function () {
             page.dialogs.loadData.getAllProduct();
             page.commands.handleShowCart()
             page.commands.searchFunction();
+            page.commands.handleGoSearch();
         })
     </script>
 

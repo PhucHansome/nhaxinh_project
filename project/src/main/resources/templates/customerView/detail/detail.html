@@ -331,25 +331,6 @@
                                 </a>
 
 
-                                <ul class="nav-dropdown  nav-dropdown-default">
-
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                        <a href="https://nhaxinh.com/tai-khoan/edit-account/">Thông tin của tôi</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                        <a href="https://nhaxinh.com/tai-khoan/orders/">Đơn hàng</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
-                                        <a href="https://nhaxinh.com/tai-khoan/recently-viewed-products/">Sản phẩm vừa
-                                            xem</a>
-                                    </li>
-                                    <li class="wishlist-account-element ">
-                                        <a href="https://nhaxinh.com/tai-khoan/wishlist/?wishlist-action">Wishlist</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                        <a href="https://nhaxinh.com/tai-khoan/customer-logout/">Đăng xuất</a>
-                                    </li>
-                                </ul>
 
                             </li>
                         </ul>
@@ -1042,12 +1023,11 @@
                             <li class="header-search-form search-form html relative has-icon">
                                 <div class="header-search-form-wrapper">
                                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                        <form role="search" method="get" class="searchform"
-                                              action="https://nhaxinh.com/">
+
                                             <div class="flex-row relative">
                                                 <div class="flex-col flex-grow">
                                                     <label class="screen-reader-text"
-                                                           for="woocommerce-product-search-field-0">Search for:</label>
+                                                           for="querySearch">Search for:</label>
                                                     <input type="search" id="querySearch"
                                                            class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
                                                            name="s" >
@@ -1056,7 +1036,7 @@
                                                 </div>
                                                 <div class="flex-col">
                                                     <button type="submit" value="Search"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
                                                             aria-label="Submit">
                                                         <i class="fa-solid fa-magnifying-glass"></i></button>
                                                 </div>
@@ -1064,7 +1044,7 @@
                                             <div class="live-search-results text-left z-top">
                                                 <div class="autocomplete-suggestions resuilt_search d-none"></div>
                                             </div>
-                                            <input type="hidden" name="lang" value="vi"></form>
+                                            <input type="hidden" name="lang" value="vi">
                                     </div>
                                 </div>
                             </li>

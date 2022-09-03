@@ -1503,7 +1503,10 @@
                         page.commands.showIconCart();
 
                     }).fail((e)=>{
-                        console.log(e)
+                        App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                        setTimeout(function () {
+                            window.location.href = "/login"
+                        }, 500);
                     })
                 })
             })
@@ -1536,7 +1539,10 @@
                             window.location.href = "/cart"
                         }, 100);
                     }).fail((e)=>{
-                        console.log(e)
+                        App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                        setTimeout(function () {
+                            window.location.href = "/login"
+                        }, 500);
                     })
                 })
             })
@@ -1557,10 +1563,9 @@
 
         page.commands.blurInputsearch = () => {
             page.element.InputQuerySearch.blur(function () {
-                console.log("vao day")
                 setTimeout(function () {
                     page.element.resuilt_search.addClass("d-none")
-                }, 100);
+                }, 150);
             })
 
         }
@@ -1609,6 +1614,11 @@
             })
         }
 
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
 
         $(function () {
             page.commands.handleShowCart()
@@ -1617,6 +1627,7 @@
             page.commands.handleAddToCart()
             page.commands.handleBuy()
             page.commands.searchFunction()
+            page.commands.handleGoSearch()
         })
     </script>
 </th:block>

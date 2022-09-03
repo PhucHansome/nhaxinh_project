@@ -1601,6 +1601,11 @@
             })
         }
 
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
 
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
@@ -1611,6 +1616,7 @@
                 page.commands.getCustomerInfoByEmail();
                 page.commands.handleOrder();
                 page.commands.searchFunction()
+                page.commands.handleGoSearch();
             })
 
         })

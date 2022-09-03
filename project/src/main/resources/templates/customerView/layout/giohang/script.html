@@ -1753,12 +1753,19 @@
             })
         }
 
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
+
 
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
             page.loadData.getAllItemOrder()
             page.commands.searchFunction()
+            page.commands.handleGoSearch()
         })
     </script>
 </th:block>

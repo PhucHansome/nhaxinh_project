@@ -2254,6 +2254,13 @@
             })
         }
 
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
+
+
 
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
@@ -2268,6 +2275,7 @@
                 page.commands.handleChangPageOrder();
                 page.loadData.getOrder()
                 page.commands.searchFunction()
+                page.commands.handleGoSearch()
             })
         })
     </script>
