@@ -24,6 +24,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.customerInfo," +
             "o.createdAt" +
             " )  " +
-            "FROM Order o  WHERE o.customerInfo.userName Like ?1 ")
+            "FROM Order o  WHERE o.customerInfo.userName Like %?1% ")
     List<OrderDTO> findOrderDTOByUserName(String userName);
 }

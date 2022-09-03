@@ -102,6 +102,26 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "And c.deleted = false")
     Optional<ProductDTO> findProductDTOByCode (String code);
 
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            " c.deleted = false" +
+            " AND c.title LIKE %?1% ")
+    List<ProductDTO> searchProductDTOByTitle (String title);
 
     @Query("SELECT " +
             "pm.product.id AS id, " +

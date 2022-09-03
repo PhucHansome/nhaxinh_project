@@ -63,19 +63,6 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/detail")
-    public ModelAndView getDetail() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/customerView/detail/detail");
-        String email = getPrincipal();
-        if (email == "anonymousUser") {
-            email = "Đăng nhập";
-            modelAndView.addObject("userDTO", email);
-        }
-        modelAndView.addObject("userDTO", email);
-        return modelAndView;
-    }
-
     @GetMapping("/login")
     public String getLogin() {
         String email = getPrincipal();

@@ -1187,6 +1187,7 @@
                 GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
                 GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
+                GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART + "/create",
@@ -1221,7 +1222,9 @@
         page.element.total_OrderSumary = $("#total_OrderSumary")
         page.element.line_item_orderSumary = $("#line_item_orderSumary")
         page.element.orderSummary = $(".woocommerce-checkout-review-order-table tbody")
+        page.element.resuilt_search = $(".resuilt_search")
 
+        page.element.InputQuerySearch = $("#querySearch")
         page.element.select_provinceCUS = $("#provinceCUS")
         page.element.select_provinceCUS_selected = $("#provinceCUS :selected")
         page.element.select_districtCus = $("#districtCus")
@@ -1544,6 +1547,61 @@
             })
         }
 
+        page.commands.blurInputsearch = () => {
+            page.element.InputQuerySearch.blur(function () {
+                console.log("vao day")
+                setTimeout(function () {
+                    page.element.resuilt_search.addClass("d-none")
+                }, 100);
+            })
+
+        }
+
+        page.commands.searchFunction = () => {
+            page.element.InputQuerySearch.on("input", function () {
+                let search = page.element.InputQuerySearch.val()
+                $.ajax({
+                    "method": "GET",
+                    "url": page.url.GetResuiltSearch + "/" + search
+                }).done((data) => {
+                    page.element.resuilt_search.removeClass("d-none")
+                    page.element.resuilt_search.html("")
+                    $.each(data, (i, item) => {
+                        if (i > 3) {
+                            return;
+                        }
+                        product = item
+                        let str = `
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
+                                                            class="search-image"
+                                                            src="${product.image}">
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        </div>
+                                                        <span class="search-price"><ins><span style="font-size: 12px;"
+                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
+                                                                </bdi></span></ins></span></span>
+                                                        </a></div>
+                    `;
+                        page.element.resuilt_search.prepend(str);
+                    })
+                    page.commands.blurInputsearch()
+                }).fail((jqXHR) => {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            page.element.resuilt_search.html("")
+                            page.element.resuilt_search.removeClass("d-none")
+                            page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                            page.commands.blurInputsearch()
+                        })
+                    }
+                })
+            })
+        }
+
+
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
@@ -1552,6 +1610,7 @@
                 page.loadData.getOrderSummary();
                 page.commands.getCustomerInfoByEmail();
                 page.commands.handleOrder();
+                page.commands.searchFunction()
             })
 
         })

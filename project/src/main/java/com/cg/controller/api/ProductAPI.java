@@ -59,6 +59,17 @@ public class ProductAPI {
 
         return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
     }
+
+    @GetMapping("/product/search/{title}")
+    public ResponseEntity<?> searchByTitleInline(@PathVariable String title) {
+        try {
+            List<ProductDTO> productList = productService.searchProductDTOByTitle(title);
+            return new ResponseEntity<>(productList, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Không tìm thấy sản phẩm", HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/product/{code}")
     public ResponseEntity<?> findProductByCode(@PathVariable String code) {
         Optional<ProductDTO> productDTOOptional = productService.findProductDTOByCode(code);

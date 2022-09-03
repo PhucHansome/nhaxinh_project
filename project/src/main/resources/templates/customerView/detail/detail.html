@@ -1048,9 +1048,9 @@
                                                 <div class="flex-col flex-grow">
                                                     <label class="screen-reader-text"
                                                            for="woocommerce-product-search-field-0">Search for:</label>
-                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                    <input type="search" id="querySearch"
                                                            class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s" autocomplete="off">
+                                                           name="s" >
                                                     <input type="hidden" name="post_type" value="product">
                                                     <input type="hidden" name="lang" value="vi">
                                                 </div>
@@ -1062,8 +1062,7 @@
                                                 </div>
                                             </div>
                                             <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions"
-                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                <div class="autocomplete-suggestions resuilt_search d-none"></div>
                                             </div>
                                             <input type="hidden" name="lang" value="vi"></form>
                                     </div>

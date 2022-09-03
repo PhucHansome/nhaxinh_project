@@ -30,4 +30,6 @@ public interface ProductService {
 
     Optional<ProductDTO> findProductDTOByCode (String code);
 
+    List<ProductDTO> searchProductDTOByTitle (String title);
+
 }

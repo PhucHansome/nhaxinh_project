@@ -160,4 +160,9 @@ public class ProductServiceImpl implements ProductService {
             throw new DataInputException("Upload video thất bại");
         }
     }
+
+    @Override
+    public List<ProductDTO> searchProductDTOByTitle(String title) {
+        return productRepository.searchProductDTOByTitle(title);
+    }
 }

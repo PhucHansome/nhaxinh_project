@@ -977,9 +977,9 @@
                                                 <div class="flex-col flex-grow">
                                                     <label class="screen-reader-text"
                                                            for="woocommerce-product-search-field-0">Search for:</label>
-                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                    <input type="search" id="querySearch"
                                                            class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s" autocomplete="off">
+                                                           name="s" >
                                                     <input type="hidden" name="post_type" value="product">
                                                     <input type="hidden" name="lang" value="vi">
                                                 </div>
@@ -991,8 +991,7 @@
                                                 </div>
                                             </div>
                                             <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions"
-                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                <div class="autocomplete-suggestions resuilt_search d-none">
                                             </div>
                                             <input type="hidden" name="lang" value="vi"></form>
                                     </div>
@@ -1020,10 +1019,9 @@
                                                         <div class="flex-col flex-grow">
                                                             <label class="screen-reader-text"
                                                                    for="woocommerce-product-search-field-1">Search
-                                                                for:</label>
-                                                            <input type="search" id="woocommerce-product-search-field-1"
-                                                                   class="search-field mb-0" placeholder="Tìm sản phẩm"
-                                                                   value="" name="s" autocomplete="off">
+                                                                for:</label>   <input type="search" id="querySearch"
+                                                                                      class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                                                      name="s" >
                                                             <input type="hidden" name="post_type" value="product">
                                                             <input type="hidden" name="lang" value="vi">
                                                         </div>
@@ -1031,12 +1029,11 @@
                                                             <button type="submit" value="Search"
                                                                     class="ux-search-submit submit-button secondary button icon mb-0"
                                                                     aria-label="Submit">
-                                                                <i class="icon-search"></i></button>
+                                                                <i class="fa-solid fa-magnifying-glass"></i></button>
                                                         </div>
                                                     </div>
                                                     <div class="live-search-results text-left z-top">
-                                                        <div class="autocomplete-suggestions"
-                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                        <div class="autocomplete-suggestions resuilt_search d-none"></div>
                                                     </div>
                                                     <input type="hidden" name="lang" value="vi"></form>
                                             </div>
@@ -1380,13 +1377,20 @@
                                                         <th class="text-center align-middle">Ảnh sản phẩm</th>
                                                         <th class="text-center align-middle">Tên Sản phẩm</th>
                                                         <th class="text-center align-middle">Số lượng sản phẩm</th>
-                                                        <th class="text-center align-middle">Giá tiền Sản phẩm</th>
+                                                        <th class="text-center align-middle">Tổng giá tiền đơn hàng</th>
                                                         <th class="text-center align-middle">Ngày tạo đơn hàng</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     </tbody>
                                                 </table>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-8"></div>
+                                                <div class="col-4 total_spending float-lg-right">
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
