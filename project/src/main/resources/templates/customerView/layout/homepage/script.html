@@ -1168,7 +1168,7 @@
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
 
         page.commands.addCartBotLine = () => {
-            page.element.cart_cartBotLine.prepend($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
+            page.element.cart_cartBotLine.append($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
             }).format(product.price), product.id)));
