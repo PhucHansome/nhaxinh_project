@@ -57,7 +57,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "c.productColor, " +
             "c.createdAt" +
             ")  " +
-            "FROM Product c WHERE c.deleted = false order by c.ts asc ")
+            "FROM Product c WHERE c.deleted = false order by c.ts desc ")
     List<ProductDTO> findAllProductDTONoImage();
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +

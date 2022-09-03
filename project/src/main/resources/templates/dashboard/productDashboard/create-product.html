@@ -448,6 +448,17 @@
                 url: page.url.PostProduct + "/" + page.element.category.val() + "/" + page.element.colorProduct.val(),
                 data: formData
             }).done((data) => {
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
                 product = data;
                 delete tag.id
                 tag.name = page.element.tag.val();
@@ -471,19 +482,7 @@
                     formData.delete("material");
                     formData.delete("image");
                     page.element.btnSave.off()
-                    console.log(item)
                     $(".mla").html("")
-                    formData.delete("files")
-                    formData.delete("code");
-                    formData.delete("title");
-                    formData.delete("price");
-                    formData.delete("quantity");
-                    formData.delete("status");
-                    formData.delete("description");
-                    formData.delete("slug");
-                    formData.delete("size");
-                    formData.delete("material");
-                    formData.delete("image");
                     page.element.btnSave.off()
                     page.element.priceProduct.val("")
                     page.element.productName.val("")
@@ -503,10 +502,32 @@
                     console.log(e)
                     $(".mla").html("")
                     App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+                    formData.delete("files")
+                    formData.delete("code");
+                    formData.delete("title");
+                    formData.delete("price");
+                    formData.delete("quantity");
+                    formData.delete("status");
+                    formData.delete("description");
+                    formData.delete("slug");
+                    formData.delete("size");
+                    formData.delete("material");
+                    formData.delete("image");
                 })
             }).fail(() => {
                 $(".mla").html("")
                 App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
             })
         })
     }
