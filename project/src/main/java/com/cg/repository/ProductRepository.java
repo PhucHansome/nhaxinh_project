@@ -120,7 +120,11 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             ")  " +
             "FROM Product c WHERE " +
             " c.deleted = false" +
-            " AND c.title LIKE %?1% ")
+            " AND c.title LIKE %?1% " +
+            " OR c.material LIKE %?1%" +
+            " OR c.category.name LIKE %?1%" +
+            " OR c.productColor.color LIKE %?1%" +
+            " ")
     List<ProductDTO> searchProductDTOByTitle (String title);
 
     @Query("SELECT " +

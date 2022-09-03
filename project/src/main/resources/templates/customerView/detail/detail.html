@@ -1386,11 +1386,10 @@
 
 
                                     <span class="posted_in">Danh mục: <a
-                                            href="#"
+                                            th:href="*{'/search/'+product.category.name}"
                                             rel="tag" th:text="*{product.category.name}"></a></span>
 
-                                    <span class="tagged_as">Màu sắc: <a href="#"
-                                                                     rel="tag" th:text="*{product.productColor.color}"></a></span>
+                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/'+product.productColor.color}" rel="tag" th:text="*{product.productColor.color}"></a></span>
                                     <th:block th:each="tag, count : ${tag}">
                                     <span class="tagged_as">Tags: <a href="#"
                                                                      rel="tag" th:text="*{tag.name}"></a></span>
