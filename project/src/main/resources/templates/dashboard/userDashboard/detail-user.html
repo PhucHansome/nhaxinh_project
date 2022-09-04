@@ -35,7 +35,7 @@
                     <div class="col-md-5">
 
                         <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
-                                class="btn btn-danger float-right ">
+                                class="btn btn-danger float-right btn-delete">
                             <i class="fas fa-trash"></i>
                             Xoá khách hàng
                         </button>
@@ -168,7 +168,9 @@
             CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
             getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
             getAllProvinces: App.BASE_URL_PROVINCE + "/",
-            getAllDistricts: App.BASE_URL_PROVINCE + "/district/"
+            getAllDistricts: App.BASE_URL_PROVINCE + "/district/",
+            DeleteCustomer : App.BASE_URL_CUSTOMERINFO + "/delete-soft-customer/"
+
 
 
         },
@@ -185,22 +187,26 @@
         }
     }
 
-    page.dialogs.element.fullNameUp = $("#fullNameUp");
-    page.dialogs.element.phoneUp = $("#phoneUp");
-    page.dialogs.element.emailUp = $("#emailUp");
-    page.dialogs.element.provinceUp = $("#provinceUp");
+    page.element.fullNameUp = $("#fullNameUp");
+    page.element.phoneUp = $("#phoneUp");
+    page.element.emailUp = $("#emailUp");
+    page.element.provinceUp = $("#provinceUp");
     page.element.provinceText = $("#provinceUp :selected");
-    page.dialogs.element.districtUp = $("#districtUp");
+    page.element.districtUp = $("#districtUp");
     page.element.districText = $("#districtUp :selected");
-    page.dialogs.element.addressUp = $("#addressUp");
+    page.element.addressUp = $("#addressUp");
 
     page.element.btnUpdateCustomer = $(".btnUpdate")
+    page.element.btnDelete = $(".btn-delete")
+
+
 
 
     let customerInfo = new CustomerInfo();
     let locationRegion = new LocationRegion();
     let user = new User();
     let customerInfoId = null;
+
 
 
 
@@ -222,32 +228,28 @@
                     "content-type": "application/json"
                 },
                 "type": "GET",
-                "url":page.url.getAllCustomerInfo +"/" + customerInfoId,
+                "url":"http://localhost:8092/api/customerInfo/" +customerInfoId,
 
-                "data": JSON.stringify(customerInfo)
             }).done((data) => {
                 customerInfo = data;
                 console.log(data)
                 locationRegion = customerInfo.locationRegion;
-                page.dialogs.element.fullNameUp.val(customerInfo.fullName)
-                page.dialogs.element.emailUp.val(customerInfo.userName)
-                page.dialogs.element.phoneUp.val(customerInfo.phone)
+                page.element.fullNameUp.val(customerInfo.fullName)
+                page.element.emailUp.val(customerInfo.userName)
+                page.element.phoneUp.val(customerInfo.phone)
 
-                page.dialogs.element.provinceUp.val(locationRegion.provinceId)
+                page.element.provinceUp.val(locationRegion.provinceId)
+                page.element.addressUp.val(customerInfo.locationRegion.address)
 
-                page.dialogs.commands.drawProvinces(locationRegion.provinceId).then(() => {
+                page.commands.drawDistricts(customerInfo.locationRegion.provinceId).then(function ()  {
 
-                page.dialogs.element.districtUp(locationRegion.districtId);
+                page.element.districtUp(customerInfo.locationRegion.districtId);
                 })
-
-                page.dialogs.element.addressUp.val(locationRegion.address)
-
             })
-
-
             $('#modalUpdateUser').modal('show')
 
         })
+
     }
 
     page.dialogs.commands.drawProvinces = () => {
@@ -261,11 +263,11 @@
         })
             .done((data) => {
                 console.log(data)
-                page.dialogs.element.provinceUp.html("")
+                page.element.provinceUp.html("")
                 $.each(data.results, (i, item) => {
                     console.log(item)
                     let str = `<option value="${item.province_id}">${item.province_name}</option>`;
-                    page.dialogs.element.provinceUp.append(str);
+                    page.element.provinceUp.append(str);
                 })
             })
             .fail((jqxHR) => {
@@ -285,11 +287,11 @@
             if (data.results.length === 0) {
                 App.IziToast.showErrorAlert("Loading of districts is fail");
             } else {
-                page.dialogs.element.districtUp.html("");
+                page.element.districtUp.html("");
                 $.each(data.results, (i, item) => {
                     let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
 
-                    page.dialogs.element.districtUp.append(str)
+                    page.element.districtUp.append(str)
                 })
             }
         }).fail((jqXHR) => {
@@ -297,16 +299,43 @@
         })
     }
 
-    page.dialogs.element.provinceUp.on('change', function () {
-        page.dialogs.commands.drawDistricts(page.dialogs.element.provinceUp.val())
+    page.element.provinceUp.on('change', function () {
+        page.dialogs.commands.drawDistricts(page.element.provinceUp.val())
     })
-
+    page.commands.handleshowConfirmDelete = () => {
+        page.element.btnDelete.on('click', function () {
+            App.SweetAlert.showConfirmDeleteUser()
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            "headers": {
+                                "accept": "application/json",
+                                "content-type": "application/json"
+                            },
+                            "type": "DELETE",
+                            "url": "http://localhost:8092/api/customerInfo/delete-soft-customer/" + customerInfoId,
+                            "data": JSON.stringify(customerInfo)
+                        })
+                            .done((data) => {
+                                $('#tr_' + customerInfo).remove();
+                                console.log(data)
+                                App.SweetAlert.showSuccessAlert("Xóa Thành Công")
+                            })
+                            .fail((error) => {
+                                console.log(error)
+                                App.SweetAlert.showErrorAlert('Xóa thất bại');
+                            });
+                    }
+                })
+        })
+    }
     $(function () {
         page.dialogs.commands.goModalUpdateCustomer();
         page.dialogs.commands.getCustomerInfoById();
         page.dialogs.commands.drawProvinces().then(() => {
-        page.dialogs.commands.drawDistricts(page.dialogs.element.provinceUp.val());
+        page.dialogs.commands.drawDistricts(page.element.provinceUp.val());
         })
+        page.commands.handleshowConfirmDelete();
     })
 
 

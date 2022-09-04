@@ -65,4 +65,10 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
     public Optional<CustomerInfoDTO> findUserDTOById(String  id) {
         return customerInfoRepository.findUserDTOById(id);
     }
+
+    @Override
+    public CustomerInfo deleteSoft(CustomerInfo customerInfo) {
+        customerInfo.setDeleted(true);
+        return customerInfoRepository.save(customerInfo);
+    }
 }

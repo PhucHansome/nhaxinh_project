@@ -1,6 +1,7 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.DataInputException;
 import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.CustomerInfo;
 import com.cg.model.dto.CustomerInfoDTO;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,12 +44,16 @@ public class CustomerInfoAPI {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable String id) {
+
         Optional<CustomerInfoDTO> userOptional = customerInfoService.findUserDTOById(id);
         if (!userOptional.isPresent()) {
             throw new ResourceNotFoundException("Invalid User ID");
         }
-        return new ResponseEntity<>(userOptional.get().toCustomerInfo(), HttpStatus.OK);
+
+        return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
+
     }
+
 
 
 
@@ -80,7 +86,14 @@ public class CustomerInfoAPI {
           return new ResponseEntity<>(customerInfoUpdate.toCustomerInfoDTO(), HttpStatus.ACCEPTED);
       }
 
-
-
+    @DeleteMapping("/delete-soft-customer/{id}")
+    public ResponseEntity<?> deleteSoft(@PathVariable String id){
+        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoService.findUserDTOById(id);
+        if(!customerInfoDTO.isPresent()){
+            throw new DataInputException("Người dùng này không tồn tại");
+        }
+        customerInfoService.deleteSoft(customerInfoDTO.get().toCustomerInfo());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }
