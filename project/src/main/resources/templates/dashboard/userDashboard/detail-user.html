@@ -60,7 +60,7 @@
                                     class="btn btn-warning float-right btnUpdate">Cập nhật
                             </button>
                         </div>
-                        <input type="hidden" name="id" th:field="*{customerInfo.id}">
+                        <input type="hidden" id="idCustomer" name="id" th:field="*{customerInfo.id}">
 
                         <div class="col-md-6">
                             <label>Tên khách hàng:</label>
@@ -169,8 +169,7 @@
             getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
             getAllProvinces: App.BASE_URL_PROVINCE + "/",
             getAllDistricts: App.BASE_URL_PROVINCE + "/district/",
-            DeleteCustomer : App.BASE_URL_CUSTOMERINFO + "/delete-soft-customer/"
-
+            DeleteCustomer: App.BASE_URL_CUSTOMERINFO + "/delete-soft-customer/"
 
 
         },
@@ -195,11 +194,10 @@
     page.element.districtUp = $("#districtUp");
     page.element.districText = $("#districtUp :selected");
     page.element.addressUp = $("#addressUp");
+    page.element.idCustomer = $("#idCustomer")
 
     page.element.btnUpdateCustomer = $(".btnUpdate")
     page.element.btnDelete = $(".btn-delete")
-
-
 
 
     let customerInfo = new CustomerInfo();
@@ -208,46 +206,33 @@
     let customerInfoId = null;
 
 
-
-
     page.dialogs.commands.getCustomerInfoById = (id) => {
-        $.ajax({
-            "method" : "GET",
-            "url" : page.url.getAllCustomerInfo + "/" + id
-        }).done((data)=>{
-            let customerInfo = data;
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.getAllCustomerInfo + "/" + id
+        }).done((data) => {
+            customerInfo = data;
         })
     }
 
-        page.dialogs.commands.goModalUpdateCustomer = () => {
+    page.dialogs.commands.goModalUpdateCustomer = () => {
         page.element.btnUpdateCustomer.on('click', function () {
+            page.dialogs.commands.getCustomerInfoById(page.element.idCustomer.val()).then(() => {
 
-            $.ajax({
-                "headers": {
-                    "accept": "application/json",
-                    "content-type": "application/json"
-                },
-                "type": "GET",
-                "url":"http://localhost:8092/api/customerInfo/" +customerInfoId,
-
-            }).done((data) => {
-                customerInfo = data;
-                console.log(data)
-                locationRegion = customerInfo.locationRegion;
                 page.element.fullNameUp.val(customerInfo.fullName)
                 page.element.emailUp.val(customerInfo.userName)
                 page.element.phoneUp.val(customerInfo.phone)
 
-                page.element.provinceUp.val(locationRegion.provinceId)
+                page.element.provinceUp.val(customerInfo.locationRegion.provinceId)
                 page.element.addressUp.val(customerInfo.locationRegion.address)
 
-                page.commands.drawDistricts(customerInfo.locationRegion.provinceId).then(function ()  {
+                page.dialogs.commands.drawDistricts(customerInfo.locationRegion.provinceId).then(function () {
 
-                page.element.districtUp(customerInfo.locationRegion.districtId);
+                    page.element.districtUp(customerInfo.locationRegion.districtId);
                 })
-            })
-            $('#modalUpdateUser').modal('show')
+                $('#modalUpdateUser').modal('show')
 
+            })
         })
 
     }
@@ -276,7 +261,7 @@
     }
 
     page.dialogs.commands.drawDistricts = (provinceId) => {
-        $.ajax({
+        return $.ajax({
             "headers": {
                 "accept": "application/json",
                 "content-type": "application/json"
@@ -307,23 +292,25 @@
             App.SweetAlert.showConfirmDeleteUser()
                 .then((result) => {
                     if (result.isConfirmed) {
-                        $.ajax({
+
+                            $.ajax({
                             "headers": {
                                 "accept": "application/json",
                                 "content-type": "application/json"
                             },
                             "type": "DELETE",
-                            "url": "http://localhost:8092/api/customerInfo/delete-soft-customer/" + customerInfoId,
+                            "url": "http://localhost:8092/api/customerInfo/delete-soft-customer/" + page.element.idCustomer.val(),
                             "data": JSON.stringify(customerInfo)
                         })
-                            .done((data) => {
-                                $('#tr_' + customerInfo).remove();
-                                console.log(data)
-                                App.SweetAlert.showSuccessAlert("Xóa Thành Công")
+                            .done(() => {
+                                App.SweetAlert.showSuccessAlert("Xóa khách hàng Thành Công")
+                                setTimeout(function () {
+                                    App.SweetAlert.showSuccessAlert("Bạn sẽ trở về danh sách khách hàng sau 4s")
+                                    window.location.href = "/user-dashboard";
+                                }, 4000);
                             })
-                            .fail((error) => {
-                                console.log(error)
-                                App.SweetAlert.showErrorAlert('Xóa thất bại');
+                            .fail(() => {
+                                App.SweetAlert.showErrorAlert('Xóa khách hàng thất bại');
                             });
                     }
                 })
@@ -333,7 +320,7 @@
         page.dialogs.commands.goModalUpdateCustomer();
         page.dialogs.commands.getCustomerInfoById();
         page.dialogs.commands.drawProvinces().then(() => {
-        page.dialogs.commands.drawDistricts(page.element.provinceUp.val());
+            page.dialogs.commands.drawDistricts(page.element.provinceUp.val());
         })
         page.commands.handleshowConfirmDelete();
     })
