@@ -77,7 +77,8 @@ public class ProductServiceImpl implements ProductService {
             productDTO.setFileType(fileType);
             productDTO.setFile(file);
 
-            ProductMedia productMedia = productMediaRepository.save(productDTO.toProductmedia());
+            ProductMedia   productMedia = productMediaRepository.save(productDTO.toProductmedia());
+
 
             if (fileType.equals(FileType.IMAGE.getValue())) {
                 uploadAndSaveProductImage(productDTO, product, productMedia);
@@ -171,6 +172,39 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> searchProductDTOByTitle(String title) {
         return productRepository.searchProductDTOByTitle(title);
+    }
+
+    @Override
+    public Product updateProduct(ProductDTO productDTO) {
+        List<ProductMedia> productMediaDTOList = productMediaRepository.findProductMediaByProduct(productDTO.toProduct());
+        for(ProductMedia productMedia1 : productMediaDTOList){
+            productMediaRepository.deleteById(productMedia1.getId());
+        }
+        List<MultipartFile> fileList = productDTO.getFiles();
+        Product product = productRepository.save(productDTO.toProduct());
+        for (MultipartFile file : fileList) {
+
+            String fileType = file.getContentType();
+            assert fileType != null;
+
+            fileType = fileType.substring(0, 5);
+
+            productDTO.setFileType(fileType);
+            productDTO.setFile(file);
+
+
+            ProductMedia productMedia = productMediaRepository.save(productDTO.toProductmedia());
+
+            if (fileType.equals(FileType.IMAGE.getValue())) {
+                uploadAndSaveProductImage(productDTO, product, productMedia);
+            }
+
+            if (fileType.equals(FileType.VIDEO.getValue())) {
+                uploadAndSaveProductVideo(productDTO, product, productMedia);
+            }
+        }
+
+        return product;
     }
 
     @Override

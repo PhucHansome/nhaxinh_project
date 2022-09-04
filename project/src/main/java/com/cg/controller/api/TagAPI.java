@@ -10,6 +10,7 @@ import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,14 +28,28 @@ public class TagAPI {
     @Autowired
     private AppUtils appUtils;
 
+    @GetMapping("/{id}")
+    private ResponseEntity<?> getTag(@PathVariable String id){
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
+        return  new ResponseEntity<>(tagDTO.get().toTag(), HttpStatus.OK);
+    }
+
     @PostMapping("/id/{productId}")
     private ResponseEntity<?> createTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult){
         Optional<ProductDTO> productDTO = productService.findProductDTOById(productId);
         tagDTO.setProduct(productDTO.get());
-
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
+        Tag tagDTO1 = tagService.save(tagDTO.toTag());
+        return  new ResponseEntity<>(tagDTO1.toTagDTO(), HttpStatus.CREATED);
+    }
 
+    @PutMapping("/id/{productId}")
+    private ResponseEntity<?> updateTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult){
+        Optional<ProductDTO> productDTO = productService.findProductDTOById(productId);
+        tagDTO.setProduct(productDTO.get());
+        if (bindingResult.hasErrors())
+            return appUtils.mapErrorToResponse(bindingResult);
 
         Tag tagDTO1 = tagService.save(tagDTO.toTag());
         return  new ResponseEntity<>(tagDTO1.toTagDTO(), HttpStatus.CREATED);

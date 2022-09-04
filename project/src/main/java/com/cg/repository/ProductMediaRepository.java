@@ -16,6 +16,7 @@ public interface ProductMediaRepository extends JpaRepository<ProductMedia, Stri
 
     Optional<ProductMedia> findByProduct(Product product);
 
+    List<ProductMedia> findProductMediaByProduct(Product product);
     @Query("SELECT NEW com.cg.model.dto.ProductMediaDTO (" +
             "pm.id," +
             "pm.fileUrl) " +
@@ -37,4 +38,18 @@ public interface ProductMediaRepository extends JpaRepository<ProductMedia, Stri
             " order by pm.ts desc "
     )
     List<ProductMediaDTO> findAllByProductIdOrderByTsAsc(String id);
+
+    @Query("SELECT NEW com.cg.model.dto.ProductMediaDTO (" +
+            "pm.id," +
+            "pm.fileName, " +
+            "pm.fileFolder, " +
+            "pm.fileUrl, " +
+            "pm.fileType, " +
+            "pm.cloundId, " +
+            "pm.ts," +
+            "pm.product) " +
+            "FROM ProductMedia pm " +
+            "WHERE pm.product.id = ?1"
+    )
+    List<ProductMedia> findByProductDTO (String id);
 }

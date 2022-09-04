@@ -369,10 +369,10 @@
 
     page.commands.formatNumber = () => {
 
-        $(document).on('input', '.num-space',function (e) {
+        $(document).on('input', '#priceProduct',function (e) {
             $(this).val(App.formatNumberSpace($(this).val()));
         })
-        $('input.num-space').on("keypress",function (e){
+        $('input#priceProduct').on("keypress",function (e){
             let charCode = (e.which) ? e.which : e.keyCode
 
             if (String.fromCharCode(charCode).match(/[^0-9]/g))
@@ -538,10 +538,10 @@
         page.element.btnSave.off()
         formData = new FormData()
         let fileInput = $("#image")[0].files;
-        // if (fileInput.length > 4) {
-        //     App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
-        //     return
-        // }
+        if (fileInput.length > 4) {
+            App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
+            return
+        }
         for (let k = 0; k < fileInput.length; k++) {
             formData.append("files", fileInput[k]);
         }

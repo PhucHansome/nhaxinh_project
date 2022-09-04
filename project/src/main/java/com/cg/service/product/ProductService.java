@@ -20,6 +20,8 @@ public interface ProductService {
 
     Product create(ProductDTO productDTO);
 
+    Product updateProduct(ProductDTO productDTO);
+
     void delete(Product product) throws IOException;
 
     List<ProductDTO> findAllProductDTONoImage();

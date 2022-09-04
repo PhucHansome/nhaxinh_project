@@ -46,6 +46,17 @@ public class ProductMediaDTO {
         this.fileUrl = fileUrl;
     }
 
+    public ProductMediaDTO(String id, String fileName, String fileFolder, String fileUrl, String fileType, String cloundId, Long ts, Product product) {
+        this.id = id;
+        this.fileName = fileName;
+        this.fileFolder = fileFolder;
+        this.fileUrl = fileUrl;
+        this.fileType = fileType;
+        this.cloundId = cloundId;
+        this.ts = ts;
+        this.product = product.toProductDTO();
+    }
+
     public ProductMedia toProductMedia() {
        return new ProductMedia()
                .setId(id)

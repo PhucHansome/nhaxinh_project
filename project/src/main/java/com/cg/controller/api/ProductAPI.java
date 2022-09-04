@@ -102,6 +102,12 @@ public class ProductAPI {
         }
     }
 
+    @GetMapping("/product-media/{id}")
+    private ResponseEntity<?> findAllProductMedia(@PathVariable String id){
+        List <ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        return new ResponseEntity<>(productMediaDTO, HttpStatus.OK);
+    }
+
     @GetMapping("/product-image/{product_mediaID}")
     private ResponseEntity<?> getProductImage(@PathVariable String product_mediaID){
         List<ProductMediaDTO> productMedia = productMediaService.findAllByProductId(product_mediaID);
@@ -137,6 +143,36 @@ public class ProductAPI {
             throw new DataInputException("Product creation information is not valid, please check the information again");
         }
     }
+
+    @PutMapping("/put/{idCategory}/{idProductColor}")
+    public ResponseEntity<?> update(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
+        Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
+        productDTO.setCategory(optionalCategoryDTO.get());
+
+        Optional<ProductColorDTO> productColorDTO = productColorService.findProductColorDTOById(idProductColor);
+        productDTO.setProductColor(productColorDTO.get());
+        if (bindingResult.hasErrors())
+            return appUtils.mapErrorToResponse(bindingResult);
+
+        try {
+            Product updateProduct = productService.updateProduct(productDTO);
+
+            Optional<ProductMedia> productMediaImage = productMediaService.findTopByProductOrderByTsAsc(updateProduct);
+
+            if (!productMediaImage.isPresent()) {
+                throw new DataInputException("Product creation information is not valid, please check the information again");
+            }
+
+            updateProduct.setImage(productMediaImage.get().getFileUrl());
+            productService.save(updateProduct);
+
+            return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.CREATED);
+
+        } catch (DataIntegrityViolationException e) {
+            throw new DataInputException("Product creation information is not valid, please check the information again");
+        }
+    }
+
 
     @DeleteMapping("/delete-soft-product/{id}")
     public ResponseEntity<?> deleteSoft(@PathVariable String id){
