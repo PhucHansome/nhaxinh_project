@@ -1,7 +1,9 @@
 package com.cg.service.Tag;
 
+import com.cg.model.Product;
 import com.cg.model.Tag;
 import com.cg.model.dto.TagDTO;
+import com.cg.repository.ProductRepository;
 import com.cg.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class TagServiceImpl implements TagService{
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<Tag> findAll() {

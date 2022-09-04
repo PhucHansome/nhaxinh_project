@@ -13,10 +13,11 @@ import java.util.Optional;
 @Repository
 public interface TagRepository extends JpaRepository<Tag,Long> {
 
-    @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
-            "t.id, " +
-            "t.name," +
-            "t.product)  " +
-            "FROM Tag t  WHERE t.product.id = ?1  And t.deleted = false ")
+//    @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
+//            "t.id, " +
+//            "t.name" +
+//            "t.product" +
+//            ")  " +
+//            "FROM Tag t  WHERE t.product.id = ?1  And t.deleted = false ")
     Optional<TagDTO> findTagDTOByProductId(String id);
 }

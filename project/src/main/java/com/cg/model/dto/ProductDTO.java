@@ -1,9 +1,6 @@
 package com.cg.model.dto;
 
-import com.cg.model.Category;
-import com.cg.model.Product;
-import com.cg.model.ProductColor;
-import com.cg.model.ProductMedia;
+import com.cg.model.*;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;

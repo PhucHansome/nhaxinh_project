@@ -4,6 +4,7 @@ import com.cg.exception.DataInputException;
 import com.cg.model.Product;
 import com.cg.model.ProductMedia;
 import com.cg.model.dto.*;
+import com.cg.service.Tag.TagService;
 import com.cg.service.category.CategoryService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
@@ -34,6 +35,9 @@ public class ProductAPI {
 
     @Autowired
     private ProductMediaService productMediaService;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private AppUtils appUtils;
@@ -104,7 +108,7 @@ public class ProductAPI {
         return new ResponseEntity<>(productMedia, HttpStatus.OK);
     }
 
-    @PostMapping("/{idCategory}/{idProductColor}")
+    @PostMapping("/{idCategory}/{idProductColor}/")
     public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());

@@ -33,6 +33,7 @@ public class TagDTO {
                 .setId(id)
                 .setName(name)
                 .setDeleted(deleted)
-                .setProduct(product.toProduct());
+                .setProduct(product.toProduct())
+                ;
     }
 }
