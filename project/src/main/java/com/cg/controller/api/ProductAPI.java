@@ -138,6 +138,16 @@ public class ProductAPI {
         }
     }
 
+    @DeleteMapping("/delete-soft-product/{id}")
+    public ResponseEntity<?> deleteSoft(@PathVariable String id){
+        Optional<ProductDTO> productDTO = productService.findProductDTOById(id);
+        if(!productDTO.isPresent()){
+            throw new DataInputException("Sản phẩm này không tồn tại");
+        }
+        productService.deleteSoft(productDTO.get().toProduct());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) throws IOException {
 

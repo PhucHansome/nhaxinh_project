@@ -32,4 +32,6 @@ public interface ProductService {
 
     List<ProductDTO> searchProductDTOByTitle (String title);
 
+    Product deleteSoft(Product product);
+
 }

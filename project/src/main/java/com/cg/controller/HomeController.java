@@ -5,6 +5,7 @@ import com.cg.model.dto.*;
 import com.cg.service.Tag.TagService;
 import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.product.ProductService;
+import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,6 +37,9 @@ public class HomeController {
 
     @Autowired
     private ICustomerInfoService customerInfoService;
+
+    @Autowired
+    private ProductMediaService productMediaService;
 
     private String getPrincipal() {
         String username;
@@ -184,12 +188,18 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/detail-product-dashboard")
-    public ModelAndView getDetailProductDashboard() {
+    @GetMapping("/detail-product-dashboard/{productId}")
+    public ModelAndView getDetailProductDashboard(@PathVariable String productId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/productDashboard/detail-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        Optional <ProductDTO> productDTOList = productService.findProductDTOById(productId);
+        modelAndView.addObject("product", productDTOList.get().toProduct());
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
+        modelAndView.addObject("tag", tagDTO.get().toTag());
+        List <ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
+        modelAndView.addObject("productMedia", productMediaDTO);
         return modelAndView;
     }
 

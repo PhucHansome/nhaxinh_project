@@ -172,4 +172,10 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> searchProductDTOByTitle(String title) {
         return productRepository.searchProductDTOByTitle(title);
     }
+
+    @Override
+    public Product deleteSoft(Product product) {
+        product.setDeleted(true);
+        return productRepository.save(product);
+    }
 }
