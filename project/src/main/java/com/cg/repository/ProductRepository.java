@@ -57,7 +57,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "c.productColor, " +
             "c.createdAt" +
             ")  " +
-            "FROM Product c WHERE c.deleted = false order by c.ts asc ")
+            "FROM Product c WHERE c.deleted = false order by c.ts desc ")
     List<ProductDTO> findAllProductDTONoImage();
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
@@ -81,8 +81,51 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "And c.deleted = false")
     Optional<ProductDTO> findProductDTOById (String id);
 
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            "c.code = ?1 " +
+            "And c.deleted = false")
+    Optional<ProductDTO> findProductDTOByCode (String code);
 
-
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            " c.deleted = false" +
+            " AND c.title LIKE %?1% " +
+            " OR c.material LIKE %?1%" +
+            " OR c.category.name LIKE %?1%" +
+            " OR c.productColor.color LIKE %?1%" +
+            " ")
+    List<ProductDTO> searchProductDTOByTitle (String title);
 
     @Query("SELECT " +
             "pm.product.id AS id, " +

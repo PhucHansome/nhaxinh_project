@@ -44,16 +44,21 @@ public class CustomerInfoAPI {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable String id) {
-
-        Optional<CustomerInfoDTO> userOptional = customerInfoService.findUserDTOById(id);
-        if (!userOptional.isPresent()) {
+        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoService.findUserDTOById(id);
+        if (!customerInfoDTO.isPresent()) {
             throw new ResourceNotFoundException("Invalid User ID");
         }
-
-        return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
-
+        return new ResponseEntity<>(customerInfoDTO.get().toCustomerInfo(), HttpStatus.OK);
     }
 
+    @GetMapping("/username/{userName}")
+    public ResponseEntity<?> getCustomerByUserName(@PathVariable String userName) {
+        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoService.findUserDTOByUserName(userName);
+        if (!customerInfoDTO.isPresent()) {
+            throw new ResourceNotFoundException("Invalid User ID");
+        }
+        return new ResponseEntity<>(customerInfoDTO.get().toCustomerInfo(), HttpStatus.OK);
+    }
 
 
 
@@ -68,14 +73,7 @@ public class CustomerInfoAPI {
         return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<?> getCustomerById(@PathVariable Long id){
-        Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(String.valueOf(id));
-        return new ResponseEntity<>(customerInfo.get().toCustomerInfo(), HttpStatus.OK);
-    }
-
-
-      @PutMapping("/edit")
+    @PutMapping("/edit")
     private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){
           if (bindingResult.hasFieldErrors()) {
               return appUtils.mapErrorToResponse(bindingResult);

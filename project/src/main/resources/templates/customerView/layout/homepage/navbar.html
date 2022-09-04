@@ -125,8 +125,8 @@
                             <li class="account-item has-icon
      has-dropdown">
 
-                                <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
-  is-small" >
+                                <a th:object="${userDTO}" href="/account" class="account-link account-login
+  is-small">
 
 
 			<span th:text="${userDTO}" id="EmailLogin" class="header-account-title">
@@ -136,25 +136,6 @@
                                     <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
                                 </a>
 
-                                <ul class="nav-dropdown  nav-dropdown-default">
-
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                        <a href="https://nhaxinh.com/tai-khoan/edit-account/">Thông tin của tôi</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                        <a href="https://nhaxinh.com/tai-khoan/orders/">Đơn hàng</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
-                                        <a href="https://nhaxinh.com/tai-khoan/recently-viewed-products/">Sản phẩm vừa
-                                            xem</a>
-                                    </li>
-                                    <li class="wishlist-account-element ">
-                                        <a href="https://nhaxinh.com/tai-khoan/wishlist/?wishlist-action">Wishlist</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                        <a href="https://nhaxinh.com/tai-khoan/customer-logout/">Đăng xuất</a>
-                                    </li>
-                                </ul>
 
                             </li>
                         </ul>
@@ -239,7 +220,8 @@
                         <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
                             <li id="menu-item-287"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
-                                <a href="http://localhost:8092/search" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
+                                <a href="http://localhost:8092/search" class="nav-top-link sanpham_dropdown">Sản
+                                    phẩm</a>
                                 <div class="sub-menu nav-dropdown" style="">
                                     <section class="section" id="section_942358139">
                                         <div class="bg section-bg fill bg-fill bg-loaded">
@@ -847,30 +829,28 @@
                             <li class="header-search-form search-form html relative has-icon">
                                 <div class="header-search-form-wrapper">
                                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                        <form role="search" method="get" class="searchform"
-                                              action="https://nhaxinh.com/">
                                             <div class="flex-row relative">
                                                 <div class="flex-col flex-grow">
                                                     <label class="screen-reader-text"
-                                                           for="woocommerce-product-search-field-0">Search for:</label>
-                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                           for="querySearch">Search for:</label>
+                                                    <input type="search" id="querySearch"
                                                            class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s" autocomplete="off">
+                                                           name="s" >
                                                     <input type="hidden" name="post_type" value="product">
                                                     <input type="hidden" name="lang" value="vi">
                                                 </div>
                                                 <div class="flex-col">
                                                     <button type="submit" value="Search"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
                                                             aria-label="Submit">
                                                         <i class="fa-solid fa-magnifying-glass"></i></button>
                                                 </div>
                                             </div>
                                             <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions"
-                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                <div class="autocomplete-suggestions resuilt_search d-none">
+                                                </div>
                                             </div>
-                                            <input type="hidden" name="lang" value="vi"></form>
+                                            <input type="hidden" name="lang" value="vi">
                                     </div>
                                 </div>
                             </li>
@@ -889,33 +869,54 @@
                                     <li class="header-search-form search-form html relative has-icon">
                                         <div class="header-search-form-wrapper">
                                             <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                                <form role="search" method="get" class="searchform"
-                                                      action="https://nhaxinh.com/">
-                                                    <div class="flex-row relative">
-                                                        <div class="flex-col flex-grow">
-                                                            <label class="screen-reader-text"
-                                                                   for="woocommerce-product-search-field-1">Search
-                                                                for:</label>
-                                                            <input type="search" id="woocommerce-product-search-field-1"
-                                                                   class="search-field mb-0" placeholder="Tìm sản phẩm"
-                                                                   value="" name="s" autocomplete="off">
-                                                            <input type="hidden" name="post_type" value="product">
-                                                            <input type="hidden" name="lang" value="vi">
+                                                <div class="flex-row relative">
+                                                    <div class="flex-col flex-grow">
+                                                        <label class="screen-reader-text"
+                                                               for="woocommerce-product-search-field-1">Search
+                                                            for:</label>
+                                                        <input type="search" id="woocommerce-product-search-field-1"
+                                                               class="search-field mb-0" placeholder="Tìm sản phẩm"
+                                                               value="" name="s" autocomplete="off">
+                                                        <input type="hidden" name="post_type" value="product">
+                                                        <input type="hidden" name="lang" value="vi">
+                                                    </div>
+                                                    <div class="flex-col">
+                                                        <button type="submit" value="Search"
+                                                                class="ux-search-submit submit-button secondary button icon mb-0"
+                                                                aria-label="Submit">
+                                                            <i class="icon-search"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="live-search-results text-left z-top">
+                                                    <div class="autocomplete-suggestions">
+                                                        <div class="autocomplete-suggestion" data-index="0"><img
+                                                                class="search-image"
+                                                                src="https://nhaxinh.com/wp-content/uploads/2022/08/ARMCHAIRDON-CABO-PMA42005-KD1092-12-280x280.jpg">
+                                                            <div class="search-name"><strong>Armchair + Đôn Cabo
+                                                                PMA42005</strong> KD1092-12
+                                                            </div>
+                                                            <span class="search-price"><del aria-hidden="true"><span
+                                                                    class="woocommerce-Price-amount amount"><bdi>23,000,000<span
+                                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></del> <ins><span
+                                                                    class="woocommerce-Price-amount amount"><bdi>19,550,000<span
+                                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></ins><span></span></span>
                                                         </div>
-                                                        <div class="flex-col">
-                                                            <button type="submit" value="Search"
-                                                                    class="ux-search-submit submit-button secondary button icon mb-0"
-                                                                    aria-label="Submit">
-                                                                <i class="icon-search"></i></button>
+                                                        <div class="autocomplete-suggestion" data-index="1"><img
+                                                                class="search-image"
+                                                                src="https://nhaxinh.com/wp-content/uploads/2022/08/ARMCHAIRDON-CABO-PMA42005-KD1092-6-280x280.jpg">
+                                                            <div class="search-name"><strong>Armchair + Đôn Cabo
+                                                                PMA42005</strong> KD1092-6
+                                                            </div>
+                                                            <span class="search-price"><del aria-hidden="true"><span
+                                                                    class="woocommerce-Price-amount amount"><bdi>23,000,000<span
+                                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></del> <ins><span
+                                                                    class="woocommerce-Price-amount amount"><bdi>19,550,000<span
+                                                                    class="woocommerce-Price-currencySymbol">₫</span></bdi></span></ins><span></span></span>
                                                         </div>
                                                     </div>
-                                                    <div class="live-search-results text-left z-top">
-                                                        <div class="autocomplete-suggestions"
-                                                             style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
-                                                    </div>
-                                                    <input type="hidden" name="lang" value="vi"></form>
+                                                    <input type="hidden" name="lang" value="vi">
+                                                </div>
                                             </div>
-                                        </div>
                                     </li>
                                 </ul>
                             </li>

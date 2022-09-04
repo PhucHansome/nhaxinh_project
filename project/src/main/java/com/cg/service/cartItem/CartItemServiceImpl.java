@@ -16,7 +16,6 @@ public class CartItemServiceImpl implements CartItemService{
     @Autowired
     private CartItemRepository cartItemRepository;
 
-
     @Override
     public List<CartItem> findAll() {
         return cartItemRepository.findAll();
@@ -47,6 +46,13 @@ public class CartItemServiceImpl implements CartItemService{
         cartItem.setId(cartItem1.get().getId());
         cartItem.setQuantity(new BigDecimal(String.valueOf(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)))));
         cartItem.setGrandTotal(new BigDecimal(String.valueOf(cartItem.getQuantity().multiply(cartItem.getPrice()))));
+        return cartItemRepository.save(cartItem);
+    }
+
+    @Override
+    public CartItem saveInDetail(CartItem cartItem) {
+        Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(), cartItem.getProduct().getCode());
+        cartItem.setId(cartItem1.get().getId());
         return cartItemRepository.save(cartItem);
     }
 

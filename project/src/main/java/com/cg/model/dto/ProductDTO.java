@@ -1,9 +1,7 @@
 package com.cg.model.dto;
 
-import com.cg.model.Category;
-import com.cg.model.Product;
-import com.cg.model.ProductColor;
-import com.cg.model.ProductMedia;
+import com.cg.model.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
@@ -62,6 +60,7 @@ public class ProductDTO {
 
     private String fileType;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
     public ProductDTO(String id, String code, String title, BigDecimal price, BigDecimal quantity, String status, String description, String size, String material, String slug, String image, Category category, ProductColor productColor , Date createdAt) {

@@ -4,14 +4,13 @@ package com.cg.model.dto;
 import com.cg.model.CustomerInfo;
 import com.cg.model.LocationRegion;
 import com.cg.model.Order;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +29,27 @@ public class OrderDTO {
 
     private String productCode;
 
+    private String productImage;
+
+    private String productTitle;
+
     private CustomerInfoDTO customerInfo;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    private Date  createdAt;
+
+
+    public OrderDTO(Long id, String description, BigDecimal grandTotal, BigDecimal quantity, String productCode, String productImage, String productTitle, CustomerInfo customerInfo, Date createdAt) {
+        this.id = id;
+        this.description = description;
+        this.grandTotal = grandTotal;
+        this.quantity = quantity;
+        this.productCode = productCode;
+        this.productImage = productImage;
+        this.productTitle = productTitle;
+        this.customerInfo = customerInfo.toCustomerInfoDTO();
+        this.createdAt = createdAt;
+    }
 
     public Order toOrder(){
         return new Order()
@@ -39,7 +58,9 @@ public class OrderDTO {
                 .setGrandTotal(grandTotal)
                 .setQuantity(quantity)
                 .setProductCode(productCode)
-                .setCustomerInfo(customerInfo.toCustomerInfo());
-
+                .setProductImage(productImage)
+                .setProductTitle(productTitle)
+                .setCustomerInfo(customerInfo.toCustomerInfo())
+                ;
     }
 }

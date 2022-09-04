@@ -393,7 +393,10 @@
     <script type="text/javascript" src="/assets/detail_files/wp-polyfill.min.js.tải xuống" id="wp-polyfill-js"></script>
     <script type="text/javascript" id="contact-form-7-js-extra">
         /* <![CDATA[ */
-        var wpcf7 = {"api": {"root": "https:\/\/nhaxinh.com\/wp-json\/", "namespace": "contact-form-7\/v1"}, "cached": "1"};
+        var wpcf7 = {
+            "api": {"root": "https:\/\/nhaxinh.com\/wp-json\/", "namespace": "contact-form-7\/v1"},
+            "cached": "1"
+        };
         /* ]]> */
     </script>
     <script type="text/javascript" src="/assets/detail_files/index.js.tải xuống" id="contact-form-7-js"></script>
@@ -417,7 +420,8 @@
         };
         /* ]]> */
     </script>
-    <script type="text/javascript" src="/assets/detail_files/add-to-cart.min.js.tải xuống" id="wc-add-to-cart-js"></script>
+    <script type="text/javascript" src="/assets/detail_files/add-to-cart.min.js.tải xuống"
+            id="wc-add-to-cart-js"></script>
     <script type="text/javascript" src="/assets/detail_files/photoswipe.min.js.tải xuống" id="photoswipe-js"></script>
     <script type="text/javascript" src="/assets/detail_files/photoswipe-ui-default.min.js.tải xuống"
             id="photoswipe-ui-default-js"></script>
@@ -678,7 +682,8 @@
     </script>
     <script type="text/javascript" src="/assets/detail_files/add-to-cart-variation.min.js.tải xuống"
             id="wc-add-to-cart-variation-js"></script>
-    <script type="text/javascript" src="/assets/detail_files/frontend.min.js.tải xuống" id="yith_wccl_frontend-js"></script>
+    <script type="text/javascript" src="/assets/detail_files/frontend.min.js.tải xuống"
+            id="yith_wccl_frontend-js"></script>
     <script type="text/javascript" src="/assets/detail_files/hoverIntent.min.js.tải xuống" id="hoverIntent-js"></script>
     <script type="text/javascript" id="flatsome-js-js-extra">
         /* <![CDATA[ */
@@ -749,7 +754,8 @@
             id="flatsome-lazy-js"></script>
     <script type="text/javascript" src="/assets/detail_files/woocommerce.js.tải xuống"
             id="flatsome-theme-woocommerce-js-js"></script>
-    <script type="text/javascript" src="/assets/detail_files/comment-reply.min.js.tải xuống" id="comment-reply-js"></script>
+    <script type="text/javascript" src="/assets/detail_files/comment-reply.min.js.tải xuống"
+            id="comment-reply-js"></script>
     <!--[if IE]>
     <script type='text/javascript'
             src='https://cdn.jsdelivr.net/gh/nuxodin/ie11CustomProperties@4.0.1/ie11CustomProperties.min.js?ver=4.0.1'
@@ -1131,7 +1137,12 @@
         item = {id: itemId, google_business_vertical: "custom"};
         dr_items.push(item);
         dr_value = parseFloat(jQuery('[id*\x3d"product-"].product.type-product .summary.entry-summary .woocommerce-Price-amount.amount').text().replace(/[\u20ab,]/g, "").trim());
-        dataLayer.push({dr_event_type: "view_item", dr_items: dr_items, dr_value: dr_value, event: "dynamic_remarketing"});
+        dataLayer.push({
+            dr_event_type: "view_item",
+            dr_items: dr_items,
+            dr_value: dr_value,
+            event: "dynamic_remarketing"
+        });
         jQuery(".single_add_to_cart_button, .single_add_to_cart_button *").on("click",
             function () {
                 dataLayer.push({
@@ -1147,7 +1158,8 @@
         <div class="grecaptcha-badge" data-style="bottomright"
              style="width: 256px; height: 60px; position: fixed; visibility: hidden; display: block; transition: right 0.3s ease 0s; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
             <div class="grecaptcha-logo">
-                <iframe title="reCAPTCHA" src="/assets/detail_files/anchor.html" width="256" height="60" role="presentation"
+                <iframe title="reCAPTCHA" src="/assets/detail_files/anchor.html" width="256" height="60"
+                        role="presentation"
                         name="a-xbj3uay8gvjm" frameborder="0" scrolling="no"
                         sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
             </div>
@@ -1177,18 +1189,18 @@
     <script src="/assets/js/magnific-popup-1.1.0.js"></script>
     <script>
 
-        $(".phong_dropdown").on("mouseenter", function(){
+        $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
-        $(".phong_dropdown").on("mouseleave", function(){
+        $(".phong_dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
-        $(".sanpham_dropdown").on("mouseenter", function(){
+        $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top':'64.6042px'});
+            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
-        $(".sanpham_dropdown").on("mouseleave", function(){
+        $(".sanpham_dropdown").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
@@ -1247,10 +1259,12 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
+                GetProductMedia: App.BASE_URL_PRODUCT + "/productmedia",
+                GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
-                DeleteCartItem : App.BASE_URL_CARTITEM
+                DeleteCartItem: App.BASE_URL_CARTITEM
             },
             element: {},
             loadData: {},
@@ -1265,24 +1279,49 @@
             }
         }
         let carItem = new CartItems();
+        let productMedia = new ProductMedia()
 
         page.element.cart_product = $("#cart_product_view")
         page.element.cart_cartBotLine = $("#product-grid-1457246667")
         page.element.userNameLo = $("#header-account-title");
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
+        page.element.idProduct = $("#productId")
+        page.element.valueInput = $("#valueInput")
+        page.element.valueQuantity =  $("#quantity_62fc4b3185e6c")
+        page.element.resuilt_search = $(".resuilt_search")
+        page.element.container_line_resuilt_search = $("#resuilt_query_search")
+        page.element.resuilt_product_Seach_In_query = $(".product_Seach_In_query")
+        page.element.SameProduct = $("#SameProduct")
 
+        page.element.InputQuerySearch = $("#querySearch")
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
+        page.element.main_photo = $(".main_photo")
+        page.element.each_image = $(".each_image")
+        page.element.single_add_to_cart_button = $(".btn-add-to-cart")
+        page.element.btnBuy = $(".btn-buy")
+
 
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
+
+        let resuilt_line_product = jQuery.validator.format($.trim(page.element.container_line_resuilt_search.val().toString()));
 
         page.commands.addCartRow = () => {
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price),carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
         }
+
+        page.commands.addCartBotLine = () => {
+            page.element.resuilt_product_Seach_In_query.append($(resuilt_line_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(product.price), product.id)));
+        }
+
+
 
         page.commands.getProductById = (id) => {
             return $.ajax({
@@ -1304,7 +1343,47 @@
             })
         }
 
-        page.commands.showIconCart = () =>{
+        page.commands.getProductMediaByProductId = () => {
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                "method": "GET",
+                "url": page.url.GetProductMedia + "/" + $("#productId").val()
+            }).done((data) => {
+                $.each(data, (i, item) => {
+                    productMedia = item;
+                    if (i === data.length - 1) {
+                        let str1 = `
+                        <div class="col first is-nav-selected is-selected"
+                                     style="position: absolute; left: 0%;">
+                                    <a>
+                                        <img src="${productMedia.fileUrl}"
+                                             alt="" width="300" height=""
+                                             class="attachment-woocommerce_thumbnail"> </a>
+                                </div>
+                        `
+                        page.element.each_image.prepend(str1)
+                        return;
+                    }
+                    let str = `
+                                <div class="col" aria-hidden="true"
+                                     style="position: absolute; left: 95.82%;"><a><img
+                                        src="${productMedia.fileUrl}"
+                                        data-src="${productMedia.fileUrl}"
+                                        alt="" width="300" height=""
+                                        class="attachment-woocommerce_thumbnail lazy-load-active"></a>
+                                </div>
+                    `;
+                    page.element.each_image.prepend(str)
+                })
+            }).fail((e) => {
+                console.log(e)
+            })
+        }
+
+        page.commands.showIconCart = () => {
             $.ajax({
                 "type": "GET",
                 "url": page.url.GetCartItems,
@@ -1314,6 +1393,43 @@
                     <span class="image-icon header-cart-icon" id="dataLabelIcon" data-icon-label="${data.length}"><img class="cart-img-icon" alt="Cart" src="/assets/HomePageFile/ic-shopping.png"></span>
                     `
                 $("#cart_").prepend(icon)
+            })
+        }
+
+        page.commands.deleteCartById = (id) => {
+            $.ajax({
+                "method": "DELETE",
+                "url": page.url.DeleteCartItem + "/" + id
+            }).done(() => {
+                App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
+                $.ajax({
+                    "type": "GET",
+                    "url": page.url.GetCartItems,
+                }).done((data) => {
+                    $("#seeGrandTotal").html("")
+                    page.element.container_cartItem.html("")
+                    $(".showCart").css({'display': 'block'})
+                    page.commands.handleCloseCart()
+                    let sum = 0
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
+                    $.each(data, (i, item) => {
+                        carItem = item
+                        sum += carItem.grandTotal;
+                        page.commands.addCartRow()
+                    })
+                    let str = `
+                       <p class="woocommerce-mini-cart__total total"     >
+                       <strong>Thành tiền:</strong> <span class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(sum)}</bdi></span></p>`
+                    $("#seeGrandTotal").prepend(str)
+                    page.commands.showIconCart()
+                    page.commands.handleShowCart();
+                }).fail(() => {
+                })
             })
         }
 
@@ -1329,7 +1445,9 @@
                     page.commands.handleCloseCart()
                     let sum = 0
                     console.log(data)
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
+                    if (data.length === 0) {
+                        page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                    }
                     $.each(data, (i, item) => {
                         carItem = item
                         sum += carItem.grandTotal;
@@ -1344,43 +1462,8 @@
                     $("#seeGrandTotal").prepend(str)
                     page.commands.showIconCart()
                     page.commands.handleShowCart();
-                }).fail(()=>{
+                }).fail(() => {
                     page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
-                })
-            })
-        }
-
-        page.commands.deleteCartById = (id) =>{
-            $.ajax({
-                "method": "DELETE",
-                "url": page.url.DeleteCartItem + "/" + id
-            }).done(()=>{
-                App.IziToast.showSuccessAlert("Xóa sản phẩm thành công")
-                $.ajax({
-                    "type": "GET",
-                    "url": page.url.GetCartItems,
-                }).done((data) => {
-                    $("#seeGrandTotal").html("")
-                    page.element.container_cartItem.html("")
-                    $(".showCart").css({'display': 'block'})
-                    page.commands.handleCloseCart()
-                    let sum = 0
-                    if(data.length === 0){page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)}
-                    $.each(data, (i, item) => {
-                        carItem = item
-                        sum += carItem.grandTotal;
-                        page.commands.addCartRow()
-                    })
-                    let str = `
-                       <p class="woocommerce-mini-cart__total total"     >
-                       <strong>Thành tiền:</strong> <span class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND'
-                    }).format(sum)}</bdi></span></p>`
-                    $("#seeGrandTotal").prepend(str)
-                    page.commands.showIconCart()
-                    page.commands.handleShowCart();
-                }).fail(()=>{
                 })
             })
         }
@@ -1391,10 +1474,243 @@
             })
         }
 
+        page.commands.handleReduce = () => {
+            if(page.element.valueQuantity.val() < 2){
+                App.IziToast.showErrorAlert("số lượng không được nhỏ hơn 0!")
+                return;
+            }
+            page.element.valueQuantity.val(Number(page.element.valueQuantity.val()) - 1);
+        }
+
+        page.commands.handlePlus = () => {
+            if(page.element.valueQuantity.val() > 4){
+                App.IziToast.showErrorAlert("Số lượng không được nhỏ hơn 5!")
+                return;
+            }
+            page.element.valueQuantity.val(Number(page.element.valueQuantity.val()) + 1);
+        }
+
+        page.commands.handleAddToCart = () => {
+            page.element.single_add_to_cart_button.on("click", () =>{
+                if($("#EmailLogin").text() === "Đăng nhập"){
+                    App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                    return;
+                }
+                page.commands.getProductById(page.element.idProduct.val()).then(()=>{
+                    delete carItem.id ;
+                    carItem.product = product;
+                    carItem.price = product.price;
+                    carItem.quantity = page.element.valueQuantity.val();
+                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price) ;
+                    console.log(carItem.grandTotal)
+                    carItem.userName = $("#EmailLogin").text();
+
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "async": false,
+                        "type": "POST",
+                        "url": page.url.PostCartItem + "/creat-cart-in-detail",
+                        "data": JSON.stringify(carItem)
+                    }).done((data)=>{
+                        console.log(data)
+                        App.IziToast.showSuccessAlert("Thêm vào giỏ hàng thành công")
+                        page.commands.showIconCart();
+
+                    }).fail((e)=>{
+                        App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                        setTimeout(function () {
+                            window.location.href = "/login"
+                        }, 500);
+                    })
+                })
+            })
+        }
+
+        page.commands.handleBuy = () => {
+            page.element.btnBuy.on("click", () =>{
+                page.commands.getProductById(page.element.idProduct.val()).then(()=>{
+                    console.log(product)
+                    delete carItem.id ;
+                    carItem.product = product;
+                    carItem.price = product.price;
+                    carItem.quantity = page.element.valueQuantity.val();
+                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price) ;
+                    console.log(carItem.grandTotal)
+                    carItem.userName = $("#EmailLogin").text();
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "async": false,
+                        "type": "POST",
+                        "url": page.url.PostCartItem + "/creat-cart-in-detail",
+                        "data": JSON.stringify(carItem)
+                    }).done((data)=>{
+                        console.log(data)
+                        page.commands.showIconCart();
+                        setTimeout(function () {
+                            window.location.href = "/cart"
+                        }, 100);
+                    }).fail((e)=>{
+                        App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+                        setTimeout(function () {
+                            window.location.href = "/login"
+                        }, 500);
+                    })
+                })
+            })
+        }
+
+        page.element.valueQuantity.on("blur", ()=>{
+            if(page.element.valueQuantity.val() < 2){
+                App.IziToast.showErrorAlert("số lượng không được nhỏ hơn 0!")
+                page.element.valueQuantity.val(1)
+                return;
+            }
+            if(page.element.valueQuantity.val() > 4){
+                App.IziToast.showErrorAlert("Số lượng không được nhỏ hơn 5!")
+                page.element.valueQuantity.val(5)
+                return;
+            }
+        })
+
+        page.commands.blurInputsearch = () => {
+            page.element.InputQuerySearch.blur(function () {
+                setTimeout(function () {
+                    page.element.resuilt_search.addClass("d-none")
+                }, 150);
+            })
+
+        }
+
+        page.commands.searchFunction = () => {
+            page.element.InputQuerySearch.on("input", function () {
+                let search = page.element.InputQuerySearch.val()
+                $.ajax({
+                    "method": "GET",
+                    "url": page.url.GetResuiltSearch + "/" + search
+                }).done((data) => {
+                    page.element.resuilt_search.removeClass("d-none")
+                    page.element.resuilt_search.html("")
+                    $.each(data, (i, item) => {
+                        if (i > 3) {
+                            return;
+                        }
+                        product = item
+                        let str = `
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
+                                                            class="search-image"
+                                                            src="${product.image}">
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        </div>
+                                                        <span class="search-price"><ins><span style="font-size: 12px;"
+                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
+                                                                </bdi></span></ins></span></span>
+                                                        </a></div>
+                    `;
+                        page.element.resuilt_search.prepend(str);
+                    })
+                    page.commands.blurInputsearch()
+                }).fail((jqXHR) => {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            page.element.resuilt_search.html("")
+                            page.element.resuilt_search.removeClass("d-none")
+                            page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                            page.commands.blurInputsearch()
+                        })
+                    }
+                })
+            })
+        }
+
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
+
+        page.commands.getSearchResuilt = () => {
+            $.ajax({
+                "method": "GET",
+                "url": page.url.GetResuiltSearch + "/" +  page.element.SameProduct.text()
+            }).done((data)=>{
+                page.element.resuilt_product_Seach_In_query.html("")
+                $.each(data , (i, item) =>{
+                    if (i > 3){return}
+                    product = item
+                    page.commands.addCartBotLine()
+                })
+                page.commands.handleGoDetailProduct()
+                page.commands.handleCreateCart()
+                page.commands.handleGoSearch();
+            }).fail((e)=>{
+                console.log(e)
+            })
+        }
+
+        page.commands.handleCreateCart = () => {
+            $(".them_vao_cart").on("click", function () {
+                let id = $(this).data("id");
+                page.commands.getProductById(id).then(() => {
+                    if($("#EmailLogin").text() === "Đăng nhập"){
+                        App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
+                    delete carItem.id;
+                    carItem.userName = $("#EmailLogin").text();
+                    carItem.product = product;
+                    carItem.price = product.price;
+                    carItem.quantity = 1;
+                    carItem.grandTotal = product.price;
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "async": false,
+                        "type": "POST",
+                        "url": page.url.PostCartItem,
+                        "data": JSON.stringify(carItem)
+                    }).done((data) => {
+                        App.IziToast.showSuccessAlert("Đã thêm vào giỏ hàng thành công")
+                        page.commands.showIconCart();
+                        page.commands.handleGoSearch();
+                    }).fail((jqXHR) => {
+                        console.log(jqXHR);
+                        if (jqXHR.responseJSON) {
+                            $.each(jqXHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
+                    })
+                })
+            })
+        }
+
+        page.commands.handleGoDetailProduct = () => {
+            $(".view_Product").on("click", function () {
+                let id = $(this).data("id");
+                window.location.href = "/detail/" + id;
+            })
+        }
+
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
-
+            page.commands.getProductMediaByProductId();
+            page.commands.handleBuy()
+            page.commands.searchFunction()
+            page.commands.handleGoSearch()
+            page.commands.getSearchResuilt();
+            page.commands.handleAddToCart();
         })
     </script>
 </th:block>

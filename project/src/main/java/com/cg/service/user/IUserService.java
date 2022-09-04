@@ -23,6 +23,8 @@ public interface IUserService extends IGeneralService<User>, UserDetailsService 
 
     Optional<UserDTO> findUserDTOById(Long id);
 
+
+
 //    boolean existsByEmailAndIdIsNot(String email,Long id);
 
 }

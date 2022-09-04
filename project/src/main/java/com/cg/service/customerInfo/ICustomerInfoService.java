@@ -16,6 +16,6 @@ public interface ICustomerInfoService extends IGeneralService<CustomerInfo> {
 
     CustomerInfo deleteSoft(CustomerInfo customerInfo);
 
-
+    Optional<CustomerInfoDTO> findUserDTOByUserName(String userName);
 
 }

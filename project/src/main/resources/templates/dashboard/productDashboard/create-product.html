@@ -187,7 +187,7 @@
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="card-body d-flex justify-content-start" id="container_"></div>
+                                    <div class="row" id="container_"></div>
                                 </div>
                             </div>
                         </div>
@@ -369,10 +369,10 @@
 
     page.commands.formatNumber = () => {
 
-        $(document).on('input', '.num-space',function (e) {
+        $(document).on('input', '#priceProduct',function (e) {
             $(this).val(App.formatNumberSpace($(this).val()));
         })
-        $('input.num-space').on("keypress",function (e){
+        $('input#priceProduct').on("keypress",function (e){
             let charCode = (e.which) ? e.which : e.keyCode
 
             if (String.fromCharCode(charCode).match(/[^0-9]/g))
@@ -448,6 +448,17 @@
                 url: page.url.PostProduct + "/" + page.element.category.val() + "/" + page.element.colorProduct.val(),
                 data: formData
             }).done((data) => {
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
                 product = data;
                 delete tag.id
                 tag.name = page.element.tag.val();
@@ -471,19 +482,7 @@
                     formData.delete("material");
                     formData.delete("image");
                     page.element.btnSave.off()
-                    console.log(item)
-                    $(".mla").remove()
-                    formData.delete("files")
-                    formData.delete("code");
-                    formData.delete("title");
-                    formData.delete("price");
-                    formData.delete("quantity");
-                    formData.delete("status");
-                    formData.delete("description");
-                    formData.delete("slug");
-                    formData.delete("size");
-                    formData.delete("material");
-                    formData.delete("image");
+                    $(".mla").html("")
                     page.element.btnSave.off()
                     page.element.priceProduct.val("")
                     page.element.productName.val("")
@@ -495,18 +494,41 @@
                     page.element.productStatus.val("")
                     page.element.materialProduct.val("")
                     page.element.descriptionProduct.val("")
+                    page.element.tag.val("")
                     formData.delete("files")
                     App.IziToast.showSuccessAlert("Bạn Đã Tạo Sản Phẩm Thành công")
                     images = []
                     document.getElementById('container_').innerHTML = page.commands.image_show()
                 }).fail((e) => {
                     console.log(e)
-                    $(".mla").remove()
+                    $(".mla").html("")
                     App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+                    formData.delete("files")
+                    formData.delete("code");
+                    formData.delete("title");
+                    formData.delete("price");
+                    formData.delete("quantity");
+                    formData.delete("status");
+                    formData.delete("description");
+                    formData.delete("slug");
+                    formData.delete("size");
+                    formData.delete("material");
+                    formData.delete("image");
                 })
             }).fail(() => {
-                $(".mla").remove()
+                $(".mla").html("")
                 App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
             })
         })
     }
@@ -537,9 +559,12 @@
     page.commands.image_show = () => {
         var image = "";
         images.forEach((i) => {
-            image += `<div class="image_container d-flex justify-content-center position-relative">
-                        <img src="` + i.url + `"  alt="" />
-                         <span class="position-absolute" onclick="page.commands.delete_image(` + images.indexOf(i) + `)">&times;</span>
+            image += `
+                       <div class="col-3 " style="margin-right: 10px" >
+                           <div class="image_container d-flex justify-content-center position-relative">
+                            <img style="height: 110px;width: 150px;"  src="` + i.url + `"  alt="" />
+                             <span class="position-absolute" onclick="page.commands.delete_image(` + images.indexOf(i) + `)">&times;</span>
+                          </div>
                       </div>
                     `;
         })

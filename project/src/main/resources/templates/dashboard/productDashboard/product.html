@@ -45,7 +45,7 @@
 
 
                 <div class="row" style="margin-bottom: 5px; margin-top: -16px;">
-                    <div class="col-md-9" >
+                    <div class="col-md-9">
 
                         <button type="button" style="margin-bottom: 10px; margin-left: 5px;" id="modalAddProduct"
                                 class="btn btn-success float-left  modalAddProduct">
@@ -64,30 +64,31 @@
                         </button>
                     </div>
 
-                        <div class="col-md-3">
-                            <button type="button" style="margin-bottom: 10px"
-                                    class="btn btn-danger float-right btn-go-add-product " >
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                Thêm sản phẩm
-                            </button>
-                        </div>
+                    <div class="col-md-3">
+                        <button type="button" style="margin-bottom: 10px"
+                                class="btn btn-danger float-right btn-go-add-product ">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Thêm sản phẩm
+                        </button>
+                    </div>
                 </div>
 
-             <div class="container-content shadow-lg p-3 mb-5 bg-body rounded">
-                 <div class="row">
-                     <div class="col-md-12">
-                         <h5 class="page-title">Tất cả sản phẩm</h5>
-                     </div>
-                 </div>
-                 <div class="row" style=" margin-bottom: 10px">
-                     <div class="col-md-3">
-                         <li class="d-none d-sm-block">
-                             <form class="app-search">
-                                 <div class="app-search-box">
-                                     <div class="input-group">
-                                         <input style="border-radius: 5px" type="text" class="form-control" placeholder="Tìm kiếm...">
-                                         <div class="input-group-append">
-                                             <button class="btn-search"  style="color: #0a0a0a;
+                <div class="container-content shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="page-title">Tất cả sản phẩm</h5>
+                        </div>
+                    </div>
+                    <div class="row" style=" margin-bottom: 10px">
+                        <div class="col-md-3">
+                            <li class="d-none d-sm-block">
+                                <form class="app-search">
+                                    <div class="app-search-box">
+                                        <div class="input-group">
+                                            <input style="border-radius: 5px" type="text" class="form-control"
+                                                   placeholder="Tìm kiếm...">
+                                            <div class="input-group-append">
+                                                <button class="btn-search" style="color: #0a0a0a;
                                                         position: relative;
                                                         right: 40px;
                                                         background: white;
@@ -95,43 +96,40 @@
                                                         border-right: 1px solid white;
                                                         border-left: 1px solid white;
                                                         border-top: 1px solid #a5a9ab7d;">
-                                                 <i class="fas fa-search" ></i>
-                                             </button>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </form>
-                         </li>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-lg-12">
-                         <table id="tableListProducts" class="table table-hover">
-                             <thead class="thead-dark">
-                             <tr>
-                                 <th class="align-middle text-center"></th>
-                                 <th class="align-middle text-center">Ảnh</th>
-                                 <th class="align-middle text-center">Tên Sản phẩm</th>
-                                 <th class="align-middle text-center">Loại</th>
-                                 <th class="align-middle text-center">Giá tiền</th>
-                                 <th class="align-middle text-center">Trạng thái</th>
-                                 <th class="align-middle text-center">Ngày khởi tạo</th>
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="tableListProducts" class="table table-hover">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th class="align-middle text-center"></th>
+                                    <th class="align-middle text-center">Ảnh</th>
+                                    <th class="align-middle text-center">Tên Sản phẩm</th>
+                                    <th class="align-middle text-center">Loại</th>
+                                    <th class="align-middle text-center">Giá tiền</th>
+                                    <th class="align-middle text-center">Trạng thái</th>
+                                    <th class="align-middle text-center">Ngày khởi tạo</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                             </tr>
-                             </thead>
-                             <tbody>
-
-                             </tbody>
-                             <tfoot> <button id="abc">t</button></tfoot>
-                         </table>
-                     </div>
-             </div>
-         </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Start Content-->
             </div>
         </div> <!-- end content -->
-
 
 
         <!-- Footer Start -->
@@ -175,97 +173,63 @@
     page.element.frmListProduct = $("#tableListProducts tbody");
     page.element.tempProduct = $("#tempProduct");
     page.element.btnGoCreateProduct = $(".btn-go-add-product")
-    page.element.btnShowMore = $('#abc');
 
     let product = new Product();
     let category = new Category();
-    let productColor=  new ProductColor();
+    let productColor = new ProductColor();
     let tag = new Tag();
+
+    let productId = null;
 
     let tempProduct = jQuery.validator.format($.trim(page.element.tempProduct.val().toString()));
 
     page.commands.addRow = () => {
-        page.element.frmListProduct.prepend($(tempProduct(product.id,product.image,product.title,product.category.name,new Intl.NumberFormat('vi-VN', {style: 'currency',currency: 'VND'}).format(product.price),product.status,product.createdAt)));
+        page.element.frmListProduct.append($(tempProduct(product.id, product.image, product.title, product.category.name, new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(product.price), product.status, product.createdAt)));
     }
 
     page.dialogs.commands.getProductById = (id) => {
         $.ajax({
-            "method" : "GET",
-            "url" : page.url.GetProduct + "/" + id
-        }).done((data)=>{
+            "method": "GET",
+            "url": page.url.GetProduct + "/" + id
+        }).done((data) => {
             let product = data;
-        })
-    }
-
-    page.dialogs.commands.showMore = () =>{
-        page.element.btnShowMore.on("click",() =>{
-            $.ajax({
-                "method" : "GET",
-                "url" : page.url.GetProduct
-            }).done((data) => {
-                console.log(data)
-                $.each(data, (i, item) => {
-                    if(i < 9){return}
-                    product = item;
-                    page.commands.addRow();
-                });
-            }).fail((e) =>{
-                console.log(e);
-            })
-
         })
     }
 
     page.dialogs.commands.getAllProduct = () => {
         $.ajax({
-            "method" : "GET",
-            "url" : page.url.GetProduct
+            "method": "GET",
+            "url": page.url.GetProduct
         }).done((data) => {
 
             console.log(data)
             $.each(data, (i, item) => {
-                if (i>9){
-                    return
-                }
                 product = item;
                 page.commands.addRow();
                 console.log(data)
             });
-        }).fail((e) =>{
+        }).fail((e) => {
             console.log(e);
         })
 
     }
-    page.dialogs.commands.showMore = () => {
-        page.element.btnShowMore.on("click", () => {
-            $.ajax({
-                "method": "GET",
-                "url": page.url.GetProduct
-            }).done((data) => {
-                console.log(data)
-                $.each(data, (i, item) => {
-                    if (i < 9) {
-                        return
-                    }
-                    product = item;
-                    page.commands.addRow();
-                });
-            }).fail((e) => {
-                console.log(e);
-            })
-        })
+
+    page.dialogs.commands.goDetailProduct = (productId) => {
+            window.location.href = "/detail-product-dashboard/" + productId;
     }
 
     page.dialogs.commands.goCreateProduct = () => {
-        page.element.btnGoCreateProduct.on("click", function (){
+        page.element.btnGoCreateProduct.on("click", function () {
             window.location.href = "/create-product-dashboard";
         })
     }
 
-    $(function (){
+    $(function () {
         page.dialogs.commands.getAllProduct();
         page.dialogs.commands.goCreateProduct();
-        page.dialogs.commands.showMore();
     })
 
 </script>

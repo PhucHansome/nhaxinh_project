@@ -207,7 +207,7 @@
                             <li class="account-item has-icon
     ">
 
-                                <a th:object="${userDTO}" href="http://localhost:8092/login" class="account-link account-login
+                                <a th:object="${userDTO}" href="/account" class="account-link account-login
   is-small" title="Tài khoản của tôi">
 
 
@@ -909,30 +909,27 @@
                             <li class="header-search-form search-form html relative has-icon">
                                 <div class="header-search-form-wrapper">
                                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                        <form role="search" method="get" class="searchform"
-                                              action="https://nhaxinh.com/">
                                             <div class="flex-row relative">
                                                 <div class="flex-col flex-grow">
                                                     <label class="screen-reader-text"
                                                            for="woocommerce-product-search-field-0">Search for:</label>
-                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                    <input type="search" id="querySearch"
                                                            class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s" autocomplete="off">
+                                                           name="s" >
                                                     <input type="hidden" name="post_type" value="product">
                                                     <input type="hidden" name="lang" value="vi">
                                                 </div>
                                                 <div class="flex-col">
                                                     <button type="submit" value="Search"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0"
+                                                            class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
                                                             aria-label="Submit">
                                                         <i class="fa-solid fa-magnifying-glass"></i></button>
                                                 </div>
                                             </div>
                                             <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions"
-                                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
+                                                <div class="autocomplete-suggestions resuilt_search d-none"></div>
                                             </div>
-                                            <input type="hidden" name="lang" value="vi"></form>
+                                            <input type="hidden" name="lang" value="vi">
                                     </div>
                                 </div>
                             </li>

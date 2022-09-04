@@ -1,0 +1,116 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modalupdate-product">
+    <div id="modalupdate-product" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Product information</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmUpdateUser" method="post">
+                        <fieldset class="row g-3">
+
+                            <input type="hidden" id="userIdUp">
+
+                            <input type="hidden" name="id">
+
+                            <div class="col-md-4">
+                                <label class="form-label">Tên sản phẩm:</label>
+                                <input type="text" class="form-control" id="titleProductUp" name="titleProductUp">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Mã SKU:</label>
+                                <input type="email" class="form-control" id="codeProductUp" name="codeProductUp">
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Số lượng:</label>
+                                <input type="text" class="form-control" id="quantityProductUp" name="quantityProductUp">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Giá tiền:</label>
+                                <input type="text" class="form-control" id="priceProductUp" name="priceProductUp">
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Kích thước:</label>
+                                <input type="text" class="form-control" id="sizeUp" name="sizeUp">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Chất liệu:</label>
+                                <input type="text" class="form-control" id="materialUp" name="materialUp">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Tag:</label>
+                                <input type="text" class="form-control" id="tagUp" name="tagUp">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Trạng thái:</label>
+                                <select id="productStatus" class="form-control">
+                                    <option>Đã Hết Hàng</option>
+                                    <option>Còn Hàng</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Loại sản phẩm:</label>
+                                <select id="categoryUp" class="form-control">
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Màu sắc:</label>
+                                <select id="productColorUp" class="form-control">
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="form-label">Description:</label>
+                                <textarea id="descriptionProduct" class="form-control"></textarea>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="container mt-3 w-100">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <form action="#" class="form" id="form">
+                                            <input
+                                                    type="file"
+                                                    class="d-none"
+                                                    multiple
+                                                    id="image"
+                                                    onchange="page.commands.image_select()"/>
+
+                                            <button class="btn btn-sm btn-danger"
+                                                    type="button"
+                                                    onclick="document.getElementById('image').click()">
+                                                Upload Ảnh Sản Phẩm <i class="fa-solid fa-images"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="row" id="container_"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                            style="border-radius: 15px 50px;">Close
+                    </button>
+                    <button type="button" id="btnUpdateProduct" class="btn btn-outline-primary"
+                            style="border-radius: 15px 50px;">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Update Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>

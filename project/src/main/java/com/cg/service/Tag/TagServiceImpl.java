@@ -1,6 +1,9 @@
 package com.cg.service.Tag;
 
+import com.cg.model.Product;
 import com.cg.model.Tag;
+import com.cg.model.dto.TagDTO;
+import com.cg.repository.ProductRepository;
 import com.cg.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,9 @@ import java.util.Optional;
 public class TagServiceImpl implements TagService{
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<Tag> findAll() {
@@ -25,7 +31,7 @@ public class TagServiceImpl implements TagService{
 
     @Override
     public Optional<Tag> findById(Long id) {
-        return Optional.empty();
+        return tagRepository.findById(id) ;
     }
 
     @Override
@@ -46,5 +52,10 @@ public class TagServiceImpl implements TagService{
     @Override
     public void softDelete(Tag tag) {
 
+    }
+
+    @Override
+    public Optional<TagDTO> findTagDTOByProductId(String id) {
+        return tagRepository.findTagDTOByProductId(id);
     }
 }

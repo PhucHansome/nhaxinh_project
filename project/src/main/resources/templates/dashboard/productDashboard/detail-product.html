@@ -34,107 +34,130 @@
                     </div>
                     <div class="col-md-7">
                         <button type="button" style="margin-bottom: 10px"
-                                class="btn btn-primary float-right ">
+                                class="btn btn-primary float-right btn-update-show ">
                             <i class="fas fa-edit"></i>
                             Sửa sản phẩm
                         </button>
                         <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
-                                class="btn btn-danger float-right ">
+                                class="btn btn-danger float-right btn-delete ">
                             <i class="fas fa-trash"></i>
                             Xoá
                         </button>
 
                     </div>
                 </div>
-
                 <div class="row" style="top: -25px; position: relative;">
                     <div class="col-md-12">
-                        <h4>Kirby Hoover</h4>
+                        <h3>THÔNG TIN SẢN PHẨM</h3>
                     </div>
                 </div>
-                    <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                <th:block th:each="product, count : ${product}">
+                    <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear">
+                        <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
+                            <h4 th:text="*{product.title}"></h4>
+                        </div>
 
-                        <div class="col-md-10">
-
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    <h6>Thông tin sản phẩm</h6>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-12 text-center align-middle"><img th:width="330px"
+                                                                                  th:src="*{product.image}" alt="">
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <div class="row" style="top: 30px;position: relative;">
+                                <th:block th:each="productMedia, count : ${productMedia}">
+                                    <div class="col-3 text-center align-middle">
+                                        <img th:width="100px" style="padding-top: 15px;"
+                                             th:src="${productMedia.fileUrl}" alt="">
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="left: 20px;border-left: 2px solid #0000003b;padding-left: 50px;">
+                            <div class="row">
+                                <div class="col-md-6">
                                     <label>Mã SKU:</label>
+                                    <p th:text="*{product.code}"></p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Loại sản phẩm:</label>
-                                </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Số lượng:</label>
-                                </div>
+                                    <p th:text="*{product.category.name}"></p>
 
-                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Số lượng:</label>
+                                    <p th:text="*{product.quantity}"></p>
+
+                                </div>
+                                <div class="col-md-6">
                                     <label>Giá sản phẩm:</label>
+                                    <p style="color: red;font-weight: bold;"
+                                       th:text="*{#numbers.formatCurrency(product.price)}"></p>
                                 </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Kích thước:</label>
+                                    <p th:text="*{product.size}"></p>
+
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Màu sắc:</label>
+                                    <p th:text="*{product.productColor.color}"></p>
+
                                 </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Chất liệu:</label>
+                                    <p th:text="*{product.material}"></p>
+
                                 </div>
-                                <div class="col-md-4">
-                                     <label>Hình ảnh:</label>
-                                 </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label>Trạng thái:</label>
+                                    <p th:text="*{product.status}"></p>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <label>Nhãn hiệu:</label>
+                                <th:block th:each="tag, count : ${tag}">
+                                    <div class="col-md-6">
+                                        <label>Tag:</label>
+                                        <p th:text="*{tag.name}"></p>
+
+                                    </div>
+                                </th:block>
+                                <div class="col-md-6">
                                 </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Ngày tạo:</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Ngày cập nhật:</label>
+                                <div class="col-md-12">
+                                    <label>Description:</label>
+                                    <p th:utext="*{product.description}"></p>
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                        </div>
-                    </div>
-                <div class="row" style="top: -25px; position: relative;">
-                    <div class="col-md-12">
 
-                </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="top: -25px; position: relative;">
+                    </div>
+                    <input type="hidden" id="idProduct" th:field="*{product.id}">
+                </th:block>
+                <div class="col-md-12">
 
                 </div>
 
             </div>
-            <!-- Start Content-->
 
-        </div> <!-- end content -->
+        </div>
+        <!-- Start Content-->
+
+    </div> <!-- end content -->
 
 
-        <!-- Footer Start -->
-        <th:block th:replace="/dashboard/layout/footer::footer"/>
-        <!-- end Footer -->
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
 
-    </div>
+</div>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 
 </div>
 <!-- END wrapper -->
@@ -143,6 +166,467 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
-
+<th:block th:replace="/dashboard/productDashboard/modalupdate-product :: modalupdate-product"/>
 </body>
+<script>
+    let page = {
+        url: {
+            GetProduct: App.BASE_URL_PRODUCT,
+            GetCategory: App.BASE_URL_CATEGORY,
+            GetProductColor: App.BASE_URL_PRODUCTCOLOR,
+            GetTag: App.BASE_URL_TAG,
+            GetProductMedia : App.BASE_URL_PRODUCT + "/product-media",
+            DeleteProduct: App.BASE_URL_PRODUCT + "/delete-soft-product/",
+            PutProduct: App.BASE_URL_PRODUCT + "/put",
+            PutTag: App.BASE_URL_TAG + "/id"
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    let productColor = new ProductColor();
+    let productMedia = new ProductMedia()
+    let category = new Category();
+    let product = new Product();
+    let tag = new Tag();
+    let images = [];
+    let formData;
+    images = []
+
+    page.element.idProduct = $("#idProduct")
+    page.element.titleProductUp = $("#titleProductUp")
+    page.element.codeProductUp = $("#codeProductUp")
+    page.element.quantityProduct = $("#quantityProductUp")
+    page.element.priceProductUp = $("#priceProductUp")
+    page.element.sizeUp = $("#sizeUp")
+    page.element.tagUp = $("#tagUp")
+    page.element.productStatus = $("#productStatus")
+    page.element.categoryUp = $("#categoryUp")
+    page.element.productColorUp = $("#productColorUp")
+    page.element.descriptionProduct = $("#descriptionProduct")
+    page.element.materialUp = $("#materialUp")
+
+    page.element.btnDelete = $(".btn-delete")
+    page.element.btnUpdateShow = $(".btn-update-show")
+    page.element.btnSave = $("#btnUpdateProduct")
+
+
+    page.commands.formatNumber = () => {
+
+        $(document).on('input', '#priceProductUp', function (e) {
+            $(this).val(App.formatNumberSpace($(this).val()));
+        })
+        $('input#priceProductUp').on("keypress", function (e) {
+            let charCode = (e.which) ? e.which : e.keyCode
+
+            if (String.fromCharCode(charCode).match(/[^0-9]/g))
+                return false;
+        });
+    }
+
+    page.dialogs.loadData.drawListCategory = () => {
+        $.ajax({
+            "type": "GET",
+            "url": page.url.GetCategory
+        }).done((data) => {
+            page.element.categoryUp.html('');
+            $.each(data, (i, item) => {
+                let str = `
+                            <option value="${item.id}">${item.name}</option>
+                           `;
+                page.element.categoryUp.append(str);
+            })
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+        })
+    }
+
+    page.dialogs.loadData.drawListProductColor = () => {
+        $.ajax({
+            "type": "GET",
+            "url": page.url.GetProductColor
+        }).done((data) => {
+            page.element.productColorUp.html('');
+            $.each(data, (i, item) => {
+                let str = `
+                           <option class="form-control" value="${item.id}">${item.color}</option>
+                          `;
+                page.element.productColorUp.append(str);
+            })
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
+        })
+    }
+
+    page.commands.getProductById = (id) => {
+        return $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            "method": "GET",
+            "url": page.url.GetProduct + "/" + id
+        }).done((data) => {
+            console.log(data);
+            product = data;
+        }).fail((e) => {
+            console.log(e)
+            App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+            setTimeout(function () {
+                window.location.href = "/login"
+            }, 500);
+        })
+    }
+
+    page.commands.getTagByProductId = (id) => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.GetTag + "/" + id
+        }).done((data) => {
+            console.log(data);
+            tag = data;
+        }).fail((e) => {
+            console.log(e)
+            App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+            setTimeout(function () {
+                window.location.href = "/login"
+            }, 500);
+        })
+    }
+
+    page.commands.handleDeleteProduct = () => {
+        page.element.btnDelete.on("click", function () {
+            Swal.fire({
+                title: 'Bạn có muốn xóa sản phẩm  này không?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đúng, Xóa nó!'
+            }).then((resuilt) => {
+                if (resuilt.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: page.url.DeleteProduct + page.element.idProduct.val(),
+                    }).done(() => {
+                        App.SweetAlert.showSuccessAlert("Bạn đã xóa sản phẩm thành công! Bạn sẽ trở về danh sách sản phẩm sau 3s")
+
+                        setTimeout(function () {
+                            window.location.href = "/product-dashboard";
+                        }, 3000);
+                    }).fail(() => {
+                        App.SweetAlert.showErrorAlert("Bạn đã xóa sản phẩm Thất bại!")
+                    })
+                }
+            })
+        })
+    }
+
+    page.commands.handleShowProductUpdate = () => {
+        page.element.btnUpdateShow.on("click", function () {
+            page.commands.getProductById(page.element.idProduct.val()).then(() => {
+                $("#modalupdate-product").modal("show");
+                page.element.titleProductUp.val(product.title)
+                page.element.codeProductUp.val(product.code)
+                page.element.quantityProduct.val(product.quantity)
+                page.element.priceProductUp.val(product.price)
+                page.element.sizeUp.val(product.size)
+                page.element.materialUp.val(product.material)
+                page.element.productStatus.val(product.status)
+                page.element.categoryUp.val(product.category.id)
+                page.element.productColorUp.val(product.productColor.id)
+                page.element.descriptionProduct.val(product.description)
+                page.commands.getTagByProductId(product.id).then(() => {
+                    page.element.tagUp.val(tag.name);
+                })
+            })
+        })
+    }
+
+    page.commands.handleUpdateProduct = () => {
+        page.element.btnSave.on('click', function () {
+            formData.append("id", page.element.idProduct.val());
+            formData.append("code", page.element.codeProductUp.val());
+            formData.append("title", page.element.titleProductUp.val());
+            formData.append("price", page.element.priceProductUp.val());
+            formData.append("quantity", page.element.quantityProduct.val());
+            formData.append("status", $("#productStatus :selected").text());
+            formData.append("description", page.element.descriptionProduct.val());
+            formData.append("slug", "chua biet lam");
+            formData.append("size", page.element.sizeUp.val());
+            formData.append("material", page.element.materialUp.val());
+            formData.append("image", "null");
+            $.ajax({
+                type: "PUT",
+                contentType: false,
+                cache: false,
+                processData: false,
+                url: page.url.PutProduct + "/" + page.element.categoryUp.val() + "/" + page.element.productColorUp.val(),
+                data: formData
+            }).done((data) => {
+                formData.delete("id")
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
+                product = data;
+                page.commands.getTagByProductId(product.id).then(() => {
+                    tag.name = page.element.tagUp.val();
+                    $.ajax({
+                        headers: {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        type: "PUT",
+                        url: page.url.PutTag + "/" + page.element.idProduct.val(),
+                        data: JSON.stringify(tag)
+                    }).done((item) => {
+                        formData.delete("id")
+                        formData.delete("code");
+                        formData.delete("title");
+                        formData.delete("price");
+                        formData.delete("quantity");
+                        formData.delete("status");
+                        formData.delete("description");
+                        formData.delete("slug");
+                        formData.delete("size");
+                        formData.delete("material");
+                        formData.delete("image");
+                        page.element.btnSave.off()
+                        page.element.priceProductUp.val("")
+                        page.element.titleProductUp.val("")
+                        page.element.quantityProduct.val("")
+                        page.element.codeProductUp.val("")
+                        page.element.sizeUp.val("")
+                        page.element.categoryUp.val(1)
+                        page.element.productColorUp.val(1)
+                        page.element.productStatus.val("")
+                        page.element.materialUp.val("")
+                        page.element.descriptionProduct.val("")
+                        page.element.tagUp.val("")
+                        formData.delete("files")
+                        App.IziToast.showSuccessAlert("Bạn Đã Cập nhật Sản Phẩm Thành công")
+                        $("#modalupdate-product").modal("hide");
+                        page.commands.reloadPageFinishUpdate(product.id);
+                        images = []
+                        document.getElementById('container_').innerHTML = page.commands.image_show()
+                    }).fail((e) => {
+                        console.log(e)
+                        App.IziToast.showErrorAlert("Bạn đã Cập nhật sản phẩm thất bại")
+                        formData.delete("files")
+                        formData.delete("code");
+                        formData.delete("title");
+                        formData.delete("price");
+                        formData.delete("quantity");
+                        formData.delete("status");
+                        formData.delete("description");
+                        formData.delete("slug");
+                        formData.delete("size");
+                        formData.delete("material");
+                        formData.delete("image");
+                    })
+                })
+            }).fail(() => {
+                App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+                formData.delete("files")
+                formData.delete("code");
+                formData.delete("title");
+                formData.delete("price");
+                formData.delete("quantity");
+                formData.delete("status");
+                formData.delete("description");
+                formData.delete("slug");
+                formData.delete("size");
+                formData.delete("material");
+                formData.delete("image");
+            })
+        })
+    }
+
+    page.commands.image_select = () => {
+        page.element.btnSave.off()
+        images = []
+        formData = new FormData()
+        let fileInput = $("#image")[0].files;
+        if (fileInput.length > 4) {
+            App.IziToast.showErrorAlert("chỉ được upload tối đa 4 tấm hình")
+            return
+        }
+        for (let k = 0; k < fileInput.length; k++) {
+            formData.append("files", fileInput[k]);
+        }
+        for (let i = 0; i < fileInput.length; i++) {
+            images.push({
+                "name": fileInput[i].name,
+                "url": URL.createObjectURL(fileInput[i]),
+                "file": fileInput[i],
+            });
+        }
+        page.commands.handleUpdateProduct();
+        document.getElementById('container_').innerHTML = page.commands.image_show()
+    }
+
+    page.commands.image_show = () => {
+        var image = "";
+        images.forEach((i) => {
+            image += `
+                       <div class="col-3 ">
+                           <div class="image_container justify-content-center position-relative">
+                            <img style="height: 110px;width: 150px;"  src="` + i.url + `"  alt="" />
+                             <span class="position-absolute" onclick="page.commands.delete_image(` + images.indexOf(i) + `)">&times;</span>
+                          </div>
+                      </div>
+                    `;
+        })
+        return image;
+    }
+
+    page.commands.delete_image = (e) => {
+        images.splice(e, 1)
+        let arrFile = formData.getAll("files")
+        arrFile.splice(e, 1)
+        formData.delete("files")
+        for (let i = 0; i < arrFile.length; i++) {
+            formData.append("files", arrFile[i])
+        }
+        document.getElementById("container_").innerHTML = page.commands.image_show();
+    }
+
+    page.commands.reloadPageFinishUpdate = (productId) => {
+        page.commands.getProductById(productId).then(()=>{
+            page.commands.getTagByProductId(productId).then(()=>{
+                $(".information_clear").html("")
+                let str =`
+                <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
+                            <h4>${product.title}</h4>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="row" >
+                                <div class="col-12 text-center align-middle"><img width="330px"
+                                                                                  src="${product.image}" alt="">
+                                </div>
+                            </div>
+
+                            <div class="row imageUpdate" style="top: 30px;position: relative;" >
+
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="left: 20px;border-left: 2px solid #0000003b;padding-left: 50px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Mã SKU:</label>
+                                    <p>${product.code}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Loại sản phẩm:</label>
+                                    <p>${product.category.name}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Số lượng:</label>
+                                    <p>${product.quantity}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Giá sản phẩm:</label>
+                                    <p style="color: red;font-weight: bold;"
+                                       >${new Intl.NumberFormat('vi-VN', {
+                                                                style: 'currency',
+                                                                currency: 'VND'
+                                                            }).format(product.price)}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Kích thước:</label>
+                                    <p >${product.size}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Màu sắc:</label>
+                                    <p>${product.productColor.color}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Chất liệu:</label>
+                                    <p >${product.material}</p>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Trạng thái:</label>
+                                    <p>${product.status}</p>
+
+                                </div>
+                                    <div class="col-md-6">
+                                        <label>Tag:</label>
+                                        <p>${tag.name}</p>
+                                    </div>
+                                </th:block>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Description:</label>
+                                    <p>${product.description}</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                `
+                $(".information_clear").html(str)
+                page.commands.getProductMediaByProduct(page.element.idProduct.val()).then(()=>{
+                    $(".imageUpdate").html("")
+                    $.each(productMedia, (i, item)=>{
+                        let str2 =`
+                                    <div class="col-3 text-center align-middle " >
+                                        <img width="100px" style="padding-top: 15px;"
+                                             src="${item.fileUrl}" alt="">
+                                    </div>
+                        `
+                        $(".imageUpdate").append(str2);
+                    })
+                })
+            })
+        })
+    }
+
+    page.commands.getProductMediaByProduct = (id) => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.GetProductMedia + "/" + id
+        }).done((data) => {
+            console.log(data);
+            productMedia = data;
+        }).fail((e) => {
+            console.log(e)
+            App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
+            setTimeout(function () {
+                window.location.href = "/login"
+            }, 500);
+        })
+    }
+
+    $(function () {
+        page.commands.handleDeleteProduct();
+        page.commands.handleShowProductUpdate();
+        page.commands.formatNumber();
+        page.dialogs.loadData.drawListCategory();
+        page.dialogs.loadData.drawListProductColor();
+    })
+</script>
 </html>

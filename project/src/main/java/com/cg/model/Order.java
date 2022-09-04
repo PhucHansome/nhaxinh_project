@@ -30,6 +30,9 @@ public class Order extends BaseEntity{
 
     private String productCode;
 
+    private String productImage;
+
+    private String productTitle;
 
     @OneToOne
     @JoinColumn(name = "customerifs_id", nullable = false)
@@ -42,7 +45,10 @@ public class Order extends BaseEntity{
                 .setGrandTotal(grandTotal)
                 .setQuantity(quantity)
                 .setProductCode(productCode)
-                .setCustomerInfo(customerInfo.toCustomerInfoDTO());
+                .setProductImage(productImage)
+                .setProductTitle(productTitle)
+                .setCustomerInfo(customerInfo.toCustomerInfoDTO())
+                ;
 
     }
 }

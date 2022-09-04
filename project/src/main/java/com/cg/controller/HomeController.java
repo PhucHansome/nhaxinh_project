@@ -1,9 +1,11 @@
 package com.cg.controller;
 
 
-import com.cg.model.dto.CustomerInfoDTO;
-import com.cg.model.dto.UserDTO;
+import com.cg.model.dto.*;
+import com.cg.service.Tag.TagService;
 import com.cg.service.customerInfo.ICustomerInfoService;
+import com.cg.service.product.ProductService;
+import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,7 +30,16 @@ public class HomeController {
     private IUserService userService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private TagService tagService;
+
+    @Autowired
     private ICustomerInfoService customerInfoService;
+
+    @Autowired
+    private ProductMediaService productMediaService;
 
     private String getPrincipal() {
         String username;
@@ -55,19 +67,6 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/detail")
-    public ModelAndView getDetail() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/customerView/detail/detail");
-        String email = getPrincipal();
-        if (email == "anonymousUser") {
-            email = "Đăng nhập";
-            modelAndView.addObject("userDTO", email);
-        }
-        modelAndView.addObject("userDTO", email);
-        return modelAndView;
-    }
-
     @GetMapping("/login")
     public String getLogin() {
         String email = getPrincipal();
@@ -78,8 +77,8 @@ public class HomeController {
         return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
-    @GetMapping("/search")
-    public ModelAndView getSearch() {
+    @GetMapping("/search/{query}")
+    public ModelAndView getSearchByTitle(@PathVariable String query) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -88,6 +87,8 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
+
+        modelAndView.addObject("query", query);
         return modelAndView;
     }
 
@@ -117,7 +118,39 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("/detail/{id}")
+    public ModelAndView goDetailProduct(@PathVariable String id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/detail/detail");
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
+        modelAndView.addObject("product", productDTOOptional.get());
+        modelAndView.addObject("tag", tagDTO.get());
+        String email = getPrincipal();
+        if (email == "anonymousUser") {
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
+    @GetMapping("/account")
+    public ModelAndView getAccount() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/customerView/myaccount/account");
+        String email = getPrincipal();
+        if (email == "anonymousUser") {
+            email = "Đăng nhập";
+            modelAndView.addObject("userDTO", email);
+        }
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
     //==dashBoard===//
+
+
 
     @GetMapping("/home-dashboard")
     public ModelAndView getDashboard() {
@@ -155,15 +188,20 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/detail-product-dashboard")
-    public ModelAndView getDetailProductDashboard() {
+    @GetMapping("/detail-product-dashboard/{productId}")
+    public ModelAndView getDetailProductDashboard(@PathVariable String productId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/productDashboard/detail-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        Optional <ProductDTO> productDTOList = productService.findProductDTOById(productId);
+        modelAndView.addObject("product", productDTOList.get().toProduct());
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
+        modelAndView.addObject("tag", tagDTO.get().toTag());
+        List <ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
+        modelAndView.addObject("productMedia", productMediaDTO);
         return modelAndView;
     }
-
 
     @GetMapping("/user-dashboard")
     public ModelAndView getUserDashboard() {
@@ -173,8 +211,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
-
 
     @RequestMapping("/")
     public String detailCustomerinfo(){
@@ -187,12 +223,12 @@ public class HomeController {
         redirectAttributes.addAttribute("name", name);
         return new RedirectView("/dashboard/userDashboard/detail-user");
     }
+
     @RequestMapping("/detail-user-dashboard")
     public String page2(@RequestParam("name") String name, Model model) {
         model.addAttribute("name", name.toUpperCase());
         return "/detail-user-dashboard";
     }
-
 
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {
@@ -231,7 +267,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {

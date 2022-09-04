@@ -22,11 +22,18 @@ public class TagDTO {
     private boolean deleted;
     private ProductDTO product;
 
+    public TagDTO (Long id, String name,Product product){
+        this.id = id;
+        this.name = name;
+        this.product = product.toProductDTO();
+    }
+
     public Tag toTag(){
         return new Tag()
                 .setId(id)
                 .setName(name)
                 .setDeleted(deleted)
-                .setProduct(product.toProduct());
+                .setProduct(product.toProduct())
+                ;
     }
 }

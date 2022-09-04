@@ -1186,6 +1186,8 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/username/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
+                GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
+                GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART + "/create",
@@ -1220,7 +1222,9 @@
         page.element.total_OrderSumary = $("#total_OrderSumary")
         page.element.line_item_orderSumary = $("#line_item_orderSumary")
         page.element.orderSummary = $(".woocommerce-checkout-review-order-table tbody")
+        page.element.resuilt_search = $(".resuilt_search")
 
+        page.element.InputQuerySearch = $("#querySearch")
         page.element.select_provinceCUS = $("#provinceCUS")
         page.element.select_provinceCUS_selected = $("#provinceCUS :selected")
         page.element.select_districtCus = $("#districtCus")
@@ -1230,6 +1234,7 @@
         page.element.emailCus = $("#emailCus")
         page.element.addressCus = $("#addressCus")
         page.element.contentCart = $('#contentCart')
+
 
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
@@ -1246,7 +1251,7 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
         }
 
         page.commands.lineOrderSummary = () => {
@@ -1262,6 +1267,8 @@
                 currency: 'VND'
             }).format(sum), data)));
         }
+
+
 
         page.dialogs.commands.drawProvinces = () => {
             return $.ajax({
@@ -1285,7 +1292,7 @@
         }
 
         page.dialogs.commands.drawDistricts = (provinceId) => {
-            $.ajax({
+            return $.ajax({
                 "headers": {
                     "accept": "application/json",
                     "content-type": "application/json"
@@ -1389,6 +1396,7 @@
                     "type": "GET",
                     "url": page.url.GetCartItems,
                 }).done((data) => {
+                    page.loadData.getOrderSummary();
                     $("#seeGrandTotal").html("")
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
@@ -1466,6 +1474,8 @@
             order.grandTotal = 0;
             order.quantity = 0;
             order.productCode = "null";
+            order.productImage = "null";
+            order.productTitle = "null";
             order.customerInfo = cart.customerInfo;
             $.ajax({
                 "headers": {
@@ -1520,15 +1530,94 @@
             })
         }
 
+        page.commands.getCustomerInfoByEmail = () => {
+            return $.ajax({
+                "method": "GET",
+                "url": page.url.GetCustomer
+            }).done((data) => {
+                customerInfo = data;
+                page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
+                page.element.fullNameCus.val(customerInfo.fullName);
+                page.element.phoneCus.val(customerInfo.phone);
+                page.element.addressCus.val(customerInfo.locationRegion.address);
+                page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val()).then(()=>{
+                    page.element.select_districtCus.val(customerInfo.locationRegion.districtId)
+                })
+
+            })
+        }
+
+        page.commands.blurInputsearch = () => {
+            page.element.InputQuerySearch.blur(function () {
+                setTimeout(function () {
+                    page.element.resuilt_search.addClass("d-none")
+                }, 150);
+            })
+
+        }
+
+        page.commands.searchFunction = () => {
+            page.element.InputQuerySearch.on("input", function () {
+                let search = page.element.InputQuerySearch.val()
+                $.ajax({
+                    "method": "GET",
+                    "url": page.url.GetResuiltSearch + "/" + search
+                }).done((data) => {
+                    page.element.resuilt_search.removeClass("d-none")
+                    page.element.resuilt_search.html("")
+                    $.each(data, (i, item) => {
+                        if (i > 3) {
+                            return;
+                        }
+                        product = item
+                        let str = `
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
+                                                            class="search-image"
+                                                            src="${product.image}">
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        </div>
+                                                        <span class="search-price"><ins><span style="font-size: 12px;"
+                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
+                                                                </bdi></span></ins></span></span>
+                                                        </a></div>
+                    `;
+                        page.element.resuilt_search.prepend(str);
+                    })
+                    page.commands.blurInputsearch()
+                }).fail((jqXHR) => {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            page.element.resuilt_search.html("")
+                            page.element.resuilt_search.removeClass("d-none")
+                            page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                            page.commands.blurInputsearch()
+                        })
+                    }
+                })
+            })
+        }
+
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function (){
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            })
+        }
 
         $(function () {
-            page.commands.handleShowCart()
-            page.commands.showIconCart()
-            page.loadData.getOrderSummary();
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
+                page.commands.handleShowCart()
+                page.commands.showIconCart()
+                page.loadData.getOrderSummary();
+                page.commands.getCustomerInfoByEmail();
+                page.commands.handleOrder();
+                page.commands.searchFunction()
+                page.commands.handleGoSearch();
             })
-            page.commands.handleOrder();
+
         })
     </script>
 </th:block>

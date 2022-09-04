@@ -1134,6 +1134,7 @@
                 GetProduct: App.BASE_URL_PRODUCT,
                 GetUser: App.BASE_URL_USER_ABC + "/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
+                GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
@@ -1160,7 +1161,9 @@
         page.element.userNameLo = $("#header-account-title");
         page.element.CaritemProduct = $("#CaritemProduct");
         page.element.container_cartItem = $("#seeCartItems")
+        page.element.resuilt_search = $(".resuilt_search")
 
+        page.element.InputQuerySearch = $("#querySearch")
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
 
@@ -1168,7 +1171,7 @@
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
 
         page.commands.addCartBotLine = () => {
-            page.element.cart_cartBotLine.prepend($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
+            page.element.cart_cartBotLine.append($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
             }).format(product.price), product.id)));
@@ -1178,8 +1181,9 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id)));
+            }).format(carItem.price), carItem.id, carItem.product.id)));
         }
+
         page.commands.getProductById = (id) => {
             return $.ajax({
                 headers: {
@@ -1226,6 +1230,10 @@
             $(".them_vao_cart").on("click", function () {
                 let id = $(this).data("id");
                 page.commands.getProductById(id).then(() => {
+                    if($("#EmailLogin").text() === "Đăng nhập"){
+                        App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
                     delete carItem.id;
                     carItem.userName = $("#EmailLogin").text();
                     carItem.product = product;
@@ -1244,8 +1252,13 @@
                     }).done((data) => {
                         App.IziToast.showSuccessAlert("Đã thêm vào giỏ hàng thành công")
                         page.commands.showIconCart();
-                    }).fail(() => {
-                        page.element.container_cartItem.prepend("<h1>Giỏ Hàng Trống</h1>")
+                    }).fail((jqXHR) => {
+                        console.log(jqXHR);
+                        if (jqXHR.responseJSON) {
+                            $.each(jqXHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
                     })
                 })
             })
@@ -1345,14 +1358,86 @@
                 })
                 page.commands.handleCreateCart()
                 page.commands.showIconCart();
+                page.commands.handleGoDetailProduct();
+                page.commands.searchFunction();
+                page.commands.handleGoSearch();
             }).fail((e) => {
                 console.log(e)
+            })
+        }
+
+        page.commands.handleGoDetailProduct = () => {
+            $(".view_Product").on("click", function () {
+                let id = $(this).data("id");
+                window.location.href = "/detail/" + id;
+            })
+        }
+
+        page.commands.blurInputsearch = () => {
+            page.element.InputQuerySearch.blur(function () {
+                console.log("vao day")
+                setTimeout(function () {
+                    page.element.resuilt_search.addClass("d-none")
+                }, 150);
+            })
+
+        }
+
+        page.commands.searchFunction = () => {
+            page.element.InputQuerySearch.on("input", function () {
+                let search = page.element.InputQuerySearch.val()
+                $.ajax({
+                    "method": "GET",
+                    "url": page.url.GetResuiltSearch + "/" + search
+                }).done((data) => {
+                    page.element.resuilt_search.removeClass("d-none")
+                    page.element.resuilt_search.html("")
+                    $.each(data, (i, item) => {
+                        if (i > 3) {
+                            return;
+                        }
+                        product = item
+                        let str = `
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
+                                                            class="search-image"
+                                                            src="${product.image}">
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        </div>
+                                                        <span class="search-price"><ins><span style="font-size: 12px;"
+                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
+                                                                </bdi></span></ins></span></span>
+                                                        </a></div>
+                    `;
+                        page.element.resuilt_search.prepend(str);
+                    })
+                    page.commands.blurInputsearch()
+                }).fail((jqXHR) => {
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+                            page.element.resuilt_search.html("")
+                            page.element.resuilt_search.removeClass("d-none")
+                            page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                            page.commands.blurInputsearch()
+                        })
+                    }
+                })
+            })
+        }
+
+        page.commands.handleGoSearch = () => {
+            $(".btn-search").on("click", function () {
+                window.location.href = "/search/" + page.element.InputQuerySearch.val();
             })
         }
 
         $(function () {
             page.dialogs.loadData.getAllProduct();
             page.commands.handleShowCart()
+            page.commands.searchFunction();
+            page.commands.handleGoSearch();
         })
     </script>
 

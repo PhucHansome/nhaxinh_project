@@ -4,6 +4,7 @@ import com.cg.model.Cart;
 import com.cg.model.Order;
 import com.cg.model.dto.CartDTO;
 import com.cg.model.dto.CartItemsDTO;
+import com.cg.model.dto.OrderDTO;
 import com.cg.model.dto.UserDTO;
 import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,6 @@ public class OrderServiceImpl implements OrderService{
     private OrderRepository orderRepository;
 
     @Autowired
-    private OrderDetailRepository orderDetailRepository;
-
-    @Autowired
     private CustomerInfoRepository customerInfoRepository;
 
     @Autowired
@@ -31,7 +29,6 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private UserRepository userRepository;
-
 
     @Override
     public List<Order> findAll() {
@@ -60,10 +57,19 @@ public class OrderServiceImpl implements OrderService{
             order.setId(0L);
             order.setQuantity(cartItemsDTO.getQuantity());
             order.setProductCode(cartItemsDTO.getProduct().getCode());
+            order.setProductTitle(cartItemsDTO.getProduct().getTitle());
+            order.setProductImage(cartItemsDTO.getProduct().getImage());
             order.setGrandTotal(cartItemsDTO.getGrandTotal());
             cartItemRepository.deleteById(cartItemsDTO.getId());
             orderRepository.save(order);
         }
+        List<CartDTO> cartDTOList = cartRepoSitory.getCartItemDTOByIdCustomerInfo(order.getCustomerInfo().getId());
+        for (CartDTO cartDTO : cartDTOList){
+            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())){
+                cartRepoSitory.deleteById(cartDTO.getId());
+            }
+        }
+
         return null;
     }
 
@@ -75,5 +81,10 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public void softDelete(Order order) {
 
+    }
+
+    @Override
+    public List<OrderDTO> findOrderDTOByUserName(String userName) {
+        return orderRepository.findOrderDTOByUserName(userName);
     }
 }

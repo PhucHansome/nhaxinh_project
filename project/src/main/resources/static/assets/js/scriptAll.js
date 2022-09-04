@@ -26,7 +26,7 @@ class App {
                 title: t,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
             })
         }
 
@@ -135,7 +135,7 @@ class CustomerInfo {
         this.userName = userName;
         this.fullName = fullName;
         this.phone = phone;
-        this.debt =debt;
+        this.debt = debt;
         this.locationRegion = locationRegion;
 
     }
@@ -213,12 +213,22 @@ class Cart {
 }
 
 class Order {
-    constructor(id ,description ,grandTotal ,quantity ,productCode ,customerInfo ) {
+    constructor(id ,description ,grandTotal ,quantity ,productCode ,productImage,productTitle ,customerInfo,createdAt ) {
         this.id = id;
         this.description = description;
         this.grandTotal = grandTotal;
         this.quantity = quantity;
         this.productCode = productCode;
+        this.productImage = productImage;
+        this.productTitle = productTitle;
         this.customerInfo = customerInfo;
+        this.createdAt = createdAt;
+    }
+}
+
+class ProductMedia{
+    constructor(id, fileUrl) {
+        this.id = id;
+        this.fileUrl = fileUrl;
     }
 }
