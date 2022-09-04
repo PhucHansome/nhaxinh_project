@@ -108,7 +108,7 @@ public class ProductAPI {
         return new ResponseEntity<>(productMedia, HttpStatus.OK);
     }
 
-    @PostMapping("/{idCategory}/{idProductColor}/")
+    @PostMapping("/{idCategory}/{idProductColor}")
     public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());

@@ -1481,6 +1481,10 @@
             $(".them_vao_cart").on("click", function () {
                 let id = $(this).data("id");
                 page.commands.getProductById(id).then(() => {
+                    if($("#EmailLogin").text() === "Đăng nhập"){
+                        App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
                     delete carItem.id;
                     carItem.userName = $("#EmailLogin").text();
                     carItem.product = product;
