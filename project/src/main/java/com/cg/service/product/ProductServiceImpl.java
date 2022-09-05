@@ -6,7 +6,6 @@ import com.cg.model.ProductMedia;
 import com.cg.model.dto.IProductDTO;
 import com.cg.model.dto.ProductDTO;
 import com.cg.model.enums.FileType;
-import com.cg.repository.ProducRepositoryPage;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
 import com.cg.repository.TagRepository;
@@ -36,9 +35,6 @@ public class ProductServiceImpl implements ProductService {
 
    @Autowired
    private TagRepository tagRepository;
-
-   @Autowired
-   private ProducRepositoryPage producRepositoryPage;
 
     @Autowired
     private UploadService uploadService;
@@ -214,10 +210,5 @@ public class ProductServiceImpl implements ProductService {
     public Product deleteSoft(Product product) {
         product.setDeleted(true);
         return productRepository.save(product);
-    }
-
-    @Override
-    public Page<ProductDTO> findAllByPrice(SpringDataWebProperties.Pageable pageable) {
-        return (Page<ProductDTO>) producRepositoryPage.findAllByPrice(pageable);
     }
 }

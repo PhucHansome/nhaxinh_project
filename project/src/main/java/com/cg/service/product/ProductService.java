@@ -39,6 +39,4 @@ public interface ProductService {
 
     Product deleteSoft(Product product);
 
-    Page<ProductDTO> findAllByPrice(SpringDataWebProperties.Pageable pageable);
-
 }
