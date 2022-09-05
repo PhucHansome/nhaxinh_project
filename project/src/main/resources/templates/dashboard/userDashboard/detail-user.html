@@ -165,6 +165,7 @@
     let page = {
         url: {
             getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+            getCustomerEdit: App.BASE_URL_CUSTOMERINFO + "/edit",
             getAllProvinces: App.BASE_URL_PROVINCE + "/",
             getAllDistricts: App.BASE_URL_PROVINCE + "/district/",
             DeleteCustomer: App.BASE_URL_CUSTOMERINFO + "/delete-soft-customer/"
@@ -198,23 +199,11 @@
     page.element.btnDelete = $(".btn-delete");
     page.element.comfirmUpdateCustomer = $("#btnUpdateUser");
 
-
-
     let customerInfo = new CustomerInfo();
     let locationRegion = new LocationRegion();
     let user = new User();
     let customerInfoId = null;
 
-
-    // let tempCustomerInfo = jQuery.validator.format($.trim(page.element.tempUser.val().toString()));
-    //
-    //
-    // page.commands.addRow = () => {
-    //     page.element.frmListCustomer.prepend($(tempCustomerInfo(customerInfo.id,customerInfo.fullName,customerInfo.phone,customerInfo.userName)));
-    // }
-    // page.commands.replaceRowCustomer = () =>{
-    //     $('#tr_' + customerInfo.id).replaceWith($(tempCustomerInfo(customerInfo.id,customerInfo.userName, customerInfo.fullName, customerInfo.phone, locationRegion.provinceName, locationRegion.districtName, locationRegion.address)));
-    // }
 
     page.dialogs.commands.getCustomerInfoById = (id) => {
         return $.ajax({
@@ -228,16 +217,12 @@
     page.dialogs.commands.goModalUpdateCustomer = () => {
         page.element.btnUpdateCustomer.on('click', function () {
             page.dialogs.commands.getCustomerInfoById(page.element.idCustomer.val()).then(() => {
-
                 page.element.fullNameUp.val(customerInfo.fullName)
                 page.element.emailUp.val(customerInfo.userName)
                 page.element.phoneUp.val(customerInfo.phone)
-
                 page.element.provinceUp.val(customerInfo.locationRegion.provinceId)
                 page.element.addressUp.val(customerInfo.locationRegion.address)
-
                 page.dialogs.commands.drawDistricts(customerInfo.locationRegion.provinceId).then(function () {
-
                     page.element.districtUp.val(customerInfo.locationRegion.districtId);
                 })
                 $('#modalUpdateUser').modal('show')
@@ -248,7 +233,6 @@
     }
     page.dialogs.commands.doUpdateCustomer = () =>{
         page.element.comfirmUpdateCustomer.on('click',function (){
-            // delete locationRegion.id;
             locationRegion.provinceId = page.element.provinceUp.val();
             locationRegion.provinceName =$("#provinceUp :selected").text();
             locationRegion.districtId = page.element.districtUp.val();
@@ -265,7 +249,7 @@
                     "content-type": "application/json"
                 },
                 type: "PUT",
-                url: "http://localhost:8092/api/customerInfo/edit/" ,
+                url: page.url.getCustomerEdit,
                 data: JSON.stringify(customerInfo)
             }).done((data) =>{
                 customerInfo = data;
@@ -333,7 +317,7 @@
                 "content-type": "application/json"
             },
             "type": "GET",
-            "url": "https://vapi.vnappmob.com/api/province/"
+            "url": page.url.getAllProvinces
         })
             .done((data) => {
                 console.log(data)
@@ -356,7 +340,7 @@
                 "content-type": "application/json"
             },
             "type": "GET",
-            "url": "https://vapi.vnappmob.com/api/province/district/" + provinceId
+            "url": page.url.getAllDistricts + provinceId
         }).done((data) => {
             if (data.results.length === 0) {
                 App.IziToast.showErrorAlert("Loading of districts is fail");
@@ -376,7 +360,7 @@
     page.element.provinceUp.on('change', function () {
         page.dialogs.commands.drawDistricts(page.element.provinceUp.val())
     })
-    page.commands.handleshowConfirmDelete = () => {
+    page.commands.handleShowConfirmDelete = () => {
         page.element.btnDelete.on('click', function () {
             App.SweetAlert.showConfirmDeleteUser()
                 .then((result) => {
@@ -388,18 +372,18 @@
                                 "content-type": "application/json"
                             },
                             "type": "DELETE",
-                            "url": "http://localhost:8092/api/customerInfo/delete-soft-customer/" + page.element.idCustomer.val(),
+                            "url": page.url.DeleteCustomer + page.element.idCustomer.val(),
                             "data": JSON.stringify(customerInfo)
                         })
                             .done(() => {
-                                App.SweetAlert.showSuccessAlert("Xóa khách hàng Thành Công")
+                                App.IziToast.showSuccessAlert("Xóa khách hàng Thành Công")
                                 setTimeout(function () {
                                     App.SweetAlert.showSuccessAlert("Bạn sẽ trở về danh sách khách hàng sau 4s")
                                     window.location.href = "/user-dashboard";
                                 }, 4000);
                             })
                             .fail(() => {
-                                App.SweetAlert.showErrorAlert('Xóa khách hàng thất bại');
+                                App.IziToast.showErrorAlert('Xóa khách hàng thất bại');
                             });
                     }
                 })
@@ -407,11 +391,10 @@
     }
     $(function () {
         page.dialogs.commands.goModalUpdateCustomer();
-        // page.dialogs.commands.getCustomerInfoById();
         page.dialogs.commands.drawProvinces().then(() => {
             page.dialogs.commands.drawDistricts(page.element.provinceUp.val());
         })
-        page.commands.handleshowConfirmDelete();
+        page.commands.handleShowConfirmDelete();
         page.dialogs.commands.doUpdateCustomer();
 
     })
