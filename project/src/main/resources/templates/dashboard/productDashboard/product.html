@@ -130,7 +130,9 @@
                 <!-- Start Content-->
             </div>
         </div> <!-- end content -->
-
+        <div class="demo">
+            <div class="data-container"></div>
+        </div>
 
         <!-- Footer Start -->
         <th:block th:replace="/dashboard/layout/footer::footer"/>
@@ -200,7 +202,7 @@
     }
 
     page.dialogs.commands.getAllProduct = () => {
-        $.ajax({
+        return $.ajax({
             "method": "GET",
             "url": page.url.GetProduct
         }).done((data) => {
@@ -218,7 +220,7 @@
     }
 
     page.dialogs.commands.goDetailProduct = (productId) => {
-            window.location.href = "/detail-product-dashboard/" + productId;
+        window.location.href = "/detail-product-dashboard/" + productId;
     }
 
     page.dialogs.commands.goCreateProduct = () => {
@@ -226,6 +228,7 @@
             window.location.href = "/create-product-dashboard";
         })
     }
+    
 
     $(function () {
         page.dialogs.commands.getAllProduct();

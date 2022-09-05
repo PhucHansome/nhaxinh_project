@@ -3,18 +3,18 @@ package com.cg.service.product;
 import com.cg.exception.DataInputException;
 import com.cg.model.Product;
 import com.cg.model.ProductMedia;
-import com.cg.model.Tag;
 import com.cg.model.dto.IProductDTO;
 import com.cg.model.dto.ProductDTO;
-import com.cg.model.dto.TagDTO;
 import com.cg.model.enums.FileType;
+import com.cg.repository.ProducRepositoryPage;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
 import com.cg.repository.TagRepository;
-import com.cg.service.Tag.TagService;
 import com.cg.service.upload.UploadService;
 import com.cg.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +36,9 @@ public class ProductServiceImpl implements ProductService {
 
    @Autowired
    private TagRepository tagRepository;
+
+   @Autowired
+   private ProducRepositoryPage producRepositoryPage;
 
     @Autowired
     private UploadService uploadService;
@@ -211,5 +214,10 @@ public class ProductServiceImpl implements ProductService {
     public Product deleteSoft(Product product) {
         product.setDeleted(true);
         return productRepository.save(product);
+    }
+
+    @Override
+    public Page<ProductDTO> findAllByPrice(SpringDataWebProperties.Pageable pageable) {
+        return (Page<ProductDTO>) producRepositoryPage.findAllByPrice(pageable);
     }
 }

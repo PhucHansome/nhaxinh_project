@@ -4,7 +4,128 @@
     <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
     <th:block th:replace="/dashboard/layout/header::header"/>
 </head>
+<style>
+    .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
 
+    /* Transparent Overlay */
+    .loading:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+
+        background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+    }
+
+    /* :not(:required) hides these rules from IE9 and below */
+    .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .loading:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 150ms infinite linear;
+        -moz-animation: spinner 150ms infinite linear;
+        -ms-animation: spinner 150ms infinite linear;
+        -o-animation: spinner 150ms infinite linear;
+        animation: spinner 150ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+    }
+
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @-moz-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @-o-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
 <body>
 
 <!-- Begin page -->
@@ -55,6 +176,8 @@
                     <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear">
                         <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
                             <h4 th:text="*{product.title}"></h4>
+                            <div class="temploadding">
+                            </div>
                         </div>
 
                         <div class="col-md-4">
@@ -229,7 +352,7 @@
         page.element.pareData .append($(row1_render(product.title,product.image,product.code,product.category.name,product.quantity, new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
-        }).format(product.price), product.size,product.productColor.color,product.material,product.status,tag.name,product.description )));
+        }).format(product.price), product.size,product.productColor.color,product.material,product.status,product.tag,product.description )));
     }
 
     page.commands.formatNumber = () => {
@@ -379,6 +502,13 @@
             formData.append("size", page.element.sizeUp.val());
             formData.append("material", page.element.materialUp.val());
             formData.append("image", "null");
+            $(".temploadding").html("")
+            let str = `
+           <div class="loading">Loading&#8230;</div>
+
+            `
+            $(".temploadding").append(str)
+            $("#modalupdate-product").modal("hide");
             $.ajax({
                 type: "PUT",
                 contentType: false,
@@ -409,7 +539,6 @@
                 page.element.productStatus.val("")
                 page.element.materialUp.val("")
                 page.element.descriptionProduct.val("")
-                page.element.tagUp.val("")
                 formData.delete("files")
                 product = data;
                 page.commands.getTagByProductId(product.id).then(() => {
@@ -423,6 +552,7 @@
                         url: page.url.PutTag + "/" + page.element.idProduct.val(),
                         data: JSON.stringify(tag)
                     }).done((item) => {
+                        $(".temploadding").html("")
                         formData.delete("id")
                         formData.delete("code");
                         formData.delete("title");
@@ -447,8 +577,7 @@
                         page.element.descriptionProduct.val("")
                         page.element.tagUp.val("")
                         formData.delete("files")
-                        App.IziToast.showSuccessAlert("Bạn Đã Cập nhật Sản Phẩm Thành công")
-                        $("#modalupdate-product").modal("hide");
+                        App.SweetAlert.showSuccessAlert("Bạn Đã Cập nhật Sản Phẩm Thành công")
                         page.commands.reloadPageFinishUpdate(product.id);
                         images = []
                         document.getElementById('container_').innerHTML = page.commands.image_show()
@@ -467,10 +596,13 @@
                         formData.delete("material");
                         formData.delete("image");
                         page.element.btnSave.off()
-
+                        $(".temploadding").html("")
+                        $('body').removeClass('loaded');
+                        $("#modalupdate-product").modal("show");
                     })
                 })
             }).fail(() => {
+                $(".temploadding").html("")
                 App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
                 formData.delete("files")
                 formData.delete("code");
@@ -483,6 +615,7 @@
                 formData.delete("size");
                 formData.delete("material");
                 formData.delete("image");
+                $("#modalupdate-product").modal("show");
             })
         })
     }
@@ -538,8 +671,9 @@
 
     page.commands.reloadPageFinishUpdate = (productId) => {
         page.commands.getProductById(productId).then(()=>{
-            page.commands.getTagByProductId(productId).then(()=>{
+            page.commands.getTagByProductId(page.element.idProduct.val()).then(()=>{
                 page.element.pareData.html("")
+                product.tag = tag.name
                 page.commands.addRowLine1();
                 page.commands.getProductMediaByProduct(page.element.idProduct.val()).then(()=>{
                     $(".imageUpdate").html("")

@@ -34,6 +34,8 @@ public class Order extends BaseEntity{
 
     private String productTitle;
 
+    private String statusOrder;
+
     @OneToOne
     @JoinColumn(name = "customerifs_id", nullable = false)
     private CustomerInfo customerInfo;
@@ -48,6 +50,7 @@ public class Order extends BaseEntity{
                 .setProductImage(productImage)
                 .setProductTitle(productTitle)
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO())
+                .setStatusOrder(statusOrder)
                 ;
 
     }
