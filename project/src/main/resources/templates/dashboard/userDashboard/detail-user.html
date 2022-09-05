@@ -376,11 +376,10 @@
                             "data": JSON.stringify(customerInfo)
                         })
                             .done(() => {
-                                App.IziToast.showSuccessAlert("Xóa khách hàng Thành Công")
+                                App.IziToast.showSuccessAlert("Xóa khách hàng Thành Công! Bạn sẽ trở về danh sách khách hàng sau 3s")
                                 setTimeout(function () {
-                                    App.SweetAlert.showSuccessAlert("Bạn sẽ trở về danh sách khách hàng sau 4s")
                                     window.location.href = "/user-dashboard";
-                                }, 4000);
+                                }, 3000);
                             })
                             .fail(() => {
                                 App.IziToast.showErrorAlert('Xóa khách hàng thất bại');
