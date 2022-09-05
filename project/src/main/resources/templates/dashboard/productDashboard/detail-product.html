@@ -159,15 +159,16 @@
 <!-- End Page content -->
 <!-- ============================================================== -->
 
-</div>
 <!-- END wrapper -->
 
 <!-- Right Sidebar -->
 
-<!-- Vendor js -->
-<th:block th:replace="/dashboard/layout/script/script::script"/>
+
 <th:block th:replace="/dashboard/productDashboard/modalupdate-product :: modalupdate-product"/>
-</body>
+<th:block th:replace="/dashboard/productDashboard/render_update_finish_row1::render_update_finish_row1"/>
+
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
 <script>
     let page = {
         url: {
@@ -214,11 +215,22 @@
     page.element.productColorUp = $("#productColorUp")
     page.element.descriptionProduct = $("#descriptionProduct")
     page.element.materialUp = $("#materialUp")
+    page.element.render_update_finish_row1 = $("#render_update_finish_row1")
 
+    page.element.pareData = $(".information_clear")
     page.element.btnDelete = $(".btn-delete")
     page.element.btnUpdateShow = $(".btn-update-show")
     page.element.btnSave = $("#btnUpdateProduct")
 
+
+    let row1_render = jQuery.validator.format($.trim(page.element.render_update_finish_row1.val().toString()));
+
+    page.commands.addRowLine1 = () => {
+        page.element.pareData .append($(row1_render(product.title,product.image,product.code,product.category.name,product.quantity, new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(product.price), product.size,product.productColor.color,product.material,product.status,tag.name,product.description )));
+    }
 
     page.commands.formatNumber = () => {
 
@@ -332,7 +344,9 @@
     }
 
     page.commands.handleShowProductUpdate = () => {
+        console.log("handleShowProductUpdate")
         page.element.btnUpdateShow.on("click", function () {
+            console.log('click')
             page.commands.getProductById(page.element.idProduct.val()).then(() => {
                 $("#modalupdate-product").modal("show");
                 page.element.titleProductUp.val(product.title)
@@ -374,7 +388,6 @@
                 data: formData
             }).done((data) => {
                 formData.delete("id")
-                formData.delete("files")
                 formData.delete("code");
                 formData.delete("title");
                 formData.delete("price");
@@ -385,6 +398,19 @@
                 formData.delete("size");
                 formData.delete("material");
                 formData.delete("image");
+                page.element.btnSave.off()
+                page.element.priceProductUp.val("")
+                page.element.titleProductUp.val("")
+                page.element.quantityProduct.val("")
+                page.element.codeProductUp.val("")
+                page.element.sizeUp.val("")
+                page.element.categoryUp.val(1)
+                page.element.productColorUp.val(1)
+                page.element.productStatus.val("")
+                page.element.materialUp.val("")
+                page.element.descriptionProduct.val("")
+                page.element.tagUp.val("")
+                formData.delete("files")
                 product = data;
                 page.commands.getTagByProductId(product.id).then(() => {
                     tag.name = page.element.tagUp.val();
@@ -440,6 +466,8 @@
                         formData.delete("size");
                         formData.delete("material");
                         formData.delete("image");
+                        page.element.btnSave.off()
+
                     })
                 })
             }).fail(() => {
@@ -511,84 +539,8 @@
     page.commands.reloadPageFinishUpdate = (productId) => {
         page.commands.getProductById(productId).then(()=>{
             page.commands.getTagByProductId(productId).then(()=>{
-                $(".information_clear").html("")
-                let str =`
-                <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
-                            <h4>${product.title}</h4>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="row" >
-                                <div class="col-12 text-center align-middle"><img width="330px"
-                                                                                  src="${product.image}" alt="">
-                                </div>
-                            </div>
-
-                            <div class="row imageUpdate" style="top: 30px;position: relative;" >
-
-                            </div>
-                        </div>
-                        <div class="col-md-8" style="left: 20px;border-left: 2px solid #0000003b;padding-left: 50px;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Mã SKU:</label>
-                                    <p>${product.code}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Loại sản phẩm:</label>
-                                    <p>${product.category.name}</p>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Số lượng:</label>
-                                    <p>${product.quantity}</p>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Giá sản phẩm:</label>
-                                    <p style="color: red;font-weight: bold;"
-                                       >${new Intl.NumberFormat('vi-VN', {
-                                                                style: 'currency',
-                                                                currency: 'VND'
-                                                            }).format(product.price)}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Kích thước:</label>
-                                    <p >${product.size}</p>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Màu sắc:</label>
-                                    <p>${product.productColor.color}</p>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Chất liệu:</label>
-                                    <p >${product.material}</p>
-
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Trạng thái:</label>
-                                    <p>${product.status}</p>
-
-                                </div>
-                                    <div class="col-md-6">
-                                        <label>Tag:</label>
-                                        <p>${tag.name}</p>
-                                    </div>
-                                </th:block>
-                                <div class="col-md-6">
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Description:</label>
-                                    <p>${product.description}</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-                `
-                $(".information_clear").html(str)
+                page.element.pareData.html("")
+                page.commands.addRowLine1();
                 page.commands.getProductMediaByProduct(page.element.idProduct.val()).then(()=>{
                     $(".imageUpdate").html("")
                     $.each(productMedia, (i, item)=>{
@@ -600,6 +552,8 @@
                         `
                         $(".imageUpdate").append(str2);
                     })
+                    page.commands.handleDeleteProduct();
+                    page.commands.handleShowProductUpdate();
                 })
             })
         })
@@ -629,4 +583,6 @@
         page.dialogs.loadData.drawListProductColor();
     })
 </script>
+
+</body>
 </html>

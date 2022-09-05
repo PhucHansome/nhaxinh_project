@@ -67,6 +67,7 @@ public class ProductAPI {
     @GetMapping("/product/search/{title}")
     public ResponseEntity<?> searchByTitleInline(@PathVariable String title) {
         try {
+            title = "%" + title + "%";
             List<ProductDTO> productList = productService.searchProductDTOByTitle(title);
             return new ResponseEntity<>(productList, HttpStatus.OK);
         }catch (Exception e){

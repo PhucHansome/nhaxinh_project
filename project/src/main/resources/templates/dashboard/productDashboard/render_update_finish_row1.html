@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="render_update_finish_row1">
+    <textarea style="display:none" id="render_update_finish_row1">
+        <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
+            <h4>{0}</h4>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row" >
+                <div class="col-12 text-center align-middle"><img width="330px"
+                                                                  src="{1}" alt="">
+                </div>
+            </div>
+
+            <div class="row imageUpdate" style="top: 30px;position: relative;" >
+
+            </div>
+        </div>
+        <div class="col-md-8" style="left: 20px;border-left: 2px solid #0000003b;padding-left: 50px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Mã SKU:</label>
+                    <p>{2}</p>
+                </div>
+                <div class="col-md-6">
+                    <label>Loại sản phẩm:</label>
+                    <p>{3}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Số lượng:</label>
+                    <p>{4}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Giá sản phẩm:</label>
+                    <p style="color: red;font-weight: bold;"
+                       >{5}</p>
+                </div>
+                <div class="col-md-6">
+                    <label>Kích thước:</label>
+                    <p >{6}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Màu sắc:</label>
+                    <p>{7}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Chất liệu:</label>
+                    <p >{8}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Trạng thái:</label>
+                    <p>{9}</p>
+
+                </div>
+                <div class="col-md-6">
+                    <label>Tag:</label>
+                    <p>{10}</p>
+                </div>
+
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-12">
+                    <label>Description:</label>
+                    <p>{11}</p>
+                </div>
+
+            </div>
+        </div>
+    </textarea>
+</th:block>
