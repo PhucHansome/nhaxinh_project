@@ -189,6 +189,9 @@
     page.commands.addRow = () => {
         page.element.frmListCustomer.prepend($(tempCustomerInfo(customerInfo.id,customerInfo.fullName,customerInfo.phone,customerInfo.userName)));
     }
+    page.commands.replaceRowCustomer = () =>{
+        $('#tr_' + customerInfo.id).replaceWith($(tempCustomerInfo(customerInfo.id,customerInfo.userName, customerInfo.fullName, customerInfo.phone, locationRegion.provinceName, locationRegion.districtName, locationRegion.address)));
+    }
 
 
     page.dialogs.commands.getCustomerInfoById = (id) => {

@@ -132,9 +132,9 @@
     page.dialogs.element.phoneCre = $("#phoneCre");
     page.dialogs.element.emailCre = $("#emailCre");
     page.dialogs.element.provinceCre = $("#provinceCre");
-    page.element.provinceText = $("#provinceCre :selected");
+    page.dialogs.element.provinceText = $("#provinceCre :selected");
     page.dialogs.element.districtCre = $("#districtCre");
-    page.element.districText = $("#districtCre :selected");
+    page.dialogs.element.districText = $("#districtCre :selected");
     page.dialogs.element.addressCre = $("#addressCre");
 
     let customerInfo = new CustomerInfo();
@@ -195,9 +195,9 @@
 
     $("#createCustomer").on('click', () => {
         locationRegion.provinceId = page.dialogs.element.provinceCre.val();
-        locationRegion.provinceName = page.element.provinceText.text();
+        locationRegion.provinceName = $("#provinceCre :selected").text();
         locationRegion.districtId = page.dialogs.element.districtCre.val();
-        locationRegion.districtName = page.element.districText.text();
+        locationRegion.districtName = $("#districtCre :selected").text();
         locationRegion.address = page.dialogs.element.addressCre.val();
 
         delete customerInfo.id;
@@ -228,6 +228,7 @@
     })
 
     $(function () {
+
         page.dialogs.commands.drawProvinces().then(() => {
             page.dialogs.commands.drawDistricts(page.dialogs.element.provinceCre.val());
         })

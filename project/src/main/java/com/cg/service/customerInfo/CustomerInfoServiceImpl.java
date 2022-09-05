@@ -19,6 +19,7 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
 
     @Autowired
     private LocationRegionRepository locationRegionRepository;
+
     @Override
     public List<CustomerInfo> findAll() {
         return null;
@@ -62,12 +63,18 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
     }
 
     @Override
-    public Optional<CustomerInfoDTO> findUserDTOById(String  id) {
+    public Optional<CustomerInfoDTO> findUserDTOById(String id) {
         return customerInfoRepository.findUserDTOById(id);
     }
 
     @Override
+    public CustomerInfo deleteSoft(CustomerInfo customerInfo) {
+        customerInfo.setDeleted(true);
+        return customerInfoRepository.save(customerInfo);
+    }
+
     public Optional<CustomerInfoDTO> findUserDTOByUserName(String userName) {
         return customerInfoRepository.findUserDTOByUserName(userName);
+
     }
 }

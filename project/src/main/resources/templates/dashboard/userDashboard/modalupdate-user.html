@@ -14,43 +14,40 @@
             <fieldset class="row g-3">
 
               <input type="hidden" id="userIdUp">
-              <th:block th:each="customerInfo, count : ${customerInfo}">
 
-                <input type="hidden" name="id" th:field="*{customerInfo.id}">
 
               <div class="col-md-4">
                 <label class="form-label">Full name</label>
-                <input type="text" class="form-control" id="fullNameUp" name="fullNameUp" th:value="*{customerInfo.fullName}">
+                <input type="text" class="form-control" id="fullNameUp" name="fullNameUp" >
 
               </div>
               <div class="col-md-4">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" id="emailUp" name="emailUp" th:value="*{customerInfo.userName}">
+                <input type="email" class="form-control" id="emailUp" name="emailUp" >
 
               </div>
 
               <div class="col-md-4">
                 <label class="form-label">Phone</label>
-                <input type="tel" class="form-control" id="phoneUp" name="phoneUp" th:value="*{customerInfo.phone}">
+                <input type="tel" class="form-control" id="phoneUp" name="phoneUp" >
 
               </div>
 
               <div class="col-md-4">
                 <label class="form-label">Province</label>
-                <select class="form-select form-control" id="provinceUp" name="provinceUp"  th:value="*{customerInfo.locationRegion.provinceName}"></select>
+                <select class="form-select form-control" id="provinceUp" name="provinceUp"  ></select>
 
               </div>
               <div class="col-md-4">
                 <label class="form-label">District</label>
-                <select class="form-select form-control" id="districtUp" name="districtUp" th:value="*{customerInfo.locationRegion.districtName}"></select>
+                <select class="form-select form-control" id="districtUp" name="districtUp" ></select>
 
               </div>
               <div class="col-md-4">
                 <label class="form-label">Address</label>
-                <input type="text" class="form-control" id="addressUp" name="addressUp" th:value="*{customerInfo.locationRegion.address}">
+                <input type="text" class="form-control" id="addressUp" name="addressUp" >
 
               </div>
-              </th:block>
             </fieldset>
           </form>
 

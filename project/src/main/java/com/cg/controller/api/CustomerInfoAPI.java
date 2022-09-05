@@ -1,6 +1,7 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.DataInputException;
 import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.CustomerInfo;
 import com.cg.model.dto.CustomerInfoDTO;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +61,7 @@ public class CustomerInfoAPI {
     }
 
 
+
     @PostMapping("/create")
     public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
@@ -81,7 +84,14 @@ public class CustomerInfoAPI {
           return new ResponseEntity<>(customerInfoUpdate.toCustomerInfoDTO(), HttpStatus.ACCEPTED);
       }
 
-
-
+    @DeleteMapping("/delete-soft-customer/{id}")
+    public ResponseEntity<?> deleteSoft(@PathVariable String id){
+        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoService.findUserDTOById(id);
+        if(!customerInfoDTO.isPresent()){
+            throw new DataInputException("Người dùng này không tồn tại");
+        }
+        customerInfoService.deleteSoft(customerInfoDTO.get().toCustomerInfo());
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }

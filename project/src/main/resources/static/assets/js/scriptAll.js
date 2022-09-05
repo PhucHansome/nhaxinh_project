@@ -5,6 +5,7 @@ class App {
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
     static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
     static BASE_URL_PROVINCE =  "https://vapi.vnappmob.com/api/province";
+
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CATEGORY = this.DOMAIN + "/api/category"
     static BASE_URL_PRODUCTCOLOR = this.DOMAIN + "/api/products/product-color"
@@ -18,6 +19,7 @@ class App {
     static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
 
     static SweetAlert = class {
+        
         static showSuccessAlert(t) {
             Swal.fire({
                 icon: 'success',
@@ -34,6 +36,17 @@ class App {
                 title: 'Warning',
                 text: t,
             })
+        }
+        static showConfirmDeleteUser() {
+            return Swal.fire({
+                title: 'Bạn có muốn xoá tạm thời user này?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có, Xoá ngay!',
+                cancelButtonText: 'Huỷ'
+            });
         }
     }
     static IziToast = class  {
