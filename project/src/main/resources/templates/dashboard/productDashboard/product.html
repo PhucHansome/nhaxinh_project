@@ -47,20 +47,15 @@
                 <div class="row" style="margin-bottom: 5px; margin-top: -16px;">
                     <div class="col-md-9">
 
-                        <button type="button" style="margin-bottom: 10px; margin-left: 5px;" id="modalAddProduct"
-                                class="btn btn-success float-left  modalAddProduct">
-                            <i class="fas fa-file-upload"></i>
-                            Xuất file
+                        <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
+                                class="btn btn-success float-left btnGoColor">
+                            <i class="fas fa-palette"></i>
+                            Thêm màu sắc
                         </button>
                         <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-primary float-left ">
-                            <i class="fas fa-file-download"></i>
-                            Nhập file
-                        </button>
-                        <button type="button" style="margin-bottom: 10px; margin-left: 5px;"
-                                class="btn btn-warning float-left ">
+                                class="btn btn-warning float-left btnGoCategory">
                             <i class="fas fa-tag"></i>
-                            Loại sản phẩm
+                          Thêm Loại sản phẩm
                         </button>
                     </div>
 
@@ -174,7 +169,9 @@
     }
     page.element.frmListProduct = $("#tableListProducts tbody");
     page.element.tempProduct = $("#tempProduct");
-    page.element.btnGoCreateProduct = $(".btn-go-add-product")
+    page.element.btnGoCreateProduct = $(".btn-go-add-product");
+    page.element.btnGoCreateCategory = $(".btnGoCategory");
+    page.element.btnGoCreateColor = $(".btnGoColor");
 
     let product = new Product();
     let category = new Category();
@@ -228,11 +225,18 @@
             window.location.href = "/create-product-dashboard";
         })
     }
+    page.dialogs.commands.goCreateCategory = () =>{
+        page.element.btnGoCreateCategory.on("click",function (){
+            window.location.href = "/category-product-dashboard";
+        })
+
+    }
     
 
     $(function () {
         page.dialogs.commands.getAllProduct();
         page.dialogs.commands.goCreateProduct();
+        page.dialogs.commands.goCreateCategory();
     })
 
 </script>

@@ -187,6 +187,14 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+    @GetMapping("/category-product-dashboard")
+    public ModelAndView getCategoryProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/productDashboard/category-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/detail-product-dashboard/{productId}")
     public ModelAndView getDetailProductDashboard(@PathVariable String productId) {
