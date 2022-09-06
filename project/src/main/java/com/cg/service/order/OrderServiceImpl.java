@@ -2,6 +2,7 @@ package com.cg.service.order;
 
 import com.cg.model.Cart;
 import com.cg.model.Order;
+import com.cg.model.OrderDetail;
 import com.cg.model.dto.CartDTO;
 import com.cg.model.dto.CartItemsDTO;
 import com.cg.model.dto.OrderDTO;
@@ -30,6 +31,9 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
+
     @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
@@ -52,6 +56,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order save(Order order) {
+        OrderDetail orderDetail = new OrderDetail();
         List<CartItemsDTO> cartItemsDTOList = cartItemRepository.findCartItemDTOById(order.getCustomerInfo().getUserName());
         for (CartItemsDTO cartItemsDTO : cartItemsDTOList){
             order.setId(0L);
@@ -63,12 +68,19 @@ public class OrderServiceImpl implements OrderService{
             cartItemRepository.deleteById(cartItemsDTO.getId());
             orderRepository.save(order);
         }
+
         List<CartDTO> cartDTOList = cartRepoSitory.getCartItemDTOByIdCustomerInfo(order.getCustomerInfo().getId());
         for (CartDTO cartDTO : cartDTOList){
             if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())){
                 cartRepoSitory.deleteById(cartDTO.getId());
             }
         }
+        List<OrderDTO> orderDTOS = orderRepository.findOrderDTOByUserName(order.getCustomerInfo().getUserName());
+        for (OrderDTO order1 : orderDTOS){
+            orderDetail.setOrder(order1.toOrder());
+        }
+        orderDetail.setId(0L);
+        orderDetailRepository.save(orderDetail);
 
         return null;
     }
@@ -86,5 +98,15 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<OrderDTO> findOrderDTOByUserName(String userName) {
         return orderRepository.findOrderDTOByUserName(userName);
+    }
+
+    @Override
+    public List<OrderDTO> findOrderDTO() {
+        return orderRepository.findOrderDTO();
+    }
+
+    @Override
+    public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
+        return orderRepository.findOrderDTOByUserNameAndStatus(userName,status);
     }
 }

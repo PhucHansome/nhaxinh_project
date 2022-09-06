@@ -36,6 +36,12 @@ public class OrderAPI {
         return new ResponseEntity<>(orderList,HttpStatus.OK);
     }
 
+    @GetMapping()
+    public ResponseEntity<?> findAllOrder(){
+        List<OrderDTO> orderDTOS = orderService.findOrderDTO();
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> doCreateOrder(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) {
 

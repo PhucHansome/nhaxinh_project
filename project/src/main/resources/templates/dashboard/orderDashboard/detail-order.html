@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="#">Uplon</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Chi tiết đơn hàng</a></li>
+                                    <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Chi tiết đơn hàng</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 card-box">
+                        <div class="row">
+                            <h2>chi tiết đơn hàng</h2>
+                        </div>
+                        <div class="row statusInfomation">
+                            <h3>Trạng thái đơn hàng</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>đây là ảnh</h4>
+                            </div>
+                            <div class="col-5">
+                                <p>title</p>
+                                <p>Màu sắc</p>
+                                <p>mã sản phẩm</p>
+                            </div>
+                            <div class="col-5"><h3>tính toán</h3></div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <p>Tổng giá trị sản phẩm</p>
+                                <p>Số tiền phải thanh toán</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6"><p>Xác nhận thanh toán hoặc hủy thanh toán</p></div>
+                        </div>
+                    </div>
+                    <div class="col-1" style="max-width: 3.33333%;"></div>
+                    <div class="col-3 card-box">
+                        <div class="row">
+                            <h2>khách hàng</h2>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <p>Tên khách hàng</p>
+                            <p>2 đơn hàng</p>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-10">
+                                <p>thông tin đơn hàng</p>
+                                <p>Gmail</p>
+                            </div>
+                            <div class="col-2">icon chỉnh sửa</div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <h2>địa chỉ giao hàng</h2>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <p>tên khách hàng</p>
+                            <p>số điện thoại</p>
+                            <p>address</p>
+                            <p>huyện</p>
+                            <p>thành phố</p>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Start Content-->
+
+</div> <!-- end content -->
+
+
+<!-- Footer Start -->
+<th:block th:replace="/dashboard/layout/footer::footer"/>
+<!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+
+<script>
+    let page = {
+        url: {
+            GetOrder: App.BASE_URL_ORDER,
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+    let order = new Order();
+    let customerInfo = new CustomerInfo();
+
+    page.element.tableListOrder = $(".tableListOrder tbody")
+
+    $(function () {
+
+    })
+
+</script>
+
+</body>
+</html>

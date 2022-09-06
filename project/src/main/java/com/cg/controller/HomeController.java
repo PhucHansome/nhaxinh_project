@@ -2,8 +2,11 @@ package com.cg.controller;
 
 
 import com.cg.model.dto.*;
+import com.cg.repository.OrderDetailRepository;
 import com.cg.service.Tag.TagService;
 import com.cg.service.customerInfo.ICustomerInfoService;
+import com.cg.service.order.OrderService;
+import com.cg.service.orderdetail.OrderDetailService;
 import com.cg.service.product.ProductService;
 import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +44,12 @@ public class HomeController {
 
     @Autowired
     private ProductMediaService productMediaService;
+
+    @Autowired
+    private OrderDetailService orderDetailService;
+
+    @Autowired
+    private OrderService orderService;
 
     private String getPrincipal() {
         String username;
@@ -273,6 +283,19 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/orderDashboard/order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailDTO();
+        modelAndView.addObject("orderDetail", orderDetailDTOS);
+        return modelAndView;
+    }
+
+    @GetMapping("/order-dashboard/detail")
+    public ModelAndView getOrderDetailDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/orderDashboard/detail-order");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailDTO();
+        modelAndView.addObject("orderDetail", orderDetailDTOS);
         return modelAndView;
     }
 

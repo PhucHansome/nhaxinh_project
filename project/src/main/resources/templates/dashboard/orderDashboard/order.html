@@ -23,108 +23,72 @@
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-            <div class="content-page">
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="row  row-cols-4 shadow-lg p-3 mb-5 bg-body rounded" style="margin-top: 10px">
-                            <div class="col">
-                                <li class="d-none d-sm-block">
-                                    <form class="app-search">
-                                        <div class="app-search-box">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search...">
-                                                <div class="input-group-append">
-                                                    <button class="btn" type="submit" style="color: #0a0a0a;
-                                                        position: relative;
-                                                        right: 40px;
-                                                        background: white;
-                                                        border-bottom: 1px solid #a5a9ab7d;
-                                                        border-right: 1px solid white;
-                                                        border-left: 1px solid white;
-                                                        border-top: 1px solid #a5a9ab7d;">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </li>
-
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Uplon</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Danh sách đơn đặt
+                                        hàng</a></li>
+                                    <li class="breadcrumb-item active">Danh sách đơn đặt hàng</li>
+                                </ol>
                             </div>
-
-                            <div class="col">
-                                <select class="form-control" >
-                                <option>Chọn sản phẩm... </option>
-                            </select>
-                            </div>
-
-                            <div class="col">
-                                <select class="form-control" >
-                                    <option>Chọn trạng thái... </option>
-                                </select>
-                            </div>
-                            <div class="col" >
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="col">
-                                <button type="button" style="margin-bottom: 10px"
-                                        class="btn btn-success float-right "  >
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    Export  </button>
-                            </div>
-
+                            <h4 class="page-title">Danh sách đơn đặt hàng</h4>
                         </div>
-
-                        <div class="row row-cols-4 shadow-lg p-3 mb-5 bg-body rounded">
-                            <div class="col-lg-12">
-                                <table id="tableListProducts" class="table table-hover">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th class="align-middle text-center">Order</th>
-                                        <th class="align-middle text-center">Title</th>
-                                        <th class="align-middle text-center">Product</th>
-                                        <th class="align-middle text-center">Customer</th>
-                                        <th class="align-middle text-center">Last activity</th>
-                                        <th class="align-middle text-center">Status</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="align-middle text-center">#0078</td>
-                                        <td class="align-middle text-center">Phòng khách</td>
-                                        <td class="align-middle text-center">Ghế sofa</td>
-                                        <td class="align-middle text-center">Vinh123</td>
-                                        <td class="align-middle text-center">12 minutes</td>
-                                        <td class="align-middle text-center">New</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-
-
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h2 class="header-title">Danh sách đơn đặt hàng</h2>
+
+                            <table id="key-table" class="table table-bordered dt-responsive nowrap tableListOrder"
+                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th class="text-center align-middle">#</th>
+                                    <th class="text-center align-middle">Ngày Đặt hàng</th>
+                                    <th class="text-center align-middle">Tên khách hàng</th>
+                                    <th class="text-center align-middle">Trạng thái đơn hàng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="orderDetail, count : ${orderDetail}">
+                                    <tr >
+                                        <td class="text-center align-middle" th:text="*{orderDetail.id}"></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.createdAt}"></td>
+                                        <td class="text-center align-middle">
+                                            <a th:href="*{'/order-dashboard/detail/'+orderDetail.order.customerInfo.id}" th:text="*{orderDetail.order.customerInfo.fullName}"></a></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.order.statusOrder}"></td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end row -->
+
             </div>
-            <!-- Start Content-->
-
-        </div> <!-- end content -->
-
-
-
-        <!-- Footer Start -->
-        <th:block th:replace="/dashboard/layout/footer::footer"/>
-        <!-- end Footer -->
-
+        </div>
     </div>
+    <!-- Start Content-->
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
+</div> <!-- end content -->
+
+
+<!-- Footer Start -->
+<th:block th:replace="/dashboard/layout/footer::footer"/>
+<!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 
 </div>
 <!-- END wrapper -->
@@ -133,6 +97,36 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<script src="/assets_dashboard/assets/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets_dashboard/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/assets_dashboard/assets/js/pages/datatables.init.js"></script>
+<script>
+    let page = {
+        url: {
+            GetOrder: App.BASE_URL_ORDER,
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+    let order = new Order();
+    let customerInfo = new CustomerInfo();
+
+    page.element.tableListOrder = $(".tableListOrder tbody")
+
+    $(function () {
+
+    })
+
+</script>
 
 </body>
 </html>
