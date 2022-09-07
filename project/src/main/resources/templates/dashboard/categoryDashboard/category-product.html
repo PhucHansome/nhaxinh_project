@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Uplon</a></li>
+                                    <li class="breadcrumb-item active">Category</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Loại sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <h3>Thêm mới loại sản phẩm</h3>
+                        </div>
+                        <div class="row">
+                            <label>Tên loại sản phẩm</label>
+                            <input type="text" class="form-control" id="nameCategory" name="nameCategory"
+                                   placeholder="Nhập loại sản phẩm">
+                        </div>
+                        <div class="row">
+                            <label>Code loại sản phẩm</label>
+                            <input type="text" class="form-control" id="codeCategory" name="codeCategory"
+                                   placeholder="Nhập code loại sản phẩm">
+                        </div>
+
+                        <div class="row">
+                            <button type="button" style="margin-bottom: 10px;margin-top: 10px"
+                                    class="btn btn-success float-right createCategory " id="createCategory">
+                                <i class="fas fa-plus-square" style="margin-right: 5px;"></i>Tạo mới
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class=" col-md-8">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-box">
+                                    <h2 class="header-title">Danh sách Loại sản phẩm</h2>
+
+                                    <table id="key-table"
+                                           class="table table-bordered dt-responsive nowrap tableListOrder"
+                                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center align-middle">#</th>
+                                            <th class="text-center align-middle">Tên loại sản phẩm</th>
+                                            <th class="text-center align-middle">Code loại sản phẩm</th>
+                                            <th class="text-center align-middle">Hành động</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <th:block th:each="category, count : ${category}">
+                                            <tr>
+                                                <td class="text-center align-middle" id="idCategory" name="id"th:text="*{category.id}"></td>
+                                                <td class="text-center align-middle" th:text="*{category.name}"></td>
+                                                <td class="text-center align-middle" th:text="*{category.code}"></td>
+                                                <td class="text-center align-middle">
+                                                    <button th:data-id="*{category.id}" type="button" style="text-align: center"
+                                                            class="btn btn-danger float-right btn-delete btnDeleteCategory">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Content-->
+
+
+        </div>
+    </div> <!-- end content -->
+
+
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+<script src="/assets_dashboard/assets/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets_dashboard/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/assets_dashboard/assets/js/pages/datatables.init.js"></script>
+
+
+<script>
+    let page = {
+        url: {
+            CreateCategory: App.BASE_URL_CATEGORY,
+            DeleteCategory: App.BASE_URL_CATEGORY + "/delete-category/"
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+    page.element.nameCategory = $("#nameCategory");
+    page.element.codeCategory = $("#codeCategory");
+    page.element.btncreateCategory = $("#createCategory");
+    page.element.btnDeleteCategory = $(".btnDeleteCategory");
+    page.element.idCategory = $("#idCategory");
+
+    let category = new Category();
+
+    let categoryId = null;
+
+    page.element.btncreateCategory.on('click', () => {
+        category.name = page.element.nameCategory.val();
+        category.code = page.element.codeCategory.val();
+        delete category.id;
+
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "POST",
+            "url": "http://localhost:8092/api/category/create",
+            "data": JSON.stringify(category)
+        }).done((data) => {
+            category.name = page.element.nameCategory.val("");
+            category.code = page.element.codeCategory.val("");
+
+            Swal.fire({
+                icon: 'success',
+                title: "Thêm mới Category thành công",
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            setTimeout(function () {
+                window.location.href = "/category-product-dashboard";
+            }, 1000);
+        }).fail((jqXHR) => {
+            App.IziToast.showErrorAlert("Thêm mới Category thất bại")
+            console.log(jqXHR)
+        })
+    })
+    page.commands.handleShowConfirmDelete = () => {
+        page.element.btnDeleteCategory.on('click', function () {
+            let  id = $(this).data("id");
+            App.SweetAlert.showConfirmDeleteCategory()
+                .then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            "type": "DELETE",
+                            url: page.url.DeleteCategory + id,
+                        })
+                            .done((data) => {
+                                console.log(data)
+                                App.IziToast.showSuccessAlert("Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 3s")
+                                setTimeout(function () {
+                                    window.location.href = "/category-product-dashboard";
+                                }, 3000);
+                            })
+                            .fail((e) => {
+                                console.log(e)
+                                App.IziToast.showErrorAlert('Xóa Loại sản phẩm  thất bại');
+                            });
+                    }
+                })
+        })
+    }
+    $(function () {
+
+        page.commands.handleShowConfirmDelete();
+
+
+    })
+</script>
+</body>
+</html>

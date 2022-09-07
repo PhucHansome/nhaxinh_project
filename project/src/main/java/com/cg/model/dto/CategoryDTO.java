@@ -23,9 +23,13 @@ public class CategoryDTO {
 
     private String name;
 
+    private String code;
+
     public Category toCategory(){
         return new Category()
                 .setId(id)
-                .setName(name);
+                .setName(name)
+                .setCode(code);
+
     }
 }

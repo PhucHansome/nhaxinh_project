@@ -2,8 +2,8 @@ package com.cg.controller;
 
 
 import com.cg.model.dto.*;
-import com.cg.repository.OrderDetailRepository;
 import com.cg.service.Tag.TagService;
+import com.cg.service.category.CategoryService;
 import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +49,9 @@ public class HomeController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     private String getPrincipal() {
         String username;
@@ -200,9 +202,11 @@ public class HomeController {
     @GetMapping("/category-product-dashboard")
     public ModelAndView getCategoryProductDashboard() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/productDashboard/category-product");
+        modelAndView.setViewName("/dashboard/categoryDashboard/category-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<CategoryDTO> categoryDTOS=categoryService.findAllCategoryDTO();
+        modelAndView.addObject("category",categoryDTOS);
         return modelAndView;
     }
 
@@ -320,5 +324,7 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+
+
 
 }

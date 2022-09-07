@@ -46,6 +46,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void softDelete(Category category) {
+
     }
 
     @Override
@@ -57,4 +58,12 @@ public class CategoryServiceImpl implements CategoryService{
     public Optional<CategoryDTO> findCategoryDTOById(Long id) {
         return categoryRepository.findCategoryDTOById(id);
     }
+
+    @Override
+    public void  deleteCategory(Long id) {
+
+        categoryRepository.deleteById(id);
+    }
+
+
 }

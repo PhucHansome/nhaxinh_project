@@ -2,7 +2,6 @@ package com.cg.controller.api;
 
 import com.cg.model.User;
 import com.cg.model.dto.UserDTO;
-import com.cg.service.role.IRoleService;
 import com.cg.service.user.IUserService;
 import com.cg.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
