@@ -8,51 +8,44 @@
     <link rel="stylesheet" href="/assets/js_css/font-awesome/v4.7.0/css/all.min.css">
 
 </head>
-
+<style></style>
 <body >
 
 <div class="container">
-    <div class="backbox">
-        <div class="loginMsg">
-            <div class="textcontent">
-                <p class="title">Don't have an account?</p>
-                <p>Sign up to save all your graph.</p>
-                <button id="switch1">Sign Up</button>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <div class="login">
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="usernameLo" class="login__input" placeholder="User name / Email">
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="passwordLo" class="login__input" placeholder="Password">
+                    </div>
+                    <button class="button login__submit" id="btn_sign_in">
+                        <span class="button__text">Log In Now</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="social-login">
+                    <h3>log in via</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-login__icon fab fa-instagram"></a>
+                        <a href="#" class="social-login__icon fab fa-facebook"></a>
+                        <a href="#" class="social-login__icon fab fa-twitter"></a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="signupMsg visibility">
-            <div class="textcontent">
-                <p class="title">Have an account?</p>
-                <p>Log in to see all your collection.</p>
-                <button id="switch2">LOG IN</button>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
             </div>
         </div>
     </div>
-    <!-- backbox -->
-
-    <div class="frontbox">
-        <div class="login">
-            <h2>LOG IN</h2>
-            <div class="inputbox">
-                <input type="email" id="usernameLo" name="usernameLo" placeholder="  EMAIL">
-                <input type="password" id="passwordLo" name="passwordLo" placeholder="  PASSWORD">
-            </div>
-            <p>FORGET PASSWORD?</p>
-            <button id="btn_sign_in">LOG IN</button>
-        </div>
-
-        <div class="signup hide">
-            <h2>SIGN UP</h2>
-            <div class="inputbox">
-                <input type="email" id="usernameReg" name="usernameReg" placeholder="EMAIL">
-                <input type="password" id="passwordReg" name="passwordReg" placeholder="PASSWORD">
-                <input type="password" id="passwordReg1" name="passwordReg1" placeholder="CONFIRM PASSWORD">
-            </div>
-            <button id="btn_sign_up">SIGN UP</button>
-        </div>
-
-    </div>
-    <!-- frontbox -->
 </div>
 </body>
 
@@ -66,95 +59,7 @@
 <script src="/assets/js_css/js/sweetalert2.min.js"></script>
 
 <script>
-
-    var $loginMsg = $('.loginMsg'),
-        $login = $('.login'),
-        $signupMsg = $('.signupMsg'),
-        $signup = $('.signup'),
-        $frontbox = $('.frontbox');
-
-    $('#switch1').on('click', function () {
-        $loginMsg.toggleClass("visibility");
-        $frontbox.addClass("moving");
-        $signupMsg.toggleClass("visibility");
-
-        $signup.toggleClass('hide');
-        $login.toggleClass('hide');
-    })
-
-    $('#switch2').on('click', function () {
-        $loginMsg.toggleClass("visibility");
-        $frontbox.removeClass("moving");
-        $signupMsg.toggleClass("visibility");
-
-        $signup.toggleClass('hide');
-        $login.toggleClass('hide');
-    })
-
-    setTimeout(function () {
-        $('#switch1')
-    }, 3000)
-
-    setTimeout(function () {
-        $('#switch2')
-    }, 3000)
-
-
     let btn_sign_in = $('#btn_sign_in');
-    let btn_sign_up = $('#btn_sign_up');
-
-
-    btn_sign_up.on("click", () => {
-        let username = $('#usernameReg').val();
-        let password = $('#passwordReg').val();
-        let passwordConfirm = $("#passwordReg1").val();
-
-        if (password !== passwordConfirm){
-            App.IziToast.showErrorAlert("password nhập vào không khớp!!");
-            return
-        }
-
-        let user = {
-            username: username,
-            password: password,
-            role: {
-                id: 1
-            },
-        }
-
-        $.ajax({
-            headers: {
-                "accept": "application/json",
-                "content-type": "application/json"
-            },
-            type: "POST",
-            url: "http://localhost:8092/api/auth/register",
-            data: JSON.stringify(user)
-        }).done((data) => {
-
-            App.IziToast.showSuccessAlert("Đăng ký thành công!!");
-            setTimeout(function () {
-                $loginMsg.toggleClass("visibility");
-                $frontbox.removeClass("moving");
-                $signupMsg.toggleClass("visibility");
-
-                $signup.toggleClass('hide');
-                $login.toggleClass('hide');
-                $('#usernameLo').val($('#usernameReg').val())
-                $('#passwordLo').val($('#passwordReg').val())
-            }, 1000);
-
-        }).fail((jqXHR) => {
-            console.log(jqXHR);
-           if (jqXHR.responseJSON) {
-                $.each(jqXHR.responseJSON, (key, item) => {
-                    App.IziToast.showErrorAlert(item) ;
-                })
-
-            }
-        })
-    })
-
     btn_sign_in.on("click", () => {
         let username = $('#usernameLo').val();
         let password = $('#passwordLo').val();
