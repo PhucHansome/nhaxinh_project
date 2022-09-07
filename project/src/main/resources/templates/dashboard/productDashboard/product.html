@@ -229,7 +229,11 @@
         page.element.btnGoCreateCategory.on("click",function (){
             window.location.href = "/category-product-dashboard";
         })
-
+    }
+    page.dialogs.commands.goCreateColor = () =>{
+        page.element.btnGoCreateColor.on("click",function (){
+            window.location.href = "/color-product-dashboard";
+        })
     }
     
 
@@ -237,6 +241,7 @@
         page.dialogs.commands.getAllProduct();
         page.dialogs.commands.goCreateProduct();
         page.dialogs.commands.goCreateCategory();
+        page.dialogs.commands.goCreateColor();
     })
 
 </script>

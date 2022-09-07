@@ -9,6 +9,7 @@ import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
 import com.cg.service.product.ProductService;
+import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class HomeController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductColorService productColorService;
 
     private String getPrincipal() {
         String username;
@@ -208,6 +212,16 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         List<CategoryDTO> categoryDTOS=categoryService.findAllCategoryDTO();
         modelAndView.addObject("category",categoryDTOS);
+        return modelAndView;
+    }
+    @GetMapping("/color-product-dashboard")
+    public ModelAndView getColorProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/colorDashboard/color-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        List<ProductColorDTO> productColorDTOS=productColorService.findAllProductColorDTO();
+        modelAndView.addObject("color",productColorDTOS);
         return modelAndView;
     }
 

@@ -36,7 +36,7 @@
                                     <li class="breadcrumb-item active">Category</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Loại sản phẩm</h4>
+                            <h4 class="page-title">Màu sắc sản phẩm</h4>
                         </div>
                     </div>
                 </div>
@@ -50,22 +50,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="row">
-                            <h3>Thêm mới loại sản phẩm</h3>
+                            <h3>Thêm mới màu sắc sản phẩm</h3>
                         </div>
                         <div class="row">
-                            <label>Tên loại sản phẩm</label>
-                            <input type="text" class="form-control" id="nameCategory" name="nameCategory"
-                                   placeholder="Nhập loại sản phẩm">
-                        </div>
-                        <div class="row">
-                            <label>Code loại sản phẩm</label>
-                            <input type="text" class="form-control" id="codeCategory" name="codeCategory"
-                                   placeholder="Nhập code loại sản phẩm">
+                            <label>Tên màu sắc sản phẩm</label>
+                            <input type="text" class="form-control" id="nameColor" name="nameColor"
+                                   placeholder="Nhập màu sắc sản phẩm">
                         </div>
 
                         <div class="row">
                             <button type="button" style="margin-bottom: 10px;margin-top: 10px"
-                                    class="btn btn-success float-right createCategory " id="createCategory">
+                                    class="btn btn-success float-right createColor " id="createColor">
                                 <i class="fas fa-plus-square" style="margin-right: 5px;"></i>Tạo mới
                             </button>
                         </div>
@@ -76,7 +71,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-box">
-                                    <h2 class="header-title">Danh sách Loại sản phẩm</h2>
+                                    <h2 class="header-title">Danh sách màu sắc sản phẩm</h2>
 
                                     <table id="key-table"
                                            class="table table-bordered dt-responsive nowrap tableListOrder"
@@ -84,20 +79,18 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center align-middle">#</th>
-                                            <th class="text-center align-middle">Tên loại sản phẩm</th>
-                                            <th class="text-center align-middle">Code loại sản phẩm</th>
+                                            <th class="text-center align-middle">Tên màu sắc sản phẩm</th>
                                             <th class="text-center align-middle">Hành động</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <th:block th:each="category, count : ${category}">
+                                        <th:block th:each="color, count : ${color}">
                                             <tr>
-                                                <td class="text-center align-middle" id="idCategory" name="id"th:text="*{category.id}"></td>
-                                                <td class="text-center align-middle" th:text="*{category.name}"></td>
-                                                <td class="text-center align-middle" th:text="*{category.code}"></td>
+                                                <td class="text-center align-middle" id="idColor" name="id"th:text="*{color.id}"></td>
+                                                <td class="text-center align-middle" th:text="*{color.color}"></td>
                                                 <td class="text-center align-middle" style="width: 0">
-                                                    <button th:data-id="*{category.id}" type="button" style="text-align: center; position: relative;left: -25px;"
-                                                            class="btn btn-danger float-right btn-delete btnDeleteCategory">
+                                                    <button th:data-id="*{color.id}" type="button" style="text-align: center; position: relative;left: -25px;"
+                                                            class="btn btn-danger float-right btn-delete btnDeleteColor">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -144,8 +137,8 @@
 <script>
     let page = {
         url: {
-            CreateCategory: App.BASE_URL_CATEGORY,
-            DeleteCategory: App.BASE_URL_CATEGORY + "/delete-category/"
+            CreateColor: App.BASE_URL_COLOR,
+            DeleteColor: App.BASE_URL_COLOR + "/delete-color/"
 
         },
         element: {},
@@ -160,20 +153,18 @@
             inputError: {}
         }
     }
-    page.element.nameCategory = $("#nameCategory");
-    page.element.codeCategory = $("#codeCategory");
-    page.element.btncreateCategory = $("#createCategory");
-    page.element.btnDeleteCategory = $(".btnDeleteCategory");
-    page.element.idCategory = $("#idCategory");
+    page.element.nameColor = $("#nameColor");
+    page.element.btncreateColor = $("#createColor");
+    page.element.btnDeleteColor = $(".btnDeleteColor");
+    page.element.idColor = $("#idColor");
 
-    let category = new Category();
+    let productColor = new ProductColor();
 
-    let categoryId = null;
+    let colorId = null;
 
-    page.element.btncreateCategory.on('click', () => {
-        category.name = page.element.nameCategory.val();
-        category.code = page.element.codeCategory.val();
-        delete category.id;
+    page.element.btncreateColor.on('click', () => {
+        productColor.color = page.element.nameColor.val();
+        delete productColor.id;
 
         $.ajax({
             "headers": {
@@ -181,54 +172,53 @@
                 "content-type": "application/json"
             },
             "type": "POST",
-            "url": "http://localhost:8092/api/category/create",
-            "data": JSON.stringify(category)
+            "url": "http://localhost:8092/api/colorProduct/create",
+            "data": JSON.stringify(productColor)
         }).done((data) => {
-            category.name = page.element.nameCategory.val("");
-            category.code = page.element.codeCategory.val("");
+            productColor.color = page.element.nameColor.val("");
 
             Swal.fire({
                 icon: 'success',
-                title: "Thêm mới Category thành công",
+                title: "Thêm mới màu sắc thành công",
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 1500
             })
             setTimeout(function () {
-                window.location.href = "/category-product-dashboard";
+                window.location.href = "/color-product-dashboard";
             }, 1000);
         }).fail((jqXHR) => {
-            App.IziToast.showErrorAlert("Thêm mới Category thất bại")
+            App.IziToast.showErrorAlert("Thêm mới màu sắc thất bại")
             console.log(jqXHR)
         })
     })
-    page.commands.handleShowConfirmDelete = () => {
-        page.element.btnDeleteCategory.on('click', function () {
+    page.commands.handleShowConfirmDeleteColor = () => {
+        page.element.btnDeleteColor.on('click', function () {
             let  id = $(this).data("id");
-            App.SweetAlert.showConfirmDeleteCategory()
+            App.SweetAlert.showConfirmDeleteColor()
                 .then((result) => {
                     if (result.isConfirmed) {
 
                         $.ajax({
                             "type": "DELETE",
-                            url: page.url.DeleteCategory + id,
+                            url: page.url.DeleteColor + id,
                         })
                             .done((data) => {
                                 console.log(data)
                                 Swal.fire({
                                     icon: 'success',
-                                    title: "Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 1s",
+                                    title: "Xóa màu sắc sản phẩm Thành Công! Bạn sẽ trở về danh sách màu sắc sản phẩm sau 1s",
                                     position: 'top-end',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
                                 setTimeout(function () {
-                                    window.location.href = "/category-product-dashboard";
+                                    window.location.href = "/color-product-dashboard";
                                 }, 1000);
                             })
                             .fail((e) => {
                                 console.log(e)
-                                App.IziToast.showErrorAlert('Xóa Loại sản phẩm  thất bại');
+                                App.IziToast.showErrorAlert('Xóa màu sắc sản phẩm  thất bại');
                             });
                     }
                 })
@@ -236,7 +226,7 @@
     }
     $(function () {
 
-        page.commands.handleShowConfirmDelete();
+        page.commands.handleShowConfirmDeleteColor();
 
 
     })

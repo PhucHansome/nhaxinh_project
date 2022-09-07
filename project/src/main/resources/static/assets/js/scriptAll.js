@@ -5,9 +5,11 @@ class App {
     static BASE_URL_USER = this.DOMAIN + "/api/auth"
     static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
     static BASE_URL_PROVINCE =  "https://vapi.vnappmob.com/api/province";
-
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
-    static BASE_URL_CATEGORY = this.DOMAIN + "/api/category"
+    static BASE_URL_CATEGORY = this.DOMAIN + "/api/category";
+    static BASE_URL_COLOR = this.DOMAIN + "/api/colorProduct";
+
+
     static BASE_URL_PRODUCTCOLOR = this.DOMAIN + "/api/products/product-color"
     static BASE_URL_TAG = this.DOMAIN + "/api/tag"
     static BASE_URL_CART = this.DOMAIN + "/api/cart"
@@ -51,6 +53,17 @@ class App {
         static showConfirmDeleteCategory() {
             return Swal.fire({
                 title: 'Bạn có muốn xoá loại sản phẩm này?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có, Xoá ngay!',
+                cancelButtonText: 'Huỷ'
+            });
+        }
+        static showConfirmDeleteColor() {
+            return Swal.fire({
+                title: 'Bạn có muốn xoá màu sắc sản phẩm này?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

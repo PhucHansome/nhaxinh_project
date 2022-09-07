@@ -1,5 +1,6 @@
 package com.cg.service.productColor;
 
+import com.cg.model.ProductColor;
 import com.cg.model.dto.ProductColorDTO;
 import com.cg.repository.ProductColorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class ProductColorServiceImpl implements ProductColorService{
     private ProductColorRepository productColorRepository;
 
     @Override
-    public List<ProductColorService> findAll() {
+    public List<ProductColor> findAll() {
         return null;
     }
 
@@ -24,18 +25,18 @@ public class ProductColorServiceImpl implements ProductColorService{
     }
 
     @Override
-    public Optional<ProductColorService> findById(Long id) {
+    public Optional<ProductColor> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public ProductColorService getById(Long id) {
+    public ProductColor getById(Long id) {
         return null;
     }
 
     @Override
-    public ProductColorService save(ProductColorService productColorService) {
-        return null;
+    public ProductColor save(ProductColor productColor) {
+        return productColorRepository.save(productColor);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ProductColorServiceImpl implements ProductColorService{
     }
 
     @Override
-    public void softDelete(ProductColorService productColorService) {
+    public void softDelete(ProductColor ProductColor) {
 
     }
 
@@ -56,5 +57,10 @@ public class ProductColorServiceImpl implements ProductColorService{
     @Override
     public Optional<ProductColorDTO> findProductColorDTOById(Long id) {
         return productColorRepository.findProductColorDTOById(id);
+    }
+
+    @Override
+    public void deleteColor(Long id) {
+        productColorRepository.deleteById(id);
     }
 }
