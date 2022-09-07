@@ -54,6 +54,7 @@
                                     <th class="text-center align-middle">Ngày Đặt hàng</th>
                                     <th class="text-center align-middle">Tên khách hàng</th>
                                     <th class="text-center align-middle">Trạng thái đơn hàng</th>
+                                    <th class="text-center align-middle">Tổng tiền</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,8 +63,9 @@
                                         <td class="text-center align-middle" th:text="*{orderDetail.id}"></td>
                                         <td class="text-center align-middle" th:text="*{orderDetail.createdAt}"></td>
                                         <td class="text-center align-middle">
-                                            <a th:href="*{'/order-dashboard/detail/'+orderDetail.order.customerInfo.id}" th:text="*{orderDetail.order.customerInfo.fullName}"></a></td>
-                                        <td class="text-center align-middle" th:text="*{orderDetail.order.statusOrder}"></td>
+                                            <a th:href="*{'/order-dashboard/detail/'+orderDetail.id}" th:text="*{orderDetail.fullName}"></a></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.statusOrderDetail}"></td>
+                                        <td class="text-center align-middle" th:text="*{#numbers.formatCurrency(orderDetail.grandTotal)}"></td>
                                     </tr>
                                 </th:block>
                                 </tbody>
@@ -101,30 +103,7 @@
 <script src="/assets_dashboard/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/assets_dashboard/assets/js/pages/datatables.init.js"></script>
 <script>
-    let page = {
-        url: {
-            GetOrder: App.BASE_URL_ORDER,
-        },
-        element: {},
-        loadData: {},
-        commands: {},
-        dialogs: {
-            element: {},
-            loadData: {},
-            commands: {},
-            close: {},
-            alertDanger: {},
-            inputError: {}
-        }
-    }
-    let order = new Order();
-    let customerInfo = new CustomerInfo();
 
-    page.element.tableListOrder = $(".tableListOrder tbody")
-
-    $(function () {
-
-    })
 
 </script>
 

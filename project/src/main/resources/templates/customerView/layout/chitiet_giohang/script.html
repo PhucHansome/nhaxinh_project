@@ -1477,7 +1477,8 @@
             order.productImage = "null";
             order.productTitle = "null";
             order.customerInfo = cart.customerInfo;
-            order.statusOrder = "Đang chờ duyệt"
+            order.statusOrder = "Đang chờ duyệt";
+            order.orderDetail = new OrderDetail();
             $.ajax({
                 "headers": {
                     "accept": "application/json",

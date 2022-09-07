@@ -5,7 +5,12 @@ import com.cg.model.dto.OrderDetailDTO;
 import com.cg.service.IGeneralService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderDetailService extends IGeneralService<OrderDetail> {
-    List<OrderDetailDTO> findAllOrderDetailDTO();
+
+    OrderDetail changeStatusCheckOut(OrderDetail orderDetail, String userName);
+
+    OrderDetail cancelOrder(OrderDetail orderDetail, String userName);
+
 }

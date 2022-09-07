@@ -4,6 +4,7 @@ package com.cg.model.dto;
 import com.cg.model.CustomerInfo;
 import com.cg.model.LocationRegion;
 import com.cg.model.Order;
+import com.cg.model.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -37,11 +38,13 @@ public class OrderDTO {
 
     private String statusOrder;
 
+    private OrderDetailDTO orderDetail;
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
 
-    public OrderDTO(Long id, String description, BigDecimal grandTotal, BigDecimal quantity, String productCode, String productImage, String productTitle, CustomerInfo customerInfo, Date createdAt, String statusOrder) {
+    public OrderDTO(Long id, String description, BigDecimal grandTotal, BigDecimal quantity, String productCode, String productImage, String productTitle, CustomerInfo customerInfo, Date createdAt, String statusOrder,OrderDetail orderDetail) {
         this.id = id;
         this.description = description;
         this.grandTotal = grandTotal;
@@ -52,6 +55,7 @@ public class OrderDTO {
         this.customerInfo = customerInfo.toCustomerInfoDTO();
         this.createdAt = createdAt;
         this.statusOrder = statusOrder;
+        this.orderDetail = orderDetail.toOrderDetailDTO();
     }
 
     public Order toOrder() {
@@ -65,6 +69,7 @@ public class OrderDTO {
                 .setProductTitle(productTitle)
                 .setCustomerInfo(customerInfo.toCustomerInfo())
                 .setStatusOrder(statusOrder)
+                .setOrderDetail(orderDetail.toOrderDetail())
                 ;
     }
 }

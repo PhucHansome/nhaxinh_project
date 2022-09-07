@@ -23,14 +23,18 @@ public class OrderDetail extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    private String statusOrderDetail;
+
+    private String fullName;
+
+    private BigDecimal grandTotal;
 
     public OrderDetailDTO toOrderDetailDTO(){
         return new OrderDetailDTO()
                 .setId(id)
-                .setOrder(order.toOrderDTO())
+                .setStatusOrderDetail(statusOrderDetail)
+                .setFullName(fullName)
+                .setGrandTotal(grandTotal)
                 ;
     }
 }

@@ -120,6 +120,27 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "c.createdAt" +
             ")  " +
             "FROM Product c WHERE " +
+            "c.code = ?1 " +
+            "And c.deleted = false")
+    List<ProductDTO> findAllProductDTOByCOde (String code);
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
             "c.deleted = false " +
             "AND (c.title LIKE ?1 " +
             "OR c.material LIKE ?1 " +

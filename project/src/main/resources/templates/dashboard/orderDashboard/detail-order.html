@@ -36,73 +36,16 @@
                                     <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Chi tiết đơn hàng</h4>
+                            <h4 class="page-title"><a href="/order-dashboard">Quay lại trang Danh sách đơn hàng</a></h4>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-8 card-box">
-                        <div class="row">
-                            <h2>chi tiết đơn hàng</h2>
-                        </div>
-                        <div class="row statusInfomation">
-                            <h3>Trạng thái đơn hàng</h3>
-                        </div>
-                        <div class="row">
-                            <div class="col-2">
-                                <h4>đây là ảnh</h4>
-                            </div>
-                            <div class="col-5">
-                                <p>title</p>
-                                <p>Màu sắc</p>
-                                <p>mã sản phẩm</p>
-                            </div>
-                            <div class="col-5"><h3>tính toán</h3></div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-6"></div>
-                            <div class="col-6">
-                                <p>Tổng giá trị sản phẩm</p>
-                                <p>Số tiền phải thanh toán</p>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-6"></div>
-                            <div class="col-6"><p>Xác nhận thanh toán hoặc hủy thanh toán</p></div>
-                        </div>
+                    <div class="col-8 card-box information_Item">
                     </div>
                     <div class="col-1" style="max-width: 3.33333%;"></div>
-                    <div class="col-3 card-box">
-                        <div class="row">
-                            <h2>khách hàng</h2>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <p>Tên khách hàng</p>
-                            <p>2 đơn hàng</p>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-10">
-                                <p>thông tin đơn hàng</p>
-                                <p>Gmail</p>
-                            </div>
-                            <div class="col-2">icon chỉnh sửa</div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <h2>địa chỉ giao hàng</h2>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <p>tên khách hàng</p>
-                            <p>số điện thoại</p>
-                            <p>address</p>
-                            <p>huyện</p>
-                            <p>thành phố</p>
-                        </div>
+                    <div class="col-3 card-box information_customer">
+
                     </div>
                 </div> <!-- end row -->
 
@@ -110,7 +53,9 @@
         </div>
     </div>
     <!-- Start Content-->
-
+    <div th:object="${idOrder}">
+        <span th:text="${idOrder}" id="idOrder" style="font-size: 0;"></span>
+    </div>
 </div> <!-- end content -->
 
 
@@ -135,7 +80,10 @@
 <script>
     let page = {
         url: {
-            GetOrder: App.BASE_URL_ORDER,
+            GetOrderDetail: App.BASE_URL_ORDER + "/order-detail/",
+            GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
+            PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
+            PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/"
         },
         element: {},
         loadData: {},
@@ -150,12 +98,218 @@
         }
     }
     let order = new Order();
+    let orderDetail = new OrderDetail();
     let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
 
-    page.element.tableListOrder = $(".tableListOrder tbody")
+    page.element.information_Item = $(".information_Item");
+    page.element.information_customer = $(".information_customer")
+    page.element.idOrder = $("#idOrder")
+    page.dialogs.element.line_cart_item = $(".line_cart_item")
+    page.dialogs.element.btnCheckout = $(".btn-checkout")
+
+    page.commands.getAllOrderById = () => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrderDetail + page.element.idOrder.text(),
+        }).done((data) => {
+            console.log(data)
+            orderDetail = data;
+            page.element.information_Item.html("")
+            let str = `
+                        <div class="row">
+                             <div class="col-12"><p style="font-weight: bold;font-size: 25px;">Chi tiết đơn hàng</p></div>
+                        </div>
+                        <div class="row ">
+                               <div class="col-12"><p style="font-weight: bold;font-size: 20px;padding-bottom: 20px;padding-top: 10px;left: 35px;position: relative;;">Trạng thái: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.statusOrderDetail}</span></p></div>
+                        </div>
+                        <div class="line_cart_item">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6 total_Bill" style="border-top: 2px solid #00000082;">
+                            </div>
+                        </div>
+                        <br>
+                        </div>
+                        <div class="row btn_AllAction">
+                            <div class="col-6">
+                                <button class="btn btn-danger btn-Cancel" data-id="${orderDetail.id}">Hủy đơn hàng</button>
+                            </div>
+                            <div class="col-6">
+                                <button data-id="${orderDetail.id}" class="btn btn-primary btn-checkout float-lg-right">Xác nhận đơn hàng</button>
+                            </div>
+                        </div>
+                        `
+            page.element.information_Item.prepend(str);
+
+            page.commands.GetOrderByOrderDetailId(orderDetail.id);
+
+
+            if( orderDetail.statusOrderDetail === "Đơn hàng đã duyệt" || orderDetail.statusOrderDetail === "Đã Hủy đơn hàng"){
+                $(".btnUpdateOrder").html("");
+                $(".btn_AllAction").html("")
+            }
+
+        }).fail((e) => {
+            console.log(e)
+        })
+    }
+
+    page.commands.GetOrderByOrderDetailId = (id) => {
+        $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrder + id,
+        }).done((data)=>{
+            console.log(data);
+            $(".line_cart_item").html("")
+            console.log(data)
+            let sum = 0
+            $.each(data, (i, item) => {
+                order = item;
+                if (order.statusOrder === "Đang chờ duyệt" || order.statusOrder === "Đơn hàng đã duyệt" || order.statusOrder === "Đã Hủy đơn hàng") {
+                    sum += order.grandTotal;
+                    let str3 = `
+                            <div class="row " style="       margin-bottom: 5px;
+                                                            border-radius: 5px;
+                                                            border: 2px solid #a1848459;
+                                                            padding-bottom: 5px;
+                                                            padding-top: 5px;
+                                                            width: 95%;
+                                                            left: 30px;
+                                                            position: relative;   ">
+                                <div class="col-2 ">
+                                    <img width="100px" src="${order.productImage}" alt="">
+                                </div>
+                                <div class="col-5">
+
+                                    <p></p>
+                                    <div class="col-12"><p style="font-weight: bold;font-size: 17px;">${" " + order.productTitle}</p></div>
+                                    <div class="col-12"><p style="font-style: italic;font-size: 10px;">${" " + order.productCode}</p></div>
+                                </div>
+                                <div class="col-4 text-danger text-center align-middle"><h5 class="text-danger text-center align-middle">${order.quantity} x ${new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(order.grandTotal)}</h5>
+                            </div>
+                                <div class="col-1"><i class="fa fa-times"></i>
+                            </div>
+                    `
+                    $(".line_cart_item").append(str3)
+                }
+                if (i === 0){
+
+                    page.element.information_customer.html("")
+                    let str2 = `
+                        <div class="row">
+                        <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Khách Hàng</p></div>
+                        </div>
+                        <div class="row">
+                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.fullName}</span></p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p class="text text-center" style="font-weight: bold;font-size: 20px;">Thông tin đơn hàng</p>
+                                <p style="font-weight: bold;font-size: 15px;">Email: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.userName}</span></p>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                               <div class="col-12"><p class="text text-center"  style="font-weight: bold;font-size: 20px;">Địa chỉ giao hàng</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.fullName}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Số điện thoại: <span style="color: #ff5d48; font-style: italic;">${" " + order.customerInfo.phone}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> ${" " + order.customerInfo.locationRegion.address}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Xã/Huyện: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.locationRegion.districtName}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Tỉnh/Thành phố: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.locationRegion.provinceName}</span></p></div>
+                        </div>
+                        `
+                    page.element.information_customer.prepend(str2);
+                    page.commands.handleCheckout(order.customerInfo.userName)
+                    page.commands.handleCancelOrder(order.customerInfo.userName)
+                }
+
+            })
+            $(".total_Bill").html("")
+            let str4 = `
+                <h5 style="color:#ff5d4852;" >Tổng giá trị toàn bộ sản phẩm: ${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(sum)}</h5>
+                <h5 class="text-danger">Số tiền phải thanh toán: ${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(sum)}</h5>
+            `
+            $(".total_Bill").append(str4)
+        }).fail(()=>{
+
+        })
+    }
+
+    page.commands.getOrderDetailById = (id) => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrderDetail  + id
+        }).done((data) => {
+            console.log(data);
+            orderDetail = data;
+        }).fail((e) => {
+            console.log(e)
+        })
+    }
+
+    page.commands.handleCheckout = (userName) => {
+        $(".btn-checkout").on("click", function () {
+            let id = $(this).data("id");
+            page.commands.getOrderDetailById(id).then(() => {
+                $.ajax({
+                    headers: {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    type: "PUT",
+                    url: page.url.PutOrderDetailCheckOut  + userName,
+                    data: JSON.stringify(orderDetail)
+                }).done((data)=>{
+                    App.SweetAlert.showSuccessAlert("Bạn đã Duyệt đơn hàng thành công")
+                    console.log(data);
+                    page.commands.getAllOrderById();
+                }).fail(()=>{
+                    App.SweetAlert.showErrorAlert("Bạn đã Duyệt đơn hàng Thất bại")
+                })
+            })
+        })
+    }
+
+    page.commands.handleCancelOrder = (userName) => {
+        $(".btn-Cancel").on("click", function () {
+            let id = $(this).data("id");
+            page.commands.getOrderDetailById(id).then(() => {
+                $.ajax({
+                    headers: {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    type: "PUT",
+                    url: page.url.PutOrderDetailCancel  + userName,
+                    data: JSON.stringify(orderDetail)
+                }).done((data)=>{
+                    App.SweetAlert.showSuccessAlert("Bạn đã Hủy đơn hàng thành công!")
+                    console.log(data);
+                    page.commands.getAllOrderById();
+                }).fail(()=>{
+                    App.SweetAlert.showErrorAlert("Bạn đã Hủy đơn hàng thất bại!")
+                })
+            })
+        })
+    }
+
 
     $(function () {
-
+        page.commands.getAllOrderById()
     })
 
 </script>

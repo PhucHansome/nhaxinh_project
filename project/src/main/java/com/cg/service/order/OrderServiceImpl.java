@@ -3,14 +3,13 @@ package com.cg.service.order;
 import com.cg.model.Cart;
 import com.cg.model.Order;
 import com.cg.model.OrderDetail;
-import com.cg.model.dto.CartDTO;
-import com.cg.model.dto.CartItemsDTO;
-import com.cg.model.dto.OrderDTO;
-import com.cg.model.dto.UserDTO;
+import com.cg.model.dto.*;
 import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +32,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     private OrderDetailRepository orderDetailRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<Order> findAll() {
@@ -57,14 +59,24 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order save(Order order) {
         OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setId(0L);
+        orderDetail.setStatusOrderDetail("abc");
+        orderDetailRepository.save(orderDetail);
+        BigDecimal sum = BigDecimal.valueOf(0);
+        Optional<OrderDetailDTO> orderNew = orderDetailRepository.findOrderDetailNew("abc");
         List<CartItemsDTO> cartItemsDTOList = cartItemRepository.findCartItemDTOById(order.getCustomerInfo().getUserName());
         for (CartItemsDTO cartItemsDTO : cartItemsDTOList){
+            Optional<ProductDTO> productDTO =  productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
+            productDTO.get().setQuantity(productDTO.get().getQuantity().subtract(cartItemsDTO.getQuantity()));
+            productRepository.save(productDTO.get().toProduct());
             order.setId(0L);
+            order.setOrderDetail(orderNew.get().toOrderDetail());
             order.setQuantity(cartItemsDTO.getQuantity());
             order.setProductCode(cartItemsDTO.getProduct().getCode());
             order.setProductTitle(cartItemsDTO.getProduct().getTitle());
             order.setProductImage(cartItemsDTO.getProduct().getImage());
             order.setGrandTotal(cartItemsDTO.getGrandTotal());
+            sum = order.getGrandTotal().add(sum);
             cartItemRepository.deleteById(cartItemsDTO.getId());
             orderRepository.save(order);
         }
@@ -77,10 +89,11 @@ public class OrderServiceImpl implements OrderService{
         }
         List<OrderDTO> orderDTOS = orderRepository.findOrderDTOByUserName(order.getCustomerInfo().getUserName());
         for (OrderDTO order1 : orderDTOS){
-            orderDetail.setOrder(order1.toOrder());
+            orderNew.get().setStatusOrderDetail(order1.getStatusOrder());
+            orderNew.get().setFullName(order1.getCustomerInfo().getFullName());
         }
-        orderDetail.setId(0L);
-        orderDetailRepository.save(orderDetail);
+        orderNew.get().setGrandTotal(sum);
+        orderDetailRepository.save(orderNew.get().toOrderDetail());
 
         return null;
     }
@@ -107,6 +120,19 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
-        return orderRepository.findOrderDTOByUserNameAndStatus(userName,status);
+        List<OrderDTO> order = orderRepository.findOrderDTOByUserName(userName);
+//        for (OrderDTO orderDTO : order) {
+////            List<OrderDetailDTO> orderDetailDTOS = orderDetailRepository.findAllOrderDetailDTOByOrderId(orderDTO.getId());
+////            for (OrderDetailDTO orderDetailDTOSs : orderDetailDTOS) {
+//
+//            }
+//        }
+
+        return order;
+    }
+
+    @Override
+    public List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id) {
+        return orderRepository.findAllOrderDTOByOrderDetailId(id);
     }
 }

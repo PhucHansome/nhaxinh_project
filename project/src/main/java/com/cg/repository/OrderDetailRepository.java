@@ -8,14 +8,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface OrderDetailRepository extends JpaRepository<OrderDetail,Long> {
+public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
+
     @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
             "od.id, " +
-            "od.order, " +
-            "od.createdAt " +
+            "od.fullName, " +
+            "od.statusOrderDetail,  " +
+            "od.grandTotal,  " +
+            "od.createdAt ," +
+            "od.updatedAt" +
             ")  " +
-            "FROM OrderDetail od ")
-    List<OrderDetailDTO> findAllOrderDetailDTO();
+            "FROM OrderDetail od WHERE od.statusOrderDetail = ?1 ")
+    Optional<OrderDetailDTO> findOrderDetailNew(String status);
 }

@@ -212,8 +212,18 @@ class Cart {
 
 }
 
+class OrderDetail {
+    constructor(id, order, statusOrderDetail,createdAt, grandTotal) {
+        this.id = id;
+        this.order = order;
+        this.statusOrderDetail = statusOrderDetail;
+        this.createdAt = createdAt;
+        this.grandTotal = grandTotal;
+    }
+}
+
 class Order {
-    constructor(id ,description ,grandTotal ,quantity ,productCode ,productImage,productTitle ,customerInfo,createdAt, statusOrder ) {
+    constructor(id ,description ,grandTotal ,quantity ,productCode ,productImage,productTitle ,customerInfo,createdAt, statusOrder,orderDetail ) {
         this.id = id;
         this.description = description;
         this.grandTotal = grandTotal;
@@ -223,7 +233,8 @@ class Order {
         this.productTitle = productTitle;
         this.customerInfo = customerInfo;
         this.createdAt = createdAt;
-        this.statusOrder = statusOrder
+        this.statusOrder = statusOrder;
+        this.orderDetail = orderDetail;
     }
 }
 
@@ -233,3 +244,4 @@ class ProductMedia{
         this.fileUrl = fileUrl;
     }
 }
+

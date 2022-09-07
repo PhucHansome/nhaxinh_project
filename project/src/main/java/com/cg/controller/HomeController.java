@@ -1,6 +1,7 @@
 package com.cg.controller;
 
 
+import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.repository.OrderDetailRepository;
 import com.cg.service.Tag.TagService;
@@ -275,19 +276,18 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/orderDashboard/order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailDTO();
+        List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
         modelAndView.addObject("orderDetail", orderDetailDTOS);
         return modelAndView;
     }
 
-    @GetMapping("/order-dashboard/detail")
-    public ModelAndView getOrderDetailDashboard() {
+    @GetMapping("/order-dashboard/detail/{id}")
+    public ModelAndView getOrderDetailDashboard(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/orderDashboard/detail-order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailDTO();
-        modelAndView.addObject("orderDetail", orderDetailDTOS);
+        modelAndView.addObject("idOrder", id);
         return modelAndView;
     }
 

@@ -36,6 +36,10 @@ public class Order extends BaseEntity{
 
     private String statusOrder;
 
+    @ManyToOne
+    @JoinColumn(name = "orderDetail_id")
+    private OrderDetail orderDetail;
+
     @OneToOne
     @JoinColumn(name = "customerifs_id", nullable = false)
     private CustomerInfo customerInfo;
@@ -51,6 +55,8 @@ public class Order extends BaseEntity{
                 .setProductTitle(productTitle)
                 .setCustomerInfo(customerInfo.toCustomerInfoDTO())
                 .setStatusOrder(statusOrder)
+                .setOrderDetail(orderDetail.toOrderDetailDTO())
+
                 ;
 
     }
