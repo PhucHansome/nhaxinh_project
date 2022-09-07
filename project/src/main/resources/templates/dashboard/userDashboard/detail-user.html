@@ -29,15 +29,17 @@
             <div class="container-fluid">
 
                 <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <h6><a href="/user-dashboard">Quay lại danh sách khách hàng</a></h6>
                     </div>
-                    <div class="col-md-5">
-
+                    <div class="col-md-7">
+                        <button type="button" style="margin-bottom: 10px"
+                                class="btn btn-warning float-right btnUpdate">
+                            <i class="fas fa-user-edit"></i>
+                        </button>
                         <button type="button" style="margin-bottom: 10px;margin-right: 10px;"
                                 class="btn btn-danger float-right btn-delete">
                             <i class="fas fa-trash"></i>
-                            Xoá khách hàng
                         </button>
                     </div>
                 </div>
@@ -50,16 +52,16 @@
 
                 <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear" style="top: -25px; position: relative;">
 
-                    <th:block th:each="customerInfo, count : ${customerInfo}">
-
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h6>Thông tin cá nhân</h6>
                         </div>
-                        <div class="col-md-6">
-                            <button type="button" style="margin-bottom: 10px"
-                                    class="btn btn-warning float-right btnUpdate">Cập nhật
-                            </button>
-                        </div>
+<!--                        <div class="col-md-6">-->
+<!--                            <button type="button" style="margin-bottom: 10px"-->
+<!--                                    class="btn btn-warning float-right btnUpdate">Cập nhật-->
+<!--                            </button>-->
+<!--                        </div>-->
+
+                    <th:block th:each="customerInfo, count : ${customerInfo}">
                         <input type="hidden" id="idCustomer" name="id" th:field="*{customerInfo.id}">
 
                         <div class="col-md-6">
@@ -87,10 +89,6 @@
                             <p th:text="*{customerInfo.locationRegion.address}"></p>
                         </div>
                     </th:block>
-
-                    <!--          <div class="col-md-12">-->
-                    <!--          </div>-->
-
                 </div>
 
                 <div class="row" style="top: -25px; position: relative;">
@@ -157,6 +155,7 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:replace="/dashboard/userDashboard/render_update_finish_row::render_update_finish_row"/>
 
 <th:block th:replace="/dashboard/userDashboard/modalupdate-user :: modal_update"/>
 
@@ -184,6 +183,11 @@
             inputError: {}
         }
     }
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+    let user = new User();
+    let customerInfoId = null;
+
 
     page.element.fullNameUp = $("#fullNameUp");
     page.element.phoneUp = $("#phoneUp");
@@ -194,15 +198,18 @@
     page.element.districText = $("#districtUp :selected");
     page.element.addressUp = $("#addressUp");
     page.element.idCustomer = $("#idCustomer")
+    page.element.render_update_finish_row = $("#render_update_finish_row")
+    page.element.pareData = $(".information_clear");
+
 
     page.element.btnUpdateCustomer = $(".btnUpdate");
     page.element.btnDelete = $(".btn-delete");
     page.element.comfirmUpdateCustomer = $("#btnUpdateUser");
 
-    let customerInfo = new CustomerInfo();
-    let locationRegion = new LocationRegion();
-    let user = new User();
-    let customerInfoId = null;
+    let row_render = jQuery.validator.format($.trim(page.element.render_update_finish_row.val().toString()));
+    page.commands.addRowLine = () => {
+        page.element.pareData .append($(row_render(customerInfo.fullName,customerInfo.phone,customerInfo.userName,customerInfo.locationRegion.provinceName,customerInfo.locationRegion.districtName,customerInfo.locationRegion.address)));
+    }
 
 
     page.dialogs.commands.getCustomerInfoById = (id) => {
@@ -214,8 +221,9 @@
         })
     }
 
-    page.dialogs.commands.goModalUpdateCustomer = () => {
+    page.commands.goModalUpdateCustomer = () => {
         page.element.btnUpdateCustomer.on('click', function () {
+            console.log("a")
             page.dialogs.commands.getCustomerInfoById(page.element.idCustomer.val()).then(() => {
                 page.element.fullNameUp.val(customerInfo.fullName)
                 page.element.emailUp.val(customerInfo.userName)
@@ -260,7 +268,8 @@
                 console.log(data)
                 App.IziToast.showSuccessAlert("Cập nhật khách hàng thành công");
                 $('#modalUpdateUser').modal('hide');
-                page.dialogs.commands.drawDetailCustomerUpdate(page.element.idCustomer.val())
+                page.dialogs.commands.drawDetailCustomerUpdate(customerInfo.id);
+                page.commands.goModalUpdateCustomer();
             }).fail( (jqXHR) => {
                 console.log(jqXHR)
                 App.IziToast.showErrorAlert("Cập nhật khách hàng thất bại ");
@@ -269,42 +278,10 @@
     }
     page.dialogs.commands.drawDetailCustomerUpdate = (customerInfoId) =>{
         page.dialogs.commands.getCustomerInfoById(customerInfoId).then(() => {
-            $(".information_clear").html("")
-            let str = `
-                        <div class="col-md-6">
-                            <h6>Thông tin cá nhân</h6>
-                        </div>
-
-                        <div class="col-md-6">
-                            <button type="button" style="margin-bottom: 10px"class="btn btn-warning float-right btnUpdate">Cập nhật
-                            </button>
-                        </div>
-                         <div class="col-md-6">
-                            <label>Tên khách hàng:</label>
-                            <p> ${customerInfo.fullName}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Số điện thoại:</label>
-                            <p> ${customerInfo.phone}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Email:</label>
-                            <p>${customerInfo.userName}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Thành phố:</label>
-                            <p> ${customerInfo.locationRegion.provinceName}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Quận/huyện:</label>
-                            <p>${customerInfo.locationRegion.districtName}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Địa chỉ:</label>
-                            <p >${customerInfo.locationRegion.address}</p>
-                        </div>
-            `
-               $(".information_clear").html(str)
+            page.element.pareData.html("");
+            page.commands.addRowLine();
+            page.commands.handleShowConfirmDelete();
+            page.commands.goModalUpdateCustomer();
 
         })
 
@@ -389,12 +366,13 @@
         })
     }
     $(function () {
-        page.dialogs.commands.goModalUpdateCustomer();
+        page.commands.goModalUpdateCustomer();
         page.dialogs.commands.drawProvinces().then(() => {
             page.dialogs.commands.drawDistricts(page.element.provinceUp.val());
         })
         page.commands.handleShowConfirmDelete();
         page.dialogs.commands.doUpdateCustomer();
+
 
     })
 

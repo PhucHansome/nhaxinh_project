@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="render_update_finish_row">
+    <textarea style="display:none" id="render_update_finish_row">
+                        <div class="col-md-12">
+                            <h6>Thông tin cá nhân</h6>
+                       </div>
+                         <div class="col-md-6">
+                            <label>Tên khách hàng:</label>
+                            <p> {0}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Số điện thoại:</label>
+                            <p> {1}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email:</label>
+                            <p>{2}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Thành phố:</label>
+                            <p>{3}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Quận/huyện:</label>
+                            <p>{4}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Địa chỉ:</label>
+                            <p >{5}</p>
+                        </div>
+    </textarea>
+</th:block>

@@ -48,6 +48,17 @@ class App {
                 cancelButtonText: 'Huỷ'
             });
         }
+        static showConfirmDeleteCategory() {
+            return Swal.fire({
+                title: 'Bạn có muốn xoá loại sản phẩm này?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có, Xoá ngay!',
+                cancelButtonText: 'Huỷ'
+            });
+        }
     }
     static IziToast = class  {
         static showErrorAlert(m) {
@@ -141,9 +152,10 @@ class CustomerInfo {
     }
 }
 class Category{
-    constructor(id , name) {
+    constructor(id , name,code) {
         this.id = id;
         this.name = name ;
+        this.code = code;
     }
 
 }
