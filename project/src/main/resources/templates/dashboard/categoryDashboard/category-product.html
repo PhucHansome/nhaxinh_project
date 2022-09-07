@@ -215,10 +215,16 @@
                         })
                             .done((data) => {
                                 console.log(data)
-                                App.IziToast.showSuccessAlert("Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 3s")
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: "Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 1s",
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                                 setTimeout(function () {
                                     window.location.href = "/category-product-dashboard";
-                                }, 3000);
+                                }, 1000);
                             })
                             .fail((e) => {
                                 console.log(e)
