@@ -65,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(0L);
         orderDetail.setStatusOrderDetail("abc");
+        orderDetail.setCreatedAt(new Date());
         orderDetailRepository.save(orderDetail);
         BigDecimal sum = BigDecimal.valueOf(0);
         Optional<OrderDetailDTO> orderNew = orderDetailRepository.findOrderDetailNew("abc");
@@ -101,7 +102,7 @@ public class OrderServiceImpl implements OrderService {
         final String fromEmail = "nhaxinhprj@gmail.com";
         final String password = "cqpubpedlamghzfc";
         final String toEmail = "phucnguyenksqt11@gmail.com";
-        final String subject = "[New]You have an order ";
+        final String subject = "[New]You have an order!!";
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
@@ -120,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
         message.addHeader("Content-Transfer-Encoding", "8bit");
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
         message.setSubject(subject);
-        String htmlContent = "<h1>You have an Order by : " + order.getCustomerInfo().getFullName() + "</h1> <p>You need to go to the Admin page to view order details</p>";
+        String htmlContent = "<h1>You have an Order by : " + order.getCustomerInfo().getFullName() + "</h1> <p>You need to go to the Admin page to view order details!!</p>";
         message.setContent(htmlContent, "text/html");
         Transport.send(message);
         System.out.println("Gui mail thanh cong");

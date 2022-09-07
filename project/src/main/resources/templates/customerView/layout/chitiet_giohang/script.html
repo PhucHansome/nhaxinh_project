@@ -1433,6 +1433,14 @@
         page.commands.handleOrder = () => {
             page.element.btnOrder.on("click", () => {
                 page.commands.getUserByEmail().then(() => {
+                    // if ($("#payment_method_cod")[0].checked){
+                    //     App.IziToast.showErrorAlert("Bạn chưa chọn phương thức thanh toán!")
+                    //     return;
+                    // }
+                    //
+                    //
+                    // App.IziToast.showSuccessAlert("oke")
+                    // return
                     delete locationRegion.id;
                     locationRegion.provinceId = $("#provinceCUS").val();
                     locationRegion.provinceName = $("#provinceCUS :selected").text();
@@ -1618,6 +1626,18 @@
             })
         }
 
+        page.commands.getCustomerByUserName = ()=>{
+            $.ajax({
+                type : "GET",
+                url: page.url.GetCustomer,
+            }).done((data)=>{
+                customerInfo = data;
+                $("#fullNameScreen").text(customerInfo.fullName)
+            }).fail((e)=>{
+                $("#fullNameScreen").text($("#EmailLogin").text())
+            })
+        }
+
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
@@ -1628,6 +1648,7 @@
                 page.commands.handleOrder();
                 page.commands.searchFunction()
                 page.commands.handleGoSearch();
+                page.commands.getCustomerByUserName()
             })
 
         })

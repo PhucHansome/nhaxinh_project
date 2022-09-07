@@ -23,4 +23,15 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             ")  " +
             "FROM OrderDetail od WHERE od.statusOrderDetail = ?1 ")
     Optional<OrderDetailDTO> findOrderDetailNew(String status);
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
+            "od.id, " +
+            "od.fullName, " +
+            "od.statusOrderDetail,  " +
+            "od.grandTotal,  " +
+            "od.createdAt ," +
+            "od.updatedAt" +
+            ")  " +
+            "FROM OrderDetail od WHERE od.statusOrderDetail = ?1 ")
+    List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status);
 }

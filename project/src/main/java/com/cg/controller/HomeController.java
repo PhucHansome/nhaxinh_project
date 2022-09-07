@@ -180,7 +180,8 @@ public class HomeController {
         List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
         modelAndView.addObject("customer", customerInfoDTOS.size());
         BigDecimal sum = BigDecimal.valueOf(0);
-        for (OrderDetail orderDetail : orderDetails){
+        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đơn hàng đã duyệt");
+        for (OrderDetailDTO orderDetail : orderDetails1){
             sum = orderDetail.getGrandTotal().add(sum);
         }
         modelAndView.addObject("totalOrder", sum);

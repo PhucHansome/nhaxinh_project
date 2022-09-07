@@ -1135,6 +1135,7 @@
                 GetUser: App.BASE_URL_USER_ABC + "/" + $("#EmailLogin").text(),
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
                 GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
+                GetCustomer: App.BASE_URL_CUSTOMERINFO,
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
@@ -1153,6 +1154,7 @@
             }
         }
         let carItem = new CartItems();
+        let customerInfo = new CustomerInfo()
 
         page.element.cart_product = $("#cart_product_view")
         page.element.cart_cartBotLine = $("#product-grid-1457246667")
@@ -1427,6 +1429,18 @@
             })
         }
 
+        page.commands.getCustomerByUserName = ()=>{
+            $.ajax({
+                type : "GET",
+                url: page.url.GetCustomer + "/username/" + $("#EmailLogin").text()
+            }).done((data)=>{
+                customerInfo = data;
+                $("#fullNameScreen").text(customerInfo.fullName)
+            }).fail((e)=>{
+                $("#fullNameScreen").text($("#EmailLogin").text())
+            })
+        }
+
         page.commands.handleGoSearch = () => {
             $(".btn-search").on("click", function () {
                 window.location.href = "/search/" + page.element.InputQuerySearch.val();
@@ -1438,6 +1452,7 @@
             page.commands.handleShowCart()
             page.commands.searchFunction();
             page.commands.handleGoSearch();
+            page.commands.getCustomerByUserName()
         })
     </script>
 

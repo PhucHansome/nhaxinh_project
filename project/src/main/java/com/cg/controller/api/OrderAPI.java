@@ -77,11 +77,11 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
     }
 
-//    @GetMapping("/order/id/{Id}")
-//    public ResponseEntity<?> findAllOrderById(@PathVariable Long Id){
-//        List<Ỏ> orderDetailDTOS = orderService.fi(Id);
-//        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
-//    }
+    @GetMapping("/order-detail/status/")
+    public ResponseEntity<?> findAllOrderById(){
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailByStatusWait("Đang chờ duyệt");
+        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<?> doCreateOrder(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {

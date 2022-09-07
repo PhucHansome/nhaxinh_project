@@ -1786,6 +1786,7 @@
                 GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
                 GetOrder: App.BASE_URL_ORDER + "/" + $("#EmailLogin").text(),
                 GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
+                GetCustomers: App.BASE_URL_CUSTOMERINFO,
                 PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
                 PutUser: App.BASE_URL_USER_ABC + "/change-password",
                 DeleteCartItem: App.BASE_URL_CARTITEM
@@ -2261,13 +2262,24 @@
             })
         }
 
-
+        page.commands.getCustomerByUserName = ()=>{
+            $.ajax({
+                type : "GET",
+                url: page.url.GetCustomers + "/username/" + $("#EmailLogin").text()
+            }).done((data)=>{
+                customerInfo = data;
+                $("#fullNameScreen").text(customerInfo.fullName)
+            }).fail((e)=>{
+                $("#fullNameScreen").text($("#EmailLogin").text())
+            })
+        }
 
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
                 page.commands.handleShowCart();
                 page.commands.showIconCart();
+                page.commands.getCustomerByUserName();
                 page.commands.getCustomerInfoByEmail();
                 page.commands.handleUpdateCustomer();
                 page.commands.handleChangPageInformation();

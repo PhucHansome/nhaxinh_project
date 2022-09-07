@@ -1234,6 +1234,7 @@
                 GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
                 GetProductMedia: App.BASE_URL_PRODUCT + "/productmedia",
                 GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
+                GetCustomer: App.BASE_URL_CUSTOMERINFO,
                 PostProduct: App.BASE_URL_PRODUCT,
                 PostCartItem: App.BASE_URL_CARTITEM,
                 PostCart: App.BASE_URL_CART,
@@ -1529,6 +1530,18 @@
             })
         }
 
+        page.commands.getCustomerByUserName = ()=>{
+            $.ajax({
+                type : "GET",
+                url: page.url.GetCustomer + "/username/" + $("#EmailLogin").text()
+            }).done((data)=>{
+                customerInfo = data;
+                $("#fullNameScreen").text(customerInfo.fullName)
+            }).fail((e)=>{
+                $("#fullNameScreen").text($("#EmailLogin").text())
+            })
+        }
+
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
@@ -1537,6 +1550,7 @@
             page.commands.handleGoDetailProduct()
             page.commands.handleCreateCart();
             page.commands.handleGoSearch();
+            page.commands.getCustomerByUserName()
 
         })
     </script>
