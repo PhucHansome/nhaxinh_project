@@ -24,8 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.web.servlet.function.ServerResponse.status;
 
 @Controller
 @RequestMapping("")
@@ -77,6 +80,7 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
+
         return modelAndView;
     }
 
@@ -171,6 +175,17 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/home/home");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<OrderDetail> orderDetails = orderDetailService.findAll();
+        modelAndView.addObject("order", orderDetails.size());
+        List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
+        modelAndView.addObject("customer", customerInfoDTOS.size());
+        BigDecimal sum = BigDecimal.valueOf(0);
+        for (OrderDetail orderDetail : orderDetails){
+            sum = orderDetail.getGrandTotal().add(sum);
+        }
+        modelAndView.addObject("totalOrder", sum);
+
+
         return modelAndView;
     }
 

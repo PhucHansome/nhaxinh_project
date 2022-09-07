@@ -1451,6 +1451,12 @@
                     cart.content = page.element.contentCart.val();
                     cart.user = user
                     cart.customerInfo = customerInfo
+                    $(".temploadding").html("")
+                    let str = `
+           <div class="loading">Loading&#8230;</div>
+
+            `
+                    $(".temploadding").append(str)
                     $.ajax({
                         "headers": {
                             "accept": "application/json",
@@ -1463,6 +1469,8 @@
                         console.log(data);
                         cart = data;
                         page.commands.createOrder(cart);
+                    }).fail((e)=>{
+                        $(".temploadding").html("")
                     })
                 })
             })
@@ -1488,10 +1496,12 @@
                 "url": page.url.PostOrder,
                 "data": JSON.stringify(order)
             }).done((dataOrder) => {
+                $(".temploadding").html("")
                 App.IziToast.showSuccessAlert("Order sản phẩm Thành công!")
                 page.loadData.getOrderSummary()
             }).fail(() => {
                 App.IziToast.showErrorAlert("Order sản phẩm thất bại!")
+                $(".temploadding").html("")
             })
         }
 

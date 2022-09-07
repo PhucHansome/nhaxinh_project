@@ -21,7 +21,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @RestController
@@ -67,7 +69,14 @@ public class AuthRestController {
         try {
 
 
-            User newUser = userService.save(userDTO.toUser());
+            User newUser = null;
+            try {
+                newUser = userService.save(userDTO.toUser());
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 

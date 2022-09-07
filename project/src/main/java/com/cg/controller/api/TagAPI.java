@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @RestController
@@ -34,7 +36,7 @@ public class TagAPI {
     }
 
     @PostMapping("/id/{productId}")
-    private ResponseEntity<?> createTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult){
+    private ResponseEntity<?> createTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         Optional<ProductDTO> productDTO = productService.findProductDTOById(productId);
         tagDTO.setProduct(productDTO.get());
         if (bindingResult.hasErrors())
@@ -44,7 +46,7 @@ public class TagAPI {
     }
 
     @PutMapping("/id/{productId}")
-    private ResponseEntity<?> updateTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult){
+    private ResponseEntity<?> updateTag(@RequestBody TagDTO tagDTO, @PathVariable String productId, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         Optional<ProductDTO> productDTO = productService.findProductDTOById(productId);
         tagDTO.setProduct(productDTO.get());
         if (bindingResult.hasErrors())

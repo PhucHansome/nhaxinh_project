@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @RestController
@@ -28,7 +30,7 @@ public class CartAPI {
     private AppUtils appUtils;
 
     @PostMapping("/create")
-    public ResponseEntity<?> doCreate(@RequestBody CartDTO cartDTO, BindingResult bindingResult){
+    public ResponseEntity<?> doCreate(@RequestBody CartDTO cartDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
 
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);

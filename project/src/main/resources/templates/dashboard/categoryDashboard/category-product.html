@@ -95,9 +95,8 @@
                                                 <td class="text-center align-middle" id="idCategory" name="id"th:text="*{category.id}"></td>
                                                 <td class="text-center align-middle" th:text="*{category.name}"></td>
                                                 <td class="text-center align-middle" th:text="*{category.code}"></td>
-                                                <td class="text-center align-middle">
-                                                    <button th:data-id="*{category.id}" type="button" style="text-align: center"
-                                                            class="btn btn-danger float-right btn-delete btnDeleteCategory">
+                                                <td class="text-center align-middle" style="width: 0%;">
+                                                    <button th:data-id="*{category.id}" type="button" style="position: relative;left: -25px;"class="btn btn-danger float-right btn-delete btnDeleteCategory">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
@@ -215,10 +214,16 @@
                         })
                             .done((data) => {
                                 console.log(data)
-                                App.IziToast.showSuccessAlert("Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 3s")
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: "Xóa Loại sản phẩm Thành Công! Bạn sẽ trở về danh sách loại sản phẩm sau 3s",
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                                 setTimeout(function () {
                                     window.location.href = "/category-product-dashboard";
-                                }, 3000);
+                                }, 1000);
                             })
                             .fail((e) => {
                                 console.log(e)
