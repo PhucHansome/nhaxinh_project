@@ -8,13 +8,17 @@ import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.Properties;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
@@ -57,16 +61,17 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Order save(Order order) {
+    public Order save(Order order) throws MessagingException, UnsupportedEncodingException {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(0L);
         orderDetail.setStatusOrderDetail("abc");
+        orderDetail.setCreatedAt(new Date());
         orderDetailRepository.save(orderDetail);
         BigDecimal sum = BigDecimal.valueOf(0);
         Optional<OrderDetailDTO> orderNew = orderDetailRepository.findOrderDetailNew("abc");
         List<CartItemsDTO> cartItemsDTOList = cartItemRepository.findCartItemDTOById(order.getCustomerInfo().getUserName());
-        for (CartItemsDTO cartItemsDTO : cartItemsDTOList){
-            Optional<ProductDTO> productDTO =  productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
+        for (CartItemsDTO cartItemsDTO : cartItemsDTOList) {
+            Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
             productDTO.get().setQuantity(productDTO.get().getQuantity().subtract(cartItemsDTO.getQuantity()));
             productRepository.save(productDTO.get().toProduct());
             order.setId(0L);
@@ -82,19 +87,44 @@ public class OrderServiceImpl implements OrderService{
         }
 
         List<CartDTO> cartDTOList = cartRepoSitory.getCartItemDTOByIdCustomerInfo(order.getCustomerInfo().getId());
-        for (CartDTO cartDTO : cartDTOList){
-            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())){
+        for (CartDTO cartDTO : cartDTOList) {
+            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())) {
                 cartRepoSitory.deleteById(cartDTO.getId());
             }
         }
         List<OrderDTO> orderDTOS = orderRepository.findOrderDTOByUserName(order.getCustomerInfo().getUserName());
-        for (OrderDTO order1 : orderDTOS){
+        for (OrderDTO order1 : orderDTOS) {
             orderNew.get().setStatusOrderDetail(order1.getStatusOrder());
             orderNew.get().setFullName(order1.getCustomerInfo().getFullName());
         }
         orderNew.get().setGrandTotal(sum);
         orderDetailRepository.save(orderNew.get().toOrderDetail());
-
+        final String fromEmail = "nhaxinhprj@gmail.com";
+        final String password = "cqpubpedlamghzfc";
+        final String toEmail = "phucnguyenksqt11@gmail.com";
+        final String subject = "[New]You have an order!!";
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        props.put("mail.smtp.port", "587"); //TLS Port
+        props.put("mail.smtp.auth", "true"); //enable authentication
+        props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session session = Session.getInstance(props, auth);
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(fromEmail));
+        message.addHeader("Content-type", "text/HTML; charset=UTF-8");
+        message.addHeader("format", "flowed");
+        message.addHeader("Content-Transfer-Encoding", "8bit");
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+        message.setSubject(subject);
+        String htmlContent = "<h1>You have an Order by : " + order.getCustomerInfo().getFullName() + "</h1> <p>You need to go to the Admin page to view order details!!</p>";
+        message.setContent(htmlContent, "text/html");
+        Transport.send(message);
+        System.out.println("Gui mail thanh cong");
         return null;
     }
 

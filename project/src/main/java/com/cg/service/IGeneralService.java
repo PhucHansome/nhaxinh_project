@@ -1,5 +1,7 @@
 package com.cg.service;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +15,7 @@ public interface IGeneralService<T> {
 
     T getById(Long id);
 
-    T save(T t);
+    T save(T t) throws MessagingException, UnsupportedEncodingException;
 
     void remove(Long id);
 

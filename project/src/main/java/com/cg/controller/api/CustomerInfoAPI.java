@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +62,7 @@ public class CustomerInfoAPI {
 
 
     @PostMapping("/create")
-    public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) {
+    public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
@@ -70,7 +73,7 @@ public class CustomerInfoAPI {
     }
 
     @PutMapping("/edit")
-    private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult){
+    private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
           if (bindingResult.hasFieldErrors()) {
               return appUtils.mapErrorToResponse(bindingResult);
           }

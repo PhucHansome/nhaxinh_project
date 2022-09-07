@@ -18,6 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +57,12 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDetailDTOS.get().toOrderDetailDTO(),HttpStatus.OK);
     }
 
+    @GetMapping("/order-detail/findAll/")
+    public ResponseEntity<?> findAllOrderDetail(){
+        List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
+        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
+    }
+
     @GetMapping("/order/getOrder/{id}")
     public ResponseEntity<?> findAllOrderByOrderDetailId(@PathVariable Long id){
         List<OrderDTO> orderDTOS = orderService.findAllOrderDTOByOrderDetailId(id);
@@ -68,14 +77,14 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
     }
 
-//    @GetMapping("/order/id/{Id}")
-//    public ResponseEntity<?> findAllOrderById(@PathVariable Long Id){
-//        List<Ỏ> orderDetailDTOS = orderService.fi(Id);
-//        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
-//    }
+    @GetMapping("/order-detail/status/")
+    public ResponseEntity<?> findAllOrderById(){
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailByStatusWait("Đang chờ duyệt");
+        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
+    }
 
     @PostMapping
-    public ResponseEntity<?> doCreateOrder(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) {
+    public ResponseEntity<?> doCreateOrder(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
 
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);

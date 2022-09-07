@@ -95,9 +95,8 @@
                                                 <td class="text-center align-middle" id="idCategory" name="id"th:text="*{category.id}"></td>
                                                 <td class="text-center align-middle" th:text="*{category.name}"></td>
                                                 <td class="text-center align-middle" th:text="*{category.code}"></td>
-                                                <td class="text-center align-middle" style="width: 0">
-                                                    <button th:data-id="*{category.id}" type="button" style="text-align: center; position: relative;left: -25px;"
-                                                            class="btn btn-danger float-right btn-delete btnDeleteCategory">
+                                                <td class="text-center align-middle" style="width: 0;">
+                                                    <button th:data-id="*{category.id}" type="button" style="position: relative;left: -25px;"class="btn btn-danger float-right btn-delete btnDeleteCategory">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>

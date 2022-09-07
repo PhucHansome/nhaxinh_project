@@ -1433,6 +1433,14 @@
         page.commands.handleOrder = () => {
             page.element.btnOrder.on("click", () => {
                 page.commands.getUserByEmail().then(() => {
+                    // if ($("#payment_method_cod")[0].checked){
+                    //     App.IziToast.showErrorAlert("Bạn chưa chọn phương thức thanh toán!")
+                    //     return;
+                    // }
+                    //
+                    //
+                    // App.IziToast.showSuccessAlert("oke")
+                    // return
                     delete locationRegion.id;
                     locationRegion.provinceId = $("#provinceCUS").val();
                     locationRegion.provinceName = $("#provinceCUS :selected").text();
@@ -1451,6 +1459,12 @@
                     cart.content = page.element.contentCart.val();
                     cart.user = user
                     cart.customerInfo = customerInfo
+                    $(".temploadding").html("")
+                    let str = `
+           <div class="loading">Loading&#8230;</div>
+
+            `
+                    $(".temploadding").append(str)
                     $.ajax({
                         "headers": {
                             "accept": "application/json",
@@ -1463,6 +1477,8 @@
                         console.log(data);
                         cart = data;
                         page.commands.createOrder(cart);
+                    }).fail((e)=>{
+                        $(".temploadding").html("")
                     })
                 })
             })
@@ -1488,10 +1504,12 @@
                 "url": page.url.PostOrder,
                 "data": JSON.stringify(order)
             }).done((dataOrder) => {
+                $(".temploadding").html("")
                 App.IziToast.showSuccessAlert("Order sản phẩm Thành công!")
                 page.loadData.getOrderSummary()
             }).fail(() => {
                 App.IziToast.showErrorAlert("Order sản phẩm thất bại!")
+                $(".temploadding").html("")
             })
         }
 
@@ -1608,6 +1626,18 @@
             })
         }
 
+        page.commands.getCustomerByUserName = ()=>{
+            $.ajax({
+                type : "GET",
+                url: page.url.GetCustomer,
+            }).done((data)=>{
+                customerInfo = data;
+                $("#fullNameScreen").text(customerInfo.fullName)
+            }).fail((e)=>{
+                $("#fullNameScreen").text($("#EmailLogin").text())
+            })
+        }
+
         $(function () {
             page.dialogs.commands.drawProvinces().then(() => {
                 page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
@@ -1618,6 +1648,7 @@
                 page.commands.handleOrder();
                 page.commands.searchFunction()
                 page.commands.handleGoSearch();
+                page.commands.getCustomerByUserName()
             })
 
         })

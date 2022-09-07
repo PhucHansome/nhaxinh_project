@@ -50,21 +50,19 @@
                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
-                                    <th class="text-center align-middle">#</th>
-                                    <th class="text-center align-middle">Ngày Đặt hàng</th>
-                                    <th class="text-center align-middle">Tên khách hàng</th>
-                                    <th class="text-center align-middle">Trạng thái đơn hàng</th>
-                                    <th class="text-center align-middle">Tổng tiền</th>
+                                    <th class="text-center align-middle" style="font-size: 17px;font-weight: bold;">#</th>
+                                    <th class="text-center align-middle" style="font-size: 17px;font-weight: bold;">Tên khách hàng</th>
+                                    <th class="text-center align-middle" style="font-size: 17px;font-weight: bold;">Trạng thái đơn hàng</th>
+                                    <th class="text-center align-middle" style="font-size: 17px;font-weight: bold;">Tổng tiền</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <th:block th:each="orderDetail, count : ${orderDetail}">
                                     <tr >
                                         <td class="text-center align-middle" th:text="*{orderDetail.id}"></td>
-                                        <td class="text-center align-middle" th:text="*{orderDetail.createdAt}"></td>
                                         <td class="text-center align-middle">
                                             <a th:href="*{'/order-dashboard/detail/'+orderDetail.id}" th:text="*{orderDetail.fullName}"></a></td>
-                                        <td class="text-center align-middle" th:text="*{orderDetail.statusOrderDetail}"></td>
+                                        <td class="text-center align-middle" style="color: red;font-weight: bold;" th:text="*{orderDetail.statusOrderDetail}"></td>
                                         <td class="text-center align-middle" th:text="*{#numbers.formatCurrency(orderDetail.grandTotal)}"></td>
                                     </tr>
                                 </th:block>

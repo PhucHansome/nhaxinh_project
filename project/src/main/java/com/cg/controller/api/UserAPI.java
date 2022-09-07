@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 @RestController
@@ -39,7 +41,7 @@ public class UserAPI {
         throw new RuntimeException("khong co user");
     }
     @PutMapping("/change-password")
-    public ResponseEntity<?> changePassWord (@RequestBody UserDTO userDTO,BindingResult bindingResult ){
+    public ResponseEntity<?> changePassWord (@RequestBody UserDTO userDTO,BindingResult bindingResult ) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }

@@ -103,5 +103,10 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
         return orderDetailRepository.save(orderDetail);
     }
 
+    @Override
+    public List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status) {
+        return orderDetailRepository.findAllOrderDetailByStatusWait(status);
+    }
+
 
 }

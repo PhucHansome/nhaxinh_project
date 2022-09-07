@@ -13,4 +13,7 @@ public interface OrderDetailService extends IGeneralService<OrderDetail> {
 
     OrderDetail cancelOrder(OrderDetail orderDetail, String userName);
 
+    List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status);
+
+
 }

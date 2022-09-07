@@ -45,31 +45,32 @@
                     </div>
                 </div>
                 <!-- end page title -->
+                <div class="row alertshow"></div>
 
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-6 col-xl-3">
-                        <div class="card-box tilebox-one">
+                        <div th:object="${order}" class="card-box tilebox-one first_content">
                             <i class="icon-layers float-right m-0 h2 text-muted"></i>
                             <h6 class="text-muted text-uppercase mt-0">Orders</h6>
-                            <h3 class="my-3" data-plugin="counterup">1,587</h3>
+                            <h3 class="my-3" data-plugin="counterup" th:text="${order}"></h3>
                             <span class="badge badge-success mr-1"> +11% </span> <span class="text-muted">From previous period</span>
                         </div>
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card-box tilebox-one">
+                        <div th:object="${customer}" class="card-box tilebox-one">
                             <i class="icon-paypal float-right m-0 h2 text-muted"></i>
-                            <h6 class="text-muted text-uppercase mt-0">Revenue</h6>
-                            <h3 class="my-3">$<span data-plugin="counterup">46,782</span></h3>
+                            <h6 class="text-muted text-uppercase mt-0">Khách hàng</h6>
+                            <h3 class="my-3"><span data-plugin="counterup" th:text="${customer}"></span></h3>
                             <span class="badge badge-danger mr-1"> -29% </span> <span class="text-muted">From previous period</span>
                         </div>
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card-box tilebox-one">
+                        <div th:object="${totalOrder}" class="card-box tilebox-one">
                             <i class="icon-chart float-right m-0 h2 text-muted"></i>
-                            <h6 class="text-muted text-uppercase mt-0">Average Price</h6>
-                            <h3 class="my-3">$<span data-plugin="counterup">15.9</span></h3>
+                            <h6 class="text-muted text-uppercase mt-0">Tổng tiền toàn bộ đơn hàng</h6>
+                            <h3 class="my-3"><span  th:text="${#numbers.formatCurrency(totalOrder)}"></span></h3>
                             <span class="badge badge-pink mr-1"> 0% </span> <span class="text-muted">From previous period</span>
                         </div>
                     </div>
@@ -338,6 +339,71 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+
+<script>
+    let page = {
+        url: {
+            GetOrderDetail: App.BASE_URL_ORDER + "/order-detail/findAll/",
+            GetOrderDetailBySTT: App.BASE_URL_ORDER + "/order-detail/status/",
+            GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
+            PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
+            PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/"
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+
+    let order = new Order();
+    let orderDetail = new OrderDetail();
+    let customerInfo = new CustomerInfo();
+    let locationRegion = new LocationRegion();
+
+    page.element.first_content = $(".first_content")
+
+    page.commands.getAllorder = () =>{
+        $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrderDetail,
+        }).done((data)=>{
+            console.log(data);
+            page.commands.getOrderDetailShowAlert()
+        }).fail((e)=>{
+            console.log(e)
+        })
+    }
+
+    page.commands.getOrderDetailShowAlert = () => {
+        $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrderDetailBySTT,
+        }).done((data)=>{
+            if (data.length === 0){return}
+            $(".alertshow").html("")
+            let str = `
+            <div class="alert alert-danger fixed-bottom" role="alert">
+  Bạn đang có ${data.length} Đơn hàng Chưa xử lý <a href="/order-dashboard" class="alert-link">Nhấn vào đây</a> để vào trang order.
+</div>
+            `
+            $(".alertshow").append(str)
+        })
+    }
+
+
+    $(function(){
+        page.commands.getAllorder()
+    })
+
+
+</script>
 
 </body>
 </html>
