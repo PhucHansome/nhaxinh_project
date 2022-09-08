@@ -16,6 +16,11 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
     @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
             "od.id, " +
             "od.fullName, " +
+            "od.userName, " +
+            "od.phone, " +
+            "od.address, " +
+            "od.districtName, " +
+            "od.provinceName, " +
             "od.statusOrderDetail,  " +
             "od.grandTotal,  " +
             "od.createdAt ," +
@@ -27,6 +32,11 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
     @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
             "od.id, " +
             "od.fullName, " +
+            "od.userName, " +
+            "od.phone, " +
+            "od.address, " +
+            "od.districtName, " +
+            "od.provinceName, " +
             "od.statusOrderDetail,  " +
             "od.grandTotal,  " +
             "od.createdAt ," +

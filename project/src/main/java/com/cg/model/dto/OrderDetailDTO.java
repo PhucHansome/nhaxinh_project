@@ -25,6 +25,16 @@ public class OrderDetailDTO {
 
     private String fullName;
 
+    private String userName;
+
+    private String phone;
+
+    private String address;
+
+    private String districtName;
+
+    private String provinceName;
+
     private String statusOrderDetail;
 
     private BigDecimal grandTotal;
@@ -50,6 +60,11 @@ public class OrderDetailDTO {
                 .setStatusOrderDetail(statusOrderDetail)
                 .setFullName(fullName)
                 .setGrandTotal(grandTotal)
+                .setAddress(address)
+                .setDistrictName(districtName)
+                .setProvinceName(provinceName)
+                .setUserName(userName)
+                .setPhone(phone)
                 ;
     }
 }

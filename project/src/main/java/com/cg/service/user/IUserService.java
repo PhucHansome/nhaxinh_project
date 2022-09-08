@@ -5,6 +5,8 @@ import com.cg.model.dto.UserDTO;
 import com.cg.service.IGeneralService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +25,7 @@ public interface IUserService extends IGeneralService<User>, UserDetailsService 
 
     Optional<UserDTO> findUserDTOById(Long id);
 
-
+    User saveAndMail(User user ) throws MessagingException, UnsupportedEncodingException;
 
 //    boolean existsByEmailAndIdIsNot(String email,Long id);
 

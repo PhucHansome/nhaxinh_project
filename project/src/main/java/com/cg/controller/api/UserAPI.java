@@ -1,5 +1,6 @@
 package com.cg.controller.api;
 
+import com.cg.exception.DataInputException;
 import com.cg.model.User;
 import com.cg.model.dto.UserDTO;
 import com.cg.service.user.IUserService;
@@ -40,6 +41,7 @@ public class UserAPI {
         }
         throw new RuntimeException("khong co user");
     }
+
     @PutMapping("/change-password")
     public ResponseEntity<?> changePassWord (@RequestBody UserDTO userDTO,BindingResult bindingResult ) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
@@ -50,4 +52,13 @@ public class UserAPI {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/forgot-a-password")
+    public ResponseEntity<?> forgotAPassword(@RequestBody UserDTO userDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        userService.saveAndMail(userDTO.toUser());
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
 }

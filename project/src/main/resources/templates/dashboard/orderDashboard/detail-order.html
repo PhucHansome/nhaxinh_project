@@ -166,7 +166,7 @@
                         `
             page.element.information_Item.prepend(str);
 
-            page.commands.GetOrderByOrderDetailId(orderDetail.id);
+            page.commands.GetOrderByOrderDetailId(orderDetail);
 
 
             if (orderDetail.statusOrderDetail === "Đơn hàng đã duyệt" || orderDetail.statusOrderDetail === "Đã Hủy đơn hàng") {
@@ -179,10 +179,10 @@
         })
     }
 
-    page.commands.GetOrderByOrderDetailId = (id) => {
+    page.commands.GetOrderByOrderDetailId = (orderDetail) => {
         $.ajax({
             "method": "GET",
-            "url": page.url.GetOrder + id,
+            "url": page.url.GetOrder + orderDetail.id,
         }).done((data) => {
             console.log(data);
             $(".line_cart_item").html("")
@@ -218,12 +218,12 @@
                         <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Khách Hàng</p></div>
                         </div>
                         <div class="row">
-                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.fullName}</span></p></div>
+                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.fullName}</span></p></div>
                         </div>
                         <div class="row">
                             <div class="col-10">
                                 <p class="text text-center" style="font-weight: bold;font-size: 20px;">Thông tin đơn hàng</p>
-                                <p style="font-weight: bold;font-size: 15px;">Email: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.userName}</span></p>
+                                <p style="font-weight: bold;font-size: 15px;">Email: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.userName}</span></p>
                             </div>
 
                         </div>
@@ -231,11 +231,11 @@
                                <div class="col-12"><p class="text text-center"  style="font-weight: bold;font-size: 20px;">Địa chỉ giao hàng</p></div>
                         </div>
                         <div class="row">
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.fullName}</span></p></div>
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Số điện thoại: <span style="color: #ff5d48; font-style: italic;">${" " + order.customerInfo.phone}</span></p></div>
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> ${" " + order.customerInfo.locationRegion.address}</span></p></div>
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Xã/Huyện: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.locationRegion.districtName}</span></p></div>
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Tỉnh/Thành phố: <span style="color: #ff5d48;font-style: italic;">${" " + order.customerInfo.locationRegion.provinceName}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.fullName}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Số điện thoại: <span style="color: #ff5d48; font-style: italic;">${" " + orderDetail.phone}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> ${" " +orderDetail.address}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Xã/Huyện: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.districtName}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Tỉnh/Thành phố: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.provinceName}</span></p></div>
                         </div>
                         `
                     page.element.information_customer.prepend(str2);

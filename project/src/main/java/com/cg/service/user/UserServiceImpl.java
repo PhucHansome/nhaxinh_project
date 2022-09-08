@@ -11,8 +11,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -108,6 +113,72 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Optional<UserDTO> findUserDTOById(Long id) {
         return userRepository.findUserDTOById(id);
+    }
+
+    @Override
+    public User saveAndMail(User user) throws MessagingException, UnsupportedEncodingException {
+        user.setPassword("abc123456");
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        final String fromEmail = "nhaxinhprj@gmail.com";
+        final String password = "cqpubpedlamghzfc";
+        final String toEmail = user.getUsername();
+        final String subject = "[New]You have a NewPassWord!!";
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        prop.put("mail.smtp.port", "587"); //TLS Port
+        prop.put("mail.smtp.auth", "true"); //enable authentication
+        prop.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        Authenticator auth = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session session = Session.getInstance(prop, auth);
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(fromEmail));
+        message.addHeader("Content-type", "text/HTML; charset=UTF-8");
+        message.addHeader("format", "flowed");
+        message.addHeader("Content-Transfer-Encoding", "8bit");
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+        message.setSubject(subject);
+        String htmlContent = "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "    <meta charset=\"UTF-8\" />\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n" +
+                "\n" +
+                "    <title>Document</title>\n" +
+                "  </head>\n" +
+                "\n" +
+                "  <body>\n" +
+                "    <div style=\"border: 90px solid red;\">\n" +
+                "      <div style=\" text-align: center\">\n" +
+                "        <h2>Account: " + user.getUsername() +" password has been changed </h2>\n" +
+                "        <br>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Dear "+user.getUsername()+"!</p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Your password has been changed to:<b> abc123456</b> </p>\n" +
+                "        </div>\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <div style=\"padding-left: 60px;padding-bottom: 19px;font-weight: bold;\">\n" +
+                "          <p></p>\n" +
+                "          <p>---</p>  \n" +
+                "        <p>Nhà Xinh</p>\n" +
+                "        <p>Phone number: (84+) 0349108527 </p>\n" +
+                "        <p>Email: Nhaxinhprj@gmail.com <span style=\"float: right;\"><img src=\"https://nhaxinh.com/wp-content/uploads/2022/04/logo-nha-xinh-moi-200422.png\" alt=\"\"></span></p>\n" +
+                "        <p>Facebook: facebook.com/somitrang09 </p>\n" +
+                "      </div>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "  </body>\n" +
+                "</html>\n" +
+                "";
+        message.setContent(htmlContent, "text/html");
+        Transport.send(message);
+
+        return null;
     }
 
 }
