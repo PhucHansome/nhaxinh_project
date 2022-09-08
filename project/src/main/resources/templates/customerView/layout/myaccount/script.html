@@ -1711,6 +1711,22 @@
     <script src="/assets/js/scriptAll.js"></script>
     <script src="/assets/js/magnific-popup-1.1.0.js"></script>
 
+    <script src="/assets_dashboard/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets_dashboard/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets_dashboard/assets/js/pages/datatables.init.js"></script>
+    <script src="/assets_dashboard/assets/libs/datatables/dataTables.buttons.min.js"></script>
+    <script src="/assets_dashboard/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+
+    <script src="/assets_dashboard/assets/libs/jszip/jszip.min.js"></script>
+<!--    <script src="/assets_dashboard/assets/libs/pdfmake/pdfmake.min.js"></script>-->
+    <script src="/assets_dashboard/assets/libs/pdfmake/vfs_fonts.js"></script>
+
+    <script src="/assets_dashboard/assets/libs/datatables/buttons.html5.min.js"></script>
+    <script src="/assets_dashboard/assets/libs/datatables/buttons.print.min.js"></script>
+
+    <script src="/assets_dashboard/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+    <script src="/assets_dashboard/assets/libs/datatables/dataTables.select.min.js"></script>
+
     <script>
         $(".menu_bar").on("click", () => {
             let str = `
@@ -2010,6 +2026,7 @@
                     let sum = 0
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                        $(".woocommerce-mini-cart__buttons").html("")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -2044,6 +2061,7 @@
                     console.log(data)
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                        $(".woocommerce-mini-cart__buttons").html("")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -2136,46 +2154,6 @@
             })
         }
 
-        page.loadData.getOrder = () => {
-            $.ajax({
-                "type": "GET",
-                "url": page.url.GetOrder,
-            }).done((dataOrder) => {
-
-            let sum = 0
-                $.each(dataOrder, (i, items) => {
-                    order = items;
-
-                    sum += order.grandTotal;
-                    let str = `
-                            <tr>
-                                <td class="text-center align-middle"></td>
-                                <td class="text-center align-middle">${order.productCode}</td>
-                                <td class="text-center align-middle"><img width="150px" src="${order.productImage}" alt=""></td>
-                                <td class="text-center align-middle">${order.productTitle}</td>
-                                <td class="text-center align-middle">${order.quantity}</td>
-                                <td class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND'
-                    }).format(order.grandTotal)}</td>
-                                <td class="text-center align-middle">${order.statusOrder}</td>
-                                <td class="text-center align-middle">${order.createdAt}</td>
-                            </tr>
-                        `
-                    page.element.listOrder.prepend(str);
-                })
-                let str2 = `
-                <h5>Tổng tiền chi tiêu là: ${new Intl.NumberFormat('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                }).format(sum)}</h5>
-                `
-                page.element.totail_spending.prepend(str2)
-            }).fail((e) => {
-                console.log(e);
-            })
-        }
-
         page.commands.handleSavePassword = () => {
             page.element.btnSavePasword.on("click", function () {
                 page.commands.getUserByUsername().then(() => {
@@ -2232,7 +2210,7 @@
                              <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
                                                             class="search-image"
                                                             src="${product.image}">
-                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong><span style="font-size: 12px;"> ${product.code}</span>
                                                         </div>
                                                         <span class="search-price"><ins><span style="font-size: 12px;"
                                                                 class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
@@ -2288,7 +2266,6 @@
                 page.commands.handleChangPagePassword();
                 page.commands.getUserByUsername();
                 page.commands.handleChangPageOrder();
-                page.loadData.getOrder()
                 page.commands.searchFunction()
                 page.commands.handleGoSearch()
                 page.element.emailCus.val($("#EmailLogin").text())

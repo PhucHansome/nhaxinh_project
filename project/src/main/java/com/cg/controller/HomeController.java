@@ -166,6 +166,14 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
+
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserName(email);
+        modelAndView.addObject("orderList", orderDTOS);
+        BigDecimal sum = BigDecimal.valueOf(0);
+        for(OrderDTO orderDTO: orderDTOS){
+            sum = orderDTO.getGrandTotal().add(sum);
+        }
+        modelAndView.addObject("Total", sum);
         return modelAndView;
     }
 
@@ -202,6 +210,8 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/productDashboard/product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
+        modelAndView.addObject("productList", productDTOList);
         return modelAndView;
     }
 

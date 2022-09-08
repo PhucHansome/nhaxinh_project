@@ -1280,6 +1280,7 @@
                     console.log(data)
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                        $(".woocommerce-mini-cart__buttons").html("")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1318,6 +1319,7 @@
                     let sum = 0
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
+                        $(".woocommerce-mini-cart__buttons").html("")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1403,7 +1405,7 @@
                              <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
                                                             class="search-image"
                                                             src="${product.image}">
-                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong>${product.code}
+                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong><span style="font-size: 12px;"> ${product.code}</span>
                                                         </div>
                                                         <span class="search-price"><ins><span style="font-size: 12px;"
                                                                 class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {

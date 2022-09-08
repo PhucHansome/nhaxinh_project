@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -117,9 +119,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User saveAndMail(User user) throws MessagingException, UnsupportedEncodingException {
-        user.setPassword("abc123456");
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        user.setPassword(randomAlphanumeric(10));
+
         final String fromEmail = "nhaxinhprj@gmail.com";
         final String password = "cqpubpedlamghzfc";
         final String toEmail = user.getUsername();
@@ -154,10 +155,10 @@ public class UserServiceImpl implements IUserService {
                 "  <body>\n" +
                 "    <div style=\"border: 90px solid red;\">\n" +
                 "      <div style=\" text-align: center\">\n" +
-                "        <h2>Account: " + user.getUsername() +" password has been changed </h2>\n" +
+                "        <h2>Account: " + user.getUsername() + " password has been changed </h2>\n" +
                 "        <br>\n" +
-                "        <p style=\"text-align: left; padding-left: 60px ;\">Dear "+user.getUsername()+"!</p>\n" +
-                "        <p style=\"text-align: left; padding-left: 60px ;\">Your password has been changed to:<b> abc123456</b> </p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Dear " + user.getUsername() + "!</p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Your password has been changed to:<b> " + user.getPassword() + "</b> </p>\n" +
                 "        </div>\n" +
                 "        <br />\n" +
                 "        <br />\n" +
@@ -177,7 +178,8 @@ public class UserServiceImpl implements IUserService {
                 "";
         message.setContent(htmlContent, "text/html");
         Transport.send(message);
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
         return null;
     }
 

@@ -44,4 +44,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             ")  " +
             "FROM OrderDetail od WHERE od.statusOrderDetail = ?1 ")
     List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status);
+
+    List<OrderDetail>findOrderDetailByUserName(String userName);
 }
