@@ -121,7 +121,40 @@ public class OrderServiceImpl implements OrderService {
         message.addHeader("Content-Transfer-Encoding", "8bit");
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
         message.setSubject(subject);
-        String htmlContent = "<h1>You have an Order by : " + order.getCustomerInfo().getFullName() + "</h1> <p>You need to go to the Admin page to view order details!!</p>";
+        String htmlContent = "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "    <meta charset=\"UTF-8\" />\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n" +
+                "\n" +
+                "    <title>Document</title>\n" +
+                "  </head>\n" +
+                "\n" +
+                "  <body>\n" +
+                "    <div style=\"border: 90px solid red;\">\n" +
+                "      <div style=\" text-align: center\">\n" +
+                "        <h1>You have an Order by : "+order.getCustomerInfo().getFullName()+"</h1>\n" +
+                "        <br>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Dear Manager!</p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">You need <a href=\"http://localhost:8092/home-dashboard\">Click Here</a> to go to the admin page to process!!</p>\n" +
+                "        </div>\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <div style=\"padding-left: 60px;padding-bottom: 19px;font-weight: bold;\">\n" +
+                "          <p></p>\n" +
+                "          <p>---</p>  \n" +
+                "        <p>Nhà Xinh</p>\n" +
+                "        <p>Phone number: (84+) 0349108527 </p>\n" +
+                "        <p>Email: Nhaxinhprj@gmail.com <span style=\"float: right;\"><img src=\"https://nhaxinh.com/wp-content/uploads/2022/04/logo-nha-xinh-moi-200422.png\" alt=\"\"></span></p>\n" +
+                "        <p>Facebook: facebook.com/somitrang09 </p>\n" +
+                "      </div>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "  </body>\n" +
+                "</html>\n" +
+                "";
+
         message.setContent(htmlContent, "text/html");
         Transport.send(message);
         System.out.println("Gui mail thanh cong");
