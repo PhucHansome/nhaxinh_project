@@ -1919,7 +1919,7 @@
                 page.element.idCustomer.val(customerInfo.id)
                 page.element.select_provinceCUS.val(customerInfo.locationRegion.provinceId)
                 page.element.fullNameCus.val(customerInfo.fullName);
-                page.element.emailCus.val(customerInfo.userName)
+                page.element.emailCus.val($("#EmailLogin").text())
                 page.element.phoneCus.val(customerInfo.phone);
                 page.element.debtCustomer.val(customerInfo.debt)
                 page.element.addressCus.val(customerInfo.locationRegion.address);
@@ -2289,6 +2289,7 @@
                 page.loadData.getOrder()
                 page.commands.searchFunction()
                 page.commands.handleGoSearch()
+                page.element.emailCus.val($("#EmailLogin").text())
             })
         })
     </script>

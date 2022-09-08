@@ -133,7 +133,7 @@ public class OrderServiceImpl implements OrderService {
                 "  <body>\n" +
                 "    <div style=\"border: 90px solid red;\">\n" +
                 "      <div style=\" text-align: center\">\n" +
-                "        <h1>You have an Order by : "+order.getCustomerInfo().getFullName()+"</h1>\n" +
+                "        <h1>You have an Order by : " + order.getCustomerInfo().getFullName() + " - " + order.getCustomerInfo().getPhone() + "</h1>\n" +
                 "        <br>\n" +
                 "        <p style=\"text-align: left; padding-left: 60px ;\">Dear Manager!</p>\n" +
                 "        <p style=\"text-align: left; padding-left: 60px ;\">You need <a href=\"http://localhost:8092/home-dashboard\">Click Here</a> to go to the admin page to process!!</p>\n" +
@@ -157,6 +157,64 @@ public class OrderServiceImpl implements OrderService {
 
         message.setContent(htmlContent, "text/html");
         Transport.send(message);
+
+        final String toEmail2 = order.getCustomerInfo().getUserName();
+        final String subjectt = "[New]You have successfully placed your order!!";
+        Properties propss = new Properties();
+        propss.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        propss.put("mail.smtp.port", "587"); //TLS Port
+        propss.put("mail.smtp.auth", "true"); //enable authentication
+        propss.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        Authenticator authn = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        Session sessionn = Session.getInstance(propss, authn);
+        MimeMessage messages = new MimeMessage(sessionn);
+        messages.setFrom(new InternetAddress(fromEmail));
+        messages.addHeader("Content-type", "text/HTML; charset=UTF-8");
+        messages.addHeader("format", "flowed");
+        messages.addHeader("Content-Transfer-Encoding", "8bit");
+        messages.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail2, false));
+        messages.setSubject(subjectt);
+        String htmlContent1 = "<html lang=\"en\">\n" +
+                "  <head>\n" +
+                "    <meta charset=\"UTF-8\" />\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n" +
+                "\n" +
+                "    <title>Document</title>\n" +
+                "  </head>\n" +
+                "\n" +
+                "  <body>\n" +
+                "    <div style=\"border: 90px solid red;\">\n" +
+                "      <div style=\" text-align: center\">\n" +
+                "        <h1>Thank you : " + order.getCustomerInfo().getFullName() + " Ordered at our store</h1>\n" +
+                "        <br>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Dear " + order.getCustomerInfo().getFullName() + "!</p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">Our store is very grateful " + order.getCustomerInfo().getFullName() + " trusted our store!!</p>\n" +
+                "        <p style=\"text-align: left; padding-left: 60px ;\">I wish you a good day!!         <img src=\"https://i.pinimg.com/originals/ca/ee/2a/caee2a8625993767e40c6a8c68e69dc8.gif\" width=\"50px\" style=\" position: relative; bottom: -13px;left: -4px;\"  alt=\"\"></p>\n" +
+                "        </div>\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <br />\n" +
+                "        <div style=\"padding-left: 60px;padding-bottom: 19px;font-weight: bold;\">\n" +
+                "          <p></p>\n" +
+                "          <p>---</p>  \n" +
+                "        <p>Nhà Xinh</p>\n" +
+                "        <p>Phone number: (84+) 0349108527 </p>\n" +
+                "        <p>Email: Nhaxinhprj@gmail.com <span style=\"float: right;\"><img src=\"https://nhaxinh.com/wp-content/uploads/2022/04/logo-nha-xinh-moi-200422.png\" alt=\"\"></span></p>\n" +
+                "        <p>Facebook: facebook.com/somitrang09 </p>\n" +
+                "      </div>\n" +
+                "      </div>\n" +
+                "    </div>\n" +
+                "  </body>\n" +
+                "</html>\n" +
+                "";
+
+        messages.setContent(htmlContent1, "text/html");
+        Transport.send(messages);
         System.out.println("Gui mail thanh cong");
         return null;
     }
