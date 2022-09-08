@@ -55,13 +55,13 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label style="margin-top: 5px">Số điện thoại</label>
+                                <label style="margin-top: 5px">Số điện thoại<span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="phoneCre" name="phoneCre"
                                        placeholder="Nhập số điện thoại">
                             </div>
 
                             <div class="col-md-6">
-                                <label style="margin-top: 5px">Email</label>
+                                <label style="margin-top: 5px">Email<span style="color: red">*</span></label>
                                 <input type="text" class="form-control" id="emailCre" name="emailCre"
                                        placeholder="Nhập địa chỉ email">
                             </div>
@@ -84,6 +84,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div> <!-- end content -->
     <!-- Footer Start -->
@@ -220,6 +221,7 @@
             page.dialogs.element.fullNameCre.val("");
             page.dialogs.element.phoneCre.val("");
             page.dialogs.element.emailCre.val("");
+
             App.IziToast.showSuccessAlert("Thêm mới user thành công");
         }).fail((jqXHR) => {
             App.IziToast.showErrorAlert("Thêm mới user thất bại")

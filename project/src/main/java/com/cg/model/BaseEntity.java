@@ -1,6 +1,6 @@
 package com.cg.model;
 
-import jdk.jfr.Timespan;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;

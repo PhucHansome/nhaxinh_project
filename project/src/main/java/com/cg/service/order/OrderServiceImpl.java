@@ -101,7 +101,7 @@ public class OrderServiceImpl implements OrderService {
         orderDetailRepository.save(orderNew.get().toOrderDetail());
         final String fromEmail = "nhaxinhprj@gmail.com";
         final String password = "cqpubpedlamghzfc";
-        final String toEmail = "phucnguyenksqt11@gmail.com";
+        final String toEmail = "huynhvanvinh080398@gmail.com";
         final String subject = "[New]You have an order!!";
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
