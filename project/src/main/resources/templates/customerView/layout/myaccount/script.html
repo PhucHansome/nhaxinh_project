@@ -2195,6 +2195,8 @@
                         "data": JSON.stringify(user)
                     }).done((data) => {
                         App.IziToast.showSuccessAlert("Bạn đã Thay đổi mật khẩu thành công")
+                        page.element.newPasswordCon.val("");
+                        page.element.newPassword.val("");
                     }).fail((e) => {
                         console.log(e);
                     })
@@ -2207,7 +2209,7 @@
                 console.log("vao day")
                 setTimeout(function () {
                     page.element.resuilt_search.addClass("d-none")
-                }, 100);
+                }, 150);
             })
 
         }
