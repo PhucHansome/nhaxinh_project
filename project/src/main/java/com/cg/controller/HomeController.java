@@ -1,6 +1,7 @@
 package com.cg.controller;
 
 
+import com.cg.model.CustomerInfo;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.service.Tag.TagService;
@@ -264,7 +265,10 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/userDashboard/user");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
+        modelAndView.addObject("customerList", customerInfoDTOS);
         return modelAndView;
+
     }
 
     @RequestMapping("/")
@@ -295,24 +299,9 @@ public class HomeController {
     }
 
 
-    @GetMapping("/edit-user-dashboard")
-    public ModelAndView getEditUserDashboard() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/edit-user");
-        String email = getPrincipal();
-        modelAndView.addObject("userDTO", email);
-        return modelAndView;
-    }
 
-    @GetMapping("/detail-user-dashboard")
-    public ModelAndView getDetailUserDashboard() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/detail-user");
-        String email = getPrincipal();
-        modelAndView.addObject("userDTO", email);
 
-        return modelAndView;
-    }
+
 
     @GetMapping("/order-dashboard")
     public ModelAndView getOrderDashboard() {
