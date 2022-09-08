@@ -1363,12 +1363,12 @@
                                         </div>
                                         <div class="order d-none">
                                             <div class="row">
-                                                <div class="my-orders-title">
+                                                <div class="my-orders-title" style="padding-bottom: 25px;">
                                                     <h2>Đơn hàng của tôi</h2>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <table class="table table-hover border- table-bordered border-white listOrder">
+                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                                                     <thead>
                                                     <tr>
                                                         <th class="text-center align-middle"></th>
@@ -1382,14 +1382,27 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <th:block th:each="order, count : ${orderList}">
+                                                    <tr>
+                                                        <td class="text-center align-middle"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.productCode}"></td>
+                                                        <td class="text-center align-middle"><img width="150px" th:src="*{order.productImage}" alt=""></td>
+                                                        <td class="text-center align-middle" th:text="*{order.productTitle}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.quantity}"></td>
+                                                        <td class="text-center align-middle" th:text="*{#numbers.formatCurrency(order.grandTotal)}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.statusOrder}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.createdAt}">$</td>
+                                                    </tr>
+                                                    </th:block>
                                                     </tbody>
+
                                                 </table>
 
                                             </div>
                                             <div class="row">
                                                 <div class="col-8"></div>
-                                                <div class="col-4 total_spending float-lg-right">
-
+                                                <div th:object="${Total}" class="col-4 total_spending float-lg-right">
+                                                    <h5 th:text="${'Tổng tiền chi tiêu là:  ' + #numbers.formatCurrency(Total)}"></h5>
                                                 </div>
                                             </div>
                                         </div>

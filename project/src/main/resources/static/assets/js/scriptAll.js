@@ -2,7 +2,8 @@ class App {
 
     static DOMAIN = location.origin;
 
-    static BASE_URL_USER = this.DOMAIN + "/api/auth"
+    static BASE_URL_USER = this.DOMAIN + "/api/auth";
+    static BASE_URL_USER_FORGOTAPASSWORD = this.DOMAIN + "/api/user";
     static BASE_URL_CUSTOMERINFO = this.DOMAIN +"/api/customerInfo";
     static BASE_URL_PROVINCE =  "https://vapi.vnappmob.com/api/province";
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
@@ -238,12 +239,18 @@ class Cart {
 }
 
 class OrderDetail {
-    constructor(id, order, statusOrderDetail,createdAt, grandTotal) {
+    constructor(id, order, statusOrderDetail,createdAt, grandTotal,fullName,userName,phone,address,districtName,provinceName ) {
         this.id = id;
         this.order = order;
         this.statusOrderDetail = statusOrderDetail;
         this.createdAt = createdAt;
         this.grandTotal = grandTotal;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.phone = phone;
+        this.address = address;
+        this.districtName = districtName;
+        this.provinceName = provinceName;
     }
 }
 

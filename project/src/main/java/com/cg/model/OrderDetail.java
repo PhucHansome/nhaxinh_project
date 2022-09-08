@@ -27,6 +27,16 @@ public class OrderDetail extends BaseEntity{
 
     private String fullName;
 
+    private String userName;
+
+    private String phone;
+
+    private String address;
+
+    private String districtName;
+
+    private String provinceName;
+
     private BigDecimal grandTotal;
 
     public OrderDetailDTO toOrderDetailDTO(){
@@ -35,6 +45,11 @@ public class OrderDetail extends BaseEntity{
                 .setStatusOrderDetail(statusOrderDetail)
                 .setFullName(fullName)
                 .setGrandTotal(grandTotal)
+                .setAddress(address)
+                .setDistrictName(districtName)
+                .setProvinceName(provinceName)
+                .setUserName(userName)
+                .setPhone(phone)
                 ;
     }
 }
