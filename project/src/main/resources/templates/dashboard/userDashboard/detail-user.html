@@ -4,7 +4,11 @@
     <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
     <th:block th:replace="/dashboard/layout/header::header"/>
 </head>
-
+<style>
+    p {
+        color: red;
+    }
+</style>
 <body>
 
 <!-- Begin page -->
@@ -50,19 +54,12 @@
                         <h4>Khách Hàng</h4>
                     </div>
                 </div>
-
+                <th:block th:each="customerInfo, count : ${customerInfo}">
                 <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear" style="top: -25px; position: relative;">
 
                         <div class="col-md-12">
                             <h6>Thông tin cá nhân</h6>
                         </div>
-<!--                        <div class="col-md-6">-->
-<!--                            <button type="button" style="margin-bottom: 10px"-->
-<!--                                    class="btn btn-warning float-right btnUpdate">Cập nhật-->
-<!--                            </button>-->
-<!--                        </div>-->
-
-                    <th:block th:each="customerInfo, count : ${customerInfo}">
                         <input type="hidden" id="idCustomer" name="id" th:field="*{customerInfo.id}">
 
                         <div class="col-md-6">
@@ -89,24 +86,20 @@
                             <label>Địa chỉ:</label>
                             <p th:text="*{customerInfo.locationRegion.address}"></p>
                         </div>
-                    </th:block>
+
                 </div>
 
                 <div class="row" style="top: -25px; position: relative;">
                     <div class="col-md-12">
                         <div class="row shadow-lg p-3 mb-5 bg-body rounded">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <h6>Thông tin mua hàng</h6>
 
                             </div>
 
+
                             <div class="col-md-6">
-                                <button type="button" style="margin-bottom: 10px"
-                                        class="btn btn-primary float-right ">Chi tiết
-                                </button>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Tổng chi tiêu:</label>
+                                <label>Tổng chi tiêu:<span th:text="*{customerInfo.debt}" style="margin-left: 5px;color: red"></span> </label>
                             </div>
                             <div class="col-md-6">
                                 <label>Tổng SL sản phẩm đã mua:</label>
@@ -114,9 +107,7 @@
                             <div class="col-md-6">
                                 <label>Tổng SL đơn hàng:</label>
                             </div>
-                            <div class="col-md-6">
-                                <label>Tổng SL sản phẩm hoàn trả:</label>
-                            </div>
+
 
                         </div>
 
@@ -129,7 +120,7 @@
                     </div>
 
                 </div>
-
+                </th:block>
             </div>
 
 

@@ -17,7 +17,7 @@ public interface CustomerInfoRepository extends JpaRepository<CustomerInfo,Long>
     List<CustomerInfoDTO> findAllCustomerInfoDTOByDeletedIsFailse();
 
 
-    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName ,c.phone,c.locationRegion) FROM CustomerInfo c WHERE c.id = ?1")
+    @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName ,c.phone,c.debt,c.locationRegion) FROM CustomerInfo c WHERE c.id = ?1")
     Optional<CustomerInfoDTO> findUserDTOById(String id);
 
     @Query("SELECT NEW com.cg.model.dto.CustomerInfoDTO (c.id, c.userName,c.fullName,c.phone,c.debt,c.locationRegion) FROM CustomerInfo c WHERE c.userName = ?1")

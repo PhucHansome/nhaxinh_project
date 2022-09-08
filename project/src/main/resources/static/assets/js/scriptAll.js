@@ -81,7 +81,7 @@ class App {
 
                 transitionIn: 'flipInX',
                 transitionOut: 'flip',
-                position: 'topRight',
+                position: 'topLeft',
                 message: m,
             });
         }
@@ -92,7 +92,7 @@ class App {
                 // icon: '', // icon class
                 transitionIn: 'flipInX',
                 transitionOut: 'flip',
-                position: 'topRight',
+                position: 'topLeft',
                 message: m,
             });
         }
