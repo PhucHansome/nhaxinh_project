@@ -76,10 +76,10 @@
                     </div>
 
                     <div class="col-md-6 col-xl-3">
-                        <div class="card-box tilebox-one">
+                        <div th:object="${totalProductSize}" class="card-box tilebox-one">
                             <i class="icon-rocket float-right m-0 h2 text-muted"></i>
-                            <h6 class="text-muted text-uppercase mt-0">Product Sold</h6>
-                            <h3 class="my-3" data-plugin="counterup">1,890</h3>
+                            <h6 class="text-muted text-uppercase mt-0">Tổng số lượng sản phẩm</h6>
+                            <h3 class="my-3" data-plugin="counterup" th:text="${totalProductSize}">1,890</h3>
                             <span class="badge badge-warning mr-1"> +89% </span> <span class="text-muted">Last year</span>
                         </div>
                     </div>

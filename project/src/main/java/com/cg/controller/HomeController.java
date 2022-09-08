@@ -188,6 +188,8 @@ public class HomeController {
         for (OrderDetailDTO orderDetail : orderDetails1){
             sum = orderDetail.getGrandTotal().add(sum);
         }
+        List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
+        modelAndView.addObject("totalProductSize", productDTOList.size());
         modelAndView.addObject("totalOrder", sum);
 
 
