@@ -146,8 +146,10 @@ public class HomeController {
         modelAndView.setViewName("/customerView/detail/detail");
         Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
+        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
         modelAndView.addObject("product", productDTOOptional.get());
         modelAndView.addObject("tag", tagDTO.get());
+        modelAndView.addObject("image", productMediaDTOList);
         String email = getPrincipal();
         if (email == "anonymousUser") {
             email = "Đăng nhập";

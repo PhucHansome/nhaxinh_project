@@ -11,6 +11,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -23,6 +24,7 @@ import java.util.Date;
 public class OrderDetailDTO {
     private Long id;
 
+    @NotNull (message = "khong duoc rong")
     private String fullName;
 
     private String userName;

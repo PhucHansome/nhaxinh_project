@@ -2056,12 +2056,14 @@
                     $("#seeGrandTotal").html("")
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     page.commands.handleCloseCart()
                     let sum = 0
                     console.log(data)
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
                         $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
