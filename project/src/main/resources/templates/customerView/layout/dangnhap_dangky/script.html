@@ -1216,6 +1216,11 @@
 
         page.dialogs.commands.creatUser = () => {
             page.element.buttonRegister.on("click", function () {
+                if(page.element.passwordReg.val() !== page.element.passwordCon.val()){
+                    App.IziToast.showErrorAlert("Mật khẩu và nhập lại mật khẩu không giống nhau!")
+                    return;
+                }
+
                 delete user.id;
                 user.username = page.element.emailReg.val();
                 user.password = page.element.passwordReg.val();
@@ -1234,16 +1239,21 @@
                     page.element.emailLo.val(page.element.emailReg.val())
                     page.element.passwordLo.val(page.element.passwordReg.val())
                     App.IziToast.showSuccessAlert("Bạn đã tạo tài khoản thành công")
+                    $(".ErrorInCreateUser").addClass("d-none")
                 }).fail((jqXHR) => {
                     App.IziToast.showErrorAlert("Đăng nhập thất bại!")
-                    setTimeout(function () {
-                        if (jqXHR.responseJSON) {
-                            $.each(jqXHR.responseJSON, (key, item) => {
-                                App.IziToast.showErrorAlert(item);
-                            })
-                        }
-                    }, 500);
+                    $(".ErrorInCreateUser").removeClass("d-none")
+                    $(".ErrorInCreateUser").html("")
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
 
+                            let str = `<ul>
+                                    <li>${item}</li>
+                                    </ul>
+                                `
+                            $(".ErrorInCreateUser").append(str)
+                        })
+                    }
                 })
             })
         }
@@ -1262,18 +1272,27 @@
                     data: JSON.stringify(user)
                 }).then((data) => {
                     App.IziToast.showSuccessAlert("Bạn đã đăng nhập thành công")
+                    $(".ErrorInLogin").addClass("d-none")
                     setTimeout(function () {
                         window.location.href = "/";
                     }, 750);
                 }).fail((jqXHR) => {
                     App.IziToast.showErrorAlert("Đăng nhập thất bại!")
-                    setTimeout(function () {
-                        if (jqXHR.responseJSON) {
-                            $.each(jqXHR.responseJSON, (key, item) => {
-                                App.IziToast.showErrorAlert(item);
-                            })
+                    $(".ErrorInLogin").removeClass("d-none")
+                    $(".ErrorInLogin").html("")
+                    $.each(jqXHR.responseJSON, (key, item) => {
+                        if (item === 401) {
+                            App.IziToast.showErrorAlert("Mật khẩu hoặc tài khoản không tồn tại!")
+                            $(".ErrorInLogin").addClass("d-none")
+                            return;
                         }
-                    }, 500);
+                        let str = `<ul>
+                                    <li>${item}</li>
+                                    </ul>
+                                `
+                        $(".ErrorInLogin").append(str)
+                    })
+
 
                 })
             })
@@ -1288,9 +1307,9 @@
             return $.ajax({
                 type: "GET",
                 url: page.url.getUser + $("#user_login").val(),
-            }).done((data)=>{
+            }).done((data) => {
                 user = data
-            }).fail((jqXHR)=>{
+            }).fail((jqXHR) => {
                 console.log(jqXHR)
                 App.SweetAlert.showErrorAlert("Email không tồn tại vui lòng nhập lại!")
                 $(".temploadding").html("")
@@ -1312,7 +1331,7 @@
                             "content-type": "application/json"
                         },
                         type: "PUT",
-                        url: page.url.ForgotAPassword ,
+                        url: page.url.ForgotAPassword,
                         data: JSON.stringify(user)
                     }).done((data) => {
                         $(".woocommerce_review_after_Changed").removeClass("d-none")

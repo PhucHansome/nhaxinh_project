@@ -4,8 +4,12 @@ import com.cg.model.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+import java.lang.annotation.Annotation;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +21,8 @@ import java.util.List;
 @Setter
 @Accessors(chain = true)
 @Data
-public class ProductDTO {
+public class ProductDTO  {
+
     private String id;
 
     private String code;
@@ -40,8 +45,10 @@ public class ProductDTO {
 
     private String image;
 
+    @Valid
     private CategoryDTO category;
 
+    @Valid
     private ProductColorDTO productColor;
 
     private String fileName;
@@ -107,4 +114,5 @@ public class ProductDTO {
                 .setCloundId(cloudId)
                 .setFileType(fileType);
     }
+
 }

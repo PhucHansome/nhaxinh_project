@@ -1667,6 +1667,7 @@
                 page.commands.searchFunction()
                 page.commands.handleGoSearch();
                 page.commands.getCustomerByUserName()
+                if($("#EmailLogin").text() === "Đăng nhập"){$(".btn-order").addClass("d-none");}
             })
 
         })
