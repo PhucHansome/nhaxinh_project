@@ -282,7 +282,7 @@
 
 			<span th:text="${userDTO}" style="font-size: 0" id="EmailLogin" class="header-account-title">
 		</span>
-                                    <span  id="fullNameScreen" class="header-account-title">
+                                    <span id="fullNameScreen" class="header-account-title">
 		</span>
 
                                     <i style="    font-size: 10px; height: 5px;" class="fa-solid fa-user"></i>
@@ -1000,27 +1000,27 @@
                             <li class="header-search-form search-form html relative has-icon">
                                 <div class="header-search-form-wrapper">
                                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
-                                            <div class="flex-row relative">
-                                                <div class="flex-col flex-grow">
-                                                    <label class="screen-reader-text"
-                                                           for="woocommerce-product-search-field-0">Search for:</label>
-                                                    <input type="search" id="querySearch"
-                                                           class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s">
-                                                    <input type="hidden" name="post_type" value="product">
-                                                    <input type="hidden" name="lang" value="vi">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <button type="submit" value="Search"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
-                                                            aria-label="Submit">
-                                                        <i class="fa-solid fa-magnifying-glass"></i></button>
-                                                </div>
+                                        <div class="flex-row relative">
+                                            <div class="flex-col flex-grow">
+                                                <label class="screen-reader-text"
+                                                       for="woocommerce-product-search-field-0">Search for:</label>
+                                                <input type="search" id="querySearch"
+                                                       class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                       name="s">
+                                                <input type="hidden" name="post_type" value="product">
+                                                <input type="hidden" name="lang" value="vi">
                                             </div>
-                                            <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions resuilt_search d-none"></div>
+                                            <div class="flex-col">
+                                                <button type="submit" value="Search"
+                                                        class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
+                                                        aria-label="Submit">
+                                                    <i class="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
-                                            <input type="hidden" name="lang" value="vi">
+                                        </div>
+                                        <div class="live-search-results text-left z-top">
+                                            <div class="autocomplete-suggestions resuilt_search d-none"></div>
+                                        </div>
+                                        <input type="hidden" name="lang" value="vi">
                                     </div>
                                 </div>
                             </li>
@@ -1516,26 +1516,114 @@
                 <div class="shop-container">
 
                     <div class="woocommerce-notices-wrapper"></div>
+
                     <div class="products row row-small large-columns-4 medium-columns-3 small-columns-2 product_Seach_In_query">
+                        <th:block th:each="product, count : ${productList}">
+                            <div class="product-small col has-hover product type-product post-31436 status-publish first instock product_cat-dung-cu-bep has-post-thumbnail taxable shipping-taxable purchasable product-type-simple ">
+                                <div class="col-inner">
 
-                        <div class="product-small col has-hover product type-product post-31436 status-publish first instock product_cat-dung-cu-bep has-post-thumbnail taxable shipping-taxable purchasable product-type-simple product_Seach_In_query">
-                        </div>
+                                    <div class="badge-container absolute left top z-1">
+                                    </div>
+                                    <div class="product-small box ">
+                                        <div class="box-image">
+                                            <div class="image-fade_in_back">
+                                                <input type="hidden" id="idProduct" value="{3}">
+                                                <a th:href="*{'/detail/'+ product.id}"
+                                                   aria-label="Bàn ăn Peak hiện đại mặt Ceramic vân mây">
+                                                    <img width="300" height="200"
+                                                         th:src="*{product.image}"
+                                                         data-src=""
+                                                         class="lazy-load attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                         alt="" srcset=""
+                                                         data-srcset="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic.jpg 1000w"
+                                                         sizes="(max-width: 300px) 100vw, 300px"><img width="300"
+                                                                                                      height="200"
+                                                                                                      src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                                                                                      data-src="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2-300x200.jpg"
+                                                                                                      class="lazy-load show-on-hover absolute fill hide-for-small back-image"
+                                                                                                      alt="" srcset=""
+                                                                                                      data-srcset="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-2.jpg 1000w"
+                                                                                                      sizes="(max-width: 300px) 100vw, 300px"><img
+                                                        width="300" height="180"
+                                                        src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%20300%20180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3C%2Fsvg%3E"
+                                                        data-src="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-300x180.jpg"
+                                                        class="lazy-load show-on-hover absolute fill hide-for-small back-image"
+                                                        alt="" srcset=""
+                                                        data-srcset="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-300x180.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-667x400.jpg 667w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-1333x800.jpg 1333w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-768x461.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22-600x360.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-hien-dai-van-may-ceramic-22.jpg 1350w"
+                                                        sizes="(max-width: 300px) 100vw, 300px"> </a>
+                                            </div>
+                                            <div class="image-tools is-small top right show-on-hover">
+                                            </div>
+                                            <div class="image-tools is-small hide-for-small bottom left show-on-hover">
+                                            </div>
+                                            <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover">
+                                            </div>
+                                        </div>
 
+                                        <div class="box-text box-text-products">
+                                            <div class="title-wrapper"><a
+                                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+                                                    href="https://nhaxinh.com/san-pham/ban-an-peak-hien-dai-mat-ceramic-van-may/"
+                                                    aria-label="Bàn ăn Peak hiện đại mặt Ceramic vân mây"
+                                                    th:text="*{product.title}">
+                                            </a>
+                                            </div>
+                                            <div class="sub-title-wrapper">
+
+                                            </div>
+                                            <div class="box-text-footer">
+                                                <div class="price-wrapper">
+                                            <span class="price"><span class="woocommerce-Price-amount amount" style="font-weight: bold;
+                                                                                                                     color: red;
+                                                                                                                     font-size: 15px;
+                                                                                                                     left: -5px;
+                                                                                                                     position: relative;"
+                                                                      th:text="*{#numbers.formatCurrency(product.price)}"></span></span>
+                                                </div>
+                                                <div class="product-box-after">
+                                                    <div class="add-to-cart-button">
+                                                        <button
+                                                                th:data-id="*{product.id}"
+                                                                class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline them_vao_cart"
+                                                        >Thêm vào giỏ
+                                                        </button>
+                                                    </div>
+                                                    <div class="add-to-cart-button">
+                                                        <button
+                                                                th:data-id="*{product.id}"
+                                                                class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline view_Product"
+                                                        >Xem thêm
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                <div class="product-small col has-hover product type-product post-31436 status-publish first instock product_cat-dung-cu-bep has-post-thumbnail taxable shipping-taxable purchasable product-type-simple product_Seach_In_query">-->
+                            </div>
+                        </th:block>
                     </div>
                 </div><!-- row -->
                 <div class="container">
                     <nav class="woocommerce-pagination">
                         <ul class="page-numbers nav-pagination links text-center">
-                            <li><span aria-current="page" class="page-number current">1</span></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/2/">2</a></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/3/">3</a></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/4/">4</a></li>
-                            <li><span class="page-number dots">…</span></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/17/">17</a></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/18/">18</a></li>
-                            <li><a class="page-number" href="https://nhaxinh.com/cua-hang/page/19/">19</a></li>
-                            <li><a class="next page-number" href="https://nhaxinh.com/cua-hang/page/2/"><i
-                                    class="icon-angle-right"></i></a></li>
+                            <li><span th:if="${totalPage > 1}" aria-current="page" class="page-number current">Bạn đang ở trang: [[${currentPage}]]</span>
+                            </li>
+                            <li th:each="i: ${#numbers.sequence(1,totalPage)}"><a class="page-number"
+                                                                                  th:if="${currentPage != i}"
+                                                                                  th:href="@{'/search/'+${i} + '/' + ${query}}">[[${i}]]</a>
+                            </li>
+                            <li><span aria-current="page" class="page-number current"
+                                      th:unless="${currentPage != i}">[[${i}]]</span></li>
+                            <li><a class="page-number" th:if="${currentPage < totalPage}"
+                                   th:href="@{'/search/'+${currentPage + 1} + '/'+ ${query}}">Next</a></li>
+                            <li><span aria-current="page" class="page-number current"
+                                      th:unless="${currentPage < totalPage}">Next</span></li>
+                            <li><a class="page-number" th:if="${currentPage < totalPage}"
+                                   th:href="@{'/search/'+${totalPage} + '/' + ${query}}">Last</a></li>
+                            <li><span aria-current="page" class="page-number current"
+                                      th:unless="${currentPage < totalPage}">Last</span></li>
                         </ul>
                     </nav>
                 </div>

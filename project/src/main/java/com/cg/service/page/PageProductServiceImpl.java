@@ -18,4 +18,9 @@ public class PageProductServiceImpl implements PageProductService{
     public Page<ProductDTO> findAllProductDTONoImage(Pageable pageable) {
         return paginAndSortTingProductRepository.findAllProductDTONoImage(pageable);
     }
+
+    @Override
+    public Page<ProductDTO> searchProductDTOByTitleAndOtherQuery(String title, Pageable pageable) {
+        return paginAndSortTingProductRepository.searchProductDTOByTitleAndOtherQuery(title,pageable);
+    }
 }

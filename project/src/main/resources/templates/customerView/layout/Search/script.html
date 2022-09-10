@@ -1523,7 +1523,7 @@
 
         page.commands.handleGoSearch = () => {
             $(".btn-search").on("click", function (){
-                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+                window.location.href = "/search/1/" + page.element.InputQuerySearch.val();
             })
         }
 
@@ -1550,7 +1550,7 @@
             page.commands.handleShowCart()
             page.commands.showIconCart()
             page.commands.searchFunction()
-            page.commands.getSearchResuilt();
+            // page.commands.getSearchResuilt();
             page.commands.handleGoDetailProduct()
             page.commands.handleCreateCart();
             page.commands.handleGoSearch();

@@ -106,8 +106,8 @@ public class HomeController {
         return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
-    @GetMapping("/search/{query}")
-    public ModelAndView getSearchByTitle(@PathVariable String query) {
+    @GetMapping("/search/{pageNo}/{query}")
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@PathVariable String query, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -118,6 +118,20 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
 
         modelAndView.addObject("query", query);
+        String query_search = "%" + query + "%";
+        Page<ProductDTO> resuiltProductSearch = pageProductService.searchProductDTOByTitleAndOtherQuery(query_search,PageRequest.of((pageNo -1), 8));
+        if (query.equals("Sản phẩm") ){
+            Page<ProductDTO> data = pageProductService.findAllProductDTONoImage(PageRequest.of((pageNo -1), 8));
+            modelAndView.addObject("productList", data);
+            modelAndView.addObject("totalPage",data.getTotalPages());
+            modelAndView.addObject("totalItem",data.getTotalElements());
+            modelAndView.addObject( "currentPage",pageNo);
+            return modelAndView;
+        }
+        modelAndView.addObject("productList", resuiltProductSearch);
+        modelAndView.addObject("totalPage",resuiltProductSearch.getTotalPages());
+        modelAndView.addObject("totalItem",resuiltProductSearch.getTotalElements());
+        modelAndView.addObject( "currentPage",pageNo);
         return modelAndView;
     }
 

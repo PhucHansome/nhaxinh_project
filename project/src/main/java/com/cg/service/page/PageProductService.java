@@ -8,4 +8,6 @@ import java.math.BigDecimal;
 
 public interface PageProductService {
     Page<ProductDTO> findAllProductDTONoImage( Pageable pageable);
+
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQuery (String title,  Pageable pageable);
 }
