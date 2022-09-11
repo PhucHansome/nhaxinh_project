@@ -19,5 +19,5 @@ public interface PageProductService {
 
     Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceDESC (String title,  Pageable pageable);
 
-    Page<ProductDTO> findALl(int option ,String title,  Pageable pageable);
+    Page<ProductDTO> findALl(int choice,int option ,String title,  Pageable pageable);
 }

@@ -56,7 +56,7 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "OR c.category.name LIKE ?1 " +
             "OR c.productColor.color LIKE ?1) " +
             " ")
-    Page<ProductDTO> searchProductDTOByTitleAndOtherQuery (String title,  Pageable pageable);
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQuery (BigDecimal priceA, BigDecimal priceB,String title,  Pageable pageable);
 
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
@@ -83,7 +83,7 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "OR c.productColor.color LIKE ?1) " +
             "ORDER BY c.price DESC" +
             " ")
-    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceDESC (String title,  Pageable pageable);
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceDESC (BigDecimal priceA, BigDecimal priceB,,String title,  Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
             "c.id, " +
@@ -109,7 +109,7 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "OR c.productColor.color LIKE ?1) " +
             "ORDER BY c.price ASC" +
             " ")
-    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceASC (String title,  Pageable pageable);
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceASC (BigDecimal priceA, BigDecimal priceB,String title,  Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
             "c.id, " +
@@ -135,7 +135,7 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "OR c.productColor.color LIKE ?1) " +
             "ORDER BY c.title ASC" +
             " ")
-    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryTitleASC (String title,  Pageable pageable);
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryTitleASC (BigDecimal priceA, BigDecimal priceB,String title,  Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
             "c.id, " +
@@ -161,6 +161,6 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "OR c.productColor.color LIKE ?1) " +
             "ORDER BY c.createdAt DESC " +
             " ")
-    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryDESC (String title,  Pageable pageable);
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryDESC (BigDecimal priceA, BigDecimal priceB,String title,  Pageable pageable);
 
 }
