@@ -1165,7 +1165,7 @@
                                                 <span class="filter-title" style="margin-left: 140px; font-size: 15px">Giá tiền trong khoảng:</span>
                         <div id="form-wrapper">
                             <form method="GET">
-                                <div id="debt-amount-slider">
+                                <div id="debt-amount-slider" >
                                     <input type="radio" name="debt-amount" id="1" value="1" required>
                                     <label for="1" data-debt-amount="< 10tr"></label>
                                     <input type="radio" name="debt-amount" id="2" value="2" required>
@@ -1179,15 +1179,10 @@
                                     <div id="debt-amount-pos"></div>
                                 </div>
                             </form>
+                            <div th:object="${choicePrice}">
+                                <input type="hidden" id="choicePrice" th:value="${choicePrice}">
+                            </div>
                         </div>
-                        <!--                            <select class="filter-items filter-dropdown enhanced d-block" name="filter[509][2]"-->
-                        <!--                                    multiple="multiple" data-show_search="0"-->
-                        <!--                                    >-->
-                        <!--                                -->
-                        <!--                            </select>-->
-                        <!--                        </div>-->
-
-
                     </div>
                     <div class="col-1"></div>
 
@@ -1347,12 +1342,12 @@
                         <ul class="page-numbers nav-pagination links text-center">
                             <li th:each="i: ${#numbers.sequence(1,totalPage)}"><a class="page-number"
                                                                                   th:if="${currentPage != i}"
-                                                                                  th:href="@{'/search/'+${i} + '/' + ${query}}">[[${i}]]
+                                                                                  th:href="@{'/search/page='+${i} + '?option='+${option}+ '&choicePrice=' +${choicePrice}+ '&query='+ ${query}}">[[${i}]]
                             </a> <span aria-current="page" id="pageNow" class="page-number current"
                                        th:unless="${currentPage != i}">[[${i}]]</span>
                             </li>
                             <li><a class="page-number" th:if="${currentPage < totalPage}"
-                                   th:href="@{'/search/'+${totalPage} + '/' + ${query}}">Last</a></li>
+                                   th:href="@{'/search/page='+${totalPage} + '?option='+${option}+ '&choicePrice=' +${choicePrice}+ '&query='+ ${query}}">Last</a></li>
                             <li><span aria-current="page" class="page-number current"
                                       th:unless="${currentPage < totalPage}">Last</span></li>
                         </ul>
