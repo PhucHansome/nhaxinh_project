@@ -185,7 +185,6 @@
 
     page.element.fullNameUp = $("#fullNameUp");
     page.element.phoneUp = $("#phoneUp");
-    page.element.emailUp = $("#emailUp");
     page.element.provinceUp = $("#provinceUp");
     page.element.provinceText = $("#provinceUp :selected");
     page.element.districtUp = $("#districtUp");
@@ -220,7 +219,6 @@
             console.log("a")
             page.dialogs.commands.getCustomerInfoById(page.element.idCustomer.val()).then(() => {
                 page.element.fullNameUp.val(customerInfo.fullName)
-                page.element.emailUp.val(customerInfo.userName)
                 page.element.phoneUp.val(customerInfo.phone)
                 page.element.provinceUp.val(customerInfo.locationRegion.provinceId)
                 page.element.addressUp.val(customerInfo.locationRegion.address)
@@ -243,7 +241,6 @@
             customerInfo.id =  page.element.idCustomer.val();
             customerInfo.locationRegion =locationRegion;
             customerInfo.fullName = page.element.fullNameUp.val();
-            customerInfo.userName = page.element.emailUp.val();
             customerInfo.phone =page.element.phoneUp.val();
             $.ajax({
                 headers: {
@@ -257,7 +254,6 @@
                 customerInfo = data;
                 locationRegion = customerInfo.locationRegion
                 customerInfo.fullName = page.element.fullNameUp.val("");
-                customerInfo.userName = page.element.emailUp.val("");
                 customerInfo.phone =page.element.phoneUp.val("");
                 console.log(data)
                 App.IziToast.showSuccessAlert("Cập nhật khách hàng thành công");

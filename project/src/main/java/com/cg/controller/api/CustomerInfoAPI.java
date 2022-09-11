@@ -90,10 +90,7 @@ public class CustomerInfoAPI {
         if (bindingResult.hasFieldErrors()) {
               return appUtils.mapErrorToResponse(bindingResult);
           }
-        Boolean exitByUserName = customerInfoService.existsByUserName(customerInfoDTO.getUserName());
-        if (exitByUserName){
-            throw new EmailExistsException("Email đã tồn tại! Vui lòng nhập email khác");
-        }
+
         Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDTO.getPhone());
         if (exitByPhone){
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");

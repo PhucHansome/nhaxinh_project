@@ -149,7 +149,7 @@ public class ProductAPI {
             errors.add("Mã sản phẩm không được để trống");
         }
 
-        if (productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")){
+        if (!productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")){
             errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*034567987(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
         }
 
