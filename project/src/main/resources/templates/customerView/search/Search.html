@@ -1162,10 +1162,24 @@
                     <div class="col-4" id="filter_509_2" data-filter-type="tax"
                          data-filter-id="2"
                          data-taxonomy="product_tag" data-multiple="yes" data-relation="or">
-                                                <span class="filter-title">Giá tiền trong khoảng</span>
-                                                <div class="filter-content">
-                                                    <input type="range" min="0" max="10">
-                                                </div>
+                                                <span class="filter-title" style="margin-left: 140px; font-size: 15px">Giá tiền trong khoảng:</span>
+                        <div id="form-wrapper">
+                            <form method="GET">
+                                <div id="debt-amount-slider">
+                                    <input type="radio" name="debt-amount" id="1" value="1" required>
+                                    <label for="1" data-debt-amount="< 10tr"></label>
+                                    <input type="radio" name="debt-amount" id="2" value="2" required>
+                                    <label for="2" data-debt-amount="10tr-25tr"></label>
+                                    <input type="radio" name="debt-amount" id="3" value="3" required>
+                                    <label for="3" data-debt-amount="25tr-50tr"></label>
+                                    <input type="radio" name="debt-amount" id="4" value="4" required>
+                                    <label for="4" data-debt-amount="$50tr-100tr"></label>
+                                    <input type="radio" name="debt-amount" id="5" value="5" required>
+                                    <label for="5" data-debt-amount="$100tr+"></label>
+                                    <div id="debt-amount-pos"></div>
+                                </div>
+                            </form>
+                        </div>
                         <!--                            <select class="filter-items filter-dropdown enhanced d-block" name="filter[509][2]"-->
                         <!--                                    multiple="multiple" data-show_search="0"-->
                         <!--                                    >-->
