@@ -122,7 +122,7 @@ public class AuthRestController {
                 .httpOnly(false)
                 .secure(false)
                 .path("/")
-                .maxAge(60 * 1000)
+                .maxAge(100 * 1000)
                 .domain("localhost")
 //                .domain("ajax-bank-location-jwt.herokuapp.com")
 //                .domain("bank-transaction.azurewebsites.net")

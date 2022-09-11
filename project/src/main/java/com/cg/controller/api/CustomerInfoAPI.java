@@ -2,6 +2,7 @@ package com.cg.controller.api;
 
 
 import com.cg.exception.DataInputException;
+import com.cg.exception.EmailExistsException;
 import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.CustomerInfo;
 import com.cg.model.dto.CustomerInfoDTO;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
@@ -62,10 +64,19 @@ public class CustomerInfoAPI {
 
 
     @PostMapping("/create")
-    public ResponseEntity<?> doCreate(@RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<?> doCreate(@Valid  @RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
+        Boolean exitByUserName = customerInfoService.existsByUserName(customerInfoDT0.getUserName());
+        if (exitByUserName){
+            throw new EmailExistsException("Email đã tồn tại! Vui lòng nhập email khác");
+        }
+        Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDT0.getPhone());
+        if (exitByPhone){
+            throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
+        }
+
         customerInfoDT0.getLocationRegion().setId(0L);
 
         CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
@@ -73,10 +84,20 @@ public class CustomerInfoAPI {
     }
 
     @PutMapping("/edit")
-    private ResponseEntity<?> doUpdate(@RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
-          if (bindingResult.hasFieldErrors()) {
+    private ResponseEntity<?> doUpdate(@Valid @RequestBody CustomerInfoDTO customerInfoDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+        new CustomerInfoDTO().validate(customerInfoDTO, bindingResult);
+
+        if (bindingResult.hasFieldErrors()) {
               return appUtils.mapErrorToResponse(bindingResult);
           }
+        Boolean exitByUserName = customerInfoService.existsByUserName(customerInfoDTO.getUserName());
+        if (exitByUserName){
+            throw new EmailExistsException("Email đã tồn tại! Vui lòng nhập email khác");
+        }
+        Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDTO.getPhone());
+        if (exitByPhone){
+            throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
+        }
           customerInfoDTO.getLocationRegion().setId(0L);
 
           CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());

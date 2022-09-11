@@ -27,7 +27,17 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
 
     @Override
     public Boolean existById(Long id) {
-        return null;
+        return customerInfoRepository.existsById(id);
+    }
+
+    @Override
+    public Boolean existsByUserName(String username) {
+        return customerInfoRepository.existsByUserName(username);
+    }
+
+    @Override
+    public Boolean existsByPhone(String phone) {
+        return customerInfoRepository.existsByPhone(phone);
     }
 
     @Override

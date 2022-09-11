@@ -49,8 +49,6 @@ public class CategoryAPI {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-
-
         Category category = categoryService.save(categoryDTO.toCategory());
         return new ResponseEntity<>(category.categoryDTO(), HttpStatus.OK);
     }
