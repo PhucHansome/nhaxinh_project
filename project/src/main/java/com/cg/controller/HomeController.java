@@ -106,9 +106,9 @@ public class HomeController {
         return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
-    @GetMapping("/search/{pageNo}/{query}")
-    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@PathVariable String query, Pageable pageable) {
-        ModelAndView modelAndView = new ModelAndView();
+    @GetMapping("/search/page={pageNo}")
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option, Pageable pageable) {
+            ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
         if (email == "anonymousUser") {
@@ -116,22 +116,14 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
-
         modelAndView.addObject("query", query);
         String query_search = "%" + query + "%";
-        Page<ProductDTO> resuiltProductSearch = pageProductService.searchProductDTOByTitleAndOtherQuery(query_search,PageRequest.of((pageNo -1), 8));
-        if (query.equals("Sản phẩm") ){
-            Page<ProductDTO> data = pageProductService.findAllProductDTONoImage(PageRequest.of((pageNo -1), 8));
-            modelAndView.addObject("productList", data);
-            modelAndView.addObject("totalPage",data.getTotalPages());
-            modelAndView.addObject("totalItem",data.getTotalElements());
-            modelAndView.addObject( "currentPage",pageNo);
-            return modelAndView;
-        }
-        modelAndView.addObject("productList", resuiltProductSearch);
-        modelAndView.addObject("totalPage",resuiltProductSearch.getTotalPages());
-        modelAndView.addObject("totalItem",resuiltProductSearch.getTotalElements());
-        modelAndView.addObject( "currentPage",pageNo);
+        Page<ProductDTO> productDTOPage = pageProductService.findALl(option, query_search, PageRequest.of((pageNo - 1), 8));
+        modelAndView.addObject("option", option);
+        modelAndView.addObject("productList", productDTOPage);
+        modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
+        modelAndView.addObject("totalItem", productDTOPage.getTotalElements());
+        modelAndView.addObject("currentPage", pageNo);
         return modelAndView;
     }
 

@@ -30,7 +30,7 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             "c.productColor, " +
             "c.createdAt" +
             ")  " +
-            "FROM Product c WHERE c.deleted = false order by c.createdAt ASC")
+            "FROM Product c WHERE c.deleted = false order by c.createdAt DESC")
     Page<ProductDTO> findAllProductDTONoImage( Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
@@ -58,5 +58,109 @@ public interface PaginAndSortTingProductRepository extends PagingAndSortingRepos
             " ")
     Page<ProductDTO> searchProductDTOByTitleAndOtherQuery (String title,  Pageable pageable);
 
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            "c.deleted = false " +
+            "AND (c.title LIKE ?1 " +
+            "OR c.material LIKE ?1 " +
+            "OR c.category.name LIKE ?1 " +
+            "OR c.productColor.color LIKE ?1) " +
+            "ORDER BY c.price DESC" +
+            " ")
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceDESC (String title,  Pageable pageable);
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            "c.deleted = false " +
+            "AND (c.title LIKE ?1 " +
+            "OR c.material LIKE ?1 " +
+            "OR c.category.name LIKE ?1 " +
+            "OR c.productColor.color LIKE ?1) " +
+            "ORDER BY c.price ASC" +
+            " ")
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryPriceASC (String title,  Pageable pageable);
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            "c.deleted = false " +
+            "AND (c.title LIKE ?1 " +
+            "OR c.material LIKE ?1 " +
+            "OR c.category.name LIKE ?1 " +
+            "OR c.productColor.color LIKE ?1) " +
+            "ORDER BY c.title ASC" +
+            " ")
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryTitleASC (String title,  Pageable pageable);
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
+            "FROM Product c WHERE " +
+            "c.deleted = false " +
+            "AND (c.title LIKE ?1 " +
+            "OR c.material LIKE ?1 " +
+            "OR c.category.name LIKE ?1 " +
+            "OR c.productColor.color LIKE ?1) " +
+            "ORDER BY c.createdAt DESC " +
+            " ")
+    Page<ProductDTO> searchProductDTOByTitleAndOtherQueryDESC (String title,  Pageable pageable);
 
 }

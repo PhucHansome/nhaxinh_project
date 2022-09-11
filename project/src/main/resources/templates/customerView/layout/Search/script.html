@@ -1266,6 +1266,7 @@
         page.element.Query_Resuilt_inUrl = $("#Query_Resuilt")
         page.element.resuilt_product_Seach_In_query = $(".product_Seach_In_query")
         page.element.container_line_resuilt_search = $("#resuilt_query_search")
+        page.dialogs.element.optionSelect1 = $("#selectOptionPrice_time")
 
         page.element.InputQuerySearch = $("#querySearch")
         page.element.btnShowCart = $("#cart_")
@@ -1523,7 +1524,13 @@
 
         page.commands.handleGoSearch = () => {
             $(".btn-search").on("click", function (){
-                window.location.href = "/search/1/" + page.element.InputQuerySearch.val();
+                window.location.href = "/search/page=1?option=1&query=" + page.element.InputQuerySearch.val();
+            })
+        }
+
+        page.commands.handleApply = () => {
+            $(".apply-filters").on("click", function(){
+                window.location.href = "/search/page=1?option="+  page.dialogs.element.optionSelect1.val() + "&query=" + page.element.Query_Resuilt_inUrl.text()
             })
         }
 
@@ -1555,7 +1562,8 @@
             page.commands.handleCreateCart();
             page.commands.handleGoSearch();
             page.commands.getCustomerByUserName()
-
+            page.commands.handleApply()
+            page.dialogs.element.optionSelect1.val($("#optionSelect1").val())
         })
     </script>
 </th:block>

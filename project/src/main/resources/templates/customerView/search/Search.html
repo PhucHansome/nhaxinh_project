@@ -1142,324 +1142,47 @@
 
         <div class="yith-wcan-filters no-title enhanced" id="preset_509" data-preset-id="509" data-target="">
             <div class="filters-container">
-                <form method="POST">
-
-                    <div class="yith-wcan-filter filter-orderby" id="filter_509_0" data-filter-type="orderby"
-                         data-filter-id="0">
-                        <span class="filter-title">Giá</span>
+                <div th:object="${optionSelect}" class="row">
+                    <div class="col-4" >
+                        <input type="hidden" id="optionSelect1" th:value="${option}">
+                        <span class="filter-title" style="    font-size: 15px;">Giá: </span>
                         <div class="filter-content">
-                            <select class="filter-order-by filter-dropdown filter-items enhanced"
+                            <select class="filter-order-by filter-dropdown filter-items enhanced "
                                     name="filter[509][0]"
-                                    id="filter_509_0" style="display: none;">
-                                <option class="filter-item" value="popularity">Theo mức độ phổ biến</option>
-                                <option class="filter-item" value="date">Mới nhất</option>
-                                <option class="filter-item" value="price">Theo giá: Thấp đến cao</option>
-                                <option class="filter-item" value="price-desc">Theo giá: cao đến thấp</option>
+                                    id="selectOptionPrice_time"
+                            >
+                                <option class="filter-item" value="1">Theo mức độ phổ biến</option>
+                                <option class="filter-item" value="2">Mới nhất</option>
+                                <option class="filter-item" value="3">Theo giá: Thấp đến cao</option>
+                                <option class="filter-item" value="4">Theo giá: cao đến thấp</option>
                             </select>
-                            <div class="yith-wcan-dropdown dropdown_1 close">
-                                <div class="dropdown-label  dropdown_2" style="margin-bottom: -20px;">
-                                    <button style="text-transform: unset" class="btn-dropdown-search"> Theo mức
-                                        độ phổ biến
-                                        <i class="fa-solid fa-angle-down tha_selection" style="color:white"></i>
-                                    </button>
-                                </div>
-                                <div class="dropdown-wrapper">
-                                    <ul class="matching-items filter-items">
-                                        <li data-value="popularity" class="filter-item active"><a href="#">Theo
-                                            mức độ phổ
-                                            biến</a></li>
-                                        <li data-value="date" class="filter-item"><a>Mới nhất</a></li>
-                                        <li data-value="price" class="filter-item"><a>Theo giá: Thấp đến cao</a>
-                                        </li>
-                                        <li data-value="price-desc" class="filter-item"><a>Theo giá: cao đến
-                                            thấp</a>
-                                        </li>
-                                    </ul>
-                                    <a class="show-more" style="display: none;">Show 10 more</a></div>
-                            </div>
                         </div>
                     </div>
-
-                    <div class=" yith-wcan-filter filter-tax" id="filter_509_2" data-filter-type="tax"
+                       <div class="col-1"></div>
+                    <div class="col-4" id="filter_509_2" data-filter-type="tax"
                          data-filter-id="2"
                          data-taxonomy="product_tag" data-multiple="yes" data-relation="or">
-                        <span class="filter-title">Chất liệu</span>
-                        <div class="filter-content">
-
-                            <select class="filter-items filter-dropdown enhanced" name="filter[509][2]"
-                                    id="filter_509_2" multiple="multiple" data-show_search="0"
-                                    style="display: none;">
-
-
-                                <option class="filter-item select  level-0" value="ceramic"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=ceramic"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(61)&lt;/small&gt;
-">
-                                    Ceramic
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="da"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=da"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(102)&lt;/small&gt;
-">
-                                    Đá
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="vat-lieu-da"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=vat-lieu-da"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(194)&lt;/small&gt;
-">
-                                    Đá
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="da-va-vai"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=da-va-vai"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(8)&lt;/small&gt;
-">
-                                    Da và vải
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="go"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=go"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(596)&lt;/small&gt;
-">
-                                    Gỗ
-                                </option>
-
-
-                                <option class="filter-item select  level-0 disabled" value="go-soi"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=go-soi"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(0)&lt;/small&gt;
-">
-                                    Gỗ sồi
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="gom"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=gom"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(172)&lt;/small&gt;
-">
-                                    Gốm
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="inox"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=inox"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(1)&lt;/small&gt;
-">
-                                    Inox
-                                </option>
-
-
-                                <option class="filter-item select  level-0 disabled" value="khung-sat-tinh-dien"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=khung-sat-tinh-dien"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(0)&lt;/small&gt;
-">
-                                    Khung sắt tĩnh điện
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="kim-loai"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=kim-loai"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(570)&lt;/small&gt;
-">
-                                    Kim loại
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="kinh"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=kinh"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(197)&lt;/small&gt;
-">
-                                    Kính
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="mdf"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=mdf"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(11)&lt;/small&gt;
-">
-                                    MDF
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="mdf-son"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=mdf-son"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(62)&lt;/small&gt;
-">
-                                    MDF sơn
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="mdf-veneer"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=mdf-veneer"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(144)&lt;/small&gt;
-">
-                                    MDF veneer
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="mo-rong-nhieu-cho"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=mo-rong-nhieu-cho"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(27)&lt;/small&gt;
-">
-                                    Mở rộng nhiều chỗ
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="thuy-tinh"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=thuy-tinh"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(239)&lt;/small&gt;
-">
-                                    Thủy tinh
-                                </option>
-
-
-                                <option class="filter-item select  level-0" value="vai"
-                                        data-filter_url="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_tag=vai"
-                                        data-count="
-&lt;small class=&quot;item-count&quot;&gt;
-	(493)&lt;/small&gt;
-">
-                                    Vải
-                                </option>
-
-
-                            </select>
-                            <div class="yith-wcan-dropdown dropdown_3 closed">
-                                <div class="dropdown-label dropdown_4" style="margin-bottom: -20px;">
-                                    <button style="text-transform: unset" class="btn-dropdown-material"> Tất cả
-                                        <i class="fa-solid fa-angle-down tha_selection" style="color:white"></i>
-                                    </button>
-                                </div>
-                                <div class="dropdown-wrapper">
-                                    <ul class="matching-items filter-items">
-                                        <li data-value="ceramic"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="ceramic"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=ceramic">
-                                            Ceramic
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="da"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="da"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=da">
-                                            Đá
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="vat-lieu-da"
-                                            class="filter-item select level-0 checkbox"><label><input
-                                                type="checkbox" value="vat-lieu-da"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=vat-lieu-da">
-                                            Đá
-                                            <small class="item-count">
-                                                (35)</small>
-                                        </a></label></li>
-                                        <li data-value="da-va-vai"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="da-va-vai"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=da-va-vai">
-                                            Da và vải
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="go" class="filter-item select level-0 checkbox">
-                                            <label><input type="checkbox" value="go"><a
-                                                    href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=go">
-                                                Gỗ
-                                                <small class="item-count">
-                                                    (48)</small>
-                                            </a></label></li>
-                                        <li data-value="go-soi"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="go-soi"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=go-soi">
-                                            Gỗ sồi
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="gom"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="gom"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=gom">
-                                            Gốm
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="inox"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="inox"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=inox">
-                                            Inox
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="khung-sat-tinh-dien"
-                                            class="filter-item select level-0 disabled checkbox"><label><input
-                                                type="checkbox" value="khung-sat-tinh-dien"><a
-                                                href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=khung-sat-tinh-dien">
-                                            Khung sắt tĩnh điện
-                                            <small class="item-count">
-                                                (0)</small>
-                                        </a></label></li>
-                                        <li data-value="kim-loai" class="filter-item select level-0 checkbox">
-                                            <label><input type="checkbox" value="kim-loai"><a
-                                                    href="https://nhaxinh.com/cua-hang/?yith_wcan=1&amp;product_cat=phong-lam-viec&amp;product_tag=kim-loai">
-                                                Kim loại
-                                                <small class="item-count">
-                                                    (40)</small>
-                                            </a></label></li>
-                                    </ul>
-                                    <a class="show-more" style="">Show 10 more</a></div>
-                            </div>
-                        </div>
+                                                <span class="filter-title">Giá tiền trong khoảng</span>
+                                                <div class="filter-content">
+                                                    <input type="range" min="0" max="10">
+                                                </div>
+                        <!--                            <select class="filter-items filter-dropdown enhanced d-block" name="filter[509][2]"-->
+                        <!--                                    multiple="multiple" data-show_search="0"-->
+                        <!--                                    >-->
+                        <!--                                -->
+                        <!--                            </select>-->
+                        <!--                        </div>-->
 
 
                     </div>
-                    <button class="btn btn-primary apply-filters">
-                        Áp dụng
-                    </button>
-                </form>
+                    <div class="col-1"></div>
 
+                    <div class="col-2">
+                        <button class="btn btn-primary apply-filters">
+                            Áp dụng
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -1608,18 +1331,12 @@
                 <div class="container">
                     <nav class="woocommerce-pagination">
                         <ul class="page-numbers nav-pagination links text-center">
-                            <li><span th:if="${totalPage > 1}" aria-current="page" class="page-number current">Bạn đang ở trang: [[${currentPage}]]</span>
-                            </li>
                             <li th:each="i: ${#numbers.sequence(1,totalPage)}"><a class="page-number"
                                                                                   th:if="${currentPage != i}"
-                                                                                  th:href="@{'/search/'+${i} + '/' + ${query}}">[[${i}]]</a>
+                                                                                  th:href="@{'/search/'+${i} + '/' + ${query}}">[[${i}]]
+                            </a> <span aria-current="page" id="pageNow" class="page-number current"
+                                       th:unless="${currentPage != i}">[[${i}]]</span>
                             </li>
-                            <li><span aria-current="page" class="page-number current"
-                                      th:unless="${currentPage != i}">[[${i}]]</span></li>
-                            <li><a class="page-number" th:if="${currentPage < totalPage}"
-                                   th:href="@{'/search/'+${currentPage + 1} + '/'+ ${query}}">Next</a></li>
-                            <li><span aria-current="page" class="page-number current"
-                                      th:unless="${currentPage < totalPage}">Next</span></li>
                             <li><a class="page-number" th:if="${currentPage < totalPage}"
                                    th:href="@{'/search/'+${totalPage} + '/' + ${query}}">Last</a></li>
                             <li><span aria-current="page" class="page-number current"
