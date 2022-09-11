@@ -27,13 +27,15 @@ public class UserDTO  {
 
     private Long id;
 
-//    @NotBlank(message = "The email is required")
-//    @Email(message = "The email address is invalid")
-//    @Size(max = 50, message = "The length of email must be between 5 and 50 characters")
+    @NotBlank(message = "Email không được để trống")
+    //@Email(message = "Email không đúng định dạng")
+    @Email(message = "{model.userdto.email.invalid}")
+    @Size(max = 50, message = "Tên đăng nhập tối đa 50 ký tự")
     private String username;
 
-//    @NotBlank(message = "The password is required")
-//    @Size(max = 30, message = "Maximum password length 30 characters")
+    @NotBlank(message = "Mật khẩu không được để trống")
+    @Size(max = 30, message = "Mật khẩu tối đa 30 ký tự")
+    @Size(min = 6, message = "Mật khẩu tối thiểu 6 ký tự")
     private String password;
 
     @Valid

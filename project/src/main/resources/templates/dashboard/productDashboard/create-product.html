@@ -28,9 +28,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0, .8));
+        background: radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
 
-        background: -webkit-radial-gradient(rgba(20, 20, 20,.8), rgba(0, 0, 0,.8));
+        background: -webkit-radial-gradient(rgba(20, 20, 20, .8), rgba(0, 0, 0, .8));
     }
 
     /* :not(:required) hides these rules from IE9 and below */
@@ -56,8 +56,8 @@
         -o-animation: spinner 150ms infinite linear;
         animation: spinner 150ms infinite linear;
         border-radius: 0.5em;
-        -webkit-box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
-        box-shadow: rgba(255,255,255, 0.75) 1.5em 0 0 0, rgba(255,255,255, 0.75) 1.1em 1.1em 0 0, rgba(255,255,255, 0.75) 0 1.5em 0 0, rgba(255,255,255, 0.75) -1.1em 1.1em 0 0, rgba(255,255,255, 0.75) -1.5em 0 0 0, rgba(255,255,255, 0.75) -1.1em -1.1em 0 0, rgba(255,255,255, 0.75) 0 -1.5em 0 0, rgba(255,255,255, 0.75) 1.1em -1.1em 0 0;
+        -webkit-box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(255, 255, 255, 0.75) 1.5em 0 0 0, rgba(255, 255, 255, 0.75) 1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) 0 1.5em 0 0, rgba(255, 255, 255, 0.75) -1.1em 1.1em 0 0, rgba(255, 255, 255, 0.75) -1.5em 0 0 0, rgba(255, 255, 255, 0.75) -1.1em -1.1em 0 0, rgba(255, 255, 255, 0.75) 0 -1.5em 0 0, rgba(255, 255, 255, 0.75) 1.1em -1.1em 0 0;
     }
 
     /* Animation */
@@ -78,6 +78,7 @@
             transform: rotate(360deg);
         }
     }
+
     @-moz-keyframes spinner {
         0% {
             -webkit-transform: rotate(0deg);
@@ -94,6 +95,7 @@
             transform: rotate(360deg);
         }
     }
+
     @-o-keyframes spinner {
         0% {
             -webkit-transform: rotate(0deg);
@@ -110,6 +112,7 @@
             transform: rotate(360deg);
         }
     }
+
     @keyframes spinner {
         0% {
             -webkit-transform: rotate(0deg);
@@ -172,61 +175,70 @@
                 <div class="row" style=" position: relative;">
                     <div class="col-md-7">
 
-                        <div class="row shadow-lg p-3 mb-5 bg-body rounded" style=" position: relative; top: -25px;">
-                            <div class="col-md-12">
-                                <h6 style="text-align: center">Thông tin chung</h6>
+                        <div class="card-box" style=" position: relative; top: -25px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align: center">Thông tin chung</h3>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="ErrorCreate d-none" style="color: red;font-weight: bold;">
 
-                            <div class="col-md-6">
-                                <label>Tên sản phẩm<span style="color: red">*</span></label>
-                                <div class="modal-error">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Tên sản phẩm<span style="color: red">*</span></label>
+                                    <input type="text" id="productName" placeholder="Nhập tên sản phẩm"
+                                           class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Số lượng</label>
+                                    <input type="text" id="quantityProduct" class="form-control">
 
                                 </div>
-                                <input type="text" id="productName" placeholder="Nhập tên sản phẩm"
-                                       class="form-control">
-
                             </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Số lượng</label>
-                                <input type="text" id="quantityProduct" class="form-control">
 
-                            </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Giá sản phẩm</label>
-                                <div class="modal-error">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Giá sản phẩm</label>
+                                    <input type="text" id="priceProduct" class="form-control">
 
                                 </div>
-                                <input type="text" id="priceProduct" class="form-control">
-
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Mã sản phẩm/SKU</label>
+                                    <input type="text" id="codeProduct" class="form-control">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Mã sản phẩm/SKU</label>
-                                <div class="modal-error" style="background-color: red" >
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">kích thước/size</label>
+                                    <input type="text" id="productSize" class="form-control">
 
                                 </div>
-                                <input type="text" id="codeProduct" class="form-control">
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Thể loại/Category</label>
+                                    <select id="category_" class="form-control categoryList">
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">kích thước/size</label>
-                                <input type="text" id="productSize" class="form-control">
-
-                            </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Thể loại/Category</label>
-                                <select id="category_" class="form-control categoryList">
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Màu sắc/Color</label>
-                                <select id="colorProduct" class="form-control productColorList">
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label style="margin-top: 5px">Trạng thái/status</label>
-                                <select id="productStatus" class="form-control">
-                                    <option>Đã Hết Hàng</option>
-                                    <option>Còn Hàng</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Màu sắc/Color</label>
+                                    <select id="colorProduct" class="form-control productColorList">
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label style="margin-top: 5px">Trạng thái/status</label>
+                                    <select id="productStatus" class="form-control">
+                                        <option>Đã Hết Hàng</option>
+                                        <option>Còn Hàng</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-6"></div>
                             <div class="col-md-12">
@@ -253,7 +265,7 @@
                         </div>
                     </div>
                     <div class="col-md-5" style="  padding-left: 35px;">
-                        <div class="row shadow-lg p-3 mb-5 bg-body rounded"
+                        <div class="card-box"
                              style="position: relative; margin-top: -25px;">
                             <div class="col-md-12">
                                 <h6 style="text-align: center">Thông tin bổ sung</h6>
@@ -425,14 +437,14 @@
     page.element.btnSave = $(".btn-Save")
 
     page.element.listProductColor = $(".productColorList")
-
+    page.element.ErrorCreate = $(".ErrorCreate")
 
     page.commands.formatNumber = () => {
 
-        $(document).on('input', '#priceProduct',function (e) {
+        $(document).on('input', '#priceProduct', function (e) {
             $(this).val(App.formatNumberSpace($(this).val()));
         })
-        $('input#priceProduct').on("keypress",function (e){
+        $('input#priceProduct').on("keypress", function (e) {
             let charCode = (e.which) ? e.which : e.keyCode
 
             if (String.fromCharCode(charCode).match(/[^0-9]/g))
@@ -519,9 +531,10 @@
                         "content-type": "application/json"
                     },
                     type: "POST",
-                    url: page.url.PostTag +"/"+ product.id,
+                    url: page.url.PostTag + "/" + product.id,
                     data: JSON.stringify(tag)
                 }).done((item) => {
+                    $(".ErrorCreate").addClass("d-none")
                     formData.delete("code");
                     formData.delete("title");
                     formData.delete("price");
@@ -550,8 +563,8 @@
                     App.IziToast.showSuccessAlert("Bạn Đã Tạo Sản Phẩm Thành công")
                     images = []
                     document.getElementById('container_').innerHTML = page.commands.image_show()
-                }).fail((e) => {
-                    console.log(e)
+                }).fail((jqXHR) => {
+                    console.log(jqXHR)
                     $(".mla").html("")
                     App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
                     formData.delete("files")
@@ -565,8 +578,20 @@
                     formData.delete("size");
                     formData.delete("material");
                     formData.delete("image");
+                    $(".ErrorCreate").removeClass("d-none")
+                    $(".ErrorCreate").html("")
+                    if (jqXHR.responseJSON) {
+                        $.each(jqXHR.responseJSON, (key, item) => {
+
+                            let str = `<ul>
+                                    <li>${item}</li>
+                                    </ul>
+                                `
+                            $(".ErrorCreate").append(str)
+                        })
+                    }
                 })
-            }).fail(() => {
+            }).fail((jqXHR) => {
                 $(".mla").html("")
                 App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
                 formData.delete("files")
@@ -580,6 +605,19 @@
                 formData.delete("size");
                 formData.delete("material");
                 formData.delete("image");
+                $(".ErrorCreate").removeClass("d-none")
+                $(".ErrorCreate").html("")
+                if (jqXHR.responseJSON) {
+                    console.log(jqXHR)
+                    $.each(jqXHR.responseJSON, (key, item) => {
+
+                        let str = `<ul>
+                                    <li>${item}</li>
+                                    </ul>
+                                `
+                        $(".ErrorCreate").append(str)
+                    })
+                }
             })
         })
     }

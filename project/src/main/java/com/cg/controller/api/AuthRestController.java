@@ -11,6 +11,7 @@ import com.cg.service.role.IRoleService;
 import com.cg.service.user.IUserService;
 import com.cg.utils.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 import java.util.Optional;
 
 @RestController
@@ -44,6 +46,9 @@ public class AuthRestController {
 
     @Autowired
     private AppUtil appUtils;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerRegister(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
@@ -97,8 +102,18 @@ public class AuthRestController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserDTO user) {
+    public ResponseEntity<?> login(@Valid @RequestBody UserDTO user,  BindingResult bindingResult) {
+        System.out.println("Email không hợp lệ");
+        //System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
+        System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
         Optional<UserDTO> userDTO = userService.findUserDTOByUsername(user.getUsername());
+
+        if (bindingResult.hasErrors())
+            return appUtils.mapErrorToResponse(bindingResult);
+
+        if(!userDTO.isPresent()){
+            throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");
+        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));

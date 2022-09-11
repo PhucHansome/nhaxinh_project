@@ -1034,7 +1034,6 @@
     })();</script>
 
 
-
     <div>
         <div class="grecaptcha-badge" data-style="bottomright"
              style="width: 256px; height: 60px; position: fixed; visibility: hidden; display: block; transition: right 0.3s ease 0s; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
@@ -1099,6 +1098,8 @@
     <script src="/assets/js/magnific-popup-1.1.0.js"></script>
 
     <script>
+
+
         $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
@@ -1261,11 +1262,13 @@
         page.element.container_cartItem = $("#seeCartItems")
         page.element.idProduct = $("#productId")
         page.element.valueInput = $("#valueInput")
-        page.element.valueQuantity =  $("#quantity_62fc4b3185e6c")
+        page.element.valueQuantity = $("#quantity_62fc4b3185e6c")
         page.element.resuilt_search = $(".resuilt_search")
         page.element.Query_Resuilt_inUrl = $("#Query_Resuilt")
         page.element.resuilt_product_Seach_In_query = $(".product_Seach_In_query")
         page.element.container_line_resuilt_search = $("#resuilt_query_search")
+        page.dialogs.element.optionSelect1 = $("#selectOptionPrice_time")
+        page.dialogs.element.radioSelect = $("input:radio[name=debt-amount]")
 
         page.element.InputQuerySearch = $("#querySearch")
         page.element.btnShowCart = $("#cart_")
@@ -1340,11 +1343,12 @@
                     $("#seeGrandTotal").html("")
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     page.commands.handleCloseCart()
                     let sum = 0
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                        $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
 
                     $.each(data, (i, item) => {
@@ -1440,9 +1444,9 @@
                                 </div>
                                 <span class="search-price"><ins><span style="font-size: 12px;"
                                         class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                                        style: 'currency',
-                                        currency: 'VND'
-                                    }).format(product.price)}
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(product.price)}
                                         </bdi></span></ins></span></span>
                                 </a></div>
                     `;
@@ -1465,10 +1469,10 @@
         page.commands.getSearchResuilt = () => {
             $.ajax({
                 "method": "GET",
-                "url": page.url.GetResuiltSearch + "/" +  page.element.Query_Resuilt_inUrl.text()
-            }).done((data)=>{
+                "url": page.url.GetResuiltSearch + "/" + page.element.Query_Resuilt_inUrl.text()
+            }).done((data) => {
                 page.element.resuilt_product_Seach_In_query.html("")
-                $.each(data , (i, item) =>{
+                $.each(data, (i, item) => {
                     product = item
                     page.commands.addCartBotLine()
                 })
@@ -1476,7 +1480,7 @@
                 page.commands.handleCreateCart()
                 page.commands.handleGoSearch();
 
-            }).fail((e)=>{
+            }).fail((e) => {
                 console.log(e)
             })
         }
@@ -1485,7 +1489,7 @@
             $(".them_vao_cart").on("click", function () {
                 let id = $(this).data("id");
                 page.commands.getProductById(id).then(() => {
-                    if($("#EmailLogin").text() === "Đăng nhập"){
+                    if ($("#EmailLogin").text() === "Đăng nhập") {
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                         return;
                     }
@@ -1521,8 +1525,35 @@
         }
 
         page.commands.handleGoSearch = () => {
-            $(".btn-search").on("click", function (){
-                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            $(".btn-search").on("click", function () {
+                window.location.href = "/search/page=1?option=1&choicePrice=0&query=" + page.element.InputQuerySearch.val();
+            })
+        }
+
+        page.commands.handleApply = () => {
+            $(".apply-filters").on("click", function () {
+                if (page.dialogs.element.radioSelect.filter('[value=5]').is(":checked")) {
+                    window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=5" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                    return
+                }
+                if (page.dialogs.element.radioSelect.filter('[value=4]').is(":checked")) {
+                    window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=4" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                    return
+                }
+                if (page.dialogs.element.radioSelect.filter('[value=3]').is(":checked")) {
+                    window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=3" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                    return
+                }
+                if (page.dialogs.element.radioSelect.filter('[value=2]').is(":checked")) {
+                    window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=2" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                    return
+                }
+                if (page.dialogs.element.radioSelect.filter('[value=1]').is(":checked")) {
+                    window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=1" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                    return
+                }
+                window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=0" + "&query=" + page.element.Query_Resuilt_inUrl.text()
+                return
             })
         }
 
@@ -1533,28 +1564,52 @@
             })
         }
 
-        page.commands.getCustomerByUserName = ()=>{
+        page.commands.getCustomerByUserName = () => {
             $.ajax({
-                type : "GET",
+                type: "GET",
                 url: page.url.GetCustomer + "/username/" + $("#EmailLogin").text()
-            }).done((data)=>{
+            }).done((data) => {
                 customerInfo = data;
                 $("#fullNameScreen").text(customerInfo.fullName)
-            }).fail((e)=>{
+            }).fail((e) => {
                 $("#fullNameScreen").text($("#EmailLogin").text())
             })
+        }
+
+        page.commands.loadChoicePrice = () => {
+            if ($("#choicePrice").val() === '1') {
+                page.dialogs.element.radioSelect.filter('[value=1]').prop('checked', true);
+                return;
+            }
+            if ($("#choicePrice").val() === '2') {
+                page.dialogs.element.radioSelect.filter('[value=2]').prop('checked', true);
+                return;
+            }
+            if ($("#choicePrice").val() === '3') {
+                page.dialogs.element.radioSelect.filter('[value=3]').prop('checked', true);
+                return;
+            }
+            if ($("#choicePrice").val() === '4') {
+                page.dialogs.element.radioSelect.filter('[value=4]').prop('checked', true);
+                return;
+            }
+            if ($("#choicePrice").val() === '5') {
+                page.dialogs.element.radioSelect.filter('[value=5]').prop('checked', true);
+                return
+            }
         }
 
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
             page.commands.searchFunction()
-            page.commands.getSearchResuilt();
             page.commands.handleGoDetailProduct()
             page.commands.handleCreateCart();
             page.commands.handleGoSearch();
             page.commands.getCustomerByUserName()
-
+            page.commands.handleApply()
+            page.dialogs.element.optionSelect1.val($("#optionSelect1").val())
+            page.commands.loadChoicePrice();
         })
     </script>
 </th:block>

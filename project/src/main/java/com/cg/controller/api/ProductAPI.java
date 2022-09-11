@@ -15,9 +15,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +45,7 @@ public class ProductAPI {
 
     @Autowired
     private AppUtils appUtils;
+
 
     @GetMapping
     private ResponseEntity<?> findAll() {
@@ -126,23 +131,69 @@ public class ProductAPI {
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
 
-        try {
-            Product createdProduct = productService.create(productDTO);
+        Optional<ProductDTO>productDTO1 = productService.findProductDTOByCode(productDTO.getCode());
+        if(productDTO1.isPresent()){
+            throw new DataInputException("Mã code sản phẩm này đã tồn tại vui lòng Nhập lại thông tin");
+        }
 
-            Optional<ProductMedia> productMediaOptional = productMediaService.findTopByProductOrderByTsAsc(createdProduct);
+        List<String> errors = new ArrayList<>();
+        if (!productDTO.getImage().equals("null")){
+            errors.add("dữ liệu lỗi");
+        }
 
-            if (!productMediaOptional.isPresent()) {
+        if(productDTO.getMaterial().isEmpty()){
+            errors.add("Vật liệu không được để trống");
+        }
+
+        if (productDTO.getCode().isEmpty()){
+            errors.add("Mã sản phẩm không được để trống");
+        }
+
+        if (productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")){
+            errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*034567987(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
+        }
+
+        if(productDTO.getDescription().isEmpty()){
+            errors.add("Mô tả sản phẩm không được để trống!");
+        }
+
+        if(productDTO.getTitle().isEmpty()){
+            errors.add("Tên sản phẩm không được để trống");
+        }
+
+        if(!productDTO.getSlug().equals("chua biet lam")){
+            errors.add("dữ liệu lỗi vui lòng thử lại!");
+        }
+        String price = String.valueOf(productDTO.getPrice());
+
+        if(price.matches("[/d]")){
+            errors.add("Vui lòng nhập số");
+        }
+
+        if (errors.size() > 0){
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+
+        if (errors.size() == 0){
+            try {
+                Product createdProduct = productService.create(productDTO);
+
+                Optional<ProductMedia> productMediaOptional = productMediaService.findTopByProductOrderByTsAsc(createdProduct);
+
+                if (!productMediaOptional.isPresent()) {
+                    throw new DataInputException("Product creation information is not valid, please check the information again");
+                }
+
+                createdProduct.setImage(productMediaOptional.get().getFileUrl());
+                productService.save(createdProduct);
+
+                return new ResponseEntity<>(createdProduct.toProductDTO(), HttpStatus.CREATED);
+
+            } catch (DataIntegrityViolationException e) {
                 throw new DataInputException("Product creation information is not valid, please check the information again");
             }
-
-            createdProduct.setImage(productMediaOptional.get().getFileUrl());
-            productService.save(createdProduct);
-
-            return new ResponseEntity<>(createdProduct.toProductDTO(), HttpStatus.CREATED);
-
-        } catch (DataIntegrityViolationException e) {
-            throw new DataInputException("Product creation information is not valid, please check the information again");
         }
+        return null;
     }
 
     @PutMapping("/put/{idCategory}/{idProductColor}")

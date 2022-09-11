@@ -1,7 +1,6 @@
 package com.cg.controller;
 
 
-import com.cg.model.CustomerInfo;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.service.Tag.TagService;
@@ -9,11 +8,14 @@ import com.cg.service.category.CategoryService;
 import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
+import com.cg.service.page.product.PageProductService;
 import com.cg.service.product.ProductService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -62,6 +64,9 @@ public class HomeController {
     @Autowired
     private ProductColorService productColorService;
 
+    @Autowired
+    private PageProductService pageProductService;
+
     private String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -99,9 +104,9 @@ public class HomeController {
         return "/customerView/dangnhap_dangky/dangnhap_dangky";
     }
 
-    @GetMapping("/search/{query}")
-    public ModelAndView getSearchByTitle(@PathVariable String query) {
-        ModelAndView modelAndView = new ModelAndView();
+    @GetMapping("/search/page={pageNo}")
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option,@RequestParam int choicePrice) {
+            ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
         if (email == "anonymousUser") {
@@ -109,8 +114,15 @@ public class HomeController {
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
-
         modelAndView.addObject("query", query);
+        String query_search = "%" + query + "%";
+        Page<ProductDTO> productDTOPage = pageProductService.findALl(choicePrice , option, query_search, PageRequest.of((pageNo - 1), 8));
+        modelAndView.addObject("option", option);
+        modelAndView.addObject("productList", productDTOPage);
+        modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
+        modelAndView.addObject("totalItem", productDTOPage.getTotalElements());
+        modelAndView.addObject("currentPage", pageNo);
+        modelAndView.addObject("choicePrice", choicePrice);
         return modelAndView;
     }
 
@@ -141,13 +153,15 @@ public class HomeController {
     }
 
     @GetMapping("/detail/{id}")
-    public ModelAndView goDetailProduct(@PathVariable String id){
+    public ModelAndView goDetailProduct(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/detail/detail");
         Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
+        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
         modelAndView.addObject("product", productDTOOptional.get());
         modelAndView.addObject("tag", tagDTO.get());
+        modelAndView.addObject("image", productMediaDTOList);
         String email = getPrincipal();
         if (email == "anonymousUser") {
             email = "Đăng nhập";
@@ -171,7 +185,7 @@ public class HomeController {
         List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserName(email);
         modelAndView.addObject("orderList", orderDTOS);
         BigDecimal sum = BigDecimal.valueOf(0);
-        for(OrderDTO orderDTO: orderDTOS){
+        for (OrderDTO orderDTO : orderDTOS) {
             sum = orderDTO.getGrandTotal().add(sum);
         }
         modelAndView.addObject("Total", sum);
@@ -179,7 +193,6 @@ public class HomeController {
     }
 
     //==dashBoard===//
-
 
 
     @GetMapping("/home-dashboard")
@@ -194,7 +207,7 @@ public class HomeController {
         modelAndView.addObject("customer", customerInfoDTOS.size());
         BigDecimal sum = BigDecimal.valueOf(0);
         List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đơn hàng đã duyệt");
-        for (OrderDetailDTO orderDetail : orderDetails1){
+        for (OrderDetailDTO orderDetail : orderDetails1) {
             sum = orderDetail.getGrandTotal().add(sum);
         }
         List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
@@ -206,6 +219,8 @@ public class HomeController {
     }
 
     @GetMapping("/product-dashboard")
+//    @GetMapping("/product-dashboard/page/{pageNo}")
+//    public ModelAndView getProductDashboard(@PathVariable int pageNo,Pageable pageable) {
     public ModelAndView getProductDashboard() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/productDashboard/product");
@@ -213,6 +228,12 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
         modelAndView.addObject("productList", productDTOList);
+//        Page<ProductDTO> productDTOPage = pageProductService.findAllProductDTONoImage(PageRequest.of((pageNo -1), 2));
+//        modelAndView.addObject("productList", productDTOPage);
+//        modelAndView.addObject("totalPage",productDTOPage.getTotalPages());
+//        modelAndView.addObject("totalItem",productDTOPage.getTotalElements());
+//        modelAndView.addObject( "currentPage",pageNo);
+
         return modelAndView;
     }
 
@@ -233,24 +254,26 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+
     @GetMapping("/category-product-dashboard")
     public ModelAndView getCategoryProductDashboard() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/categoryDashboard/category-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<CategoryDTO> categoryDTOS=categoryService.findAllCategoryDTO();
-        modelAndView.addObject("category",categoryDTOS);
+        List<CategoryDTO> categoryDTOS = categoryService.findAllCategoryDTO();
+        modelAndView.addObject("category", categoryDTOS);
         return modelAndView;
     }
+
     @GetMapping("/color-product-dashboard")
     public ModelAndView getColorProductDashboard() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/colorDashboard/color-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<ProductColorDTO> productColorDTOS=productColorService.findAllProductColorDTO();
-        modelAndView.addObject("color",productColorDTOS);
+        List<ProductColorDTO> productColorDTOS = productColorService.findAllProductColorDTO();
+        modelAndView.addObject("color", productColorDTOS);
         return modelAndView;
     }
 
@@ -260,11 +283,11 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/productDashboard/detail-product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        Optional <ProductDTO> productDTOList = productService.findProductDTOById(productId);
+        Optional<ProductDTO> productDTOList = productService.findProductDTOById(productId);
         modelAndView.addObject("product", productDTOList.get().toProduct());
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
         modelAndView.addObject("tag", tagDTO.get().toTag());
-        List <ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
+        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
         modelAndView.addObject("productMedia", productMediaDTO);
         return modelAndView;
     }
@@ -282,7 +305,7 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String detailCustomerinfo(){
+    public String detailCustomerinfo() {
         return "/dashboard/userDashboard/user";
     }
 
@@ -351,7 +374,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
 
 }
