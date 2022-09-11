@@ -28,7 +28,8 @@ public class UserDTO  {
     private Long id;
 
     @NotBlank(message = "Email không được để trống")
-    @Email(message = "Email không đúng định dạng")
+    //@Email(message = "Email không đúng định dạng")
+    @Email(message = "{model.userdto.email.invalid}")
     @Size(max = 50, message = "Tên đăng nhập tối đa 50 ký tự")
     private String username;
 
