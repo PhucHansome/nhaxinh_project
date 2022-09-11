@@ -1,7 +1,6 @@
 package com.cg.controller;
 
 
-import com.cg.model.CustomerInfo;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.service.Tag.TagService;
@@ -9,7 +8,7 @@ import com.cg.service.category.CategoryService;
 import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
-import com.cg.service.page.PageProductService;
+import com.cg.service.page.product.PageProductService;
 import com.cg.service.product.ProductService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
@@ -17,7 +16,6 @@ import com.cg.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -107,7 +105,7 @@ public class HomeController {
     }
 
     @GetMapping("/search/page={pageNo}")
-    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option,@RequestParam int choicePrice , Pageable pageable) {
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option,@RequestParam int choicePrice) {
             ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -124,6 +122,7 @@ public class HomeController {
         modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
         modelAndView.addObject("totalItem", productDTOPage.getTotalElements());
         modelAndView.addObject("currentPage", pageNo);
+        modelAndView.addObject("choicePrice", choicePrice);
         return modelAndView;
     }
 
