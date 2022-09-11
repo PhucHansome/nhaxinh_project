@@ -107,7 +107,7 @@ public class HomeController {
     }
 
     @GetMapping("/search/page={pageNo}")
-    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option, Pageable pageable) {
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option,@RequestParam int choicePrice , Pageable pageable) {
             ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -118,7 +118,7 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         modelAndView.addObject("query", query);
         String query_search = "%" + query + "%";
-        Page<ProductDTO> productDTOPage = pageProductService.findALl(option, query_search, PageRequest.of((pageNo - 1), 8));
+        Page<ProductDTO> productDTOPage = pageProductService.findALl(choicePrice , option, query_search, PageRequest.of((pageNo - 1), 8));
         modelAndView.addObject("option", option);
         modelAndView.addObject("productList", productDTOPage);
         modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
