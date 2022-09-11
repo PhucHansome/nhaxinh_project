@@ -97,8 +97,15 @@ public class AuthRestController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserDTO user) {
+    public ResponseEntity<?> login(@Valid @RequestBody UserDTO user,  BindingResult bindingResult) {
         Optional<UserDTO> userDTO = userService.findUserDTOByUsername(user.getUsername());
+
+        if (bindingResult.hasErrors())
+            return appUtils.mapErrorToResponse(bindingResult);
+
+        if(!userDTO.isPresent()){
+            throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");
+        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));

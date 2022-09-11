@@ -1289,7 +1289,7 @@
         page.element.container_cartItem = $("#seeCartItems")
         page.element.idProduct = $("#productId")
         page.element.valueInput = $("#valueInput")
-        page.element.valueQuantity =  $("#quantity_62fc4b3185e6c")
+        page.element.valueQuantity = $("#quantity_62fc4b3185e6c")
         page.element.resuilt_search = $(".resuilt_search")
         page.element.container_line_resuilt_search = $("#resuilt_query_search")
         page.element.resuilt_product_Seach_In_query = $(".product_Seach_In_query")
@@ -1321,7 +1321,6 @@
                 currency: 'VND'
             }).format(product.price), product.id)));
         }
-
 
 
         page.commands.getProductById = (id) => {
@@ -1411,10 +1410,11 @@
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     let sum = 0
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                        $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1445,11 +1445,11 @@
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     let sum = 0
-                    console.log(data)
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                        $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1478,34 +1478,49 @@
         }
 
         page.commands.handleReduce = () => {
-            if(page.element.valueQuantity.val() < 2){
+            if (Number(page.element.valueQuantity.val()) < 1) {
                 App.IziToast.showErrorAlert("số lượng không được nhỏ hơn 0!")
                 return;
             }
             page.element.valueQuantity.val(Number(page.element.valueQuantity.val()) - 1);
+            if (Number(page.element.valueQuantity.val()) === 0) {
+                App.IziToast.showErrorAlert("số lượng không được nhỏ hơn 0!")
+                page.element.valueQuantity.val(1)
+                return;
+            }
         }
 
         page.commands.handlePlus = () => {
-            if(page.element.valueQuantity.val() > 4){
+            if (page.element.valueQuantity.val() > 4) {
                 App.IziToast.showErrorAlert("Số lượng không được nhỏ hơn 5!")
+                page.element.valueQuantity.val(5)
                 return;
             }
             page.element.valueQuantity.val(Number(page.element.valueQuantity.val()) + 1);
         }
 
         page.commands.handleAddToCart = () => {
-            page.element.single_add_to_cart_button.on("click", () =>{
-                if($("#EmailLogin").text() === "Đăng nhập"){
+            page.element.single_add_to_cart_button.on("click", () => {
+                if ($("#EmailLogin").text() === "Đăng nhập") {
                     App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                     return;
                 }
-                page.commands.getProductById(page.element.idProduct.val()).then(()=>{
-                    delete carItem.id ;
+
+                page.commands.getProductById(page.element.idProduct.val()).then(() => {
+                    delete carItem.id;
                     carItem.product = product;
                     carItem.price = product.price;
                     carItem.quantity = page.element.valueQuantity.val();
-                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price) ;
-                    console.log(carItem.grandTotal)
+                    if (Number(carItem.quantity) === 0) {
+                        App.IziToast.showErrorAlert("Số lượng sản phẩm không đủ để đặt hàng")
+                        return;
+                    }
+                    let pattern = /\d/;
+                    if (pattern.test(carItem.quantity) === false) {
+                        App.IziToast.showErrorAlert("đây không phải số")
+                        return;
+                    }
+                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price);
                     carItem.userName = $("#EmailLogin").text();
 
                     $.ajax({
@@ -1517,12 +1532,12 @@
                         "type": "POST",
                         "url": page.url.PostCartItem + "/creat-cart-in-detail",
                         "data": JSON.stringify(carItem)
-                    }).done((data)=>{
+                    }).done((data) => {
                         console.log(data)
                         App.IziToast.showSuccessAlert("Thêm vào giỏ hàng thành công")
                         page.commands.showIconCart();
 
-                    }).fail((e)=>{
+                    }).fail((e) => {
                         App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
                         setTimeout(function () {
                             window.location.href = "/login"
@@ -1533,14 +1548,26 @@
         }
 
         page.commands.handleBuy = () => {
-            page.element.btnBuy.on("click", () =>{
-                page.commands.getProductById(page.element.idProduct.val()).then(()=>{
-                    console.log(product)
-                    delete carItem.id ;
+            page.element.btnBuy.on("click", () => {
+                page.commands.getProductById(page.element.idProduct.val()).then(() => {
+                    if ($("#EmailLogin").text() === "Đăng nhập") {
+                        App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
+                    delete carItem.id;
                     carItem.product = product;
                     carItem.price = product.price;
                     carItem.quantity = page.element.valueQuantity.val();
-                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price) ;
+                    if (Number(carItem.quantity) === 0) {
+                        App.IziToast.showErrorAlert("Số lượng sản phẩm không đủ để mua hàng!")
+                        return;
+                    }
+                    let pattern = /\d/;
+                    if (pattern.test(carItem.quantity) === false) {
+                        App.IziToast.showErrorAlert("đây không phải số")
+                        return;
+                    }
+                    carItem.grandTotal = Number(carItem.quantity) * Number(product.price);
                     console.log(carItem.grandTotal)
                     carItem.userName = $("#EmailLogin").text();
                     $.ajax({
@@ -1552,13 +1579,13 @@
                         "type": "POST",
                         "url": page.url.PostCartItem + "/creat-cart-in-detail",
                         "data": JSON.stringify(carItem)
-                    }).done((data)=>{
+                    }).done((data) => {
                         console.log(data)
                         page.commands.showIconCart();
                         setTimeout(function () {
                             window.location.href = "/cart"
                         }, 100);
-                    }).fail((e)=>{
+                    }).fail((e) => {
                         App.IziToast.showErrorAlert("Xin vui lòng đăng nhập để thực hiện chức năng")
                         setTimeout(function () {
                             window.location.href = "/login"
@@ -1568,13 +1595,13 @@
             })
         }
 
-        page.element.valueQuantity.on("blur", ()=>{
-            if(page.element.valueQuantity.val() < 2){
+        page.element.valueQuantity.on("blur", () => {
+            if (page.element.valueQuantity.val() < 2) {
                 App.IziToast.showErrorAlert("số lượng không được nhỏ hơn 0!")
                 page.element.valueQuantity.val(1)
                 return;
             }
-            if(page.element.valueQuantity.val() > 4){
+            if (page.element.valueQuantity.val() > 4) {
                 App.IziToast.showErrorAlert("Số lượng không được nhỏ hơn 5!")
                 page.element.valueQuantity.val(5)
                 return;
@@ -1635,26 +1662,28 @@
         }
 
         page.commands.handleGoSearch = () => {
-            $(".btn-search").on("click", function (){
-                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+            $(".btn-search").on("click", function () {
+                window.location.href = "/search/page=1?option=1&query=" + page.element.InputQuerySearch.val();
             })
         }
 
         page.commands.getSearchResuilt = () => {
             $.ajax({
                 "method": "GET",
-                "url": page.url.GetResuiltSearch + "/" +  page.element.SameProduct.text()
-            }).done((data)=>{
+                "url": page.url.GetResuiltSearch + "/" + page.element.SameProduct.text()
+            }).done((data) => {
                 page.element.resuilt_product_Seach_In_query.html("")
-                $.each(data , (i, item) =>{
-                    if (i > 3){return}
+                $.each(data, (i, item) => {
+                    if (i > 3) {
+                        return
+                    }
                     product = item
                     page.commands.addCartBotLine()
                 })
                 page.commands.handleGoDetailProduct()
                 page.commands.handleCreateCart()
                 page.commands.handleGoSearch();
-            }).fail((e)=>{
+            }).fail((e) => {
                 console.log(e)
             })
         }
@@ -1663,7 +1692,7 @@
             $(".them_vao_cart").on("click", function () {
                 let id = $(this).data("id");
                 page.commands.getProductById(id).then(() => {
-                    if($("#EmailLogin").text() === "Đăng nhập"){
+                    if ($("#EmailLogin").text() === "Đăng nhập") {
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                         return;
                     }
@@ -1705,14 +1734,14 @@
             })
         }
 
-        page.commands.getCustomerByUserName = ()=>{
+        page.commands.getCustomerByUserName = () => {
             $.ajax({
-                type : "GET",
+                type: "GET",
                 url: page.url.GetCustomer + "/username/" + $("#EmailLogin").text()
-            }).done((data)=>{
+            }).done((data) => {
                 customerInfo = data;
                 $("#fullNameScreen").text(customerInfo.fullName)
-            }).fail((e)=>{
+            }).fail((e) => {
                 $("#fullNameScreen").text($("#EmailLogin").text())
             })
         }

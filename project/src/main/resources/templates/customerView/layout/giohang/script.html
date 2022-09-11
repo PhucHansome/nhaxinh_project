@@ -1542,11 +1542,11 @@
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     let sum = 0
-                    console.log(data)
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                        $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1582,10 +1582,11 @@
                     page.element.container_cartItem.html("")
                     $(".showCart").css({'display': 'block'})
                     page.commands.handleCloseCart()
+                    $(".woocommerce-mini-cart__buttons").removeClass("d-none")
                     let sum = 0
                     if (data.length === 0) {
                         page.element.container_cartItem.prepend(`<h1 style="align-content: center">Giỏ Hàng Trống</h1>`)
-                        $(".woocommerce-mini-cart__buttons").html("")
+                        $(".woocommerce-mini-cart__buttons").addClass("d-none")
                     }
                     $.each(data, (i, item) => {
                         carItem = item
@@ -1758,7 +1759,7 @@
 
         page.commands.handleGoSearch = () => {
             $(".btn-search").on("click", function (){
-                window.location.href = "/search/" + page.element.InputQuerySearch.val();
+                window.location.href = "/search/page=1?option=1&query=" + page.element.InputQuerySearch.val();
             })
         }
 
