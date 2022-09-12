@@ -18,4 +18,11 @@ public interface ICustomerInfoService extends IGeneralService<CustomerInfo> {
 
     Optional<CustomerInfoDTO> findUserDTOByUserName(String userName);
 
+
+    Boolean existsByUserName(String username);
+
+    Boolean existsByPhone(String phone);
+
+
+
 }

@@ -20,7 +20,6 @@ public class PageProductServiceImpl implements PageProductService {
         return paginAndSortTingProductRepository.findAllProductDTONoImage(pageable);
     }
 
-    @Override
     public Page<ProductDTO> findALl(int choice, int option, String title, Pageable pageable) {
         if (option == 1) {
             if (choice == 1) {
@@ -94,7 +93,6 @@ public class PageProductServiceImpl implements PageProductService {
             }
             return paginAndSortTingProductRepository.searchProductDTOByTitleAndOtherQueryPriceDESC(BigDecimal.valueOf(0), BigDecimal.valueOf(100000000), title, pageable);
         }
-
         return null;
     }
 }

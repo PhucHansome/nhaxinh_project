@@ -19,6 +19,7 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @CreationTimestamp
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 

@@ -3,6 +3,8 @@
 <head>
     <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
     <th:block th:replace="/dashboard/layout/header::header"/>
+    <link href="/assets_dashboard/assets/css/styleUpdateCustomer.css" rel="stylesheet" >
+
 </head>
 <style>
     p {
@@ -263,11 +265,38 @@
                 page.dialogs.commands.drawDetailCustomerUpdate(customerInfo.id);
                 page.commands.goModalUpdateCustomer();
             }).fail( (jqXHR) => {
+
                 console.log(jqXHR)
-                App.IziToast.showErrorAlert("Cập nhật khách hàng thất bại ");
+                $(' .modal-alert-danger').html('').removeClass('hide').addClass('show');
+
+                if (jqXHR.responseJSON.message) {
+                    let msg = jqXHR.responseJSON.message;
+
+                    let str = `<label id="message-error" class="error" for="message">${msg}</label>`;
+
+                    $('#modalUpdateUser .modal-alert-danger').append(str);
+                }
+                else if (jqXHR.responseJSON) {
+                    $.each(jqXHR.responseJSON, (key, item) => {
+                        let str = `<label id="${key}-error" class="error" for="${key}">${item}</label>`;
+                        $("#" + key).addClass("error");
+
+                        $('#modalUpdateUser .modal-alert-danger').append(str);
+                    })
+                }
+            } )
+                // App.IziToast.showErrorAlert("Cập nhật khách hàng thất bại ");
             })
+    }
+    $("#modalUpdateUser").on("hidden.bs.modal", function () {
+        $("#frmUpdateUser")[0].reset();
+    });
+    function handleCloseModalUpdate() {
+        $("#modalUpdateUser").on("hidden.bs.modal", () => {
+            $('#modalUpdateUser .modal-alert-danger').empty().removeClass('show').addClass('hide');
         })
     }
+    handleCloseModalUpdate();
     page.dialogs.commands.drawDetailCustomerUpdate = (customerInfoId) =>{
         page.dialogs.commands.getCustomerInfoById(customerInfoId).then(() => {
             page.element.pareData.html("");

@@ -4,6 +4,11 @@
     <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
     <th:block th:replace="/dashboard/layout/header::header"/>
 </head>
+<style>
+    #showError ul {
+        margin-bottom: 0;
+    }
+</style>
 
 <body>
 
@@ -41,15 +46,25 @@
                     </div>
                 </div>
 
-                <div class="row" style="top: -25px; position: relative;">
+                <div class="row" style="top: -25px; position: relative;" id="createFormCustomer">
                     <div class="col-md-12">
-                        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                        <div class="row shadow-lg p-3 mb-5 bg-body rounded" >
                             <div class="col-md-12">
                                 <h6 style="text-align: center">Thông tin chung</h6>
                             </div>
 
+                            <div class="col-md-12 d-none" id="showError" style="color: red;
+                                                                                 width: 100%;
+                                                                                  padding: 10px 35px;
+                                                                                  margin-bottom: 15px;
+                                                                                  left: -40px;
+                                                                                " >
+                            </div>
+
+
                             <div class="col-md-12">
                                 <label>Tên khách hàng <span style="color: red">*</span></label>
+
                                 <input type="text" id="fullNameCre" name="fullNameCre" placeholder="Nhập tên khách hàng"
                                        class="form-control">
                             </div>
@@ -62,7 +77,7 @@
 
                             <div class="col-md-6">
                                 <label style="margin-top: 5px">Email<span style="color: red">*</span></label>
-                                <input type="text" class="form-control" id="emailCre" name="emailCre"
+                                <input type="email" class="form-control" id="emailCre" name="emailCre"
                                        placeholder="Nhập địa chỉ email">
                             </div>
 
@@ -89,6 +104,7 @@
     </div> <!-- end content -->
     <!-- Footer Start -->
     <th:block th:replace="/dashboard/layout/footer::footer"/>
+
     <!-- end Footer -->
 
 </div>
@@ -195,6 +211,8 @@
     })
 
     $("#createCustomer").on('click', () => {
+        $('#showError').html("")
+
         locationRegion.provinceId = page.dialogs.element.provinceCre.val();
         locationRegion.provinceName = $("#provinceCre :selected").text();
         locationRegion.districtId = page.dialogs.element.districtCre.val();
@@ -224,11 +242,44 @@
 
             App.IziToast.showSuccessAlert("Thêm mới user thành công");
         }).fail((jqXHR) => {
-            App.IziToast.showErrorAlert("Thêm mới user thất bại")
+            $('#showError').removeClass('d-none').addClass('show');
+            if (jqXHR.responseJSON.message) {
+                let msg = jqXHR.responseJSON.message;
+
+                let str = `<ul>
+                              <li><label id="message-error" class="error" for="message">${msg}</label></li>
+                            </ul>
+                            `;
+
+                $('#showError').append(str)
+            }
+            else if (jqXHR.responseJSON) {
+                $.each(jqXHR.responseJSON, (key, item) => {
+                    let str = `<ul>
+                           <li> <label id="${key}-error" class="error" for="${key}">${item}</label></li>
+
+                              </ul>
+                             `
+
+                    $("#" + key).addClass("error");
+
+                    $('#showError').append(str)
+                })
+            }
+            // App.IziToast.showErrorAlert("Thêm mới user thất bại")
             console.log(jqXHR)
         })
     })
+    $("#createFormCustomer").on("hidden.bs.modal", function () {
+        $(" #createFormCustomer #showError")[0].reset();
+    });
+    function handleCloseCreate() {
 
+        $("#createFormCustomer").on("hidden.bs.modal", () => {
+            $('#createFormCustomer #showError').empty().removeClass('show').addClass('d-none');
+        })
+    }
+    handleCloseCreate();
     $(function () {
 
         page.dialogs.commands.drawProvinces().then(() => {
