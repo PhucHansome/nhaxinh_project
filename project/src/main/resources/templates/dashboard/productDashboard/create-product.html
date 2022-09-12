@@ -232,15 +232,9 @@
                                     <select id="colorProduct" class="form-control productColorList">
                                     </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <label style="margin-top: 5px">Trạng thái/status</label>
-                                    <select id="productStatus" class="form-control">
-                                        <option>Đã Hết Hàng</option>
-                                        <option>Còn Hàng</option>
-                                    </select>
-                                </div>
+                                <div class="col-md-6"></div>
                             </div>
-                            <div class="col-md-6"></div>
+
                             <div class="col-md-12">
                                 <div class="container mt-3 w-100">
                                     <div class="card-header d-flex justify-content-between">
@@ -493,7 +487,7 @@
             formData.append("title", page.element.productName.val());
             formData.append("price", page.element.priceProduct.val());
             formData.append("quantity", page.element.quantityProduct.val());
-            formData.append("status", page.element.productStatus.val());
+            formData.append("status", "Đang chờ");
             formData.append("description", page.element.descriptionProduct.val());
             formData.append("slug", "chua biet lam");
             formData.append("size", page.element.productSize.val());

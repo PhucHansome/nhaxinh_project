@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="str2_order">
+    <textarea style="display:none" id="str2_order">
+           <div class="row">
+                           <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Khách Hàng</p></div>
+
+                        </div>
+                        <div class="row">
+                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">{0}</span></p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                <p class="text text-center" style="font-weight: bold;font-size: 20px;">Thông tin đơn hàng</p>
+                                <p style="font-weight: bold;font-size: 15px;">Email: <span style="color: #ff5d48;font-style: italic;"> {1}</span></p>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                               <div class="col-12"><p class="text text-center"  style="font-weight: bold;font-size: 20px;">Địa chỉ giao hàng</p></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">{0}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Số điện thoại: <span style="color: #ff5d48; font-style: italic;">{2}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> {3}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Xã/Huyện: <span style="color: #ff5d48;font-style: italic;"> {4}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Tỉnh/Thành phố: <span style="color: #ff5d48;font-style: italic;">{5}</span></p></div>
+                        </div>
+    </textarea>
+</th:block>

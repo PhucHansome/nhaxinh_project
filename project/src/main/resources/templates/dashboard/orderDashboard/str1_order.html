@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="str1_order">
+    <textarea style="display:none" id="str1_order">
+          <div class="row">
+                             <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Chi tiết đơn hàng</p></div>
+                             <div class="col-2">
+                                 <button class="btn btn-youtube btn-print" style="position: relative;left: 55px;">Print</button>
+                            </div>
+                        </div>
+                        <div class="row ">
+                               <div class="col-12"><p style="font-weight: bold;font-size: 20px;padding-bottom: 20px;padding-top: 10px;left: 35px;position: relative;;">Trạng thái: <span style="color: #ff5d48;font-style: italic;"> {0}</span></p></div>
+                        </div>
+                        <div class="table-responsive">
+                        <table class="table table-nowrap">
+                            <thead>
+                                <tr >
+                                    <th class="text-center align-middle" style="font-size: 20px;font-weight: bold;border-top: none;">
+                                        Image
+                                    </th>
+                                     <th style="    border-top: none;">
+
+                                    </th>
+                                    <th style="font-size: 20px;font-weight: bold;    border-top: none;">
+                                        Tên sản phẩm
+                                    </th>
+                                    <th class="text-center align-middle" style="font-size: 20px;font-weight: bold;    border-top: none;">
+                                        Tổng Đơn hàng
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="line_cart_item">
+
+                            </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6 total_Bill" style="border-top: 2px solid #00000082;">
+                            </div>
+                        </div>
+                        <br>
+                        </div>
+                        <div class="row btn_AllAction">
+                            <div class="col-6">
+                                <button class="btn btn-danger btn-Cancel" data-id="{1}">Hủy đơn hàng</button>
+                            </div>
+                            <div class="col-6">
+                                <button data-id="{1}" class="btn btn-primary btn-checkout float-lg-right">Xác nhận đơn hàng</button>
+                            </div>
+                        </div>
+    </textarea>
+</th:block>
