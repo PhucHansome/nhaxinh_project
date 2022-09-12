@@ -1269,6 +1269,7 @@
         page.element.container_line_resuilt_search = $("#resuilt_query_search")
         page.dialogs.element.optionSelect1 = $("#selectOptionPrice_time")
         page.dialogs.element.radioSelect = $("input:radio[name=debt-amount]")
+        page.element.allResuitSearch = $(".all-resuit-product-search")
 
         page.element.InputQuerySearch = $("#querySearch")
         page.element.btnShowCart = $("#cart_")
@@ -1435,18 +1436,18 @@
                         if (i > 3) {
                             return;
                         }
-                        product = item
+                        tag = item
                         let str = `
-                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${tag.product.id}" ><img width="30px" height="30px"
                                     class="search-image"
-                                    src="${product.image}">
-                                <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong><span style="font-size: 12px;"> ${product.code}</span>
+                                    src="${tag.product.image}">
+                                <div class="search-name"><strong style="font-size: 12px;">${tag.product.title}</strong><span style="font-size: 12px;"> ${tag.product.code}</span>
                                 </div>
                                 <span class="search-price"><ins><span style="font-size: 12px;"
                                         class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
                             style: 'currency',
                             currency: 'VND'
-                        }).format(product.price)}
+                        }).format(tag.product.price)}
                                         </bdi></span></ins></span></span>
                                 </a></div>
                     `;
@@ -1471,14 +1472,13 @@
                 "method": "GET",
                 "url": page.url.GetResuiltSearch + "/" + page.element.Query_Resuilt_inUrl.text()
             }).done((data) => {
-                page.element.resuilt_product_Seach_In_query.html("")
-                $.each(data, (i, item) => {
-                    product = item
-                    page.commands.addCartBotLine()
-                })
-                page.commands.handleGoDetailProduct()
-                page.commands.handleCreateCart()
-                page.commands.handleGoSearch();
+                if (data.length === 0){
+                    page.element.allResuitSearch.html("")
+                    let str = `
+                    <h2>Không tìm thấy kết quả tìm kiếm: <span>${page.element.Query_Resuilt_inUrl.text()}</span></h2>
+                    `
+                    page.element.allResuitSearch.append(str)
+                }
 
             }).fail((e) => {
                 console.log(e)
@@ -1608,6 +1608,7 @@
             page.commands.handleGoSearch();
             page.commands.getCustomerByUserName()
             page.commands.handleApply()
+            page.commands.getSearchResuilt();
             page.dialogs.element.optionSelect1.val($("#optionSelect1").val())
             page.commands.loadChoicePrice();
         })

@@ -1361,12 +1361,12 @@
 
 
                                     <span class="posted_in">Danh mục: <a
-                                            th:href="*{'/search/'+product.category.name}"
+                                            th:href="*{'/search/page=1?option=1&choicePrice=0&query='+product.category.name}"
                                             rel="tag" id="SameProduct" th:text="*{product.category.name}"></a></span>
 
-                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/'+product.productColor.color}" rel="tag" th:text="*{product.productColor.color}"></a></span>
+                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/page=1?option=1&choicePrice=0&query='+product.productColor.color}" rel="tag" th:text="*{product.productColor.color}"></a></span>
                                     <th:block th:each="tag, count : ${tag}">
-                                    <span class="tagged_as">Tags: <a href="#"
+                                    <span class="tagged_as">Tags: <a th:href="*{'/search/page=1?option=1&choicePrice=0&query='+tag.name}"
                                                                      rel="tag" th:text="*{tag.name}"></a></span>
                                     </th:block>
 

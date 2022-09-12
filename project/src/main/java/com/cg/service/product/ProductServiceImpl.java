@@ -3,8 +3,10 @@ package com.cg.service.product;
 import com.cg.exception.DataInputException;
 import com.cg.model.Product;
 import com.cg.model.ProductMedia;
+import com.cg.model.Tag;
 import com.cg.model.dto.IProductDTO;
 import com.cg.model.dto.ProductDTO;
+import com.cg.model.dto.TagDTO;
 import com.cg.model.enums.FileType;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
@@ -63,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product create(ProductDTO productDTO) {
+    public Product create(String tagValue,ProductDTO productDTO) {
         List<MultipartFile> fileList = productDTO.getFiles();
         Product product = productRepository.save(productDTO.toProduct());
         for (MultipartFile file : fileList) {
@@ -87,7 +89,11 @@ public class ProductServiceImpl implements ProductService {
                 uploadAndSaveProductVideo(productDTO, product, productMedia);
             }
         }
-
+        Tag tag = new Tag();
+        tag.setId(0L);
+        tag.setProduct(product);
+        tag.setName(tagValue);
+        tagRepository.save(tag);
         return product;
     }
 
@@ -174,7 +180,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(ProductDTO productDTO) {
+    public Product updateProduct(String tagValue,ProductDTO productDTO) {
         List<ProductMedia> productMediaDTOList = productMediaRepository.findProductMediaByProduct(productDTO.toProduct());
         for(ProductMedia productMedia1 : productMediaDTOList){
             productMediaRepository.deleteById(productMedia1.getId());
@@ -202,6 +208,11 @@ public class ProductServiceImpl implements ProductService {
                 uploadAndSaveProductVideo(productDTO, product, productMedia);
             }
         }
+        Optional<TagDTO> tagDTO = tagRepository.findTagDTOByProductId(product.getId());
+
+        tagDTO.get().setProduct(product.toProductDTO());
+        tagDTO.get().setName(tagValue);
+        tagRepository.save(tagDTO.get().toTag());
 
         return product;
     }

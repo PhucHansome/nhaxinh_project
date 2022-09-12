@@ -1726,20 +1726,20 @@
                         if (i > 3) {
                             return;
                         }
-                        product = item
+                        tag = item
                         let str = `
-                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
-                                                            class="search-image"
-                                                            src="${product.image}">
-                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong><span style="font-size: 12px;"> ${product.code}</span>
-                                                        </div>
-                                                        <span class="search-price"><ins><span style="font-size: 12px;"
-                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${tag.product.id}" ><img width="30px" height="30px"
+                                    class="search-image"
+                                    src="${tag.product.image}">
+                                <div class="search-name"><strong style="font-size: 12px;">${tag.product.title}</strong><span style="font-size: 12px;"> ${tag.product.code}</span>
+                                </div>
+                                <span class="search-price"><ins><span style="font-size: 12px;"
+                                        class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
                             style: 'currency',
                             currency: 'VND'
-                        }).format(product.price)}
-                                                                </bdi></span></ins></span></span>
-                                                        </a></div>
+                        }).format(tag.product.price)}
+                                        </bdi></span></ins></span></span>
+                                </a></div>
                     `;
                         page.element.resuilt_search.prepend(str);
                     })

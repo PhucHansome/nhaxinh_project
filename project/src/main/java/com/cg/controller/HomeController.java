@@ -8,7 +8,7 @@ import com.cg.service.category.CategoryService;
 import com.cg.service.customerInfo.ICustomerInfoService;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
-import com.cg.service.page.product.PageProductService;
+import com.cg.service.page.tag.PageTagService;
 import com.cg.service.product.ProductService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
@@ -19,20 +19,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +63,7 @@ public class HomeController {
     private ProductColorService productColorService;
 
     @Autowired
-    private PageProductService pageProductService;
+    private PageTagService pageTagService;
 
     private String getPrincipal() {
         String username;
@@ -121,16 +115,16 @@ public class HomeController {
         modelAndView.addObject("query", query);
         String query_search = "%" + query + "%";
 
-        Page<ProductDTO> productDTOPage = pageProductService.findALl(choicePrice, option, query_search, PageRequest.of((pageNo - 1), 8));
-        for (ProductDTO productDTO : productDTOPage) {
+        Page<TagDTO> tagDTOPage = pageTagService.findALl(choicePrice, option, query_search, PageRequest.of((pageNo - 1), 8));
+        for (TagDTO productDTO : tagDTOPage) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
-            productDTO.setPriceFormat(decimalFormat.format(productDTO.getPrice()));
+            productDTO.getProduct().setPriceFormat(decimalFormat.format(productDTO.getProduct().getPrice()));
         }
         modelAndView.addObject("option", option);
-        modelAndView.addObject("productList", productDTOPage);
-        modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
-        modelAndView.addObject("totalItem", productDTOPage.getTotalElements());
+        modelAndView.addObject("tagDTOPage", tagDTOPage);
+        modelAndView.addObject("totalPage", tagDTOPage.getTotalPages());
+        modelAndView.addObject("totalItem", tagDTOPage.getTotalElements());
         modelAndView.addObject("currentPage", pageNo);
         modelAndView.addObject("choicePrice", choicePrice);
         return modelAndView;

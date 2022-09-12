@@ -73,7 +73,7 @@ public class ProductAPI {
     public ResponseEntity<?> searchByTitleInline(@PathVariable String title) {
         try {
             title = "%" + title + "%";
-            List<ProductDTO> productList = productService.searchProductDTOByTitle(title);
+            List<TagDTO> productList = tagService.searchProductDTOByTitle(title);
             return new ResponseEntity<>(productList, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>("Không tìm thấy sản phẩm", HttpStatus.OK);
@@ -120,8 +120,8 @@ public class ProductAPI {
         return new ResponseEntity<>(productMedia, HttpStatus.OK);
     }
 
-    @PostMapping("/{idCategory}/{idProductColor}")
-    public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
+    @PostMapping("/{idCategory}/{idProductColor}/{TagValue}")
+    public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor,@PathVariable String TagValue,BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());
 
@@ -164,11 +164,11 @@ public class ProductAPI {
         if(!productDTO.getSlug().equals("chua biet lam")){
             errors.add("dữ liệu lỗi vui lòng thử lại!");
         }
-        String price = String.valueOf(productDTO.getPrice());
-
-        if(!price.matches("[/d]")){
-            errors.add("Vui lòng nhập số");
-        }
+//        String price = String.valueOf(productDTO.getPrice());
+//
+//        if(!price.matches("\\d")){
+//            errors.add("Vui lòng nhập số");
+//        }
 
         if (errors.size() > 0){
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
@@ -176,7 +176,7 @@ public class ProductAPI {
 
         if (errors.size() == 0){
             try {
-                Product createdProduct = productService.create(productDTO);
+                Product createdProduct = productService.create(TagValue,productDTO);
 
                 Optional<ProductMedia> productMediaOptional = productMediaService.findTopByProductOrderByTsAsc(createdProduct);
 
@@ -196,8 +196,8 @@ public class ProductAPI {
         return null;
     }
 
-    @PutMapping("/put/{idCategory}/{idProductColor}")
-    public ResponseEntity<?> update(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, BindingResult bindingResult) {
+    @PutMapping("/put/{idCategory}/{idProductColor}/{TagValue}")
+    public ResponseEntity<?> update(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor,@PathVariable String TagValue, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());
 
@@ -207,7 +207,7 @@ public class ProductAPI {
             return appUtils.mapErrorToResponse(bindingResult);
 
         try {
-            Product updateProduct = productService.updateProduct(productDTO);
+            Product updateProduct = productService.updateProduct(TagValue,productDTO);
 
             Optional<ProductMedia> productMediaImage = productMediaService.findTopByProductOrderByTsAsc(updateProduct);
 
@@ -218,7 +218,7 @@ public class ProductAPI {
             updateProduct.setImage(productMediaImage.get().getFileUrl());
             productService.save(updateProduct);
 
-            return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.CREATED);
+            return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.ACCEPTED);
 
         } catch (DataIntegrityViolationException e) {
             throw new DataInputException("Product creation information is not valid, please check the information again");

@@ -58,4 +58,9 @@ public class TagServiceImpl implements TagService{
     public Optional<TagDTO> findTagDTOByProductId(String id) {
         return tagRepository.findTagDTOByProductId(id);
     }
+
+    @Override
+    public List<TagDTO> searchProductDTOByTitle(String title) {
+        return tagRepository.searchProductDTOByTitle(title);
+    }
 }
