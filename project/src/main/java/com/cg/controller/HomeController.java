@@ -382,6 +382,14 @@ public class HomeController {
         modelAndView.addObject("idOrder", id);
         return modelAndView;
     }
+    @GetMapping("/report-product-dashboard")
+    public ModelAndView getreportProductDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/statisticalDashboard/statistical-product");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {

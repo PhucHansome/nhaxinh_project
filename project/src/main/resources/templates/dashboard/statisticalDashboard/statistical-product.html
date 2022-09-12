@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <!-- Start Content-->
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Uplon</a></li>
+                                    <li class="breadcrumb-item active">statistical</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Thống kê</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="col-lg-6 col-xl-8">
+                        <div class="card-header">
+                            <h3>Thống kê sản phẩm</h3>
+                        </div>
+                        <canvas id="myChart"> </canvas>
+
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+                        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+                        <script>
+                            var productLabel = [ ],productPriceData = [],productQuantityData = [];
+                            async  function dummyChart(){
+                                await  getDummyData()
+                                const ctx = document.getElementById('myChart').getContext('2d');
+
+                                const chart = new Chart(ctx, {
+                                    type:'bar',
+                                    data: {
+                                        labels: productLabel,
+                                        datasets: [{
+                                            label: 'Giá sản phẩm',
+                                            backgroundColor: 'green',
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            data: productPriceData
+                                        },
+                                            {
+                                                label: 'Số lượng',
+                                                backgroundColor: 'pink',
+                                                borderColor: 'rgb(255, 99, 132)',
+                                                data: productQuantityData
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        tooltips: {
+                                            mode: 'index'
+                                        }
+                                    }
+                                })
+                            }
+                            dummyChart()
+                            //Fetch Data from API
+                            async  function getDummyData() {
+                                const apiUrl = "http://localhost:8092/api/products/"
+                                const response = await fetch(apiUrl)
+                                console.log(response)
+                                const barChatData = await response.json()
+                                console.log(barChatData)
+                                const quantity = barChatData.map((x) => x.quantity)
+                                console.log(quantity)
+                                const price = barChatData.map((x) => x.price)
+                                console.log(price)
+                                const name = barChatData.map((x) => x.title)
+                                console.log(name)
+                                productPriceData = price
+                                productQuantityData = quantity
+                                productLabel = name
+                            }
+
+                        </script>
+                    </div>
+                    <div class="col-lg-6 col-xl-4">
+                        <div class="card-header">
+                            <h3>Sản phẩm bán chạy</h3>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!-- end content -->
+
+
+
+        <!-- Footer Start -->
+        <th:block th:replace="/dashboard/layout/footer::footer"/>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

@@ -77,4 +77,21 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             " )  " +
             "FROM Order o ")
     List<OrderDTO> findOrderDTO();
+//    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+//            "o.id, " +
+//            "o.description, " +
+//            "o.grandTotal , " +
+//            "o.quantity ," +
+//            "o.productCode," +
+//            "o.productImage, " +
+//            "o.productTitle, " +
+//            "o.customerInfo," +
+//            "o.createdAt, " +
+//            "o.statusOrder, " +
+//            "o.orderDetail " +
+//            " )  " +
+//            "FROM Order o order by o.quantity desc " +
+//             ");
+
+
 }

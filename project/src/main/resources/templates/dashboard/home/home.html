@@ -96,36 +96,70 @@
 
                 <div class="row">
                     <div class="col-lg-6 col-xl-8">
-                        <div class="card-box">
-                            <h4 class="header-title mb-3">Sales Statistics</h4>
-
-                            <div class="text-center">
-                                <ul class="list-inline chart-detail-list mb-0">
-                                    <li class="list-inline-item">
-                                        <h6 class="text-info"><i class="mdi mdi-circle-outline mr-1"></i>Series A</h6>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h6 class="text-success"><i class="mdi mdi-triangle-outline mr-1"></i>Series B</h6>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <h6 class="text-muted"><i class="mdi mdi-square-outline mr-1"></i>Series C</h6>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div id="morris-bar-stacked" class="morris-chart" style="height: 320px;"></div>
-
+                        <div class="card-header">
+                            <h2>Thống kê sản phẩm</h2>
                         </div>
-                    </div><!-- end col-->
+                        <canvas id="myChart"> </canvas>
 
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+                        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+                        <script>
+                            var productLabel = [ ],productPriceData = [],productQuantityData = [];
+                            async  function dummyChart(){
+                                await  getDummyData()
+                                const ctx = document.getElementById('myChart').getContext('2d');
+
+                                const chart = new Chart(ctx, {
+                                    type:'bar',
+                                    data: {
+                                        labels: productLabel,
+                                        datasets: [{
+                                            label: 'Giá sản phẩm',
+                                            backgroundColor: 'green',
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            data: productPriceData
+                                        },
+                                            {
+                                                label: 'Số lượng',
+                                                backgroundColor: 'pink',
+                                                borderColor: 'rgb(255, 99, 132)',
+                                                data: productQuantityData
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        tooltips: {
+                                            mode: 'index'
+                                        }
+                                    }
+                                })
+                            }
+                            dummyChart()
+                            //Fetch Data from API
+                            async  function getDummyData() {
+                                const apiUrl = "http://localhost:8092/api/products/"
+                                const response = await fetch(apiUrl)
+                                console.log(response)
+                                const barChatData = await response.json()
+                                console.log(barChatData)
+                                const quantity = barChatData.map((x) => x.quantity)
+                                console.log(quantity)
+                                const price = barChatData.map((x) => x.price)
+                                console.log(price)
+                                const name = barChatData.map((x) => x.title)
+                                console.log(name)
+                                productPriceData = price
+                                productQuantityData = quantity
+                                productLabel = name
+                            }
+
+                        </script>
+                    </div>
                     <div class="col-lg-6 col-xl-4">
-                        <div class="card-box">
 
-
-
-
-                        </div>
-                    </div><!-- end col-->
+                    </div>
                 </div>
                 <!-- end row -->
 
@@ -302,68 +336,7 @@
                 <!-- end row -->
 
             </div> <!-- end container-fluid -->
-<!--        <div class="row">-->
-            <div class="card text-center m-2">
-            <div class="card-header">
-               <h2>Thống kê các loại sản phẩm</h2>
-            </div>
-                <canvas id="myChart"> </canvas>
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-                <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
-            <script>
-                var productLabel = [ ],productPriceData = [],productQuantityData = [];
-                async  function dummyChart(){
-                await  getDummyData()
-                const ctx = document.getElementById('myChart').getContext('2d');
-
-                    const chart = new Chart(ctx, {
-                        type:'bar',
-                        data: {
-                            labels: productLabel,
-                            datasets: [{
-                                label: 'Giá sản phẩm',
-                                backgroundColor: 'blue',
-                                borderColor: 'rgb(255, 99, 132)',
-                                data: productPriceData
-                            },
-                                {
-                                    label: 'Số lượng',
-                                    backgroundColor: 'pink',
-                                    borderColor: 'rgb(255, 99, 132)',
-                                    data: productQuantityData
-                                }
-                            ]
-                        },
-                        options: {}
-                    })
-                }
-                dummyChart()
-                //Fetch Data from API
-               async  function getDummyData() {
-                   const apiUrl = "http://localhost:8092/api/products/"
-                   const response = await fetch(apiUrl)
-                   console.log(response)
-                   const barChatData = await response.json()
-                   console.log(barChatData)
-                   const quantity = barChatData.map((x) => x.quantity)
-                   console.log(quantity)
-                   const price = barChatData.map((x) => x.price)
-
-                   console.log(price)
-                   const name = barChatData.map((x) => x.title)
-                   console.log(name)
-
-                   productPriceData = price
-                   productQuantityData = quantity
-                   productLabel = name
-
-                }
-
-            </script>
-        </div>
         </div>
 
         <!-- Footer Start -->
