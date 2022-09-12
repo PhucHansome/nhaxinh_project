@@ -309,7 +309,12 @@ public class HomeController {
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         Optional<ProductDTO> productDTOList = productService.findProductDTOById(productId);
-        modelAndView.addObject("product", productDTOList.get().toProduct());
+
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        productDTOList.get().setPriceFormat(decimalFormat.format( productDTOList.get().getPrice()));
+
+        modelAndView.addObject("product", productDTOList.get());
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
         modelAndView.addObject("tag", tagDTO.get().toTag());
         List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
@@ -329,24 +334,6 @@ public class HomeController {
 
     }
 
-    @RequestMapping("/")
-    public String detailCustomerinfo() {
-        return "/dashboard/userDashboard/user";
-    }
-
-    @RequestMapping("/redirect")
-    public RedirectView redirect(@RequestParam("name") String name, RedirectAttributes redirectAttributes) {
-        System.out.println(name);
-        redirectAttributes.addAttribute("name", name);
-        return new RedirectView("/dashboard/userDashboard/detail-user");
-    }
-
-    @RequestMapping("/detail-user-dashboard")
-    public String page2(@RequestParam("name") String name, Model model) {
-        model.addAttribute("name", name.toUpperCase());
-        return "/detail-user-dashboard";
-    }
-
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
@@ -355,7 +342,6 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
-
 
     @GetMapping("/order-dashboard")
     public ModelAndView getOrderDashboard() {
