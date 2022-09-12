@@ -39,6 +39,9 @@ public class OrderDetail extends BaseEntity{
 
     private BigDecimal grandTotal;
 
+    private String priceFormat;
+
+
     public OrderDetailDTO toOrderDetailDTO(){
         return new OrderDetailDTO()
                 .setId(id)

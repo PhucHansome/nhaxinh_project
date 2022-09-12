@@ -41,20 +41,12 @@ public class OrderDetailDTO {
 
     private BigDecimal grandTotal;
 
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date updatedAt;
-
-
-//    public OrderDetailDTO(Long id ,String fullName,String statusOrderDetail ,Date createdAt, Date updatedAt) {
-//        this.id = id;
-//        this.fullName = fullName;
-//        this.statusOrderDetail = statusOrderDetail;
-//        this.createdAt  = createdAt;
-//        this.updatedAt = updatedAt;
-//    }
 
     public OrderDetail toOrderDetail(){
         return new OrderDetail()

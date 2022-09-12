@@ -166,7 +166,7 @@ public class ProductAPI {
         }
         String price = String.valueOf(productDTO.getPrice());
 
-        if(price.matches("[/d]")){
+        if(!price.matches("[/d]")){
             errors.add("Vui lòng nhập số");
         }
 

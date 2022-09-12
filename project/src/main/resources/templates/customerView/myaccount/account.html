@@ -1389,7 +1389,7 @@
                                                         <td class="text-center align-middle"><img width="150px" th:src="*{order.productImage}" alt=""></td>
                                                         <td class="text-center align-middle" th:text="*{order.productTitle}"></td>
                                                         <td class="text-center align-middle" th:text="*{order.quantity}"></td>
-                                                        <td class="text-center align-middle" th:text="*{#numbers.formatCurrency(order.grandTotal)}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.priceFormat}"></td>
                                                         <td class="text-center align-middle" th:text="*{order.statusOrder}"></td>
                                                         <td class="text-center align-middle" th:text="*{order.createdAt}">$</td>
                                                     </tr>
@@ -1402,7 +1402,7 @@
                                             <div class="row">
                                                 <div class="col-8"></div>
                                                 <div th:object="${Total}" class="col-4 total_spending float-lg-right">
-                                                    <h5 th:text="${'Tổng tiền chi tiêu là:  ' + #numbers.formatCurrency(Total)}"></h5>
+                                                    <h5 th:text="${'Tổng tiền chi tiêu là:  ' + Total}"></h5>
                                                 </div>
                                             </div>
                                         </div>

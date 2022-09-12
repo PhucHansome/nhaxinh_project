@@ -29,6 +29,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,8 +109,8 @@ public class HomeController {
     }
 
     @GetMapping("/search/page={pageNo}")
-    public ModelAndView getSearchByTitle(@PathVariable int pageNo,@RequestParam String query, @RequestParam int option,@RequestParam int choicePrice) {
-            ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo, @RequestParam String query, @RequestParam int option, @RequestParam int choicePrice) {
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
         if (email == "anonymousUser") {
@@ -116,7 +120,13 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         modelAndView.addObject("query", query);
         String query_search = "%" + query + "%";
-        Page<ProductDTO> productDTOPage = pageProductService.findALl(choicePrice , option, query_search, PageRequest.of((pageNo - 1), 8));
+
+        Page<ProductDTO> productDTOPage = pageProductService.findALl(choicePrice, option, query_search, PageRequest.of((pageNo - 1), 8));
+        for (ProductDTO productDTO : productDTOPage) {
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            productDTO.setPriceFormat(decimalFormat.format(productDTO.getPrice()));
+        }
         modelAndView.addObject("option", option);
         modelAndView.addObject("productList", productDTOPage);
         modelAndView.addObject("totalPage", productDTOPage.getTotalPages());
@@ -157,6 +167,11 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/detail/detail");
         Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        productDTOOptional.get().setPriceFormat(decimalFormat.format(productDTOOptional.get().getPrice()));
+        
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
         List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
         modelAndView.addObject("product", productDTOOptional.get());
@@ -183,12 +198,20 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
 
         List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserName(email);
+        for (OrderDTO orderDTO: orderDTOS){
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            orderDTO.setPriceFormat(decimalFormat.format(orderDTO.getGrandTotal()));
+        }
         modelAndView.addObject("orderList", orderDTOS);
         BigDecimal sum = BigDecimal.valueOf(0);
         for (OrderDTO orderDTO : orderDTOS) {
             sum = orderDTO.getGrandTotal().add(sum);
         }
-        modelAndView.addObject("Total", sum);
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        String sumFormat = decimalFormat.format(sum);
+        modelAndView.addObject("Total", sumFormat);
         return modelAndView;
     }
 
@@ -210,30 +233,32 @@ public class HomeController {
         for (OrderDetailDTO orderDetail : orderDetails1) {
             sum = orderDetail.getGrandTotal().add(sum);
         }
+
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        String sumFormat = decimalFormat.format(sum);
+        modelAndView.addObject("totalOrder", sumFormat);
+
         List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
         modelAndView.addObject("totalProductSize", productDTOList.size());
-        modelAndView.addObject("totalOrder", sum);
 
 
         return modelAndView;
     }
 
     @GetMapping("/product-dashboard")
-//    @GetMapping("/product-dashboard/page/{pageNo}")
-//    public ModelAndView getProductDashboard(@PathVariable int pageNo,Pageable pageable) {
     public ModelAndView getProductDashboard() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/productDashboard/product");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         List<ProductDTO> productDTOList = productService.findAllProductDTONoImage();
+        for (ProductDTO productDTO:productDTOList){
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            productDTO.setPriceFormat(decimalFormat.format(productDTO.getPrice()));
+        }
         modelAndView.addObject("productList", productDTOList);
-//        Page<ProductDTO> productDTOPage = pageProductService.findAllProductDTONoImage(PageRequest.of((pageNo -1), 2));
-//        modelAndView.addObject("productList", productDTOPage);
-//        modelAndView.addObject("totalPage",productDTOPage.getTotalPages());
-//        modelAndView.addObject("totalItem",productDTOPage.getTotalElements());
-//        modelAndView.addObject( "currentPage",pageNo);
-
         return modelAndView;
     }
 
@@ -339,6 +364,11 @@ public class HomeController {
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
+        for(OrderDetail orderDetail: orderDetailDTOS){
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));
+        }
         modelAndView.addObject("orderDetail", orderDetailDTOS);
         return modelAndView;
     }
