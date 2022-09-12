@@ -302,82 +302,69 @@
                 <!-- end row -->
 
             </div> <!-- end container-fluid -->
-        <div class="row">
-            <div class="col-lg-6 col-xl-4">
-            <div class="chartBox">
-                <canvas id="myChart"></canvas>
-
+<!--        <div class="row">-->
+            <div class="card text-center m-2">
+            <div class="card-header">
+               <h2>Thống kê các loại sản phẩm</h2>
             </div>
-
+                <canvas id="myChart"> </canvas>
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+                <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
-            <!-- <script> -->
-            <!-- // config
-           const ctx = document.getElementById('myChart').getContext('2d');
-           const myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            // setup
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: { }
-    }); -->
-            </script>
             <script>
-                var xValues = ["Tên khách hàng","số điện thoại","email","" ];
-                var yValues = ["http://localhost:8092/api/customerInfo"];
-                var barColors = [
-                    "#b91d47",
-                    "#00aba9",
-                    "#2b5797",
-                    "#e8c3b9",
-                    "#1e7145"
-                ];
+                var productLabel = [ ],productPriceData = [],productQuantityData = [];
+                async  function dummyChart(){
+                await  getDummyData()
+                const ctx = document.getElementById('myChart').getContext('2d');
 
-                new Chart("myChart", {
-                    type: "pie",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: "World Wide Wine Production 2018"
-                        }
-                    }
-                });
+                    const chart = new Chart(ctx, {
+                        type:'bar',
+                        data: {
+                            labels: productLabel,
+                            datasets: [{
+                                label: 'Giá sản phẩm',
+                                backgroundColor: 'blue',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: productPriceData
+                            },
+                                {
+                                    label: 'Số lượng',
+                                    backgroundColor: 'pink',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: productQuantityData
+                                }
+                            ]
+                        },
+                        options: {}
+                    })
+                }
+                dummyChart()
+                //Fetch Data from API
+               async  function getDummyData() {
+                   const apiUrl = "http://localhost:8092/api/products/"
+                   const response = await fetch(apiUrl)
+                   console.log(response)
+                   const barChatData = await response.json()
+                   console.log(barChatData)
+                   const quantity = barChatData.map((x) => x.quantity)
+                   console.log(quantity)
+                   const price = barChatData.map((x) => x.price)
+
+                   console.log(price)
+                   const name = barChatData.map((x) => x.title)
+                   console.log(name)
+
+                   productPriceData = price
+                   productQuantityData = quantity
+                   productLabel = name
+
+                }
+
             </script>
         </div>
         </div>
-        </div> <!-- end content -->
-
-
 
         <!-- Footer Start -->
         <th:block th:replace="/dashboard/layout/footer::footer"/>
