@@ -119,7 +119,10 @@
             page.element.information_Item.html("")
             let str = `
                         <div class="row">
-                             <div class="col-12"><p style="font-weight: bold;font-size: 25px;">Chi tiết đơn hàng</p></div>
+                             <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Chi tiết đơn hàng</p></div>
+                             <div class="col-2">
+                                 <button class="btn btn-youtube btn-print" style="position: relative;left: 55px;">Print</button>
+                            </div>
                         </div>
                         <div class="row ">
                                <div class="col-12"><p style="font-weight: bold;font-size: 20px;padding-bottom: 20px;padding-top: 10px;left: 35px;position: relative;;">Trạng thái: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.statusOrderDetail}</span></p></div>
@@ -173,7 +176,7 @@
                 $(".btnUpdateOrder").html("");
                 $(".btn_AllAction").html("")
             }
-
+            page.commands.printPage(orderDetail.id)
         }).fail((e) => {
             console.log(e)
         })
@@ -215,7 +218,8 @@
                     page.element.information_customer.html("")
                     let str2 = `
                         <div class="row">
-                        <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Khách Hàng</p></div>
+                           <div class="col-10"><p style="font-weight: bold;font-size: 25px;">Khách Hàng</p></div>
+
                         </div>
                         <div class="row">
                              <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.fullName}</span></p></div>
@@ -233,7 +237,7 @@
                         <div class="row">
                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Họ và tên: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.fullName}</span></p></div>
                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Số điện thoại: <span style="color: #ff5d48; font-style: italic;">${" " + orderDetail.phone}</span></p></div>
-                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> ${" " +orderDetail.address}</span></p></div>
+                            <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Địa chỉ chi tiết: <span style="color: #ff5d48;font-style: italic;"> ${" " + orderDetail.address}</span></p></div>
                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Xã/Huyện: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.districtName}</span></p></div>
                             <div class="col-12"><p style="font-weight: bold;font-size: 15px;">Tỉnh/Thành phố: <span style="color: #ff5d48;font-style: italic;">${" " + orderDetail.provinceName}</span></p></div>
                         </div>
@@ -316,6 +320,14 @@
                     App.SweetAlert.showErrorAlert("Bạn đã Hủy đơn hàng thất bại!")
                 })
             })
+        })
+    }
+
+    page.commands.printPage = (id) => {
+        $(".btn-print").on("click", function () {
+            console.log(id)
+            window.print("http://localhost:8092/order-dashboard/detail/" + id);
+            // w.close();
         })
     }
 
