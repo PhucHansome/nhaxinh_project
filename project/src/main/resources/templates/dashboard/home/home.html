@@ -77,7 +77,7 @@
                         <div th:object="${totalOrder}" class="card-box tilebox-one">
                             <i class="icon-chart float-right m-0 h2 text-muted"></i>
                             <h6 class="text-muted text-uppercase mt-0">Tổng tiền toàn bộ đơn hàng</h6>
-                            <h3 class="my-3"><span  th:text="${#numbers.formatCurrency(totalOrder)}"></span></h3>
+                            <h3 class="my-3"><span  th:text="${totalOrder}"></span></h3>
                             <span class="badge badge-pink mr-1"> 0% </span> <span class="text-muted">From previous period</span>
                         </div>
                     </div>

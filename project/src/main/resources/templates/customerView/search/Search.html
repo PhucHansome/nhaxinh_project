@@ -1143,7 +1143,7 @@
         <div class="yith-wcan-filters no-title enhanced" id="preset_509" data-preset-id="509" data-target="">
             <div class="filters-container">
                 <div th:object="${optionSelect}" class="row">
-                    <div class="col-4" >
+                    <div class="col-4">
                         <input type="hidden" id="optionSelect1" th:value="${option}">
                         <span class="filter-title" style="    font-size: 15px;">Giá: </span>
                         <div class="filter-content">
@@ -1158,14 +1158,15 @@
                             </select>
                         </div>
                     </div>
-                       <div class="col-1"></div>
+                    <div class="col-1"></div>
                     <div class="col-4" id="filter_509_2" data-filter-type="tax"
                          data-filter-id="2"
                          data-taxonomy="product_tag" data-multiple="yes" data-relation="or">
-                                                <span class="filter-title" style="margin-left: 140px; font-size: 15px">Giá tiền trong khoảng:</span>
+                        <span class="filter-title"
+                              style="margin-left: 140px; font-size: 15px">Giá tiền trong khoảng:</span>
                         <div id="form-wrapper">
                             <form method="GET">
-                                <div id="debt-amount-slider" >
+                                <div id="debt-amount-slider">
                                     <input type="radio" name="debt-amount" id="1" value="1" required>
                                     <label for="1" data-debt-amount="< 10tr"></label>
                                     <input type="radio" name="debt-amount" id="2" value="2" required>
@@ -1305,12 +1306,16 @@
                                             </div>
                                             <div class="box-text-footer">
                                                 <div class="price-wrapper">
-                                            <span class="price"><span class="woocommerce-Price-amount amount" style="font-weight: bold;
-                                                                                                                     color: red;
-                                                                                                                     font-size: 15px;
-                                                                                                                     left: -5px;
-                                                                                                                     position: relative;"
-                                                                      th:text="*{#numbers.formatCurrency(product.price)}"></span></span>
+<!--                                                    <th:block th:each="price, count : ${price}">-->
+                                                        <span class="price">
+                                                            <span class="woocommerce-Price-amount amount" style="font-weight: bold;
+                                                                                                                                 color: red;
+                                                                                                                                 font-size: 15px;
+                                                                                                                                 left: -5px;
+                                                                                                                                 position: relative;"
+                                                                  th:text="*{product.priceFormat}"></span>
+                                                        </span>
+<!--                                                    </th:block>-->
                                                 </div>
                                                 <div class="product-box-after">
                                                     <div class="add-to-cart-button">
@@ -1347,7 +1352,8 @@
                                        th:unless="${currentPage != i}">[[${i}]]</span>
                             </li>
                             <li><a class="page-number" th:if="${currentPage < totalPage}"
-                                   th:href="@{'/search/page='+${totalPage} + '?option='+${option}+ '&choicePrice=' +${choicePrice}+ '&query='+ ${query}}">Last</a></li>
+                                   th:href="@{'/search/page='+${totalPage} + '?option='+${option}+ '&choicePrice=' +${choicePrice}+ '&query='+ ${query}}">Last</a>
+                            </li>
                             <li><span aria-current="page" class="page-number current"
                                       th:unless="${currentPage < totalPage}">Last</span></li>
                         </ul>

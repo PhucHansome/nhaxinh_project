@@ -63,7 +63,7 @@
                                         <td class="text-center align-middle">
                                             <a th:href="*{'/order-dashboard/detail/'+orderDetail.id}" th:text="*{orderDetail.fullName}"></a></td>
                                         <td class="text-center align-middle" style="color: red;font-weight: bold;" th:text="*{orderDetail.statusOrderDetail}"></td>
-                                        <td class="text-center align-middle" th:text="*{#numbers.formatCurrency(orderDetail.grandTotal)}"></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.priceFormat}"></td>
                                     </tr>
                                 </th:block>
                                 </tbody>

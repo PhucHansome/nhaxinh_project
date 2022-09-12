@@ -31,6 +31,8 @@ public class ProductDTO  {
 
     private BigDecimal price;
 
+    private String priceFormat;
+
     private BigDecimal quantity;
 
     private String status;

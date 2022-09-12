@@ -30,6 +30,8 @@ public class OrderDTO {
 
     private String productCode;
 
+    private String priceFormat;
+
     private String productImage;
 
     private String productTitle;
