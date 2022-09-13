@@ -391,7 +391,7 @@
                                 <a href="http://localhost:8092/search" aria-current="page"
                                    class="nav-top-link sanpham_dropdown">Sản
                                     phẩm</a>
-                                <div class="sub-menu nav-dropdown">
+                                <div class="sub-menu nav-dropdown nav-dropdown-product">
                                     <section class="section" id="section_563198551">
                                         <div class="bg section-bg fill bg-fill  bg-loaded">
 
@@ -1245,13 +1245,13 @@
             </div>
         </div>
         <div class="row category-page-row">
-            <div class="col large-12">
+            <div class="col large-12 all-resuit-product-search">
                 <div class="shop-container">
 
                     <div class="woocommerce-notices-wrapper"></div>
 
                     <div class="products row row-small large-columns-4 medium-columns-3 small-columns-2 product_Seach_In_query">
-                        <th:block th:each="product, count : ${productList}">
+                        <th:block th:each="tag, count : ${tagDTOPage}">
                             <div class="product-small col has-hover product type-product post-31436 status-publish first instock product_cat-dung-cu-bep has-post-thumbnail taxable shipping-taxable purchasable product-type-simple ">
                                 <div class="col-inner">
 
@@ -1261,10 +1261,10 @@
                                         <div class="box-image">
                                             <div class="image-fade_in_back">
                                                 <input type="hidden" id="idProduct" value="{3}">
-                                                <a th:href="*{'/detail/'+ product.id}"
+                                                <a th:href="*{'/detail/'+ tag.product.slug}"
                                                    aria-label="Bàn ăn Peak hiện đại mặt Ceramic vân mây">
                                                     <img width="300" height="200"
-                                                         th:src="*{product.image}"
+                                                         th:src="*{tag.product.image}"
                                                          data-src=""
                                                          class="lazy-load attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
                                                          alt="" srcset=""
@@ -1298,7 +1298,7 @@
                                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
                                                     href="https://nhaxinh.com/san-pham/ban-an-peak-hien-dai-mat-ceramic-van-may/"
                                                     aria-label="Bàn ăn Peak hiện đại mặt Ceramic vân mây"
-                                                    th:text="*{product.title}">
+                                                    th:text="*{tag.product.title}">
                                             </a>
                                             </div>
                                             <div class="sub-title-wrapper">
@@ -1313,21 +1313,21 @@
                                                                                                                                  font-size: 15px;
                                                                                                                                  left: -5px;
                                                                                                                                  position: relative;"
-                                                                  th:text="*{product.priceFormat}"></span>
+                                                                  th:text="*{tag.product.priceFormat}"></span>
                                                         </span>
 <!--                                                    </th:block>-->
                                                 </div>
                                                 <div class="product-box-after">
                                                     <div class="add-to-cart-button">
                                                         <button
-                                                                th:data-id="*{product.id}"
+                                                                th:data-id="*{tag.product.id}"
                                                                 class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline them_vao_cart"
                                                         >Thêm vào giỏ
                                                         </button>
                                                     </div>
                                                     <div class="add-to-cart-button">
                                                         <button
-                                                                th:data-id="*{product.id}"
+                                                                th:data-id="*{tag.product.id}"
                                                                 class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline view_Product"
                                                         >Xem thêm
                                                         </button>
@@ -1346,7 +1346,7 @@
                     <nav class="woocommerce-pagination">
                         <ul class="page-numbers nav-pagination links text-center">
                             <li th:each="i: ${#numbers.sequence(1,totalPage)}"><a class="page-number"
-                                                                                  th:if="${currentPage != i}"
+                                                                                  th:if="${currentPage != i && i!=0}"
                                                                                   th:href="@{'/search/page='+${i} + '?option='+${option}+ '&choicePrice=' +${choicePrice}+ '&query='+ ${query}}">[[${i}]]
                             </a> <span aria-current="page" id="pageNow" class="page-number current"
                                        th:unless="${currentPage != i}">[[${i}]]</span>

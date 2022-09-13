@@ -50,15 +50,8 @@ public class MvcConfig implements WebMvcConfigurer {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-    @Bean(name = "localeResolver")
-    public LocaleResolver getLocaleResolver()  {
-        CookieLocaleResolver resolver= new CookieLocaleResolver();
-        resolver.setCookieDomain("myAppLocaleCookie");
-        resolver.setDefaultLocale(new Locale("vi"));
-        // 60 minutes
-        resolver.setCookieMaxAge(60*60);
-        return resolver;
-    }
+
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();

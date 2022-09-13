@@ -21,13 +21,15 @@ public interface ProductService {
 
     IProductDTO findIProductDTOById(String id);
 
-    Product create(ProductDTO productDTO);
+    Product create(String tagValue,ProductDTO productDTO);
 
-    Product updateProduct(ProductDTO productDTO);
+    Product updateProduct(String tagValue,ProductDTO productDTO);
 
     void delete(Product product) throws IOException;
 
     List<ProductDTO> findAllProductDTONoImage();
+
+    Optional<ProductDTO> findProductDTOBySlug (String slug);
 
     Product save(Product Product);
 

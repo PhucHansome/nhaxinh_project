@@ -416,7 +416,7 @@
                             <li id="menu-item-287"
                                 class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
                                 <a href="http://localhost:8092/search" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
-                                <div class="sub-menu nav-dropdown">
+                                <div class="sub-menu nav-dropdown nav-dropdown-product">
                                     <section class="section" id="section_314368453">
                                         <div class="bg section-bg fill bg-fill  bg-loaded">
 
@@ -1361,12 +1361,12 @@
 
 
                                     <span class="posted_in">Danh mục: <a
-                                            th:href="*{'/search/'+product.category.name}"
+                                            th:href="*{'/search/page=1?option=1&choicePrice=0&query='+product.category.name}"
                                             rel="tag" id="SameProduct" th:text="*{product.category.name}"></a></span>
 
-                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/'+product.productColor.color}" rel="tag" th:text="*{product.productColor.color}"></a></span>
+                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/page=1?option=1&choicePrice=0&query='+product.productColor.color}" rel="tag" th:text="*{product.productColor.color}"></a></span>
                                     <th:block th:each="tag, count : ${tag}">
-                                    <span class="tagged_as">Tags: <a href="#"
+                                    <span class="tagged_as">Tags: <a th:href="*{'/search/page=1?option=1&choicePrice=0&query='+tag.name}"
                                                                      rel="tag" th:text="*{tag.name}"></a></span>
                                     </th:block>
 

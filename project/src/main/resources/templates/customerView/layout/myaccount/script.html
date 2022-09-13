@@ -1718,7 +1718,7 @@
     <script src="/assets_dashboard/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
 
     <script src="/assets_dashboard/assets/libs/jszip/jszip.min.js"></script>
-<!--    <script src="/assets_dashboard/assets/libs/pdfmake/pdfmake.min.js"></script>-->
+    <!--    <script src="/assets_dashboard/assets/libs/pdfmake/pdfmake.min.js"></script>-->
     <script src="/assets_dashboard/assets/libs/pdfmake/vfs_fonts.js"></script>
 
     <script src="/assets_dashboard/assets/libs/datatables/buttons.html5.min.js"></script>
@@ -1728,67 +1728,21 @@
     <script src="/assets_dashboard/assets/libs/datatables/dataTables.select.min.js"></script>
 
     <script>
-        $(".menu_bar").on("click", () => {
-            let str = `
-            <div class="mfp-bg off-canvas off-canvas-left main-menu-overlay mfp-ready"></div>
-<div class="mfp-wrap mfp-auto-cursor off-canvas off-canvas-left mfp-ready" tabindex="-1" style="overflow: hidden auto;"><div class="mfp-container mfp-s-ready mfp-inline-holder"><div class="mfp-content"><div id="product-categories-menu" class="mobile-sidebar no-scrollbar">
-<div class="sidebar-menu no-scrollbar ">
-        <div class="product-categories-menu-containter"><ul id="menu-danh-muc-sp" class="menu"><li id="menu-item-24213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24213 has-child" aria-expanded="false"><a href="#">Sofa và Armchair</a>
-<button class="toggle"></button><ul class="sub-menu">
-</ul>
-</li>
-<li id="menu-item-24214" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24214 has-child" aria-expanded="false"><a href="#">Bàn</a>
-<button class="toggle"></button><ul class="sub-menu">
-</ul>
-</li>
-<li id="menu-item-28026" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28026 has-child" aria-expanded="false"><a href="#">Ghế</a>
-<button class="toggle"></button><ul class="sub-menu">
-<li id="menu-item-28024" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28024"><a href="https://nhaxinh.com/danh-muc/phong-an/ghe-an/">Ghế ăn</a></li>
-<li id="menu-item-3365" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3365"><a href="https://nhaxinh.com/danh-muc/phong-an/ghe-bar/">Ghế bar</a></li>
-<li id="menu-item-3388" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3388"><a href="https://nhaxinh.com/danh-muc/phong-lam-viec/ghe-phong-lam-viec/">Ghế làm việc</a></li>
-</ul>
-</li>
-<li id="menu-item-28344" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28344 has-child" aria-expanded="false"><a href="#">Giường ngủ</a>
-<button class="toggle"></button><ul class="sub-menu">
-
-</ul>
-</li>
-<li id="menu-item-24217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-24217 has-child" aria-expanded="false"><a href="#">Tủ và kệ</a>
-<button class="toggle"></button><ul class="sub-menu">
-</ul>
-</li>
-<li id="menu-item-28027" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28027 has-child" aria-expanded="false"><a href="#">Bếp</a>
-<button class="toggle"></button><ul class="sub-menu">
-</ul>
-</li>
-<li id="menu-item-3351" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3351 has-child" aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a>
-<button class="toggle"></button><ul class="sub-menu">
-
-</ul>
-</li>
-<li id="menu-item-3773" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-3773 has-child" aria-expanded="false"><a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a>
-<button class="toggle"></button><ul class="sub-menu">
-</ul>
-</li>
-</ul></div></div>
-</div></div><div class="mfp-preloader">Loading...</div></div><button title="Close (Esc)" type="button" class="mfp-close"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
-`
-            $(".chua_cart").html(str);
-            handleCloseCart()
-        })
 
         $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
-        $(".phong_dropdown").on("mouseleave", function () {
+
+        $(".nav-dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
         $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
+            $(".nav-dropdown-product").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
-        $(".sanpham_dropdown").on("mouseleave", function () {
+
+        $(".sub-menu").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
@@ -1874,7 +1828,7 @@
             page.element.container_cartItem.prepend($(cart_item_product(carItem.product.image, carItem.product.title, carItem.quantity, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(carItem.price), carItem.id, carItem.product.id)));
+            }).format(carItem.price), carItem.id, carItem.product.slug)));
         }
 
         page.commands.handleGodetailInTagA = (id) => {
@@ -2207,51 +2161,55 @@
                         if (i > 3) {
                             return;
                         }
-                        product = item
-                        let str = `
-                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${product.id}" ><img width="30px" height="30px"
-                                                            class="search-image"
-                                                            src="${product.image}">
-                                                        <div class="search-name"><strong style="font-size: 12px;">${product.title}</strong><span style="font-size: 12px;"> ${product.code}</span>
-                                                        </div>
-                                                        <span class="search-price"><ins><span style="font-size: 12px;"
-                                                                class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                            style: 'currency',
-                            currency: 'VND'
-                        }).format(product.price)}
-                                                                </bdi></span></ins></span></span>
-                                                        </a></div>
+                        $.each(data, (i, item) => {
+                            if (i > 3) {
+                                return;
+                            }
+                            tag = item
+                            let str = `
+                             <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${tag.product.slug}" ><img width="30px" height="30px"
+                                    class="search-image"
+                                    src="${tag.product.image}">
+                                <div class="search-name"><strong style="font-size: 12px;">${tag.product.title}</strong><span style="font-size: 12px;"> ${tag.product.code}</span>
+                                </div>
+                                <span class="search-price"><ins><span style="font-size: 12px;"
+                                        class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }).format(tag.product.price)}
+                                        </bdi></span></ins></span></span>
+                                </a></div>
                     `;
-                        page.element.resuilt_search.prepend(str);
-                    })
-                    page.commands.blurInputsearch()
-                }).fail((jqXHR) => {
-                    if (jqXHR.responseJSON) {
-                        $.each(jqXHR.responseJSON, (key, item) => {
-                            page.element.resuilt_search.html("")
-                            page.element.resuilt_search.removeClass("d-none")
-                            page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
-                            page.commands.blurInputsearch()
+                            page.element.resuilt_search.prepend(str);
                         })
-                    }
+                        page.commands.blurInputsearch()
+                    }).fail((jqXHR) => {
+                        if (jqXHR.responseJSON) {
+                            $.each(jqXHR.responseJSON, (key, item) => {
+                                page.element.resuilt_search.html("")
+                                page.element.resuilt_search.removeClass("d-none")
+                                page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                                page.commands.blurInputsearch()
+                            })
+                        }
+                    })
                 })
             })
         }
-
         page.commands.handleGoSearch = () => {
-            $(".btn-search").on("click", function (){
+            $(".btn-search").on("click", function () {
                 window.location.href = "/search/page=1?option=1&choicePrice=0&query=" + page.element.InputQuerySearch.val();
             })
         }
 
-        page.commands.getCustomerByUserName = ()=>{
+        page.commands.getCustomerByUserName = () => {
             $.ajax({
-                type : "GET",
+                type: "GET",
                 url: page.url.GetCustomers + "/username/" + $("#EmailLogin").text()
-            }).done((data)=>{
+            }).done((data) => {
                 customerInfo = data;
                 $("#fullNameScreen").text(customerInfo.fullName)
-            }).fail((e)=>{
+            }).fail((e) => {
                 $("#fullNameScreen").text($("#EmailLogin").text())
             })
         }
