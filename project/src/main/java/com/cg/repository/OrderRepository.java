@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
+
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
             "o.id, " +
             "o.description, " +
@@ -44,6 +45,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             " )  " +
             "FROM Order o  WHERE o.customerInfo.userName Like ?1 AND o.statusOrder Like ?2")
     List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName,String status);
+
 
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
             "o.id, " +
@@ -77,7 +79,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             " )  " +
             "FROM Order o ")
     List<OrderDTO> findOrderDTO();
-//    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+
+//    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
 //            "o.id, " +
 //            "o.description, " +
 //            "o.grandTotal , " +
@@ -89,9 +92,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //            "o.createdAt, " +
 //            "o.statusOrder, " +
 //            "o.orderDetail " +
-//            " )  " +
-//            "FROM Order o order by o.quantity desc " +
-//             ");
-
+//            " )" +
+//            "FROM Order o where o.quantity>5" +
+//            "order by  o.quantity  DESC " +
+//            " LIMIT 5")
+//              List<OrderDTO> findOrderMaxDTO();
 
 }
+

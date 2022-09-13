@@ -50,6 +50,11 @@ public class OrderAPI {
         List<OrderDTO> orderDTOS = orderService.findOrderDTO();
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
+//    @GetMapping("/max")
+//    public ResponseEntity<?> findAllOrderMax(){
+//        List<OrderDTO> orderDTOS = orderService.findOrderMaxDTO();
+//        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+//    }
 
     @GetMapping("/order-detail/{id}")
     public ResponseEntity<?> findAllOrderDetailById(@PathVariable Long id){

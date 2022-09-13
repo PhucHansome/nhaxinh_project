@@ -245,6 +245,12 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findOrderDTO();
     }
 
+//    @Override
+//    public List<OrderDTO> findOrderMaxDTO() {
+//
+//        return orderRepository.findOrderMaxDTO();
+//    }
+
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
         List<OrderDTO> order = orderRepository.findOrderDTOByUserName(userName);

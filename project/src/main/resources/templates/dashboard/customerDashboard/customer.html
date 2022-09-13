@@ -88,15 +88,17 @@
                                 </tr>
                             </thead>
                                 <tbody>
+
                                 <th:block th:each="customerList, count : ${customerList}">
 
                                 <tr>
                                     <td class="align-middle text-center"th:text="*{customerList.phone}"></td>
-                                    <td class="align-middle text-center" ><a th:href="*{'/api/customerInfo/edit/'+customerList.id}" th:text="*{customerList.fullName}"></a></td>
+                                    <td class="align-middle text-center" ><a th:href="*{'/api/customerInfo/edit/'+ customerList.id}" th:text="*{customerList.fullName}"></a></td>
                                     <td class="align-middle text-center"th:text="*{customerList.userName}"></td>
 
                                 </tr>
                                 </th:block>
+
                                 </tbody>
 
                         </table>
@@ -126,7 +128,7 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
-<th:block th:include="/dashboard/userDashboard/frm_list_user::frm_list_user"/>
+<th:block th:include="/dashboard/customerDashboard/frm_list_customer::frm_list_customer"/>
 <script src="/assets_dashboard/assets/libs/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets_dashboard/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/assets_dashboard/assets/js/pages/datatables.init.js"></script>
@@ -142,47 +144,8 @@
 
 <script src="/assets_dashboard/assets/libs/datatables/dataTables.keyTable.min.js"></script>
 <script src="/assets_dashboard/assets/libs/datatables/dataTables.select.min.js"></script>
-<script>
 
+<script src="/assets_dashboard/assets/js/all-script-handle-dashboard/customer/customer.js"></script>
 
-    let page = {
-        url: {
-            CreateCustomerInfo: App.BASE_URL_CUSTOMERINFO,
-            getAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
-            getAllProvinces: App.BASE_URL_PROVINCE + "/",
-            getAllDistricts: App.BASE_URL_PROVINCE + "/district/"
-
-
-        },
-        element: {},
-        loadData: {},
-        commands: {},
-        dialogs: {
-            element: {},
-            loadData: {},
-            commands: {},
-            close: {},
-            alertDanger: {},
-            inputError: {}
-        }
-    }
-
-    page.element.btnGoCreateCustomer = $(".btn-go-add-customer");
-
-    let customerInfo = new CustomerInfo();
-    let locationRegion = new LocationRegion();
-    let user = new User();
-    let customerInfoId = null;
-
-    page.dialogs.commands.goCreateCustomer = () => {
-        page.element.btnGoCreateCustomer.on("click", function (){
-            window.location.href = "/create-user-dashboard";
-        })
-    }
-
-    $(function (){
-        page.dialogs.commands.goCreateCustomer();
-    })
-</script>
 </body>
 </html>

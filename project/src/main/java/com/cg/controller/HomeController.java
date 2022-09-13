@@ -325,7 +325,7 @@ public class HomeController {
     @GetMapping("/user-dashboard")
     public ModelAndView getUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/user");
+        modelAndView.setViewName("/dashboard/customerDashboard/customer");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
@@ -337,7 +337,7 @@ public class HomeController {
     @GetMapping("/create-user-dashboard")
     public ModelAndView getCreateUserDashboard() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/create-user");
+        modelAndView.setViewName("/dashboard/customerDashboard/create-customer");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         return modelAndView;
@@ -376,6 +376,14 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         return modelAndView;
     }
+    @GetMapping("/report-turnover-dashboard")
+    public ModelAndView getreportTurnoverDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/statisticalDashboard/statistical-turnover");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
     @GetMapping("/login_admin")
     public String getLoginAdmin() {
@@ -390,7 +398,7 @@ public class HomeController {
     @GetMapping("/api/customerInfo/edit/{id}")
     public ModelAndView showCustomerInfoDetail(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/dashboard/userDashboard/detail-user");
+        modelAndView.setViewName("/dashboard/customerDashboard/detail-customer");
         Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(id);
         modelAndView.addObject("locationRegion", customerInfo.get().getLocationRegion());
         modelAndView.addObject("customerInfo", customerInfo.get().toCustomerInfo());

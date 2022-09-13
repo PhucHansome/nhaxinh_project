@@ -35,8 +35,11 @@
                         <a href="#" class="social-login__icon fab fa-instagram"></a>
                         <a href="#" class="social-login__icon fab fa-facebook"></a>
                         <a href="#" class="social-login__icon fab fa-twitter"></a>
+                        <a href="/http://localhost:8092/" ><i class="far fa-home">Home</i></a>
+
                     </div>
                 </div>
+
             </div>
             <div class="screen__background">
                 <span class="screen__background__shape screen__background__shape4"></span>
@@ -57,45 +60,7 @@
 <script src="/assets/js_css/js/jquery-3.6.0.min.js"></script>
 <script src="/assets/js_css/js/jquery-ui.min.js"></script>
 <script src="/assets/js_css/js/sweetalert2.min.js"></script>
-
-<script>
-    let btn_sign_in = $('#btn_sign_in');
-    btn_sign_in.on("click", () => {
-        let username = $('#usernameLo').val();
-        let password = $('#passwordLo').val();
-
-        let user = {
-            username: username,
-            password: password
-        }
-
-        $.ajax({
-            headers: {
-                "accept": "application/json",
-                "content-type": "application/json"
-            },
-            type: "POST",
-            url: "http://localhost:8092/api/auth/login",
-            data: JSON.stringify(user)
-        }).done((data) => {
-            App.IziToast.showSuccessAlert("Đăng nhập thành công!!");
-            App.catchIdLogin(data.id);
-            setTimeout(function () {
-                window.location.href = "/home-dashboard";
-            }, 750);
-        }).fail((jqXHR) => {
-            App.IziToast.showErrorAlert("Đăng nhập thất bại!")
-            setTimeout(function () {
-                if (jqXHR.responseJSON) {
-                    $.each(jqXHR.responseJSON, (key, item) => {
-                        App.IziToast.showErrorAlert(item) ;
-                    })
-                }
-            }, 500);
-
-        })
-    })
-</script>
+<script src="/assets_dashboard/assets/js/all-script-handle-dashboard/login/login.js"></script>
 
 
 </html>

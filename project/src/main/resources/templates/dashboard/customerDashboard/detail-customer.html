@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Dashboard | Uplon - Responsive Bootstrap 4 Admin Dashboard</title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+    <link href="/assets_dashboard/assets/css/styleUpdateCustomer.css" rel="stylesheet" >
+
+</head>
+<style>
+    p {
+        color: red;
+    }
+</style>
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
+                    <div class="col-md-5">
+                        <h6><a href="/user-dashboard">Quay lại danh sách khách hàng</a></h6>
+                    </div>
+                    <div class="col-md-7">
+                        <button type="button" style="margin-bottom: 10px;float: right"
+                                class="btn waves-effect waves-light btn-warning btnUpdate" data-toggle="tooltip" data-placement="top" title="" data-original-title="chỉnh sửa thông tin">
+                            <i class="mdi mdi-wrench"></i>
+                        </button>
+
+                        <button type="button" style="margin-bottom: 10px;margin-right: 10px;float: right"
+                                class="btn waves-effect waves-light btn-danger disabled btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá khách hàng">
+                            <i class="mdi mdi-close"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" style="top: -25px; position: relative;">
+                    <div class="col-md-12" style="margin-top: -15px;">
+                        <h4>Khách Hàng</h4>
+                    </div>
+                </div>
+                <th:block th:each="customerInfo, count : ${customerInfo}">
+                <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear" style="top: -25px; position: relative;">
+
+                        <div class="col-md-12">
+                            <h6>Thông tin cá nhân</h6>
+                        </div>
+                        <input type="hidden" id="idCustomer" name="id" th:field="*{customerInfo.id}">
+
+                        <div class="col-md-6">
+                            <label>Tên khách hàng:</label>
+                            <p th:text="*{customerInfo.fullName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Số điện thoại:</label>
+                            <p th:text="*{customerInfo.phone}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email:</label>
+                            <p th:text="*{customerInfo.userName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Thành phố:</label>
+                            <p th:text="*{customerInfo.locationRegion.provinceName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Quận/huyện:</label>
+                            <p th:text="*{customerInfo.locationRegion.districtName}"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Địa chỉ:</label>
+                            <p th:text="*{customerInfo.locationRegion.address}"></p>
+                        </div>
+
+                </div>
+
+                <div class="row" style="top: -25px; position: relative;">
+                    <div class="col-md-12">
+                        <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+                            <div class="col-md-12">
+                                <h6>Thông tin mua hàng</h6>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label>Tổng chi tiêu:<span th:text="*{customerInfo.debt}" style="margin-left: 5px;color: red"></span> </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng SL sản phẩm đã mua:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Tổng SL đơn hàng:</label>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-5" style="  padding-left: 35px;">
+                        <div class="row ">
+
+                        </div>
+
+                    </div>
+
+                </div>
+                </th:block>
+            </div>
+
+
+        </div>
+        <!-- Start Content-->
+
+    </div> <!-- end content -->
+
+
+    <!-- Footer Start -->
+    <th:block th:replace="/dashboard/layout/footer::footer"/>
+    <!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:replace="/dashboard/customerDashboard/render_update_finish_row::render_update_finish_row"/>
+
+<th:block th:replace="/dashboard/customerDashboard/modalupdate-user :: modal_update"/>
+<script src="/assets_dashboard/assets/js/all-script-handle-dashboard/customer/customerDetail.js"></script>
+
+
+</body>
+</html>
