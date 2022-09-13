@@ -192,8 +192,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Tên sản phẩm<span style="color: red">*</span></label>
-                                    <input type="text" id="productName" placeholder="Nhập tên sản phẩm"
+                                    <input type="text" id="productName" oninput="page.commands.ChangeToSlug()" placeholder="Nhập tên sản phẩm"
                                            class="form-control">
+                                    <input type="hidden" readonly id="slugProduct" >
                                 </div>
                                 <div class="col-md-6">
                                     <label style="margin-top: 5px">Số lượng</label>

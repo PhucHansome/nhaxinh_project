@@ -156,18 +156,18 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/detail/{id}")
-    public ModelAndView goDetailProduct(@PathVariable String id) {
+    @GetMapping("/detail/{slug}")
+    public ModelAndView goDetailProduct(@PathVariable String slug) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/detail/detail");
-        Optional<ProductDTO> productDTOOptional = productService.findProductDTOById(id);
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOBySlug(slug);
         
         String patternVND = ",###₫";
         DecimalFormat decimalFormat = new DecimalFormat(patternVND);
         productDTOOptional.get().setPriceFormat(decimalFormat.format(productDTOOptional.get().getPrice()));
         
-        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(id);
-        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productDTOOptional.get().getId());
+        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(productDTOOptional.get().getId());
         modelAndView.addObject("product", productDTOOptional.get());
         modelAndView.addObject("tag", tagDTO.get());
         modelAndView.addObject("image", productMediaDTOList);

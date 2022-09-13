@@ -69,6 +69,16 @@ public class ProductAPI {
         return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/product/slug/{slug}")
+    public ResponseEntity<?> findProductBySlug(@PathVariable String slug) {
+        Optional<ProductDTO> productDTOOptional = productService.findProductDTOBySlug(slug);
+        if (!productDTOOptional.isPresent()) {
+            throw new DataInputException("Product is not found");
+        }
+
+        return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
+    }
+
     @GetMapping("/product/search/{title}")
     public ResponseEntity<?> searchByTitleInline(@PathVariable String title) {
         try {
@@ -136,6 +146,11 @@ public class ProductAPI {
             throw new DataInputException("Mã code sản phẩm này đã tồn tại vui lòng Nhập lại thông tin");
         }
 
+        Optional<ProductDTO> productDTO2 = productService.findProductDTOBySlug(productDTO.getSlug());
+        if(productDTO2.isPresent()){
+            throw new DataInputException("Tên sản phẩm này đã tồn tại vui lòng Nhập lại thông tin");
+        }
+
         List<String> errors = new ArrayList<>();
         if (!productDTO.getImage().equals("null")){
             errors.add("dữ liệu lỗi");
@@ -161,9 +176,6 @@ public class ProductAPI {
             errors.add("Tên sản phẩm không được để trống");
         }
 
-        if(!productDTO.getSlug().equals("chua biet lam")){
-            errors.add("dữ liệu lỗi vui lòng thử lại!");
-        }
 //        String price = String.valueOf(productDTO.getPrice());
 //
 //        if(!price.matches("\\d")){

@@ -29,6 +29,8 @@ public interface ProductService {
 
     List<ProductDTO> findAllProductDTONoImage();
 
+    Optional<ProductDTO> findProductDTOBySlug (String slug);
+
     Product save(Product Product);
 
     Optional<ProductDTO> findProductDTOById (String id);

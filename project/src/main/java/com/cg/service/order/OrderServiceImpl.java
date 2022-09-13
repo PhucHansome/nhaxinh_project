@@ -184,7 +184,8 @@ public class OrderServiceImpl implements OrderService {
         messages.addHeader("Content-Transfer-Encoding", "8bit");
         messages.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail2, false));
         messages.setSubject(subjectt);
-        String htmlContent1 = "<html lang=\"en\">\n" +
+        String htmlContent1 =
+                "<html lang=\"en\">\n" +
                 "  <head>\n" +
                 "    <meta charset=\"UTF-8\" />\n" +
                 "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
