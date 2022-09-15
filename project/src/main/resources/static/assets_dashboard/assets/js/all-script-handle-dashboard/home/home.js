@@ -5,7 +5,8 @@
     GetOrderDetailBySTT: App.BASE_URL_ORDER + "/order-detail/status/",
     GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
     PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
-    PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/"
+    PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/",
+        getAllproductt: App.BASE_URL_PRODUCT,
 },
     element: {},
     loadData: {},
@@ -24,6 +25,45 @@
     let orderDetail = new OrderDetail();
     let customerInfo = new CustomerInfo();
     let locationRegion = new LocationRegion();
+
+
+
+    let product = new Product()
+
+    let tempRowCustomer = $.validator.format($.trim($('#tempRowCustomer').val().toString()));
+
+    function addRowCustomer() {
+        $('#tbListCustomers tbody').prepend($(tempRowCustomer(order.id, order.productTitle, order.p, order.quantity)));
+    }
+
+    page.loadData.getAllCustomers = () => {
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            url: page.url.getAllOrder
+        })
+            .done((data) => {
+                $('#tbListCustomers tbody').html('');
+
+                $.each(data, (i, item) => {
+                    product = item;
+
+                    addRowCustomer();
+                });
+
+            })
+            .fail((jqXHR) => {
+                console.log(jqXHR);
+            })
+    }
+
+
+
+
+
 
     page.element.first_content = $(".first_content")
 

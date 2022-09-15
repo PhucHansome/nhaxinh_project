@@ -1,6 +1,5 @@
 package com.cg.service.order;
 
-import com.cg.model.Cart;
 import com.cg.model.Order;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
@@ -12,6 +11,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Properties;
 import java.math.BigDecimal;
@@ -246,11 +247,12 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findOrderDTO();
     }
 
-//    @Override
-//    public List<OrderDTO> findOrderMaxDTO() {
-//
-//        return orderRepository.findOrderMaxDTO();
-//    }
+    @Override
+    public List<OrderDTO> findOderByCreateBetween(Date createAt1, Date createAt2) {
+
+
+        return orderRepository.findOderByCreateBetween(createAt1,createAt2);
+    }
 
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {

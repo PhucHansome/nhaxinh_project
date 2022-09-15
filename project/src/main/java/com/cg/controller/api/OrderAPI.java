@@ -1,15 +1,10 @@
 package com.cg.controller.api;
 
 
-import com.cg.exception.DataInputException;
-import com.cg.model.Cart;
-import com.cg.model.Order;
 import com.cg.model.OrderDetail;
-import com.cg.model.dto.CartDTO;
 import com.cg.model.dto.OrderDTO;
 import com.cg.model.dto.OrderDetailDTO;
 import com.cg.repository.CartRepository;
-import com.cg.repository.OrderDetailRepository;
 import com.cg.service.order.OrderService;
 import com.cg.service.orderdetail.OrderDetailService;
 import com.cg.utils.AppUtils;
@@ -21,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,11 +46,28 @@ public class OrderAPI {
         List<OrderDTO> orderDTOS = orderService.findOrderDTO();
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
-//    @GetMapping("/max")
-//    public ResponseEntity<?> findAllOrderMax(){
-//        List<OrderDTO> orderDTOS = orderService.findOrderMaxDTO();
-//        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
-//    }
+    @GetMapping("/order-createAt/{createAt1}/{createAt2}")
+    public ResponseEntity<?> findOderByCreateBetweenDate(@PathVariable Date createAt1, @PathVariable Date createAt2) {
+
+//
+//        String format = "dd/MM/yyyy";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+//////            Date  a = new Date(str_to_date(createAt1, '%e/%m/%Y' ) );
+//        try {
+//
+//            Date date = simpleDateFormat.parse(createAt1);
+//        }catch (ParseException e){
+//            e.printStackTrace();
+//        }
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.roll(Calendar.MONTH,-1);
+
+        List<OrderDTO> orderDTOS = orderService.findOderByCreateBetween(createAt1,createAt2);
+
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+    }
+
 
     @GetMapping("/order-detail/{id}")
     public ResponseEntity<?> findAllOrderDetailById(@PathVariable Long id){
@@ -114,4 +127,5 @@ public class OrderAPI {
         OrderDetail orderDetail =  orderDetailService.cancelOrder(orderDetailDTO.toOrderDetail(),username);
         return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
     }
+
 }

@@ -9,8 +9,6 @@ class App {
     static BASE_URL_PRODUCT = this.DOMAIN + "/api/products";
     static BASE_URL_CATEGORY = this.DOMAIN + "/api/category";
     static BASE_URL_COLOR = this.DOMAIN + "/api/colorProduct";
-
-
     static BASE_URL_PRODUCTCOLOR = this.DOMAIN + "/api/products/product-color"
     static BASE_URL_TAG = this.DOMAIN + "/api/tag"
     static BASE_URL_CART = this.DOMAIN + "/api/cart"
@@ -42,7 +40,7 @@ class App {
         }
         static showConfirmDeleteUser() {
             return Swal.fire({
-                title: 'Bạn có muốn xoá tạm thời user này?',
+                title: 'Bạn có muốn xoá khách hàng này?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

@@ -53,8 +53,8 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
                         <script>
+
                             var productLabel = [ ],productPriceData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
@@ -81,6 +81,7 @@
                                     options: {
                                         tooltips: {
                                             mode: 'index'
+
                                         }
                                     }
                                 })
@@ -106,6 +107,8 @@
 
                         </script>
                     </div>
+                    <script type="text/javascript" src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+
                     <div class="col-lg-6 col-xl-4 ">
                         <div class="card-header">
                             <h3 style="text-align: center">Số lượng sản phẩm khách hàng đã đặt hàng</h3>
@@ -114,13 +117,14 @@
 
 
                         <script>
+
                             var productLabel = [ ],productgrandTotalData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
                                 const ctx = document.getElementById('myChartt').getContext('2d');
 
                                 const chart = new Chart(ctx, {
-                                    type:'pie',
+                                    type:'doughnut',
                                     data: {
                                         labels: productLabel,
                                         datasets: [
@@ -152,9 +156,12 @@
                                         ]
                                     },
                                     options: {
-                                        tooltips: {
-                                            mode: 'index'
-                                        }
+                                            plugins:{
+                                                labels:{
+                                                    render: 'percentage',
+                                                    precision:2
+                                                }
+                                        },
                                     }
                                 })
                             }

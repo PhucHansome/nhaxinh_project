@@ -5,6 +5,8 @@ import com.cg.model.dto.OrderDTO;
 import com.cg.service.IGeneralService;
 import org.hibernate.id.IdentifierGenerator;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService extends IGeneralService<Order> {
@@ -16,6 +18,6 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findAllOrderDTOByOrderDetailId (Long id);
 
-//    List<OrderDTO> findOrderMaxDTO();
+    List<OrderDTO> findOderByCreateBetween(Date createAt1, Date createAt2);
 
 }
