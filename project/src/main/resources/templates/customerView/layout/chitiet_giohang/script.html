@@ -1426,6 +1426,7 @@
         }
 
         page.commands.createOrder = (cart) => {
+
             delete order.id;
             order.description = cart.content;
             order.grandTotal = 0;

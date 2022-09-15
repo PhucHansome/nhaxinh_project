@@ -1338,6 +1338,9 @@
                     console.log(i)
                     product = item;
                     page.commands.addCartBotLine();
+                    if(product.status === "Đã Hết Hàng"){
+                        $(".btn-add-cart").html("");
+                    }
                 })
                 page.commands.handleCreateCart()
                 page.commands.showIconCart();

@@ -1321,9 +1321,11 @@
                                                     <div class="add-to-cart-button">
                                                         <button
                                                                 th:data-id="*{tag.product.id}"
-                                                                class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline them_vao_cart"
-                                                        >Thêm vào giỏ
-                                                        </button>
+                                                                th:if="${tag.product.status != 'Đã Hết Hàng'}"  class="primary is-small mb-0 button product_type_simple add_to_cart_button ajax_add_to_cart is-outline them_vao_cart">
+                                                        Thêm vào giỏ
+                                                        </button><span
+                                                            th:unless="${tag.product.status == 'Đã Hết Hàng'}">
+                                                        </span>
                                                     </div>
                                                     <div class="add-to-cart-button">
                                                         <button

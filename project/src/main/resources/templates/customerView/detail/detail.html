@@ -1185,60 +1185,6 @@
                                                      style="height: 390.406px; touch-action: pan-y;">
                                                     <div class="flickity-slider image_big-view"
                                                          style="left: 0px; transform: translateX(0%);">
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide first is-selected"-->
-<!--                                                             style="position: absolute; left: 0%;"><a-->
-<!--                                                                th:src="@{*{product.image}}"><img-->
-<!--                                                                width="500" height="333"-->
-<!--                                                                th:src="@{*{product.image}}"-->
-<!--                                                                class="wp-post-image skip-lazy lazy-load-active" alt=""-->
-<!--                                                                th:title="*{product.title}"-->
-<!--                                                                ></a></div>-->
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-2_3_73233_2-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide"-->
-<!--                                                             aria-hidden="true" style="position: absolute; left: 100%;">-->
-<!--                                                            <a href="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-2_3_73233_2.jpg"><img-->
-<!--                                                                    width="600" height="360"-->
-<!--                                                                    th:src="@{*{product.image}}"-->
-<!--                                                                    class="lazy-load skip-lazy" alt=""-->
-<!--                                                                    th:title="*{product.title}"-->
-<!--                                                                   ></a></div>-->
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/500-nha-xinh-phong-an-ban-an-roma3-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide"-->
-<!--                                                             aria-hidden="true" style="position: absolute; left: 200%;">-->
-<!--                                                            <a href="https://nhaxinh.com/wp-content/uploads/2021/10/500-nha-xinh-phong-an-ban-an-roma3.jpg"><img-->
-<!--                                                                    width="500" height="333"-->
-<!--                                                                    th:src="@{*{product.image}}"-->
-<!--                                                                    class="lazy-load skip-lazy" alt=""-->
-<!--                                                                    th:title="*{product.title}"-->
-<!--                                                                    ></a></div>-->
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/500-nha-xinh-phong-an-roma-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide"-->
-<!--                                                             aria-hidden="true" style="position: absolute; left: 300%;">-->
-<!--                                                            <a href="https://nhaxinh.com/wp-content/uploads/2021/10/500-nha-xinh-phong-an-roma.jpg"><img-->
-<!--                                                                    width="500" height="333"-->
-<!--                                                                    th:src="@{*{product.image}}"-->
-<!--                                                                    class="lazy-load skip-lazy" alt=""-->
-<!--                                                                    th:title="*{product.title}"-->
-<!--                                                                    ></a></div>-->
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/500-roma-ban-an2-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide"-->
-<!--                                                             aria-hidden="true" style="position: absolute; left: 400%;">-->
-<!--                                                            <a href="https://nhaxinh.com/wp-content/uploads/2021/10/500-roma-ban-an2.jpg"><img-->
-<!--                                                                    width="500" height="333"-->
-<!--                                                                    th:src="@{*{product.image}}"-->
-<!--                                                                    class="lazy-load skip-lazy" alt=""-->
-<!--                                                                    th:title="*{product.title}" data-caption=""-->
-<!--                                                                    ></a></div>-->
-<!--                                                        <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-500x3331-1-100x100.jpg"-->
-<!--                                                             class="woocommerce-product-gallery__image slide"-->
-<!--                                                             aria-hidden="true" style="position: absolute; left: 500%;">-->
-<!--                                                            <a href="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-500x3331-1.jpg"><img-->
-<!--                                                                    width="500" height="333"-->
-<!--                                                                    th:src="@{*{product.image}}"-->
-<!--                                                                    class="lazy-load skip-lazy" alt=""-->
-<!--                                                                    th:title="*{product.title}" data-caption=""-->
-<!--                                                                    ></a></div>-->
                                                     </div>
                                                 </div>
                                                 <button class="flickity-button flickity-prev-next-button previous"
@@ -1373,8 +1319,8 @@
                                 </div>
                                 <p class="stock in-stock">In stock</p>
 
-
-                                    <div class="quantity buttons_added">
+                                    <div th:if="${product.status != 'Đã Hết Hàng'}">
+                                    <div class="quantity buttons_added" th:if="${product.status != 'Đã Hết Hàng'}">
                                         <input type="button" onclick="page.commands.handleReduce()"     value="-" class="minus button is-form reduce_quantity">
                                         <div id="valueInput">
                                         <input type="number" readonly id="quantity_62fc4b3185e6c" class="input-text qty text"
@@ -1386,11 +1332,13 @@
                                     <button type="submit" name="add-to-cart" value="2105"
                                             class="single_add_to_cart_button button alt btn-add-to-cart">Thêm vào giỏ
                                     </button>
+                                        <div class="hotline-wrapper">Liên hệ tư vấn và đặt mua: <a class="hotline-phone"
+                                                                                                   href="tel:18007200">18007200</a>
+                                        </div>
+                                    </div>
+                                    <div th:unless="${product.status == 'Đã Hết Hàng'}"></div>
 
 
-                                <div class="hotline-wrapper">Liên hệ tư vấn và đặt mua: <a class="hotline-phone"
-                                                                                           href="tel:18007200">18007200</a>
-                                </div>
 
                                 <div class="woocommerce-tabs wc-tabs-wrapper container tabbed-content">
                                     <ul class="tabs wc-tabs product-tabs small-nav-collapse nav nav-uppercase nav-tabs nav-normal nav-left"
