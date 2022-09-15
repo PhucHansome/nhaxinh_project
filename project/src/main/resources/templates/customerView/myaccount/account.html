@@ -1164,7 +1164,7 @@
                                                     font-weight: 600;
                                                     position: relative;
                                                     left: -16px;"
-                                        class="btn-get-page-orderDetail"
+                                        class="btn-get-page-order"
                                 >Đơn hàng
                                 </button>
                             </li>
@@ -1360,7 +1360,7 @@
                                                 </button>
                                             </p>
                                         </div>
-                                        <div class="orderDetail d-none">
+                                        <div class="order d-none">
                                             <div class="row">
                                                 <div class="my-orders-title" style="padding-bottom: 25px;">
                                                     <h2>Đơn hàng của tôi</h2>
@@ -1381,16 +1381,16 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <th:block th:each="orderDetail, count : ${orderList}">
+                                                    <th:block th:each="order, count : ${orderList}">
                                                     <tr>
                                                         <td class="text-center align-middle"></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.productCode}"></td>
-                                                        <td class="text-center align-middle"><img width="150px" th:src="*{orderDetail.productImage}" alt=""></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.productTitle}"></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.quantity}"></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.priceFormat}"></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.statusOrder}"></td>
-                                                        <td class="text-center align-middle" th:text="*{orderDetail.createdAt}">$</td>
+                                                        <td class="text-center align-middle" th:text="*{order.productCode}"></td>
+                                                        <td class="text-center align-middle"><img width="150px" th:src="*{order.productImage}" alt=""></td>
+                                                        <td class="text-center align-middle" th:text="*{order.productTitle}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.quantity}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.priceFormat}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.statusOrder}"></td>
+                                                        <td class="text-center align-middle" th:text="*{order.createdAt}">$</td>
                                                     </tr>
                                                     </th:block>
                                                     </tbody>

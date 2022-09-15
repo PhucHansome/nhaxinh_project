@@ -57,13 +57,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <th:block th:each="order, count : ${order}">
+                                <th:block th:each="orderDetail, count : ${orderDetail}">
                                     <tr >
-                                        <td class="text-center align-middle" th:text="*{order.id}"></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.id}"></td>
                                         <td class="text-center align-middle">
-                                            <a style="font-weight: bold;color: darkslategrey;"  th:href="*{'/orderDetail-dashboard/detail/'+order.id}" th:text="*{order.fullName}"></a></td>
-                                        <td class="text-center align-middle" style="color: red;font-weight: bold;" th:text="*{order.statusOrderDetail}"></td>
-                                        <td class="text-center align-middle" th:text="*{order.priceFormat}"></td>
+                                            <a style="font-weight: bold;color: darkslategrey;"  th:href="*{'/order-dashboard/detail/'+orderDetail.id}" th:text="*{orderDetail.fullName}"></a></td>
+                                        <td class="text-center align-middle" style="color: red;font-weight: bold;" th:text="*{orderDetail.statusOrderDetail}"></td>
+                                        <td class="text-center align-middle" th:text="*{orderDetail.priceFormat}"></td>
                                     </tr>
                                 </th:block>
                                 </tbody>

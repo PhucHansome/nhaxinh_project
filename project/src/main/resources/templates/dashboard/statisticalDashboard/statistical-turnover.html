@@ -159,7 +159,7 @@
                             dummyChart()
                             //Fetch Data from API
                             async  function getDummyData() {
-                                const apiUrl = "http://localhost:8092/api/orderDetail/"
+                                const apiUrl = "http://localhost:8092/api/order/"
                                 const response = await fetch(apiUrl)
                                 console.log(response)
                                 const barChatData = await response.json()
