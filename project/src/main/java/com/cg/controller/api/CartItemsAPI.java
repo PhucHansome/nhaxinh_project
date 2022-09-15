@@ -29,14 +29,20 @@ public class CartItemsAPI {
             List<CartItemsDTO> cartItemsDTO = cartItemService.findCartItemDTOById(userName);
             return new ResponseEntity<>(cartItemsDTO, HttpStatus.OK);
         } catch (Exception e) {
-            throw new RuntimeException("Out");
+            throw new RuntimeException("Không lấy được danh sách đơn hàng");
         }
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> GetCartById(@PathVariable Long id) {
-        Optional<CartItemsDTO> cartItemsDTO = cartItemService.getCartItemDTOById(id);
-        return new ResponseEntity<>(cartItemsDTO.get(), HttpStatus.ACCEPTED);
+        try {
+            Optional<CartItemsDTO> cartItemsDTO = cartItemService.getCartItemDTOById(id);
+            return new ResponseEntity<>(cartItemsDTO.get(), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Không tkấy được cart item", HttpStatus.NO_CONTENT);
+        }
+
+
     }
 
     @PostMapping()
@@ -90,13 +96,17 @@ public class CartItemsAPI {
         }
     }
 
-        @PutMapping("/increasing")
+    @PutMapping("/increasing")
     public ResponseEntity<?> increasingCart(@RequestBody CartItem cartItem, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        CartItem cartItems = cartItemService.SaveIncreasing(cartItem);
-        return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+        try {
+            CartItem cartItems = cartItemService.SaveIncreasing(cartItem);
+            return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Không thể tăng số lượng sản phẩm", HttpStatus.NO_CONTENT);
+        }
     }
 
     @PutMapping("/reduce")
@@ -104,8 +114,13 @@ public class CartItemsAPI {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        CartItem cartItems = cartItemService.SaveReduce(cartItem);
-        return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+        try {
+            CartItem cartItems = cartItemService.SaveReduce(cartItem);
+            return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>("Không thể Giảm số lượng sản phẩm", HttpStatus.NO_CONTENT);
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -77,6 +77,26 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "c.productColor, " +
             "c.createdAt" +
             ")  " +
+            "FROM Product c WHERE c.deleted = false and c.status = ?1 order by c.ts desc ")
+    List<ProductDTO> findAllProductDTOByStatus(String status);
+
+
+    @Query("SELECT NEW com.cg.model.dto.ProductDTO (" +
+            "c.id, " +
+            "c.code , " +
+            "c.title, " +
+            "c.price, " +
+            "c.quantity, " +
+            "c.status, " +
+            "c.description, " +
+            "c.size, " +
+            "c.material, " +
+            "c.slug, " +
+            "c.image, " +
+            "c.category, " +
+            "c.productColor, " +
+            "c.createdAt" +
+            ")  " +
             "FROM Product c WHERE " +
             "c.id = ?1 " +
             "And c.deleted = false")

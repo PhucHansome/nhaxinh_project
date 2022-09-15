@@ -3,7 +3,9 @@ package com.cg.service.cartItem;
 import com.cg.exception.DataInputException;
 import com.cg.model.CartItem;
 import com.cg.model.dto.CartItemsDTO;
+import com.cg.model.dto.ProductDTO;
 import com.cg.repository.CartItemRepository;
+import com.cg.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class CartItemServiceImpl implements CartItemService{
     @Autowired
     private CartItemRepository cartItemRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<CartItem> findAll() {
@@ -38,11 +43,21 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     public CartItem save(CartItem cartItem) {
+        Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItem.getProduct().getId());
+        if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
+            productDTO.get().setStatus("Đã Hết Hàng");
+            productRepository.save(productDTO.get().toProduct());
+        }
         return cartItemRepository.save(cartItem);
     }
 
     public CartItem saveOp(CartItem cartItem) {
         Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(), cartItem.getProduct().getCode());
+        Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItem.getProduct().getId());
+        if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
+            productDTO.get().setStatus("Đã Hết Hàng");
+            productRepository.save(productDTO.get().toProduct());
+        }
         cartItem.setId(cartItem1.get().getId());
         cartItem.setQuantity(new BigDecimal(String.valueOf(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)))));
         cartItem.setGrandTotal(new BigDecimal(String.valueOf(cartItem.getQuantity().multiply(cartItem.getPrice()))));

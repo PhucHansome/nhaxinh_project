@@ -149,7 +149,7 @@
         <div class="content">
             <div class="container-fluid">
 
-                <div class="row shadow-lg p-2 mb-5 bg-body rounded" style="margin-top: 10px">
+                <div class="row card-box rounded" style="margin-top: 10px">
                     <div class="col-md-5">
                         <h6><a href="/product-dashboard">Quay lại danh sách sản phẩm</a></h6>
                     </div>
@@ -169,11 +169,11 @@
                 </div>
                 <div class="row" style="top: -25px; position: relative;">
                     <div class="col-md-12">
-                        <h3>THÔNG TIN SẢN PHẨM</h3>
+                        <h3 style="padding-top: 25px;"   >THÔNG TIN SẢN PHẨM</h3>
                     </div>
                 </div>
                 <th:block th:each="product, count : ${product}">
-                    <div class="row shadow-lg p-3 mb-5 bg-body rounded information_clear">
+                    <div class="row card-box information_clear" style="    box-shadow: 7px 7px 20px 0px #253443;">
                         <div class="col-md-12" style="padding-bottom: 40px;left: 40px;padding-top: 15px;">
                             <h4 th:text="*{product.title}"></h4>
                             <div class="temploadding">

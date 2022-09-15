@@ -50,7 +50,19 @@ public class ProductAPI {
     @GetMapping
     private ResponseEntity<?> findAll() {
         try {
-           List<ProductDTO> productDTOS = productService.findAllProductDTONoImage();
+            List<ProductDTO> productDTOS = productService.findAllProductDTONoImage();
+
+            return new ResponseEntity<>(productDTOS, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/product-status-active")
+    private ResponseEntity<?> findAllProductActive() {
+        try {
+            List<ProductDTO> productDTOS = productService.findAllProductDTOByStatus("Còn Hàng");
 
             return new ResponseEntity<>(productDTOS, HttpStatus.OK);
 
@@ -85,7 +97,7 @@ public class ProductAPI {
             title = "%" + title + "%";
             List<TagDTO> productList = tagService.searchProductDTOByTitle(title);
             return new ResponseEntity<>(productList, HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>("Không tìm thấy sản phẩm", HttpStatus.OK);
         }
     }
@@ -100,9 +112,22 @@ public class ProductAPI {
         return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/product/tag/{idProduct}")
+    public ResponseEntity<?> findTagByProductId(@PathVariable String idProduct) {
+        Optional<TagDTO> productDTOOptional = tagService.findTagDTOByProductId(idProduct);
+        if (!productDTOOptional.isPresent()) {
+            throw new DataInputException("Product is not found");
+        }
+
+        return new ResponseEntity<>(productDTOOptional.get(), HttpStatus.OK);
+    }
+
     @GetMapping("/productmedia/{id}")
     public ResponseEntity<?> findProductMediaByIdProduct(@PathVariable String id) {
         List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        if (productMediaDTOList.isEmpty()) {
+            throw new DataInputException("Product is not found");
+        }
         return new ResponseEntity<>(productMediaDTOList, HttpStatus.OK);
     }
 
@@ -119,19 +144,19 @@ public class ProductAPI {
     }
 
     @GetMapping("/product-media/{id}")
-    private ResponseEntity<?> findAllProductMedia(@PathVariable String id){
-        List <ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(id);
+    private ResponseEntity<?> findAllProductMedia(@PathVariable String id) {
+        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(id);
         return new ResponseEntity<>(productMediaDTO, HttpStatus.OK);
     }
 
     @GetMapping("/product-image/{product_mediaID}")
-    private ResponseEntity<?> getProductImage(@PathVariable String product_mediaID){
+    private ResponseEntity<?> getProductImage(@PathVariable String product_mediaID) {
         List<ProductMediaDTO> productMedia = productMediaService.findAllByProductId(product_mediaID);
         return new ResponseEntity<>(productMedia, HttpStatus.OK);
     }
 
     @PostMapping("/{idCategory}/{idProductColor}/{TagValue}")
-    public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor,@PathVariable String TagValue,BindingResult bindingResult) {
+    public ResponseEntity<?> create(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, @PathVariable String TagValue, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());
 
@@ -141,54 +166,48 @@ public class ProductAPI {
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
 
-        Optional<ProductDTO>productDTO1 = productService.findProductDTOByCode(productDTO.getCode());
-        if(productDTO1.isPresent()){
+        Optional<ProductDTO> productDTO1 = productService.findProductDTOByCode(productDTO.getCode());
+        if (productDTO1.isPresent()) {
             throw new DataInputException("Mã code sản phẩm này đã tồn tại vui lòng Nhập lại thông tin");
         }
 
         Optional<ProductDTO> productDTO2 = productService.findProductDTOBySlug(productDTO.getSlug());
-        if(productDTO2.isPresent()){
+        if (productDTO2.isPresent()) {
             throw new DataInputException("Tên sản phẩm này đã tồn tại vui lòng Nhập lại thông tin");
         }
 
         List<String> errors = new ArrayList<>();
-        if (!productDTO.getImage().equals("null")){
+        if (!productDTO.getImage().equals("null")) {
             errors.add("dữ liệu lỗi");
         }
 
-        if(productDTO.getMaterial().isEmpty()){
+        if (productDTO.getMaterial().isEmpty()) {
             errors.add("Vật liệu không được để trống");
         }
 
-        if (productDTO.getCode().isEmpty()){
+        if (productDTO.getCode().isEmpty()) {
             errors.add("Mã sản phẩm không được để trống");
         }
 
-        if (!productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")){
+        if (!productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")) {
             errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*034567987(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
         }
 
-        if(productDTO.getDescription().isEmpty()){
+        if (productDTO.getDescription().isEmpty()) {
             errors.add("Mô tả sản phẩm không được để trống!");
         }
 
-        if(productDTO.getTitle().isEmpty()){
+        if (productDTO.getTitle().isEmpty()) {
             errors.add("Tên sản phẩm không được để trống");
         }
 
-//        String price = String.valueOf(productDTO.getPrice());
-//
-//        if(!price.matches("\\d")){
-//            errors.add("Vui lòng nhập số");
-//        }
-
-        if (errors.size() > 0){
+        if (errors.size() > 0) {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
 
-        if (errors.size() == 0){
+        if (errors.size() == 0) {
             try {
-                Product createdProduct = productService.create(TagValue,productDTO);
+                Product createdProduct = productService.create(TagValue, productDTO);
 
                 Optional<ProductMedia> productMediaOptional = productMediaService.findTopByProductOrderByTsAsc(createdProduct);
 
@@ -209,7 +228,7 @@ public class ProductAPI {
     }
 
     @PutMapping("/put/{idCategory}/{idProductColor}/{TagValue}")
-    public ResponseEntity<?> update(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor,@PathVariable String TagValue, BindingResult bindingResult) {
+    public ResponseEntity<?> update(ProductDTO productDTO, @PathVariable Long idCategory, @PathVariable Long idProductColor, @PathVariable String TagValue, BindingResult bindingResult) {
         Optional<CategoryDTO> optionalCategoryDTO = categoryService.findCategoryDTOById(idCategory);
         productDTO.setCategory(optionalCategoryDTO.get());
 
@@ -217,31 +236,62 @@ public class ProductAPI {
         productDTO.setProductColor(productColorDTO.get());
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
+        List<String> errors = new ArrayList<>();
+        if (!productDTO.getImage().equals("null")) {
+            errors.add("dữ liệu lỗi");
+        }
 
-        try {
-            Product updateProduct = productService.updateProduct(TagValue,productDTO);
+        if (productDTO.getMaterial().isEmpty()) {
+            errors.add("Vật liệu không được để trống");
+        }
 
-            Optional<ProductMedia> productMediaImage = productMediaService.findTopByProductOrderByTsAsc(updateProduct);
+        if (productDTO.getCode().isEmpty()) {
+            errors.add("Mã sản phẩm không được để trống");
+        }
 
-            if (!productMediaImage.isPresent()) {
+        if (!productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")) {
+            errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*034567987(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
+        }
+
+        if (productDTO.getDescription().isEmpty()) {
+            errors.add("Mô tả sản phẩm không được để trống!");
+        }
+
+        if (productDTO.getTitle().isEmpty()) {
+            errors.add("Tên sản phẩm không được để trống");
+        }
+
+        if (errors.size() > 0) {
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+
+        if (errors.size() == 0) {
+            try {
+                Product updateProduct = productService.updateProduct(TagValue, productDTO);
+
+                Optional<ProductMedia> productMediaImage = productMediaService.findTopByProductOrderByTsAsc(updateProduct);
+
+                if (!productMediaImage.isPresent()) {
+                    throw new DataInputException("Product creation information is not valid, please check the information again");
+                }
+
+                updateProduct.setImage(productMediaImage.get().getFileUrl());
+                productService.save(updateProduct);
+
+                return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.ACCEPTED);
+
+            } catch (DataIntegrityViolationException e) {
                 throw new DataInputException("Product creation information is not valid, please check the information again");
             }
-
-            updateProduct.setImage(productMediaImage.get().getFileUrl());
-            productService.save(updateProduct);
-
-            return new ResponseEntity<>(updateProduct.toProductDTO(), HttpStatus.ACCEPTED);
-
-        } catch (DataIntegrityViolationException e) {
-            throw new DataInputException("Product creation information is not valid, please check the information again");
         }
+        return null;
     }
 
 
     @DeleteMapping("/delete-soft-product/{id}")
-    public ResponseEntity<?> deleteSoft(@PathVariable String id){
+    public ResponseEntity<?> deleteSoft(@PathVariable String id) {
         Optional<ProductDTO> productDTO = productService.findProductDTOById(id);
-        if(!productDTO.isPresent()){
+        if (!productDTO.isPresent()) {
             throw new DataInputException("Sản phẩm này không tồn tại");
         }
         productService.deleteSoft(productDTO.get().toProduct());

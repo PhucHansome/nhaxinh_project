@@ -108,5 +108,10 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
         return orderDetailRepository.findAllOrderDetailByStatusWait(status);
     }
 
+    @Override
+    public List<OrderDetail> findOrderDetailByUserName(String userName) {
+        return orderDetailRepository.findOrderDetailByUserName(userName) ;
+    }
+
 
 }

@@ -1125,12 +1125,12 @@
 
 
     <script type="text/javascript"
-            id="">-1 != window.location.href.indexOf("thanh-toan/") && jQuery("input[name\x3d'billing_email'],input[name\x3d'billing_phone']").change(function () {
+    >-1 != window.location.href.indexOf("thanh-toan/") && jQuery("input[name\x3d'billing_email'],input[name\x3d'billing_phone']").change(function () {
         var a = jQuery("input[name\x3d'billing_email']").val(), b = jQuery("input[name\x3d'billing_phone']").val();
         window.localStorage.setItem("email", a);
         window.localStorage.setItem("phone_number", b)
     });</script>
-    <script type="text/javascript" id="">var product = -1 != window.location.href.indexOf("/san-pham/"), dr_items = [],
+    <script type="text/javascript">var product = -1 != window.location.href.indexOf("/san-pham/"), dr_items = [],
         dr_value = "";
     if (product) {
         var itemId = jQuery('[id*\x3d"product-"].product.type-product').attr("id").replace(/[product-]/g, "").trim();
@@ -1188,22 +1188,41 @@
     <script src="/assets/js/scriptAll.js"></script>
     <script src="/assets/js/magnific-popup-1.1.0.js"></script>
     <script>
-
         $(".phong_dropdown").on("mouseenter", function () {
             $(".menu-item-8010").addClass("current-dropdown")
         })
-        $(".phong_dropdown").on("mouseleave", function () {
+
+        $(".nav-dropdown").on("mouseleave", function () {
             $(".menu-item-8010").removeClass("current-dropdown")
         })
 
         $(".sanpham_dropdown").on("mouseenter", function () {
             $(".menu-item-287").addClass("current-dropdown")
-            $(".nav-dropdown").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
+            $(".nav-dropdown-product").css({'width': '1233.33px', 'left': '-254px', 'top': '64.6042px'});
         })
-        $(".nav-dropdown-product").on("mouseleave", function () {
+
+        $(".sub-menu").on("mouseleave", function () {
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
+        var iScrollPos = 0;
+        $(window).scroll(function () {
+            var iCurScrollPos = $(this).scrollTop();
+            if (iCurScrollPos < iScrollPos) {
+                // Hành động scroll lên
+                $(".header-wrapper").removeClass("stuck")
+            } else {
+                if ($(this).scrollTop() == 400) {
+                    //Hành động ở trên top
+                    $(".header-wrapper").removeClass("stuck")
+                } else {
+                    // Hành động scroll xuống
+                    $(".header-wrapper").addClass("stuck")
+
+                }
+            }
+            iScrollPos = iCurScrollPos;
+        });
 
     </script>
     <script>
@@ -1306,21 +1325,40 @@
                 "method": "GET",
                 "url": page.url.GetProductMedia + "/" + $("#productId").val()
             }).done((data) => {
+                $(".image_big-view").html("")
+                let sum = 0
                 $.each(data, (i, item) => {
                     productMedia = item;
                     if (i === data.length - 1) {
                         let str1 = `
                         <div class="col first is-nav-selected is-selected"
-                                     style="position: absolute; left: 0%;">
+                                     style="position: absolute; left: ${sum}%;">
                                     <a>
                                         <img src="${productMedia.fileUrl}"
                                              alt="" width="300" height=""
                                              class="attachment-woocommerce_thumbnail"> </a>
                                 </div>
                         `
-                        page.element.each_image.prepend(str1)
+                        page.element.each_image.append(str1)
+
+
+
+                        let str2 = `
+                         <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-100x100.jpg"
+                         class="woocommerce-product-gallery__image slide first is-selected"
+                         style="position: absolute; left: 0%;">
+                         <a src="${productMedia.fileUrl}">
+                            <img
+                            width="500" height="333"
+                            src="${productMedia.fileUrl}"
+                            class="wp-post-image skip-lazy lazy-load-active">
+                            </a>
+                            </div>
+                        `
+                        $(".image_big-view").append(str2)
                         return;
                     }
+                    sum += 100;
                     let str = `
                                 <div class="col" aria-hidden="true"
                                      style="position: absolute; left: 95.82%;"><a><img
@@ -1330,7 +1368,20 @@
                                         class="attachment-woocommerce_thumbnail lazy-load-active"></a>
                                 </div>
                     `;
-                    page.element.each_image.prepend(str)
+                    page.element.each_image.append(str)
+                    let str3 = `
+                         <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-100x100.jpg"
+                         class="woocommerce-product-gallery__image slide first is-selected"
+                         style="position: absolute; left: ${sum}%;">
+                         <a src="${productMedia.fileUrl}">
+                            <img
+                            width="500" height="333"
+                            src="${productMedia.fileUrl}"
+                            class="wp-post-image skip-lazy lazy-load-active">
+                            </a>
+                            </div>
+                        `
+                    $(".image_big-view").append(str3)
                 })
             }).fail((e) => {
                 console.log(e)
@@ -1461,6 +1512,10 @@
                 }
 
                 page.commands.getProductById(page.element.idProduct.val()).then(() => {
+                    if ((Number(product.quantity) - Number(page.element.valueQuantity.val())) < 0) {
+                        App.IziToast.showErrorAlert("Số lượng sản phầm này hiện tại không đủ!");
+                        return;
+                    }
                     delete carItem.id;
                     carItem.product = product;
                     carItem.price = product.price;
@@ -1506,6 +1561,10 @@
                 page.commands.getProductById(page.element.idProduct.val()).then(() => {
                     if ($("#EmailLogin").text() === "Đăng nhập") {
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
+                    if ((Number(product.quantity) - Number(page.element.valueQuantity.val())) < 0) {
+                        App.IziToast.showErrorAlert("Số lượng sản phầm này hiện tại không đủ!");
                         return;
                     }
                     delete carItem.id;
@@ -1670,6 +1729,10 @@
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                         return;
                     }
+                    if (product.quantity < 0) {
+                        App.IziToast.showErrorAlert("Sản phẩm này hiện tại đã hết hàng!");
+                        return;
+                    }
                     delete carItem.id;
                     carItem.userName = $("#EmailLogin").text();
                     carItem.product = product;
@@ -1704,7 +1767,7 @@
         page.commands.handleGoDetailProduct = () => {
             $(".view_Product").on("click", function () {
                 let id = $(this).data("id");
-                page.commands.getProductById(id).then(()=>{
+                page.commands.getProductById(id).then(() => {
                     window.location.href = "/detail/" + product.slug;
                 })
             })
@@ -1722,6 +1785,15 @@
             })
         }
 
+        page.commands.btnClick = () => {
+            $("#btn-view-stock-modal").on("click", () => {
+                $(".popup_stock_wraper").addClass("active");
+                $("#close").on("click", () => {
+                    $(".popup_stock_wraper").removeClass("active");
+                })
+            })
+        }
+
         $(function () {
             page.commands.handleShowCart()
             page.commands.showIconCart()
@@ -1732,6 +1804,7 @@
             page.commands.getSearchResuilt();
             page.commands.handleAddToCart();
             page.commands.getCustomerByUserName()
+            page.commands.btnClick();
         })
     </script>
 </th:block>
