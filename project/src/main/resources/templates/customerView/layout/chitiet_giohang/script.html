@@ -1144,7 +1144,7 @@
         let customerInfo = new CustomerInfo();
         let locationRegion = new LocationRegion();
         let user = new User();
-        let order = new Order();
+        let orderDetail = new Order();
 
         page.element.userNameLogin = $("#EmailLogin")
         page.element.cart_product = $("#cart_product_view")
@@ -1154,7 +1154,7 @@
         page.element.container_cartItem = $("#seeCartItems")
         page.element.total_OrderSumary = $("#total_OrderSumary")
         page.element.line_item_orderSumary = $("#line_item_orderSumary")
-        page.element.orderSummary = $(".woocommerce-checkout-review-order-table tbody")
+        page.element.orderSummary = $(".woocommerce-checkout-review-orderDetail-table tbody")
         page.element.resuilt_search = $(".resuilt_search")
 
         page.element.InputQuerySearch = $("#querySearch")
@@ -1174,7 +1174,7 @@
         page.element.btnShowCart = $("#cart_")
         page.element.chua_cart = $(".chua_cart")
 
-        page.element.btnOrder = $(".btn-order")
+        page.element.btnOrder = $(".btn-orderDetail")
 
         let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
 
@@ -1393,9 +1393,9 @@
                             cart.customerInfo = customerInfo
                             $(".temploadding").html("")
                             let str = `
-           <div class="loading">Loading&#8230;</div>
+                                       <div class="loading">Loading&#8230;</div>
 
-            `
+                                        `
                             $(".temploadding").append(str)
                             $.ajax({
                                 "headers": {
@@ -1414,28 +1414,28 @@
                             })
                         }else {
                             App.IziToast.showErrorAlert("Bạn chưa Đồng ý với điều khoản của chúng tôi")
-                            return
+                            return;
                         }
 
                     } else {
                         App.IziToast.showErrorAlert("Bạn chưa chọn Phương thức thanh toán")
-                        return
+                        return;
                     }
                 })
             })
         }
 
         page.commands.createOrder = (cart) => {
-            delete order.id;
-            order.description = cart.content;
-            order.grandTotal = 0;
-            order.quantity = 0;
-            order.productCode = "null";
-            order.productImage = "null";
-            order.productTitle = "null";
-            order.customerInfo = cart.customerInfo;
-            order.statusOrder = "Đang chờ duyệt";
-            order.orderDetail = new OrderDetail();
+            delete orderDetail.id;
+            orderDetail.description = cart.content;
+            orderDetail.grandTotal = 0;
+            orderDetail.quantity = 0;
+            orderDetail.productCode = "null";
+            orderDetail.productImage = "null";
+            orderDetail.productTitle = "null";
+            orderDetail.customerInfo = cart.customerInfo;
+            orderDetail.statusOrder = "Đang chờ duyệt";
+            orderDetail.order = new OrderDetail();
             $.ajax({
                 "headers": {
                     "accept": "application/json",
@@ -1443,19 +1443,14 @@
                 },
                 "type": "POST",
                 "url": page.url.PostOrder,
-                "data": JSON.stringify(order)
+                "data": JSON.stringify(orderDetail)
             }).done((dataOrder) => {
                 $(".temploadding").html("")
                 $("#frm_leave_chitiet_giohang").modal("show")
             }).fail((jqXHR) => {
                 console.log(jqXHR);
                 $(".temploadding").html("")
-                if (jqXHR.responseJSON) {
-                    $.each(jqXHR.responseJSON, (key, item) => {
-                        App.IziToast.showErrorAlert(item) ;
-                    })
-
-                }
+                $("#frm_leave_chitiet_giohang_failse").modal("show");
             })
         }
 
@@ -1605,7 +1600,7 @@
                 page.commands.searchFunction()
                 page.commands.handleGoSearch();
                 page.commands.getCustomerByUserName()
-                if($("#EmailLogin").text() === "Đăng nhập"){$(".btn-order").addClass("d-none");}
+                if($("#EmailLogin").text() === "Đăng nhập"){$(".btn-orderDetail").addClass("d-none");}
             })
 
         })

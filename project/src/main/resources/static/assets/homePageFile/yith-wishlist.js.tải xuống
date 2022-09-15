@@ -17,8 +17,8 @@ jQuery(document).ready(function () {
     })
 
 
-    jQuery( ".button-view-order-detail" ).on( "click", function() {
-        jQuery('#order-detail-modal').toggleClass('active');
+    jQuery( ".button-view-orderDetail-detail" ).on( "click", function() {
+        jQuery('#orderDetail-detail-modal').toggleClass('active');
     });
 
     if (jQuery( "#btn-view-stock-modal" ).length) {
@@ -45,10 +45,10 @@ jQuery(document).ready(function () {
 
             var status = jQuery(this).data('status');
             if (status == 'all') {
-                jQuery('.order-items-wrapper .order-item').fadeIn();
+                jQuery('.orderDetail-items-wrapper .orderDetail-item').fadeIn();
             } else {
-                jQuery('.order-items-wrapper .order-item[data-order-status="' + status + '"]').fadeIn();
-                jQuery('.order-items-wrapper .order-item[data-order-status!="' + status + '"]').fadeOut();
+                jQuery('.orderDetail-items-wrapper .orderDetail-item[data-orderDetail-status="' + status + '"]').fadeIn();
+                jQuery('.orderDetail-items-wrapper .orderDetail-item[data-orderDetail-status!="' + status + '"]').fadeOut();
             }
         })
     }

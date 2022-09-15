@@ -1191,8 +1191,8 @@
                                     <h3 id="order_review_heading">Tóm tắt đơn hàng</h3>
 
 
-                                    <div id="order_review" class="woocommerce-checkout-review-order">
-                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                    <div id="order_review" class="woocommerce-checkout-review-orderDetail">
+                                        <table class="shop_table woocommerce-checkout-review-orderDetail-table">
                                             <tbody>
 
                                             </tbody>
@@ -1200,7 +1200,7 @@
 
                                         <input type="hidden" name="lang" value="vi">
                                         <div id="payment" class="woocommerce-checkout-payment">
-                                            <div class="form-row place-order">
+                                            <div class="form-row place-orderDetail">
 
                                                 <div class="woocommerce-terms-and-conditions-wrapper">
                                                     <div class="woocommerce-terms-and-conditions"
@@ -1629,7 +1629,7 @@
                                                 </div>
 
 
-                                                <button class="btn-order"
+                                                <button class="btn-orderDetail"
                                                         style=" color: white;width: 100%;background: #0A0A0B;"
                                                        >Đặt mua
                                                 </button>
@@ -2149,7 +2149,8 @@
 </div>
 <th:block th:replace="/customerView/homepage/see-cartItem::see-cartItem"/>
 <th:block th:replace="/customerView/chitiet_giohang/total_OrderSumary::total_OrderSumary"/>
-<th:block th:replace="/customerView/chitiet_giohang/frm_leave_chitiet_giohang::frm_leave_chitiet_giohang"/>
+<th:block th:replace="/customerView/chitiet_giohang/frm_leave_chitiet_giohang_success::frm_leave_chitiet_giohang"/>
+<th:block th:replace="/customerView/chitiet_giohang/frm_leave_chitiet_giohang_failse::frm_leave_chitiet_giohang_failse"/>
 <th:block th:replace="/customerView/chitiet_giohang/line_item_orderSumary::line_item_orderSumary"/>
 <th:block th:replace="/customerView/layout/chitiet_giohang/script::script"/>
 </body>
