@@ -54,10 +54,14 @@ public class ProductColorAPI {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
+        try {
+            ProductColor productColor = productColorService.save(productColorDTO.toProductColor());
+            return new ResponseEntity<>(productColor.toProductColorDTO(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
 
 
-        ProductColor productColor = productColorService.save(productColorDTO.toProductColor());
-        return new ResponseEntity<>(productColor.toProductColorDTO(), HttpStatus.OK);
     }
     @DeleteMapping("/delete-color/{id}")
     public ResponseEntity<?> deleteColor( @PathVariable Long id) {

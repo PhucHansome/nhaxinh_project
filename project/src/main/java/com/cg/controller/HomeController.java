@@ -121,6 +121,7 @@ public class HomeController {
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
             productDTO.getProduct().setPriceFormat(decimalFormat.format(productDTO.getProduct().getPrice()));
         }
+
         modelAndView.addObject("option", option);
         modelAndView.addObject("tagDTOPage", tagDTOPage);
         modelAndView.addObject("totalPage", tagDTOPage.getTotalPages());

@@ -38,12 +38,18 @@ public class OrderAPI {
     @GetMapping("/{username}")
     public ResponseEntity<?> findOrderByUserName(@PathVariable String username) {
         List<OrderDTO> orderList = orderService.findOrderDTOByUserName(username);
+        if (orderList.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderList,HttpStatus.OK);
     }
 
     @GetMapping()
     public ResponseEntity<?> findAllOrder(){
         List<OrderDTO> orderDTOS = orderService.findOrderDTO();
+        if (orderDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
     @GetMapping("/order-createAt/{createAt1}/{createAt2}")
@@ -72,18 +78,27 @@ public class OrderAPI {
     @GetMapping("/order-detail/{id}")
     public ResponseEntity<?> findAllOrderDetailById(@PathVariable Long id){
         Optional<OrderDetail> orderDetailDTOS = orderDetailService.findById(id);
+        if (!orderDetailDTOS.isPresent()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDetailDTOS.get().toOrderDetailDTO(),HttpStatus.OK);
     }
 
     @GetMapping("/order-detail/findAll/")
     public ResponseEntity<?> findAllOrderDetail(){
         List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
+        if (orderDetailDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
     }
 
     @GetMapping("/order/getOrder/{id}")
     public ResponseEntity<?> findAllOrderByOrderDetailId(@PathVariable Long id){
         List<OrderDTO> orderDTOS = orderService.findAllOrderDTOByOrderDetailId(id);
+        if (orderDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 
@@ -92,12 +107,18 @@ public class OrderAPI {
         String userNameCus = '%' + username + '%';
         String status = '%' + "Đang chờ duyệt" + '%';
         List<OrderDTO> orderDetailDTOS = orderService.findOrderDTOByUserNameAndStatus(userNameCus,status);
+        if (orderDetailDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
     }
 
     @GetMapping("/order-detail/status/")
     public ResponseEntity<?> findAllOrderById(){
         List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailByStatusWait("Đang chờ duyệt");
+        if (orderDetailDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
         return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
     }
 
@@ -107,16 +128,27 @@ public class OrderAPI {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-       orderService.save(orderDTO.toOrder());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            orderService.save(orderDTO.toOrder());
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+
     }
     @PutMapping("/order-detail/checkout/{username}")
     public ResponseEntity<?> doCheckOutOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        OrderDetail orderDetail =  orderDetailService.changeStatusCheckOut(orderDetailDTO.toOrderDetail(),username);
-        return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
+        try {
+            OrderDetail orderDetail =  orderDetailService.changeStatusCheckOut(orderDetailDTO.toOrderDetail(),username);
+            return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PutMapping("/order-detail/cancel/{username}")
@@ -124,8 +156,13 @@ public class OrderAPI {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        OrderDetail orderDetail =  orderDetailService.cancelOrder(orderDetailDTO.toOrderDetail(),username);
-        return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
+        try {
+            OrderDetail orderDetail =  orderDetailService.cancelOrder(orderDetailDTO.toOrderDetail(),username);
+            return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

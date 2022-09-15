@@ -1,11 +1,14 @@
 package com.cg.service.order;
 
+import com.cg.exception.DataInputException;
+import com.cg.model.Cart;
 import com.cg.model.Order;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -62,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public Order save(Order order) throws MessagingException, UnsupportedEncodingException {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(0L);
@@ -74,6 +78,11 @@ public class OrderServiceImpl implements OrderService {
         for (CartItemsDTO cartItemsDTO : cartItemsDTOList) {
             Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
             productDTO.get().setQuantity(productDTO.get().getQuantity().subtract(cartItemsDTO.getQuantity()));
+            if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
+                cartItemRepository.deleteById(cartItemsDTO.getId());
+                orderDetailRepository.deleteById(orderNew.get().getId());
+                throw new DataInputException("Số lượng sản phẩm " +  cartItemsDTO.getProduct().getTitle() + " không đủ để order!");
+            }
             productRepository.save(productDTO.get().toProduct());
             order.setId(0L);
             order.setOrderDetail(orderNew.get().toOrderDetail());

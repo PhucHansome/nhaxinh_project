@@ -1746,6 +1746,24 @@
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
+        var iScrollPos = 0;
+        $(window).scroll(function () {
+            var iCurScrollPos = $(this).scrollTop();
+            if (iCurScrollPos < iScrollPos) {
+                // Hành động scroll lên
+                $(".header-wrapper").removeClass("stuck")
+            } else {
+                if ($(this).scrollTop() == 400) {
+                    //Hành động ở trên top
+                    $(".header-wrapper").removeClass("stuck")
+                } else {
+                    // Hành động scroll xuống
+                    $(".header-wrapper").addClass("stuck")
+
+                }
+            }
+            iScrollPos = iCurScrollPos;
+        });
     </script>
     <script>
         let page = {

@@ -1444,6 +1444,10 @@
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                         return;
                     }
+                    if((Number(product.quantity) - 1) < 0){
+                        App.IziToast.showErrorAlert("Sản phẩm này hiện tại đã hết hàng!");
+                        return;
+                    }
                     delete carItem.id;
                     carItem.userName = $("#EmailLogin").text();
                     carItem.product = product;

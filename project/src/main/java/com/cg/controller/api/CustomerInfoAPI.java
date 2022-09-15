@@ -62,25 +62,27 @@ public class CustomerInfoAPI {
     }
 
 
-
     @PostMapping("/create")
-    public ResponseEntity<?> doCreate(@Valid  @RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<?> doCreate(@Valid @RequestBody CustomerInfoDTO customerInfoDT0, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
         Boolean exitByUserName = customerInfoService.existsByUserName(customerInfoDT0.getUserName());
-        if (exitByUserName){
+        if (exitByUserName) {
             throw new EmailExistsException("Email đã tồn tại! Vui lòng nhập email khác");
         }
         Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDT0.getPhone());
-        if (exitByPhone){
+        if (exitByPhone) {
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
         }
 
         customerInfoDT0.getLocationRegion().setId(0L);
-
-        CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
-        return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
+        try {
+            CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
+            return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Không thể tạo được khách hàng", HttpStatus.NO_CONTENT);
+        }
     }
 
     @PutMapping("/edit")
@@ -88,27 +90,38 @@ public class CustomerInfoAPI {
         new CustomerInfoDTO().validate(customerInfoDTO, bindingResult);
 
         if (bindingResult.hasFieldErrors()) {
-              return appUtils.mapErrorToResponse(bindingResult);
-          }
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
 
         Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDTO.getPhone());
-        if (exitByPhone){
+        if (exitByPhone) {
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
         }
-          customerInfoDTO.getLocationRegion().setId(0L);
+        customerInfoDTO.getLocationRegion().setId(0L);
 
-          CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());
-          return new ResponseEntity<>(customerInfoUpdate.toCustomerInfoDTO(), HttpStatus.ACCEPTED);
-      }
+        try {
+            CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());
+            return new ResponseEntity<>(customerInfoUpdate.toCustomerInfoDTO(), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Đổi thông tin khách hàng thất bại", HttpStatus.NO_CONTENT);
+        }
+
+
+    }
 
     @DeleteMapping("/delete-soft-customer/{id}")
-    public ResponseEntity<?> deleteSoft(@PathVariable String id){
+    public ResponseEntity<?> deleteSoft(@PathVariable String id) {
         Optional<CustomerInfoDTO> customerInfoDTO = customerInfoService.findUserDTOById(id);
-        if(!customerInfoDTO.isPresent()){
+        if (!customerInfoDTO.isPresent()) {
             throw new DataInputException("Người dùng này không tồn tại");
         }
-        customerInfoService.deleteSoft(customerInfoDTO.get().toCustomerInfo());
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        try {
+            customerInfoService.deleteSoft(customerInfoDTO.get().toCustomerInfo());
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }

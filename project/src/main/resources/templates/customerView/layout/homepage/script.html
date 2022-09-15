@@ -1080,6 +1080,25 @@
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
+        var iScrollPos = 0;
+        $(window).scroll(function () {
+            var iCurScrollPos = $(this).scrollTop();
+            if (iCurScrollPos < iScrollPos) {
+                // Hành động scroll lên
+                $(".header-wrapper").removeClass("stuck")
+            } else {
+                if ($(this).scrollTop() == 400) {
+                    //Hành động ở trên top
+                    $(".header-wrapper").removeClass("stuck")
+                } else {
+                    // Hành động scroll xuống
+                    $(".header-wrapper").addClass("stuck")
+
+                }
+            }
+            iScrollPos = iCurScrollPos;
+        });
+
     </script>
     <script>
         // let product = new Product();
@@ -1130,7 +1149,7 @@
             page.element.cart_cartBotLine.append($(cart_product(product.image, product.title, new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(product.price), product.id,product.slug)));
+            }).format(product.price), product.id, product.slug)));
         }
 
         page.commands.addCartRow = () => {
@@ -1186,8 +1205,12 @@
             $(".them_vao_cart").on("click", function () {
                 let id = $(this).data("id");
                 page.commands.getProductById(id).then(() => {
-                    if($("#EmailLogin").text() === "Đăng nhập"){
+                    if ($("#EmailLogin").text() === "Đăng nhập") {
                         App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
+                        return;
+                    }
+                    if(product.quantity < 0){
+                        App.IziToast.showErrorAlert("Sản phẩm này hiện tại đã hết hàng!");
                         return;
                     }
                     delete carItem.id;
@@ -1305,7 +1328,7 @@
         page.dialogs.loadData.getAllProduct = () => {
             $.ajax({
                 "method": "GET",
-                "url": page.url.GetProduct
+                "url": page.url.GetProduct + "/product-status-active"
             }).done((data) => {
                 console.log(data)
                 $.each(data, (i, item) => {
@@ -1329,7 +1352,7 @@
         page.commands.handleGoDetailProduct = () => {
             $(".view_Product").on("click", function () {
                 let id = $(this).data("id");
-                page.commands.getProductById(id).then(()=>{
+                page.commands.getProductById(id).then(() => {
                     window.location.href = "/detail/" + product.slug;
                 })
             })
@@ -1389,14 +1412,14 @@
             })
         }
 
-        page.commands.getCustomerByUserName = ()=>{
+        page.commands.getCustomerByUserName = () => {
             $.ajax({
-                type : "GET",
+                type: "GET",
                 url: page.url.GetCustomer + "/username/" + $("#EmailLogin").text()
-            }).done((data)=>{
+            }).done((data) => {
                 customerInfo = data;
                 $("#fullNameScreen").text(customerInfo.fullName)
-            }).fail((e)=>{
+            }).fail((e) => {
                 $("#fullNameScreen").text($("#EmailLogin").text())
             })
         }

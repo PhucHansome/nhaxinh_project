@@ -44,6 +44,7 @@ page.element.productColorUp = $("#productColorUp")
 page.element.descriptionProduct = $("#descriptionProduct")
 page.element.materialUp = $("#materialUp")
 page.element.render_update_finish_row1 = $("#render_update_finish_row1")
+page.element.slugProduct = $("#slugUP")
 
 page.element.pareData = $(".information_clear")
 page.element.btnDelete = $(".btn-delete")
@@ -130,7 +131,7 @@ page.commands.getProductById = (id) => {
 page.commands.getTagByProductId = (id) => {
     return $.ajax({
         "method": "GET",
-        "url": page.url.GetTag + "/" + id
+        "url": page.url.GetProduct + "/product/tag/" + id
     }).done((data) => {
         console.log(data);
         tag = data;
@@ -187,6 +188,7 @@ page.commands.handleShowProductUpdate = () => {
             page.element.categoryUp.val(product.category.id)
             page.element.productColorUp.val(product.productColor.id)
             page.element.descriptionProduct.val(product.description)
+            page.element.slugProduct.val(product.slug)
             page.commands.getTagByProductId(product.id).then(() => {
                 page.element.tagUp.val(tag.name);
             })
@@ -203,7 +205,7 @@ page.commands.handleUpdateProduct = () => {
         formData.append("quantity", page.element.quantityProduct.val());
         formData.append("status", $("#productStatus :selected").text());
         formData.append("description", page.element.descriptionProduct.val());
-        formData.append("slug", "chua biet lam");
+        formData.append("slug", page.element.slugProduct.val());
         formData.append("size", page.element.sizeUp.val());
         formData.append("material", page.element.materialUp.val());
         formData.append("image", "null");
@@ -357,6 +359,41 @@ page.commands.getProductMediaByProduct = (id) => {
             window.location.href = "/login"
         }, 500);
     })
+}
+
+page.commands.ChangeToSlug = () => {
+
+    var title, slug;
+
+    //Lấy text từ thẻ input title
+    title = page.element.titleProductUp.val();
+
+    //Đổi chữ hoa thành chữ thường
+    slug = title.toLowerCase();
+
+    //Đổi ký tự có dấu thành không dấu
+    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+    slug = slug.replace(/đ/gi, 'd');
+    //Xóa các ký tự đặt biệt
+    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+    //Đổi khoảng trắng thành ký tự gạch ngang
+    slug = slug.replace(/ /gi, "-");
+    //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+    //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+    slug = slug.replace(/\-\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-\-/gi, '-');
+    slug = slug.replace(/\-\-/gi, '-');
+    //Xóa các ký tự gạch ngang ở đầu và cuối
+    slug = '@' + slug + '@';
+    slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+    //In slug ra textbox có id “slug”
+    page.element.slugProduct.val(slug)
 }
 
 $(function () {

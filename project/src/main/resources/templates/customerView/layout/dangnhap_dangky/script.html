@@ -1089,44 +1089,24 @@
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
+        var iScrollPos = 0;
+        $(window).scroll(function () {
+            var iCurScrollPos = $(this).scrollTop();
+            if (iCurScrollPos < iScrollPos) {
+                // Hành động scroll lên
+                $(".header-wrapper").removeClass("stuck")
+            } else {
+                if ($(this).scrollTop() == 400) {
+                    //Hành động ở trên top
+                    $(".header-wrapper").removeClass("stuck")
+                } else {
+                    // Hành động scroll xuống
+                    $(".header-wrapper").addClass("stuck")
 
-        $("#cart_").on("click", function () {
-            let str = `<div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
-    <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1" style="overflow: hidden auto;"><div class="mfp-container mfp-s-ready mfp-inline-holder"><div class="mfp-content off-canvas-cart"><div id="cart-popup" class="widget_shopping_cart">
-        <div class="cart-popup-inner inner-padding">
-            <div class="cart-popup-title text-center">
-                <h4 class="uppercase">Cart</h4>
-                <div class="is-divider"></div>
-            </div>
-            <div class="widget_shopping_cart_content">
-
-                <ul class="woocommerce-mini-cart cart_list product_list_widget ">
-                    <li class="woocommerce-mini-cart-item mini_cart_item">
-                        <a href="https://nhaxinh.com/gio-hang/?remove_item=98ac07a2cd794965eb4f22bae53c3516&amp;_wpnonce=d4eb84976a" class="remove remove_from_cart_button" aria-label="Remove this item" data-product_id="37076" data-cart_item_key="98ac07a2cd794965eb4f22bae53c3516" data-product_sku="3*105078">×</a>\t\t\t\t\t\t\t\t\t\t\t<a href="https://nhaxinh.com/san-pham/ban-an-peak-hien-dai-mat-ceramic-van-may/">
-                        <img width="300" height="200" src="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-300x200.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" srcset="https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-300x200.jpg 300w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-601x400.jpg 601w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-768x511.jpg 768w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic-600x400.jpg 600w, https://nhaxinh.com/wp-content/uploads/2022/06/ban-an-peak-van-may-hien-dai-ceramic.jpg 1000w" sizes="(max-width: 300px) 100vw, 300px">Bàn ăn Peak hiện đại mặt Ceramic vân mây&nbsp;\t\t\t\t\t\t</a>
-                        <span class="quantity">1 × <span class="woocommerce-Price-amount amount"><bdi>44,900,000<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span></span>\t\t\t\t</li>
-                </ul>
-
-                <p class="woocommerce-mini-cart__total total">
-                    <strong>Thành tiền:</strong> <span class="woocommerce-Price-amount amount"><bdi>44,900,000<span class="woocommerce-Price-currencySymbol">₫</span></bdi></span>\t</p>
-
-
-                <p class="woocommerce-mini-cart__buttons buttons"><a href="http://localhost:8092/cart" class="button wc-forward">Xem giỏ hàng</a><a href="https://nhaxinh.com/thanh-toan/" class="button checkout wc-forward">Checkout</a></p>
-
-
-
-            </div>
-            <div class="cart-sidebar-content relative"></div>  </div>
-    </div></div><div class="mfp-preloader">Loading...</div></div><button title="Close (Esc)" type="button" class="mfp-close"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>`
-            $(".chua_cart").html(str);
-            handleCloseCart()
-        })
-
-        const handleCloseCart = () => {
-            $(".mfp-close").on("click", () => {
-                $(".chua_cart").html("")
-            })
-        }
+                }
+            }
+            iScrollPos = iCurScrollPos;
+        });
 
 
     </script>

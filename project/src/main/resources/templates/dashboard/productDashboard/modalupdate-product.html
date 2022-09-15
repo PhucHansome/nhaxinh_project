@@ -18,8 +18,8 @@
 
                             <div class="col-md-4">
                                 <label class="form-label">Tên sản phẩm:</label>
-                                <input type="text" class="form-control" id="titleProductUp" name="titleProductUp">
-
+                                <input type="text" class="form-control" oninput="page.commands.ChangeToSlug()" id="titleProductUp" name="titleProductUp">
+                                <input type="hidden" id="slugUP">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Mã SKU:</label>
@@ -57,6 +57,7 @@
                                 <label class="form-label">Trạng thái:</label>
                                 <select id="productStatus" class="form-control">
                                     <option>Đã Hết Hàng</option>
+                                    <option>Đang chờ</option>
                                     <option>Còn Hàng</option>
                                 </select>
                             </div>

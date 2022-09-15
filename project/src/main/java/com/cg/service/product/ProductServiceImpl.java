@@ -122,6 +122,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDTO> findAllProductDTOByStatus(String status) {
+        return productRepository.findAllProductDTOByStatus(status);
+    }
+
+    @Override
     public Optional<ProductDTO> findProductDTOBySlug(String slug) {
         return productRepository.findProductDTOBySlug(slug);
     }
