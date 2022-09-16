@@ -46,12 +46,12 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
+            "OR c.product.category.name LIKE ?3 " +
             ")" +
-            "AND c.product.productColor.color LIKE ?5 " +
+            "AND c.product.productColor.color LIKE ?4 " +
             " AND c.product.price BETWEEN ?1 AND ?2 " +
             "")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryCategoriesNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color,  Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryCategoriesNull(BigDecimal priceA, BigDecimal priceB, String title,String Color,  Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -62,12 +62,12 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ")" +
             "AND c.product.category.name LIKE ?4 " +
             "AND c.product.price BETWEEN ?1 AND ?2 " +
             "")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color,  Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,  Pageable pageable);
 
 
 
@@ -97,13 +97,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ")" +
             "And c.product.category.name LIKE ?4 " +
             " AND c.product.price BETWEEN ?1 AND ?2 " +
             "ORDER BY c.product.price DESC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -131,13 +131,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             "and c.product.category.name LIKE ?4 " +
             " AND (c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.price ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -165,13 +165,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             "And c.product.category.name LIKE ?4 " +
             " AND (c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.title ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -199,13 +199,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             "and c.product.category.name LIKE ?4 " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.createdAt DESC " +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -216,12 +216,12 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
+            "OR c.product.category.name LIKE ?3 " +
             ") " +
-            "and c.product.productColor.color LIKE ?5 " +
+            "and c.product.productColor.color LIKE ?4 " +
             " AND c.product.price BETWEEN ?1 AND ?2 " +
             "")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color,  Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Color,  Pageable pageable);
 
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
@@ -230,16 +230,16 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.product " +
             ")  " +
             "FROM Tag c WHERE " +
-            "c.product.deleted = false " +
+            "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            ")" +
-            "And c.product.category.name LIKE ?4 " +
-            "And c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            ") " +
+            "and c.product.productColor.color LIKE ?4 " +
             " AND (c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.price DESC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Color, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -250,13 +250,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
+            "OR c.product.category.name LIKE ?3 " +
             ") " +
-            "and c.product.productColor.color LIKE ?5 " +
+            "and c.product.productColor.color LIKE ?4 " +
             " AND (c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.price ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Color, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -267,13 +267,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
+            "OR c.product.category.name LIKE ?3 " +
             ") " +
-            "and c.product.productColor.color LIKE ?5 " +
+            "and c.product.productColor.color LIKE ?4 " +
             " AND (c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.title ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Color, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -284,13 +284,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
+            "OR c.product.category.name LIKE ?3 " +
             ") " +
-            "and c.product.productColor.color LIKE ?5 " +
+            "and c.product.productColor.color LIKE ?4 " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.createdAt DESC " +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCCategoryNull(BigDecimal priceA, BigDecimal priceB, String title,String Color, Pageable pageable);
 
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
@@ -302,8 +302,8 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "")
@@ -319,13 +319,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.price DESC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceDESCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -336,13 +336,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.price ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryPriceASCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -353,13 +353,13 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.title ASC" +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryTitleASCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title, Pageable pageable);
 
     @Query("SELECT NEW com.cg.model.dto.TagDTO (" +
             "c.id, " +
@@ -370,12 +370,12 @@ public interface PaginAndSortTingTagRepository extends PagingAndSortingRepositor
             "c.deleted = false " +
             "AND (c.product.title LIKE ?3 " +
             "OR c.name LIKE ?3 " +
-            "OR c.product.category.name LIKE ?4 " +
-            "OR c.product.productColor.color LIKE ?5 " +
+            "OR c.product.category.name LIKE ?3 " +
+            "OR c.product.productColor.color LIKE ?3 " +
             ") " +
             " AND( c.product.price BETWEEN ?1 AND ?2) " +
             "ORDER BY c.product.createdAt DESC " +
             " ")
-    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title,String Categories,String Color, Pageable pageable);
+    Page<TagDTO> searchProductDTOByTitleAndOtherQueryDESCCategoryNullColorNull(BigDecimal priceA, BigDecimal priceB, String title, Pageable pageable);
 
 }
