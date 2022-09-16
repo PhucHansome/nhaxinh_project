@@ -97,39 +97,8 @@ page.commands.getProductMediaByProductId = () => {
         "method": "GET",
         "url": page.url.GetProductMedia + "/" + $("#productId").val()
     }).done((data) => {
-        $(".image_big-view").html("")
-        let sum = 0
         $.each(data, (i, item) => {
             productMedia = item;
-            if (i === data.length - 1) {
-                let str1 = `
-                        <div class="col first is-nav-selected is-selected"
-                                     style="position: absolute; left: ${sum}%;">
-                                    <a>
-                                        <img src="${productMedia.fileUrl}"
-                                             alt="" width="300" height=""
-                                             class="attachment-woocommerce_thumbnail"> </a>
-                                </div>
-                        `
-                page.element.each_image.append(str1)
-
-
-                let str2 = `
-                         <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-100x100.jpg"
-                         class="woocommerce-product-gallery__image slide first is-selected"
-                         style="position: absolute; left: 0%;">
-                         <a src="${productMedia.fileUrl}">
-                            <img
-                            width="500" height="333"
-                            src="${productMedia.fileUrl}"
-                            class="wp-post-image skip-lazy lazy-load-active">
-                            </a>
-                            </div>
-                        `
-                $(".image_big-view").append(str2)
-                return;
-            }
-            sum += 100;
             let str = `
                                 <div class="col" aria-hidden="true"
                                      style="position: absolute; left: 95.82%;"><a><img
@@ -140,19 +109,6 @@ page.commands.getProductMediaByProductId = () => {
                                 </div>
                     `;
             page.element.each_image.append(str)
-            let str3 = `
-                         <div data-thumb="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-100x100.jpg"
-                         class="woocommerce-product-gallery__image slide first is-selected"
-                         style="position: absolute; left: ${sum}%;">
-                         <a src="${productMedia.fileUrl}">
-                            <img
-                            width="500" height="333"
-                            src="${productMedia.fileUrl}"
-                            class="wp-post-image skip-lazy lazy-load-active">
-                            </a>
-                            </div>
-                        `
-            $(".image_big-view").append(str3)
         })
     }).fail((e) => {
         console.log(e)

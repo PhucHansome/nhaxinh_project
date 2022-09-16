@@ -415,7 +415,7 @@
                         <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
                             <li id="menu-item-287"
                                 class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
-                                <a href="http://localhost:8092/search" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
+                                <a href="/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query=Sản%20phẩm" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
                                 <div class="sub-menu nav-dropdown nav-dropdown-product">
                                     <section class="section" id="section_563198551">
                                         <div class="bg section-bg fill bg-fill  bg-loaded">
@@ -1184,27 +1184,28 @@
                 &quot;rightToLeft&quot;: false       }" tabindex="0">
                                                 <div class="flickity-viewport"
                                                      style="height: 390.406px; touch-action: pan-y;">
-                                                    <div class="flickity-slider image_big-view"
+
+                                                    <div class="main-carousel image_big-view"
                                                          style="left: 0px; transform: translateX(0%);">
+                                                        <th:block th:each="productMedia, count : ${image}">
+                                                        <div class="carousel-cell" >
+                                                            <a th:src="*{productMedia.fileUrl}">
+                                                                <img
+                                                                        width="500" height="333"
+                                                                        th:src="*{productMedia.fileUrl}"
+                                                                        class="d-block w-100"
+                                                                >
+                                                            </a>
+                                                        </div>
+                                                        </th:block>
                                                     </div>
                                                 </div>
-                                                <button class="flickity-button flickity-prev-next-button previous"
-                                                        type="button" aria-label="Previous">
-                                                    <svg class="flickity-button-icon" viewBox="0 0 100 100">
-                                                        <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                                                              class="arrow"></path>
-                                                    </svg>
-                                                </button>
-                                                <button class="flickity-button flickity-prev-next-button next"
-                                                        type="button" aria-label="Next">
-                                                    <svg class="flickity-button-icon" viewBox="0 0 100 100">
-                                                        <path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                                                              class="arrow"
-                                                              transform="translate(100, 100) rotate(180) "></path>
-                                                    </svg>
-                                                </button>
-                                            </figure>
 
+                                            </figure>
+                                            <style>/* fullscreen */
+                                            .carousel.is-fullscreen .carousel-cell {
+                                                height: 100%;
+                                            }</style>
                                             <div class="image-tools absolute bottom left z-3">
                                                 <a href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#product-zoom"
                                                    class="zoom-button button is-outline circle icon tooltip hide-for-small tooltipstered">
@@ -1309,7 +1310,6 @@
                                     <span class="posted_in">Danh mục: <a
                                             th:href="*{'/search/page=1?option=1&choicePrice=0&Categories='+product.category.name+'&Color=null&query='}"
                                             rel="tag" id="SameProduct" th:text="*{product.category.name}"></a></span>
-<!--                                    /search/page=1?option=1&choicePrice=0&Categories=Bàn%20ăn&Color=null&query=-->
                                     <span class="tagged_as">Màu sắc: <a th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color='+product.productColor.color+'&query='}" rel="tag" th:text="*{product.productColor.color}"></a></span>
                                     <th:block th:each="tag, count : ${tag}">
                                     <span class="tagged_as">Tags: <a th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query='+tag.name}"

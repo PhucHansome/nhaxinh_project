@@ -418,7 +418,6 @@ page.initializeControlEvent = () => {
     page.commands.handleGoSearch();
     page.commands.getCustomerByUserName()
     page.commands.handleApply()
-    page.commands.getSearchResuilt();
     page.loadData.drawSelectCategory()
     page.loadData.drawSelectColor();
     page.dialogs.element.optionSelect1.val($("#optionSelect1").val())

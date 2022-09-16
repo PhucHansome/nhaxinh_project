@@ -152,8 +152,6 @@ public class HomeController {
             modelAndView.addObject("Categories", Categories);
             return modelAndView;
         }
-
-
     }
 
     @GetMapping("/cart_details")
