@@ -103,7 +103,8 @@ public class HomeController {
     }
 
     @GetMapping("/search/page={pageNo}")
-    public ModelAndView getSearchByTitle(@PathVariable int pageNo, @RequestParam String query, @RequestParam int option, @RequestParam int choicePrice) {
+    public ModelAndView getSearchByTitle(@PathVariable int pageNo, @RequestParam String query, @RequestParam int option,
+                                         @RequestParam int choicePrice, @RequestParam String Color, @RequestParam String Categories) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/customerView/search/Search");
         String email = getPrincipal();
@@ -114,8 +115,9 @@ public class HomeController {
         modelAndView.addObject("userDTO", email);
         modelAndView.addObject("query", query);
         String query_search = "%" + query + "%";
-
-        Page<TagDTO> tagDTOPage = pageTagService.findALl(choicePrice, option, query_search, PageRequest.of((pageNo - 1), 8));
+        String ColorString = "%" + Color + "%";
+        String CategoryString = "%" + Categories + "%";
+        Page<TagDTO> tagDTOPage = pageTagService.findALl(CategoryString,ColorString,choicePrice, option, query_search, PageRequest.of((pageNo - 1), 8));
         for (TagDTO productDTO : tagDTOPage) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
@@ -128,6 +130,8 @@ public class HomeController {
         modelAndView.addObject("totalItem", tagDTOPage.getTotalElements());
         modelAndView.addObject("currentPage", pageNo);
         modelAndView.addObject("choicePrice", choicePrice);
+        modelAndView.addObject("Color", Color);
+        modelAndView.addObject("Categories", Categories);
         return modelAndView;
     }
 

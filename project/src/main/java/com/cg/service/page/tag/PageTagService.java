@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface PageTagService {
     Page<TagDTO> findAllProductDTONoImage( Pageable pageable);
 
-    Page<TagDTO> findALl(int choice, int option , String title, Pageable pageable);
+    Page<TagDTO> findALl(String idCategories,String idColor ,int choice, int option , String title, Pageable pageable);
 }
