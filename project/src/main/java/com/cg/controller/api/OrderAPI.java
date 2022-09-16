@@ -52,10 +52,21 @@ public class OrderAPI {
         }
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
+
+    @GetMapping("/order-max")
+    public ResponseEntity<?> findAllOrderMaxQuantity(){
+        List<OrderDTO> orderDTOS = orderService.findTopByQuantity();
+        if (orderDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+    }
+
+
     @GetMapping("/order-createAt/{createAt1}/{createAt2}")
     public ResponseEntity<?> findOderByCreateBetweenDate(@PathVariable Date createAt1, @PathVariable Date createAt2) {
 
-//
+
 //        String format = "dd/MM/yyyy";
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 //////            Date  a = new Date(str_to_date(createAt1, '%e/%m/%Y' ) );
@@ -70,7 +81,6 @@ public class OrderAPI {
 //        calendar.roll(Calendar.MONTH,-1);
 
         List<OrderDTO> orderDTOS = orderService.findOderByCreateBetween(createAt1,createAt2);
-
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 

@@ -213,8 +213,6 @@ class Tag {
 
 }
 
-
-
 class CartItems {
     constructor(id, product, price, quantity,grandTotal,userName ) {
         this.id = id;

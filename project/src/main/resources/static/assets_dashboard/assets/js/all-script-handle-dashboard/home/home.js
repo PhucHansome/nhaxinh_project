@@ -6,7 +6,7 @@
     GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
     PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
     PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/",
-        getAllproductt: App.BASE_URL_PRODUCT,
+        GetOrderByQuantityMax: App.BASE_URL_ORDER + "/order-max",
 },
     element: {},
     loadData: {},
@@ -33,7 +33,7 @@
     let tempRowCustomer = $.validator.format($.trim($('#tempRowCustomer').val().toString()));
 
     function addRowCustomer() {
-        $('#tbListCustomers tbody').prepend($(tempRowCustomer(order.id, order.productTitle, order.p, order.quantity)));
+        $('#tbListCustomers tbody').prepend($(tempRowCustomer(order.id, order.productTitle, order.statusOrder, order.quantity)));
     }
 
     page.loadData.getAllCustomers = () => {
@@ -94,10 +94,19 @@
         $(".alertshow").append(str)
     })
 }
+        page.commands.getOrderByQuantityMax = () =>{
+        $.ajax({
+            "method": "GET",
+            "url": page.url.GetOrderByQuantityMax,
+        }).done((data) =>{
+            addRowCustomer();
+        })
+        }
 
 
     $(function(){
     page.commands.getAllorder()
+        page.commands.getOrderByQuantityMax()
 })
 
 

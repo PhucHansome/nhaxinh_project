@@ -7,12 +7,15 @@ import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.awt.print.Pageable;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -261,6 +264,12 @@ public class OrderServiceImpl implements OrderService {
 
 
         return orderRepository.findOderByCreateBetween(createAt1,createAt2);
+
+    }
+
+    @Override
+    public List<OrderDTO> findTopByQuantity() {
+        return orderRepository.findTopByQuantity();
     }
 
     @Override
