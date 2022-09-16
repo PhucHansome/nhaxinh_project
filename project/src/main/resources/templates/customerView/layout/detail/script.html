@@ -1226,5 +1226,17 @@
 
     </script>
     <script src="/assets_dashboard/assets/js/all-script-handle-customerview/detail/detail.js"></script>
-
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/flickity-fullscreen@2/fullscreen.js"></script>
+    <script>
+        $(".main-carousel").flickity({
+            // options
+            // cellAlign: 'left',
+            // contain: true,
+            // wrapAround: true
+            // groupCells: true
+            fullscreen: true,
+            fade: true
+        });
+    </script>
 </th:block>

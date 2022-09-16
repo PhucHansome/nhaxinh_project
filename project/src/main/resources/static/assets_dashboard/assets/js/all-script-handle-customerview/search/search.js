@@ -246,23 +246,6 @@ page.commands.searchFunction = () => {
     })
 }
 
-page.commands.getSearchResuilt = () => {
-    $.ajax({
-        "method": "GET",
-        "url": page.url.GetResuiltSearch + "/" + page.element.Query_Resuilt_inUrl.text()
-    }).done((data) => {
-        if (data.length === 0) {
-            page.element.allResuitSearch.html("")
-            let str = `
-                    <h2>Không tìm thấy kết quả tìm kiếm: <span>${page.element.Query_Resuilt_inUrl.text()}</span></h2>
-                    `
-            page.element.allResuitSearch.append(str)
-        }
-
-    }).fail((e) => {
-        console.log(e)
-    })
-}
 
 page.commands.handleCreateCart = () => {
     $(".them_vao_cart").on("click", function () {
@@ -317,7 +300,6 @@ page.commands.handleApply = () => {
     $(".apply-filters").on("click", function () {
         if (page.dialogs.element.radioSelect.filter('[value=5]').is(":checked")) {
             window.location.href = "/search/page=1?option=" + page.dialogs.element.optionSelect1.val() + "&choicePrice=5" + "&Categories=" + page.element.selectCategories.val() + "&Color=" + page.element.selectColor.val() + "&query=" + page.element.Query_Resuilt_inUrl.text()
-            // page=1?option=1&choicePrice=2&Categories=null&Color=null&query=a
             return
         }
         if (page.dialogs.element.radioSelect.filter('[value=4]').is(":checked")) {
@@ -436,7 +418,6 @@ page.initializeControlEvent = () => {
     page.commands.handleGoSearch();
     page.commands.getCustomerByUserName()
     page.commands.handleApply()
-    page.commands.getSearchResuilt();
     page.loadData.drawSelectCategory()
     page.loadData.drawSelectColor();
     page.dialogs.element.optionSelect1.val($("#optionSelect1").val())
