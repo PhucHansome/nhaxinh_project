@@ -335,7 +335,7 @@ public class HomeController {
         modelAndView.addObject("product", productDTOList.get());
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
         modelAndView.addObject("tag", tagDTO.get().toTag());
-        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
+        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsDesc(productId);
         modelAndView.addObject("productMedia", productMediaDTO);
         return modelAndView;
     }

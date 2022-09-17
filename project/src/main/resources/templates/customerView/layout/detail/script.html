@@ -1226,17 +1226,32 @@
 
     </script>
     <script src="/assets_dashboard/assets/js/all-script-handle-customerview/detail/detail.js"></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://unpkg.com/flickity-fullscreen@2/fullscreen.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
+    <script src="https://unpkg.com/flickity-fullscreen@1/fullscreen.js"></script>
     <script>
-        $(".main-carousel").flickity({
+        $(".carousel").flickity({
             // options
             // cellAlign: 'left',
             // contain: true,
             // wrapAround: true
             // groupCells: true
             fullscreen: true,
-            fade: true
+            // fade: true.
+        })
+        $(".flickity-fullscreen-button-view").on("click", () => {
+            $(".header-wrapper").addClass("d-none");
+            $(".flickity-fullscreen-button-exit").on("click", () => {
+                $(".header-wrapper").removeClass("d-none");
+            })
+        })
+
+        $(document).keyup(function(e) {
+            if (e.key === "Escape") {
+                $(".header-wrapper").removeClass("d-none");
+            }
         });
     </script>
+    <style>.carousel.is-fullscreen .carousel-cell {
+        height: 75%;
+    }</style>
 </th:block>

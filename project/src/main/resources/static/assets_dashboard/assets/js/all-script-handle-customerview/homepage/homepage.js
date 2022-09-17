@@ -33,7 +33,9 @@ page.element.userNameLo = $("#header-account-title");
 page.element.CaritemProduct = $("#CaritemProduct");
 page.element.container_cartItem = $("#seeCartItems")
 page.element.resuilt_search = $(".resuilt_search")
+page.element.btnCancelPopUp = $(".btn-cancel-popup")
 
+page.element.popUp = $(".popup_stock_wraper")
 page.element.InputQuerySearch = $("#querySearch")
 page.element.btnShowCart = $("#cart_")
 page.element.chua_cart = $(".chua_cart")
@@ -105,7 +107,7 @@ page.commands.handleCreateCart = () => {
                 App.IziToast.showErrorAlert("Phiền bạn đăng nhập để thực hiện chức năng này")
                 return;
             }
-            if(product.quantity < 0){
+            if (product.quantity < 0) {
                 App.IziToast.showErrorAlert("Sản phẩm này hiện tại đã hết hàng!");
                 return;
             }
@@ -234,7 +236,7 @@ page.dialogs.loadData.getAllProduct = () => {
             console.log(i)
             product = item;
             page.commands.addCartBotLine();
-            if(product.status === "Đã Hết Hàng"){
+            if (product.status === "Đã Hết Hàng") {
                 $(".btn-add-cart").html("");
             }
         })
@@ -329,12 +331,23 @@ page.commands.handleGoSearch = () => {
     })
 }
 
+page.commands.cancelPopUp = () => {
+    page.element.btnCancelPopUp.on("click", () => {
+        $(".popup_stock_wraper").removeClass("active");
+    })
+}
+
+
 page.initializeControlEvent = () => {
     page.dialogs.loadData.getAllProduct();
     page.commands.handleShowCart()
     page.commands.searchFunction();
     page.commands.handleGoSearch();
     page.commands.getCustomerByUserName()
+    setTimeout(() => {
+        page.element.popUp.addClass("active")
+    }, 500)
+    page.commands.cancelPopUp()
 }
 
 $(() => {

@@ -37,7 +37,19 @@ public interface ProductMediaRepository extends JpaRepository<ProductMedia, Stri
             "WHERE pm.product.id = ?1" +
             " order by pm.ts desc "
     )
+    List<ProductMediaDTO> findAllByProductIdOrderByTsDesc(String id);
+
+
+    @Query("SELECT NEW com.cg.model.dto.ProductMediaDTO (" +
+            "pm.id," +
+            "pm.ts," +
+            "pm.fileUrl) " +
+            "FROM ProductMedia pm " +
+            "WHERE pm.product.id = ?1" +
+            " order by pm.ts asc "
+    )
     List<ProductMediaDTO> findAllByProductIdOrderByTsAsc(String id);
+
 
     @Query("SELECT NEW com.cg.model.dto.ProductMediaDTO (" +
             "pm.id," +

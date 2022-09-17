@@ -15,12 +15,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -124,7 +121,7 @@ public class ProductAPI {
 
     @GetMapping("/productmedia/{id}")
     public ResponseEntity<?> findProductMediaByIdProduct(@PathVariable String id) {
-        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        List<ProductMediaDTO> productMediaDTOList = productMediaService.findAllByProductIdOrderByTsDesc(id);
         if (productMediaDTOList.isEmpty()) {
             throw new DataInputException("Product is not found");
         }
@@ -145,7 +142,7 @@ public class ProductAPI {
 
     @GetMapping("/product-media/{id}")
     private ResponseEntity<?> findAllProductMedia(@PathVariable String id) {
-        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(id);
+        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsDesc(id);
         return new ResponseEntity<>(productMediaDTO, HttpStatus.OK);
     }
 
@@ -250,7 +247,7 @@ public class ProductAPI {
         }
 
         if (!productDTO.getCode().matches("([A-Z]){2}[-]{1}[3]{1}[1]{1}[*]{1}\\d{8}")) {
-            errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*034567987(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
+            errors.add("Mã code sản phẩm Không đúng định dạng! Vd:AB-31*03456797(AB là bắt buộc chữ cái in hoa -31* à quy ước bắt buộc và 8 số bất kỳ)");
         }
 
         if (productDTO.getDescription().isEmpty()) {
