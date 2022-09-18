@@ -338,6 +338,8 @@ page.commands.cancelPopUp = () => {
 }
 
 
+
+
 page.initializeControlEvent = () => {
     page.dialogs.loadData.getAllProduct();
     page.commands.handleShowCart()

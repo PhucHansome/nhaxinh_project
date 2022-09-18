@@ -274,7 +274,7 @@
 
                             </li>
                             <li class="account-item has-icon
-     has-dropdown">
+     has-dropdown dropdown-user-click">
 
                                 <a th:object="${userDTO}" href="/account" class="account-link account-login
   is-small" title="Tài khoản của tôi">
@@ -289,23 +289,13 @@
                                 </a>
 
 
-                                <ul class="nav-dropdown  nav-dropdown-default">
+                                <ul class="nav-dropdown  nav-dropdown-default" style="">
 
                                     <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                        <a href="#">Thông tin của tôi</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                        <a href="#">Đơn hàng</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
-                                        <a href="#">Sản phẩm vừa
-                                            xem</a>
-                                    </li>
-                                    <li class="wishlist-account-element ">
-                                        <a href="#">Wishlist</a>
+                                        <a href="/account">Thông tin của tôi</a>
                                     </li>
                                     <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                        <a href="#">Đăng xuất</a>
+                                        <a href="/logout">Đăng xuất</a>
                                     </li>
                                 </ul>
 

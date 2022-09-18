@@ -1146,6 +1146,16 @@
             })
         }
 
+        if ($("#EmailLogin").text() !== 'Đăng nhập') {
+            $("#fullNameScreen").on("mouseenter", function () {
+                $(".dropdown-user-click").addClass("current-dropdown")
+            })
+
+            $(".nav-dropdown-default").on("mouseleave", function () {
+                $(".dropdown-user-click").removeClass("current-dropdown")
+            })
+        }
+
         function handleDownMaterial() {
             $(".btn-dropdown-material").on("click", function () {
                 $(".dropdown_3 ").removeClass("close").addClass("open");
