@@ -218,7 +218,7 @@ public class HomeController {
         }
         modelAndView.addObject("userDTO", email);
 
-        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserName(email);
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserNameByTime(email);
 
         for (OrderDTO orderDTO : orderDTOS) {
             String patternVND = ",###₫";

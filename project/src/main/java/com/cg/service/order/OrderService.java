@@ -18,7 +18,7 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findAllOrderDTOByOrderDetailId (Long id);
 
-
+    List<OrderDTO> findOrderDTOByUserNameByTime(String userName);
 
 //    List<OrderDTO> findOrderMaxDTO();
 

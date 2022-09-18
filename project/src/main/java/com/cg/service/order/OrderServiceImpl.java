@@ -282,4 +282,9 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id) {
         return orderRepository.findAllOrderDTOByOrderDetailId(id);
     }
+
+    @Override
+    public List<OrderDTO> findOrderDTOByUserNameByTime(String userName) {
+        return orderRepository.findOrderDTOByUserNameByTime(userName);
+    }
 }

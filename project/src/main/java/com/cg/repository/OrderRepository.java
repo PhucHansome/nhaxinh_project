@@ -27,8 +27,24 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.statusOrder, " +
             "o.orderDetail " +
             " )  " +
-            "FROM Order o  WHERE o.customerInfo.userName Like %?1% order by o.createdAt desc ")
+            "FROM Order o  WHERE o.customerInfo.userName Like %?1%  ")
     List<OrderDTO> findOrderDTOByUserName(String userName);
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.statusOrder, " +
+            "o.orderDetail " +
+            " )  " +
+            "FROM Order o  WHERE o.customerInfo.userName Like %?1% order by o.createdAt desc ")
+    List<OrderDTO> findOrderDTOByUserNameByTime(String userName);
 
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
             "o.id, " +
