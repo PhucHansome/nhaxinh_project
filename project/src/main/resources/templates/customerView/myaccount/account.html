@@ -1370,12 +1370,20 @@
                                         <div class="order d-none">
                                             <div class="row">
                                                 <div class="my-orders-title" style="padding-bottom: 25px;">
-                                                    <div class="row">
-                                                        <div class="col-8">
-                                                            <h2>Đơn hàng của tôi</h2></div>
-                                                        <div class="col-4">
-                                                        <input type="text" class="form-control" placeholder="Nhập order bạn muốn tìm" id="searchOrder"
-                                                               style="float: right;">
+                                                    <div class="row all-button-change-in-order">
+                                                        <div class="col-3 woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                            <button style="    border-bottom: 2px solid black;box-shadow: 0px 2px 2px 0px;"
+                                                                    class="all-order-my-acount">tất cả đơn hàng
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-3 woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                            <button class="all-waiting-my-acount">Đang chờ</button>
+                                                        </div>
+                                                        <div class="col-3 woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                            <button class="all-apply-my-acount">Đã duyệt</button>
+                                                        </div>
+                                                        <div class="col-3 woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
+                                                            <button class="all-Cancelled-my-acount">Đã Hủy</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1390,15 +1398,16 @@
                                                                                     border-top: 1px solid #00000061;
                                                                                     padding-top: 10px;">
                                                                 <div class="col-1 align-middle text-center"><span><i
-                                                                        th:if="*{order.statusOrder != 'Đang chờ duyệt' }"
+                                                                        th:if="*{order.statusOrder != 'Đang chờ duyệt' && order.statusOrder != 'Đã Hủy đơn hàng' }"
                                                                         style="color: green;font-size: 30px;"
                                                                         class="fa fa-heart"></i><i
-                                                                        th:unless="*{order.statusOrder != 'Đang chờ duyệt' }"
+                                                                        th:unless="*{order.statusOrder != 'Đang chờ duyệt' && order.statusOrder != 'Đã Hủy đơn hàng' }"
                                                                         style="color: red;font-size: 30px;"
                                                                         class="fa fa-heart"></i></span>
                                                                 </div>
                                                                 <div class="col-1 align-middle text-center"><span
-                                                                        style="    font-family: cursive;">Nhaxinh.com</span>
+                                                                        style="    font-family: cursive;"
+                                                                        th:text="*{'#0000'+order.id}"></span>
                                                                 </div>
                                                                 <div class="col-2"></div>
                                                                 <div class="col-2 align-middle text-center"><span
@@ -1415,7 +1424,7 @@
                                                                                                 float: right;
                                                                                             padding-left: 10px;
                                                                                             padding-right: 10px;"
-                                                                                         th:if="*{order.statusOrder != 'Đang chờ duyệt' }"
+                                                                                         th:if="*{order.statusOrder != 'Đang chờ duyệt' && order.statusOrder != 'Đã Hủy đơn hàng'}"
                                                                                          th:text="*{order.statusOrder}"></span>
                                                                     <span style="
                                                                     /*border: 1px solid red;*/
@@ -1427,7 +1436,7 @@
                                                                                                 float: right;
                                                                                             padding-left: 10px;
                                                                                             padding-right: 10px;"
-                                                                          th:unless="*{order.statusOrder != 'Đang chờ duyệt' }"
+                                                                          th:unless="*{order.statusOrder != 'Đang chờ duyệt'&& order.statusOrder != 'Đã Hủy đơn hàng' }"
                                                                           th:text="*{order.statusOrder}"></span>
                                                                 </div>
                                                             </div>
@@ -1473,43 +1482,257 @@
                                                         </div>
                                                         <br>
                                                     </th:block>
-                                                    <!--                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">-->
-                                                    <!--                                                    <thead>-->
-                                                    <!--                                                    <tr>-->
-                                                    <!--                                                        <th class="text-center align-middle"></th>-->
-                                                    <!--                                                        <th class="text-center align-middle">#</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Ảnh sản phẩm</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Tên Sản phẩm</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Số lượng sản phẩm</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Tổng giá tiền đơn hàng</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Trạng thái đơn hàng</th>-->
-                                                    <!--                                                        <th class="text-center align-middle">Ngày tạo đơn hàng</th>-->
-                                                    <!--                                                    </tr>-->
-                                                    <!--                                                    </thead>-->
-                                                    <!--                                                    <tbody>-->
-                                                    <!--                                                    <th:block th:each="order, count : ${orderList}">-->
-                                                    <!--                                                    <tr>-->
-                                                    <!--                                                        <td class="text-center align-middle"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.productCode}"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle"><img width="150px" th:src="*{order.productImage}" alt=""></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.productTitle}"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.quantity}"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.priceFormat}"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.statusOrder}"></td>-->
-                                                    <!--                                                        <td class="text-center align-middle" th:text="*{order.createdAt}">$</td>-->
-                                                    <!--                                                    </tr>-->
-                                                    <!--                                                    </th:block>-->
-                                                    <!--                                                    </tbody>-->
+                                                </div>
 
-                                                    <!--                                                </table>-->
+                                                <div class="row eachOrderWatting d-none"
+                                                     STYLE="position: relative;LEFT: 30PX;">
+                                                    <th:block th:each="orderDTOWatting, count : ${orderDTOWatting}">
+                                                        <div class="row" style="padding-bottom: 15px;
+                                                                            background: white;
+                                                                            position: relative;
+                                                                            left: 15px;
+                                                                            padding-top: 10px;">
+                                                            <div class="row" style="    padding-bottom: 10px;
+                                                                                    border-top: 1px solid #00000061;
+                                                                                    padding-top: 10px;">
+                                                                <div class="col-1 align-middle text-center"><span><i
+                                                                        th:if="*{orderDTOWatting.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: green;font-size: 30px;"
+                                                                        class="fa fa-heart"></i><i
+                                                                        th:unless="*{orderDTOWatting.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: red;font-size: 30px;"
+                                                                        class="fa fa-heart"></i></span>
+                                                                </div>
+                                                                <div class="col-1 align-middle text-center"><span
+                                                                        style="    font-family: cursive;"
+                                                                        th:text="*{'#0000'+orderDTOWatting.id}"></span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-2 align-middle text-center"><span
+                                                                        style="    font-family: cursive;">Nhà xinh</span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-4"><span style="
+                                                                                            color: red;
+                                                                                            font-weight: bold;
+                                                                                            padding: 5px;
+                                                                                            border-radius: 10px;
+                                                                                                float: right;
+                                                                                            padding-left: 10px;
+                                                                                            padding-right: 10px;"
+                                                                                         th:text="*{orderDTOWatting.statusOrder}"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="    border-top: 1px solid #0000007d;
+                                                                                padding-top: 10px;">
+                                                                <div class="col-2">
+                                                                    <img width="150px" style="  border-radius: 15px;
+                                                                                        margin-left: 20px;
+                                                                                        margin-bottom: 10px;"
+                                                                         th:src="*{orderDTOWatting.productImage}" alt="">
+                                                                </div>
+                                                                <div class="col-6">
+                                                            <span style="   font-size: 16px;
+                                                                            font-weight: bold;
+                                                                            color: #f60202a1;"
+                                                                  th:text="*{orderDTOWatting.productTitle}"></span><br/><span
+                                                                        style="font-size: 12px; font-style: italic;"
+                                                                        th:text="*{orderDTOWatting.productCode}"></span
+                                                                ><br/><span style="font-size: 12px; font-style: italic;"
+                                                                            th:text="*{orderDTOWatting.quantity}"></span>
+                                                                </div>
+                                                                <div class="col-4 align-middle text-center ">
+                                                            <span class="align-middle"
+                                                                  style="font-size: 24px;font-weight: bold; ">Tổng số tiền:
+                                                                <span
+                                                                        style=" float: right; color: red;font-style: italic;"
+                                                                        th:text="*{orderDTOWatting.priceFormat}"></span></span>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                            <span style="
+                                                                        font-size: 15px;
+                                                                        font-weight: bold;
+                                                                    ">Ngày tạo đơn <span
+                                                                    style=" font-style: italic; color: #ef561e;"
+                                                                    th:text="*{orderDTOWatting.createdAt}"></span></span>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </th:block>
 
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-8"></div>
-                                                    <div th:object="${Total}"
-                                                         class="col-4 total_spending float-lg-right">
-                                                        <h5 th:text="${'Tổng tiền chi tiêu là:  ' + Total}"></h5>
-                                                    </div>
+                                                <div class="row eachOrderApply d-none"
+                                                     STYLE="position: relative;LEFT: 30PX;">
+                                                    <th:block th:each="orderDTOApply, count : ${orderDTOApply}">
+                                                        <div class="row" style="padding-bottom: 15px;
+                                                                            background: white;
+                                                                            position: relative;
+                                                                            left: 15px;
+                                                                            padding-top: 10px;">
+                                                            <div class="row" style="    padding-bottom: 10px;
+                                                                                    border-top: 1px solid #00000061;
+                                                                                    padding-top: 10px;">
+                                                                <div class="col-1 align-middle text-center"><span><i
+                                                                        th:if="*{orderDTOApply.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: green;font-size: 30px;"
+                                                                        class="fa fa-heart"></i><i
+                                                                        th:unless="*{orderDTOApply.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: red;font-size: 30px;"
+                                                                        class="fa fa-heart"></i></span>
+                                                                </div>
+                                                                <div class="col-1 align-middle text-center"><span
+                                                                        style="    font-family: cursive;"
+                                                                        th:text="*{'#0000'+orderDTOApply.id}"></span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-2 align-middle text-center"><span
+                                                                        style="    font-family: cursive;">Nhà xinh</span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-4"><span style="
+                                                                                            color: green;
+                                                                                            font-weight: bold;
+                                                                                            padding: 5px;
+                                                                                            border-radius: 10px;
+                                                                                                float: right;
+                                                                                            padding-left: 10px;
+                                                                                            padding-right: 10px;"
+                                                                                         th:text="*{orderDTOApply.statusOrder}"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="    border-top: 1px solid #0000007d;
+                                                                                padding-top: 10px;">
+                                                                <div class="col-2">
+                                                                    <img width="150px" style="  border-radius: 15px;
+                                                                                        margin-left: 20px;
+                                                                                        margin-bottom: 10px;"
+                                                                         th:src="*{orderDTOApply.productImage}" alt="">
+                                                                </div>
+                                                                <div class="col-6">
+                                                            <span style="   font-size: 16px;
+                                                                            font-weight: bold;
+                                                                            color: #f60202a1;"
+                                                                  th:text="*{orderDTOApply.productTitle}"></span><br/><span
+                                                                        style="font-size: 12px; font-style: italic;"
+                                                                        th:text="*{orderDTOApply.productCode}"></span
+                                                                ><br/><span style="font-size: 12px; font-style: italic;"
+                                                                            th:text="*{orderDTOApply.quantity}"></span>
+                                                                </div>
+                                                                <div class="col-4 align-middle text-center ">
+                                                            <span class="align-middle"
+                                                                  style="font-size: 24px;font-weight: bold; ">Tổng số tiền:
+                                                                <span
+                                                                        style=" float: right; color: red;font-style: italic;"
+                                                                        th:text="*{orderDTOApply.priceFormat}"></span></span>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                            <span style="
+                                                                        font-size: 15px;
+                                                                        font-weight: bold;
+                                                                    ">Ngày tạo đơn <span
+                                                                    style=" font-style: italic; color: #ef561e;"
+                                                                    th:text="*{orderDTOApply.createdAt}"></span></span>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </th:block>
+
+                                                </div>
+
+                                                <div class="row eachOrderCancel d-none"
+                                                     STYLE="position: relative;LEFT: 30PX;">
+                                                    <th:block th:each="orderDTOCancel, count : ${orderDTOCancel}">
+                                                        <div class="row" style="padding-bottom: 15px;
+                                                                            background: white;
+                                                                            position: relative;
+                                                                            left: 15px;
+                                                                            padding-top: 10px;">
+                                                            <div class="row" style="    padding-bottom: 10px;
+                                                                                    border-top: 1px solid #00000061;
+                                                                                    padding-top: 10px;">
+                                                                <div class="col-1 align-middle text-center"><span><i
+                                                                        th:if="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: green;font-size: 30px;"
+                                                                        class="fa fa-heart"></i><i
+                                                                        th:unless="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt' }"
+                                                                        style="color: red;font-size: 30px;"
+                                                                        class="fa fa-heart"></i></span>
+                                                                </div>
+                                                                <div class="col-1 align-middle text-center"><span
+                                                                        style="    font-family: cursive;"
+                                                                        th:text="*{'#0000'+orderDTOCancel.id}"></span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-2 align-middle text-center"><span
+                                                                        style="    font-family: cursive;">Nhà xinh</span>
+                                                                </div>
+                                                                <div class="col-2"></div>
+                                                                <div class="col-4"><span style="
+                                                                                            color: red;
+                                                                                            font-weight: bold;
+                                                                                            padding: 5px;
+                                                                                            border-radius: 10px;
+                                                                                                float: right;
+                                                                                            padding-left: 10px;
+                                                                                            padding-right: 10px;"
+                                                                                         th:text="*{orderDTOCancel.statusOrder}"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="    border-top: 1px solid #0000007d;
+                                                                                padding-top: 10px;">
+                                                                <div class="col-2">
+                                                                    <img width="150px" style="  border-radius: 15px;
+                                                                                        margin-left: 20px;
+                                                                                        margin-bottom: 10px;"
+                                                                         th:src="*{orderDTOCancel.productImage}" alt="">
+                                                                </div>
+                                                                <div class="col-6">
+                                                            <span style="   font-size: 16px;
+                                                                            font-weight: bold;
+                                                                            color: #f60202a1;"
+                                                                  th:text="*{orderDTOCancel.productTitle}"></span><br/><span
+                                                                        style="font-size: 12px; font-style: italic;"
+                                                                        th:text="*{orderDTOCancel.productCode}"></span
+                                                                ><br/><span style="font-size: 12px; font-style: italic;"
+                                                                            th:text="*{orderDTOCancel.quantity}"></span>
+                                                                </div>
+                                                                <div class="col-4 align-middle text-center ">
+                                                            <span class="align-middle"
+                                                                  style="font-size: 24px;font-weight: bold; ">Tổng số tiền:
+                                                                <span
+                                                                        style=" float: right; color: red;font-style: italic;"
+                                                                        th:text="*{orderDTOCancel.priceFormat}"></span></span>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                            <span style="
+                                                                        font-size: 15px;
+                                                                        font-weight: bold;
+                                                                    ">Ngày tạo đơn <span
+                                                                    style=" font-style: italic; color: #ef561e;"
+                                                                    th:text="*{orderDTOCancel.createdAt}"></span></span>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </th:block>
+
                                                 </div>
                                             </div>
                                         </div>
