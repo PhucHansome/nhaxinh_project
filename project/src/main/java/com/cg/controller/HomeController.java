@@ -118,7 +118,7 @@ public class HomeController {
         String ColorString = "%" + Color + "%";
         String CategoryString = "%" + Categories + "%";
         if (query.contains("Sản phẩm")) {
-            Page<TagDTO> tagDTOPage = pageTagService.findALl("%null%", "%null%", 0, 1, "%%", PageRequest.of((pageNo - 1), 8));
+            Page<TagDTO> tagDTOPage = pageTagService.findALl(CategoryString, ColorString, choicePrice, option, "%%", PageRequest.of((pageNo - 1), 8));
             for (TagDTO productDTO : tagDTOPage) {
                 String patternVND = ",###₫";
                 DecimalFormat decimalFormat = new DecimalFormat(patternVND);
