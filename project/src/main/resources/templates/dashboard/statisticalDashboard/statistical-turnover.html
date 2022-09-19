@@ -44,14 +44,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-5" style="margin-bottom: 25px">
-                    <input  class="date " type="datetime-local" name="date1" id="date1" style="width: 200px">
-                    </div>
 
                     <div class="col-5" style="margin-bottom: 25px">
-                        <input class="date" type="datetime-local" name="date2" id="date2" style="width: 200px">
+                        <label class="form-label">Chọn thời gian:</label>
+                        <select  class="form-select " type="button" name="selectTime" id="selectTime" style="width: 200px" >
+                        <option id="oneDate" name="oneDate">1 ngày</option>
+                        <option id="oneMonth" name="oneMonth">1 Tháng</option>
+                        <option id="oneYear" name="oneYear">1 Năm</option>
+                        </select>
                     </div>
-
                     <div class="col-2" style="float: right;margin-bottom: 25px" >
                         <button type="button" class="btn btn-success" id="selectDate">áp dụng</button>
                     </div>
@@ -147,7 +148,7 @@
     let page = {
         url: {
             getAllOrder: App.BASE_URL_ORDER,
-            getAllOrderMax: App.BASE_URL_ORDER +"/max"
+            // getAllOrderMax: App.BASE_URL_ORDER +"/max"
 
 
         },
@@ -163,8 +164,10 @@
             inputError: {}
         }
     }
-    page.element.date1 = $('#date1');
-    page.element.date2 = $('#date2');
+    page.element.selectTime = $("#selectTime:selected");
+    page.element.oneDate = $('#oneDate');
+    page.element.oneMonth = $('#oneMonth');
+    page.element.oneYear = $('#oneYear');
     page.element.buttonselectdate = $('#selectDate')
 
     let order = new Order();
@@ -173,18 +176,17 @@
             "method": "GET",
             "url": page.url.getAllOrder + "/" + id
         }).done((data) => {
+            console.log(data);
             order = data;
         })
     }
 
     $("#selectDate").on('click',function (){
-     order.createdAt = page.element.date1.val();
-        console.log(page.element.date1.val())
-     order.createdAt= page.element.date2.val();
-        console.log(page.element.date2.val())
+
+
         $.ajax({
             type: "GET",
-            url:page.url.getAllOrder +"/order-createAt/" +page.element.date1.val() + "/"+ page.element.date2.val()
+            url: "http://localhost:8092/api/statistics/" + ""
         }).done((data) =>{
             console.log(data)
         }).fail((data) =>{

@@ -6,10 +6,12 @@ import com.cg.model.dto.OrderDTO;
 import org.hibernate.annotations.NamedNativeQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -85,6 +87,64 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<OrderDTO> findOrderDTO();
 
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
+                "o.id, " +
+                "o.description, " +
+                "o.grandTotal , " +
+                "o.quantity ," +
+                "o.productCode," +
+                "o.productImage, " +
+                "o.productTitle, " +
+                "o.customerInfo," +
+                "o.createdAt, " +
+                "o.statusOrder, " +
+                "o.orderDetail " +
+            " )" +
+            "FROM Order o " +
+            "where o.createdAt = :createDate" +
+            " ")
+    List<OrderDTO> findOderByCreateDate(@Param("createDate") Date createDate);
+
+
+//    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
+//                "o.id, " +
+//                "o.description, " +
+//                "o.grandTotal , " +
+//                "o.quantity ," +
+//                "o.productCode," +
+//                "o.productImage, " +
+//                "o.productTitle, " +
+//                "o.customerInfo," +
+//                "o.createdAt, " +
+//                "o.statusOrder, " +
+//                "o.orderDetail " +
+//            " )" +
+//            "FROM Order o " +
+//            "where SUBSTRING(o.createdAt, 6, 7) = :createMonth " +
+//            "AND SUBSTRING(o.createdAt, 1, 4) = :createYear " +
+//            " ")
+//    List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
+
+    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.statusOrder, " +
+            "o.orderDetail " +
+            " )" +
+            "FROM Order o " +
+            "where FUNCTION('MONTH', o.createdAt) = :createMonth " +
+            "AND FUNCTION('YEAR', o.createdAt) = :createYear " +
+            " ")
+    List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
+
+
+    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
             "o.id, " +
             "o.description, " +
             "o.grandTotal , " +
@@ -100,29 +160,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "FROM Order o " +
             "where o.createdAt between ?1 and ?2" +
             " ")
-    List<OrderDTO> findOderByCreateBetween(Date createAt1, Date createAt2);
+
+    List<OrderDTO> findOderByCreateBetween(Date date1, Date date2);
 
 
 
-    @Query(nativeQuery = true,
-            value = "SELECT new com.cg.model.dto.OrderDTO(" +
-            "o.id, " +
-            "o.description, " +
-            "o.grandTotal , " +
-            "o.quantity ," +
-            "o.productCode," +
-            "o.productImage, " +
-            "o.productTitle, " +
-            "o.customerInfo," +
-            "o.createdAt, " +
-            "o.statusOrder, " +
-            "o.orderDetail " +
-            " )" +
-            "FROM Order o " +
-            "where o.quantity =  ?1 " +
-            " order by o.quantity desc " +
-            "limit 5," +
-            "")
-    List<OrderDTO> findTopByQuantity();
+
 }
 

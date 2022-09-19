@@ -25,6 +25,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
@@ -260,16 +261,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> findOderByCreateBetween(Date createAt1, Date createAt2) {
-
-
-        return orderRepository.findOderByCreateBetween(createAt1,createAt2);
+    public List<OrderDTO> findOderByCreateBetween(Date date1, Date date2) {
+        return orderRepository.findOderByCreateBetween(date1,date2);
 
     }
 
     @Override
-    public List<OrderDTO> findTopByQuantity() {
-        return orderRepository.findTopByQuantity();
+    public List<OrderDTO> findOderByCreateMonthYear(int createMonth, int createYear) {
+        return orderRepository.findOderByCreateMonthYear(createMonth, createYear);
     }
 
     @Override
