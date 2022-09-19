@@ -7,19 +7,25 @@ import com.cg.model.OrderDetail;
 import com.cg.model.dto.*;
 import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.awt.print.Pageable;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Properties;
 import java.math.BigDecimal;
 import java.util.*;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
@@ -254,11 +260,16 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findOrderDTO();
     }
 
-//    @Override
-//    public List<OrderDTO> findOrderMaxDTO() {
-//
-//        return orderRepository.findOrderMaxDTO();
-//    }
+    @Override
+    public List<OrderDTO> findOderByCreateBetween(Date date1, Date date2) {
+        return orderRepository.findOderByCreateBetween(date1,date2);
+
+    }
+
+    @Override
+    public List<OrderDTO> findOderByCreateMonthYear(int createMonth, int createYear) {
+        return orderRepository.findOderByCreateMonthYear(createMonth, createYear);
+    }
 
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {

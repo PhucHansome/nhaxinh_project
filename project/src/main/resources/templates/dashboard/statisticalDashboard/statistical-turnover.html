@@ -43,42 +43,53 @@
                         </div>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-lg-6 col-xl-8 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="row">
+
+                    <div class="col-5" style="margin-bottom: 25px">
+                        <label class="form-label">Chọn thời gian:</label>
+                        <select  class="form-select " type="button" name="selectTime" id="selectTime" style="width: 200px" >
+                        <option id="oneDate" name="oneDate">1 ngày</option>
+                        <option id="oneMonth" name="oneMonth">1 Tháng</option>
+                        <option id="oneYear" name="oneYear">1 Năm</option>
+                        </select>
+                    </div>
+                    <div class="col-2" style="float: right;margin-bottom: 25px" >
+                        <button type="button" class="btn btn-success" id="selectDate">áp dụng</button>
+                    </div>
+
+
+                </div>
+                <div class="row shadow-lg p-3 mb-5 bg-body rounded">
                         <div class="card-header">
                             <h3 style="text-align: center;">Thống kê doanh thu sản phẩm</h3>
                         </div>
-                        <canvas id="myChart"> </canvas>
+
+                        <canvas id="myChart" style="height: 500px;width: 1000px;"> </canvas>
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
                         <script>
-                            var productLabel = [ ],productPriceData = [],productQuantityData = [];
+                            var productGrand = [ ],productdateData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
                                 const ctx = document.getElementById('myChart').getContext('2d');
 
                                 const chart = new Chart(ctx, {
-                                    type:'line',
+                                    type:'bar',
                                     data: {
-                                        labels: productLabel,
+                                        labels:productdateData,
                                         datasets: [{
-                                            label: 'Giá sản phẩm',
+                                            label: 'doanh thu ',
                                             backgroundColor: 'green',
                                             borderColor: 'rgb(75, 192, 192)',
-                                            data: productPriceData
+                                            data: productGrand
                                         },
-                                            {
-                                                label: 'Tổng Số lượng hiện có',
-                                                backgroundColor: 'pink',
-                                                borderColor: 'rgb(255, 99, 132)',
-                                                data: productQuantityData
-                                            }
+
                                         ]
                                     },
                                     options: {
                                         tooltips: {
-                                            mode: 'index'
+                                            mode: 'index',
                                         }
                                     }
                                 })
@@ -86,101 +97,29 @@
                             dummyChart()
                             //Fetch Data from API
                             async  function getDummyData() {
-                                const apiUrl = "http://localhost:8092/api/products/"
+                                const apiUrl = "http://localhost:8092/api/order/" ;
+                                    // +"order-createAt/" ;
+                                    // +page.element.date1 + "/"+ page.element.date2;
                                 const response = await fetch(apiUrl)
                                 console.log(response)
                                 const barChatData = await response.json()
                                 console.log(barChatData)
-                                const quantity = barChatData.map((x) => x.quantity)
-                                console.log(quantity)
-                                const price = barChatData.map((x) => x.price)
-                                console.log(price)
-                                const name = barChatData.map((x) => x.title)
-                                console.log(name)
-                                productPriceData = price
-                                productQuantityData = quantity
-                                productLabel = name
+                                const date = barChatData.map((x) => x.createdAt)
+                                console.log(date)
+                                const grand = barChatData.map((x) => x.grandTotal)
+                                console.log(grand)
+                                productdateData = date
+                                productGrand = grand
+
                             }
 
                         </script>
                     </div>
-                    <div class="col-lg-6 col-xl-4 ">
-                        <div class="card-header">
-                            <h3 style="text-align: center">Số lượng sản phẩm khách hàng đã đặt hàng</h3>
-                        </div>
-                        <canvas id="myChartt"> </canvas>
 
-
-                        <script>
-                            var productLabel = [ ],productgrandTotalData = [],productQuantityData = [];
-                            async  function dummyChart(){
-                                await  getDummyData()
-                                const ctx = document.getElementById('myChartt').getContext('2d');
-
-                                const chart = new Chart(ctx, {
-                                    type:'pie',
-                                    data: {
-                                        labels: productLabel,
-                                        datasets: [
-                                            {
-                                                label: 'Số lượng bán ra',
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.2)',
-                                                    'rgba(255, 159, 64, 0.2)',
-                                                    'rgba(255, 205, 86, 0.2)',
-                                                    'rgba(75, 192, 192, 0.2)',
-                                                    'rgba(54, 162, 235, 0.2)',
-                                                    'rgba(153, 102, 255, 0.2)',
-                                                    'rgba(201, 203, 207, 0.2)'
-                                                ],
-                                                hoverOffset: 5,
-                                                borderColor: [
-                                                    'rgb(255, 99, 132)',
-                                                    'rgb(255, 159, 64)',
-                                                    'rgb(255, 205, 86)',
-                                                    'rgb(75, 192, 192)',
-                                                    'rgb(54, 162, 235)',
-                                                    'rgb(153, 102, 255)',
-                                                    'rgb(201, 203, 207)'
-
-                                                ],
-                                                borderWidth: 1,
-                                                data: productQuantityData,
-                                            },
-                                        ]
-                                    },
-                                    options: {
-                                        tooltips: {
-                                            mode: 'index'
-                                        }
-                                    }
-                                })
-                            }
-                            dummyChart()
-                            //Fetch Data from API
-                            async  function getDummyData() {
-                                const apiUrl = "http://localhost:8092/api/order/"
-                                const response = await fetch(apiUrl)
-                                console.log(response)
-                                const barChatData = await response.json()
-                                console.log(barChatData)
-                                const quantity = barChatData.map((x) => x.quantity)
-                                console.log(quantity)
-                                const price = barChatData.map((x) => x.grandTotal)
-                                console.log(price)
-                                const name = barChatData.map((x) => x.productTitle)
-                                console.log(name)
-                                productgrandTotalData = price
-                                productQuantityData = quantity
-                                productLabel = name
-                            }
-
-                        </script>
-                    </div>
                 </div>
 
             </div>
-        </div>
+
         <!-- end content -->
 
 
@@ -204,5 +143,58 @@
 <th:block th:replace="/dashboard/layout/script/script::script"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    let page = {
+        url: {
+            getAllOrder: App.BASE_URL_ORDER,
+            // getAllOrderMax: App.BASE_URL_ORDER +"/max"
+
+
+        },
+        element: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            element: {},
+            loadData: {},
+            commands: {},
+            close: {},
+            alertDanger: {},
+            inputError: {}
+        }
+    }
+    page.element.selectTime = $("#selectTime:selected");
+    page.element.oneDate = $('#oneDate');
+    page.element.oneMonth = $('#oneMonth');
+    page.element.oneYear = $('#oneYear');
+    page.element.buttonselectdate = $('#selectDate')
+
+    let order = new Order();
+    page.dialogs.commands.getAllOrder = (id) => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.getAllOrder + "/" + id
+        }).done((data) => {
+            console.log(data);
+            order = data;
+        })
+    }
+
+    $("#selectDate").on('click',function (){
+
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8092/api/statistics/" + ""
+        }).done((data) =>{
+            console.log(data)
+        }).fail((data) =>{
+            console.log(data)
+        })
+    })
+
+
+</script>
 </body>
 </html>

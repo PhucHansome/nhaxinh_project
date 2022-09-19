@@ -277,55 +277,23 @@
                     <div class="col-xl-5">
                         <div class="card-box">
 
-                            <h4 class="header-title mb-3">Top Contracts</h4>
+                            <h4 class="header-title mb-3">Top 5 sản phẩm bán chạy</h4>
 
                             <div class="table-responsive">
-                                <table class="table table-bordered table-nowrap mb-0">
+                                <input type="hidden" id="currentRow"/>
+                                <table class="table table-bordered table-nowrap mb-0" id="tbListCustomers">
                                     <thead>
                                     <tr>
-                                        <th>Company</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Status</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>trạng thái</th>
+                                        <th>Số lượng đã bán</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th class="text-muted">Apple Technology</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-success">Paid</span></td>
+
                                     </tr>
-                                    <tr>
-                                        <th class="text-muted">Envato Pty Ltd.</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-danger">Unpaid</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-muted">Dribbble LLC.</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-success">Paid</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-muted">Adobe Family</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-success">Paid</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-muted">Apple Technology</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-danger">Unpaid</span></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-muted">Envato Pty Ltd.</th>
-                                        <td>20/02/2014</td>
-                                        <td>19/02/2020</td>
-                                        <td><span class="badge badge-success">Paid</span></td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -356,11 +324,14 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+<th:block th:replace="/dashboard/home/row_home.html:: temp_row_customer" />
+
 
 <script src="/assets_dashboard/assets/js/all-script-handle-dashboard/home/home.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </body>
 </html>

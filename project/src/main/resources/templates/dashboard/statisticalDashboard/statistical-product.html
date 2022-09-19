@@ -53,8 +53,8 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
                         <script>
+
                             var productLabel = [ ],productPriceData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
@@ -81,6 +81,7 @@
                                     options: {
                                         tooltips: {
                                             mode: 'index'
+
                                         }
                                     }
                                 })
@@ -106,14 +107,19 @@
 
                         </script>
                     </div>
+
                     <div class="col-lg-6 col-xl-4 ">
                         <div class="card-header">
                             <h3 style="text-align: center">Số lượng sản phẩm khách hàng đã đặt hàng</h3>
                         </div>
                         <canvas id="myChartt"> </canvas>
 
+                        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js" integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
                         <script>
+
                             var productLabel = [ ],productgrandTotalData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
@@ -132,8 +138,7 @@
                                                     'rgba(255, 205, 86, 0.2)',
                                                     'rgba(75, 192, 192, 0.2)',
                                                     'rgba(54, 162, 235, 0.2)',
-                                                    'rgba(153, 102, 255, 0.2)',
-                                                    'rgba(201, 203, 207, 0.2)'
+
                                                     ],
                                                 hoverOffset: 5,
                                                 borderColor: [
@@ -142,8 +147,7 @@
                                                     'rgb(255, 205, 86)',
                                                     'rgb(75, 192, 192)',
                                                     'rgb(54, 162, 235)',
-                                                    'rgb(153, 102, 255)',
-                                                    'rgb(201, 203, 207)'
+
 
                                                 ],
                                                 borderWidth: 1,
@@ -152,10 +156,30 @@
                                         ]
                                     },
                                     options: {
-                                        tooltips: {
-                                            mode: 'index'
-                                        }
+
                                     }
+                                    //     scales: {
+                                    //     },
+                                    //     tooltips: {
+                                    //         enabled: false
+                                    //     },
+                                    //     plugins: {
+                                    //         datalabels: {
+                                    //             formatter: (value, ctx) => {
+                                    //                 let sum = 0;
+                                    //                 let dataArr = ctx.chart.data.datasets[0].data;
+                                    //                 dataArr.map(data => {
+                                    //                     sum += data;
+                                    //                 });
+                                    //                 let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    //                 return percentage;
+                                    //             },
+                                    //             color: 'red',
+                                    //         }
+                                    //     }
+                                    //
+                                    // },
+                                    //         plugins:[ChartDataLabels]
                                 })
                             }
                             dummyChart()
