@@ -4,7 +4,6 @@ import com.cg.model.Product;
 import com.cg.model.ProductMedia;
 import com.cg.model.dto.ProductMediaDTO;
 import com.cg.repository.ProductMediaRepository;
-import com.cg.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +41,11 @@ public class ProductMediaServiceImpl implements ProductMediaService{
     @Override
     public void delete(ProductMedia productMedia) {
         productMediaRepository.delete(productMedia);
+    }
+
+    @Override
+    public List<ProductMediaDTO> findAllByProductIdOrderByTsDesc(String id) {
+        return productMediaRepository.findAllByProductIdOrderByTsDesc(id);
     }
 
     @Override

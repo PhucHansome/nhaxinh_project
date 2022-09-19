@@ -71,6 +71,15 @@ page.element.main_photo = $(".main_photo")
 page.element.each_image = $(".each_image")
 page.element.single_add_to_cart_button = $(".btn-add-to-cart")
 page.element.btnBuy = $(".btn-buy")
+page.element.listAllOrder = $(".eachOrder")
+page.element.listWattingOrder  = $(".eachOrderWatting")
+page.element.listCancelOrder = $(".eachOrderCancel")
+page.element.listApplyOrder = $(".eachOrderApply")
+
+page.dialogs.element.btnAllOrder = $(".all-order-my-acount")
+page.dialogs.element.btnWattingOrder = $(".all-waiting-my-acount")
+page.dialogs.element.btnApplyOrder =  $(".all-apply-my-acount")
+page.dialogs.element.btnCancelOrder = $(".all-Cancelled-my-acount")
 
 let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
 
@@ -357,8 +366,77 @@ page.commands.handleChangPageOrder = () => {
         page.commands.handleChangPagePassword();
         page.commands.handleChangPageInformation();
         page.commands.handleUpdateCustomer();
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageApplyOrder()
+        page.commands.handleChangPageCancelledOrder()
     })
 }
+
+page.commands.handleChangPageAllOrder = () => {
+    page.dialogs.element.btnAllOrder.on("click", () => {
+        page.dialogs.element.btnAllOrder.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listAllOrder.removeClass("d-none")
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageApplyOrder()
+        page.commands.handleChangPageCancelledOrder()
+    })
+}
+
+page.commands.handleChangPageWattingOrder = () => {
+    page.dialogs.element.btnWattingOrder.on("click", () => {
+        page.dialogs.element.btnWattingOrder.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listWattingOrder.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageApplyOrder()
+        page.commands.handleChangPageCancelledOrder()
+    })
+}
+
+page.commands.handleChangPageApplyOrder = () => {
+    page.dialogs.element.btnApplyOrder.on("click", () => {
+        page.dialogs.element.btnApplyOrder.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listApplyOrder.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageCancelledOrder()
+    })
+}
+
+page.commands.handleChangPageCancelledOrder = () => {
+    page.dialogs.element.btnCancelOrder.on("click", () => {
+        page.dialogs.element.btnCancelOrder.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listCancelOrder.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageApplyOrder()
+    })
+}
+
+
 
 page.commands.handleSavePassword = () => {
     page.element.btnSavePasword.on("click", function () {
@@ -411,12 +489,8 @@ page.commands.searchFunction = () => {
                 if (i > 3) {
                     return;
                 }
-                $.each(data, (i, item) => {
-                    if (i > 3) {
-                        return;
-                    }
-                    tag = item
-                    let str = `
+                tag = item
+                let str = `
                              <div class="autocomplete-suggestion" data-index="${i}"><a href="/detail/${tag.product.slug}" ><img width="30px" height="30px"
                                     class="search-image"
                                     src="${tag.product.image}">
@@ -424,31 +498,31 @@ page.commands.searchFunction = () => {
                                 </div>
                                 <span class="search-price"><ins><span style="font-size: 12px;"
                                         class="woocommerce-Price-amount amount"><bdi>${new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND'
-                    }).format(tag.product.price)}
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(tag.product.price)}
                                         </bdi></span></ins></span></span>
                                 </a></div>
                     `;
-                    page.element.resuilt_search.prepend(str);
-                })
-                page.commands.blurInputsearch()
-            }).fail((jqXHR) => {
-                if (jqXHR.responseJSON) {
-                    $.each(jqXHR.responseJSON, (key, item) => {
-                        page.element.resuilt_search.html("")
-                        page.element.resuilt_search.removeClass("d-none")
-                        page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
-                        page.commands.blurInputsearch()
-                    })
-                }
+                page.element.resuilt_search.prepend(str);
             })
+            page.commands.blurInputsearch()
+        }).fail((jqXHR) => {
+            if (jqXHR.responseJSON) {
+                $.each(jqXHR.responseJSON, (key, item) => {
+                    page.element.resuilt_search.html("")
+                    page.element.resuilt_search.removeClass("d-none")
+                    page.element.resuilt_search.append(`<div class="autocomplete-suggestion" data-index="${i}"><div class="search-name"><span>${item}</span> </div>`)
+                    page.commands.blurInputsearch()
+                })
+            }
         })
     })
 }
+
 page.commands.handleGoSearch = () => {
     $(".btn-search").on("click", function () {
-        window.location.href = "page=1?option=1&choicePrice=0&Categories=null&Color=null&query=" + page.element.InputQuerySearch.val();
+        window.location.href = "/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query=" + page.element.InputQuerySearch.val();
     })
 }
 

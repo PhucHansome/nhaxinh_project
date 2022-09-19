@@ -19,5 +19,7 @@ public interface ProductMediaService {
 
     void delete(ProductMedia productMedia);
 
+    List<ProductMediaDTO> findAllByProductIdOrderByTsDesc(String id);
+
     List<ProductMediaDTO> findAllByProductIdOrderByTsAsc(String id);
 }

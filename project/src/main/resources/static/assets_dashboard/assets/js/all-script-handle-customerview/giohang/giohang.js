@@ -350,7 +350,7 @@ page.commands.searchFunction = () => {
 
 page.commands.handleGoSearch = () => {
     $(".btn-search").on("click", function (){
-        window.location.href = "page=1?option=1&choicePrice=0&Categories=null&Color=null&query=" + page.element.InputQuerySearch.val();
+        window.location.href = "/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query=" + page.element.InputQuerySearch.val();
     })
 }
 

@@ -274,7 +274,7 @@
 
                             </li>
                             <li class="account-item has-icon
-     has-dropdown">
+     has-dropdown dropdown-user-click">
 
                                 <a th:object="${userDTO}" href="/account" class="account-link account-login
   is-small" title="Tài khoản của tôi">
@@ -289,23 +289,13 @@
                                 </a>
 
 
-                                <ul class="nav-dropdown  nav-dropdown-default">
+                                <ul class="nav-dropdown  nav-dropdown-default" style="">
 
                                     <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
-                                        <a href="#">Thông tin của tôi</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-                                        <a href="#">Đơn hàng</a>
-                                    </li>
-                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--recently-viewed-products">
-                                        <a href="#">Sản phẩm vừa
-                                            xem</a>
-                                    </li>
-                                    <li class="wishlist-account-element ">
-                                        <a href="#">Wishlist</a>
+                                        <a href="/account">Thông tin của tôi</a>
                                     </li>
                                     <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-                                        <a href="#">Đăng xuất</a>
+                                        <a href="/logout">Đăng xuất</a>
                                     </li>
                                 </ul>
 
@@ -1127,17 +1117,18 @@
             <div class="flex-col medium-text-center  form-flat">
                 <p class="woocommerce-result-count hide-for-medium">
                     Showing 1–200 of 3661 results</p>
-                <form class="woocommerce-ordering" method="get">
-                    <select name="orderby" class="orderby" aria-label="Shop order">
-                        <option value="menu_order" selected="selected">Default sorting</option>
+<!--                <form class="woocommerce-ordering" method="get">-->
+                    <select class="filter-order-by filter-dropdown filter-items enhanced "
+                            name="filter[509][0]"  id="Option_1">
+<!--                        <option value="menu_order" selected="selected">Default sorting</option>-->
                         <option value="popularity">Theo mức độ phổ biến</option>
                         <option value="rating">Xếp hạng trung bình</option>
                         <option value="date">Mới nhất</option>
                         <option value="price">Theo giá: Thấp đến cao</option>
                         <option value="price-desc">Theo giá: cao đến thấp</option>
                     </select>
-                    <input type="hidden" name="paged" value="1">
-                </form>
+<!--                    <input type="hidden" name="paged" value="1">-->
+<!--                </form>-->
             </div>
 
         </div>

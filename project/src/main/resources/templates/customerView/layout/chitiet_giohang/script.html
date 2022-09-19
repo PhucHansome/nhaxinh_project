@@ -1094,6 +1094,16 @@
             $(".menu-item-287").removeClass("current-dropdown")
             $(".nav-dropdown").removeAttr("style");
         })
+
+        if ($("#EmailLogin").text() !== 'Đăng nhập') {
+            $("#fullNameScreen").on("mouseenter", function () {
+                $(".dropdown-user-click").addClass("current-dropdown")
+            })
+
+            $(".nav-dropdown-default").on("mouseleave", function () {
+                $(".dropdown-user-click").removeClass("current-dropdown")
+            })
+        }
         var iScrollPos = 0;
         $(window).scroll(function () {
             var iCurScrollPos = $(this).scrollTop();
@@ -1116,4 +1126,9 @@
 
 
     <script src="/assets_dashboard/assets/js/all-script-handle-customerview/chitiet_giohang/chitiet_giohang.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $("#provinceCUS").select2();
+    $("#districtCus").select2();
+</script>
 </th:block>

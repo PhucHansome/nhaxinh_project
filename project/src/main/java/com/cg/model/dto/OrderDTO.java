@@ -42,7 +42,7 @@ public class OrderDTO {
 
     private OrderDetailDTO orderDetail;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
 

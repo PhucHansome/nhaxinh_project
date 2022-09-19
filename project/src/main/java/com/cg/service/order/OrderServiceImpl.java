@@ -285,7 +285,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderDTO> findOrderDTOByUserNameAndStatus2(String userName, String status) {
+        return orderRepository.findOrderDTOByUserNameAndStatus(userName,status);
+    }
+
+    @Override
     public List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id) {
         return orderRepository.findAllOrderDTOByOrderDetailId(id);
+    }
+
+    @Override
+    public List<OrderDTO> findOrderDTOByUserNameByTime(String userName) {
+        return orderRepository.findOrderDTOByUserNameByTime(userName);
     }
 }

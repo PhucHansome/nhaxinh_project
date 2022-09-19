@@ -118,7 +118,7 @@ public class HomeController {
         String ColorString = "%" + Color + "%";
         String CategoryString = "%" + Categories + "%";
         if (query.contains("Sản phẩm")) {
-            Page<TagDTO> tagDTOPage = pageTagService.findALl("%null%", "%null%", 0, 1, "%%", PageRequest.of((pageNo - 1), 8));
+            Page<TagDTO> tagDTOPage = pageTagService.findALl(CategoryString, ColorString, choicePrice, option, "%%", PageRequest.of((pageNo - 1), 8));
             for (TagDTO productDTO : tagDTOPage) {
                 String patternVND = ",###₫";
                 DecimalFormat decimalFormat = new DecimalFormat(patternVND);
@@ -207,29 +207,56 @@ public class HomeController {
     @GetMapping("/account")
     public ModelAndView getAccount() {
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("/customerView/myaccount/account");
+
         String email = getPrincipal();
+
         if (email == "anonymousUser") {
             email = "Đăng nhập";
             modelAndView.addObject("userDTO", email);
         }
         modelAndView.addObject("userDTO", email);
 
-        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserName(email);
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserNameByTime(email);
+
         for (OrderDTO orderDTO : orderDTOS) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
             orderDTO.setPriceFormat(decimalFormat.format(orderDTO.getGrandTotal()));
         }
+
         modelAndView.addObject("orderList", orderDTOS);
-        BigDecimal sum = BigDecimal.valueOf(0);
-        for (OrderDTO orderDTO : orderDTOS) {
-            sum = orderDTO.getGrandTotal().add(sum);
+
+        List<OrderDTO> orderDTOWatting = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đang chờ duyệt%");
+
+        for (OrderDTO orderDTO : orderDTOWatting) {
+            String patternVNDWatting = ",###₫";
+            DecimalFormat decimalFormatWatting = new DecimalFormat(patternVNDWatting);
+            orderDTO.setPriceFormat(decimalFormatWatting.format(orderDTO.getGrandTotal()));
         }
-        String patternVND = ",###₫";
-        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
-        String sumFormat = decimalFormat.format(sum);
-        modelAndView.addObject("Total", sumFormat);
+
+        modelAndView.addObject("orderDTOWatting", orderDTOWatting);
+
+        List<OrderDTO> orderDTOApply = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đơn hàng đã duyệt%");
+        for (OrderDTO orderDTO : orderDTOApply) {
+            String patternVNDApply = ",###₫";
+            DecimalFormat decimalFormatApply = new DecimalFormat(patternVNDApply);
+            orderDTO.setPriceFormat(decimalFormatApply.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTOApply", orderDTOApply);
+
+        List<OrderDTO> orderDTOCancel = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đã Hủy đơn hàng%");
+
+        for (OrderDTO orderDTO : orderDTOCancel) {
+            String patternVNDCancel = ",###₫";
+            DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTOCancel", orderDTOCancel);
+
         return modelAndView;
     }
 
@@ -335,7 +362,7 @@ public class HomeController {
         modelAndView.addObject("product", productDTOList.get());
         Optional<TagDTO> tagDTO = tagService.findTagDTOByProductId(productId);
         modelAndView.addObject("tag", tagDTO.get().toTag());
-        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsAsc(productId);
+        List<ProductMediaDTO> productMediaDTO = productMediaService.findAllByProductIdOrderByTsDesc(productId);
         modelAndView.addObject("productMedia", productMediaDTO);
         return modelAndView;
     }

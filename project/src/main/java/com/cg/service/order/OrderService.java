@@ -20,10 +20,14 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName,String status);
 
+    List<OrderDTO> findOrderDTOByUserNameAndStatus2(String userName,String status);
+
     List<OrderDTO> findAllOrderDTOByOrderDetailId (Long id);
 
     List<OrderDTO> findOderByCreateBetween(Date date1, Date date2);
 
     List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
+    List<OrderDTO> findOrderDTOByUserNameByTime(String userName);
+
 
 }
