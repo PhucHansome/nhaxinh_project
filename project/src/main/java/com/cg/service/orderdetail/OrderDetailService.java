@@ -18,4 +18,8 @@ public interface OrderDetailService extends IGeneralService<OrderDetail> {
     List<OrderDetail>findOrderDetailByUserName(String userName);
 
     List<OrderDetailDTO> findAllOrderByCreatedAtDesc();
+
+    OrderDetail deliveryOrder(OrderDetail orderDetail, String userName);
+
+    OrderDetail successDeliveryOrder(OrderDetail orderDetail, String userName);
 }

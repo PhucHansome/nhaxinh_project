@@ -86,7 +86,6 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
         for (OrderDTO orderDTO : orderList){
             orderDTO.setStatusOrder("Đơn hàng đã duyệt");
             orderRepository.save(orderDTO.toOrder());
-
         }
         orderDetail.setStatusOrderDetail("Đơn hàng đã duyệt");
         return orderDetailRepository.save(orderDetail);
@@ -107,6 +106,28 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
         orderDetail.setStatusOrderDetail("Đã Hủy đơn hàng");
         return orderDetailRepository.save(orderDetail);
     }
+
+    public OrderDetail deliveryOrder(OrderDetail orderDetail, String userName) {
+        List<OrderDTO> orderList = orderRepository.findAllOrderDTOByOrderDetailId(orderDetail.getId());
+        for (OrderDTO orderDTO : orderList){
+            orderDTO.setStatusOrder("Đang giao hàng");
+            orderRepository.save(orderDTO.toOrder());
+        }
+        orderDetail.setStatusOrderDetail("Đang giao hàng");
+        return orderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public OrderDetail successDeliveryOrder(OrderDetail orderDetail, String userName) {
+        List<OrderDTO> orderList = orderRepository.findAllOrderDTOByOrderDetailId(orderDetail.getId());
+        for (OrderDTO orderDTO : orderList){
+            orderDTO.setStatusOrder("Đã giao hàng thành công");
+            orderRepository.save(orderDTO.toOrder());
+        }
+        orderDetail.setStatusOrderDetail("Đã giao hàng thành công");
+        return orderDetailRepository.save(orderDetail);
+    }
+
 
     @Override
     public List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status) {

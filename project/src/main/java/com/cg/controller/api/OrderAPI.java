@@ -155,4 +155,30 @@ public class OrderAPI {
 
     }
 
+    @PutMapping("/order-detail/delivery/{username}")
+    public ResponseEntity<?> doDeliveryOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(orderDetailService.deliveryOrder(orderDetailDTO.toOrderDetail(),username), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    @PutMapping("/order-detail/success-delivery/{username}")
+    public ResponseEntity<?> doSuccessDeliveryOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(orderDetailService.successDeliveryOrder(orderDetailDTO.toOrderDetail(),username), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 }

@@ -202,6 +202,8 @@ public class ProductAPI {
             return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         }
 
+
+
         if (errors.size() == 0) {
             try {
                 Product createdProduct = productService.create(TagValue, productDTO);

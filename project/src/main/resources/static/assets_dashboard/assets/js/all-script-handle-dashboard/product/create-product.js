@@ -98,6 +98,7 @@ page.dialogs.loadData.drawListProductColor = () => {
 
 page.commands.handleCreateProduct = () => {
     page.element.btnSave.on('click', function () {
+
         formData.append("code", page.element.codeProduct.val());
         formData.append("title", page.element.productName.val());
         formData.append("price", page.element.priceProduct.val());
@@ -263,6 +264,9 @@ page.commands.ChangeToSlug = () => {
     page.element.slugProduct.val(slug)
 }
 
+page.element.btnSave = ( ) =>{
+
+}
 
 $(function () {
     page.dialogs.loadData.drawListCategory();

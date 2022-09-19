@@ -115,7 +115,7 @@ public class OrderServiceImpl implements OrderService {
             orderNew.get().setPhone(order1.getCustomerInfo().getPhone());
             orderNew.get().setDistrictName(order1.getCustomerInfo().getLocationRegion().getDistrictName());
             orderNew.get().setProvinceName(order1.getCustomerInfo().getLocationRegion().getProvinceName());
-
+            orderNew.get().setUpdatedAt(orderNew.get().getCreatedAt());
         }
         orderNew.get().setGrandTotal(sum);
         orderDetailRepository.save(orderNew.get().toOrderDetail());

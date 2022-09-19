@@ -257,6 +257,26 @@ public class HomeController {
 
         modelAndView.addObject("orderDTOCancel", orderDTOCancel);
 
+        List<OrderDTO> orderDTOSuccessDelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đã giao hàng thành công%");
+
+        for (OrderDTO orderDTO : orderDTOSuccessDelivery) {
+            String patternVNDCancel = ",###₫";
+            DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTOSuccessDelivery", orderDTOSuccessDelivery);
+
+        List<OrderDTO> orderDTODelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đang giao hàng%");
+
+        for (OrderDTO orderDTO : orderDTODelivery) {
+            String patternVNDCancel = ",###₫";
+            DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTODelivery", orderDTODelivery);
+
         return modelAndView;
     }
 

@@ -60,6 +60,7 @@ page.element.container_infomation = $(".information")
 page.element.pagePassword = $(".changePassword")
 page.element.pageOrder = $(".order")
 
+
 page.element.btnSavePasword = $(".btn-Save-PassWord")
 page.element.btnChangePagePassword = $(".btn-get-page-password")
 page.element.btnchangPageInfomation = $(".btn-change-page-infomation")
@@ -75,6 +76,10 @@ page.element.listAllOrder = $(".eachOrder")
 page.element.listWattingOrder  = $(".eachOrderWatting")
 page.element.listCancelOrder = $(".eachOrderCancel")
 page.element.listApplyOrder = $(".eachOrderApply")
+page.element.listPageDelivery = $(".eachOrderDelivery")
+page.element.listPageSuccessDelivery = $(".eachOrderSuccessDelivery")
+page.element.pageSuccessDelivery = $(".all-success-delivery-my-acount")
+page.element.pageDelivery = $(".all-delivery-my-acount")
 
 page.dialogs.element.btnAllOrder = $(".all-order-my-acount")
 page.dialogs.element.btnWattingOrder = $(".all-waiting-my-acount")
@@ -369,6 +374,8 @@ page.commands.handleChangPageOrder = () => {
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -378,13 +385,19 @@ page.commands.handleChangPageAllOrder = () => {
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listWattingOrder.addClass("d-none")
         page.element.listCancelOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listAllOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -394,13 +407,19 @@ page.commands.handleChangPageWattingOrder = () => {
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listCancelOrder.addClass("d-none")
         page.element.listAllOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listWattingOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -410,13 +429,19 @@ page.commands.handleChangPageApplyOrder = () => {
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listAllOrder.addClass("d-none")
         page.element.listWattingOrder.addClass("d-none")
         page.element.listCancelOrder.addClass("d-none")
         page.element.listApplyOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -426,17 +451,62 @@ page.commands.handleChangPageCancelledOrder = () => {
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listAllOrder.addClass("d-none")
         page.element.listWattingOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listCancelOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
+page.commands.handleChangPageDeliveryOrder = () => {
+    page.element.pageDelivery.on("click", () => {
+        page.element.pageDelivery.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageSuccessDelivery.removeAttr("style");
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listPageSuccessDelivery.addClass("d-none");
+        page.element.listPageDelivery.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageCancelledOrder()
+    })
+}
 
+page.commands.handleChangPageSuccessDeliveryOrder = () => {
+    page.element.pageSuccessDelivery.on("click", () => {
+        page.element.pageSuccessDelivery.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style");
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageDeliveryOrder()
+    })
+}
 
 page.commands.handleSavePassword = () => {
     page.element.btnSavePasword.on("click", function () {

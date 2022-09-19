@@ -64,6 +64,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "od.createdAt ," +
             "od.updatedAt" +
             ")  " +
-            "FROM OrderDetail od ORDER BY od.createdAt desc")
+            "FROM OrderDetail od ORDER BY od.id desc  ")
     List<OrderDetailDTO> findAllOrderByCreatedAtDesc();
 }
