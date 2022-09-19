@@ -394,8 +394,8 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/orderDashboard/order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
-        for (OrderDetail orderDetail : orderDetailDTOS) {
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+        for (OrderDetailDTO orderDetail : orderDetailDTOS) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
             orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));

@@ -40,6 +40,11 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
     private ProductRepository productRepository;
 
     @Override
+    public  List<OrderDetailDTO> findAllOrderByCreatedAtDesc() {
+        return orderDetailRepository.findAllOrderByCreatedAtDesc();
+    }
+
+    @Override
     public List<OrderDetail> findAll() {
         return orderDetailRepository.findAll();
     }

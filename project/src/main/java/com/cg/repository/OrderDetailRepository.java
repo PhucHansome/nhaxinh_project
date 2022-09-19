@@ -23,6 +23,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "od.provinceName, " +
             "od.statusOrderDetail,  " +
             "od.grandTotal,  " +
+            "od.priceFormat,  " +
             "od.createdAt ," +
             "od.updatedAt" +
             ")  " +
@@ -39,6 +40,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "od.provinceName, " +
             "od.statusOrderDetail,  " +
             "od.grandTotal,  " +
+            "od.priceFormat,  " +
             "od.createdAt ," +
             "od.updatedAt" +
             ")  " +
@@ -46,4 +48,22 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
     List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status);
 
     List<OrderDetail>findOrderDetailByUserName(String userName);
+
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
+            "od.id, " +
+            "od.fullName, " +
+            "od.userName, " +
+            "od.phone, " +
+            "od.address, " +
+            "od.districtName, " +
+            "od.provinceName, " +
+            "od.statusOrderDetail,  " +
+            "od.grandTotal,  " +
+            "od.priceFormat,  " +
+            "od.createdAt ," +
+            "od.updatedAt" +
+            ")  " +
+            "FROM OrderDetail od ORDER BY od.createdAt desc")
+    List<OrderDetailDTO> findAllOrderByCreatedAtDesc();
 }

@@ -1678,10 +1678,10 @@
                                                                                     border-top: 1px solid #00000061;
                                                                                     padding-top: 10px;">
                                                             <div class="col-1 align-middle text-center"><span><i
-                                                                    th:if="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt' }"
+                                                                    th:if="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt' && orderDTOCancel.statusOrder != 'Đã Hủy đơn hàng'  }"
                                                                     style="color: green;font-size: 30px;"
                                                                     class="fa fa-heart"></i><i
-                                                                    th:unless="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt' }"
+                                                                    th:unless="*{orderDTOCancel.statusOrder != 'Đang chờ duyệt'  && orderDTOCancel.statusOrder != 'Đã Hủy đơn hàng' }"
                                                                     style="color: red;font-size: 30px;"
                                                                     class="fa fa-heart"></i></span>
                                                             </div>

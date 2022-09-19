@@ -41,6 +41,7 @@ public class OrderDetailDTO {
 
     private BigDecimal grandTotal;
 
+    private String priceFormat;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;

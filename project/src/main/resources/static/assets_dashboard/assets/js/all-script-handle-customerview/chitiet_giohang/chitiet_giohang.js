@@ -310,7 +310,6 @@ page.commands.handleOrder = () => {
 }
 
 page.commands.createOrder = (cart) => {
-
     delete order.id;
     order.description = cart.content;
     order.grandTotal = 0;
@@ -334,6 +333,7 @@ page.commands.createOrder = (cart) => {
         $("#frm_leave_chitiet_giohang").modal("show")
     }).fail((jqXHR) => {
         console.log(jqXHR);
+        App.IziToast.showErrorAlert("Tạo đơn hàng thất bại!");
         $(".temploadding").html("")
         if (jqXHR.responseJSON) {
             $.each(jqXHR.responseJSON, (key, item) => {
@@ -493,7 +493,6 @@ page.initializeControlEvent = () => {
         $(".btn-order").addClass("d-none");
     }
 }
-
 
 $(() => {
     page.dialogs.commands.drawProvinces().then(() => {
