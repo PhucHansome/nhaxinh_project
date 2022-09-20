@@ -289,12 +289,12 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/home/home");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetail> orderDetails = orderDetailService.findAll();
+        List<OrderDetailDTO> orderDetails = orderDetailService.findAllOrderByCreatedAtDesc();
         modelAndView.addObject("order", orderDetails.size());
         List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
         modelAndView.addObject("customer", customerInfoDTOS.size());
         BigDecimal sum = BigDecimal.valueOf(0);
-        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đơn hàng đã duyệt");
+        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đã giao hàng thành công");
         for (OrderDetailDTO orderDetail : orderDetails1) {
             sum = orderDetail.getGrandTotal().add(sum);
         }

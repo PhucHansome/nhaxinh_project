@@ -1118,6 +1118,16 @@
             $(".nav-dropdown").removeAttr("style");
         })
 
+        if ($("#EmailLogin").text() !== 'Đăng nhập') {
+            $("#fullNameScreen").on("mouseenter", function () {
+                $(".dropdown-user-click").addClass("current-dropdown")
+            })
+
+            $(".nav-dropdown-default").on("mouseleave", function () {
+                $(".dropdown-user-click").removeClass("current-dropdown")
+            })
+        }
+
         function handleDownSelection() {
             $(".btn-dropdown-search").on("click", function () {
                 $(".dropdown_1 ").removeClass("close").addClass("open");
@@ -1186,6 +1196,25 @@
 
         handleDownMaterial()
         handleDownSelection();
+
+        var iScrollPos = 0;
+        $(window).scroll(function () {
+            var iCurScrollPos = $(this).scrollTop();
+            if (iCurScrollPos < iScrollPos) {
+                // Hành động scroll lên
+                $(".header-wrapper").removeClass("stuck")
+            } else {
+                if ($(this).scrollTop() == 400) {
+                    //Hành động ở trên top
+                    $(".header-wrapper").removeClass("stuck")
+                } else {
+                    // Hành động scroll xuống
+                    $(".header-wrapper").addClass("stuck")
+
+                }
+            }
+            iScrollPos = iCurScrollPos;
+        });
     </script>
     <script src="/assets_dashboard/assets/js/all-script-handle-customerview/search/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>

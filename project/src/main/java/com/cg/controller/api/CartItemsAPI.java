@@ -59,15 +59,12 @@ public class CartItemsAPI {
                         // cho nó nhảy vào catch để xử lý thêm product vào cartItem;
                     }
                 }
-
-                CartItem cartItemsDTO1 = cartItemService.save(cartItemsDTO.toCartItem());
-                return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
+                return new ResponseEntity<>(cartItemService.save(cartItemsDTO.toCartItem()).toCartItemDTO(), HttpStatus.CREATED);
             } catch (Exception e) {
-                CartItem cartItemsDTO1 = cartItemService.saveOp(cartItemsDTO.toCartItem());
-                return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(cartItemService.saveOp(cartItemsDTO.toCartItem()).toCartItemDTO(), HttpStatus.ACCEPTED);
             }
         } catch (Exception e) {
-            throw new DataInputException("Không thêm vào giỏ hàng thành công");
+            throw new DataInputException("không đủ số lượng sản phẩm để thêm vào giỏ hàng!!");
         }
     }
 
@@ -102,10 +99,9 @@ public class CartItemsAPI {
             return appUtils.mapErrorToResponse(bindingResult);
         }
         try {
-            CartItem cartItems = cartItemService.SaveIncreasing(cartItem);
-            return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cartItemService.SaveIncreasing(cartItem).toCartItemDTO(), HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return new ResponseEntity<>("Không thể tăng số lượng sản phẩm", HttpStatus.NO_CONTENT);
+            throw new DataInputException("Sản phẩm không đủ để thêm nữa!");
         }
     }
 
@@ -115,8 +111,7 @@ public class CartItemsAPI {
             return appUtils.mapErrorToResponse(bindingResult);
         }
         try {
-            CartItem cartItems = cartItemService.SaveReduce(cartItem);
-            return new ResponseEntity<>(cartItems.toCartItemDTO(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cartItemService.SaveReduce(cartItem).toCartItemDTO(), HttpStatus.ACCEPTED);
 
         } catch (Exception e) {
             return new ResponseEntity<>("Không thể Giảm số lượng sản phẩm", HttpStatus.NO_CONTENT);

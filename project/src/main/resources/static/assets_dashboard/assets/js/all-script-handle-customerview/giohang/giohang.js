@@ -225,7 +225,6 @@ page.commands.handleReduceCartItem = (id) => {
             "url": page.url.PutCartReduce,
             "data": JSON.stringify(carItem)
         }).done((data) => {
-            App.IziToast.showSuccessAlert("Giảm số lượng thành công")
             page.loadData.getAllItemOrder()
         }).fail((jqXHR) => {
             console.log(jqXHR);
@@ -250,7 +249,6 @@ page.commands.handleIncreasingCartItem = (id) => {
             "url": page.url.PutCartIncreasing,
             "data": JSON.stringify(carItem)
         }).done((data) => {
-            App.IziToast.showSuccessAlert("Tăng số lượng thành công")
             page.loadData.getAllItemOrder()
         }).fail((jqXHR) => {
             console.log(jqXHR);
