@@ -272,6 +272,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderDTO> findOderByCreateMonthYearAndStatusOrder(int createMonth, int createYear, String statusOrder) {
+        return orderRepository.findOderByCreateMonthYearAndStatusOrder(createMonth,createYear,statusOrder);
+    }
+
+    @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
         List<OrderDTO> order = orderRepository.findOrderDTOByUserName(userName);
 //        for (OrderDTO orderDTO : order) {
@@ -297,5 +302,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> findOrderDTOByUserNameByTime(String userName) {
         return orderRepository.findOrderDTOByUserNameByTime(userName);
+    }
+
+    @Override
+    public List<OrderDTO> findOrderDTOByTop5Product(String order) {
+        return orderRepository.findOrderDTOByTop5Product(order);
     }
 }

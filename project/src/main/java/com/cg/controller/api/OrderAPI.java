@@ -53,7 +53,14 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 
-
+    @GetMapping("/order-top-5/")
+    public ResponseEntity<?> findAllOrderFortop5(){
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByTop5Product("Đã giao hàng thành công");
+        if (orderDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+    }
 
 
     @GetMapping("/order-detail/{id}")
