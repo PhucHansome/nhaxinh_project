@@ -3,6 +3,7 @@ package com.cg.service.orderdetail;
 import com.cg.model.Order;
 import com.cg.model.OrderDetail;
 import com.cg.model.Product;
+import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.model.dto.OrderDTO;
 import com.cg.model.dto.OrderDetailDTO;
 import com.cg.model.dto.ProductDTO;
@@ -124,8 +125,16 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
             orderDTO.setStatusOrder("Đã giao hàng thành công");
             orderRepository.save(orderDTO.toOrder());
         }
+        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoRepository.findUserDTOByUserName(userName);
+        customerInfoDTO.get().setDebt(customerInfoDTO.get().getDebt().add(orderDetail.getGrandTotal()));
+        customerInfoRepository.save(customerInfoDTO.get().toCustomerInfo());
         orderDetail.setStatusOrderDetail("Đã giao hàng thành công");
         return orderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public List<OrderDetailDTO> findAllOrderDetailByStatusAndUserName(String status, String username) {
+        return orderDetailRepository.findAllOrderDetailByStatusAndUserName(status , username);
     }
 
 

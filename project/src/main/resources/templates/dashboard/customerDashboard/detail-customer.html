@@ -101,13 +101,13 @@
 
 
                             <div class="col-md-6">
-                                <label>Tổng chi tiêu:<span th:text="*{customerInfo.debt}" style="margin-left: 5px;color: red"></span> </label>
+                                <label>Tổng chi tiêu:<span th:text="*{customerInfo.formatDebt}" style="margin-left: 5px;color: red"></span> </label>
                             </div>
                             <div class="col-md-6">
-                                <label>Tổng SL sản phẩm đã mua:</label>
+                                <label th:object="${sumOrderQuantity}">Tổng SL sản phẩm đã mua: <span th:text="${sumOrderQuantity}" style="margin-left: 5px;color: red;"></span></label>
                             </div>
                             <div class="col-md-6">
-                                <label>Tổng SL đơn hàng:</label>
+                                <label th:object="${TongSLDonHang}">Tổng SL đơn hàng: <span th:text="${TongSLDonHang}" style="margin-left: 5px;color: red;"></span></label>
                             </div>
 
 

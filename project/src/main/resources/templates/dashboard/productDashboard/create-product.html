@@ -129,6 +129,11 @@
             transform: rotate(360deg);
         }
     }
+    .error{
+        color: red !important;
+        font-size: 15px !important;
+        font-weight: bold !important;
+    }
 </style>
 <body>
 
@@ -171,7 +176,7 @@
                         </button>
                     </div>
                 </div>
-
+                <form id="frmCreateProduct" method="post">
                 <div class="row" style=" position: relative;">
                     <div class="col-md-7">
 
@@ -192,13 +197,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Tên sản phẩm<span style="color: red">*</span></label>
-                                    <input type="text" id="productName" oninput="page.commands.ChangeToSlug()" placeholder="Nhập tên sản phẩm"
+                                    <input type="text" id="productName" name="productName" oninput="page.commands.ChangeToSlug()" placeholder="Nhập tên sản phẩm"
                                            class="form-control">
                                     <input type="hidden" readonly id="slugProduct" >
                                 </div>
                                 <div class="col-md-6">
                                     <label style="margin-top: 5px">Số lượng</label>
-                                    <input type="text" id="quantityProduct" class="form-control">
+                                    <input type="text" id="quantityProduct" name="quantityProduct" class="form-control">
 
                                 </div>
                             </div>
@@ -206,19 +211,30 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label style="margin-top: 5px">Giá sản phẩm</label>
-                                    <input type="text" id="priceProduct" class="form-control">
+                                    <input type="text" id="priceProduct" name="priceProduct" class="form-control">
 
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="row" style="margin-left: 0px;">
                                     <label style="margin-top: 5px">Mã sản phẩm/SKU</label>
-                                    <input type="text" id="codeProduct" class="form-control">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3"><input maxlength="2" required name="LetterUp"  class="form-control" id="LetterUp" type="text"></div>
+                                        <div class="col-1"><span style="margin-left: -12px;
+                                                                        font-weight: bold;
+                                                                        margin-bottom: 0px;
+                                                                        position: relative;
+                                                                        font-size: 15px;
+                                                                        bottom: -9px;" >-31*</span></div>
+                                        <div class="col-8"> <input maxlength="8" type="number" name="codeProduct" id="codeProduct" class="form-control"></div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <label style="margin-top: 5px">kích thước/size</label>
-                                    <input type="text" id="productSize" class="form-control">
+                                    <input type="text" id="productSize" name="productSize" class="form-control">
 
                                 </div>
                                 <div class="col-md-6">
@@ -238,23 +254,30 @@
 
                             <div class="col-md-12">
                                 <div class="container mt-3 w-100">
-                                    <div class="card-header d-flex justify-content-between">
+                                    <div class="card-header d-flex justify-content-between" style=" width: 37%;
+                                                                                                    background: white;
+                                                                                                    margin-left: -45px;">
                                         <form action="#" class="form" id="form">
                                             <input
+                                                    accept="image/png, image/jpeg"
                                                     type="file"
                                                     class="d-none"
                                                     multiple
                                                     id="image"
                                                     onchange="page.commands.image_select()"/>
 
-                                            <button class="btn btn-sm btn-danger"
+                                            <button class="btn btn-sm " style="background-color: #253443;
+                                                                                border-color: #253443;
+                                                                                font-size: 16px;
+                                                                                font-weight: bold;
+                                                                                padding: 4px 10px 4px 10px;"
                                                     type="button"
                                                     onclick="document.getElementById('image').click()">
-                                                Upload Ảnh Sản Phẩm <i class="fa-solid fa-images"></i>
+                                                Choose Image  <i class="fa-solid fa-images"></i>
                                             </button>
                                         </form>
                                     </div>
-                                    <div class="row" id="container_"></div>
+                                    <div class="row" id="container_" style="margin-left: -45px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -267,21 +290,22 @@
                             </div>
                             <div class="col-md-12">
                                 <label>Chất liệu/material</label>
-                                <input type="text" id="materialProduct" class="form-control">
+                                <input type="text" name="materialProduct" id="materialProduct" class="form-control">
                             </div>
                             <div class="col-md-12">
                                 <label>Tag</label>
-                                <input type="text" id="TagProduct" class="form-control">
+                                <input type="text" name="TagProduct" id="TagProduct" required class="form-control">
                             </div>
                             <div class="col-md-12">
                                 <label>Mô tả sản phẩm</label>
-                                <textarea id="descriptionProduct" class="form-control"></textarea>
+                                <textarea id="descriptionProduct" name="descriptionProduct" class="form-control"></textarea>
                             </div>
                         </div>
 
 
                     </div>
                 </div>
+                </form>
             </div>
             <!-- Start Content-->
 
@@ -306,7 +330,10 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
-
+<script>
+    $("#colorProduct").select2()
+    $("#category_").select2()
+</script>
 <script src="/assets_dashboard/assets/js/all-script-handle-dashboard/product/create-product.js"></script>
 </body>
 </html>

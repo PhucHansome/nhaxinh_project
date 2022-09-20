@@ -467,8 +467,21 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/customerDashboard/detail-customer");
         Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(id);
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        customerInfo.get().setFormatDebt(decimalFormat.format(customerInfo.get().getDebt()));
         modelAndView.addObject("locationRegion", customerInfo.get().getLocationRegion());
-        modelAndView.addObject("customerInfo", customerInfo.get().toCustomerInfo());
+        modelAndView.addObject("customerInfo", customerInfo.get());
+        int sumSLOrder = 0;
+        BigDecimal sumOrderQuantity = BigDecimal.valueOf(0);
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserNameAndStatus("%" + customerInfo.get().getUserName() + "%", "%Đã giao hàng thành công%");
+        for (OrderDTO orderDTO : orderDTOS) {
+            sumSLOrder += 1;
+            sumOrderQuantity = sumOrderQuantity.add(orderDTO.getQuantity());
+        }
+        modelAndView.addObject("TongSLDonHang", sumSLOrder);
+        modelAndView.addObject("sumOrderQuantity", sumOrderQuantity);
+
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         return modelAndView;
