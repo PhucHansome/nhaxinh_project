@@ -4,7 +4,7 @@ let page = {
         GetCategory: App.BASE_URL_CATEGORY,
         GetProductColor: App.BASE_URL_PRODUCTCOLOR,
         GetTag: App.BASE_URL_TAG,
-        GetProductMedia : App.BASE_URL_PRODUCT + "/product-media",
+        GetProductMedia: App.BASE_URL_PRODUCT + "/product-media",
         DeleteProduct: App.BASE_URL_PRODUCT + "/delete-soft-product/",
         PutProduct: App.BASE_URL_PRODUCT + "/put",
         PutTag: App.BASE_URL_TAG + "/id"
@@ -45,6 +45,7 @@ page.element.descriptionProduct = $("#descriptionProduct")
 page.element.materialUp = $("#materialUp")
 page.element.render_update_finish_row1 = $("#render_update_finish_row1")
 page.element.slugProduct = $("#slugUP")
+page.element.frmUpdateUser = $("#frmUpdateUser")
 
 page.element.pareData = $(".information_clear")
 page.element.btnDelete = $(".btn-delete")
@@ -55,10 +56,10 @@ page.element.btnSave = $("#btnUpdateProduct")
 let row1_render = jQuery.validator.format($.trim(page.element.render_update_finish_row1.val().toString()));
 
 page.commands.addRowLine1 = () => {
-    page.element.pareData .append($(row1_render(product.title,product.image,product.code,product.category.name,product.quantity, new Intl.NumberFormat('vi-VN', {
+    page.element.pareData.append($(row1_render(product.title, product.image, product.code, product.category.name, product.quantity, new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
-    }).format(product.price), product.size,product.productColor.color,product.material,product.status,product.tag,product.description )));
+    }).format(product.price), product.size, product.productColor.color, product.material, product.status, product.tag, product.description)));
 }
 
 page.commands.formatNumber = () => {
@@ -198,77 +199,81 @@ page.commands.handleShowProductUpdate = () => {
 
 page.commands.handleUpdateProduct = () => {
     page.element.btnSave.on('click', function () {
-        formData.append("id", page.element.idProduct.val());
-        formData.append("code", page.element.codeProductUp.val());
-        formData.append("title", page.element.titleProductUp.val());
-        formData.append("price", page.element.priceProductUp.val());
-        formData.append("quantity", page.element.quantityProduct.val());
-        formData.append("status", $("#productStatus :selected").text());
-        formData.append("description", page.element.descriptionProduct.val());
-        formData.append("slug", page.element.slugProduct.val());
-        formData.append("size", page.element.sizeUp.val());
-        formData.append("material", page.element.materialUp.val());
-        formData.append("image", "null");
-        $(".temploadding").html("")
-        let str = `
+        page.element.frmUpdateUser.submit()
+    })
+}
+
+page.commands.afterValidationUpdateProduct = () => {
+    formData.append("id", page.element.idProduct.val());
+    formData.append("code", $("#LetterUp").val() + "-31*" + page.element.codeProductUp.val());
+    formData.append("title", page.element.titleProductUp.val());
+    formData.append("price", page.element.priceProductUp.val());
+    formData.append("quantity", page.element.quantityProduct.val());
+    formData.append("status", $("#productStatus :selected").text());
+    formData.append("description", page.element.descriptionProduct.val());
+    formData.append("slug", page.element.slugProduct.val());
+    formData.append("size", page.element.sizeUp.val());
+    formData.append("material", page.element.materialUp.val());
+    formData.append("image", "null");
+    $(".temploadding").html("")
+    let str = `
            <div class="loading">Loading&#8230;</div>
 
             `
-        $(".temploadding").append(str)
-        $("#modalupdate-product").modal("hide");
-        $.ajax({
-            type: "PUT",
-            contentType: false,
-            cache: false,
-            processData: false,
-            url: page.url.PutProduct + "/" + page.element.categoryUp.val() + "/" + page.element.productColorUp.val() + "/" +page.element.tagUp.val(),
-            data: formData
-        }).done((data) => {
-            $(".temploadding").html("")
-            formData.delete("id")
-            formData.delete("code");
-            formData.delete("title");
-            formData.delete("price");
-            formData.delete("quantity");
-            formData.delete("status");
-            formData.delete("description");
-            formData.delete("slug");
-            formData.delete("size");
-            formData.delete("material");
-            formData.delete("image");
-            page.element.btnSave.off()
-            page.element.priceProductUp.val("")
-            page.element.titleProductUp.val("")
-            page.element.quantityProduct.val("")
-            page.element.codeProductUp.val("")
-            page.element.sizeUp.val("")
-            page.element.categoryUp.val(1)
-            page.element.productColorUp.val(1)
-            page.element.productStatus.val("")
-            page.element.materialUp.val("")
-            page.element.descriptionProduct.val("")
-            page.element.tagUp.val("")
-            formData.delete("files")
-            App.SweetAlert.showSuccessAlert("Bạn Đã Cập nhật Sản Phẩm Thành công")
-            page.commands.reloadPageFinishUpdate(product.id);
-            images = []
-            document.getElementById('container_').innerHTML = page.commands.image_show()
-        }).fail(() => {
-            $(".temploadding").html("")
-            App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
-            formData.delete("files")
-            formData.delete("code");
-            formData.delete("title");
-            formData.delete("price");
-            formData.delete("quantity");
-            formData.delete("status");
-            formData.delete("description");
-            formData.delete("slug");
-            formData.delete("size");
-            formData.delete("material");
-            formData.delete("image");
-            $("#modalupdate-product").modal("show");
-        })
+    $(".temploadding").append(str)
+    $("#modalupdate-product").modal("hide");
+    $.ajax({
+        type: "PUT",
+        contentType: false,
+        cache: false,
+        processData: false,
+        url: page.url.PutProduct + "/" + page.element.categoryUp.val() + "/" + page.element.productColorUp.val() + "/" + page.element.tagUp.val(),
+        data: formData
+    }).done((data) => {
+        $(".temploadding").html("")
+        formData.delete("id")
+        formData.delete("code");
+        formData.delete("title");
+        formData.delete("price");
+        formData.delete("quantity");
+        formData.delete("status");
+        formData.delete("description");
+        formData.delete("slug");
+        formData.delete("size");
+        formData.delete("material");
+        formData.delete("image");
+        page.element.btnSave.off()
+        page.element.priceProductUp.val("")
+        page.element.titleProductUp.val("")
+        page.element.quantityProduct.val("")
+        page.element.codeProductUp.val("")
+        page.element.sizeUp.val("")
+        page.element.categoryUp.val(1)
+        page.element.productColorUp.val(1)
+        page.element.productStatus.val("")
+        page.element.materialUp.val("")
+        page.element.descriptionProduct.val("")
+        page.element.tagUp.val("")
+        formData.delete("files")
+        App.SweetAlert.showSuccessAlert("Bạn Đã Cập nhật Sản Phẩm Thành công")
+        page.commands.reloadPageFinishUpdate(product.id);
+        images = []
+        document.getElementById('container_').innerHTML = page.commands.image_show()
+    }).fail(() => {
+        $(".temploadding").html("")
+        App.IziToast.showErrorAlert("Bạn đã tạo sản phẩm thất bại")
+        formData.delete("files")
+        formData.delete("code");
+        formData.delete("title");
+        formData.delete("price");
+        formData.delete("quantity");
+        formData.delete("status");
+        formData.delete("description");
+        formData.delete("slug");
+        formData.delete("size");
+        formData.delete("material");
+        formData.delete("image");
+        $("#modalupdate-product").modal("show");
     })
 }
 
@@ -322,15 +327,15 @@ page.commands.delete_image = (e) => {
 }
 
 page.commands.reloadPageFinishUpdate = (productId) => {
-    page.commands.getProductById(productId).then(()=>{
-        page.commands.getTagByProductId(page.element.idProduct.val()).then(()=>{
+    page.commands.getProductById(productId).then(() => {
+        page.commands.getTagByProductId(page.element.idProduct.val()).then(() => {
             page.element.pareData.html("")
             product.tag = tag.name
             page.commands.addRowLine1();
-            page.commands.getProductMediaByProduct(page.element.idProduct.val()).then(()=>{
+            page.commands.getProductMediaByProduct(page.element.idProduct.val()).then(() => {
                 $(".imageUpdate").html("")
-                $.each(productMedia, (i, item)=>{
-                    let str2 =`
+                $.each(productMedia, (i, item) => {
+                    let str2 = `
                                     <div class="col-3 text-center align-middle " >
                                         <img width="100px" style="padding-top: 15px;"
                                              src="${item.fileUrl}" alt="">
@@ -396,10 +401,106 @@ page.commands.ChangeToSlug = () => {
     page.element.slugProduct.val(slug)
 }
 
-$(function () {
+page.element.frmUpdateUser.validate({
+    "rules": {
+        "titleProductUp": {
+            required: true,
+            minlength: 5,
+        },
+        "quantityProductUp": {
+            required: true,
+            number: true,
+            maxlength: 4,
+        },
+        "priceProductUp": {
+            required: true,
+            // number: true,
+            // max: 1000000000,
+            // min: 50000,
+        },
+        "LetterUp": {
+            required: true,
+            minlength: 2,
+        },
+
+        "codeProductUp": {
+            required: true,
+            number: true,
+            minlength: 8,
+        },
+        "sizeUp": {
+            required: true,
+            minlength: 6,
+        },
+        "materialUp": {
+            required: true,
+            minlength: 6,
+        },
+        "tagUp": {
+            required: true,
+            minlength: 6,
+        },
+        "descriptionProduct": {
+            required: true,
+            minlength: 6,
+        },
+    },
+    "messages": {
+        "titleProductUp": {
+            required: "Vui Lòng Nhập Title sản phẩm!",
+            minlength: $.validator.format(" Title sản phẩm tối thiểu {0} ký tự!"),
+        },
+        "quantityProductUp": {
+            required: "Vui Lòng Nhập số lượng sản phẩm!",
+            maxlength: $.validator.format(" số lượng sản phẩm tối đa {0} sản phẩm!"),
+        },
+        "priceProductUp": {
+            required: "Vui Lòng Nhập giá tiền sản phẩm!",
+            // number: true,
+            // max: $.validator.format(" Giá tiền sản phẩm tối đa {0} vnđ"),
+            // min: $.validator.format(" Giá tiền sản phẩm tối thiểu {0} vnđ"),
+        },
+        "LetterUp": {
+            required: "Vui Lòng Nhập Ký tự đầu SKU (Yêu cầu chữ hoa)!",
+            minlength: 2,
+        },
+
+        "codeProductUp": {
+            required: "Vui Lòng Nhập Ký tự sau SKU (Yêu cầu chữ số)!",
+            minlength: $.validator.format("Sau mã SKU là 8 chữ số"),
+        },
+        "sizeUp": {
+            required: "Vui Lòng Nhập kích thước sản phẩm!",
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
+        },
+        "materialUp": {
+            required: "Vui Lòng Nhập Vật liệu sản phẩm",
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
+
+        },
+        "tagUp": {
+            required: "Vui Lòng Nhập Tag sản phẩm",
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
+        },
+        "descriptionProduct": {
+            required: "Vui Lòng Nhập Mô tả sản phẩm",
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
+        },
+    },
+    errorLabelContainer: "frmUpdateUser .input.error",
+    submitHandler: function () {
+        page.commands.afterValidationUpdateProduct();
+    }
+})
+
+page.initializeControlEvent = () =>{
     page.commands.handleDeleteProduct();
     page.commands.handleShowProductUpdate();
     page.commands.formatNumber();
     page.dialogs.loadData.drawListCategory();
     page.dialogs.loadData.drawListProductColor();
+}
+
+$(() =>{
+    page.initializeControlEvent();
 })

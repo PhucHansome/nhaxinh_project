@@ -118,6 +118,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public Optional<UserDTO> findUserDTOByUserNameByStatus(String userName) {
+        return userRepository.findUserDTOByUserNameByStatus(userName);
+    }
+
+    @Override
     public User saveAndMail(User user) throws MessagingException, UnsupportedEncodingException {
         user.setPassword(randomAlphanumeric(10));
 
@@ -181,6 +186,18 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return null;
+    }
+
+    @Override
+    public User Block(User user) {
+        user.setStatus("Block");
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User Active(User user) {
+        user.setStatus("Active");
+        return userRepository.save(user);
     }
 
 }

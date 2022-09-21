@@ -41,6 +41,8 @@ public class UserDTO  {
     @Valid
     private RoleDTO role;
 
+    private String status;
+
     private Date createdAt;
 
     private Date updatedAt;
@@ -66,12 +68,28 @@ public class UserDTO  {
         this.role = role.toRoleDTO();
 
     }
+
+    public UserDTO(Long id, String username,String password, Role role,String status) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role.toRoleDTO();
+        this.status = status;
+    }
+
+    public UserDTO(Long id, String username, Role role,String status) {
+        this.id = id;
+        this.username = username;
+        this.role = role.toRoleDTO();
+        this.status = status;
+    }
     public User toUser() {
         return new User()
                 .setId(id)
                 .setUsername(username)
                 .setPassword(password)
                 .setRole(role.toRole())
+                .setStatus(status)
                 ;
 
     }

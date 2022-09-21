@@ -16,44 +16,54 @@
 
                             <input type="hidden" name="id">
 
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Tên sản phẩm:</label>
                                 <input type="text" class="form-control" oninput="page.commands.ChangeToSlug()" id="titleProductUp" name="titleProductUp">
                                 <input type="hidden" id="slugUP">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Mã SKU:</label>
-                                <input type="email" class="form-control" id="codeProductUp" name="codeProductUp">
-
+                            <div class="col-4">
+                                <div class="row" style="margin-left: 0px;">
+                                    <label style="margin-top: 5px">Mã sản phẩm/SKU</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3"><input maxlength="2" required name="LetterUp"  class="form-control" id="LetterUp" type="text"></div>
+                                    <div class="col-1"><span style="margin-left: -12px;
+                                                                        font-weight: bold;
+                                                                        margin-bottom: 0px;
+                                                                        position: relative;
+                                                                        font-size: 15px;
+                                                                        bottom: -9px;" >-31*</span></div>
+                                    <div class="col-8"> <input maxlength="8" type="number" required name="codeProductUp" id="codeProductUp" class="form-control"></div>
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Số lượng:</label>
                                 <input type="text" class="form-control" id="quantityProductUp" name="quantityProductUp">
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Giá tiền:</label>
                                 <input type="text" class="form-control" id="priceProductUp" name="priceProductUp">
 
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Kích thước:</label>
                                 <input type="text" class="form-control" id="sizeUp" name="sizeUp">
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Chất liệu:</label>
                                 <input type="text" class="form-control" id="materialUp" name="materialUp">
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Tag:</label>
                                 <input type="text" class="form-control" id="tagUp" name="tagUp">
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Trạng thái:</label>
                                 <select id="productStatus" class="form-control">
                                     <option>Đã Hết Hàng</option>
@@ -61,23 +71,27 @@
                                     <option>Còn Hàng</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Loại sản phẩm:</label>
                                 <select id="categoryUp" class="form-control">
                                 </select>
+
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 <label class="form-label">Màu sắc:</label>
                                 <select id="productColorUp" class="form-control">
                                 </select>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-8">
                                 <label class="form-label">Description:</label>
-                                <textarea id="descriptionProduct" class="form-control"></textarea>
+                                <textarea id="descriptionProduct" name="descriptionProduct" class="form-control"></textarea>
                             </div>
                             <div class="col-md-12">
                                 <div class="container mt-3 w-100">
-                                    <div class="card-header d-flex justify-content-between">
+                                    <div class="card-header d-flex justify-content-between" style=" width: 37%;
+                                                                                                    background: white;
+                                                                                                    margin-left: -30px;
+                                                                                                    margin-top: -35px;">
                                         <form action="#" class="form" id="form">
                                             <input
                                                     type="file"
@@ -86,10 +100,14 @@
                                                     id="image"
                                                     onchange="page.commands.image_select()"/>
 
-                                            <button class="btn btn-sm btn-danger"
+                                            <button class="btn btn-sm btn-danger" style="background-color: #253443;
+                                                                                border-color: #253443;
+                                                                                font-size: 16px;
+                                                                                font-weight: bold;
+                                                                                padding: 4px 10px 4px 10px;"
                                                     type="button"
                                                     onclick="document.getElementById('image').click()">
-                                                Upload Ảnh Sản Phẩm <i class="fa-solid fa-images"></i>
+                                                Choose Image <i class="fa-solid fa-images"></i>
                                             </button>
                                         </form>
                                     </div>

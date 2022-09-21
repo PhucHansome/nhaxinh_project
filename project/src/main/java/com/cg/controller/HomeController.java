@@ -510,5 +510,13 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("/user-account-dashboard")
+    public ModelAndView goUserDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/userDashboard/user-acount");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
 
 }

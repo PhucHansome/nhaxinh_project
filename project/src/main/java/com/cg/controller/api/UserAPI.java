@@ -24,6 +24,11 @@ public class UserAPI {
     @Autowired
     private AppUtils appUtils;
 
+    @GetMapping()
+    public ResponseEntity<?> getAllUser(){
+            return new ResponseEntity<>(userService.findAllUserDTOByDeletedIsFailse(), HttpStatus.OK);
+    }
+
     @GetMapping("/{userName}")
     public ResponseEntity<?> getUserByUserName(@PathVariable String userName){
         Optional<UserDTO> user = userService.findUserDTOByUsername(userName);
@@ -38,6 +43,15 @@ public class UserAPI {
         Optional<User> user = userService.findByUsername(userName);
         if (user.isPresent()){
             return new ResponseEntity<>(user.get().toUserDTO(), HttpStatus.OK);
+        }
+        throw new RuntimeException("khong co user");
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id){
+        Optional<UserDTO> user = userService.findUserDTOById(id);
+        if (user.isPresent()){
+            return new ResponseEntity<>(user.get().toUser(), HttpStatus.OK);
         }
         throw new RuntimeException("khong co user");
     }
@@ -59,6 +73,24 @@ public class UserAPI {
         }
         userService.saveAndMail(userDTO.toUser());
         return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    @PutMapping("/block")
+    public ResponseEntity<?> Block(@RequestBody UserDTO userDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        return new ResponseEntity<>(userService.Block(userDTO.toUser()).toUserDTO(),HttpStatus.ACCEPTED);
+
+    }
+
+    @PutMapping("/active")
+    public ResponseEntity<?> Active(@RequestBody UserDTO userDTO, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        return new ResponseEntity<>(userService.Active(userDTO.toUser()).toUserDTO(),HttpStatus.ACCEPTED);
 
     }
 }
