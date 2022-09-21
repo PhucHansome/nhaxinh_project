@@ -267,6 +267,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderDTO> findOderByCreateYear(int createYear) {
+        return orderRepository.findOderByCreateYear(createYear);
+    }
+
+    @Override
     public List<OrderDTO> findOderByCreateMonthYear(int createMonth, int createYear) {
         return orderRepository.findOderByCreateMonthYear(createMonth, createYear);
     }

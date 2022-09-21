@@ -114,31 +114,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                 "o.createdAt, " +
                 "o.statusOrder, " +
                 "o.orderDetail " +
-            " )" +
-            "FROM Order o " +
-            "where o.createdAt = :createDate" +
-            " ")
-    List<OrderDTO> findOderByCreateDate(@Param("createDate") Date createDate);
+                " )" +
+                "FROM Order o " +
+            "where FUNCTION('YEAR', o.createdAt) = :createYear " +
+                " ")
+    List<OrderDTO> findOderByCreateYear(@Param("createYear") int createYear);
 
-
-//    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
-//                "o.id, " +
-//                "o.description, " +
-//                "o.grandTotal , " +
-//                "o.quantity ," +
-//                "o.productCode," +
-//                "o.productImage, " +
-//                "o.productTitle, " +
-//                "o.customerInfo," +
-//                "o.createdAt, " +
-//                "o.statusOrder, " +
-//                "o.orderDetail " +
-//            " )" +
-//            "FROM Order o " +
-//            "where SUBSTRING(o.createdAt, 6, 7) = :createMonth " +
-//            "AND SUBSTRING(o.createdAt, 1, 4) = :createYear " +
-//            " ")
-//    List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
 
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
             "o.id, " +

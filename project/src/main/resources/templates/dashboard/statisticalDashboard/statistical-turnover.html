@@ -46,22 +46,32 @@
                 <div class="row">
 
                     <div class="col-5" style="margin-bottom: 25px">
-                        <label class="form-label">Chọn thời gian:</label>
-                        <select  class="form-select " type="button" name="selectTime" id="selectTime" style="width: 200px" >
-                        <option id="oneDate" name="oneDate">1 ngày</option>
-                        <option id="oneMonth" name="oneMonth">1 Tháng</option>
-                        <option id="oneYear" name="oneYear">1 Năm</option>
-                        </select>
+                        <label class="form-label">Chọn tháng :</label>
+<!--                        <select  class="form-select "  name="selectTime" id="selectTime" style="width: 200px" >-->
+<!--                        <option value="" > Tháng 1</option>-->
+<!--                        <option >Tháng 2</option>-->
+<!--                        <option >Tháng 3</option>-->
+<!--                        <option >Tháng 4</option>-->
+<!--                        <option >Tháng 5</option>-->
+<!--                        <option >Tháng 6</option>-->
+<!--                        <option >Tháng 7</option>-->
+<!--                        <option >Tháng 8</option>-->
+<!--                        <option >Tháng 9</option>-->
+<!--                        <option >Tháng 10</option>-->
+<!--                        <option >Tháng 11</option>-->
+<!--                        <option >Tháng 12</option>-->
+<!--                        </select>-->
+                        <input type="month" id="inMonth">
+<!--                        <button type="button" id="oneYear">Trong Năm</button>-->
                     </div>
-                    <div class="col-2" style="float: right;margin-bottom: 25px" >
-                        <button type="button" class="btn btn-success" id="selectDate">áp dụng</button>
-                    </div>
-
-
+<!--                    <div class="col-2" style="float: right;margin-bottom: 25px" >-->
+<!--                        <button type="button" class="btn btn-success" id="selectDate">áp dụng</button>-->
+<!--                    </div>-->
                 </div>
                 <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+
                         <div class="card-header">
-                            <h3 style="text-align: center;">Thống kê doanh thu sản phẩm</h3>
+                            <h3 style="text-align: center;">Thống kê doanh thu sản phẩm theo tháng</h3>
                         </div>
 
                         <canvas id="myChart" style="height: 500px;width: 1000px;"> </canvas>
@@ -69,10 +79,12 @@
                         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
                         <script>
+
                             var productGrand = [ ],productdateData = [],productQuantityData = [];
                             async  function dummyChart(){
                                 await  getDummyData()
                                 const ctx = document.getElementById('myChart').getContext('2d');
+                                const labels = Untils.months({count: 7});
 
                                 const chart = new Chart(ctx, {
                                     type:'bar',
@@ -110,9 +122,7 @@
                                 console.log(grand)
                                 productdateData = date
                                 productGrand = grand
-
                             }
-
                         </script>
                     </div>
 
@@ -148,9 +158,7 @@
     let page = {
         url: {
             getAllOrder: App.BASE_URL_ORDER,
-            // getAllOrderMax: App.BASE_URL_ORDER +"/max"
-
-
+            getStatistics: App.BASE_URL_STATISTICS,
         },
         element: {},
         loadData: {},
@@ -165,12 +173,17 @@
         }
     }
     page.element.selectTime = $("#selectTime:selected");
-    page.element.oneDate = $('#oneDate');
-    page.element.oneMonth = $('#oneMonth');
-    page.element.oneYear = $('#oneYear');
+    page.element.selectTimeText = $("#selectTime:selected").text();
+
+    // page.element.oneDate = $('#oneDate');
+    // page.element.oneMonth = $('#oneMonth');
+    // page.element.oneYear = $('#oneYear');
+
     page.element.buttonselectdate = $('#selectDate')
 
     let order = new Order();
+    // let  month  = order.createdAt
+    // let year =order.createdAt
     page.dialogs.commands.getAllOrder = (id) => {
         return $.ajax({
             "method": "GET",
@@ -181,19 +194,27 @@
         })
     }
 
-    $("#selectDate").on('click',function (){
-
-
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8092/api/statistics/" + ""
-        }).done((data) =>{
-            console.log(data)
-        }).fail((data) =>{
-            console.log(data)
+    page.dialogs.commands.getAllStatistics = (month,year) => {
+        return $.ajax({
+            "method": "GET",
+            "url": page.url.getStatistics + "/" + month +"/" + year
+        }).done((data) => {
+            console.log(data);
+            order = data;
         })
-    })
+    }
 
+            $("#inMonth").on('change',function (){
+                $.ajax({
+                type: "GET",
+                url: "http://localhost:8092/api/statistics/sales-statistics-by-month/"
+                    // url: "http://localhost:8092/api/order"
+            }).done((data) =>{
+                console.log(data)
+            }).fail((data) =>{
+                console.log(data)
+            })
+        })
 
 </script>
 </body>

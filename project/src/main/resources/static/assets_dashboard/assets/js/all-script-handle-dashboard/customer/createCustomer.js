@@ -121,8 +121,8 @@
     if (jqXHR.responseJSON.message) {
     let msg = jqXHR.responseJSON.message;
 
-    let str = `<ul>
-                              <li><label id="message-error" class="error" for="message">${msg}</label></li>
+    let str =               `<ul>
+                                <li><label id="message-error" class="error" for="message">${msg}</label></li>
                             </ul>
                             `;
 
@@ -130,18 +130,16 @@
 }
     else if (jqXHR.responseJSON) {
     $.each(jqXHR.responseJSON, (key, item) => {
-    let str = `<ul>
-                           <li> <label id="${key}-error" class="error" for="${key}">${item}</label></li>
-
+    let str =               `<ul>
+                                <li> <label id="${key}-error" class="error" for="${key}">${item}</label></li>
                               </ul>
-                             `
+                             `;
 
     $("#" + key).addClass("error");
 
     $('#showError').append(str)
 })
 }
-    // App.IziToast.showErrorAlert("Thêm mới user thất bại")
     console.log(jqXHR)
 })
 })

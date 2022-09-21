@@ -28,6 +28,6 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
     List<OrderDTO> findOrderDTOByUserNameByTime(String userName);
-
+    List<OrderDTO> findOderByCreateYear(@Param("createYear") int createYear);
 
 }

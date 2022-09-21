@@ -250,6 +250,7 @@ page.dialogs.loadData.getAllProduct = () => {
     })
 }
 
+
 page.commands.handleGoDetailProduct = () => {
     $(".view_Product").on("click", function () {
         let id = $(this).data("id");

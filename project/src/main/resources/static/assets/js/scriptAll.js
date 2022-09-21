@@ -15,6 +15,7 @@ class App {
     static BASE_URL_CARTITEM = this.DOMAIN + "/api/cart-item"
     static BASE_URL_USER_ABC = this.DOMAIN + "/api/user"
     static BASE_URL_ORDER = this.DOMAIN + "/api/order"
+    static BASE_URL_STATISTICS = this.DOMAIN + "/api/statistics"
     static BASE_URL_CLOUD_IMAGE = "https://res.cloudinary.com/apt-inventory/image/upload";
     static BASE_URL_CLOUD_VIDEO = "https://res.cloudinary.com/apt-inventory/video/upload";
     static BASE_SCALE_IMAGE = "c_limit,w_150,h_100,q_100";
@@ -169,7 +170,6 @@ class Category{
         this.name = name ;
         this.code = code;
     }
-
 }
 
 class ProductColor {

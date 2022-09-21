@@ -108,8 +108,9 @@ public class AuthRestController {
         System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
         Optional<UserDTO> userDTO = userService.findUserDTOByUsername(user.getUsername());
 
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
+        }
 
         if(!userDTO.isPresent()){
             throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");

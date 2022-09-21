@@ -25,20 +25,19 @@ public class StatisticsAPI {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("/sales-statistics-by-date/{date1}")
-    public ResponseEntity<?> getSalesStatistics(@PathVariable Date date1) {
-        Calendar calendar = new GregorianCalendar(/* remember about timezone! */);
-        calendar.setTime(date1);
-        date1 = calendar.getTime();
-        return new ResponseEntity<>(orderService.findOderByCreateBetween(new Date(), new Date()), HttpStatus.ACCEPTED);
-    }
-
 
     @GetMapping("/sales-statistics-by-month/{month}/{year}")
-    public ResponseEntity<?> getSalesStatistics(@PathVariable int month, @PathVariable int year) {
-
+    public ResponseEntity<?> getSalesStatisticsByMonth(@PathVariable int month, @PathVariable int year) {
         List<OrderDTO> orderDTOS = orderService.findOderByCreateMonthYear(month, year);
-
         return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
     }
+
+    @GetMapping("/sales-statistics-by-year/{year}")
+    public ResponseEntity<?> getSalesStatisticsByYear(@PathVariable int year) {
+        List<OrderDTO> orderDTOS = orderService.findOderByCreateYear(year);
+        return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
+    }
+
+
+
 }
