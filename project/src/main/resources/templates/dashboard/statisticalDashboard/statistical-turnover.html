@@ -45,88 +45,7 @@
                     </div>
                 </div>
                 <div class="row">
-<!--<<<<<<< HEAD-->
 
-<!--                    <div class="col-5" style="margin-bottom: 25px">-->
-<!--                        <label class="form-label">Chọn tháng :</label>-->
-<!--&lt;!&ndash;                        <select  class="form-select "  name="selectTime" id="selectTime" style="width: 200px" >&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option value="" > Tháng 1</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 2</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 3</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 4</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 5</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 6</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 7</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 8</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 9</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 10</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 11</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <option >Tháng 12</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </select>&ndash;&gt;-->
-<!--                        <input type="month" id="inMonth">-->
-<!--&lt;!&ndash;                        <button type="button" id="oneYear">Trong Năm</button>&ndash;&gt;-->
-<!--                    </div>-->
-<!--&lt;!&ndash;                    <div class="col-2" style="float: right;margin-bottom: 25px" >&ndash;&gt;-->
-<!--&lt;!&ndash;                        <button type="button" class="btn btn-success" id="selectDate">áp dụng</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                </div>-->
-<!--                <div class="row shadow-lg p-3 mb-5 bg-body rounded">-->
-
-<!--                        <div class="card-header">-->
-<!--                            <h3 style="text-align: center;">Thống kê doanh thu sản phẩm theo tháng</h3>-->
-<!--                        </div>-->
-
-<!--                        <canvas id="myChart" style="height: 500px;width: 1000px;"> </canvas>-->
-<!--                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
-<!--                        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>-->
-<!--                        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>-->
-<!--                        <script>-->
-
-<!--                            var productGrand = [ ],productdateData = [],productQuantityData = [];-->
-<!--                            async  function dummyChart(){-->
-<!--                                await  getDummyData()-->
-<!--                                const ctx = document.getElementById('myChart').getContext('2d');-->
-<!--                                const labels = Untils.months({count: 7});-->
-
-<!--                                const chart = new Chart(ctx, {-->
-<!--                                    type:'bar',-->
-<!--                                    data: {-->
-<!--                                        labels:productdateData,-->
-<!--                                        datasets: [{-->
-<!--                                            label: 'doanh thu ',-->
-<!--                                            backgroundColor: 'green',-->
-<!--                                            borderColor: 'rgb(75, 192, 192)',-->
-<!--                                            data: productGrand-->
-<!--                                        },-->
-
-<!--                                        ]-->
-<!--                                    },-->
-<!--                                    options: {-->
-<!--                                        tooltips: {-->
-<!--                                            mode: 'index',-->
-<!--                                        }-->
-<!--                                    }-->
-<!--                                })-->
-<!--                            }-->
-<!--                            dummyChart()-->
-<!--                            //Fetch Data from API-->
-<!--                            async  function getDummyData() {-->
-<!--                                const apiUrl = "http://localhost:8092/api/order/" ;-->
-<!--                                    // +"order-createAt/" ;-->
-<!--                                    // +page.element.date1 + "/"+ page.element.date2;-->
-<!--                                const response = await fetch(apiUrl)-->
-<!--                                console.log(response)-->
-<!--                                const barChatData = await response.json()-->
-<!--                                console.log(barChatData)-->
-<!--                                const date = barChatData.map((x) => x.createdAt)-->
-<!--                                console.log(date)-->
-<!--                                const grand = barChatData.map((x) => x.grandTotal)-->
-<!--                                console.log(grand)-->
-<!--                                productdateData = date-->
-<!--                                productGrand = grand-->
-<!--                            }-->
-<!--                        </script>-->
-<!--=======-->
                     <div class="col-md-6 col-xl-3">
                         <div th:object="${totalOrder}" class="card-box tilebox-one">
                             <i class="icon-chart float-right m-0 h2 text-muted"></i>
@@ -166,24 +85,29 @@
                 </div>
                 <div class="row shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-header">
-                        <h3 style="text-align: center;">Thống kê doanh thu sản phẩm</h3>
+                        <h3 style="text-align: center;">Thống kê doanh thu sản phẩm theo tháng</h3>
                     </div>
 
-                    <canvas id="myChart" style="height: 500px;width: 1000px;"></canvas>
+<!--                    <div><input type="month" id="idMonth"></div>-->
+
+                    <canvas id="myChart" style="height: 300px;width: 2500px;"></canvas>
+
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-                    <script>
-                        var productGrand = [], productdateData = [], productQuantityData = [];
+<!--                    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>-->
 
+                    <script>
+
+
+                        var productGrand = [], productdateData = []
                         async function dummyChart() {
                             await getDummyData()
                             const ctx = document.getElementById('myChart').getContext('2d');
-
                             const chart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: productdateData,
+                                    labels:productdateData,
                                     datasets: [{
                                         label: 'doanh thu ',
                                         backgroundColor: 'green',
@@ -196,7 +120,7 @@
                                 options: {
                                     tooltips: {
                                         mode: 'index',
-                                    }
+                                    },
                                 }
                             })
                         }
@@ -205,7 +129,7 @@
 
                         //Fetch Data from API
                         async function getDummyData() {
-                            const apiUrl = "http://localhost:8092/api/order/";
+                            const apiUrl = "http://localhost:8092/api/statistics/sales-statistics-by-month/09/2022" ;
                             // +"order-createAt/" ;
                             // +page.element.date1 + "/"+ page.element.date2;
                             const response = await fetch(apiUrl)
@@ -220,6 +144,7 @@
                             productGrand = grand
 
                         }
+
 
                     </script>
                 </div>
@@ -248,10 +173,13 @@
 
 <!-- Vendor js -->
 <th:block th:replace="/dashboard/layout/script/script::script"/>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
         integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <script>
     let page = {
@@ -271,12 +199,7 @@
             inputError: {}
         }
     }
-    page.element.selectTime = $("#selectTime:selected");
-    page.element.selectTimeText = $("#selectTime:selected").text();
 
-    // page.element.oneDate = $('#oneDate');
-    // page.element.oneMonth = $('#oneMonth');
-    // page.element.oneYear = $('#oneYear');
 
     page.element.buttonselectdate = $('#selectDate')
 
@@ -293,15 +216,6 @@
         })
     }
 
-// <<<<<<< HEAD
-//     page.dialogs.commands.getAllStatistics = (month,year) => {
-//         return $.ajax({
-//             "method": "GET",
-//             "url": page.url.getStatistics + "/" + month +"/" + year
-//         }).done((data) => {
-//             console.log(data);
-//             order = data;
-// =======
     $("#selectDate").on('click', function () {
         $.ajax({
             type: "GET",
@@ -313,17 +227,18 @@
         })
     })
 
-            $("#inMonth").on('change',function (){
-                $.ajax({
-                type: "GET",
-                url: "http://localhost:8092/api/statistics/sales-statistics-by-month/"
-                    // url: "http://localhost:8092/api/order"
-            }).done((data) =>{
-                console.log(data)
-            }).fail((data) =>{
-                console.log(data)
-            })
-        })
+        //     $("#inMonth").on('change',function (){
+        //         $.ajax({
+        //         type: "GET",
+        //         url: "http://localhost:8092/api/order"
+        //             // url: "http://localhost:8092/api/order"
+        //     }).done((data) =>{
+        //         console.log(data)
+        //     }).fail((data) =>{
+        //         console.log(data)
+        //     })
+        // })
+
 
 </script>
 </body>

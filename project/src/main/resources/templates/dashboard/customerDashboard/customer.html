@@ -85,9 +85,6 @@
                                     <th class="align-middle text-center">Số điện thoại</th>
                                     <th class="align-middle text-center">Tên khách hàng</th>
                                     <th class="align-middle text-center">Email</th>
-                                    <th class="align-middle text-center">Hành động</th>
-
-
                                 </tr>
                             </thead>
                                 <tbody>
@@ -98,11 +95,7 @@
                                     <td class="align-middle text-center"th:text="*{customerList.phone}"></td>
                                     <td class="align-middle text-center" ><a th:href="*{'/api/customerInfo/edit/'+ customerList.id}" th:text="*{customerList.fullName}"></a></td>
                                     <td class="align-middle text-center"th:text="*{customerList.userName}"></td>
-                                    <td class="text-center align-middle" style="width: 0;">
-                                        <button th:data-id="*{customerList.id}" type="button" style="position: relative;left: -25px;"class="btn btn-success float-right  btnActiveBlock" id="btn-active-block">
-                                            <i class="fas fa-lock-open"></i>
-                                        </button>
-                                    </td>
+
                                 </tr>
                                 </th:block>
                                 </tbody>
