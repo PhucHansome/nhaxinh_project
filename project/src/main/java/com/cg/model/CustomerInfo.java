@@ -35,9 +35,6 @@ public class CustomerInfo extends BaseEntity{
     private BigDecimal debt;
 
 
-    @OneToOne(targetEntity = Status.class,fetch = FetchType.EAGER)
-    private Status status;
-
     @OneToOne
     @JoinColumn(name = "location_region_id", nullable = false)
     private LocationRegion locationRegion;

@@ -102,6 +102,22 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "FROM Order o ")
     List<OrderDTO> findOrderDTO();
 
+    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.statusOrder, " +
+            "o.orderDetail " +
+            " )  " +
+            "FROM Order o where o.statusOrder = ?1")
+    List<OrderDTO> findOrderDTOByTop5Product(String order);
+
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
                 "o.id, " +
                 "o.description, " +
@@ -140,6 +156,26 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             " ")
     List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
 
+
+    @Query("SELECT new com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.statusOrder, " +
+            "o.orderDetail " +
+            " )" +
+            "FROM Order o " +
+            "where FUNCTION('MONTH', o.createdAt) = :createMonth " +
+            "AND FUNCTION('YEAR', o.createdAt) = :createYear " +
+            "AND o.statusOrder = :statusOrder " +
+            " ")
+    List<OrderDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear,@Param("statusOrder") String statusOrder );
 
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
             "o.id, " +

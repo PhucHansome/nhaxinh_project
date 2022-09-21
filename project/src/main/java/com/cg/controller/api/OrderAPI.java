@@ -53,7 +53,14 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 
-
+    @GetMapping("/order-top-5/")
+    public ResponseEntity<?> findAllOrderFortop5(){
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByTop5Product("Đã giao hàng thành công");
+        if (orderDTOS.isEmpty()){
+            throw new RuntimeException("Không tìm thấy order!");
+        }
+        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+    }
 
 
     @GetMapping("/order-detail/{id}")
@@ -149,6 +156,32 @@ public class OrderAPI {
         try {
             OrderDetail orderDetail =  orderDetailService.cancelOrder(orderDetailDTO.toOrderDetail(),username);
             return new ResponseEntity<>(orderDetail.toOrderDetailDTO(), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    @PutMapping("/order-detail/delivery/{username}")
+    public ResponseEntity<?> doDeliveryOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(orderDetailService.deliveryOrder(orderDetailDTO.toOrderDetail(),username), HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    @PutMapping("/order-detail/success-delivery/{username}")
+    public ResponseEntity<?> doSuccessDeliveryOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(orderDetailService.successDeliveryOrder(orderDetailDTO.toOrderDetail(),username), HttpStatus.ACCEPTED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -13,6 +13,7 @@ import com.cg.service.product.ProductService;
 import com.cg.service.productColor.ProductColorService;
 import com.cg.service.productmedia.ProductMediaService;
 import com.cg.service.user.IUserService;
+import org.apache.commons.codec.language.DaitchMokotoffSoundex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.springframework.web.servlet.function.ServerResponse.status;
 
@@ -257,6 +257,26 @@ public class HomeController {
 
         modelAndView.addObject("orderDTOCancel", orderDTOCancel);
 
+        List<OrderDTO> orderDTOSuccessDelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đã giao hàng thành công%");
+
+        for (OrderDTO orderDTO : orderDTOSuccessDelivery) {
+            String patternVNDCancel = ",###₫";
+            DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTOSuccessDelivery", orderDTOSuccessDelivery);
+
+        List<OrderDTO> orderDTODelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đang giao hàng%");
+
+        for (OrderDTO orderDTO : orderDTODelivery) {
+            String patternVNDCancel = ",###₫";
+            DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
+        }
+
+        modelAndView.addObject("orderDTODelivery", orderDTODelivery);
+
         return modelAndView;
     }
 
@@ -269,12 +289,12 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/home/home");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetail> orderDetails = orderDetailService.findAll();
+        List<OrderDetailDTO> orderDetails = orderDetailService.findAllOrderByCreatedAtDesc();
         modelAndView.addObject("order", orderDetails.size());
         List<CustomerInfoDTO> customerInfoDTOS = customerInfoService.findAllCustomerInfoDTOByDeletedIsFailse();
         modelAndView.addObject("customer", customerInfoDTOS.size());
         BigDecimal sum = BigDecimal.valueOf(0);
-        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đơn hàng đã duyệt");
+        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đã giao hàng thành công");
         for (OrderDetailDTO orderDetail : orderDetails1) {
             sum = orderDetail.getGrandTotal().add(sum);
         }
@@ -394,8 +414,8 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/orderDashboard/order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
-        List<OrderDetail> orderDetailDTOS = orderDetailService.findAll();
-        for (OrderDetail orderDetail : orderDetailDTOS) {
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+        for (OrderDetailDTO orderDetail : orderDetailDTOS) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
             orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));
@@ -429,6 +449,29 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/statisticalDashboard/statistical-turnover");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        List<OrderDetailDTO> orderDetails = orderDetailService.findAllOrderByCreatedAtDesc();
+        modelAndView.addObject("order", orderDetails.size());
+        BigDecimal sumTotalAllOrder = BigDecimal.valueOf(0);
+        List<OrderDetailDTO> orderDetails1 = orderDetailService.findAllOrderDetailByStatusWait("Đã giao hàng thành công");
+        for (OrderDetailDTO orderDetail : orderDetails1) {
+            sumTotalAllOrder = orderDetail.getGrandTotal().add(sumTotalAllOrder);
+        }
+
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        String sumFormat = decimalFormat.format(sumTotalAllOrder);
+        modelAndView.addObject("totalOrder", sumFormat);
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        List<OrderDetailDTO> OrderDetailDTOSMonth = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH)+1, gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+        modelAndView.addObject("orderDTOSThisMonth", OrderDetailDTOSMonth.size());
+        BigDecimal sumTotalAllOrderdetailMont = BigDecimal.valueOf(0);
+        for(OrderDetailDTO orderDetailDTO: OrderDetailDTOSMonth){
+            sumTotalAllOrderdetailMont = orderDetailDTO.getGrandTotal().add(sumTotalAllOrderdetailMont);
+        }
+        String patternVNDD = ",###₫";
+        DecimalFormat decimalFormatt = new DecimalFormat(patternVNDD);
+        String sumTotalAllOrderdetailMontFormat = decimalFormatt.format(sumTotalAllOrderdetailMont);
+        modelAndView.addObject("totalOrderMonth", sumTotalAllOrderdetailMontFormat);
         return modelAndView;
     }
 
@@ -447,8 +490,21 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/dashboard/customerDashboard/detail-customer");
         Optional<CustomerInfoDTO> customerInfo = customerInfoService.findUserDTOById(id);
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        customerInfo.get().setFormatDebt(decimalFormat.format(customerInfo.get().getDebt()));
         modelAndView.addObject("locationRegion", customerInfo.get().getLocationRegion());
-        modelAndView.addObject("customerInfo", customerInfo.get().toCustomerInfo());
+        modelAndView.addObject("customerInfo", customerInfo.get());
+        int sumSLOrder = 0;
+        BigDecimal sumOrderQuantity = BigDecimal.valueOf(0);
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserNameAndStatus("%" + customerInfo.get().getUserName() + "%", "%Đã giao hàng thành công%");
+        for (OrderDTO orderDTO : orderDTOS) {
+            sumSLOrder += 1;
+            sumOrderQuantity = sumOrderQuantity.add(orderDTO.getQuantity());
+        }
+        modelAndView.addObject("TongSLDonHang", sumSLOrder);
+        modelAndView.addObject("sumOrderQuantity", sumOrderQuantity);
+
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
         return modelAndView;

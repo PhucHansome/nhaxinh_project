@@ -1,90 +1,62 @@
-
-    let page = {
+let page = {
     url: {
-    GetOrderDetail: App.BASE_URL_ORDER + "/order-detail/findAll/",
-    GetOrderDetailBySTT: App.BASE_URL_ORDER + "/order-detail/status/",
-    GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
-    PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
-    PutOrderDetailCancel : App.BASE_URL_ORDER + "/order-detail/cancel/",
+        GetOrderDetail: App.BASE_URL_ORDER + "/order-detail/findAll/",
+        GetOrderDetailBySTT: App.BASE_URL_ORDER + "/order-detail/status/",
+        GetOrder: App.BASE_URL_ORDER + "/order/getOrder/",
+        GetOrderForTop5: App.BASE_URL_ORDER + "/order-top-5/",
+        PutOrderDetailCheckOut: App.BASE_URL_ORDER + "/order-detail/checkout/",
+        PutOrderDetailCancel: App.BASE_URL_ORDER + "/order-detail/cancel/",
         GetOrderByQuantityMax: App.BASE_URL_ORDER + "/order-max",
-},
+    },
     element: {},
     loadData: {},
     commands: {},
     dialogs: {
-    element: {},
-    loadData: {},
-    commands: {},
-    close: {},
-    alertDanger: {},
-    inputError: {}
-}
-}
-
-    let order = new Order();
-    let orderDetail = new OrderDetail();
-    let customerInfo = new CustomerInfo();
-    let locationRegion = new LocationRegion();
-
-
-
-    let product = new Product()
-
-    let tempRowCustomer = $.validator.format($.trim($('#tempRowCustomer').val().toString()));
-
-    function addRowCustomer() {
-        $('#tbListCustomers tbody').prepend($(tempRowCustomer(order.id, order.productTitle, order.statusOrder, order.quantity)));
+        element: {},
+        loadData: {},
+        commands: {},
+        close: {},
+        alertDanger: {},
+        inputError: {}
     }
+}
 
-    page.loadData.getAllCustomers = () => {
-        $.ajax({
-            "headers": {
-                "accept": "application/json",
-                "content-type": "application/json"
-            },
-            "type": "GET",
-            url: page.url.getAllOrder
-        })
-            .done((data) => {
-                $('#tbListCustomers tbody').html('');
+let order = new Order();
+let orderDetail = new OrderDetail();
+let customerInfo = new CustomerInfo();
+let locationRegion = new LocationRegion();
 
-                $.each(data, (i, item) => {
-                    product = item;
 
-                    addRowCustomer();
-                });
+let product = new Product()
 
-            })
-            .fail((jqXHR) => {
-                console.log(jqXHR);
-            })
-    }
+let tempRowCustomer = $.validator.format($.trim($('#tempRowCustomer').val().toString()));
+
+function addRowCustomer() {
+    $('#tbListCustomers tbody').prepend($(tempRowCustomer(product.id, product.productTitle, product.statusOrder, order.quantity)));
+}
 
 
 
-
-
-
-    page.element.first_content = $(".first_content")
-
-    page.commands.getAllorder = () =>{
+page.commands.getAllorder = () => {
     $.ajax({
         "method": "GET",
         "url": page.url.GetOrderDetail,
-    }).done((data)=>{
+    }).done((data) => {
         console.log(data);
         page.commands.getOrderDetailShowAlert()
-    }).fail((e)=>{
+    }).fail((e) => {
         console.log(e)
     })
 }
 
-    page.commands.getOrderDetailShowAlert = () => {
+page.commands.getOrderDetailShowAlert = () => {
     $.ajax({
         "method": "GET",
         "url": page.url.GetOrderDetailBySTT,
-    }).done((data)=>{
-        if (data.length === 0){return}
+    }).done((data) => {
+        if (data.length === 0) {
+            return
+        }
         $(".alertshow").html("")
         let str = `
             <div class="alert alert-danger fixed-bottom" role="alert">
@@ -94,19 +66,24 @@
         $(".alertshow").append(str)
     })
 }
-        page.commands.getOrderByQuantityMax = () =>{
-        $.ajax({
-            "method": "GET",
-            "url": page.url.GetOrderByQuantityMax,
-        }).done((data) =>{
-            addRowCustomer();
+
+page.element.top5Product = () =>{
+    $.ajax({
+        "method": "GET",
+        "url": page.url.GetOrderForTop5,
+    }).done((data) => {
+        console.log(data)
+        $.each(data, (i, item) =>{
+            order = item;
+
         })
-        }
+    })
+}
 
 
-    $(function(){
+$(() => {
     page.commands.getAllorder()
-        page.commands.getOrderByQuantityMax()
+    page.element.top5Product()
 })
 
 

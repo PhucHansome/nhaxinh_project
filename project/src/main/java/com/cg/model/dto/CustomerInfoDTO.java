@@ -38,6 +38,8 @@ public class CustomerInfoDTO implements Validator {
 
     private BigDecimal debt;
 
+    private String formatDebt;
+
     @Valid
     private LocationRegionDTO locationRegion;
 

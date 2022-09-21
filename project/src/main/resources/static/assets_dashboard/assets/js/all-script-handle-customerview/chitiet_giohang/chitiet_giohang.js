@@ -53,6 +53,7 @@ page.element.addressCus = $("#addressCus")
 page.element.contentCart = $('#contentCart')
 page.element.btnKeepBuyIng = $(".btn-keep-buying")
 page.element.btnTurnBackAccount = $(".btn-turn-back-account");
+page.element.frmBuyProduct = $("#frmBuyProduct")
 
 
 page.element.btnShowCart = $("#cart_")
@@ -253,64 +254,66 @@ page.commands.handleCloseCart = () => {
 
 page.commands.handleOrder = () => {
     page.element.btnOrder.on("click", () => {
-        page.commands.getUserByEmail().then(() => {
-            if ($("#payment_method_cod")[0].checked) {
-                if ($("#terms")[0].checked) {
+        page.element.frmBuyProduct.submit();
+    })
+}
 
-                    delete locationRegion.id;
-                    locationRegion.provinceId = $("#provinceCUS").val();
-                    locationRegion.provinceName = $("#provinceCUS :selected").text();
-                    locationRegion.districtId = $("#districtCus").val();
-                    locationRegion.districtName = $("#districtCus :selected").text();
-                    locationRegion.address = page.element.addressCus.val();
+page.commands.handleAfterClickOrder = () => {
+    page.commands.getUserByEmail().then(() => {
+        if ($("#payment_method_cod")[0].checked) {
+            if ($("#terms")[0].checked) {
+                delete locationRegion.id;
+                locationRegion.provinceId = $("#provinceCUS").val();
+                locationRegion.provinceName = $("#provinceCUS :selected").text();
+                locationRegion.districtId = $("#districtCus").val();
+                locationRegion.districtName = $("#districtCus :selected").text();
+                locationRegion.address = page.element.addressCus.val();
 
-                    delete customerInfo.id;
-                    customerInfo.userName = page.element.userNameLogin.text();
-                    customerInfo.fullName = page.element.fullNameCus.val();
-                    customerInfo.phone = page.element.phoneCus.val();
-                    customerInfo.debt = 0;
-                    customerInfo.locationRegion = locationRegion;
+                delete customerInfo.id;
+                customerInfo.userName = page.element.userNameLogin.text();
+                customerInfo.fullName = page.element.fullNameCus.val();
+                customerInfo.phone = page.element.phoneCus.val();
+                customerInfo.debt = 0;
+                customerInfo.locationRegion = locationRegion;
 
-                    delete cart.id;
-                    cart.content = page.element.contentCart.val();
-                    cart.user = user
-                    cart.customerInfo = customerInfo
-                    $(".temploadding").html("")
-                    let str = `
+                delete cart.id;
+                cart.content = page.element.contentCart.val();
+                cart.user = user
+                cart.customerInfo = customerInfo
+                $(".temploadding").html("")
+                let str = `
            <div class="loading">Loading&#8230;</div>
 
             `
-                    $(".temploadding").append(str)
-                    $.ajax({
-                        "headers": {
-                            "accept": "application/json",
-                            "content-type": "application/json"
-                        },
-                        "type": "POST",
-                        "url": page.url.PostCart,
-                        "data": JSON.stringify(cart)
-                    }).done((data) => {
-                        console.log(data);
-                        cart = data;
-                        page.commands.createOrder(cart);
-                    }).fail((e) => {
-                        $(".temploadding").html("")
-                    })
-                } else {
-                    App.IziToast.showErrorAlert("Bạn chưa Đồng ý với điều khoản của chúng tôi")
-                    return
-                }
-
+                $(".temploadding").append(str)
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "POST",
+                    "url": page.url.PostCart,
+                    "data": JSON.stringify(cart)
+                }).done((data) => {
+                    console.log(data);
+                    cart = data;
+                    page.commands.createOrder(cart);
+                }).fail((e) => {
+                    $(".temploadding").html("")
+                })
             } else {
-                App.IziToast.showErrorAlert("Bạn chưa chọn Phương thức thanh toán")
-                return
+                App.IziToast.showErrorAlert("Bạn chưa Đồng ý với điều khoản của chúng tôi")
+                return;
             }
-        })
+
+        } else {
+            App.IziToast.showErrorAlert("Bạn chưa chọn Phương thức thanh toán")
+            return;
+        }
     })
 }
 
 page.commands.createOrder = (cart) => {
-
     delete order.id;
     order.description = cart.content;
     order.grandTotal = 0;
@@ -334,6 +337,7 @@ page.commands.createOrder = (cart) => {
         $("#frm_leave_chitiet_giohang").modal("show")
     }).fail((jqXHR) => {
         console.log(jqXHR);
+        App.IziToast.showErrorAlert("Tạo đơn hàng thất bại!");
         $(".temploadding").html("")
         if (jqXHR.responseJSON) {
             $.each(jqXHR.responseJSON, (key, item) => {
@@ -478,6 +482,54 @@ page.element.btnKeepBuyIng.on("click", () => {
     window.location.href = "/";
 })
 
+page.element.frmBuyProduct.validate({
+    "rules": {
+        "fullNameCus": {
+            required: true,
+            minlength: 5,
+        },
+        "phoneCus": {
+            required: true,
+            number: true,
+            minlength: 9,
+        },
+        "emailCus": {
+            required: true,
+            email: true,
+            minlength: 3,
+            maxlength: 50,
+        },
+        "billing_address_1": {
+            required: true,
+            minlength: 6,
+        },
+    },
+    "messages": {
+        "fullNameCus": {
+            required: "Vui Lòng Nhập Họ và tên!",
+            minlength: $.validator.format("Họ và tên tối thiểu {0} ký tự!"),
+        },
+        "phoneCus": {
+            required: "Vui Lòng Nhập Số điện thoại!",
+            minlength: $.validator.format("Số điện thoại tối thiểu {0} ký tự!"),
+        },
+        "emailCus": {
+            required: "vui lòng nhập Email!",
+            email: "Vui lòng nhập đúng định dạng Email (VD: phucnguyen@gmail.com)!",
+            minlength: $.validator.format("Email tối thiểu {0} ký tự!"),
+            maxlength: $.validator.format("Email tối đa {0} ký tự"),
+        },
+        "billing_address_1": {
+            required: "Vui Lòng Nhập Địa chỉ!",
+            minlength: $.validator.format("Họ và tên tối thiểu {0} ký tự!"),
+        }
+    },
+    errorLabelContainer: "#frmBuyProduct .input.error",
+    submitHandler: function () {
+        page.commands.handleAfterClickOrder();
+    }
+})
+
 
 page.initializeControlEvent = () => {
     page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
@@ -493,7 +545,6 @@ page.initializeControlEvent = () => {
         $(".btn-order").addClass("d-none");
     }
 }
-
 
 $(() => {
     page.dialogs.commands.drawProvinces().then(() => {

@@ -45,8 +45,7 @@ public class CartItemServiceImpl implements CartItemService{
     public CartItem save(CartItem cartItem) {
         Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItem.getProduct().getId());
         if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
-            productDTO.get().setStatus("Đã Hết Hàng");
-            productRepository.save(productDTO.get().toProduct());
+            throw new DataInputException("Đã hết hàng!");
         }
         return cartItemRepository.save(cartItem);
     }
@@ -61,6 +60,9 @@ public class CartItemServiceImpl implements CartItemService{
         cartItem.setId(cartItem1.get().getId());
         cartItem.setQuantity(new BigDecimal(String.valueOf(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)))));
         cartItem.setGrandTotal(new BigDecimal(String.valueOf(cartItem.getQuantity().multiply(cartItem.getPrice()))));
+        if(productDTO.get().getQuantity().compareTo(cartItem.getQuantity()) < 0){
+            throw new DataInputException("Đã hết hàng!");
+        }
         return cartItemRepository.save(cartItem);
     }
 
@@ -111,8 +113,13 @@ public class CartItemServiceImpl implements CartItemService{
         if(new BigDecimal(5).equals(cartItem.getQuantity())){
             throw new DataInputException("Số lượng không lớn hơn 5 Sản phẩm!");
         }
+        Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItem.getProduct().getId());
+
         cartItem.setQuantity(cartItem.getQuantity().add(BigDecimal.valueOf(1)));
         cartItem.setGrandTotal(cartItem.getGrandTotal().add(cartItem.getPrice()));
+        if(productDTO.get().getQuantity().compareTo(cartItem.getQuantity()) < 0){
+            throw new DataInputException("Đã hết hàng!");
+        }
         return cartItemRepository.save(cartItem);
     }
 }

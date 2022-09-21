@@ -1065,14 +1065,15 @@
 
                     <div class="row pt-0 " style="bottom: -20px;position: relative;">
                         <div class="large-7 col  ">
-
-
+                            <form id="frmBuyProduct" method="post">
+                                <fieldset>
                             <div id="customer_details" style="width: 95%;border-bottom: 1px solid #00000047;margin-bottom: 25px;">
                                 <div class="clear">
                                     <div class="woocommerce-billing-fields">
 
                                         <h3>Địa chỉ giao hàng</h3>
 
+                                        <div class="alert alert-danger err d-none"></div>
 
                                         <div class="woocommerce-billing-fields__field-wrapper">
                                             <p class="form-row form-row-wide validate-required"
@@ -1174,6 +1175,8 @@
                             </div>
                             <div class="temploadding">
                             </div>
+                                </fieldset>
+                            </form>
 
                             <h3>Phương thức thanh toán</h3>
                             <div class="wc_payment_methods payment_methods methods">

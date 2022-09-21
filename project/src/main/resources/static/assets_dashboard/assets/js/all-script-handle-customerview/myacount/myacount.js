@@ -53,12 +53,14 @@ page.element.newPasswordCon = $("#newPasswordCon")
 page.element.listOrder = $(".listOrder tbody")
 page.element.totail_spending = $(".total_spending")
 page.element.resuilt_search = $(".resuilt_search")
+page.element.frmUpdateCustomer = $("#frmUpdateCustomer")
 
 page.element.InputQuerySearch = $("#querySearch")
 
 page.element.container_infomation = $(".information")
 page.element.pagePassword = $(".changePassword")
 page.element.pageOrder = $(".order")
+
 
 page.element.btnSavePasword = $(".btn-Save-PassWord")
 page.element.btnChangePagePassword = $(".btn-get-page-password")
@@ -72,13 +74,17 @@ page.element.each_image = $(".each_image")
 page.element.single_add_to_cart_button = $(".btn-add-to-cart")
 page.element.btnBuy = $(".btn-buy")
 page.element.listAllOrder = $(".eachOrder")
-page.element.listWattingOrder  = $(".eachOrderWatting")
+page.element.listWattingOrder = $(".eachOrderWatting")
 page.element.listCancelOrder = $(".eachOrderCancel")
 page.element.listApplyOrder = $(".eachOrderApply")
+page.element.listPageDelivery = $(".eachOrderDelivery")
+page.element.listPageSuccessDelivery = $(".eachOrderSuccessDelivery")
+page.element.pageSuccessDelivery = $(".all-success-delivery-my-acount")
+page.element.pageDelivery = $(".all-delivery-my-acount")
 
 page.dialogs.element.btnAllOrder = $(".all-order-my-acount")
 page.dialogs.element.btnWattingOrder = $(".all-waiting-my-acount")
-page.dialogs.element.btnApplyOrder =  $(".all-apply-my-acount")
+page.dialogs.element.btnApplyOrder = $(".all-apply-my-acount")
 page.dialogs.element.btnCancelOrder = $(".all-Cancelled-my-acount")
 
 let cart_item_product = jQuery.validator.format($.trim(page.element.CaritemProduct.val().toString()));
@@ -306,34 +312,38 @@ page.commands.handleCloseCart = () => {
 
 page.commands.handleUpdateCustomer = () => {
     page.element.btnUpdate.on("click", () => {
-        delete locationRegion.id;
-        locationRegion.provinceId = $("#provinceCUS").val();
-        locationRegion.provinceName = $("#provinceCUS :selected").text();
-        locationRegion.districtId = $("#districtCus").val();
-        locationRegion.districtName = $("#districtCus :selected").text();
-        locationRegion.address = page.element.addressCus.val();
-
-        customerInfo.id = page.element.idCustomer.val();
-        customerInfo.userName = page.element.userNameLogin.text();
-        customerInfo.fullName = page.element.fullNameCus.val();
-        customerInfo.debt = page.element.debtCustomer.val()
-        customerInfo.phone = page.element.phoneCus.val();
-        customerInfo.locationRegion = locationRegion;
-        $.ajax({
-            "headers": {
-                "accept": "application/json",
-                "content-type": "application/json"
-            },
-            "type": "PUT",
-            "url": page.url.PutCustomer,
-            "data": JSON.stringify(customerInfo)
-        }).done((data) => {
-            App.IziToast.showSuccessAlert("Bạn đã Cập Nhật thành công")
-        }).fail((e) => {
-            App.IziToast.showSuccessAlert("Bạn đã Cập Nhật Thất Bại")
-        })
-
+        page.element.frmUpdateCustomer.submit();
     })
+}
+
+page.element.afterClickUpdateInformation = () => {
+    delete locationRegion.id;
+    locationRegion.provinceId = $("#provinceCUS").val();
+    locationRegion.provinceName = $("#provinceCUS :selected").text();
+    locationRegion.districtId = $("#districtCus").val();
+    locationRegion.districtName = $("#districtCus :selected").text();
+    locationRegion.address = page.element.addressCus.val();
+
+    customerInfo.id = page.element.idCustomer.val();
+    customerInfo.userName = page.element.userNameLogin.text();
+    customerInfo.fullName = page.element.fullNameCus.val();
+    customerInfo.debt = page.element.debtCustomer.val()
+    customerInfo.phone = page.element.phoneCus.val();
+    customerInfo.locationRegion = locationRegion;
+    $.ajax({
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json"
+        },
+        "type": "PUT",
+        "url": page.url.PutCustomer,
+        "data": JSON.stringify(customerInfo)
+    }).done((data) => {
+        App.IziToast.showSuccessAlert("Bạn đã Cập Nhật thành công")
+    }).fail((e) => {
+        App.IziToast.showSuccessAlert("Bạn đã Cập Nhật Thất Bại")
+    })
+
 }
 
 page.commands.handleChangPagePassword = () => {
@@ -369,6 +379,8 @@ page.commands.handleChangPageOrder = () => {
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -378,29 +390,44 @@ page.commands.handleChangPageAllOrder = () => {
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listWattingOrder.addClass("d-none")
         page.element.listCancelOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listAllOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
 page.commands.handleChangPageWattingOrder = () => {
     page.dialogs.element.btnWattingOrder.on("click", () => {
-        page.dialogs.element.btnWattingOrder.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnWattingOrder.css({
+            'border-bottom': '2px solid black',
+            'box-shadow': '-0px 2px 2px 0px'
+        });
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listCancelOrder.addClass("d-none")
         page.element.listAllOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listWattingOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageApplyOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -410,13 +437,19 @@ page.commands.handleChangPageApplyOrder = () => {
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listAllOrder.addClass("d-none")
         page.element.listWattingOrder.addClass("d-none")
         page.element.listCancelOrder.addClass("d-none")
         page.element.listApplyOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
@@ -426,17 +459,62 @@ page.commands.handleChangPageCancelledOrder = () => {
         page.dialogs.element.btnAllOrder.removeAttr("style");
         page.dialogs.element.btnWattingOrder.removeAttr("style");
         page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style")
+        page.element.pageSuccessDelivery.removeAttr("style");
         page.element.listAllOrder.addClass("d-none")
         page.element.listWattingOrder.addClass("d-none")
         page.element.listApplyOrder.addClass("d-none")
         page.element.listCancelOrder.removeClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.addClass("d-none");
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageApplyOrder()
+        page.commands.handleChangPageSuccessDeliveryOrder()
+        page.commands.handleChangPageDeliveryOrder()
     })
 }
 
+page.commands.handleChangPageDeliveryOrder = () => {
+    page.element.pageDelivery.on("click", () => {
+        page.element.pageDelivery.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageSuccessDelivery.removeAttr("style");
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listPageSuccessDelivery.addClass("d-none");
+        page.element.listPageDelivery.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageCancelledOrder()
+    })
+}
 
+page.commands.handleChangPageSuccessDeliveryOrder = () => {
+    page.element.pageSuccessDelivery.on("click", () => {
+        page.element.pageSuccessDelivery.css({'border-bottom': '2px solid black', 'box-shadow': '-0px 2px 2px 0px'});
+        page.dialogs.element.btnAllOrder.removeAttr("style");
+        page.dialogs.element.btnWattingOrder.removeAttr("style");
+        page.dialogs.element.btnCancelOrder.removeAttr("style");
+        page.dialogs.element.btnApplyOrder.removeAttr("style");
+        page.element.pageDelivery.removeAttr("style");
+        page.element.listApplyOrder.addClass("d-none")
+        page.element.listAllOrder.addClass("d-none")
+        page.element.listWattingOrder.addClass("d-none")
+        page.element.listCancelOrder.addClass("d-none")
+        page.element.listPageDelivery.addClass("d-none");
+        page.element.listPageSuccessDelivery.removeClass("d-none")
+        page.commands.handleChangPageAllOrder()
+        page.commands.handleChangPageWattingOrder()
+        page.commands.handleChangPageCancelledOrder()
+        page.commands.handleChangPageDeliveryOrder()
+    })
+}
 
 page.commands.handleSavePassword = () => {
     page.element.btnSavePasword.on("click", function () {
@@ -538,6 +616,56 @@ page.commands.getCustomerByUserName = () => {
     })
 }
 
+page.element.frmUpdateCustomer.validate({
+    "rules": {
+        "billing_first_name": {
+            required: true,
+            minlength: 5,
+        },
+        "emailCus": {
+            required: true,
+            email: true,
+            minlength: 9,
+        },
+        "billing_phone": {
+            required: true,
+            number: true,
+            minlength: 3,
+            maxlength: 50,
+        },
+        "billing_address_1": {
+            required: true,
+            minlength: 6,
+        },
+    },
+    "messages": {
+        "billing_first_name": {
+            required: "Vui Lòng Nhập Họ và tên!",
+            minlength: $.validator.format("Họ và tên tối thiểu {0} ký tự!"),
+        },
+
+        "emailCus": {
+            required: "vui lòng nhập Email!",
+            email: "Vui lòng nhập đúng định dạng Email (VD: phucnguyen@gmail.com)!",
+            minlength: $.validator.format("Email tối thiểu {0} ký tự!"),
+            maxlength: $.validator.format("Email tối đa {0} ký tự"),
+        },
+
+        "billing_phone": {
+            required: "Vui Lòng Nhập Số điện thoại!",
+            minlength: $.validator.format("Số điện thoại tối thiểu {0} ký tự!"),
+        },
+
+        "billing_address_1": {
+            required: "Vui Lòng Nhập Địa chỉ!",
+            minlength: $.validator.format("Họ và tên tối thiểu {0} ký tự!"),
+        }
+    },
+    errorLabelContainer: "#frmBuyProduct .input.error",
+    submitHandler: function () {
+        page.element.afterClickUpdateInformation();
+    }
+})
 page.initializeControlEvent = () => {
     page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
     page.commands.handleShowCart();
