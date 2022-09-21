@@ -25,8 +25,13 @@ public interface IUserService extends IGeneralService<User>, UserDetailsService 
 
     Optional<UserDTO> findUserDTOById(Long id);
 
+    Optional<UserDTO> findUserDTOByUserNameByStatus(String userName);
+
     User saveAndMail(User user ) throws MessagingException, UnsupportedEncodingException;
 
+    User Block(User user);
+
+    User Active(User user);
 //    boolean existsByEmailAndIdIsNot(String email,Long id);
 
 }

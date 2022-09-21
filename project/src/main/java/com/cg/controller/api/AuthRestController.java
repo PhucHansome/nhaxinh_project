@@ -52,7 +52,7 @@ public class AuthRestController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerRegister(@Valid @RequestBody UserDTO userDTO, BindingResult bindingResult) {
-
+        userDTO.setStatus("Active");
 
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
@@ -106,7 +106,11 @@ public class AuthRestController {
         System.out.println("Email không hợp lệ");
         //System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
         System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
-        Optional<UserDTO> userDTO = userService.findUserDTOByUsername(user.getUsername());
+        Optional<UserDTO> userDTO = userService.findUserDTOByUserNameByStatus(user.getUsername());
+
+        if (userDTO.get().getStatus().contains("Block")){
+            throw new DataInputException("Tài khoản của bạn đã bị khóa");
+        }
 
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);

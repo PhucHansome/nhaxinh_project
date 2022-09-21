@@ -31,6 +31,9 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
@@ -50,7 +53,9 @@ public class User extends BaseEntity {
                 .setId(id)
                 .setUsername(username)
                 .setPassword(password)
-                .setRole(role.toRoleDTO());
+                .setRole(role.toRoleDTO())
+                .setStatus(status)
+                ;
 
     }
 

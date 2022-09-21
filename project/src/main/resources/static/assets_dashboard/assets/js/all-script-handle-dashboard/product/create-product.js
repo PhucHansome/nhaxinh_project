@@ -105,7 +105,7 @@ page.commands.handleCreateProduct = () => {
 }
 
 page.commands.afterValidationCreateProduct = () => {
-    formData.append("code",page.element.LetterUpCase.val() +"-31*"+ page.element.codeProduct.val()   );
+    formData.append("code", page.element.LetterUpCase.val() + "-31*" + page.element.codeProduct.val());
     formData.append("title", page.element.productName.val());
     formData.append("price", page.element.priceProduct.val());
     formData.append("quantity", page.element.quantityProduct.val());
@@ -320,7 +320,7 @@ page.element.frmCreateProduct.validate({
             minlength: $.validator.format(" Title sản phẩm tối thiểu {0} ký tự!"),
         },
         "quantityProduct": {
-            required:  "Vui Lòng Nhập số lượng sản phẩm!",
+            required: "Vui Lòng Nhập số lượng sản phẩm!",
             maxlength: $.validator.format(" số lượng sản phẩm tối đa {0} sản phẩm!"),
         },
         "priceProduct": {
@@ -336,36 +336,38 @@ page.element.frmCreateProduct.validate({
 
         "codeProduct": {
             required: "Vui Lòng Nhập Ký tự sau SKU (Yêu cầu chữ số)!",
-            minlength:  $.validator.format("Sau mã SKU là 8 chữ số"),
+            minlength: $.validator.format("Sau mã SKU là 8 chữ số"),
         },
         "productSize": {
             required: "Vui Lòng Nhập kích thước sản phẩm!",
-            minlength:  $.validator.format("tối thiểu {0} kí tự"),
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
         },
         "materialProduct": {
             required: "Vui Lòng Nhập Vật liệu sản phẩm",
-            minlength:  $.validator.format("tối thiểu {0} kí tự"),
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
 
         },
         "TagProduct": {
             required: "Vui Lòng Nhập Tag sản phẩm",
-            minlength:  $.validator.format("tối thiểu {0} kí tự"),
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
         },
         "descriptionProduct": {
             required: "Vui Lòng Nhập Mô tả sản phẩm",
-            minlength:  $.validator.format("tối thiểu {0} kí tự"),
+            minlength: $.validator.format("tối thiểu {0} kí tự"),
         },
     },
-    errorLabelContainer: "#frmBuyProduct .input.error",
+    errorLabelContainer: "#frmCreateProduct .input.error",
     submitHandler: function () {
         page.commands.afterValidationCreateProduct();
     }
 })
 
-
-$(function () {
+page.initializeControlEvent = () => {
     page.dialogs.loadData.drawListCategory();
     page.dialogs.loadData.drawListProductColor();
     page.commands.formatNumber();
+}
 
+$(()=> {
+    page.initializeControlEvent()
 })

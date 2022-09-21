@@ -125,6 +125,11 @@
             transform: rotate(360deg);
         }
     }
+    .error{
+        color: red !important;
+        font-size: 15px !important;
+        font-weight: bold !important;
+    }
 </style>
 <body>
 
@@ -291,7 +296,10 @@
 <th:block th:replace="/dashboard/productDashboard/render_update_finish_row1::render_update_finish_row1"/>
 
 <th:block th:replace="/dashboard/layout/script/script::script"/>
-
+<!--<script>-->
+<!--    $("#productColorUp").select2();-->
+<!--    $("#categoryUp").select2();-->
+<!--</script>-->
 <script src="/assets_dashboard/assets/js/all-script-handle-dashboard/product/detail-product.js"></script>
 
 </body>

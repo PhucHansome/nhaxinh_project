@@ -39,6 +39,7 @@ page.element.resuilt_search = $(".resuilt_search")
 page.element.container_line_resuilt_search = $("#resuilt_query_search")
 page.element.resuilt_product_Seach_In_query = $(".product_Seach_In_query")
 page.element.SameProduct = $("#SameProduct")
+page.element.Sku = $(".sku")
 
 page.element.InputQuerySearch = $("#querySearch")
 page.element.btnShowCart = $("#cart_")
@@ -418,6 +419,9 @@ page.commands.getSearchResuilt = () => {
                 return
             }
             tag = item
+            if (tag.product.code === page.element.Sku.text()){
+                return;
+            }
             page.commands.addCartBotLine()
         })
         page.commands.handleGoDetailProduct()

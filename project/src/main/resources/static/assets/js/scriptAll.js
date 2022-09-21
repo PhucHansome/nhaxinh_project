@@ -134,11 +134,12 @@ class Role{
 }
 
 class User {
-    constructor(id ,username,password,role) {
+    constructor(id ,username,password,role,status) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.status = status;
     }
 
 }
@@ -206,9 +207,10 @@ class Product{
 }
 
 class Tag {
-    constructor(id, name) {
+    constructor(id, name, product) {
         this.id = id;
         this.name = name;
+        this.product = product;
     }
 
 }
