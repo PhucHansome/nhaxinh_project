@@ -45,10 +45,10 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findById(id);
     }
 
-//    @Override
-//    public boolean existsByEmailAndIdIsNot(String email, Long id) {
-//        return userRepository.existsByEmailAndIdIsNot(email,id);
-//    }
+    @Override
+    public boolean existsByEmailAndIdIsNot(String email, Long id) {
+        return userRepository.existsByEmailAndIdIsNot(email,id);
+    }
 
     @Override
     public User getById(Long id) {

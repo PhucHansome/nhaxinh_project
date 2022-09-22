@@ -77,9 +77,7 @@ public class AuthRestController {
             User newUser = null;
             try {
                 newUser = userService.save(userDTO.toUser());
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
+            } catch (MessagingException | UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
 

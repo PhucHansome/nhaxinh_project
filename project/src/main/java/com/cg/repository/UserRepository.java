@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
-//    boolean existsByEmailAndIdIsNot(String emai, Long id);
+    boolean existsByEmailAndIdIsNot(String emai, Long id);
 
     @Query("SELECT NEW com.cg.model.dto.UserDTO (u.id, u.username) FROM User u WHERE u.username = ?1")
     Optional<UserDTO> findUserDTOByUsername(String username);
