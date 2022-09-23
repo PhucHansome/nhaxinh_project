@@ -104,18 +104,23 @@ public class AuthRestController {
         System.out.println("Email không hợp lệ");
         //System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
         System.out.println(messageSource.getMessage("model.userdto.email.invalid",null, new Locale("vi")));
-        Optional<UserDTO> userDTO = userService.findUserDTOByUserNameByStatus(user.getUsername());
+        try {
+            Optional<UserDTO> userDTO = userService.findUserDTOByUserNameByStatus(user.getUsername());
+            if (userDTO.get().getStatus().contains("Block")){
+                throw new DataInputException("Tài khoản của bạn đã bị khóa");
+            }
 
-        if (userDTO.get().getStatus().contains("Block")){
-            throw new DataInputException("Tài khoản của bạn đã bị khóa");
+            if(!userDTO.isPresent()){
+                throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");
+            }
+        }catch (Exception e){
+            throw  new DataInputException("Email không tồn tại");
         }
+
 
         if (bindingResult.hasErrors())
             return appUtils.mapErrorToResponse(bindingResult);
 
-        if(!userDTO.isPresent()){
-            throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");
-        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));

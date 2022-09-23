@@ -1,6 +1,7 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.DataInputException;
 import com.cg.model.OrderDetail;
 import com.cg.model.dto.OrderDTO;
 import com.cg.model.dto.OrderDetailDTO;
@@ -71,6 +72,16 @@ public class OrderAPI {
         }
         return new ResponseEntity<>(orderDetailDTOS.get().toOrderDetailDTO(),HttpStatus.OK);
     }
+
+    @GetMapping("/order-detail/user-name/{username}")
+    public ResponseEntity<?> findAllOrderDetailByOrder(@PathVariable String username){
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOrderDetailByUserName(username);
+        if(orderDetailDTOS.isEmpty()){
+            throw new DataInputException("Rỗng");
+        }
+        return new ResponseEntity<>(orderDetailDTOS,HttpStatus.OK);
+    }
+
 
     @GetMapping("/order-detail/findAll/")
     public ResponseEntity<?> findAllOrderDetail(){

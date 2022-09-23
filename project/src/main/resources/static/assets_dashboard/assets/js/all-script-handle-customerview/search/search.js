@@ -377,6 +377,12 @@ page.loadData.drawSelectCategory = () => {
         page.element.selectCategories.html("")
         $.each(data, (i, item) => {
             category = item;
+            if (i === 0){
+                let str = `
+                    <option class="filter-item" value="null">All</option>
+                    `
+                page.element.selectCategories.append(str)
+            }
             let str = `
                     <option class="filter-item" value="${category.name}">${category.name}</option>
                     `
@@ -397,6 +403,12 @@ page.loadData.drawSelectColor = () => {
         page.element.selectColor.html("")
         $.each(data, (i, item) => {
             productColor = item;
+            if (i === 0){
+                let str = `
+                    <option class="filter-item" value="null">All</option>
+                    `
+                page.element.selectColor.append(str)
+            }
             let str = `
                     <option class="filter-item" value="${productColor.color}">${productColor.color}</option>
                     `

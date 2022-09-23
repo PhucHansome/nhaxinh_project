@@ -5,10 +5,14 @@ let page = {
         GetCartItems: App.BASE_URL_CARTITEM + "/" + $("#EmailLogin").text(),
         GetCustomer: App.BASE_URL_CUSTOMERINFO + "/username/" + $("#EmailLogin").text(),
         GetOrder: App.BASE_URL_ORDER + "/" + $("#EmailLogin").text(),
+        GetOrderDetailByUsername: App.BASE_URL_ORDER + "/order-detail/user-name/",
+        GetOrderDetailById: App.BASE_URL_ORDER + "/order-detail/",
         GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
         GetCustomers: App.BASE_URL_CUSTOMERINFO,
         PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
         PutUser: App.BASE_URL_USER_ABC + "/change-password",
+        PutOrderDetailCanel: App.BASE_URL_ORDER + "/order-detail/cancel/" + $("#EmailLogin").text(),
+        PutOrderDetailSuccessDeliveryy: App.BASE_URL_ORDER + "/order-detail/success-delivery/" + $("#EmailLogin").text(),
         DeleteCartItem: App.BASE_URL_CARTITEM
 
     },
@@ -30,6 +34,7 @@ let locationRegion = new LocationRegion();
 let customerInfo = new CustomerInfo();
 let user = new User();
 let order = new Order();
+let orderDetail = new OrderDetail();
 
 page.element.cart_product = $("#cart_product_view")
 page.element.cart_cartBotLine = $("#product-grid-1457246667")
@@ -143,6 +148,15 @@ page.commands.getUserByUsername = () => {
         user = data;
     })
 
+}
+
+page.commands.getOrderDetalById = (id) => {
+    return $.ajax({
+        "type": "GET",
+        "url": page.url.GetOrderDetailById + id,
+    }).done((data) => {
+        orderDetail = data;
+    })
 }
 
 page.commands.getCustomerInfoByEmail = () => {
@@ -381,6 +395,8 @@ page.commands.handleChangPageOrder = () => {
         page.commands.handleChangPageCancelledOrder()
         page.commands.handleChangPageSuccessDeliveryOrder()
         page.commands.handleChangPageDeliveryOrder()
+        page.commands.changeStatusOrderCancel()
+        page.commands.changeStatusOrderSuccessDelivery()
     })
 }
 
@@ -403,6 +419,8 @@ page.commands.handleChangPageAllOrder = () => {
         page.commands.handleChangPageCancelledOrder()
         page.commands.handleChangPageSuccessDeliveryOrder()
         page.commands.handleChangPageDeliveryOrder()
+        page.commands.changeStatusOrderCancel()
+        page.commands.changeStatusOrderSuccessDelivery()
     })
 }
 
@@ -428,6 +446,7 @@ page.commands.handleChangPageWattingOrder = () => {
         page.commands.handleChangPageCancelledOrder()
         page.commands.handleChangPageSuccessDeliveryOrder()
         page.commands.handleChangPageDeliveryOrder()
+        page.commands.changeStatusOrderCancel()
     })
 }
 
@@ -492,6 +511,7 @@ page.commands.handleChangPageDeliveryOrder = () => {
         page.commands.handleChangPageAllOrder()
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageCancelledOrder()
+        page.commands.changeStatusOrderSuccessDelivery()
     })
 }
 
@@ -513,6 +533,7 @@ page.commands.handleChangPageSuccessDeliveryOrder = () => {
         page.commands.handleChangPageWattingOrder()
         page.commands.handleChangPageCancelledOrder()
         page.commands.handleChangPageDeliveryOrder()
+
     })
 }
 
@@ -616,6 +637,84 @@ page.commands.getCustomerByUserName = () => {
     })
 }
 
+page.commands.changeStatusOrderCancel = () => {
+    $(".cancel-orderr").on("click", function () {
+        Swal.fire({
+            title: 'Bạn có muốn Hủy đơn không?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đúng, Tôi muốn Hủy!'
+        }).then((resuilt) => {
+            if (resuilt.isConfirmed) {
+                let id = $(this).data("id")
+                page.commands.getOrderDetalById(id).then(function () {
+                    console.log(orderDetail);
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "type": "PUT",
+                        "url": page.url.PutOrderDetailCanel,
+                        "data": JSON.stringify(orderDetail)
+                    }).done((data) => {
+                        console.log(data)
+                        orderDetail = data;
+                        App.SweetAlert.showSuccessAlert("Bạn đã hủy đơn thành công")
+                        setTimeout(function () {
+                            window.location.href = "/account";
+                        }, 1500);
+
+                    }).fail((e) => {
+                        console.log(e)
+                    })
+                })
+            }
+        })
+    })
+}
+
+page.commands.changeStatusOrderSuccessDelivery = () => {
+    $(".success-orderr").on("click", function () {
+        Swal.fire({
+            title: 'Bạn đã nhận được đơn hàng phải không?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đúng, Tôi đã nhận được hàng!'
+        }).then((resuilt) => {
+            if (resuilt.isConfirmed) {
+                let id = $(this).data("id")
+                page.commands.getOrderDetalById(id).then(function () {
+                    console.log(orderDetail);
+                    $.ajax({
+                        "headers": {
+                            "accept": "application/json",
+                            "content-type": "application/json"
+                        },
+                        "type": "PUT",
+                        "url": page.url.PutOrderDetailSuccessDeliveryy,
+                        "data": JSON.stringify(orderDetail)
+                    }).done((data) => {
+                        console.log(data)
+                        orderDetail = data;
+                        App.SweetAlert.showSuccessAlert("Bạn đã Nhận hàng thành công!")
+                        setTimeout(function () {
+                            window.location.href = "/account";
+                        }, 1500);
+                    }).fail((e) => {
+                        console.log(e)
+                    })
+                })
+            }
+        })
+
+    })
+}
+
 page.element.frmUpdateCustomer.validate({
     "rules": {
         "billing_first_name": {
@@ -666,6 +765,7 @@ page.element.frmUpdateCustomer.validate({
         page.element.afterClickUpdateInformation();
     }
 })
+
 page.initializeControlEvent = () => {
     page.dialogs.commands.drawDistricts(page.element.select_provinceCUS.val());
     page.commands.handleShowCart();

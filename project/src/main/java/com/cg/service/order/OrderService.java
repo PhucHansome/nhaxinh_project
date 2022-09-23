@@ -24,6 +24,8 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findAllOrderDTOByOrderDetailId (Long id);
 
+    List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id, String username);
+
     List<OrderDTO> findOderByCreateBetween(Date date1, Date date2);
 
     List<OrderDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
@@ -33,4 +35,6 @@ public interface OrderService extends IGeneralService<Order> {
     List<OrderDTO> findOrderDTOByUserNameByTime(String userName);
 
     List<OrderDTO> findOrderDTOByTop5Product(String order);
+
+    List<OrderDTO> findAllOrderDTOByOrderDetailIdAndStatus(Long id,String status);
 }

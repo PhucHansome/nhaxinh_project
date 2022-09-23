@@ -45,8 +45,11 @@ public class OrderDTO {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm", timezone = "Asia/Ho_Chi_Minh")
     private Date createdAt;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm", timezone = "Asia/Ho_Chi_Minh")
+    private Date updatedAT;
 
-    public OrderDTO(Long id, String description, BigDecimal grandTotal, BigDecimal quantity, String productCode, String productImage, String productTitle, CustomerInfo customerInfo, Date createdAt, String statusOrder,OrderDetail orderDetail) {
+
+    public OrderDTO(Long id, String description, BigDecimal grandTotal, BigDecimal quantity, String productCode, String productImage, String productTitle, CustomerInfo customerInfo, Date createdAt, Date updatedAT, String statusOrder, OrderDetail orderDetail) {
         this.id = id;
         this.description = description;
         this.grandTotal = grandTotal;
@@ -56,6 +59,7 @@ public class OrderDTO {
         this.productTitle = productTitle;
         this.customerInfo = customerInfo.toCustomerInfoDTO();
         this.createdAt = createdAt;
+        this.updatedAT = updatedAT;
         this.statusOrder = statusOrder;
         this.orderDetail = orderDetail.toOrderDetailDTO();
     }

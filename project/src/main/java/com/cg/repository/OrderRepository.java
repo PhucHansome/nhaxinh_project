@@ -30,6 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )  " +
@@ -46,6 +47,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )  " +
@@ -62,11 +64,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder," +
             "o.orderDetail " +
             " )  " +
             "FROM Order o  WHERE o.customerInfo.userName Like ?1 AND o.statusOrder Like ?2")
-    List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName,String status);
+    List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status);
 
 
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
@@ -79,11 +82,46 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder," +
             "o.orderDetail " +
             " )  " +
-            "FROM Order o  WHERE  o.orderDetail.id = ?1")
-    List<OrderDTO> findAllOrderDTOByOrderDetailId (Long id);
+            "FROM Order o  WHERE  o.orderDetail.id = ?1  ")
+    List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id);
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.updatedAt, " +
+            "o.statusOrder," +
+            "o.orderDetail " +
+            " )  " +
+            "FROM Order o  WHERE  o.orderDetail.id = ?1 and o.customerInfo.userName = ?2 ")
+    List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id, String username);
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.updatedAt, " +
+            "o.statusOrder," +
+            "o.orderDetail " +
+            " )  " +
+            "FROM Order o  WHERE  o.orderDetail.id = ?1 and o.statusOrder = ?2 " )
+    List<OrderDTO> findAllOrderDTOByOrderDetailIdAndStatus(Long id,String status);
 
 
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
@@ -96,6 +134,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )  " +
@@ -112,6 +151,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )  " +
@@ -119,17 +159,18 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<OrderDTO> findOrderDTOByTop5Product(String order);
 
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
-                "o.id, " +
-                "o.description, " +
-                "o.grandTotal , " +
-                "o.quantity ," +
-                "o.productCode," +
-                "o.productImage, " +
-                "o.productTitle, " +
-                "o.customerInfo," +
-                "o.createdAt, " +
-                "o.statusOrder, " +
-                "o.orderDetail " +
+            "o.id, " +
+            "o.description, " +
+            "o.grandTotal , " +
+            "o.quantity ," +
+            "o.productCode," +
+            "o.productImage, " +
+            "o.productTitle, " +
+            "o.customerInfo," +
+            "o.createdAt, " +
+            "o.updatedAt, " +
+            "o.statusOrder, " +
+            "o.orderDetail " +
             " )" +
             "FROM Order o " +
             "where o.createdAt = :createDate" +
@@ -166,6 +207,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )" +
@@ -186,6 +228,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )" +
@@ -194,7 +237,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "AND FUNCTION('YEAR', o.createdAt) = :createYear " +
             "AND o.statusOrder = :statusOrder " +
             " ")
-    List<OrderDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear,@Param("statusOrder") String statusOrder );
+    List<OrderDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear, @Param("statusOrder") String statusOrder);
 
     @Query("SELECT new com.cg.model.dto.OrderDTO(" +
             "o.id, " +
@@ -206,16 +249,14 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.productTitle, " +
             "o.customerInfo," +
             "o.createdAt, " +
+            "o.updatedAt, " +
             "o.statusOrder, " +
             "o.orderDetail " +
             " )" +
             "FROM Order o " +
             "where o.createdAt between ?1 and ?2" +
             " ")
-
     List<OrderDTO> findOderByCreateBetween(Date date1, Date date2);
-
-
 
 
 }
