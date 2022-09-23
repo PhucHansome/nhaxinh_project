@@ -218,97 +218,65 @@ public class HomeController {
         }
         modelAndView.addObject("userDTO", email);
 
-        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOrderDetailByUserName(email);
-        for (OrderDetailDTO orderDetail : orderDetailDTOS) {
-            List<OrderDTO> orderDTOS = orderService.findAllOrderDTOByOrderDetailId(orderDetail.getId(),email);
-            for (OrderDTO orderDTO : orderDTOS) {
-                String patternVND = ",###₫";
-                DecimalFormat decimalFormat = new DecimalFormat(patternVND);
-                orderDTO.setPriceFormat(decimalFormat.format(orderDTO.getGrandTotal()));
-                modelAndView.addObject("orderList", orderDTOS);
-            }
+        List<OrderDTO> orderDTOS = orderService.findOrderDTOByUserNameByTime(email);
+
+        for (OrderDTO orderDTO : orderDTOS) {
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
-            orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));
-            modelAndView.addObject("orderDetailList", orderDetailDTOS);
-
+            orderDTO.setPriceFormat(decimalFormat.format(orderDTO.getGrandTotal()));
         }
 
-        List<OrderDetailDTO> orderDetailDTOS1 = orderDetailService.findAllOrderDetailByStatusAndUserName("%Đang chờ duyệt%", email);
-        for (OrderDetailDTO orderDetailDTOWatting : orderDetailDTOS1) {
-            List<OrderDTO> orderDTOWatting = orderService.findAllOrderDTOByOrderDetailIdAndStatus(orderDetailDTOWatting.getId(), "Đang chờ duyệt");
-            for (OrderDTO orderDTOsWatting : orderDTOWatting) {
-                String patternVNDWatting = ",###₫";
-                DecimalFormat decimalFormatWatting = new DecimalFormat(patternVNDWatting);
-                orderDTOsWatting.setPriceFormat(decimalFormatWatting.format(orderDTOsWatting.getGrandTotal()));
-                modelAndView.addObject("orderDTOWatting", orderDTOWatting);
-            }
+        modelAndView.addObject("orderList", orderDTOS);
+
+        List<OrderDTO> orderDTOWatting = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đang chờ duyệt%");
+
+        for (OrderDTO orderDTO : orderDTOWatting) {
             String patternVNDWatting = ",###₫";
             DecimalFormat decimalFormatWatting = new DecimalFormat(patternVNDWatting);
-            orderDetailDTOWatting.setPriceFormat(decimalFormatWatting.format(orderDetailDTOWatting.getGrandTotal()));
-            modelAndView.addObject("orderDetailListWatting", orderDetailDTOS1);
+            orderDTO.setPriceFormat(decimalFormatWatting.format(orderDTO.getGrandTotal()));
         }
 
-        List<OrderDetailDTO> orderDetailDTOS2 = orderDetailService.findAllOrderDetailByStatusAndUserName("%Đơn hàng đã duyệt%", email);
-        for (OrderDetailDTO orderDetailDTOApply : orderDetailDTOS2) {
-            List<OrderDTO> orderDTOApply = orderService.findAllOrderDTOByOrderDetailIdAndStatus(orderDetailDTOApply.getId(), "Đơn hàng đã duyệt");
-            for (OrderDTO orderDTOsApply : orderDTOApply) {
-                String patternVNDApply = ",###₫";
-                DecimalFormat decimalFormatApply = new DecimalFormat(patternVNDApply);
-                orderDTOsApply.setPriceFormat(decimalFormatApply.format(orderDTOsApply.getGrandTotal()));
-                modelAndView.addObject("orderDTOApply", orderDTOApply);
-            }
+        modelAndView.addObject("orderDTOWatting", orderDTOWatting);
+
+        List<OrderDTO> orderDTOApply = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đơn hàng đã duyệt%");
+        for (OrderDTO orderDTO : orderDTOApply) {
             String patternVNDApply = ",###₫";
             DecimalFormat decimalFormatApply = new DecimalFormat(patternVNDApply);
-            orderDetailDTOApply.setPriceFormat(decimalFormatApply.format(orderDetailDTOApply.getGrandTotal()));
-            modelAndView.addObject("orderDetailListApply", orderDetailDTOS2);
+            orderDTO.setPriceFormat(decimalFormatApply.format(orderDTO.getGrandTotal()));
         }
 
-        List<OrderDetailDTO> orderDetailDTOS3 = orderDetailService.findAllOrderDetailByStatusAndUserName("%Đã Hủy đơn hàng%", email);
-        for (OrderDetailDTO orderDetailDTOCancel : orderDetailDTOS3) {
-            List<OrderDTO> orderDTOCancel = orderService.findAllOrderDTOByOrderDetailIdAndStatus(orderDetailDTOCancel.getId(), "Đã Hủy đơn hàng");
-            for (OrderDTO orderDTOsCancel : orderDTOCancel) {
-                String patternVNDCancel = ",###₫";
-                DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-                orderDTOsCancel.setPriceFormat(decimalFormatCancel.format(orderDTOsCancel.getGrandTotal()));
-                modelAndView.addObject("orderDTOCancel", orderDTOCancel);
-            }
+        modelAndView.addObject("orderDTOApply", orderDTOApply);
+
+        List<OrderDTO> orderDTOCancel = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đã Hủy đơn hàng%");
+
+        for (OrderDTO orderDTO : orderDTOCancel) {
             String patternVNDCancel = ",###₫";
             DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-            orderDetailDTOCancel.setPriceFormat(decimalFormatCancel.format(orderDetailDTOCancel.getGrandTotal()));
-            modelAndView.addObject("orderDetailListCancel", orderDetailDTOS3);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
         }
 
+        modelAndView.addObject("orderDTOCancel", orderDTOCancel);
 
-        List<OrderDetailDTO> orderDetailDTOS4 = orderDetailService.findAllOrderDetailByStatusAndUserName("%Đã giao hàng thành công%", email);
-        for (OrderDetailDTO orderDetailDTOSuccessDelivery : orderDetailDTOS4) {
-            List<OrderDTO> orderDTOSuccessDelivery = orderService.findAllOrderDTOByOrderDetailIdAndStatus(orderDetailDTOSuccessDelivery.getId(), "Đã giao hàng thành công");
-            for (OrderDTO orderDTOsSuccessDelivery : orderDTOSuccessDelivery) {
-                String patternVNDCancel = ",###₫";
-                DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-                orderDTOsSuccessDelivery.setPriceFormat(decimalFormatCancel.format(orderDTOsSuccessDelivery.getGrandTotal()));
-                modelAndView.addObject("orderDTOSuccessDelivery", orderDTOSuccessDelivery);
-            }
+        List<OrderDTO> orderDTOSuccessDelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đã giao hàng thành công%");
+
+        for (OrderDTO orderDTO : orderDTOSuccessDelivery) {
             String patternVNDCancel = ",###₫";
             DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-            orderDetailDTOSuccessDelivery.setPriceFormat(decimalFormatCancel.format(orderDetailDTOSuccessDelivery.getGrandTotal()));
-            modelAndView.addObject("orderDetailListSuccessDelivery", orderDetailDTOS4);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
         }
 
-        List<OrderDetailDTO> orderDetailDTOS5 = orderDetailService.findAllOrderDetailByStatusAndUserName("%Đang giao hàng%", email);
-        for (OrderDetailDTO orderDetailDTODelivery : orderDetailDTOS5) {
-            List<OrderDTO> orderDTODelivery = orderService.findAllOrderDTOByOrderDetailIdAndStatus(orderDetailDTODelivery.getId(), "Đang giao hàng");
-            for (OrderDTO orderDTOsDelivery : orderDTODelivery) {
-                String patternVNDCancel = ",###₫";
-                DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-                orderDTOsDelivery.setPriceFormat(decimalFormatCancel.format(orderDTOsDelivery.getGrandTotal()));
-                modelAndView.addObject("orderDTODelivery", orderDTODelivery);
-            }
+        modelAndView.addObject("orderDTOSuccessDelivery", orderDTOSuccessDelivery);
+
+        List<OrderDTO> orderDTODelivery = orderService.findOrderDTOByUserNameAndStatus2(email, "%Đang giao hàng%");
+
+        for (OrderDTO orderDTO : orderDTODelivery) {
             String patternVNDCancel = ",###₫";
             DecimalFormat decimalFormatCancel = new DecimalFormat(patternVNDCancel);
-            orderDetailDTODelivery.setPriceFormat(decimalFormatCancel.format(orderDetailDTODelivery.getGrandTotal()));
-            modelAndView.addObject("orderDetailListDelivery", orderDetailDTOS5);
+            orderDTO.setPriceFormat(decimalFormatCancel.format(orderDTO.getGrandTotal()));
         }
+
+        modelAndView.addObject("orderDTODelivery", orderDTODelivery);
+
         return modelAndView;
     }
 
