@@ -560,4 +560,13 @@ public class HomeController {
         return modelAndView;
     }
 
+    @GetMapping("/create-order-dashboard")
+    public ModelAndView goCreateOrderDashboard() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/dashboard/orderDashboard/create-order");
+        String email = getPrincipal();
+        modelAndView.addObject("userDTO", email);
+        return modelAndView;
+    }
+
 }
