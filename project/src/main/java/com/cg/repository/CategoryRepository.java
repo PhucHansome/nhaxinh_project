@@ -22,8 +22,6 @@ public interface CategoryRepository extends JpaRepository<Category,Long>{
             "c.id, " +
             "c.name, " +
             "c.code)  " +
-            "FROM Category c  WHERE c.id = ?1   ")
-
-
+            "FROM Category c  WHERE c.id = ?1 ")
     Optional<CategoryDTO> findCategoryDTOById(Long id);
 }
