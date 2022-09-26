@@ -25,6 +25,8 @@ public interface OrderDetailService extends IGeneralService<OrderDetail> {
     OrderDetail successDeliveryOrder(OrderDetail orderDetail, String userName);
 
     List<OrderDetailDTO> findAllOrderDetailByStatusAndUserName(String status, String username);
+    List<OrderDetailDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear );
 
     List<OrderDetailDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear, @Param("statusOrderDetail") String statusOrderDetail );
+
 }

@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 , "/api/user/username/**","/api/category/**").permitAll()
                 .antMatchers("/product-dashboard", "/create-product-dashboard", "/edit-product-dashboard","/detail-product-dashboard",
                         "/user-dashboard","/create-user-dashboard",
-                        "/edit-user-dashboard","/detail-user-dashboard","/home-dashboard","/order-dashboard").hasAnyAuthority("ADMIN")
+                        "/edit-user-dashboard","/detail-user-dashboard","/home-dashboard","/order-dashboard","/user-account-dashboard").hasAnyAuthority("ADMIN")
                 .antMatchers("/assets/**", "/assets_dashboard/**", "/META-INF").permitAll()
                 .antMatchers("https://nhaxinh.com/public/assets/**").permitAll()
                 .antMatchers(

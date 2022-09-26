@@ -142,6 +142,10 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
         return orderDetailRepository.findOderByCreateMonthYearAndStatusOrder(createMonth,createYear,statusOrderDetail);
     }
 
+    @Override
+    public List<OrderDetailDTO> findOderByCreateMonthYear(int createMonth, int createYear) {
+        return orderDetailRepository.findOderByCreateMonthYear(createMonth,createYear);
+    }
 
     @Override
     public List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status) {

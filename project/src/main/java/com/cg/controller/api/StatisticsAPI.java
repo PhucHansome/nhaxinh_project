@@ -1,7 +1,9 @@
 package com.cg.controller.api;
 
 import com.cg.model.dto.OrderDTO;
+import com.cg.model.dto.OrderDetailDTO;
 import com.cg.service.order.OrderService;
+import com.cg.service.orderdetail.OrderDetailService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -24,19 +26,21 @@ import java.util.List;
 public class StatisticsAPI {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderDetailService orderDetailService;
 
 
     @GetMapping("/sales-statistics-by-month/{month}/{year}")
-    public ResponseEntity<?> getSalesStatisticsByMonth(@PathVariable int month, @PathVariable int year) {
-        List<OrderDTO> orderDTOS = orderService.findOderByCreateMonthYear(month, year);
-        return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
+    public ResponseEntity<?> getSalesStatisticsByMonth(@PathVariable int month, @PathVariable int year,@Param("statusOrderDetail") String statusOrderDetail) {
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOderByCreateMonthYearAndStatusOrder(month, year,"Đã giao hàng thành công");
+        return new ResponseEntity<>(orderDetailDTOS, HttpStatus.OK);
     }
 
-    @GetMapping("/sales-statistics-by-year/{year}")
-    public ResponseEntity<?> getSalesStatisticsByYear(@PathVariable int year) {
-        List<OrderDTO> orderDTOS = orderService.findOderByCreateYear(year);
-        return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
-    }
+//    @GetMapping("/sales-statistics-by-year/{year}")
+//    public ResponseEntity<?> getSalesStatisticsByYear(@PathVariable int year) {
+//        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOderByCreateYear(year);
+//        return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
+//    }
 
 
 

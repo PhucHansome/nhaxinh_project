@@ -32,6 +32,5 @@ public interface IUserService extends IGeneralService<User>, UserDetailsService 
     User Block(User user);
 
     User Active(User user);
-//    boolean existsByEmailAndIdIsNot(String email,Long id);
 
 }

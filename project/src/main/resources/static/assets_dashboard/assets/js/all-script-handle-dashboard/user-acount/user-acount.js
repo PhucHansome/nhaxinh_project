@@ -200,7 +200,7 @@ page.commands.clickBtnActive = () => {
                         page.commands.clickBtnBlock()
                     }).fail((E) => {
                         console.log(E);
-                        App.IziToast.showErrorAlert("Block thất bại")
+                        App.IziToast.showErrorAlert("Mở khoá thất bại")
                     })
                 }
             })

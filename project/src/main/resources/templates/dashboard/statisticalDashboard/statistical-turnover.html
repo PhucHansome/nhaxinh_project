@@ -85,36 +85,52 @@
                 </div>
                 <div class="row shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-header">
-                        <h3 style="text-align: center;">Thống kê doanh thu sản phẩm theo tháng</h3>
+                    <h4 style="text-align: center;">Thống kê doanh thu sản phẩm theo tháng</h4>
                     </div>
-
-<!--                    <div><input type="month" id="idMonth"></div>-->
-
-                    <canvas id="myChart" style="height: 300px;width: 2500px;"></canvas>
-
+                </div>
+            <div>
+                <label class="form-label">Chọn Tháng:</label>
+                <input type="month" id="idMonth" onchange="dummyChart()">
+            </div>
+                    <div id="graph-container" style="display: block;
+                                box-sizing: border-box;
+                                height: 400px;
+                                width: 800.8px;">
+                        <canvas id="myChart" ></canvas>
+                    </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 <!--                    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>-->
-
+<!--                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
                     <script>
 
 
-                        var productGrand = [], productdateData = []
+                    var arr = [] , productGrand = [], productdateData = [], arrDate = []
                         async function dummyChart() {
+                             productGrand = []
+                            productdateData = []
                             await getDummyData()
+                            $('#myChart').remove(); // this is my <canvas> element
+                            $('#graph-container').append('<canvas id="myChart"><canvas>');
                             const ctx = document.getElementById('myChart').getContext('2d');
+
                             const chart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels:productdateData,
+                                    labels:arrDate,
                                     datasets: [{
-                                        label: 'doanh thu ',
+                                        label: 'doanh thu',
                                         backgroundColor: 'green',
                                         borderColor: 'rgb(75, 192, 192)',
-                                        data: productGrand
+                                        data: arrSum
                                     },
-
+                                        // {
+                                        //     label: 'Số lượng bán ra',
+                                        //     backgroundColor: 'pink',
+                                        //     borderColor: 'rgb(255, 99, 132)',
+                                        //     data: productPrice
+                                        // }
                                     ]
                                 },
                                 options: {
@@ -123,29 +139,38 @@
                                     },
                                 }
                             })
+
                         }
 
                         dummyChart()
 
                         //Fetch Data from API
-                        async function getDummyData() {
-                            const apiUrl = "http://localhost:8092/api/statistics/sales-statistics-by-month/09/2022" ;
-                            // +"order-createAt/" ;
-                            // +page.element.date1 + "/"+ page.element.date2;
+                             async function getDummyData() {
+                            const apiUrl = "http://localhost:8092/api/statistics/sales-statistics-by-month/"+ document.getElementById('idMonth').value.split("-")[1] + "/"+ document.getElementById('idMonth').value.split("-")[0];
                             const response = await fetch(apiUrl)
                             console.log(response)
                             const barChatData = await response.json()
                             console.log(barChatData)
-                            const date = barChatData.map((x) => x.createdAt)
-                            console.log(date)
-                            const grand = barChatData.map((x) => x.grandTotal)
+                            const date =  barChatData.map((x) => "Tháng" + " " +  x.createdAt.split("/")[1])
+                                 let firstdate;
+                                 for(i=0;i<date.length;i++){
+                                     firstdate = date[0]
+                                 }
+                                 arrDate = [firstdate]
+                            console.log(arrDate)
+                                 let sum = 0;
+                                 let orderDetail = new OrderDetail();
+                                 const grand = barChatData.map((x) =>  x.grandTotal)
+                                 for(i=0; i<grand.length;i++){
+                                         sum += grand[i];
+                                    }
                             console.log(grand)
+                                  arrSum=  [sum]
                             productdateData = date
-                            productGrand = grand
-
+                                 console.log(arr)
+                                 // let price = barChatData.map((x) => x.price)
+                                 // productPrice = price;
                         }
-
-
                     </script>
                 </div>
 
@@ -200,12 +225,12 @@
         }
     }
 
-
+    page.element.buttonselectMonth = $('#idMonth')
     page.element.buttonselectdate = $('#selectDate')
 
     let order = new Order();
-    // let  month  = order.createdAt
-    // let year =order.createdAt
+    let  month  = new Date();
+    let year = new Date();
     page.dialogs.commands.getAllOrder = (id) => {
         return $.ajax({
             "method": "GET",
@@ -217,6 +242,7 @@
     }
 
     $("#selectDate").on('click', function () {
+
         $.ajax({
             type: "GET",
             url: "http://localhost:8092/api/statistics/" + ""
@@ -227,19 +253,18 @@
         })
     })
 
-        //     $("#inMonth").on('change',function (){
-        //         $.ajax({
-        //         type: "GET",
-        //         url: "http://localhost:8092/api/order"
-        //             // url: "http://localhost:8092/api/order"
-        //     }).done((data) =>{
-        //         console.log(data)
-        //     }).fail((data) =>{
-        //         console.log(data)
-        //     })
-        // })
-
-
+            $("#idMonth").on('change',function (){
+                var productGrand = [], productdateData = []
+                $.ajax({
+                type: "GET",
+                url: "http://localhost:8092/api/statistics/sales-statistics-by-month/"+page.element.buttonselectMonth.val().split("-")[1] + "/"+page.element.buttonselectMonth.val().split("-")[0]
+            }).done((data) =>{
+                    dummyChart()
+                console.log(data)
+            }).fail((data) =>{
+                console.log(data)
+            })
+        })
 </script>
 </body>
 </html>
