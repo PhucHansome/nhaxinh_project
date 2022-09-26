@@ -305,6 +305,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderDTO> findAllOrderDTOByOrderDetailId(Long id, String username) {
+        return orderRepository.findAllOrderDTOByOrderDetailId(id, username);
+    }
+
+    @Override
     public List<OrderDTO> findOrderDTOByUserNameByTime(String userName) {
         return orderRepository.findOrderDTOByUserNameByTime(userName);
     }
@@ -312,5 +317,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> findOrderDTOByTop5Product(String order) {
         return orderRepository.findOrderDTOByTop5Product(order);
+    }
+
+    @Override
+    public List<OrderDTO> findAllOrderDTOByOrderDetailIdAndStatus(Long id, String status) {
+        return orderRepository.findAllOrderDTOByOrderDetailIdAndStatus(id,status);
     }
 }

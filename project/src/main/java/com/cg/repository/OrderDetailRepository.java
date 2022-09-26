@@ -63,10 +63,25 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "od.createdAt ," +
             "od.updatedAt" +
             ")  " +
-            "FROM OrderDetail od WHERE od.statusOrderDetail = ?1 And od.userName = ?2 ")
+            "FROM OrderDetail od WHERE od.statusOrderDetail like ?1 And od.userName = ?2 ")
     List<OrderDetailDTO> findAllOrderDetailByStatusAndUserName(String status, String username);
 
-    List<OrderDetail>findOrderDetailByUserName(String userName);
+    @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
+            "od.id, " +
+            "od.fullName, " +
+            "od.userName, " +
+            "od.phone, " +
+            "od.address, " +
+            "od.districtName, " +
+            "od.provinceName, " +
+            "od.statusOrderDetail,  " +
+            "od.grandTotal,  " +
+            "od.priceFormat,  " +
+            "od.createdAt ," +
+            "od.updatedAt" +
+            ")  " +
+            "FROM OrderDetail od WHERE od.userName = ?1 ")
+    List<OrderDetailDTO>findOrderDetailByUserName(String userName);
 
 
     @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +

@@ -71,12 +71,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**", "/assets_dashboard/**", "/META-INF").permitAll()
                 .antMatchers("https://nhaxinh.com/public/assets/**").permitAll()
                 .antMatchers(
-                        "/v2/api-docs",
+                        "/v3/api-docs",
                         "/swagger-resources/configuration/ui",
                         "/configuration/ui",
                         "/swagger-resources",
                         "/swagger-resources/configuration/security",
                         "/configuration/security",
+                        "/swagger-ui/**",
                         "/swagger-ui.html",
                         "/webjars/**"
                 ).permitAll()

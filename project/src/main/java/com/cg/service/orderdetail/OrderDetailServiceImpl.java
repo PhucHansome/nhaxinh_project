@@ -153,7 +153,7 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
     }
 
     @Override
-    public List<OrderDetail> findOrderDetailByUserName(String userName) {
+    public List<OrderDetailDTO> findOrderDetailByUserName(String userName) {
         return orderDetailRepository.findOrderDetailByUserName(userName) ;
     }
 

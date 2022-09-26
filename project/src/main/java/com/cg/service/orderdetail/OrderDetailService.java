@@ -16,7 +16,7 @@ public interface OrderDetailService extends IGeneralService<OrderDetail> {
 
     List<OrderDetailDTO> findAllOrderDetailByStatusWait(String status);
 
-    List<OrderDetail>findOrderDetailByUserName(String userName);
+    List<OrderDetailDTO>findOrderDetailByUserName(String userName);
 
     List<OrderDetailDTO> findAllOrderByCreatedAtDesc();
 

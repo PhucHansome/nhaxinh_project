@@ -48,7 +48,6 @@ public class CustomerInfo extends BaseEntity{
                 .setPhone(phone)
                 .setLocationRegion(locationRegion.toLocationRegionDTO())
                 .setDebt(debt)
-
                 ;
     }
 

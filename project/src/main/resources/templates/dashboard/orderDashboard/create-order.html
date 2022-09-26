@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Order List | Nhà Xinh </title>
+    <th:block th:replace="/dashboard/layout/header::header"/>
+</head>
+<style>
+
+</style>
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <th:block th:replace="/dashboard/layout/navbar/navbar::navbar"/>
+    <!-- end Topbar -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <th:block th:replace="/dashboard/layout/left-side-menu::left-side-menu"/>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <a href="/order-dashboard" class="page-title">Quay lại danh sách đơn đặt
+                                            hàng</a>
+                                    </div>
+                                    <div class="col-3">
+                                        <button style=" float:right ;
+                                                        position: relative;
+                                                        bottom: -15px;"
+                                                class="btn btn-primary"><i class="fa fa-plus"></i>
+                                            Tạo đơn hàng
+                                        </button>
+                                    </div>
+                                    <div class="col-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-12"><h2>Thông tin khách hàng</h2></div>
+                            </div>
+                            <div class="row" style="    padding-top: 10px;">
+                                <div class="col-12 SelectOneCustomer">
+                                    <select class="form-control AllCustomerInfor"></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6 AddressDelivery" style="    padding-top: 20px;">
+                                            <p style="font-size: 1.125rem; font-weight: bold;">Địa chỉ giao hàng <span> <a href="#">Thay đổi</a></span></p>
+                                            <p >---</p>
+                                            <p >------</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4>Thông tin bổ sung</h4>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span th:object="${userDTO}">Bán bởi: <span th:text="${userDTO}"></span></span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span>Quyền: <span>ADMIN</span></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row billingAddress" style="    padding-top: 20px;">
+                                        <div class="col-6">
+                                            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ Nhận hóa đơn</p>
+                                            <p>---</p>
+                                            <p>------</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p style="border: 1px dashed #00000061;
+                                                      margin: 40px 0px 40px 0px;
+                                                      padding: 20px 20px 20px 20px;
+                                                      text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">0đ</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12"><h3>Thông tin sản phẩm</h3></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" placeholder="Tìm theo tên,Mã SKU">
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-light">Chọn nhanh</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-light">
+                                            <thead>
+                                            <tr>
+                                                <th>Stt</th>
+                                                <th>Ảnh</th>
+                                                <th>Tên Sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Đơn giá</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>url ảnh</td>
+                                                <td>
+                                                    <div class="row">tên sản phẩm</div>
+                                                    <div class="row">SKU</div>
+                                                </td>
+                                                <td>1</td>
+                                                <td>45000</td>
+                                                <td>45000</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12"><h4>Ghi chú đơn hàng</h4></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <textarea class="form-control"
+                                                                  placeholder="Ghi chú "></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="col-6">
+                                                            <span>Tổng tiền(<span> 1 </span> Sản phẩm)</span>
+                                                        </div>
+                                                        <div class="col-6">10,000 vnđ</div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="col-6"><span>Khách hàng phải trả</span>
+                                                        </div>
+                                                        <div class="col-6">10,000 vnđ</div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="col-6"><span>Tổng tiền toàn bộ đơn hàng</span>
+                                                        </div>
+                                                        <div class="col-6">10,000 vnđ</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Start Content-->
+
+</div> <!-- end content -->
+
+
+<!-- Footer Start -->
+<th:block th:replace="/dashboard/layout/footer::footer"/>
+<!-- end Footer -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+
+<!-- Vendor js -->
+<th:block th:replace="/dashboard/layout/script/script::script"/>
+<!-- Datatables init -->
+<script>
+    // $(".AllCustomerInfor").select2()
+</script>
+<script src="/assets_dashboard/assets/js/all-script-handle-dashboard/order/create-order.js"></script>
+
+</body>
+</html>
