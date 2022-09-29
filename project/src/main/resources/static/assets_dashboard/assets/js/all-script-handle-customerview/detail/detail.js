@@ -45,7 +45,6 @@ page.element.InputQuerySearch = $("#querySearch")
 page.element.btnShowCart = $("#cart_")
 page.element.chua_cart = $(".chua_cart")
 page.element.main_photo = $(".main_photo")
-page.element.each_image = $(".each_image")
 page.element.single_add_to_cart_button = $(".btn-add-to-cart")
 page.element.btnBuy = $(".btn-buy")
 
@@ -89,32 +88,6 @@ page.commands.getProductById = (id) => {
     })
 }
 
-page.commands.getProductMediaByProductId = () => {
-    $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        "method": "GET",
-        "url": page.url.GetProductMedia + "/" + $("#productId").val()
-    }).done((data) => {
-        $.each(data, (i, item) => {
-            productMedia = item;
-            let str = `
-                                <div class="col" aria-hidden="true"
-                                     style="position: absolute; left: 95.82%;"><a><img
-                                        src="${productMedia.fileUrl}"
-                                        data-src="${productMedia.fileUrl}"
-                                        alt="" width="300" height=""
-                                        class="attachment-woocommerce_thumbnail lazy-load-active"></a>
-                                </div>
-                    `;
-            page.element.each_image.append(str)
-        })
-    }).fail((e) => {
-        console.log(e)
-    })
-}
 
 page.commands.showIconCart = () => {
     $.ajax({
@@ -528,7 +501,6 @@ page.commands.btnClick = () => {
 page.initializeControlEvent = () => {
     page.commands.handleShowCart()
     page.commands.showIconCart()
-    page.commands.getProductMediaByProductId();
     page.commands.handleBuy()
     page.commands.searchFunction()
     page.commands.handleGoSearch()
