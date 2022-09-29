@@ -15,6 +15,4 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.getWriter().write("Access Denied!");
     }
-
-
 }
