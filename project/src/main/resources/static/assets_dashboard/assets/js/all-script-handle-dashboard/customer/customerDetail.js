@@ -144,7 +144,6 @@ page.dialogs.commands.drawDetailCustomerUpdate = (customerInfoId) => {
         page.commands.goModalUpdateCustomer();
 
     })
-
 }
 
 page.dialogs.commands.drawProvinces = () => {

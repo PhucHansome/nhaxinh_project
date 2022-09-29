@@ -67,15 +67,16 @@ page.dialogs.commands.drawProvinces = () => {
         "url": page.url.getAllProvinces
     })
         .done((data) => {
-            console.log(data)
-            page.element.provinceUpToOrder.html("")
+
+            $("#provinceUpToOrder").html("");
             $.each(data.results, (i, item) => {
                 let str = `<option value="${item.province_id}">${item.province_name}</option>`;
-                page.element.provinceUpToOrder.append(str);
+
+                $("#provinceUpToOrder").append(str)
             })
-        })
-        .fail((jqxHR) => {
-            console.log(jqxHR);
+
+        }).fail((jqXHR) => {
+            console.log(jqXHR);
         })
 }
 
@@ -88,17 +89,27 @@ page.dialogs.commands.drawDistricts = (provinceId) => {
         "type": "GET",
         "url": page.url.getAllDistricts + provinceId
     }).done((data) => {
-        page.element.districtUpToOrder.html("");
-        $.each(data.results, (i, item) => {
-            let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
-            page.element.districtUpToOrder.append(str)
-        })
+        if (data.results.length === 0) {
+            App.IziToast.showErrorAlert("Loading of districts is fail");
+        } else {
+            $("#districtUpToOrder").html("");
+            $.each(data.results, (i, item) => {
+                let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
+                $("#districtUpToOrder").append(str)
+            })
+        }
     }).fail((jqXHR) => {
         console.log(jqXHR);
     })
 }
+
+
 page.element.provinceUpToOrder.on('change', function () {
     page.dialogs.commands.drawDistricts(page.element.provinceUpToOrder.val())
+})
+
+$("#provinceUpToOrder").on('change',  () => {
+    page.dialogs.commands.drawDistricts( $("#provinceUpToOrder").val());
 })
 
 
@@ -110,7 +121,6 @@ page.commands.getCustomerInfoById = (id) => {
         customerInfo = data;
     })
 }
-
 
 page.commands.SelectedCustomer = () => {
     $(".AllCustomerInfor").on("change", function () {
@@ -131,8 +141,8 @@ page.commands.SelectedCustomer = () => {
 
             $(".AddressDelivery").html("")
 
-            let str1 =`
-            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="page.commands.updateLocationRegion()">Thay đổi</a></span></p>
+            let str1 = `
+            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="page.commands.updateLocationRegion('${customerInfo.id}')">Thay đổi</a></span></p>
             <p >${customerInfo.phone}</p>
             <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
             `
@@ -156,7 +166,6 @@ page.commands.SelectedCustomer = () => {
             </div>
             `
             $(".billingAddress").append(str2)
-            // page.commands.updateLocaRegion(customerInfo.id);
         })
     })
 }
@@ -171,11 +180,8 @@ page.commands.removeCustomerSelected = () => {
 
 }
 
-page.commands.updateLocationRegion = () => {
 
-}
-
-page.commands.updateLocaRegion = (id) => {
+page.commands.updateLocationRegion = (id) => {
     console.log(id)
     page.commands.getCustomerInfoById(id).then(() => {
         console.log(customerInfo)
@@ -189,11 +195,16 @@ page.commands.updateLocaRegion = (id) => {
     })
 }
 
+// page.commands.doUpdateLocationRegion = () => {
+//
+// }
+
+
 $(function () {
     page.dialogs.commands.drawProvinces().then(() => {
-        page.dialogs.commands.drawDistricts(page.element.provinceUpToOrder.val());
+        page.dialogs.commands.drawDistricts($("#provinceUpToOrder").val());
     })
-    page.commands.updateLocaRegion();
+    page.commands.updateLocationRegion();
 })
 
 page.initializeControlEvent = () => {
