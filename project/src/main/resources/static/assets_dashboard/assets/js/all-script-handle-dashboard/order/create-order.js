@@ -130,8 +130,9 @@ page.commands.SelectedCustomer = () => {
             $(".SelectOneCustomer").append(str);
 
             $(".AddressDelivery").html("")
-            let str1 = `
-            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span id="UpdateLocation"> <a  href="#" onclick="page.commands.updateLocaRegion('${customerInfo.id}')">Thay đổi</a></span></p>
+
+            let str1 =`
+            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="page.commands.updateLocationRegion()">Thay đổi</a></span></p>
             <p >${customerInfo.phone}</p>
             <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
             `
@@ -167,6 +168,10 @@ page.commands.removeCustomerSelected = () => {
     `
     $(".SelectOneCustomer").append(str);
     page.commands.drawCustomer()
+
+}
+
+page.commands.updateLocationRegion = () => {
 
 }
 

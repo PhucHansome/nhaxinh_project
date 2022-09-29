@@ -75,21 +75,21 @@ public class OrderServiceImpl implements OrderService {
         orderDetail.setId(0L);
         orderDetail.setStatusOrderDetail("abc");
         orderDetail.setCreatedAt(new Date());
-        orderDetailRepository.save(orderDetail);
+        OrderDetail orderNew = orderDetailRepository.save(orderDetail);
         BigDecimal sum = BigDecimal.valueOf(0);
-        Optional<OrderDetailDTO> orderNew = orderDetailRepository.findOrderDetailNew("abc");
         List<CartItemsDTO> cartItemsDTOList = cartItemRepository.findCartItemDTOById(order.getCustomerInfo().getUserName());
         for (CartItemsDTO cartItemsDTO : cartItemsDTOList) {
             Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
             productDTO.get().setQuantity(productDTO.get().getQuantity().subtract(cartItemsDTO.getQuantity()));
             if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
                 cartItemRepository.deleteById(cartItemsDTO.getId());
-                orderDetailRepository.deleteById(orderNew.get().getId());
+                orderDetailRepository.deleteById(orderNew.getId());
+                productDTO.get().setStatus("Đã Hết hàng");
                 throw new DataInputException("Số lượng sản phẩm " +  cartItemsDTO.getProduct().getTitle() + " không đủ để order!");
             }
             productRepository.save(productDTO.get().toProduct());
             order.setId(0L);
-            order.setOrderDetail(orderNew.get().toOrderDetail());
+            order.setOrderDetail(orderNew);
             order.setQuantity(cartItemsDTO.getQuantity());
             order.setProductCode(cartItemsDTO.getProduct().getCode());
             order.setProductTitle(cartItemsDTO.getProduct().getTitle());
@@ -108,19 +108,20 @@ public class OrderServiceImpl implements OrderService {
         }
         List<OrderDTO> orderDTOS = orderRepository.findOrderDTOByUserName(order.getCustomerInfo().getUserName());
         for (OrderDTO order1 : orderDTOS) {
-            orderNew.get().setStatusOrderDetail(order1.getStatusOrder());
-            orderNew.get().setFullName(order1.getCustomerInfo().getFullName());
-            orderNew.get().setAddress(order1.getCustomerInfo().getLocationRegion().getAddress());
-            orderNew.get().setUserName(order1.getCustomerInfo().getUserName());
-            orderNew.get().setPhone(order1.getCustomerInfo().getPhone());
-            orderNew.get().setDistrictName(order1.getCustomerInfo().getLocationRegion().getDistrictName());
-            orderNew.get().setProvinceName(order1.getCustomerInfo().getLocationRegion().getProvinceName());
-            orderNew.get().setUpdatedAt(orderNew.get().getCreatedAt());
+            orderNew.setStatusOrderDetail(order1.getStatusOrder());
+            orderNew.setFullName(order1.getCustomerInfo().getFullName());
+            orderNew.setAddress(order1.getCustomerInfo().getLocationRegion().getAddress());
+            orderNew.setUserName(order1.getCustomerInfo().getUserName());
+            orderNew.setPhone(order1.getCustomerInfo().getPhone());
+            orderNew.setDistrictName(order1.getCustomerInfo().getLocationRegion().getDistrictName());
+            orderNew.setProvinceName(order1.getCustomerInfo().getLocationRegion().getProvinceName());
+            orderNew.setUpdatedAt(orderNew.getCreatedAt());
         }
-        orderNew.get().setGrandTotal(sum);
-        orderDetailRepository.save(orderNew.get().toOrderDetail());
-//        final String fromEmail = "nhaxinhprj@gmail.com";
-//        final String password = "cqpubpedlamghzfc";
+
+        orderNew.setGrandTotal(sum);
+        orderDetailRepository.save(orderNew);
+//        final String fromEmail = "nhaxinhprjpv@gmail.com";
+//        final String password = "vsitizhsoucrkjzo";
 //        final String toEmail = "huynhvanvinh080398@gmail.com";
 //        final String subject = "[New]You have an order!!";
 //        Properties props = new Properties();

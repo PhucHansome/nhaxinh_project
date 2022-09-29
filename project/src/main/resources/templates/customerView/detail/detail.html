@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <th:block th:each="product, count : ${product}">
-    <title th:text="*{product.title  + '- Nội thất Nhà Xinh'}"> </title>
+        <title th:text="*{product.title  + '- Nội thất Nhà Xinh'}"></title>
     </th:block>
     <th:block th:replace="/customerView/layout/detail/head::head"/>
 
@@ -153,46 +153,47 @@
 <div id="wrapper">
     <div class="chua_cart">
         <div class="showCart" style="display: none;">
-        <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
-        <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1"
-             style="overflow: hidden auto;">
-            <div class="mfp-container mfp-s-ready mfp-inline-holder">
-                <div class="mfp-content off-canvas-cart">
-                    <div id="cart-popup" class="widget_shopping_cart">
-                        <div class="cart-popup-inner inner-padding">
-                            <div class="cart-popup-title text-center">
-                                <h4 class="uppercase">Cart</h4>
-                                <div class="is-divider"></div>
-                            </div>
-                            <div class="widget_shopping_cart_content" id="seeCartItems">
+            <div class="mfp-bg off-canvas undefined off-canvas-right mfp-ready hide"></div>
+            <div class="mfp-wrap mfp-auto-cursor off-canvas undefined off-canvas-right mfp-ready hide" tabindex="-1"
+                 style="overflow: hidden auto;">
+                <div class="mfp-container mfp-s-ready mfp-inline-holder">
+                    <div class="mfp-content off-canvas-cart">
+                        <div id="cart-popup" class="widget_shopping_cart">
+                            <div class="cart-popup-inner inner-padding">
+                                <div class="cart-popup-title text-center">
+                                    <h4 class="uppercase">Cart</h4>
+                                    <div class="is-divider"></div>
+                                </div>
+                                <div class="widget_shopping_cart_content" id="seeCartItems">
 
-                            </div>
-                            <div id="seeGrandTotal">
+                                </div>
+                                <div id="seeGrandTotal">
 
+                                </div>
+                                <p class="woocommerce-mini-cart__buttons buttons"><a
+                                        href="http://localhost:8092/cart"
+                                        class="button wc-forward">Xem giỏ
+                                    hàng</a><a href="/cart_details"
+                                               class="button checkout wc-forward">Checkout</a></p>
+                                <div class="cart-sidebar-content relative"></div>
                             </div>
-                            <p class="woocommerce-mini-cart__buttons buttons"><a
-                                    href="http://localhost:8092/cart"
-                                    class="button wc-forward">Xem giỏ
-                                hàng</a><a href="/cart_details"
-                                           class="button checkout wc-forward">Checkout</a></p>
-                            <div class="cart-sidebar-content relative"></div>
                         </div>
                     </div>
+                    <div class="mfp-preloader">Loading...</div>
                 </div>
-                <div class="mfp-preloader">Loading...</div>
+                <button title="Close (Esc)" type="button" class="mfp-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
-            <button title="Close (Esc)" type="button" class="mfp-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-x">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
         </div>
-    </div></div>
+    </div>
 
-    <header id="header" class="header has-sticky sticky-jump" style="position: fixed;" >
+    <header id="header" class="header has-sticky sticky-jump" style="position: fixed;">
         <div class="header-wrapper">
 
             <div id="top-bar" class="header-top hide-for-sticky">
@@ -325,7 +326,7 @@
 
 			<span th:text="${userDTO}" style="font-size: 0" id="EmailLogin" class="header-account-title">
 		</span>
-                                    <span  id="fullNameScreen" class="header-account-title">
+                                    <span id="fullNameScreen" class="header-account-title">
 		</span>
 
 
@@ -423,7 +424,8 @@
                         <ul class="header-nav header-nav-main nav nav-left  nav-size-medium nav-uppercase">
                             <li id="menu-item-287"
                                 class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-287 menu-item-design-container-width menu-item-has-block has-dropdown">
-                                <a href="/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query=Sản%20phẩm" class="nav-top-link sanpham_dropdown">Sản phẩm</a>
+                                <a href="/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query=Sản%20phẩm"
+                                   class="nav-top-link sanpham_dropdown">Sản phẩm</a>
                                 <div class="sub-menu nav-dropdown nav-dropdown-product">
                                     <section class="section" id="section_563198551">
                                         <div class="bg section-bg fill bg-fill  bg-loaded">
@@ -544,7 +546,8 @@
 
                                                                         <div class="ux-menu-link flex menu-item">
                                                                             <a class="ux-menu-link__link flex"
-                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Tủ giày"&Color=null&query=>
+                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Tủ giày"
+                                                                               &Color=null&query=>
 						<span class="ux-menu-link__text">
 				Tủ giày			</span>
                                                                             </a>
@@ -664,7 +667,8 @@
 
                                                                         <div class="ux-menu-link flex menu-item">
                                                                             <a class="ux-menu-link__link flex"
-                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Bàn trang điểm"&Color=null&query=>
+                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Bàn trang điểm"
+                                                                               &Color=null&query=>
 						<span class="ux-menu-link__text">
 				Bàn trang điểm			</span>
                                                                             </a>
@@ -691,7 +695,8 @@
 
                                                                         <div class="ux-menu-link flex menu-item">
                                                                             <a class="ux-menu-link__link flex"
-                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Tủ hộc kéo"&Color=null&query=>
+                                                                               href="/search/page=1?option=1&choicePrice=0&Categories=Tủ hộc kéo"
+                                                                               &Color=null&query=>
 						<span class="ux-menu-link__text">
 				Tủ hộc kéo			</span>
                                                                             </a>
@@ -989,40 +994,40 @@
                                 <ul class="sub-menu nav-dropdown nav-dropdown-default" style="">
                                     <li id="menu-item-8199"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8199">
-                                        <a href="https://nhaxinh.com/phong-khach/">Phòng khách</a></li>
+                                        <a href="#">Phòng khách</a></li>
                                     <li id="menu-item-24423"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24423">
-                                        <a href="https://nhaxinh.com/phong-an/">Phòng ăn</a></li>
+                                        <a href="#">Phòng ăn</a></li>
                                     <li id="menu-item-24304"
                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24304">
-                                        <a href="https://nhaxinh.com/phong-ngu/">Phòng ngủ</a></li>
+                                        <a href="#">Phòng ngủ</a></li>
                                     <li id="menu-item-27857"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27857">
-                                        <a href="https://nhaxinh.com/danh-muc/phong-lam-viec/">Phòng làm việc</a></li>
+                                        <a href="#">Phòng làm việc</a></li>
                                     <li id="menu-item-37292"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-37292">
-                                        <a href="https://nhaxinh.com/danh-muc/bep/tu-bep/">Tủ bếp</a></li>
+                                        <a href="#">Tủ bếp</a></li>
                                     <li id="menu-item-27856"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27856">
-                                        <a href="https://nhaxinh.com/danh-muc/hang-trang-tri/">Hàng trang trí</a></li>
+                                        <a href="#">Hàng trang trí</a></li>
                                     <li id="menu-item-27855"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-27855">
-                                        <a href="https://nhaxinh.com/danh-muc/ngoai-that/">Ngoại thất</a></li>
+                                        <a href="#">Ngoại thất</a></li>
                                 </ul>
                             </li>
                             <li id="menu-item-24226"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24226 menu-item-design-default">
-                                <a href="https://nhaxinh.com/bo-suu-tap/" class="nav-top-link">Bộ sưu tập</a></li>
+                                <a href="#" class="nav-top-link">Bộ sưu tập</a></li>
                             <li id="menu-item-290"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-290 menu-item-design-default">
-                                <a href="https://nhaxinh.com/thiet-ke-noi-that/" class="nav-top-link">Thiết kế nội
+                                <a href="#" class="nav-top-link">Thiết kế nội
                                     thất</a></li>
                             <li id="menu-item-288"
                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-288 menu-item-design-default">
-                                <a href="https://nhaxinh.com/showroom-ao/" class="nav-top-link">Showroom ảo</a></li>
+                                <a href="#" class="nav-top-link">Showroom ảo</a></li>
                             <li id="menu-item-27825"
                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27825 menu-item-design-default">
-                                <a href="https://nhaxinh.com/cam-hung-nha-xinh-y-tuong/" class="nav-top-link">Góc cảm
+                                <a href="#" class="nav-top-link">Góc cảm
                                     hứng</a></li>
                         </ul>
                     </div>
@@ -1034,27 +1039,27 @@
                                 <div class="header-search-form-wrapper">
                                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
 
-                                            <div class="flex-row relative">
-                                                <div class="flex-col flex-grow">
-                                                    <label class="screen-reader-text"
-                                                           for="querySearch">Search for:</label>
-                                                    <input type="search" id="querySearch"
-                                                           class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
-                                                           name="s" >
-                                                    <input type="hidden" name="post_type" value="product">
-                                                    <input type="hidden" name="lang" value="vi">
-                                                </div>
-                                                <div class="flex-col">
-                                                    <button type="submit" value="Search"
-                                                            class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
-                                                            aria-label="Submit">
-                                                        <i class="fa-solid fa-magnifying-glass"></i></button>
-                                                </div>
+                                        <div class="flex-row relative">
+                                            <div class="flex-col flex-grow">
+                                                <label class="screen-reader-text"
+                                                       for="querySearch">Search for:</label>
+                                                <input type="search" id="querySearch"
+                                                       class="search-field mb-0" placeholder="Tìm sản phẩm" value=""
+                                                       name="s">
+                                                <input type="hidden" name="post_type" value="product">
+                                                <input type="hidden" name="lang" value="vi">
                                             </div>
-                                            <div class="live-search-results text-left z-top">
-                                                <div class="autocomplete-suggestions resuilt_search d-none"></div>
+                                            <div class="flex-col">
+                                                <button type="submit" value="Search"
+                                                        class="ux-search-submit submit-button secondary button icon mb-0 btn-search"
+                                                        aria-label="Submit">
+                                                    <i class="fa-solid fa-magnifying-glass"></i></button>
                                             </div>
-                                            <input type="hidden" name="lang" value="vi">
+                                        </div>
+                                        <div class="live-search-results text-left z-top">
+                                            <div class="autocomplete-suggestions resuilt_search d-none"></div>
+                                        </div>
+                                        <input type="hidden" name="lang" value="vi">
                                     </div>
                                 </div>
                             </li>
@@ -1163,23 +1168,25 @@
                 <div class="product-container">
 
                     <div class="product-main">
-                        <div class="row content-row mb-0">
-                            <th:block th:each="product, count : ${product}">
+                        <th:block th:each="product, count : ${product}">
+                            <div class="row content-row mb-0">
 
-                            <div class="product-gallery col large-7">
-                                <div class="row row-small">
-                                    <div class="col large-10">
-                                        <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images relative mb-half has-hover main_photo"
-                                             data-columns="4" style="opacity: 1;">
 
-                                            <div class="badge-container is-larger absolute left top z-1">
-                                            </div>
+                                <div class="product-gallery col large-7">
+                                    <div class="row row-small">
+                                        <div class="col large-1"></div>
+                                        <div class="col large-10">
+                                            <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images relative mb-half has-hover main_photo"
+                                                 data-columns="4" style="opacity: 1;">
 
-                                            <div class="image-tools absolute top show-on-hover right z-3">
-                                            </div>
+                                                <div class="badge-container is-larger absolute left top z-1">
+                                                </div>
 
-                                            <figure class="woocommerce-product-gallery__wrapper product-gallery-slider slider slider-nav-small mb-0 is-draggable flickity-enabled slider-lazy-load-active"
-                                                    data-flickity-options="{
+                                                <div class="image-tools absolute top show-on-hover right z-3">
+                                                </div>
+
+                                                <figure class="woocommerce-product-gallery__wrapper product-gallery-slider slider slider-nav-small mb-0 is-draggable flickity-enabled slider-lazy-load-active"
+                                                        data-flickity-options="{
                 &quot;cellAlign&quot;: &quot;center&quot;,
                 &quot;wrapAround&quot;: true,
                 &quot;autoPlay&quot;: false,
@@ -1190,98 +1197,54 @@
                 &quot;dragThreshold&quot; : 15,
                 &quot;pageDots&quot;: false,
                 &quot;rightToLeft&quot;: false       }" tabindex="0">
-                                                <div class="flickity-viewport"
-                                                     style="height: 390.406px; touch-action: pan-y;">
+                                                    <div class="flickity-viewport"
+                                                         style="height: 390.406px; touch-action: pan-y;">
 
-                                                    <div class="carousel image_big-view"
-                                                         style="left: 0px; transform: translateX(0%);">
-                                                        <th:block th:each="productMedia, count : ${image}">
-                                                        <div class="carousel-cell" >
-                                                            <a th:src="*{productMedia.fileUrl}">
-                                                                <img
-                                                                        width="500" height="333"
-                                                                        th:src="*{productMedia.fileUrl}"
-                                                                        class="d-block w-100"
-                                                                >
-                                                            </a>
+                                                        <div class="carousel image_big-view"
+                                                             style="left: 0px; transform: translateX(0%);">
+                                                            <th:block th:each="productMedia, count : ${image}">
+                                                                <div class="carousel-cell">
+                                                                    <a th:src="*{productMedia.fileUrl}">
+                                                                        <img
+                                                                                width="500" height="333"
+                                                                                th:src="*{productMedia.fileUrl}"
+                                                                                class="d-block w-100"
+                                                                        >
+                                                                    </a>
+                                                                </div>
+                                                            </th:block>
                                                         </div>
-                                                        </th:block>
                                                     </div>
+
+                                                </figure>
+                                                <style>/* fullscreen */
+                                                .carousel.is-fullscreen .carousel-cell {
+                                                    height: 100%;
+                                                }</style>
+                                                <div class="image-tools absolute bottom left z-3">
+                                                    <a href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#product-zoom"
+                                                       class="zoom-button button is-outline circle icon tooltip hide-for-small tooltipstered">
+                                                        <i class="icon-expand"></i> </a>
                                                 </div>
 
-                                            </figure>
-                                            <style>/* fullscreen */
-                                            .carousel.is-fullscreen .carousel-cell {
-                                                height: 100%;
-                                            }</style>
-                                            <div class="image-tools absolute bottom left z-3">
-                                                <a href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#product-zoom"
-                                                   class="zoom-button button is-outline circle icon tooltip hide-for-small tooltipstered">
-                                                    <i class="icon-expand"></i> </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col large-2 large-col-first vertical-thumbnails pb-0">
-                                        <a href="javascript:void(0)" data-flickity-el=".product-gallery-slider"
-                                           data-action="previous" class="prev_arrow desktop"><img
-                                                src="/assets/detail_files/arrowdown.svg" alt="preview"></a>
-                                        <div class="product-thumbnails thumbnails slider row row-small row-slider slider-nav-small small-columns-4 is-draggable flickity-enabled slider-lazy-load-active"
-                                             data-flickity-options="{
-                &quot;cellAlign&quot;: &quot;left&quot;,
-                &quot;wrapAround&quot;: false,
-                &quot;autoPlay&quot;: false,
-                &quot;prevNextButtons&quot;: false,
-                &quot;asNavFor&quot;: &quot;.product-gallery-slider&quot;,
-                &quot;percentPosition&quot;: true,
-                &quot;imagesLoaded&quot;: true,
-                &quot;freeScroll&quot;: true,
-                &quot;pageDots&quot;: false,
-                &quot;rightToLeft&quot;: false,
-                &quot;contain&quot;:  true
-            }" tabindex="0">
-
-                                            <div class="flickity-viewport" style="height: 162px; touch-action: pan-y;">
-                                                <div class="flickity-slider each_image"
-                                                     style="left: 0px; transform: translateX(-0.82%);">
-<!--                                                    <div class="col first is-nav-selected is-selected"-->
-<!--                                                         style="position: absolute; left: 0%;">-->
-<!--                                                        <a>-->
-<!--                                                            <img src="/assets/detail_files/ban-an-roma-300x200.jpg"-->
-<!--                                                                 alt="" width="300" height=""-->
-<!--                                                                 class="attachment-woocommerce_thumbnail"> </a>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="col" aria-hidden="true"-->
-<!--                                                         style="position: absolute; left: 95.82%;"><a><img-->
-<!--                                                            src="/assets/detail_files/ban-an-roma-2_3_73233_2-300x180.jpg"-->
-<!--                                                            data-src="https://nhaxinh.com/wp-content/uploads/2021/10/ban-an-roma-2_3_73233_2-300x180.jpg"-->
-<!--                                                            alt="" width="300" height=""-->
-<!--                                                            class="attachment-woocommerce_thumbnail lazy-load-active"></a>-->
-<!--                                                    </div>-->
-
-                                                </div>
                                             </div>
                                         </div>
-
+                                        <div class="col large-1"></div>
                                     </div>
-                                    <a href="javascript:void(0)" data-flickity-el=".product-gallery-slider"
-                                       data-action="next" class="next_arrow desktop"><img
-                                            src="/assets/detail_files/arrowdown.svg" alt="next"></a>
                                 </div>
-                            </div>
                                 <input type="hidden" th:field="*{product.id}" id="productId">
-                            <div class="product-info summary col-fit col entry-summary product-summary" style=" border: 1px solid #00000033;
+                                <div class="product-info summary col-fit col entry-summary product-summary" style=" border: 1px solid #00000033;
                                                                                                                 border-radius: 10px;
                                                                                                                 padding-top: 20px;
                                                                                                                 padding-left: 30px;
-                                                                                                                box-shadow: 3px 3px 8px 0px;"   >
-                                <h1 class="product-title product_title entry-title" th:text="*{product.title}">
+                                                                                                                box-shadow: 3px 3px 8px 0px;
+                                                                                                                left: -25px;">
+                                    <h1 class="product-title product_title entry-title" th:text="*{product.title}">
                                     </h1>
 
-                                <div class="is-divider small"></div>
-                                <div class="price-wrapper">
-                                    <p class="price product-page-price ">
+                                    <div class="is-divider small"></div>
+                                    <div class="price-wrapper">
+                                        <p class="price product-page-price ">
                                         <span class="woocommerce-Price-amount amount" style="
                                                                                             color: red;
                                                                                             font-weight: bold;
@@ -1289,58 +1252,71 @@
                                                                                             left: -15px;
                                                                                             position: relative;
                                                                                             top: -10px;
-                                                                                        " th:text="*{product.priceFormat}"></span></p>
-                                </div>
-
-                                <div class="product-attributes-wrapper">
-                                    <div class="product-attribute product-attribute-item product-attribute-item-0">
-                                        <strong>Kích thước</strong>
-                                        <span class="product-attribute-option" th:text="*{product.size}" ></span>
+                                                                                        "
+                                              th:text="*{product.priceFormat}"></span></p>
                                     </div>
 
-                                    <div class="product-attribute product-attribute-item product-attribute-item-0">
-                                        <strong>Vật liệu</strong>
-                                        <span class="product-attribute-option" th:text="*{product.material}"></span>
+                                    <div class="product-attributes-wrapper">
+                                        <div class="product-attribute product-attribute-item product-attribute-item-0">
+                                            <strong>Kích thước</strong>
+                                            <span class="product-attribute-option" th:text="*{product.size}"></span>
+                                        </div>
+
+                                        <div class="product-attribute product-attribute-item product-attribute-item-0">
+                                            <strong>Vật liệu</strong>
+                                            <span class="product-attribute-option" th:text="*{product.material}"></span>
+                                        </div>
+
+
                                     </div>
+                                    <div class="stock-available-wrapper">
+                                        <div><span
+                                                th:text="*{product.status+' - Còn lại: '+ product.quantity +  ' Sản phẩm - '}"></span>
+                                            <a href="#" id="btn-view-stock-modal">Xem cửa
+                                                hàng trưng bày</a></div>
+                                    </div>
+                                    <div class="product_meta">
 
 
-                                </div>
-                                <div class="stock-available-wrapper">
-                                    <div><span th:text="*{product.status+' - Còn lại: '+ product.quantity +  ' Sản phẩm - '}"></span> <a href="#" id="btn-view-stock-modal">Xem cửa
-                                        hàng trưng bày</a></div>
-                                </div>
-                                <div class="product_meta">
+                                        <span class="sku_wrapper">Mã: <span class="sku"
+                                                                            th:text="*{product.code}"></span></span>
 
 
-                                    <span class="sku_wrapper">Mã: <span class="sku" th:text="*{product.code}"></span></span>
+                                        <span class="posted_in">Danh mục: <a
+                                                th:href="*{'/search/page=1?option=1&choicePrice=0&Categories='+product.category.name+'&Color=null&query='}"
+                                                rel="tag" id="SameProduct"
+                                                th:text="*{product.category.name}"></a></span>
+                                        <span class="tagged_as">Màu sắc: <a
+                                                th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color='+product.productColor.color+'&query='}"
+                                                rel="tag" th:text="*{product.productColor.color}"></a></span>
+                                        <th:block th:each="tag, count : ${tag}">
+                                    <span class="tagged_as">Tags: <a
+                                            th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query='+tag.name}"
+                                            rel="tag" th:text="*{tag.name}"></a></span>
+                                        </th:block>
 
 
-                                    <span class="posted_in">Danh mục: <a
-                                            th:href="*{'/search/page=1?option=1&choicePrice=0&Categories='+product.category.name+'&Color=null&query='}"
-                                            rel="tag" id="SameProduct" th:text="*{product.category.name}"></a></span>
-                                    <span class="tagged_as">Màu sắc: <a th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color='+product.productColor.color+'&query='}" rel="tag" th:text="*{product.productColor.color}"></a></span>
-                                    <th:block th:each="tag, count : ${tag}">
-                                    <span class="tagged_as">Tags: <a th:href="*{'/search/page=1?option=1&choicePrice=0&Categories=null&Color=null&query='+tag.name}"
-                                                                     rel="tag" th:text="*{tag.name}"></a></span>
-                                    </th:block>
-
-
-                                </div>
-                                <p class="stock in-stock">In stock</p>
+                                    </div>
+                                    <p class="stock in-stock">In stock</p>
 
                                     <div th:if="${product.status != 'Đã Hết Hàng'}">
-                                    <div class="quantity buttons_added" th:if="${product.status != 'Đã Hết Hàng'}">
-                                        <input type="button" onclick="page.commands.handleReduce()"     value="-" class="minus button is-form reduce_quantity">
-                                        <div id="valueInput">
-                                        <input type="number" readonly id="quantity_62fc4b3185e6c" class="input-text qty text"
-                                               step="1" min="1" max="5" value="1" name="quantity">
-                                        </div>
-                                        <input type="button" onclick="page.commands.handlePlus()" value="+" class="plus button is-form plus_quantity"></div>
-                                    <button  class="buy-now button btn-buy">Mua
-                                        ngay</button>
-                                    <button type="submit" name="add-to-cart" value="2105"
-                                            class="single_add_to_cart_button button alt btn-add-to-cart">Thêm vào giỏ
-                                    </button>
+                                        <div class="quantity buttons_added" th:if="${product.status != 'Đã Hết Hàng'}">
+                                            <input type="button" onclick="page.commands.handleReduce()" value="-"
+                                                   class="minus button is-form reduce_quantity">
+                                            <div id="valueInput">
+                                                <input type="number" readonly id="quantity_62fc4b3185e6c"
+                                                       class="input-text qty text"
+                                                       step="1" min="1" max="5" value="1" name="quantity">
+                                            </div>
+                                            <input type="button" onclick="page.commands.handlePlus()" value="+"
+                                                   class="plus button is-form plus_quantity"></div>
+                                        <button class="buy-now button btn-buy">Mua
+                                            ngay
+                                        </button>
+                                        <button type="submit" name="add-to-cart" value="2105"
+                                                class="single_add_to_cart_button button alt btn-add-to-cart">Thêm vào
+                                            giỏ
+                                        </button>
                                         <div class="hotline-wrapper">Liên hệ tư vấn và đặt mua: <a class="hotline-phone"
                                                                                                    href="tel:18007200">18007200</a>
                                         </div>
@@ -1348,108 +1324,129 @@
                                     <div th:unless="${product.status == 'Đã Hết Hàng'}"></div>
 
 
+<!--                                    <div class="woocommerce-tabs wc-tabs-wrapper container tabbed-content">-->
+<!--                                        <ul class="tabs wc-tabs product-tabs small-nav-collapse nav nav-uppercase nav-tabs nav-normal nav-left"-->
+<!--                                            role="tablist">-->
+<!--                                            <li class="short-description_tab active" id="tab-title-short-description"-->
+<!--                                                role="tab" aria-controls="tab-short-description">-->
+<!--                                                <a href="#">-->
+<!--                                                    Mô tả </a>-->
+<!--                                            </li>-->
+<!--                                            <li class="reviews_tab" id="tab-title-reviews" role="tab"-->
+<!--                                                aria-controls="tab-reviews">-->
+<!--                                                <a href="#">-->
+<!--                                                    Đánh giá (0) </a>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--&lt;!&ndash;                                        <div class="tab-panels">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel&#45;&#45;short-description panel entry-content active"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 id="tab-short-description" role="tabpanel"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 aria-labelledby="tab-title-short-description"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 >&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel&#45;&#45;reviews panel entry-content "&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                 style="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div id="reviews" class="woocommerce-Reviews row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div id="comments" class="col large-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <p class="woocommerce-noreviews">Chưa có bài đánh giá.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
 
-                                <div class="woocommerce-tabs wc-tabs-wrapper container tabbed-content">
-                                    <ul class="tabs wc-tabs product-tabs small-nav-collapse nav nav-uppercase nav-tabs nav-normal nav-left"
-                                        role="tablist">
-                                        <li  class="short-description_tab active" id="tab-title-short-description"
-                                            role="tab" aria-controls="tab-short-description">
-                                            <a href="#" >
-                                              Mô tả </a>
-                                        </li>
-                                        <li class="reviews_tab" id="tab-title-reviews" role="tab"
-                                            aria-controls="tab-reviews">
-                                            <a href="#">
-                                                Đánh giá (0) </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-panels">
-                                        <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--short-description panel entry-content active"
-                                             id="tab-short-description" role="tabpanel"
-                                             aria-labelledby="tab-title-short-description"  th:text="*{product.description}">
-                                        </div>
-                                        <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content "
-                                             id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews"
-                                             style="">
-                                            <div id="reviews" class="woocommerce-Reviews row">
-                                                <div id="comments" class="col large-12">
-                                                    <p class="woocommerce-noreviews">Chưa có bài đánh giá.</p>
-                                                </div>
-
-                                                <div id="review_form_wrapper" class="large-12 col">
-                                                    <div id="review_form" class="col-inner">
-                                                        <div class="review-form-inner has-border">
-                                                            <div id="respond" class="comment-respond">
-                                                                <h3 id="reply-title" class="comment-reply-title">Viết
-                                                                    đánh giá cho "Bàn ăn Roma 6 chỗ" <small><a
-                                                                            rel="nofollow"
-                                                                            id="cancel-comment-reply-link"
-                                                                            href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#respond"
-                                                                            style="display:none;">Cancel
-                                                                        reply</a></small></h3>
-                                                                <form action="https://nhaxinh.com/wp-comments-post.php"
-                                                                      method="post" id="commentform"
-                                                                      class="comment-form" novalidate="">
-                                                                    <div class="comment-form-rating"><label
-                                                                            for="rating">Xếp hạng của bạn&nbsp;<span
-                                                                            class="required">*</span></label>
-                                                                        <p class="stars"><span>							<a
-                                                                                class="star-1"
-                                                                                href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">1</a>							<a
-                                                                                class="star-2"
-                                                                                href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">2</a>							<a
-                                                                                class="star-3"
-                                                                                href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">3</a>							<a
-                                                                                class="star-4"
-                                                                                href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">4</a>							<a
-                                                                                class="star-5"
-                                                                                href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">5</a>						</span>
-                                                                        </p><select name="rating" id="rating"
-                                                                                    required="" style="display: none;">
-                                                                            <option value="">Rate…</option>
-                                                                            <option value="5">Perfect</option>
-                                                                            <option value="4">Good</option>
-                                                                            <option value="3">Average</option>
-                                                                            <option value="2">Not that bad</option>
-                                                                            <option value="1">Very poor</option>
-                                                                        </select></div>
-                                                                    <p class="comment-form-comment"><label
-                                                                            for="comment">Đánh giá của bạn&nbsp;<span
-                                                                            class="required">*</span></label><textarea
-                                                                            id="comment" name="comment" cols="45"
-                                                                            rows="8" required=""></textarea></p><input
-                                                                        name="wpml_language_code" type="hidden"
-                                                                        value="vi">
-                                                                    <p class="form-submit"><input name="submit"
-                                                                                                  type="submit"
-                                                                                                  id="submit"
-                                                                                                  class="submit"
-                                                                                                  value="Gửi"> <input
-                                                                            type="hidden" name="comment_post_ID"
-                                                                            value="2105" id="comment_post_ID">
-                                                                        <input type="hidden" name="comment_parent"
-                                                                               id="comment_parent" value="0">
-                                                                    </p></form>
-                                                            </div><!-- #respond -->
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--&lt;!&ndash;                                                    <div id="review_form_wrapper" class="large-12 col">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <div id="review_form" class="col-inner">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            <div class="review-form-inner has-border">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                <div id="respond" class="comment-respond">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                    <h3 id="reply-title" class="comment-reply-title">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        Viết&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        đánh giá cho "Bàn ăn Roma 6 chỗ" <small><a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            rel="nofollow"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            id="cancel-comment-reply-link"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#respond"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            style="display:none;">Cancel&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        reply</a></small></h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                    <form action="https://nhaxinh.com/wp-comments-post.php"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                          method="post" id="commentform"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                          class="comment-form" novalidate="">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        <div class="comment-form-rating"><label&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                for="rating">Xếp hạng của bạn&nbsp;<span&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                class="required">*</span></label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            <p class="stars"><span>							<a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="star-1"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">1</a>							<a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="star-2"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">2</a>							<a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="star-3"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">3</a>							<a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="star-4"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">4</a>							<a&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="star-5"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    href="https://nhaxinh.com/san-pham/ban-an-roma-6-cho/#">5</a>						</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            </p><select name="rating" id="rating"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                        required=""&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                        style="display: none;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="">Rate…</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="5">Perfect</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="4">Good</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="3">Average</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="2">Not that bad</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                <option value="1">Very poor</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            </select></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        <p class="comment-form-comment"><label&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                for="comment">Đánh giá của&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            bạn&nbsp;<span&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    class="required">*</span></label><textarea&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                id="comment" name="comment" cols="45"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                rows="8" required=""></textarea></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        <input&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                name="wpml_language_code" type="hidden"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                value="vi">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        <p class="form-submit"><input name="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                                      type="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                                      id="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                                      class="submit"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                                      value="Gửi">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            <input&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    type="hidden" name="comment_post_ID"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                    value="2105" id="comment_post_ID">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                            <input type="hidden" name="comment_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                                   id="comment_parent" value="0">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                        </p></form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                </div>&lt;!&ndash; #respond &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
 
 
-                                            </div>
-                                        </div>
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
 
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="row content-row mb-0">
+                                <div class="box-product-related mb-30" style="  top: 35px;
+                                                                                position: relative;
+                                                                                border-bottom: 1px solid #0000002b;
+                                                                                padding: 20px 10px 40px 10px;
+                                                                                border-top: 1px solid #0000002b;">
+                                    <h2 class="box-heading wow fadeInUp animated text-center mb-40"><span style="   text-align: center;
+                                                                                                                    font-size: 40px;
+                                                                                                                    text-transform: none;
+                                                                                                                    font-weight: 600;" >Thông tin sản phẩm</span>
+                                    </h2>
+                                    <div class="description-detail" ><span style="  float: left;
+                                                                                    width: 100%;
+                                                                                    font-size: 14px;" th:text="*{product.description}"></span>
                                     </div>
                                 </div>
                             </div>
-                            </th:block>
-                        </div>
+                        </th:block>
+
                     </div>
 
                     <div class="product-footer">
                         <div class="container">
-
-
 
 
                             <div class="related related-products-wrapper product-section">
@@ -1459,7 +1456,6 @@
 
 
                                 <div class="row large-columns-4 medium-columns-3 small-columns-2 row-small product_Seach_In_query">
-
 
 
                                 </div>
@@ -1479,7 +1475,8 @@
                             <div class="d-flex">
                                 <div class="address_stock w-100">
                                     <p>
-                                        Vui lòng liên hệ hotline: <a href="tel:18007200">1800 7200</a> để biết thêm chi tiết
+                                        Vui lòng liên hệ hotline: <a href="tel:18007200">1800 7200</a> để biết thêm chi
+                                        tiết
                                     </p>
                                 </div>
                             </div>
@@ -1490,7 +1487,7 @@
 
 
         </div><!-- shop container -->
-<!--     -->
+        <!--     -->
         <section class="section" id="section_1332741581">
             <div class="bg section-bg fill bg-fill  bg-loaded">
 

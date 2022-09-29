@@ -59,8 +59,8 @@ page.commands.getOrderDetailShowAlert = () => {
         }
         $(".alertshow").html("")
         let str = `
-            <div class="alert alert-danger fixed-bottom" role="alert">
-  Bạn đang có ${data.length} Đơn hàng Chưa xử lý <a href="/order-dashboard" class="alert-link">Nhấn vào đây</a> để vào trang order.
+            <div class="alert alert-danger" role="alert" style=" width: 100%;text-align: center;">
+  Bạn đang có ${data.length} Đơn hàng Chưa xử lý <a href="/order-dashboard/Đang%20chờ%20duyệt" class="alert-link">Nhấn vào đây</a> để vào trang order.
 </div>
             `
         $(".alertshow").append(str)

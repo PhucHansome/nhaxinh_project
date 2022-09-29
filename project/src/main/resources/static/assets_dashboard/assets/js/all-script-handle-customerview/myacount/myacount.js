@@ -544,7 +544,7 @@ page.commands.handleSavePassword = () => {
                 App.IziToast.showErrorAlert("Mật khẩu không giống nhau")
                 return;
             }
-
+            page.element.btnSavePasword.off()
             user.password = page.element.newPassword.val();
             $.ajax({
                 "headers": {

@@ -233,10 +233,13 @@ page.dialogs.loadData.getAllProduct = () => {
             if (i > 7) {
                 return
             }
-            console.log(i)
             product = item;
             page.commands.addCartBotLine();
             if (product.status === "Đã Hết Hàng") {
+                $(".btn-add-cart").html("");
+            }
+            // console.log(product.quantity)
+            if (Number(product.quantity) < 1) {
                 $(".btn-add-cart").html("");
             }
         })
@@ -337,9 +340,6 @@ page.commands.cancelPopUp = () => {
         $(".popup_stock_wraper").removeClass("active");
     })
 }
-
-
-
 
 page.initializeControlEvent = () => {
     page.dialogs.loadData.getAllProduct();

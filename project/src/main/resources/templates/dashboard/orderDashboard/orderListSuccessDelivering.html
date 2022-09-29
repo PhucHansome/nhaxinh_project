@@ -86,7 +86,7 @@
                                     <div class="row">
                                         <div class="col-12" onclick="getOrder('All')" style="cursor: pointer;" th:object="${NumberAll}"><span
                                                 id="spanWrite">Toàn bộ </span><span id="spanNumber"
-                                                                                     th:text="${NumberAll}"></span>
+                                                                                    th:text="${NumberAll}"></span>
                                         </div>
                                     </div>
                                     <div class="row" >
@@ -168,7 +168,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card-box allOrder">
+                    <div class="card-box">
                         <h2 class="header-title">Danh sách đơn đặt hàng</h2>
 
                         <table id="datatable-buttons"
@@ -193,7 +193,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <th:block th:each="orderDetail, count : ${orderDetail}">
+                            <th:block th:each="orderDetail, count : ${orderDetailDTOSSuccessDelivering}">
                                 <tr>
                                     <td class="text-center align-middle" th:text="*{'#0000'+orderDetail.id}"></td>
                                     <td class="text-center align-middle">
