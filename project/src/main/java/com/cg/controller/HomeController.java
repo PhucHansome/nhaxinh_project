@@ -414,26 +414,34 @@ public class HomeController {
         modelAndView.setViewName("/dashboard/orderDashboard/order");
         String email = getPrincipal();
         modelAndView.addObject("userDTO", email);
+        BigDecimal sumAllOrder = BigDecimal.valueOf(0);
         List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
         for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+            sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
             String patternVND = ",###₫";
             DecimalFormat decimalFormat = new DecimalFormat(patternVND);
             orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));
         }
+        String patternVND = ",###₫";
+        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+        String sumAll = decimalFormat.format(sumAllOrder);
         modelAndView.addObject("orderDetail", orderDetailDTOS);
+        modelAndView.addObject("sumAll", sumAll);
+        modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
 
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
-
         List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
         BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
         for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
             sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+            orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
         }
-        String patternVND = ",###₫";
-        DecimalFormat decimalFormat = new DecimalFormat(patternVND);
         String sumWatting = decimalFormat.format(sumWattingOrder);
         modelAndView.addObject("sumWatting", sumWatting);
         modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+        modelAndView.addObject("orderDetailDTOSWatting", orderDetailDTOSWatting);
+
 
         List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
         BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
@@ -444,6 +452,7 @@ public class HomeController {
         modelAndView.addObject("sumApprove", sumApprove);
         modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
 
+
         List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
         BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
         for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
@@ -452,6 +461,7 @@ public class HomeController {
         String sumDelivering = decimalFormat.format(sumDeliveringOrder);
         modelAndView.addObject("sumDelivering", sumDelivering);
         modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+
 
         List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
         BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
@@ -462,8 +472,384 @@ public class HomeController {
         modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
         modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
 
+
+        List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+        BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+        for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+            sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+        }
+        String sumCancel = decimalFormat.format(sumCancelOrder);
+        modelAndView.addObject("sumCancel", sumCancel);
+        modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+
         return modelAndView;
     }
+
+    @GetMapping("/order-dashboard/{page}")
+    public ModelAndView getOrderDashboardListPage(@PathVariable String page) {
+        ModelAndView modelAndView = new ModelAndView();
+        if(page.contains("Đang chờ duyệt")){
+            modelAndView.setViewName("/dashboard/orderDashboard/orderListWatting");
+            String email = getPrincipal();
+            modelAndView.addObject("userDTO", email);
+            BigDecimal sumAllOrder = BigDecimal.valueOf(0);
+            List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+            for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+                sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
+                String patternVND = ",###₫";
+                DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+                orderDetail.setPriceFormat(decimalFormat.format(orderDetail.getGrandTotal()));
+            }
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            String sumAll = decimalFormat.format(sumAllOrder);
+            modelAndView.addObject("orderDetail", orderDetailDTOS);
+            modelAndView.addObject("sumAll", sumAll);
+            modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
+
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+            List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
+            BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
+                sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+                orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
+            }
+            String sumWatting = decimalFormat.format(sumWattingOrder);
+            modelAndView.addObject("sumWatting", sumWatting);
+            modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+            modelAndView.addObject("orderDetailDTOSWatting", orderDetailDTOSWatting);
+
+
+            List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
+            BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSApprove) {
+                sumApproveOrder = sumApproveOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumApprove = decimalFormat.format(sumApproveOrder);
+            modelAndView.addObject("sumApprove", sumApprove);
+            modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
+            BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
+                sumDeliveringOrder = sumDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumDelivering = decimalFormat.format(sumDeliveringOrder);
+            modelAndView.addObject("sumDelivering", sumDelivering);
+            modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+            BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSSuccessDelivering) {
+                sumSuccessDeliveringOrder = sumSuccessDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumSuccessDelivering = decimalFormat.format(sumSuccessDeliveringOrder);
+            modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
+            modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+            BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+                sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumCancel = decimalFormat.format(sumCancelOrder);
+            modelAndView.addObject("sumCancel", sumCancel);
+            modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+
+            return modelAndView;
+        }
+        if(page.contains("Đơn hàng đã duyệt")){
+            modelAndView.setViewName("/dashboard/orderDashboard/orderListApprove");
+            String email = getPrincipal();
+            modelAndView.addObject("userDTO", email);
+            BigDecimal sumAllOrder = BigDecimal.valueOf(0);
+            List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+            for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+                sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
+            }
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            String sumAll = decimalFormat.format(sumAllOrder);
+            modelAndView.addObject("sumAll", sumAll);
+            modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
+
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+            List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
+            BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
+                sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumWatting = decimalFormat.format(sumWattingOrder);
+            modelAndView.addObject("sumWatting", sumWatting);
+            modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
+            BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSApprove) {
+                sumApproveOrder = sumApproveOrder.add(orderDetailDTO.getGrandTotal());
+                orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
+
+            }
+            String sumApprove = decimalFormat.format(sumApproveOrder);
+            modelAndView.addObject("sumApprove", sumApprove);
+            modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
+            modelAndView.addObject("orderDetailDTOSApprove", orderDetailDTOSApprove);
+
+
+            List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
+            BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
+                sumDeliveringOrder = sumDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumDelivering = decimalFormat.format(sumDeliveringOrder);
+            modelAndView.addObject("sumDelivering", sumDelivering);
+            modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+            BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSSuccessDelivering) {
+                sumSuccessDeliveringOrder = sumSuccessDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumSuccessDelivering = decimalFormat.format(sumSuccessDeliveringOrder);
+            modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
+            modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+            BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+                sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumCancel = decimalFormat.format(sumCancelOrder);
+            modelAndView.addObject("sumCancel", sumCancel);
+            modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+
+            return modelAndView;
+        }
+
+        if(page.contains("Đang giao hàng")){
+            modelAndView.setViewName("/dashboard/orderDashboard/orderListDelivering");
+            String email = getPrincipal();
+            modelAndView.addObject("userDTO", email);
+            BigDecimal sumAllOrder = BigDecimal.valueOf(0);
+            List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+            for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+                sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
+            }
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            String sumAll = decimalFormat.format(sumAllOrder);
+            modelAndView.addObject("sumAll", sumAll);
+            modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
+
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+            List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
+            BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
+                sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumWatting = decimalFormat.format(sumWattingOrder);
+            modelAndView.addObject("sumWatting", sumWatting);
+            modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
+            BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSApprove) {
+                sumApproveOrder = sumApproveOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumApprove = decimalFormat.format(sumApproveOrder);
+            modelAndView.addObject("sumApprove", sumApprove);
+            modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
+            BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
+                sumDeliveringOrder = sumDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+                orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
+            }
+            String sumDelivering = decimalFormat.format(sumDeliveringOrder);
+            modelAndView.addObject("sumDelivering", sumDelivering);
+            modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+            modelAndView.addObject("orderDetailDTOSDelivering", orderDetailDTOSDelivering);
+
+
+            List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+            BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSSuccessDelivering) {
+                sumSuccessDeliveringOrder = sumSuccessDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumSuccessDelivering = decimalFormat.format(sumSuccessDeliveringOrder);
+            modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
+            modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+            BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+                sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumCancel = decimalFormat.format(sumCancelOrder);
+            modelAndView.addObject("sumCancel", sumCancel);
+            modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+
+            return modelAndView;
+        }
+
+        if(page.contains("Đã giao hàng thành công")){
+            modelAndView.setViewName("/dashboard/orderDashboard/orderListSuccessDelivering");
+            String email = getPrincipal();
+            modelAndView.addObject("userDTO", email);
+            BigDecimal sumAllOrder = BigDecimal.valueOf(0);
+            List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+            for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+                sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
+            }
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            String sumAll = decimalFormat.format(sumAllOrder);
+            modelAndView.addObject("sumAll", sumAll);
+            modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
+
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+            List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
+            BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
+                sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumWatting = decimalFormat.format(sumWattingOrder);
+            modelAndView.addObject("sumWatting", sumWatting);
+            modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
+            BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSApprove) {
+                sumApproveOrder = sumApproveOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumApprove = decimalFormat.format(sumApproveOrder);
+            modelAndView.addObject("sumApprove", sumApprove);
+            modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
+            BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
+                sumDeliveringOrder = sumDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumDelivering = decimalFormat.format(sumDeliveringOrder);
+            modelAndView.addObject("sumDelivering", sumDelivering);
+            modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+            modelAndView.addObject("orderDetailDTOSDelivering", orderDetailDTOSDelivering);
+
+
+            List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+            BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSSuccessDelivering) {
+                sumSuccessDeliveringOrder = sumSuccessDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+                orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
+            }
+            String sumSuccessDelivering = decimalFormat.format(sumSuccessDeliveringOrder);
+            modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
+            modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
+            modelAndView.addObject("orderDetailDTOSSuccessDelivering", orderDetailDTOSSuccessDelivering);
+
+
+            List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+            BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+                sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumCancel = decimalFormat.format(sumCancelOrder);
+            modelAndView.addObject("sumCancel", sumCancel);
+            modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+
+            return modelAndView;
+        }
+
+        if(page.contains("Đã Hủy đơn hàng")){
+            modelAndView.setViewName("/dashboard/orderDashboard/orderListCancel");
+            String email = getPrincipal();
+            modelAndView.addObject("userDTO", email);
+            BigDecimal sumAllOrder = BigDecimal.valueOf(0);
+            List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderByCreatedAtDesc();
+            for (OrderDetailDTO orderDetail : orderDetailDTOS) {
+                sumAllOrder = sumAllOrder.add(orderDetail.getGrandTotal());
+            }
+            String patternVND = ",###₫";
+            DecimalFormat decimalFormat = new DecimalFormat(patternVND);
+            String sumAll = decimalFormat.format(sumAllOrder);
+            modelAndView.addObject("sumAll", sumAll);
+            modelAndView.addObject("NumberAll", orderDetailDTOS.size());
+
+
+            GregorianCalendar gregorianCalendar = new GregorianCalendar();
+            List<OrderDetailDTO> orderDetailDTOSWatting = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
+            BigDecimal sumWattingOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSWatting) {
+                sumWattingOrder = sumWattingOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumWatting = decimalFormat.format(sumWattingOrder);
+            modelAndView.addObject("sumWatting", sumWatting);
+            modelAndView.addObject("NumberWatting", orderDetailDTOSWatting.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSApprove = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đơn hàng đã duyệt");
+            BigDecimal sumApproveOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSApprove) {
+                sumApproveOrder = sumApproveOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumApprove = decimalFormat.format(sumApproveOrder);
+            modelAndView.addObject("sumApprove", sumApprove);
+            modelAndView.addObject("NumberApprove", orderDetailDTOSApprove.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang giao hàng");
+            BigDecimal sumDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSDelivering) {
+                sumDeliveringOrder = sumDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumDelivering = decimalFormat.format(sumDeliveringOrder);
+            modelAndView.addObject("sumDelivering", sumDelivering);
+            modelAndView.addObject("NumberDelivering", orderDetailDTOSDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOSSuccessDelivering = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã giao hàng thành công");
+            BigDecimal sumSuccessDeliveringOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOSSuccessDelivering) {
+                sumSuccessDeliveringOrder = sumSuccessDeliveringOrder.add(orderDetailDTO.getGrandTotal());
+            }
+            String sumSuccessDelivering = decimalFormat.format(sumSuccessDeliveringOrder);
+            modelAndView.addObject("sumSuccessDelivering", sumSuccessDelivering);
+            modelAndView.addObject("NumberSuccessDelivering", orderDetailDTOSSuccessDelivering.size());
+
+
+            List<OrderDetailDTO> orderDetailDTOCancel = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đã Hủy đơn hàng");
+            BigDecimal sumCancelOrder = BigDecimal.valueOf(0);
+            for (OrderDetailDTO orderDetailDTO : orderDetailDTOCancel) {
+                sumCancelOrder = sumCancelOrder.add(orderDetailDTO.getGrandTotal());
+                orderDetailDTO.setPriceFormat(decimalFormat.format(orderDetailDTO.getGrandTotal()));
+            }
+            String sumCancel = decimalFormat.format(sumCancelOrder);
+            modelAndView.addObject("sumCancel", sumCancel);
+            modelAndView.addObject("NumberCancel", orderDetailDTOCancel.size());
+            modelAndView.addObject("orderDetailDTOCancel", orderDetailDTOCancel);
+            return modelAndView;
+        }
+        return getOrderDashboard() ;
+    }
+
+
 
     @GetMapping("/order-dashboard/detail/{id}")
     public ModelAndView getOrderDetailDashboard(@PathVariable Long id) {
