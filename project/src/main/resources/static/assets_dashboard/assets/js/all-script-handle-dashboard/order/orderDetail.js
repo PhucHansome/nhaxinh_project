@@ -57,7 +57,7 @@ page.commands.addStr2 = () => {
 page.commands.addStr3 = () => {
     $(".line_cart_item").append($(rowstr3_render(
         order.productImage, order.productCode, order.productTitle,
-        order.quantity, new Intl.NumberFormat('vi-VN', {
+         new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
         }).format(order.grandTotal)

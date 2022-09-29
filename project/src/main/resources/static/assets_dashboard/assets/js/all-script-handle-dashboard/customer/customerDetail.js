@@ -59,7 +59,6 @@ page.dialogs.commands.getCustomerInfoById = (id) => {
 
 page.commands.goModalUpdateCustomer = () => {
     page.element.btnUpdateCustomer.on('click', function () {
-        console.log("a")
         page.dialogs.commands.getCustomerInfoById(page.element.idCustomer.val()).then(() => {
             page.element.fullNameUp.val(customerInfo.fullName)
             page.element.phoneUp.val(customerInfo.phone)
@@ -198,6 +197,7 @@ page.dialogs.commands.drawDistricts = (provinceId) => {
 page.element.provinceUp.on('change', function () {
     page.dialogs.commands.drawDistricts(page.element.provinceUp.val())
 })
+
 page.commands.handleShowConfirmDelete = () => {
     page.element.btnDelete.on('click', function () {
         App.SweetAlert.showConfirmDeleteUser()

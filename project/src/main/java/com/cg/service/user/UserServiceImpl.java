@@ -126,8 +126,8 @@ public class UserServiceImpl implements IUserService {
     public User saveAndMail(User user) throws MessagingException, UnsupportedEncodingException {
         user.setPassword(randomAlphanumeric(10));
 
-        final String fromEmail = "nhaxinhprj@gmail.com";
-        final String password = "cqpubpedlamghzfc";
+        final String fromEmail = "nhaxinhprjpv@gmail.com";
+        final String password = "vsitizhsoucrkjzo";
         final String toEmail = user.getUsername();
         final String subject = "[New]You have a NewPassWord!!";
         Properties prop = new Properties();

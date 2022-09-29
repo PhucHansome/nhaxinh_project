@@ -1,6 +1,8 @@
 let page = {
     url: {
-        GetAllCustomerInfo: App.BASE_URL_CUSTOMERINFO
+        GetAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
+        getAllProvinces: App.BASE_URL_PROVINCE + "/",
+        getAllDistricts: App.BASE_URL_PROVINCE + "/district/",
     },
     element: {},
     loadData: {},
@@ -14,10 +16,22 @@ let page = {
         inputError: {}
     }
 }
+page.element.phoneUpToOrder = $("#phoneUpToOrder");
+page.element.provinceUpToOrder = $("#provinceUpToOrder");
+page.element.provinceTextToOrder = $("#provinceUpToOrder :selected");
+page.element.districtUpToOrder = $("#districtUpToOrder");
+page.element.districTextToOrder = $("#districtUpToOrder :selected");
+page.element.addressUpToOrder = $("#addressUpToOrder");
+page.element.idCustomerToOrder = $("#idCustomer")
+page.element.btnUpdateLocation = $("#UpdateLocation")
+
 let order = new Order();
 let orderDetail = new OrderDetail();
 let customerInfo = new CustomerInfo();
 let locationRegion = new LocationRegion();
+let user = new User();
+let customerInfoId = null;
+
 
 page.element.AllCustomer = $(".AllCustomerInfor")
 
@@ -43,6 +57,51 @@ page.commands.drawCustomer = () => {
     })
 }
 
+page.dialogs.commands.drawProvinces = () => {
+    return $.ajax({
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json"
+        },
+        "type": "GET",
+        "url": page.url.getAllProvinces
+    })
+        .done((data) => {
+            console.log(data)
+            page.element.provinceUpToOrder.html("")
+            $.each(data.results, (i, item) => {
+                let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+                page.element.provinceUpToOrder.append(str);
+            })
+        })
+        .fail((jqxHR) => {
+            console.log(jqxHR);
+        })
+}
+
+page.dialogs.commands.drawDistricts = (provinceId) => {
+    return $.ajax({
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json"
+        },
+        "type": "GET",
+        "url": page.url.getAllDistricts + provinceId
+    }).done((data) => {
+        page.element.districtUpToOrder.html("");
+        $.each(data.results, (i, item) => {
+            let str = `<option  class="form-control" value="${item.district_id}">${item.district_name}</option>`;
+            page.element.districtUpToOrder.append(str)
+        })
+    }).fail((jqXHR) => {
+        console.log(jqXHR);
+    })
+}
+page.element.provinceUpToOrder.on('change', function () {
+    page.dialogs.commands.drawDistricts(page.element.provinceUpToOrder.val())
+})
+
+
 page.commands.getCustomerInfoById = (id) => {
     return $.ajax({
         "method": "GET",
@@ -52,8 +111,10 @@ page.commands.getCustomerInfoById = (id) => {
     })
 }
 
+
 page.commands.SelectedCustomer = () => {
     $(".AllCustomerInfor").on("change", function () {
+
         page.commands.getCustomerInfoById($(".AllCustomerInfor").val()).then(() => {
             $(".SelectOneCustomer").html("")
             let str = `
@@ -69,8 +130,8 @@ page.commands.SelectedCustomer = () => {
             $(".SelectOneCustomer").append(str);
 
             $(".AddressDelivery").html("")
-            let str1 =`
-            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="page.commands.updateLocaRegion">Thay đổi</a></span></p>
+            let str1 = `
+            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span id="UpdateLocation"> <a  href="#" onclick="page.commands.updateLocaRegion('${customerInfo.id}')">Thay đổi</a></span></p>
             <p >${customerInfo.phone}</p>
             <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
             `
@@ -87,33 +148,52 @@ page.commands.SelectedCustomer = () => {
                           margin: 40px 0px 40px 0px;
                           padding: 20px 20px 20px 20px;
                           text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">${new Intl.NumberFormat('vi-VN', {
-                                                                                                                style: 'currency',
-                                                                                                                currency: 'VND'
-                                                                                                            }).format(customerInfo.debt)}</span>
+                style: 'currency',
+                currency: 'VND'
+            }).format(customerInfo.debt)}</span>
                 </p>
             </div>
-            
             `
             $(".billingAddress").append(str2)
+            // page.commands.updateLocaRegion(customerInfo.id);
         })
     })
 }
 
 page.commands.removeCustomerSelected = () => {
     $(".SelectOneCustomer").html("")
-    let str =`
+    let str = `
     <select class="form-control AllCustomerInfor"></select>
     `
     $(".SelectOneCustomer").append(str);
     page.commands.drawCustomer()
-}
-
-page.commands.updateLocaRegion = () => {
 
 }
+
+page.commands.updateLocaRegion = (id) => {
+    console.log(id)
+    page.commands.getCustomerInfoById(id).then(() => {
+        console.log(customerInfo)
+        $("#phoneUpToOrder").val(customerInfo.phone)
+        $("#provinceUpToOrder").val(customerInfo.locationRegion.provinceId)
+        $("#addressUpToOrder").val(customerInfo.locationRegion.address)
+        page.dialogs.commands.drawDistricts(customerInfo.locationRegion.provinceId).then(function () {
+            $("#districtUpToOrder").val(customerInfo.locationRegion.districtId);
+        })
+        $('#modalUpdateLocation').modal('show')
+    })
+}
+
+$(function () {
+    page.dialogs.commands.drawProvinces().then(() => {
+        page.dialogs.commands.drawDistricts(page.element.provinceUpToOrder.val());
+    })
+    page.commands.updateLocaRegion();
+})
 
 page.initializeControlEvent = () => {
     page.commands.drawCustomer();
+
 }
 
 $(() => {

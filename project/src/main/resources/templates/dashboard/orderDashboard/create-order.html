@@ -67,7 +67,7 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-6 AddressDelivery" style="    padding-top: 20px;">
-                                            <p style="font-size: 1.125rem; font-weight: bold;">Địa chỉ giao hàng <span> <a href="#">Thay đổi</a></span></p>
+                                            <p style="font-size: 1.125rem; font-weight: bold;">Địa chỉ giao hàng <span id="UpdateLocation"> <a  href="#" >Thay đổi</a></span></p>
                                             <p >---</p>
                                             <p >------</p>
                                         </div>
@@ -76,7 +76,6 @@
                                                 <div class="col-12">
                                                     <h4>Thông tin bổ sung</h4>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
@@ -230,6 +229,8 @@
     // $(".AllCustomerInfor").select2()
 </script>
 <script src="/assets_dashboard/assets/js/all-script-handle-dashboard/order/create-order.js"></script>
+<th:block th:replace="/dashboard/orderDashboard/modal_updateLocation :: modal_update"/>
+
 
 </body>
 </html>

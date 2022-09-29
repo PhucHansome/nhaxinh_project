@@ -90,23 +90,22 @@
                 </div>
             <div>
                 <label class="form-label">Chọn Tháng:</label>
-                <input type="month" id="idMonth" onchange="dummyChart()">
+                <input type="month" id="idMonth"  onchange="dummyChart()">
             </div>
-                    <div id="graph-container" style="display: block;
+                    <div id="graph-container" >
+                        <canvas id="myChart" style=" display: block;
                                 box-sizing: border-box;
                                 height: 400px;
-                                width: 800.8px;">
-                        <canvas id="myChart" ></canvas>
+                                width: 800px">
+                        </canvas>
                     </div>
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
                     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-<!--                    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>-->
-<!--                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
                     <script>
 
 
-                    var arr = [] , productGrand = [], productdateData = [], arrDate = []
+                    var arr = [] , productGrand = [], productdateData = [], arrDate = [], orderDetailSum = [], detailSum = []
                         async function dummyChart() {
                              productGrand = []
                             productdateData = []
@@ -125,18 +124,23 @@
                                         borderColor: 'rgb(75, 192, 192)',
                                         data: arrSum
                                     },
-                                        // {
-                                        //     label: 'Số lượng bán ra',
-                                        //     backgroundColor: 'pink',
-                                        //     borderColor: 'rgb(255, 99, 132)',
-                                        //     data: productPrice
-                                        // }
+                                        {
+                                            label: 'Tổng Số đơn hàng',
+                                            backgroundColor: 'pink',
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            data: detailSum
+                                        }
                                     ]
                                 },
                                 options: {
                                     tooltips: {
                                         mode: 'index',
                                     },
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
                                 }
                             })
 
@@ -164,12 +168,19 @@
                                  for(i=0; i<grand.length;i++){
                                          sum += grand[i];
                                     }
+
                             console.log(grand)
                                   arrSum=  [sum]
-                            productdateData = date
+                                 let sumDetail = 0;
+                                 const SumOrderDetail = barChatData.map((x) => x.order)
+                                 detailSum = [SumOrderDetail.length]
+                                 for (i=0;i<SumOrderDetail.length;i++){
+                                     sumDetail += SumOrderDetail[i];
+                                 }
+                                 orderDetailSum = [sumDetail]
+                                 console.log(SumOrderDetail)
+                                 productdateData = date
                                  console.log(arr)
-                                 // let price = barChatData.map((x) => x.price)
-                                 // productPrice = price;
                         }
                     </script>
                 </div>
@@ -253,18 +264,25 @@
         })
     })
 
-            $("#idMonth").on('change',function (){
+    let date = new Date();
+
+    $('#idMonth').val(date.getFullYear() + "-"+ 0+(date.getMonth() +1) );
+    dummyChart()
+
+    $("#idMonth").on('change',function (){
                 var productGrand = [], productdateData = []
-                $.ajax({
+
+        $.ajax({
                 type: "GET",
                 url: "http://localhost:8092/api/statistics/sales-statistics-by-month/"+page.element.buttonselectMonth.val().split("-")[1] + "/"+page.element.buttonselectMonth.val().split("-")[0]
             }).done((data) =>{
-                    dummyChart()
+            dummyChart()
                 console.log(data)
             }).fail((data) =>{
                 console.log(data)
             })
         })
+
 </script>
 </body>
 </html>

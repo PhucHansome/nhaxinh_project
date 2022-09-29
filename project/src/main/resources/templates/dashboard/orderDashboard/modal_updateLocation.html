@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="modal_update">
+  <div id="modalUpdateLocation" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Thông Tin Địa chỉ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-alert-danger hide"></div>
+          <form id="frmUpdateLocation" method="post">
+            <fieldset class="row g-3">
+
+              <input type="hidden" id="userIdUp">
+
+
+
+              <div class="col-md-6">
+                <label class="form-label">Số điện thoại</label>
+                <input type="tel" class="form-control" id="phoneUpToOrder" name="phoneUpToOrder">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Province</label>
+                <select class="form-select form-control" id="provinceUpToOrder" name="provinceUpToOrder"></select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">District</label>
+                <select class="form-select form-control" id="districtUpToOrder" name="districtUpToOrder"></select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" id="addressUpToOrder" name="addressUpToOrder">
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="border-radius: 15px 50px;">Đóng</button>
+          <button type="button" id="btnUpdateLocation" class="btn btn-outline-primary" style="border-radius: 15px 50px;">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Cập nhật
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</th:block>

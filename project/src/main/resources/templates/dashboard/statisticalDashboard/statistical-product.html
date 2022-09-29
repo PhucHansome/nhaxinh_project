@@ -62,7 +62,6 @@
                             async function dummyChart() {
                                 await getDummyData()
                                 const ctx = document.getElementById('myChart').getContext('2d');
-
                                 const chart = new Chart(ctx, {
                                     type: 'line',
                                     data: {
@@ -127,7 +126,7 @@
 
                         <script>
 
-                            var productLabel = [], productgrandTotalData = [], productQuantityData = [];
+                            var productLabel = [], productgrandTotalData = [], productQuantityData = [],sumQuantity= []
 
                             async function dummyChart() {
                                 await getDummyData()
@@ -178,10 +177,18 @@
                                 const barChatData = await response.json()
                                 console.log(barChatData)
                                 const quantity = barChatData.map((x) => x.quantity)
+
+
                                 console.log(quantity)
                                 const price = barChatData.map((x) => x.grandTotal)
                                 console.log(price)
                                 const name = barChatData.map((x) => x.productTitle)
+                                let sum = 0;
+                                for(i=0;i<name.length;i++){
+                                    sum += quantity[i];
+
+                                }
+                                sumQuantity = [sum]
                                 console.log(name)
                                 productgrandTotalData = price
                                 productQuantityData = quantity
