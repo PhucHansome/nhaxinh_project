@@ -238,8 +238,7 @@ page.dialogs.loadData.getAllProduct = () => {
             if (product.status === "Đã Hết Hàng") {
                 $(".btn-add-cart").html("");
             }
-            // console.log(product.quantity)
-            if (Number(product.quantity) < 1) {
+            if (product.quantityProduct === 0) {
                 $(".btn-add-cart").html("");
             }
         })
