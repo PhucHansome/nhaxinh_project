@@ -4,8 +4,10 @@ let page = {
         GetProduct: App.BASE_URL_PRODUCT,
         GetAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
         GetCartItems: App.BASE_URL_CARTITEM,
+        DeleteCartItem: App.BASE_URL_CARTITEM,
         PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
-        PostCartItem: App.BASE_URL_CARTITEM + "/createCartAndCartItem"
+        PostCartItem: App.BASE_URL_CARTITEM + "/createCartAndCartItem",
+        PutCartItem: App.BASE_URL_CARTITEM
     },
     element: {},
     loadData: {},
@@ -101,6 +103,7 @@ page.commands.SelectedCustomer = () => {
                 </p>
             </div>
             <input type="hidden" id="idCustomer" value="${customerInfo.id}">
+            <input type="hidden" id="userCustomer" value="${customerInfo.userName}">
             `
             $(".billingAddress").append(str2)
             $("#provinceUp").val(customerInfo.locationRegion.provinceId)
@@ -122,6 +125,8 @@ const getAllCartItem = (userName) => {
         "url": page.url.GetCartItems + '/' + userName
     }).done((data) => {
         $("#listCartitems tbody").html("")
+        let quanity = 0
+        let sum = 0
         $.each(data, (i, item) => {
             cartItems = item;
             let str = `
@@ -132,7 +137,9 @@ const getAllCartItem = (userName) => {
                     <div class="row">${cartItems.product.title}</div>
                     <div class="row">${cartItems.product.code}</div>
                 </td>
-                <td class="text-center align-middle"><input type="number" value="${cartItems.quantity}"></td>
+                <td class="text-center align-middle"><input style="    width: 20%;
+                                                                        border: none;
+                                                                        border-bottom: 1px solid black;" type="number" id="inputQuantity_${cartItems.id}" onchange="handleChangeInputItem(${cartItems.id})" value="${cartItems.quantity}"></td>
                 <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
@@ -141,17 +148,47 @@ const getAllCartItem = (userName) => {
                 style: 'currency',
                 currency: 'VND'
             }).format(cartItems.grandTotal)}</td>
-                <td  class="text-center align-middle"><i onclick="deleteCartItems(cartItems.id)" class="fa fa-times-circle"></i></td>
-            </tr>
+                <td  class="text-center align-middle"><i style="cursor: pointer" onclick="deleteCartItems(${cartItems.id})" class="fa fa-times-circle"></i></td>
+            </tr> 
             `
             $("#listCartitems tbody").append(str)
+            quanity += cartItems.quantity;
+            sum += cartItems.grandTotal
         })
+        $(".all-bill").html("")
+        let str2 = `
+             <div class="col-12 ">
+                <div class="col-12">
+                    <span>Tổng tiền(<span> ${quanity} </span> Sản phẩm)</span>
+                </div>
+                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(sum)}</div>
+            </div>
+            <div class="col-12">
+                <div class="col-12"><span>Khách hàng phải trả</span>
+                </div>
+                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(sum)}</div>
+            </div>
+
+            <div class="col-12">
+                <div class="col-12"><span>Tổng tiền toàn bộ đơn hàng</span>
+                </div>
+                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(sum)}</div>
+            </div>
+            `
+        $(".all-bill").append(str2)
     })
 }
 
-const deleteCartItems = (id) => {
 
-}
 
 page.commands.removeCustomerSelected = () => {
     $(".SelectOneCustomer").html("")
@@ -342,7 +379,6 @@ const choiceProduct = () => {
         console.log(productId)
         page.commands.getProductById(productId).then(function () {
             page.commands.getCustomerInfoById($("#idCustomer").val()).then(function () {
-                console.log(customerInfo)
                 delete cartItems.id;
                 cartItems.product = product;
                 cartItems.price = product.price;
@@ -362,6 +398,7 @@ const choiceProduct = () => {
                     $("#listSearchProduct tbody").addClass("d-none");
                     App.IziToast.showSuccessAlert("Bạn đã thêm vào cart thành công!")
                     console.log(data.userName)
+                    $("#productSearchOutSide").val("")
                     getAllCartItem(data.userName)
                 }).fail((e) => {
                     console.log(e)
@@ -370,6 +407,70 @@ const choiceProduct = () => {
         })
     })
 
+}
+
+const deleteCartItems = (id) => {
+    Swal.fire({
+        title: 'Bạn có muốn xóa sản phẩm này không?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đúng, Tôi muốn xóa sản phẩm này!'
+    }).then((resuilt) => {
+        if (resuilt.isConfirmed) {
+            $.ajax({
+                "method": "DELETE",
+                "url": page.url.DeleteCartItem + "/" + id
+            }).done((data) => {
+                getAllCartItem($("#userCustomer").val())
+                App.IziToast.showSuccessAlert("Bạn đã xóa vào cartItem thành công!")
+            })
+        }
+    })
+}
+
+const getCartItemById = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetCartItems + "/id/" + id
+    }).done((data)=>{
+        cartItems = data;
+    }).fail((e)=>{
+        console.log(e)
+    })
+}
+
+const handleChangeInputItem = (id) => {
+    getCartItemById(id).then(()=>{
+        if ($("#inputQuantity_" + cartItems.id).val() <= 0) {
+            App.IziToast.showErrorAlert("số lượng sản phẩm phải lớn hơn 0!")
+            $("#inputQuantity_" + cartItems.id).val(cartItems.quantity)
+            return
+        }
+        let pattern = /\d/;
+        if (pattern.test($("#inputQuantity_" + cartItems.id).val()) === false) {
+            App.IziToast.showErrorAlert("đây không phải số")
+            $("#inputQuantity_" + cartItems.id).val(cartItems.quantity)
+            return;
+        }
+        cartItems.quantity = $("#inputQuantity_" + cartItems.id).val();
+        cartItems.grandTotal = Number(cartItems.price) * Number(cartItems.quantity);
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "PUT",
+            "url": page.url.PutCartItem + "/input-change",
+            "data": JSON.stringify(cartItems)
+        }).done((data)=>{
+            getAllCartItem($("#userCustomer").val())
+            App.IziToast.showSuccessAlert("Thay đổi giá tiên thành công")
+        }).fail((e)=>{
+            console.log(e)
+        })
+    })
 }
 
 page.initializeControlEvent = () => {

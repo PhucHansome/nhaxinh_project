@@ -169,4 +169,9 @@ public class CartItemServiceImpl implements CartItemService{
         cartRepository.save(cart);
         return cartItemNew;
     }
+
+    @Override
+    public CartItem saveChangeInput(CartItem cartItem) {
+        return cartItemRepository.save(cartItem);
+    }
 }

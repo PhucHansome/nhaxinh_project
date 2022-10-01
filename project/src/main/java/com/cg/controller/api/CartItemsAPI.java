@@ -102,6 +102,18 @@ public class CartItemsAPI {
         return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
     }
 
+    @PutMapping("/input-change")
+    public ResponseEntity<?> inputChange(@RequestBody CartItem cartItem, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(cartItemService.saveChangeInput(cartItem).toCartItemDTO(), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new DataInputException("Sản phẩm không đủ để thêm nữa!");
+        }
+    }
+
     @PutMapping("/increasing")
     public ResponseEntity<?> increasingCart(@RequestBody CartItem cartItem, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
