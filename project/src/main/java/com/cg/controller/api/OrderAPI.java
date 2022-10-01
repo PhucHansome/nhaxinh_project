@@ -145,6 +145,22 @@ public class OrderAPI {
 
 
     }
+
+    @PostMapping("/create-order-dashboard")
+    public ResponseEntity<?> doCreateOrderInDashBoard(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(orderService.saveOrderInDashBoard(orderDTO.toOrder()).toOrderDTO(),HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+
+    }
+
     @PutMapping("/order-detail/checkout/{username}")
     public ResponseEntity<?> doCheckOutOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

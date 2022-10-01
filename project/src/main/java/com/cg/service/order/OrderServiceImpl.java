@@ -318,4 +318,9 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> findAllOrderDTOByOrderDetailIdAndStatus(Long id, String status) {
         return orderRepository.findAllOrderDTOByOrderDetailIdAndStatus(id,status);
     }
+
+    @Override
+    public Order saveOrderInDashBoard(Order order) {
+        return orderRepository.save(order);
+    }
 }

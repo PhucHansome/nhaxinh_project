@@ -1,7 +1,11 @@
 let page = {
     url: {
+        GetResuiltSearch: App.BASE_URL_PRODUCT + "/product/search",
+        GetProduct: App.BASE_URL_PRODUCT,
         GetAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
-        PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit"
+        GetCartItems: App.BASE_URL_CARTITEM,
+        PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
+        PostCartItem: App.BASE_URL_CARTITEM + "/createCartAndCartItem"
     },
     element: {},
     loadData: {},
@@ -19,6 +23,9 @@ let order = new Order();
 let orderDetail = new OrderDetail();
 let customerInfo = new CustomerInfo();
 let locationRegion = new LocationRegion();
+let product = new Product();
+let tag = new Tag();
+let cartItems = new CartItems();
 
 page.element.AllCustomer = $(".AllCustomerInfor")
 
@@ -93,7 +100,7 @@ page.commands.SelectedCustomer = () => {
             }).format(customerInfo.debt)}</span>
                 </p>
             </div>
-            
+            <input type="hidden" id="idCustomer" value="${customerInfo.id}">
             `
             $(".billingAddress").append(str2)
             $("#provinceUp").val(customerInfo.locationRegion.provinceId)
@@ -104,10 +111,47 @@ page.commands.SelectedCustomer = () => {
 
             })
             handleUpdateCustomer(customerInfo);
+            getAllCartItem(customerInfo.userName)
         })
     })
 }
 
+const getAllCartItem = (userName) => {
+    $.ajax({
+        "type": "GET",
+        "url": page.url.GetCartItems + '/' + userName
+    }).done((data) => {
+        $("#listCartitems tbody").html("")
+        $.each(data, (i, item) => {
+            cartItems = item;
+            let str = `
+            <tr>
+                <td  class="text-center align-middle">${i + 1}</td>
+                <td  class="text-center align-middle"><img width="50px" height="50px" src="${cartItems.product.image}" alt=""></td>
+                <td >
+                    <div class="row">${cartItems.product.title}</div>
+                    <div class="row">${cartItems.product.code}</div>
+                </td>
+                <td class="text-center align-middle"><input type="number" value="${cartItems.quantity}"></td>
+                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(cartItems.product.price)}</td>
+                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(cartItems.grandTotal)}</td>
+                <td  class="text-center align-middle"><i onclick="deleteCartItems(cartItems.id)" class="fa fa-times-circle"></i></td>
+            </tr>
+            `
+            $("#listCartitems tbody").append(str)
+        })
+    })
+}
+
+const deleteCartItems = (id) => {
+
+}
 
 page.commands.removeCustomerSelected = () => {
     $(".SelectOneCustomer").html("")
@@ -172,20 +216,20 @@ const updateLocationRegion = () => {
 const handleUpdateCustomer = (customerInfo) => {
     $("#btnUpdateUser").on("click", () => {
         customerInfo.phone = $("#phoneUp").val();
-        customerInfo.locationRegion.address =  $("#addressUp").val() ;
-        customerInfo.locationRegion.provinceName =  $("#provinceUp :selected").text() ;
-        customerInfo.locationRegion.provinceId =  $("#provinceUp").val() ;
-        customerInfo.locationRegion.districtName =  $("#districtUp :selected").text() ;
-        customerInfo.locationRegion.districtId =  $("#districtUp").val() ;
+        customerInfo.locationRegion.address = $("#addressUp").val();
+        customerInfo.locationRegion.provinceName = $("#provinceUp :selected").text();
+        customerInfo.locationRegion.provinceId = $("#provinceUp").val();
+        customerInfo.locationRegion.districtName = $("#districtUp :selected").text();
+        customerInfo.locationRegion.districtId = $("#districtUp").val();
         $.ajax({
             "headers": {
                 "accept": "application/json",
                 "content-type": "application/json"
             },
             "type": "PUT",
-            "url" : page.url.PutCustomer,
+            "url": page.url.PutCustomer,
             "data": JSON.stringify(customerInfo)
-        }).done((data)=>{
+        }).done((data) => {
             console.log(data)
             App.IziToast.showSuccessAlert("Bạn đã đổi thông tin thành công!")
             $("#modalUpdateUser").modal("hide");
@@ -230,13 +274,103 @@ const handleUpdateCustomer = (customerInfo) => {
            
             `
             $(".billingAddress").append(str2)
-        }).fail((e)=>{
+
+        }).fail((e) => {
             console.log(e);
             App.IziToast.showErrorAlert("Bạn đã đổi thông tin Thất bại!")
         })
     })
 }
 
+$("#productSearchOutSide").on("blur", function () {
+    setTimeout(function () {
+        $("#listSearchProduct tbody").addClass("d-none");
+
+    }, 200)
+})
+
+$("#productSearchOutSide").on("input", function () {
+    let search = $("#productSearchOutSide").val()
+    $.ajax({
+        "method": "GET",
+        "url": page.url.GetResuiltSearch + "/" + search,
+    }).done((data) => {
+        console.log(data)
+        $("#listSearchProduct tbody").html("")
+        $("#listSearchProduct tbody").removeClass("d-none")
+        $("#listSearchProduct tbody").css({'position': 'absolute', 'z-index': '1', 'background': '#e0e0e0'})
+        $.each(data, (i, item) => {
+            tag = item;
+            product = tag.product
+            if (i > 3) return;
+            let str = `
+              <tr id="tr_${product.id}" style="cursor: pointer">
+                <td  class="text-center align-middle"><img width="50px" height="50px" src="${tag.product.image}" alt=""></td>
+                <td>
+                    <div class="row">${tag.product.title}</div>
+                    <div class="row">${tag.product.code}</div>
+                </td >
+                <td  class="text-center align-middle">${tag.product.quantity}</td>
+                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(tag.product.price)}</td>
+            </tr>
+                `
+            $("#listSearchProduct tbody").append(str)
+
+        });
+        choiceProduct()
+    })
+})
+
+page.commands.getProductById = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetProduct + "/" + id
+    }).done((data) => {
+        console.log(data);
+        product = data;
+    }).fail((e) => {
+        console.log(e)
+    })
+}
+
+const choiceProduct = () => {
+    $("#listSearchProduct tbody tr").on('click', function () {
+        let productId = $(this).attr('id').replace('tr_', '');
+        console.log(productId)
+        page.commands.getProductById(productId).then(function () {
+            page.commands.getCustomerInfoById($("#idCustomer").val()).then(function () {
+                console.log(customerInfo)
+                delete cartItems.id;
+                cartItems.product = product;
+                cartItems.price = product.price;
+                cartItems.quantity = 1;
+                cartItems.grandTotal = product.price;
+                cartItems.userName = customerInfo.userName;
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "POST",
+                    "url": page.url.PostCartItem,
+                    "data": JSON.stringify(cartItems)
+                }).done((data) => {
+                    console.log(data)
+                    $("#listSearchProduct tbody").addClass("d-none");
+                    App.IziToast.showSuccessAlert("Bạn đã thêm vào cart thành công!")
+                    console.log(data.userName)
+                    getAllCartItem(data.userName)
+                }).fail((e) => {
+                    console.log(e)
+                })
+            })
+        })
+    })
+
+}
 
 page.initializeControlEvent = () => {
     page.commands.drawCustomer();
@@ -244,6 +378,7 @@ page.initializeControlEvent = () => {
     $("#provinceUp").on('change', function () {
         page.dialogs.commands.drawDistricts($("#provinceUp").val())
     })
+
 }
 
 $(() => {

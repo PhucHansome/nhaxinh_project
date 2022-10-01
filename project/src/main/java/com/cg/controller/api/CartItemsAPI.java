@@ -93,6 +93,15 @@ public class CartItemsAPI {
         }
     }
 
+    @PostMapping("/createCartAndCartItem")
+    public ResponseEntity<?> doCreateCartAndCartItem(@RequestBody CartItemsDTO cartItemsDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem());
+        return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
+    }
+
     @PutMapping("/increasing")
     public ResponseEntity<?> increasingCart(@RequestBody CartItem cartItem, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

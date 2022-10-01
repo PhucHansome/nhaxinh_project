@@ -121,15 +121,20 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-10">
-                                        <input type="text" class="form-control" placeholder="Tìm theo tên,Mã SKU">
+                                        <input type="text" id="productSearchOutSide" class="form-control" placeholder="Tìm theo tên,Mã SKU">
+                                        <table class="table table-hover" id="listSearchProduct">
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="col-2">
                                         <button class="btn btn-light">Chọn nhanh</button>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="z-index: 2">
                                     <div class="col-12">
-                                        <table class="table table-light">
+                                        <table class="table table-light " id="listCartitems">
                                             <thead>
                                             <tr>
                                                 <th>Stt</th>
@@ -141,22 +146,12 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>url ảnh</td>
-                                                <td>
-                                                    <div class="row">tên sản phẩm</div>
-                                                    <div class="row">SKU</div>
-                                                </td>
-                                                <td>1</td>
-                                                <td>45000</td>
-                                                <td>45000</td>
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row"  style="z-index: 2">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
