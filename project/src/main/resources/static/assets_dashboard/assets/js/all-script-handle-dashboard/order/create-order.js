@@ -4,10 +4,13 @@ let page = {
         GetProduct: App.BASE_URL_PRODUCT,
         GetAllCustomerInfo: App.BASE_URL_CUSTOMERINFO,
         GetCartItems: App.BASE_URL_CARTITEM,
+        GetCart: App.BASE_URL_CART + "/",
         DeleteCartItem: App.BASE_URL_CARTITEM,
         PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
         PostCartItem: App.BASE_URL_CARTITEM + "/createCartAndCartItem",
+        PostOrder: App.BASE_URL_ORDER +"/create-order-dashboard",
         PutCartItem: App.BASE_URL_CARTITEM
+
     },
     element: {},
     loadData: {},
@@ -28,6 +31,7 @@ let locationRegion = new LocationRegion();
 let product = new Product();
 let tag = new Tag();
 let cartItems = new CartItems();
+let cart = new Cart();
 
 page.element.AllCustomer = $(".AllCustomerInfor")
 
@@ -185,9 +189,10 @@ const getAllCartItem = (userName) => {
             </div>
             `
         $(".all-bill").append(str2)
+
+        handleCreateOrder();
     })
 }
-
 
 
 page.commands.removeCustomerSelected = () => {
@@ -376,7 +381,6 @@ page.commands.getProductById = (id) => {
 const choiceProduct = () => {
     $("#listSearchProduct tbody tr").on('click', function () {
         let productId = $(this).attr('id').replace('tr_', '');
-        console.log(productId)
         page.commands.getProductById(productId).then(function () {
             page.commands.getCustomerInfoById($("#idCustomer").val()).then(function () {
                 delete cartItems.id;
@@ -396,10 +400,11 @@ const choiceProduct = () => {
                 }).done((data) => {
                     console.log(data)
                     $("#listSearchProduct tbody").addClass("d-none");
-                    App.IziToast.showSuccessAlert("Bạn đã thêm vào cart thành công!")
                     console.log(data.userName)
                     $("#productSearchOutSide").val("")
+                    $(".btn-create-Order").off();
                     getAllCartItem(data.userName)
+
                 }).fail((e) => {
                     console.log(e)
                 })
@@ -424,7 +429,7 @@ const deleteCartItems = (id) => {
                 "url": page.url.DeleteCartItem + "/" + id
             }).done((data) => {
                 getAllCartItem($("#userCustomer").val())
-                App.IziToast.showSuccessAlert("Bạn đã xóa vào cartItem thành công!")
+                App.IziToast.showSuccessAlert("Bạn đã xóa thành công!")
             })
         }
     })
@@ -434,15 +439,26 @@ const getCartItemById = (id) => {
     return $.ajax({
         "method": "GET",
         "url": page.url.GetCartItems + "/id/" + id
-    }).done((data)=>{
+    }).done((data) => {
         cartItems = data;
-    }).fail((e)=>{
+    }).fail((e) => {
+        console.log(e)
+    })
+}
+
+const getCartByCustomerId = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetCart + id
+    }).done((data) => {
+        cart = data;
+    }).fail((e) => {
         console.log(e)
     })
 }
 
 const handleChangeInputItem = (id) => {
-    getCartItemById(id).then(()=>{
+    getCartItemById(id).then(() => {
         if ($("#inputQuantity_" + cartItems.id).val() <= 0) {
             App.IziToast.showErrorAlert("số lượng sản phẩm phải lớn hơn 0!")
             $("#inputQuantity_" + cartItems.id).val(cartItems.quantity)
@@ -464,11 +480,43 @@ const handleChangeInputItem = (id) => {
             "type": "PUT",
             "url": page.url.PutCartItem + "/input-change",
             "data": JSON.stringify(cartItems)
-        }).done((data)=>{
+        }).done((data) => {
             getAllCartItem($("#userCustomer").val())
             App.IziToast.showSuccessAlert("Thay đổi giá tiên thành công")
-        }).fail((e)=>{
+        }).fail((e) => {
             console.log(e)
+        })
+    })
+}
+
+const handleCreateOrder = () => {
+    $(".btn-create-Order").on("click", function () {
+        getCartByCustomerId($("#idCustomer").val()).then(() => {
+            delete order.id;
+            order.description = $("#description_order").val();
+            order.grandTotal = 0;
+            order.quantity = 0;
+            order.productCode = "null";
+            order.productImage = "null";
+            order.productTitle = "null";
+            order.customerInfo = cart.customerInfo;
+            order.statusOrder = "Đang giao hàng";
+            order.orderDetail = new OrderDetail();
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.PostOrder,
+                "data": JSON.stringify(order)
+            }).done((dataOrder) => {
+                App.IziToast.showSuccessAlert("Bạn đã tạo đơn hàng thành công")
+                $(".btn-create-Order").off();
+                getAllCartItem($("#userCustomer").val())
+            }).fail((e)=>{
+                console.log(e)
+            })
         })
     })
 }
@@ -479,7 +527,6 @@ page.initializeControlEvent = () => {
     $("#provinceUp").on('change', function () {
         page.dialogs.commands.drawDistricts($("#provinceUp").val())
     })
-
 }
 
 $(() => {

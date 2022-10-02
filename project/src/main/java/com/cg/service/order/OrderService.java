@@ -38,5 +38,5 @@ public interface OrderService extends IGeneralService<Order> {
 
     List<OrderDTO> findAllOrderDTOByOrderDetailIdAndStatus(Long id,String status);
 
-    Order saveOrderInDashBoard(Order order);
+    Order saveOrderInDashBoard(Order order,String username);
 }

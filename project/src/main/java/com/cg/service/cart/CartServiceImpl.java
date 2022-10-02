@@ -3,6 +3,7 @@ package com.cg.service.cart;
 import com.cg.model.Cart;
 import com.cg.model.CustomerInfo;
 import com.cg.model.LocationRegion;
+import com.cg.model.dto.CartDTO;
 import com.cg.model.dto.CustomerInfoDTO;
 import com.cg.repository.CartRepository;
 import com.cg.repository.CustomerInfoRepository;
@@ -75,5 +76,10 @@ public class CartServiceImpl implements CartService{
     @Override
     public void softDelete(Cart cart) {
 
+    }
+
+    @Override
+    public Optional<CartDTO> findCartItemDTOByIdCustomerInfo(String id) {
+        return cartRepoSitory.findCartItemDTOByIdCustomerInfo(id);
     }
 }

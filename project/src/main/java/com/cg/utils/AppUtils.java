@@ -24,7 +24,7 @@ public class AppUtils {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    private String getPrincipal() {
+    public String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {

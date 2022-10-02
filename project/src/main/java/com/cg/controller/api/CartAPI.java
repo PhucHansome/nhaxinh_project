@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.xml.bind.DataBindingException;
@@ -30,6 +27,11 @@ public class CartAPI {
     @Autowired
     private AppUtils appUtils;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCartByUserName(@PathVariable String id){
+        return new ResponseEntity<>(cartService.findCartItemDTOByIdCustomerInfo(id).get().toCart(),HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> doCreate(@RequestBody CartDTO cartDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasErrors()) {
@@ -43,5 +45,6 @@ public class CartAPI {
         }
 
     }
+
 
 }
