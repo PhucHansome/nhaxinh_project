@@ -8,7 +8,7 @@ let page = {
         DeleteCartItem: App.BASE_URL_CARTITEM,
         PutCustomer: App.BASE_URL_CUSTOMERINFO + "/edit",
         PostCartItem: App.BASE_URL_CARTITEM + "/createCartAndCartItem",
-        PostOrder: App.BASE_URL_ORDER +"/create-order-dashboard",
+        PostOrder: App.BASE_URL_ORDER + "/create-order-dashboard",
         PutCartItem: App.BASE_URL_CARTITEM
 
     },
@@ -70,6 +70,8 @@ page.commands.SelectedCustomer = () => {
     $(".AllCustomerInfor").on("change", function () {
         page.commands.getCustomerInfoById($(".AllCustomerInfor").val()).then(() => {
             $(".SelectOneCustomer").html("")
+            $('#productSearchOutSide').prop('readonly', false);
+            $('#productSearchOutSide').removeProp('readonly');
             let str = `
                 <a href="/api/customerInfo/edit/${customerInfo.id}"> 
                     <span style="    color: #0088FF;
@@ -129,8 +131,13 @@ const getAllCartItem = (userName) => {
         "url": page.url.GetCartItems + '/' + userName
     }).done((data) => {
         $("#listCartitems tbody").html("")
+        $("#listCartitems thead").removeClass("d-none")
         let quanity = 0
         let sum = 0
+        if (data.length === 0) {
+            $("#listCartitems tbody").html("")
+            $("#listCartitems thead").addClass("d-none")
+        }
         $.each(data, (i, item) => {
             cartItems = item;
             let str = `
@@ -138,20 +145,25 @@ const getAllCartItem = (userName) => {
                 <td  class="text-center align-middle">${i + 1}</td>
                 <td  class="text-center align-middle"><img width="50px" height="50px" src="${cartItems.product.image}" alt=""></td>
                 <td >
-                    <div class="row">${cartItems.product.title}</div>
-                    <div class="row">${cartItems.product.code}</div>
+                    <div class="row"><span style="font-size: 15px;
+                                                  font-weight: 500;">${cartItems.product.title}</span></div>
+                    <div class="row"><span style="  color: #0000007d;
+                                                    font-size: 12px;
+                                                    padding: 5px 0px 0px 0px;">${cartItems.product.code}</span></div>
                 </td>
                 <td class="text-center align-middle"><input style="    width: 20%;
                                                                         border: none;
                                                                         border-bottom: 1px solid black;" type="number" id="inputQuantity_${cartItems.id}" onchange="handleChangeInputItem(${cartItems.id})" value="${cartItems.quantity}"></td>
-                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                <td  class="text-center align-middle"> <span style="font-weight: 500;
+                                                font-size: 14px;">${new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(cartItems.product.price)}</td>
-                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+            }).format(cartItems.product.price)}</span></td>
+                <td  class="text-center align-middle"><span style="font-weight: 500;
+                                                font-size: 14px;">${new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(cartItems.grandTotal)}</td>
+            }).format(cartItems.grandTotal)}</span></td>
                 <td  class="text-center align-middle"><i style="cursor: pointer" onclick="deleteCartItems(${cartItems.id})" class="fa fa-times-circle"></i></td>
             </tr> 
             `
@@ -162,35 +174,50 @@ const getAllCartItem = (userName) => {
         $(".all-bill").html("")
         let str2 = `
              <div class="col-12 ">
-                <div class="col-12">
-                    <span>Tổng tiền(<span> ${quanity} </span> Sản phẩm)</span>
+                         <div class="row" style="   font-weight: 500;
+                                    font-size: 16px;
+                                    padding: 12px 0px 12px 0px;">
+                <div class="col-6">
+                    <span style="">Tổng tiền(<span style="color: blue;"> ${quanity} </span> Sản phẩm):</span>
                 </div>
-                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+                <div class="col-6">${new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
         }).format(sum)}</div>
+                </div>
             </div>
             <div class="col-12">
-                <div class="col-12"><span>Khách hàng phải trả</span>
+            <div class="row" style="   font-weight: 500;
+                                    font-size: 16px;    
+                                    padding: 12px 0px 12px 0px;">
+                <div class="col-6"><span>Khách hàng phải trả:</span>
                 </div>
-                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+                <div class="col-6">${new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
-        }).format(sum)}</div>
+        }).format(sum)}</div></div>
             </div>
 
             <div class="col-12">
-                <div class="col-12"><span>Tổng tiền toàn bộ đơn hàng</span>
+            <div class="row" style="font-weight: 500;
+                                    font-size: 16px;   
+                                     padding: 12px 0px 12px 0px;">
+                <div class="col-6">
+                    <span>Tổng tiền toàn bộ đơn hàng:</span>
                 </div>
-                <div class="col-12">${new Intl.NumberFormat('vi-VN', {
+                <div class="col-6">${new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
         }).format(sum)}</div>
+                </div>
             </div>
             `
         $(".all-bill").append(str2)
 
         handleCreateOrder();
+    }).fail((e) => {
+        console.log(e)
+
     })
 }
 
@@ -201,6 +228,9 @@ page.commands.removeCustomerSelected = () => {
     <select class="form-control AllCustomerInfor"></select>
     `
     $(".SelectOneCustomer").append(str);
+    $('#productSearchOutSide').prop('readonly', true);
+    $('#productSearchOutSide').removeProp('readonly');
+    getAllCartItem()
     page.commands.drawCustomer()
 }
 
@@ -337,10 +367,18 @@ $("#productSearchOutSide").on("input", function () {
         "method": "GET",
         "url": page.url.GetResuiltSearch + "/" + search,
     }).done((data) => {
-        console.log(data)
         $("#listSearchProduct tbody").html("")
         $("#listSearchProduct tbody").removeClass("d-none")
-        $("#listSearchProduct tbody").css({'position': 'absolute', 'z-index': '1', 'background': '#e0e0e0'})
+        $("#listSearchProduct tbody").css({
+            'position': 'absolute',
+            'z-index': '1',
+            'background': '#ebebeb',
+            'width': '46%',
+            'padding': '10px 20px 10px 20px'
+        })
+        if (data.length === 0) {
+            $("#listSearchProduct tbody").append(`<h3>Không tìm thấy sản phẩm</h3>`)
+        }
         $.each(data, (i, item) => {
             tag = item;
             product = tag.product
@@ -349,14 +387,23 @@ $("#productSearchOutSide").on("input", function () {
               <tr id="tr_${product.id}" style="cursor: pointer">
                 <td  class="text-center align-middle"><img width="50px" height="50px" src="${tag.product.image}" alt=""></td>
                 <td>
-                    <div class="row">${tag.product.title}</div>
-                    <div class="row">${tag.product.code}</div>
+                    <div class="row"><span style="font-size: 15px;
+                                                  font-weight: 500;">
+                                    ${tag.product.title}</span></div>
+                    <div class="row"><span style="  color: #0000007d;
+                                                    font-size: 12px;
+                                                    padding: 5px 0px 0px 0px;">${tag.product.code}</span></div>
                 </td >
-                <td  class="text-center align-middle">${tag.product.quantity}</td>
-                <td  class="text-center align-middle">${new Intl.NumberFormat('vi-VN', {
+                <td  class="text-center align-middle">
+                <div class="row"><span style="font-weight: 500;
+                                                font-size: 14px;"> ${new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
-            }).format(tag.product.price)}</td>
+            }).format(tag.product.price)}</span></div>
+                  <div class="row" style="color: #0000007d;">Tồn: <span style="color: blue;
+                                                                               font-weight: 500;"> ${tag.product.quantity} </span> | có thể bán <span style="color: blue;
+                                                                                                                                                            font-weight: 500;"> ${tag.product.quantity} </span></div>
+                  </td>
             </tr>
                 `
             $("#listSearchProduct tbody").append(str)
@@ -514,7 +561,7 @@ const handleCreateOrder = () => {
                 App.IziToast.showSuccessAlert("Bạn đã tạo đơn hàng thành công")
                 $(".btn-create-Order").off();
                 getAllCartItem($("#userCustomer").val())
-            }).fail((e)=>{
+            }).fail((e) => {
                 console.log(e)
             })
         })
@@ -527,6 +574,8 @@ page.initializeControlEvent = () => {
     $("#provinceUp").on('change', function () {
         page.dialogs.commands.drawDistricts($("#provinceUp").val())
     })
+    $("#listCartitems thead").addClass("d-none")
+
 }
 
 $(() => {

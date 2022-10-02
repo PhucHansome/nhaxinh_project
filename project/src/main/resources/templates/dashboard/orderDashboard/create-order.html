@@ -61,9 +61,10 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-6 AddressDelivery" style="    padding-top: 20px;">
-                                            <p style="font-size: 1.125rem;font-weight: bold;">Địa chỉ giao hàng <span> <a href="#">Thay đổi</a></span></p>
-                                            <p >---</p>
-                                            <p >------</p>
+                                            <p style="font-size: 1.125rem;font-weight: bold;">Địa chỉ giao hàng
+                                                <span> <a href="#">Thay đổi</a></span></p>
+                                            <p>---</p>
+                                            <p>------</p>
                                         </div>
                                         <div class="col-6">
                                             <div class="row">
@@ -74,7 +75,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <span th:object="${userDTO}">Bán bởi: <span th:text="${userDTO}"></span></span>
+                                                    <span th:object="${userDTO}">Bán bởi: <span
+                                                            th:text="${userDTO}"></span></span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -97,7 +99,8 @@
                                             <p style="border: 1px dashed #00000061;
                                                       margin: 40px 0px 40px 0px;
                                                       padding: 20px 20px 20px 20px;
-                                                      text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">0đ</span>
+                                                      text-align: center;">tổng chi tiêu: <span
+                                                    style="color: red; font-weight: bold;">0đ</span>
                                             </p>
                                         </div>
                                     </div>
@@ -114,21 +117,23 @@
                                     <div class="col-12"><h3>Thông tin sản phẩm</h3></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-10">
-                                        <input type="text" id="productSearchOutSide" class="form-control" placeholder="Tìm theo tên,Mã SKU">
-                                        <table class="table table-hover" id="listSearchProduct">
-                                            <tbody>
+                                    <div class="col-12">
+                                        <div class="col-12"><input type="text" id="productSearchOutSide"
+                                                                   class="form-control" readonly
+                                                                   placeholder="Tìm theo tên,Mã SKU"></div>
+                                        <div class="col-12">
+                                            <table class="table table-hover table-responsive-xl" id="listSearchProduct">
+                                                <tbody>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="btn btn-light">Chọn nhanh</button>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="row" style="z-index: 2">
                                     <div class="col-12">
-                                        <table class="table table-light table-hover " id="listCartitems">
+                                        <table class="table table-bordered" id="listCartitems">
                                             <thead>
                                             <tr>
                                                 <th class="text-center align-middle">Stt</th>
@@ -145,7 +150,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row"  style="z-index: 2 ;padding: 40px 5px 15px 10px;">
+                                <div class="row" style="z-index: 2 ;padding: 40px 5px 15px 10px;">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
@@ -160,7 +165,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="row all-bill" style="margin: 20px 10px 20px 50px;">
+                                                <div class="row all-bill" style="margin: 40px 10px 20px 50px;">
 
                                                 </div>
                                             </div>
