@@ -279,13 +279,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
         List<OrderDTO> order = orderRepository.findOrderDTOByUserName(userName);
-//        for (OrderDTO orderDTO : order) {
-////            List<OrderDetailDTO> orderDetailDTOS = orderDetailRepository.findAllOrderDetailDTOByOrderId(orderDTO.getId());
-////            for (OrderDetailDTO orderDetailDTOSs : orderDetailDTOS) {
-//
-//            }
-//        }
-
         return order;
     }
 
@@ -320,6 +313,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public Order saveOrderInDashBoard(Order order,String username) {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(0L);
