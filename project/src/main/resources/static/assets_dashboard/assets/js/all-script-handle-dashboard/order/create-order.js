@@ -121,12 +121,13 @@ const getAllCartItem = (userName) => {
             <tr>
                 <td  class="text-center align-middle">${i + 1}</td>
                 <td  class="text-center align-middle"><img width="50px" height="50px" src="${cartItems.product.image}" alt=""></td>
-                <td >
-                    <div class="row"><span style="font-size: 15px;
+                <td ><a href="/detail-product-dashboard/${cartItems.product.id}">
+                    <div class="row" style="padding: 0px 0px 0px 10px;"><span style="font-size: 15px;
                                                   font-weight: 500;">${cartItems.product.title}</span></div>
-                    <div class="row"><span style="  color: #0000007d;
+                    <div class="row" style="padding: 0px 0px 0px 10px;"><span style="  color: #0000007d;
                                                     font-size: 12px;
                                                     padding: 5px 0px 0px 0px;">${cartItems.product.code}</span></div>
+                     </a>
                 </td>
                 <td class="text-center align-middle"><input style="    width: 20%;
                                                                         border: none;
@@ -344,7 +345,7 @@ page.commands.SelectedCustomer = () => {
                 <p style="border: 1px dashed #00000061;
                           margin: 40px 0px 40px 0px;
                           padding: 20px 20px 20px 20px;
-                          text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">${new Intl.NumberFormat('vi-VN', {
+                          text-align: center;">Tổng chi tiêu: <span style="color: red; font-weight: bold;">${new Intl.NumberFormat('vi-VN', {
                 style: 'currency',
                 currency: 'VND'
             }).format(customerInfo.debt)}</span>
@@ -375,6 +376,9 @@ page.commands.removeCustomerSelected = () => {
     $(".SelectOneCustomer").append(str);
     $('#productSearchOutSide').prop('readonly', true);
     $('#productSearchOutSide').removeProp('readonly');
+    $(".AddressDelivery").html("")
+    $(".AddressDelivery").append(`<div class="no-data-notice"><img  width="270px " src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt=""></div>`)
+    $(".billingAddress").html("")
     getAllCartItem()
     page.commands.drawCustomer()
 }
