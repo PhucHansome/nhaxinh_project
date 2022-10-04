@@ -1,5 +1,6 @@
 package com.cg.controller.api;
 
+import com.cg.exception.EmailExistsException;
 import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.Category;
 import com.cg.model.dto.CategoryDTO;
@@ -49,6 +50,10 @@ public class CategoryAPI {
     public ResponseEntity<?> doCreate(@Valid  @RequestBody CategoryDTO categoryDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
+        }
+        Boolean exitByCategory = categoryService.existsCategoryByName(categoryDTO.getName());
+        if (exitByCategory) {
+            throw new EmailExistsException("Loại sản phẩm đã tồn tại! Vui lòng nhập loại khác");
         }
         Category category = categoryService.save(categoryDTO.toCategory());
         return new ResponseEntity<>(category.categoryDTO(), HttpStatus.OK);

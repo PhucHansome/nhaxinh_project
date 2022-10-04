@@ -63,6 +63,11 @@ public class OrderDTO {
         this.statusOrder = statusOrder;
         this.orderDetail = orderDetail.toOrderDetailDTO();
     }
+    public OrderDTO( String productTitle ){
+
+        this.productTitle = productTitle;
+
+    }
 
     public Order toOrder() {
         return new Order()

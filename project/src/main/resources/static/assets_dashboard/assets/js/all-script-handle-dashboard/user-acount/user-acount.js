@@ -264,7 +264,6 @@ function pageAcount(){
     })
 
 }
-pageAcount();
 $(function (){
     // $('table tr:eq(0)').prepend('<th>#</th>')
     var id =0;
@@ -276,6 +275,8 @@ $(function (){
 
 page.initializeControlEvent = () => {
     page.loadData.getAllUser()
+    pageAcount();
+
 }
 
 $(() => {

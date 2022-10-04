@@ -182,6 +182,7 @@ const getAllCartItem = (userName) => {
                 <div class="col-6">
                     <span>Tổng tiền toàn bộ đơn hàng:</span>
                 </div>
+                
                 <div class="col-6">${new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND'
@@ -256,6 +257,7 @@ $("#productSearchOutSide").on("blur", function () {
     }, 200)
 })
 
+
 $("#productSearchOutSide").on("input", function () {
     let search = $("#productSearchOutSide").val()
     $.ajax({
@@ -307,6 +309,7 @@ $("#productSearchOutSide").on("input", function () {
         choiceProduct()
     })
 })
+
 
 page.commands.SelectedCustomer = () => {
     $(".AllCustomerInfor").on("change", function () {
@@ -533,7 +536,7 @@ const handleChangeInputItem = (id) => {
             "data": JSON.stringify(cartItems)
         }).done((data) => {
             getAllCartItem($("#userCustomer").val())
-            App.IziToast.showSuccessAlert("Thay đổi giá tiên thành công")
+            App.IziToast.showSuccessAlert("Thay đổi giá tiền thành công")
         }).fail((e) => {
             console.log(e)
         })

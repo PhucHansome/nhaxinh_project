@@ -27,6 +27,7 @@ let productColor = new ProductColor();
 let colorId = null;
 
 page.element.btncreateColor.on('click', () => {
+    $('#showError').html("")
     productColor.color = page.element.nameColor.val();
     delete productColor.id;
 
@@ -52,10 +53,45 @@ page.element.btncreateColor.on('click', () => {
             window.location.href = "/color-product-dashboard";
         }, 1000);
     }).fail((jqXHR) => {
-        App.IziToast.showErrorAlert("Thêm mới màu sắc thất bại")
-        console.log(jqXHR)
-    })
+        $('#showError').removeClass('d-none').addClass('show');
+        if (jqXHR.responseJSON.message) {
+            let msg = jqXHR.responseJSON.message;
+
+    let str =               `<ul>
+                                <li><label id="message-error" class="error" for="message">${msg}</label></li>
+                            </ul>
+                            `;
+
+            $('#showError').append(str)
+        }
+        else if (jqXHR.responseJSON) {
+            $.each(jqXHR.responseJSON, (key, item) => {
+                let str = `    <ul>
+                                    <li> <label id="${key}-error" class="error" for="${key}">${item}</label></li>
+                              </ul>
+                             `;
+
+                $("#" + key).addClass("error");
+
+                $('#showError').append(str)
+
+            })
+        }
 })
+})
+
+$("#createFormColor").on("hidden.bs.modal", function () {
+    $(" #createFormColor #showError")[0].reset();
+});
+
+    function handleCloseCreate() {
+
+        $("#createFormColor").on("hidden.bs.modal", () => {
+            $('#createFormColor #showError').empty().removeClass('show').addClass('d-none');
+        })
+    }
+handleCloseCreate();
+
 page.commands.handleShowConfirmDeleteColor = () => {
     page.element.btnDeleteColor.on('click', function () {
         let  id = $(this).data("id");

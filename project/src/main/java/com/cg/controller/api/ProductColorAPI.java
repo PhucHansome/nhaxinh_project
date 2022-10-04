@@ -1,6 +1,7 @@
 package com.cg.controller.api;
 
 
+import com.cg.exception.EmailExistsException;
 import com.cg.exception.ResourceNotFoundException;
 import com.cg.model.Category;
 import com.cg.model.ProductColor;
@@ -53,6 +54,10 @@ public class ProductColorAPI {
     public ResponseEntity<?> doCreate(@Valid  @RequestBody ProductColorDTO productColorDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
         if (bindingResult.hasFieldErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
+        }
+        Boolean exitByColor = productColorService.existsByColor(productColorDTO.getColor());
+        if (exitByColor) {
+            throw new EmailExistsException("Màu sắc đã tồn tại! Vui lòng nhập màu khác");
         }
         try {
             ProductColor productColor = productColorService.save(productColorDTO.toProductColor());

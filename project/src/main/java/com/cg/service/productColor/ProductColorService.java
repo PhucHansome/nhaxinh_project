@@ -12,4 +12,7 @@ public interface ProductColorService extends IGeneralService<ProductColor> {
     Optional<ProductColorDTO> findProductColorDTOById(Long id);
 
     void deleteColor( Long id);
+
+    Boolean existsByColor(String color);
+
 }

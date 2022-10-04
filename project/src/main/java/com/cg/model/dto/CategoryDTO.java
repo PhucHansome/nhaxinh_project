@@ -11,6 +11,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Setter
@@ -22,10 +23,10 @@ public class CategoryDTO {
 
     private Long id;
 
-    @NotNull(message = "Tên thể loại sản phẩm không được để trống")
+    @NotBlank(message = "Tên thể loại sản phẩm không được để trống")
     private String name;
 
-    @NotNull(message = "Tên thể loại sản phẩm không được để trống")
+    @NotBlank(message = "Code sản phẩm không được để trống")
     private String code;
 
     public Category toCategory(){

@@ -23,4 +23,7 @@ public interface ProductColorRepository extends JpaRepository<ProductColor, Long
             "c.color)  " +
             "FROM ProductColor c  WHERE c.id = ?1   ")
     Optional<ProductColorDTO> findProductColorDTOById(Long id);
+
+    Boolean existsByColor(String color);
+
 }

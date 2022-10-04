@@ -17,7 +17,7 @@ public interface CategoryService extends IGeneralService<Category>{
 
     void deleteCategory( Long id);
 
-
+    Boolean existsCategoryByName(String name);
 
 
 }

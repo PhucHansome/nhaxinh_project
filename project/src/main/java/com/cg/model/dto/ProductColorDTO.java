@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -15,6 +17,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ProductColorDTO {
     private Long id;
+
+    @NotBlank(message = "Vui lòng nhập màu sắc")
     private String color;
 
     public ProductColor toProductColor(){

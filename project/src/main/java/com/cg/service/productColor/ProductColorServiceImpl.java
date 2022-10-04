@@ -63,4 +63,9 @@ public class ProductColorServiceImpl implements ProductColorService{
     public void deleteColor(Long id) {
         productColorRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean existsByColor(String color) {
+        return productColorRepository.existsByColor(color);
+    }
 }

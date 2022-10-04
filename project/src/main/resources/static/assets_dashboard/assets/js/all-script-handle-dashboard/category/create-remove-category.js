@@ -27,6 +27,8 @@
     let categoryId = null;
 
     page.element.btncreateCategory.on('click', () => {
+        $('#showError').html("")
+
     category.name = page.element.nameCategory.val();
     category.code = page.element.codeCategory.val();
     delete category.id;
@@ -54,10 +56,44 @@
     window.location.href = "/category-product-dashboard";
 }, 1000);
 }).fail((jqXHR) => {
-    App.IziToast.showErrorAlert("Thêm mới Category thất bại")
-    console.log(jqXHR)
-})
-})
+        $('#showError').removeClass('d-none').addClass('show');
+        if (jqXHR.responseJSON.message) {
+            let msg = jqXHR.responseJSON.message;
+
+            let str =               `<ul>
+                                <li><label id="message-error" class="error" for="message">${msg}</label></li>
+                            </ul>
+                            `;
+
+            $('#showError').append(str)
+        }
+        else if (jqXHR.responseJSON) {
+            $.each(jqXHR.responseJSON, (key, item) => {
+                let str = `<ul>
+                                <li> <label id="${key}-error" class="error" for="${key}">${item}</label></li>
+                              </ul>
+                             `;
+
+                $("#" + key).addClass("error");
+
+                $('#showError').append(str)
+
+            })
+        }
+    })
+    })
+    $("#createFormCategory").on("hidden.bs.modal", function () {
+        $(" #createFormCategory #showError")[0].reset();
+    });
+
+    function handleCloseCreate() {
+
+        $("#createFormCategory").on("hidden.bs.modal", () => {
+            $('#createFormCategory #showError').empty().removeClass('show').addClass('d-none');
+        })
+    }
+    handleCloseCreate();
+
     page.commands.handleShowConfirmDelete = () => {
     page.element.btnDeleteCategory.on('click', function () {
         let  id = $(this).data("id");
