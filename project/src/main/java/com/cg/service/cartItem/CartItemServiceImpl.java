@@ -133,14 +133,14 @@ public class CartItemServiceImpl implements CartItemService{
     }
 
     @Override
-    public CartItem saveCartItemAndCart(CartItem cartItem) {
+    public CartItem saveCartItemAndCart(CartItem cartItem,String userName) {
         Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(),cartItem.getProduct().getCode());
         if(cartItem1.isPresent()){
             cartItem1.get().setQuantity(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)));
             cartItem1.get().setGrandTotal(cartItem1.get().getPrice().multiply(cartItem1.get().getQuantity()));
             CartItem cartItem2 = cartItemRepository.save(cartItem1.get().toCartItem());
             Optional<CustomerInfoDTO>customerInfoDTO1 = customerInfoRepository.findUserDTOByUserName(cartItem2.getUserName());
-            Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(cartItem2.getUserName());
+            Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(userName);
             Optional<CartDTO> cartDTO = cartRepository.findCartItemDTOByIdCustomerInfo(customerInfoDTO1.get().getId());
             if(cartDTO.isPresent()){
                 return cartItem2;
@@ -156,7 +156,7 @@ public class CartItemServiceImpl implements CartItemService{
         cartItem.setId(0L);
         CartItem cartItemNew = cartItemRepository.save(cartItem);
         Optional<CustomerInfoDTO>customerInfoDTO = customerInfoRepository.findUserDTOByUserName(cartItemNew.getUserName());
-        Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(cartItemNew.getUserName());
+        Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(userName);
         Optional<CartDTO> cartDTO = cartRepository.findCartItemDTOByIdCustomerInfo(customerInfoDTO.get().getId());
         if(cartDTO.isPresent()){
             return cartItemNew;

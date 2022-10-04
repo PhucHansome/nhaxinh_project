@@ -205,7 +205,7 @@ page.commands.handleUpdateProduct = () => {
 
 page.commands.afterValidationUpdateProduct = () => {
     formData.append("id", page.element.idProduct.val());
-    formData.append("code", $("#LetterUp").val() + "-31*" + page.element.codeProductUp.val());
+    formData.append("code", page.element.codeProductUp.val());
     formData.append("title", page.element.titleProductUp.val());
     formData.append("price", page.element.priceProductUp.val());
     formData.append("quantity", page.element.quantityProduct.val());

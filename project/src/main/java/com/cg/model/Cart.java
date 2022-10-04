@@ -29,8 +29,6 @@ public class Cart  {
 
     private String content;
 
-
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

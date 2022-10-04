@@ -15,6 +15,7 @@
                             <input type="hidden" id="userIdUp">
 
                             <input type="hidden" name="id">
+                            <input type="hidden" id="codeProductUp">
 
                             <div class="col-4">
                                 <label class="form-label">Tên sản phẩm:</label>
@@ -22,24 +23,8 @@
                                 <input type="hidden" id="slugUP">
                             </div>
                             <div class="col-4">
-                                <div class="row" style="margin-left: 0px;">
-                                    <label style="margin-top: 5px">Mã sản phẩm/SKU</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3"><input maxlength="2" required name="LetterUp"  class="form-control" id="LetterUp" type="text"></div>
-                                    <div class="col-1"><span style="margin-left: -12px;
-                                                                        font-weight: bold;
-                                                                        margin-bottom: 0px;
-                                                                        position: relative;
-                                                                        font-size: 15px;
-                                                                        bottom: -9px;" >-31*</span></div>
-                                    <div class="col-8"> <input maxlength="8" type="number" required name="codeProductUp" id="codeProductUp" class="form-control"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-4">
                                 <label class="form-label">Số lượng:</label>
-                                <input type="text" class="form-control" id="quantityProductUp" name="quantityProductUp">
+                                <input type="number" class="form-control" id="quantityProductUp" name="quantityProductUp">
 
                             </div>
                             <div class="col-4">
@@ -82,7 +67,7 @@
                                 <select id="productColorUp" class="form-control">
                                 </select>
                             </div>
-                            <div class="col-8">
+                            <div class="col-12">
                                 <label class="form-label">Description:</label>
                                 <textarea id="descriptionProduct" name="descriptionProduct" class="form-control"></textarea>
                             </div>

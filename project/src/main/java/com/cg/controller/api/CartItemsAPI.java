@@ -94,6 +94,15 @@ public class CartItemsAPI {
     }
 
 
+    @PostMapping("/createCartAndCartItem")
+    public ResponseEntity<?> doCreateCartAndCartItem(@RequestBody CartItemsDTO cartItemsDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        String userName = appUtils.getPrincipal();
+        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem(),userName);
+        return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
+    }
 
     @PutMapping("/input-change")
     public ResponseEntity<?> inputChange(@RequestBody CartItem cartItem, BindingResult bindingResult) {
@@ -131,18 +140,10 @@ public class CartItemsAPI {
             return new ResponseEntity<>("Không thể Giảm số lượng sản phẩm", HttpStatus.NO_CONTENT);
         }
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCartItem(@PathVariable Long id) {
         cartItemService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @PostMapping("/createCartAndCartItem")
-    public ResponseEntity<?> doCreateCartAndCartItem(@RequestBody CartItemsDTO cartItemsDTO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return appUtils.mapErrorToResponse(bindingResult);
-        }
-        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem());
-        return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
-    }
+
 }
