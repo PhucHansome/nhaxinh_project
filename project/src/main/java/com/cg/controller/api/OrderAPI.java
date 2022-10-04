@@ -54,6 +54,15 @@ public class OrderAPI {
         return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
     }
 
+//    @GetMapping("/statistical")
+//    public ResponseEntity<?> findAllOrderStatistical(){
+//        List<OrderDTO> orderDTOS = orderService.findOrderDTOStatistical();
+//        if (orderDTOS.isEmpty()){
+//            throw new RuntimeException("Không tìm thấy order!");
+//        }
+//        return new ResponseEntity<>(orderDTOS,HttpStatus.OK);
+//    }
+
     @GetMapping("/order-top-5/")
     public ResponseEntity<?> findAllOrderFortop5(){
         List<OrderDTO> orderDTOS = orderService.findOrderDTOByTop5Product("Đã giao hàng thành công");
@@ -199,4 +208,17 @@ public class OrderAPI {
 
     }
 
+    @PostMapping("/create-order-dashboard")
+    public ResponseEntity<?> doCreateOrderInDashBoard(@RequestBody OrderDTO orderDTO,BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException{
+        String username = appUtils.getPrincipal();
+        if (bindingResult.hasErrors()){
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            orderService.CreateOrderInDashBoard(orderDTO.toOrder(),username);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+             return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

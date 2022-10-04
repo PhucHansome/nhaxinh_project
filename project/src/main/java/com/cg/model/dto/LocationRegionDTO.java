@@ -23,7 +23,7 @@ public class LocationRegionDTO {
     private String districtId;
     private String districtName;
 
-    @NotBlank(message = "Address is not blank")
+    @NotBlank(message = "Địa chỉ không được để trống")
     private String address;
 
     public LocationRegion toLocationRegion() {

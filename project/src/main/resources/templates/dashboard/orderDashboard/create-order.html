@@ -38,12 +38,6 @@
                                             hàng</a>
                                     </div>
                                     <div class="col-3">
-                                        <button style=" float:right ;
-                                                        position: relative;
-                                                        bottom: -15px;"
-                                                class="btn btn-primary"><i class="fa fa-plus"></i>
-                                            Tạo đơn hàng
-                                        </button>
                                     </div>
                                     <div class="col-1">
                                     </div>
@@ -67,20 +61,22 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-6 AddressDelivery" style="    padding-top: 20px;">
-
-                                            <p style="font-size: 1.125rem;font-weight: bold;">Địa chỉ giao hàng <span> <a href="#">Thay đổi</a></span></p>
-                                            <p >---</p>
-                                            <p >------</p>
+                                            <p style="font-size: 1.125rem;font-weight: bold;">Địa chỉ giao hàng
+                                                <span> <a href="#">Thay đổi</a></span></p>
+                                            <p>---</p>
+                                            <p>------</p>
                                         </div>
                                         <div class="col-6">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <h4>Thông tin bổ sung</h4>
                                                 </div>
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <span th:object="${userDTO}">Bán bởi: <span th:text="${userDTO}"></span></span>
+                                                    <span th:object="${userDTO}">Bán bởi: <span
+                                                            th:text="${userDTO}"></span></span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -103,7 +99,8 @@
                                             <p style="border: 1px dashed #00000061;
                                                       margin: 40px 0px 40px 0px;
                                                       padding: 20px 20px 20px 20px;
-                                                      text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">0đ</span>
+                                                      text-align: center;">tổng chi tiêu: <span
+                                                    style="color: red; font-weight: bold;">0đ</span>
                                             </p>
                                         </div>
                                     </div>
@@ -120,43 +117,40 @@
                                     <div class="col-12"><h3>Thông tin sản phẩm</h3></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-10">
-                                        <input type="text" class="form-control" placeholder="Tìm theo tên,Mã SKU">
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="btn btn-light">Chọn nhanh</button>
+                                    <div class="col-12">
+                                        <div class="col-12"><input type="text" id="productSearchOutSide"
+                                                                   class="form-control" readonly
+                                                                   placeholder="Tìm theo tên,Mã SKU"></div>
+                                        <div class="col-12">
+                                            <table class="table table-hover table-responsive-xl" id="listSearchProduct">
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="z-index: 2">
                                     <div class="col-12">
-                                        <table class="table table-light">
+                                        <table class="table table-bordered" id="listCartitems">
                                             <thead>
                                             <tr>
-                                                <th>Stt</th>
-                                                <th>Ảnh</th>
-                                                <th>Tên Sản phẩm</th>
-                                                <th>Số lượng</th>
-                                                <th>Đơn giá</th>
-                                                <th>Thành tiền</th>
+                                                <th class="text-center align-middle">Stt</th>
+                                                <th class="text-center align-middle">Ảnh</th>
+                                                <th class="align-middle">Tên Sản phẩm</th>
+                                                <th class="text-center align-middle">Số lượng</th>
+                                                <th class="text-center align-middle">Đơn giá</th>
+                                                <th class="text-center align-middle">Thành tiền</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>url ảnh</td>
-                                                <td>
-                                                    <div class="row">tên sản phẩm</div>
-                                                    <div class="row">SKU</div>
-                                                </td>
-                                                <td>1</td>
-                                                <td>45000</td>
-                                                <td>45000</td>
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="z-index: 2 ;padding: 40px 5px 15px 10px;">
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-6">
@@ -165,30 +159,14 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <textarea class="form-control"
+                                                        <textarea id="description_order" class="form-control"
                                                                   placeholder="Ghi chú "></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="col-6">
-                                                            <span>Tổng tiền(<span> 1 </span> Sản phẩm)</span>
-                                                        </div>
-                                                        <div class="col-6">10,000 vnđ</div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="col-6"><span>Khách hàng phải trả</span>
-                                                        </div>
-                                                        <div class="col-6">10,000 vnđ</div>
-                                                    </div>
+                                                <div class="row all-bill" style="margin: 40px 10px 20px 50px;">
 
-                                                    <div class="col-12">
-                                                        <div class="col-6"><span>Tổng tiền toàn bộ đơn hàng</span>
-                                                        </div>
-                                                        <div class="col-6">10,000 vnđ</div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,7 +176,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="col-12">
+                                <div class="row" style="padding: 15px 0px 15px 0px;">
+                                    <div class="col-8">
+                                    </div>
+                                    <div class="col-3">
+                                        <button style=" float:right ;"
+                                                class="btn btn-primary btn-create-Order"><i class="fa fa-plus"></i>
+                                            Tạo đơn hàng
+                                        </button>
+                                    </div>
+                                    <div class=" col-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
 
         </div>
     </div>
@@ -231,8 +231,6 @@
     // $(".AllCustomerInfor").select2()
 </script>
 <script src="/assets_dashboard/assets/js/all-script-handle-dashboard/order/create-order.js"></script>
-<th:block th:replace="/dashboard/orderDashboard/modal_updateLocation :: modal_update"/>
-
 
 </body>
 </html>

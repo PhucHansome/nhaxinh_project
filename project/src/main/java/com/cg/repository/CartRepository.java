@@ -21,4 +21,13 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
             " )  " +
             "FROM Cart c  WHERE c.customerInfo.id = ?1 ")
     List<CartDTO> getCartItemDTOByIdCustomerInfo(String id);
+
+    @Query("SELECT NEW com.cg.model.dto.CartDTO(" +
+            "c.id," +
+            "c.content," +
+            "c.user," +
+            "c.customerInfo" +
+            ")" +
+            "FROM Cart  c WHERE c.customerInfo.id = ?1")
+    Optional<CartDTO> findCartItemDTOByIdCustomerInfo(String id);
 }

@@ -94,6 +94,10 @@ public class CustomerInfoAPI {
         }
 
         Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDTO.getPhone());
+        if (exitByPhone) {
+            throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
+        }
+
         customerInfoDTO.getLocationRegion().setId(0L);
         try {
             CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());

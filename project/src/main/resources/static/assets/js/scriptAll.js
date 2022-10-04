@@ -28,7 +28,7 @@ class App {
                 title: t,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1000
             })
         }
 
@@ -37,7 +37,7 @@ class App {
                 icon: 'error',
                 title: 'Warning',
                 text: t,
-                timer: 1500
+                timer: 1000
             })
         }
         static showConfirmDeleteUser() {

@@ -1,11 +1,10 @@
 package com.cg.service.cartItem;
 
 import com.cg.exception.DataInputException;
+import com.cg.model.Cart;
 import com.cg.model.CartItem;
-import com.cg.model.dto.CartItemsDTO;
-import com.cg.model.dto.ProductDTO;
-import com.cg.repository.CartItemRepository;
-import com.cg.repository.ProductRepository;
+import com.cg.model.dto.*;
+import com.cg.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,14 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    CustomerInfoRepository customerInfoRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CartRepository cartRepository;
 
     @Override
     public List<CartItem> findAll() {
@@ -120,6 +127,49 @@ public class CartItemServiceImpl implements CartItemService{
         if(productDTO.get().getQuantity().compareTo(cartItem.getQuantity()) < 0){
             throw new DataInputException("Đã hết hàng!");
         }
+        return cartItemRepository.save(cartItem);
+    }
+
+    @Override
+    public CartItem saveCartItemAndCart(CartItem cartItem) {
+        Optional<CartItemsDTO> cartItem1 = cartItemRepository.getCartItemDTOByCode(cartItem.getUserName(),cartItem.getProduct().getCode());
+        if(cartItem1.isPresent()){
+            cartItem1.get().setQuantity(cartItem1.get().getQuantity().add(BigDecimal.valueOf(1)));
+            cartItem1.get().setGrandTotal(cartItem1.get().getPrice().multiply(cartItem1.get().getQuantity()));
+            CartItem cartItem2 = cartItemRepository.save(cartItem1.get().toCartItem());
+            Optional<CustomerInfoDTO>customerInfoDTO1 = customerInfoRepository.findUserDTOByUserName(cartItem2.getUserName());
+            Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(cartItem2.getUserName());
+            Optional<CartDTO> cartDTO = cartRepository.findCartItemDTOByIdCustomerInfo(customerInfoDTO1.get().getId());
+            if(cartDTO.isPresent()){
+                return cartItem2;
+            }
+            Cart cart= new Cart();
+            cart.setCustomerInfo(customerInfoDTO1.get().toCustomerInfo());
+            cart.setContent("null");
+            cart.setId(0L);
+            cart.setUser(userDTOOptional.get().toUser());
+            cartRepository.save(cart);
+            return cartItem2;
+        }
+        cartItem.setId(0L);
+        CartItem cartItemNew = cartItemRepository.save(cartItem);
+        Optional<CustomerInfoDTO>customerInfoDTO = customerInfoRepository.findUserDTOByUserName(cartItemNew.getUserName());
+        Optional<UserDTO> userDTOOptional = userRepository.findUserDTOByUserNameByStatus(cartItemNew.getUserName());
+        Optional<CartDTO> cartDTO = cartRepository.findCartItemDTOByIdCustomerInfo(customerInfoDTO.get().getId());
+        if(cartDTO.isPresent()){
+            return cartItemNew;
+        }
+        Cart cart= new Cart();
+        cart.setCustomerInfo(customerInfoDTO.get().toCustomerInfo());
+        cart.setContent("null");
+        cart.setId(0L);
+        cart.setUser(userDTOOptional.get().toUser());
+        cartRepository.save(cart);
+        return cartItemNew;
+    }
+
+    @Override
+    public CartItem saveChangeInput(CartItem cartItem) {
         return cartItemRepository.save(cartItem);
     }
 }

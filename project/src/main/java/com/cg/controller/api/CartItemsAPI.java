@@ -92,6 +92,17 @@ public class CartItemsAPI {
             throw new DataInputException("Không thêm vào giỏ hàng thành công");
         }
     }
+    @PutMapping("/input-change")
+    public ResponseEntity<?> inputChange(@RequestBody CartItem cartItem, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            return new ResponseEntity<>(cartItemService.saveChangeInput(cartItem).toCartItemDTO(), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new DataInputException("Sản phẩm không đủ để thêm nữa!");
+        }
+    }
 
     @PutMapping("/increasing")
     public ResponseEntity<?> increasingCart(@RequestBody CartItem cartItem, BindingResult bindingResult) {
@@ -122,5 +133,13 @@ public class CartItemsAPI {
     public ResponseEntity<?> deleteCartItem(@PathVariable Long id) {
         cartItemService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/createCartAndCartItem")
+    public ResponseEntity<?> doCreateCartAndCartItem(@RequestBody CartItemsDTO cartItemsDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem());
+        return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
     }
 }
