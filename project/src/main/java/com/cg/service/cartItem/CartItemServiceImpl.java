@@ -19,14 +19,6 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    CustomerInfoRepository customerInfoRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CartRepository cartRepository;
 
     @Autowired
     CustomerInfoRepository customerInfoRepository;
