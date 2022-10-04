@@ -98,7 +98,8 @@ public class CartItemsAPI {
         if (bindingResult.hasErrors()) {
             return appUtils.mapErrorToResponse(bindingResult);
         }
-        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem());
+        String userName = appUtils.getPrincipal();
+        CartItem cartItemsDTO1 = cartItemService.saveCartItemAndCart(cartItemsDTO.toCartItem(),userName);
         return new ResponseEntity<>(cartItemsDTO1.toCartItemDTO(), HttpStatus.CREATED);
     }
 

@@ -81,7 +81,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "od.updatedAt" +
             ")  " +
             "FROM OrderDetail od WHERE od.userName = ?1 ")
-    List<OrderDetailDTO>findOrderDetailByUserName(String userName);
+    List<OrderDetailDTO> findOrderDetailByUserName(String userName);
 
 
     @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
@@ -120,5 +120,25 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
             "AND FUNCTION('YEAR', od.createdAt) = :createYear " +
             "AND od.statusOrderDetail = :statusOrderDetail " +
             " ")
-    List<OrderDetailDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear, @Param("statusOrderDetail") String statusOrderDetail );
+    List<OrderDetailDTO> findOderByCreateMonthYearAndStatusOrder(@Param("createMonth") int createMonth, @Param("createYear") int createYear, @Param("statusOrderDetail") String statusOrderDetail);
+
+    @Query("SELECT NEW com.cg.model.dto.OrderDetailDTO (" +
+            "od.id, " +
+            "od.fullName, " +
+            "od.userName, " +
+            "od.phone, " +
+            "od.address, " +
+            "od.districtName, " +
+            "od.provinceName, " +
+            "od.statusOrderDetail,  " +
+            "od.grandTotal,  " +
+            "od.priceFormat,  " +
+            "od.createdAt ," +
+            "od.updatedAt" +
+            ")  " +
+            "FROM OrderDetail od " +
+            "where FUNCTION('MONTH', od.createdAt) = :createMonth " +
+            "AND FUNCTION('YEAR', od.createdAt) = :createYear "
+    )
+    List<OrderDetailDTO> findOderByCreateMonthYear(@Param("createMonth") int createMonth, @Param("createYear") int createYear);
 }

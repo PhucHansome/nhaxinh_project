@@ -192,7 +192,6 @@ const getAllCartItem = (userName) => {
             `
         $(".all-bill").append(str2)
 
-        handleCreateOrder();
     }).fail((e) => {
         console.log(e)
 
@@ -364,6 +363,7 @@ page.commands.SelectedCustomer = () => {
             })
             handleUpdateCustomer(customerInfo);
             getAllCartItem(customerInfo.userName)
+            handleCreateOrder();
         })
     })
 }
@@ -381,6 +381,7 @@ page.commands.removeCustomerSelected = () => {
     $(".billingAddress").html("")
     getAllCartItem()
     page.commands.drawCustomer()
+    handleCreateOrder();
 }
 
 const handleUpdateCustomer = (customerInfo) => {
@@ -476,9 +477,7 @@ const choiceProduct = () => {
                     $("#listSearchProduct tbody").addClass("d-none");
                     console.log(data.userName)
                     $("#productSearchOutSide").val("")
-                    $(".btn-create-Order").off();
                     getAllCartItem(data.userName)
-
                 }).fail((e) => {
                     console.log(e)
                 })
@@ -581,6 +580,7 @@ page.initializeControlEvent = () => {
     })
     $("#listCartitems thead").addClass("d-none")
     $(".btnCreateOrder").addClass("d-none")
+    handleCreateOrder()
 }
 
 $(() => {
