@@ -141,13 +141,13 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "FROM Order o ")
     List<OrderDTO> findOrderDTO();
 
-    @Query("SELECT NEW com.cg.model.dto.OrderDTO(count (o.quantity)" +
-            ""   +
-            "o.productTitle " +
-            " )  " +
-            "FROM Order as o " +
-            "GROUP BY o.quantity")
-    List<OrderDTO> findOrderDTOStatistical();
+//    @Query("SELECT NEW com.cg.model.dto.OrderDTO(count (o.quantity)" +
+//            ""   +
+//            "o.productTitle " +
+//            " )  " +
+//            "FROM Order as o " +
+//            "GROUP BY o.quantity")
+//    List<OrderDTO> findOrderDTOStatistical();
 
     @Query("SELECT NEW com.cg.model.dto.OrderDTO(" +
             "o.id, " +
