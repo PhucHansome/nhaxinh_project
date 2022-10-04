@@ -66,62 +66,37 @@ page.commands.getCustomerInfoById = (id) => {
     })
 }
 
-page.commands.SelectedCustomer = () => {
-    $(".AllCustomerInfor").on("change", function () {
-        page.commands.getCustomerInfoById($(".AllCustomerInfor").val()).then(() => {
-            $(".SelectOneCustomer").html("")
-            $('#productSearchOutSide').prop('readonly', false);
-            $('#productSearchOutSide').removeProp('readonly');
-            let str = `
-                <a href="/api/customerInfo/edit/${customerInfo.id}"> 
-                    <span style="    color: #0088FF;
-                                    font-size: 1.125rem;
-                                    font-weight: bold;">${customerInfo.fullName}  </span> 
-                    <span style="font-weight: bold; color: black;
-                                    font-size: 1.125rem;"> - ${customerInfo.phone}</span>
-                </a>
-                <a style="color: black; font-size: 1.125rem" href="#" onclick="page.commands.removeCustomerSelected()"><i class="fa fa-times-circle"></i></a>   
-            `
-            $(".SelectOneCustomer").append(str);
+page.commands.getProductById = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetProduct + "/" + id
+    }).done((data) => {
+        console.log(data);
+        product = data;
+    }).fail((e) => {
+        console.log(e)
+    })
+}
 
-            $(".AddressDelivery").html("")
-            let str1 = `
-            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="updateLocationRegion()">Thay đổi</a></span></p>
-            <p >${customerInfo.phone}</p>
-            <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
-            `
-            $(".AddressDelivery").append(str1);
-            $(".billingAddress").html("")
-            let str2 = `
-            <div class="col-6">
-                <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ Nhận hóa đơn</p>
-                <p >${customerInfo.phone}</p>
-                <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
-            </div>
-            <div class="col-6">
-                <p style="border: 1px dashed #00000061;
-                          margin: 40px 0px 40px 0px;
-                          padding: 20px 20px 20px 20px;
-                          text-align: center;">tổng chi tiêu: <span style="color: red; font-weight: bold;">${new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(customerInfo.debt)}</span>
-                </p>
-            </div>
-            <input type="hidden" id="idCustomer" value="${customerInfo.id}">
-            <input type="hidden" id="userCustomer" value="${customerInfo.userName}">
-            `
-            $(".billingAddress").append(str2)
-            $("#provinceUp").val(customerInfo.locationRegion.provinceId)
-            $("#phoneUp").val(customerInfo.phone)
-            $("#addressUp").val(customerInfo.locationRegion.address)
-            page.dialogs.commands.drawDistricts($("#provinceUp").val()).then(() => {
-                $("#districtId").val(customerInfo.locationRegion.districtId);
+const getCartItemById = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetCartItems + "/id/" + id
+    }).done((data) => {
+        cartItems = data;
+    }).fail((e) => {
+        console.log(e)
+    })
+}
 
-            })
-            handleUpdateCustomer(customerInfo);
-            getAllCartItem(customerInfo.userName)
-        })
+const getCartByCustomerId = (id) => {
+    return $.ajax({
+        "method": "GET",
+        "url": page.url.GetCart + id
+    }).done((data) => {
+        cart = data;
+    }).fail((e) => {
+        console.log(e)
     })
 }
 
@@ -132,11 +107,13 @@ const getAllCartItem = (userName) => {
     }).done((data) => {
         $("#listCartitems tbody").html("")
         $("#listCartitems thead").removeClass("d-none")
+        $(".btnCreateOrder").removeClass("d-none")
         let quanity = 0
         let sum = 0
         if (data.length === 0) {
             $("#listCartitems tbody").html("")
             $("#listCartitems thead").addClass("d-none")
+            $(".btnCreateOrder").addClass("d-none")
         }
         $.each(data, (i, item) => {
             cartItems = item;
@@ -144,12 +121,13 @@ const getAllCartItem = (userName) => {
             <tr>
                 <td  class="text-center align-middle">${i + 1}</td>
                 <td  class="text-center align-middle"><img width="50px" height="50px" src="${cartItems.product.image}" alt=""></td>
-                <td >
-                    <div class="row"><span style="font-size: 15px;
+                <td ><a href="/detail-product-dashboard/${cartItems.product.id}">
+                    <div class="row" style="padding: 0px 0px 0px 10px;"><span style="font-size: 15px;
                                                   font-weight: 500;">${cartItems.product.title}</span></div>
-                    <div class="row"><span style="  color: #0000007d;
+                    <div class="row" style="padding: 0px 0px 0px 10px;"><span style="  color: #0000007d;
                                                     font-size: 12px;
                                                     padding: 5px 0px 0px 0px;">${cartItems.product.code}</span></div>
+                     </a>
                 </td>
                 <td class="text-center align-middle"><input style="    width: 20%;
                                                                         border: none;
@@ -220,19 +198,6 @@ const getAllCartItem = (userName) => {
     })
 }
 
-
-page.commands.removeCustomerSelected = () => {
-    $(".SelectOneCustomer").html("")
-    let str = `
-    <select class="form-control AllCustomerInfor"></select>
-    `
-    $(".SelectOneCustomer").append(str);
-    $('#productSearchOutSide').prop('readonly', true);
-    $('#productSearchOutSide').removeProp('readonly');
-    getAllCartItem()
-    page.commands.drawCustomer()
-}
-
 page.dialogs.commands.drawDistricts = (provinceId) => {
     return $.ajax({
         "headers": {
@@ -282,6 +247,139 @@ page.dialogs.commands.drawProvinces = () => {
 
 const updateLocationRegion = () => {
     $("#modalUpdateUser").modal("show")
+}
+
+$("#productSearchOutSide").on("blur", function () {
+    setTimeout(function () {
+        $("#listSearchProduct tbody").addClass("d-none");
+
+    }, 200)
+})
+
+$("#productSearchOutSide").on("input", function () {
+    let search = $("#productSearchOutSide").val()
+    $.ajax({
+        "method": "GET",
+        "url": page.url.GetResuiltSearch + "/" + search,
+    }).done((data) => {
+        $("#listSearchProduct tbody").html("")
+        $("#listSearchProduct tbody").removeClass("d-none")
+        $("#listSearchProduct tbody").css({
+            'position': 'absolute',
+            'z-index': '1',
+            'background': '#ebebeb',
+            'width': '46%',
+            'padding': '10px 20px 10px 20px'
+        })
+        if (data.length === 0) {
+            $("#listSearchProduct tbody").append(`<h3>Không tìm thấy sản phẩm</h3>`)
+        }
+        $.each(data, (i, item) => {
+            tag = item;
+            product = tag.product
+            if (i > 3) return;
+            let str = `
+              <tr id="tr_${product.id}" style="cursor: pointer">
+                <td  class="text-center align-middle"><img width="50px" height="50px" src="${tag.product.image}" alt=""></td>
+                <td>
+                    <div class="row"><span style="font-size: 15px;
+                                                  font-weight: 500;">
+                                    ${tag.product.title}</span></div>
+                    <div class="row"><span style="  color: #0000007d;
+                                                    font-size: 12px;
+                                                    padding: 5px 0px 0px 0px;">${tag.product.code}</span></div>
+                </td >
+                <td  class="text-center align-middle">
+                <div class="row"><span style="font-weight: 500;
+                                                font-size: 14px;"> ${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(tag.product.price)}</span></div>
+                  <div class="row" style="color: #0000007d;">Tồn: <span style="color: blue;
+                                                                               font-weight: 500;"> ${tag.product.quantity} </span> | có thể bán <span style="color: blue;
+                                                                                                                                                            font-weight: 500;"> ${tag.product.quantity} </span></div>
+                  </td>
+            </tr>
+                `
+            $("#listSearchProduct tbody").append(str)
+
+        });
+        choiceProduct()
+    })
+})
+
+page.commands.SelectedCustomer = () => {
+    $(".AllCustomerInfor").on("change", function () {
+        page.commands.getCustomerInfoById($(".AllCustomerInfor").val()).then(() => {
+            $(".SelectOneCustomer").html("")
+            $('#productSearchOutSide').prop('readonly', false);
+            $('#productSearchOutSide').removeProp('readonly');
+            let str = `
+                <a href="/api/customerInfo/edit/${customerInfo.id}"> 
+                    <span style="    color: #0088FF;
+                                    font-size: 1.125rem;
+                                    font-weight: bold;">${customerInfo.fullName}  </span> 
+                    <span style="font-weight: bold; color: black;
+                                    font-size: 1.125rem;"> - ${customerInfo.phone}</span>
+                </a>
+                <a style="color: black; font-size: 1.125rem" href="#" onclick="page.commands.removeCustomerSelected()"><i class="fa fa-times-circle"></i></a>   
+            `
+            $(".SelectOneCustomer").append(str);
+
+            $(".AddressDelivery").html("")
+            let str1 = `
+            <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ giao hàng <span> <a href="#" onclick="updateLocationRegion()">Thay đổi</a></span></p>
+            <p >${customerInfo.phone}</p>
+            <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
+            `
+            $(".AddressDelivery").append(str1);
+            $(".billingAddress").html("")
+            let str2 = `
+            <div class="col-6">
+                <p style="font-size: 1.125rem;  font-weight: bold;">Địa chỉ Nhận hóa đơn</p>
+                <p >${customerInfo.phone}</p>
+                <p ><span>${customerInfo.locationRegion.address}</span><span>, ${customerInfo.locationRegion.districtName}</span><span>, ${customerInfo.locationRegion.provinceName}</span></p>
+            </div>
+            <div class="col-6">
+                <p style="border: 1px dashed #00000061;
+                          margin: 40px 0px 40px 0px;
+                          padding: 20px 20px 20px 20px;
+                          text-align: center;">Tổng chi tiêu: <span style="color: red; font-weight: bold;">${new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(customerInfo.debt)}</span>
+                </p>
+            </div>
+            <input type="hidden" id="idCustomer" value="${customerInfo.id}">
+            <input type="hidden" id="userCustomer" value="${customerInfo.userName}">
+            `
+            $(".billingAddress").append(str2)
+            $("#provinceUp").val(customerInfo.locationRegion.provinceId)
+            $("#phoneUp").val(customerInfo.phone)
+            $("#addressUp").val(customerInfo.locationRegion.address)
+            page.dialogs.commands.drawDistricts($("#provinceUp").val()).then(() => {
+                $("#districtId").val(customerInfo.locationRegion.districtId);
+
+            })
+            handleUpdateCustomer(customerInfo);
+            getAllCartItem(customerInfo.userName)
+        })
+    })
+}
+
+page.commands.removeCustomerSelected = () => {
+    $(".SelectOneCustomer").html("")
+    let str = `
+    <select class="form-control AllCustomerInfor"></select>
+    `
+    $(".SelectOneCustomer").append(str);
+    $('#productSearchOutSide').prop('readonly', true);
+    $('#productSearchOutSide').removeProp('readonly');
+    $(".AddressDelivery").html("")
+    $(".AddressDelivery").append(`<div class="no-data-notice"><img  width="270px " src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt=""></div>`)
+    $(".billingAddress").html("")
+    getAllCartItem()
+    page.commands.drawCustomer()
 }
 
 const handleUpdateCustomer = (customerInfo) => {
@@ -353,77 +451,6 @@ const handleUpdateCustomer = (customerInfo) => {
     })
 }
 
-$("#productSearchOutSide").on("blur", function () {
-    setTimeout(function () {
-        $("#listSearchProduct tbody").addClass("d-none");
-
-    }, 200)
-})
-
-$("#productSearchOutSide").on("input", function () {
-    let search = $("#productSearchOutSide").val()
-    $.ajax({
-        "method": "GET",
-        "url": page.url.GetResuiltSearch + "/" + search,
-    }).done((data) => {
-        $("#listSearchProduct tbody").html("")
-        $("#listSearchProduct tbody").removeClass("d-none")
-        $("#listSearchProduct tbody").css({
-            'position': 'absolute',
-            'z-index': '1',
-            'background': '#ebebeb',
-            'width': '46%',
-            'padding': '10px 20px 10px 20px'
-        })
-        if (data.length === 0) {
-            $("#listSearchProduct tbody").append(`<h3>Không tìm thấy sản phẩm</h3>`)
-        }
-        $.each(data, (i, item) => {
-            tag = item;
-            product = tag.product
-            if (i > 3) return;
-            let str = `
-              <tr id="tr_${product.id}" style="cursor: pointer">
-                <td  class="text-center align-middle"><img width="50px" height="50px" src="${tag.product.image}" alt=""></td>
-                <td>
-                    <div class="row"><span style="font-size: 15px;
-                                                  font-weight: 500;">
-                                    ${tag.product.title}</span></div>
-                    <div class="row"><span style="  color: #0000007d;
-                                                    font-size: 12px;
-                                                    padding: 5px 0px 0px 0px;">${tag.product.code}</span></div>
-                </td >
-                <td  class="text-center align-middle">
-                <div class="row"><span style="font-weight: 500;
-                                                font-size: 14px;"> ${new Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            }).format(tag.product.price)}</span></div>
-                  <div class="row" style="color: #0000007d;">Tồn: <span style="color: blue;
-                                                                               font-weight: 500;"> ${tag.product.quantity} </span> | có thể bán <span style="color: blue;
-                                                                                                                                                            font-weight: 500;"> ${tag.product.quantity} </span></div>
-                  </td>
-            </tr>
-                `
-            $("#listSearchProduct tbody").append(str)
-
-        });
-        choiceProduct()
-    })
-})
-
-page.commands.getProductById = (id) => {
-    return $.ajax({
-        "method": "GET",
-        "url": page.url.GetProduct + "/" + id
-    }).done((data) => {
-        console.log(data);
-        product = data;
-    }).fail((e) => {
-        console.log(e)
-    })
-}
-
 const choiceProduct = () => {
     $("#listSearchProduct tbody tr").on('click', function () {
         let productId = $(this).attr('id').replace('tr_', '');
@@ -481,28 +508,6 @@ const deleteCartItems = (id) => {
     })
 }
 
-const getCartItemById = (id) => {
-    return $.ajax({
-        "method": "GET",
-        "url": page.url.GetCartItems + "/id/" + id
-    }).done((data) => {
-        cartItems = data;
-    }).fail((e) => {
-        console.log(e)
-    })
-}
-
-const getCartByCustomerId = (id) => {
-    return $.ajax({
-        "method": "GET",
-        "url": page.url.GetCart + id
-    }).done((data) => {
-        cart = data;
-    }).fail((e) => {
-        console.log(e)
-    })
-}
-
 const handleChangeInputItem = (id) => {
     getCartItemById(id).then(() => {
         if ($("#inputQuantity_" + cartItems.id).val() <= 0) {
@@ -528,7 +533,7 @@ const handleChangeInputItem = (id) => {
             "data": JSON.stringify(cartItems)
         }).done((data) => {
             getAllCartItem($("#userCustomer").val())
-            App.IziToast.showSuccessAlert("Thay đổi giá tiền thành công")
+            App.IziToast.showSuccessAlert("Thay đổi giá tiên thành công")
         }).fail((e) => {
             console.log(e)
         })
@@ -574,7 +579,7 @@ page.initializeControlEvent = () => {
         page.dialogs.commands.drawDistricts($("#provinceUp").val())
     })
     $("#listCartitems thead").addClass("d-none")
-
+    $(".btnCreateOrder").addClass("d-none")
 }
 
 $(() => {

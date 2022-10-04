@@ -23,12 +23,14 @@ public class AppUtils {
         }
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
-    public String getPrincipal(){
+
+
+    public String getPrincipal() {
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails){
-            username = ((UserDetails)principal).getUsername();
-        }else {
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
             username = principal.toString();
         }
         return username;

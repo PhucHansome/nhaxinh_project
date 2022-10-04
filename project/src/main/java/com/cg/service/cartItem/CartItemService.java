@@ -24,7 +24,8 @@ public interface CartItemService extends IGeneralService<CartItem> {
     CartItem SaveIncreasing(CartItem cartItem);
 
     CartItem saveCartItemAndCart(CartItem cartItem);
-    CartItem saveChangeInput (CartItem cartItem);
 
+
+    CartItem saveChangeInput (CartItem cartItem);
 
 }

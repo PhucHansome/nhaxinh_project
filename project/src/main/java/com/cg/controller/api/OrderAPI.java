@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/order")
@@ -124,7 +122,8 @@ public class OrderAPI {
 
     @GetMapping("/order-detail/status/")
     public ResponseEntity<?> findAllOrderById(){
-        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findAllOrderDetailByStatusWait("Đang chờ duyệt");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOderByCreateMonthYearAndStatusOrder(gregorianCalendar.get(Calendar.MONTH) + 1,gregorianCalendar.get(Calendar.YEAR),"Đang chờ duyệt");
         if (orderDetailDTOS.isEmpty()){
             throw new RuntimeException("Không tìm thấy order!");
         }
@@ -151,9 +150,24 @@ public class OrderAPI {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
     }
+
+    @PostMapping("/create-order-dashboard")
+    public ResponseEntity<?> doCreateOrderInDashBoard(@RequestBody OrderDTO orderDTO, BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException {
+        String username = appUtils.getPrincipal();
+        System.out.println(username);
+
+        if (bindingResult.hasErrors()) {
+            return appUtils.mapErrorToResponse(bindingResult);
+        }
+        try {
+            orderService.saveOrderInDashBoard(orderDTO.toOrder(),username);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PutMapping("/order-detail/checkout/{username}")
     public ResponseEntity<?> doCheckOutOrder(@RequestBody OrderDetailDTO orderDetailDTO,@PathVariable String username, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -208,17 +222,5 @@ public class OrderAPI {
 
     }
 
-    @PostMapping("/create-order-dashboard")
-    public ResponseEntity<?> doCreateOrderInDashBoard(@RequestBody OrderDTO orderDTO,BindingResult bindingResult) throws MessagingException, UnsupportedEncodingException{
-        String username = appUtils.getPrincipal();
-        if (bindingResult.hasErrors()){
-            return appUtils.mapErrorToResponse(bindingResult);
-        }
-        try {
-            orderService.CreateOrderInDashBoard(orderDTO.toOrder(),username);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-             return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
 }

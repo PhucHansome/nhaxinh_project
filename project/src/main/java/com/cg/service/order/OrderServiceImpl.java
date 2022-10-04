@@ -285,13 +285,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status) {
         List<OrderDTO> order = orderRepository.findOrderDTOByUserName(userName);
-//        for (OrderDTO orderDTO : order) {
-////            List<OrderDetailDTO> orderDetailDTOS = orderDetailRepository.findAllOrderDetailDTOByOrderId(orderDTO.getId());
-////            for (OrderDetailDTO orderDetailDTOSs : orderDetailDTOS) {
-//
-//            }
-//        }
-
         return order;
     }
 
@@ -326,26 +319,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order CreateOrderInDashBoard(Order order, String username) {
+
+    @Transactional
+    public Order saveOrderInDashBoard(Order order,String username) {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(0L);
         orderDetail.setStatusOrderDetail("Đang giao hàng");
         orderDetail.setCreatedAt(new Date());
-        OrderDetail orderCreate = orderDetailRepository.save(orderDetail);
+
+        OrderDetail orderNew = orderDetailRepository.save(orderDetail);
         BigDecimal sum = BigDecimal.valueOf(0);
         List<CartItemsDTO> cartItemsDTOList = cartItemRepository.findCartItemDTOById(order.getCustomerInfo().getUserName());
-        for (CartItemsDTO cartItemsDTO: cartItemsDTOList){
+        for (CartItemsDTO cartItemsDTO : cartItemsDTOList) {
             Optional<ProductDTO> productDTO = productRepository.findProductDTOById(cartItemsDTO.getProduct().getId());
             productDTO.get().setQuantity(productDTO.get().getQuantity().subtract(cartItemsDTO.getQuantity()));
-            if (productDTO.get().getQuantity().compareTo(BigDecimal.ZERO)<0){
+            if(productDTO.get().getQuantity().compareTo(BigDecimal.ZERO) < 0){
                 cartItemRepository.deleteById(cartItemsDTO.getId());
-                orderDetailRepository.deleteById(orderCreate.getId());
-                productDTO.get().setStatus("Đã hết hàng");
-                throw new DataInputException("Số lượng sản phẩm" + cartItemsDTO.getProduct().getTitle()+ "Không đủ để đặt hàng");
+                orderDetailRepository.deleteById(orderNew.getId());
+                productDTO.get().setStatus("Đã Hết hàng");
+                throw new DataInputException("Số lượng sản phẩm " +  cartItemsDTO.getProduct().getTitle() + " không đủ để order!");
             }
             productRepository.save(productDTO.get().toProduct());
             order.setId(0L);
-            order.setOrderDetail(orderCreate);
+            order.setOrderDetail(orderNew);
             order.setQuantity(cartItemsDTO.getQuantity());
             order.setProductCode(cartItemsDTO.getProduct().getCode());
             order.setProductTitle(cartItemsDTO.getProduct().getTitle());
@@ -355,30 +351,28 @@ public class OrderServiceImpl implements OrderService {
             cartItemRepository.deleteById(cartItemsDTO.getId());
             orderRepository.save(order);
         }
+
+
         List<CartDTO> cartDTOList = cartRepoSitory.getCartItemDTOByIdCustomerInfo(order.getCustomerInfo().getId());
-        for (CartDTO cartDTO: cartDTOList){
-            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())){
+        for (CartDTO cartDTO : cartDTOList) {
+            if (cartDTO.toCart().getCustomerInfo().getId().equals(order.getCustomerInfo().getId())) {
                 cartRepoSitory.deleteById(cartDTO.getId());
             }
         }
         List<OrderDTO> orderDTOS = orderRepository.findOrderDTOByUserName(order.getCustomerInfo().getUserName());
-        for (OrderDTO orderDTO1: orderDTOS){
-            orderCreate.setStatusOrderDetail(orderDTO1.getStatusOrder());
-            orderCreate.setFullName(orderDTO1.getCustomerInfo().getFullName());
-            orderCreate.setAddress(orderDTO1.getCustomerInfo().getLocationRegion().getAddress());
-            orderCreate.setUserName(username);
-            orderCreate.setPhone(orderDTO1.getCustomerInfo().getPhone());
-            orderCreate.setProvinceName(orderDTO1.getCustomerInfo().getLocationRegion().getProvinceName());
-            orderCreate.setDistrictName(orderDTO1.getCustomerInfo().getLocationRegion().getDistrictName());
-            orderCreate.setUpdatedAt(orderDTO1.getUpdatedAT());
+
+        for (OrderDTO order1 : orderDTOS) {
+            orderNew.setStatusOrderDetail(order1.getStatusOrder());
+            orderNew.setFullName(order1.getCustomerInfo().getFullName());
+            orderNew.setAddress(order1.getCustomerInfo().getLocationRegion().getAddress());
+            orderNew.setUserName(username);
+            orderNew.setPhone(order1.getCustomerInfo().getPhone());
+            orderNew.setDistrictName(order1.getCustomerInfo().getLocationRegion().getDistrictName());
+            orderNew.setProvinceName(order1.getCustomerInfo().getLocationRegion().getProvinceName());
+            orderNew.setUpdatedAt(orderNew.getCreatedAt());
         }
-        orderCreate.setGrandTotal(sum);
-        orderDetailRepository.save(orderCreate);
+        orderNew.setGrandTotal(sum);
+        orderDetailRepository.save(orderNew);
         return null;
     }
-
-//    @Override
-//    public List<OrderDTO> findOrderDTOStatistical() {
-//        return orderRepository.findOrderDTOStatistical();
-//    }
 }

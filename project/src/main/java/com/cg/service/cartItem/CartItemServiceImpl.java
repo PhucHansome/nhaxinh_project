@@ -28,6 +28,16 @@ public class CartItemServiceImpl implements CartItemService{
     @Autowired
     CartRepository cartRepository;
 
+    @Autowired
+    CustomerInfoRepository customerInfoRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    CartRepository cartRepository;
+
+
     @Override
     public List<CartItem> findAll() {
         return cartItemRepository.findAll();
