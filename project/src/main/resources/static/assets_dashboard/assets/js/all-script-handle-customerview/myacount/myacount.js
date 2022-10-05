@@ -337,7 +337,11 @@ page.element.afterClickUpdateInformation = () => {
     locationRegion.districtId = $("#districtCus").val();
     locationRegion.districtName = $("#districtCus :selected").text();
     locationRegion.address = page.element.addressCus.val();
-
+    if  (page.element.userNameLogin.text() !==  page.element.emailCus.val() ){
+        App.IziToast.showErrorAlert("Email không đúng!")
+        page.element.emailCus.val($("#EmailLogin").text())
+        return;
+    }
     customerInfo.id = page.element.idCustomer.val();
     customerInfo.userName = page.element.userNameLogin.text();
     customerInfo.fullName = page.element.fullNameCus.val();
