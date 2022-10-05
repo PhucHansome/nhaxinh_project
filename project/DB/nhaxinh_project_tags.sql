@@ -21,7 +21,7 @@
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-INSERT INTO `tags` VALUES (1,NULL,0,'Phòng khách, Sofa','6943ce9f-1613-4ba1-be32-4967cf77492a'),(2,NULL,0,' 6 chỗ, Gỗ','4ce3fa74-d7eb-4442-bbea-ce6c78f3b334'),(3,NULL,0,'vải','c5cb2a72-554e-45c6-99d8-f3cb93adb82c'),(4,NULL,0,'Gỗ, MDF veneer','bfc0b510-3c33-496f-a40e-2677cb029056'),(5,NULL,0,'Đồng hồ, Hàng trang trí','0290e8fc-f50d-493e-acee-d78680bf91ba'),(6,NULL,0,'Gỗ, MDF sơn','e9cf3603-16c9-4159-8015-51d4af76859c'),(7,NULL,0,'---','b4688eb9-c68a-4c87-b85b-1f8f5bed0e3e'),(8,NULL,0,'da chất','1c25762f-5a40-4173-a45b-e90e528a115d'),(9,NULL,0,'Kính, MDF sơn','9a209b82-bff7-4a09-873b-7aa5ceb58a1f'),(10,NULL,0,'---','e0a09e91-3528-45ed-9f82-edc66f54fa45'),(11,NULL,0,'---','f53690d7-0c3e-4d7e-9132-7d63a2771d7a'),(12,NULL,0,'Kính, MDF sơn','cd840137-2b73-44b2-8a71-dca8e883b209'),(17,NULL,0,'Phòng khách, Sofa','b0cc2c60-681e-45ba-9e86-53b7a39b54d9');
+INSERT INTO `tags` VALUES (2,NULL,0,' 6 chỗ, Gỗ','4ce3fa74-d7eb-4442-bbea-ce6c78f3b334'),(3,NULL,0,'vải','c5cb2a72-554e-45c6-99d8-f3cb93adb82c'),(4,NULL,0,'Gỗ, MDF veneer','bfc0b510-3c33-496f-a40e-2677cb029056'),(6,NULL,0,'Gỗ, MDF sơn','e9cf3603-16c9-4159-8015-51d4af76859c'),(7,NULL,0,'---','b4688eb9-c68a-4c87-b85b-1f8f5bed0e3e'),(8,NULL,0,'da chất','1c25762f-5a40-4173-a45b-e90e528a115d'),(9,NULL,0,'Kính, MDF sơn','9a209b82-bff7-4a09-873b-7aa5ceb58a1f'),(11,NULL,0,'---','f53690d7-0c3e-4d7e-9132-7d63a2771d7a'),(12,NULL,0,'Kính, MDF sơn','cd840137-2b73-44b2-8a71-dca8e883b209'),(17,NULL,0,'Phòng khách, Sofa','b0cc2c60-681e-45ba-9e86-53b7a39b54d9');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-05 17:05:15
+-- Dump completed on 2022-10-05 17:27:45
