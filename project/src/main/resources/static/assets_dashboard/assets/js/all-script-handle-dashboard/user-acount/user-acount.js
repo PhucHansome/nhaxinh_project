@@ -221,8 +221,8 @@ $("#searchAcount").on("keyup", function() {
     pageAcount();
 
 });
-var table = '#listUser';
 
+var table = '#listUser';
 function pageAcount(){
     $('#maxRows').on('change',function (){
         $('.pagination').html('')
