@@ -50,18 +50,18 @@ page.element.listProductColor = $(".productColorList")
 page.element.ErrorCreate = $(".ErrorCreate")
 page.element.frmCreateProduct = $("#frmCreateProduct")
 
-page.commands.formatNumber = () => {
-
-    $(document).on('input', '#priceProduct', function (e) {
-        $(this).val(App.formatNumberSpace($(this).val()));
-    })
-    $('input#priceProduct').on("keypress", function (e) {
-        let charCode = (e.which) ? e.which : e.keyCode
-
-        if (String.fromCharCode(charCode).match(/[^0-9]/g))
-            return false;
-    });
-}
+// page.commands.formatNumber = () => {
+//
+//     $(document).on('input', '#priceProduct', function (e) {
+//         $(this).val(App.formatNumberSpace($(this).val()));
+//     })
+//     $('input#priceProduct').on("keypress", function (e) {
+//         let charCode = (e.which) ? e.which : e.keyCode
+//
+//         if (String.fromCharCode(charCode).match(/[^0-9]/g))
+//             return false;
+//     });
+// }
 
 
 page.dialogs.loadData.drawListCategory = () => {
@@ -365,7 +365,7 @@ page.element.frmCreateProduct.validate({
 page.initializeControlEvent = () => {
     page.dialogs.loadData.drawListCategory();
     page.dialogs.loadData.drawListProductColor();
-    page.commands.formatNumber();
+    // page.commands.formatNumber();
 }
 
 $(()=> {

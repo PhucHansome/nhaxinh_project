@@ -75,7 +75,6 @@ public class CustomerInfoAPI {
         if (exitByPhone) {
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
         }
-
         customerInfoDT0.getLocationRegion().setId(0L);
         try {
             CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
@@ -97,7 +96,7 @@ public class CustomerInfoAPI {
         if (exitByPhone) {
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
         }
-
+        customerInfoDTO.setUserName(appUtils.getPrincipal());
         customerInfoDTO.getLocationRegion().setId(0L);
         try {
             CustomerInfo customerInfoUpdate = customerInfoService.save(customerInfoDTO.toCustomerInfo());
