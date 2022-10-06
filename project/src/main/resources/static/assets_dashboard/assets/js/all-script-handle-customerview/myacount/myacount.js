@@ -342,10 +342,33 @@ page.element.afterClickUpdateInformation = () => {
         page.element.emailCus.val($("#EmailLogin").text())
         return;
     }
+    if (page.element.debtCustomer.val() === null ){
+        customerInfo.id = page.element.idCustomer.val();
+        customerInfo.userName = page.element.userNameLogin.text();
+        customerInfo.fullName = page.element.fullNameCus.val();
+        customerInfo.debt = page.element.debtCustomer.val()
+        customerInfo.phone = page.element.phoneCus.val();
+        customerInfo.locationRegion = locationRegion;
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "PUT",
+            "url": page.url.PutCustomer,
+            "data": JSON.stringify(customerInfo)
+        }).done((data) => {
+            App.IziToast.showSuccessAlert("Bạn đã Cập Nhật thành công")
+        }).fail((e) => {
+            App.IziToast.showSuccessAlert("Bạn đã Cập Nhật Thất Bại")
+        })
+
+        return;
+    }
     customerInfo.id = page.element.idCustomer.val();
     customerInfo.userName = page.element.userNameLogin.text();
     customerInfo.fullName = page.element.fullNameCus.val();
-    customerInfo.debt = page.element.debtCustomer.val()
+    customerInfo.debt = 0;
     customerInfo.phone = page.element.phoneCus.val();
     customerInfo.locationRegion = locationRegion;
     $.ajax({
@@ -761,7 +784,7 @@ page.element.frmUpdateCustomer.validate({
 
         "billing_address_1": {
             required: "Vui Lòng Nhập Địa chỉ!",
-            minlength: $.validator.format("Họ và tên tối thiểu {0} ký tự!"),
+            minlength: $.validator.format("Địa chỉ tối thiểu {0} ký tự!"),
         }
     },
     errorLabelContainer: "#frmBuyProduct .input.error",

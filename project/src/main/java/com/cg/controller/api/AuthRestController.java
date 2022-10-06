@@ -107,6 +107,7 @@ public class AuthRestController {
         if (userDTOs.get().getStatus().equals("Block")){
             throw new DataInputException("Tài khoản của bạn đã bị khóa");
         }
+
         try {
             Optional<UserDTO> userDTO = userService.findUserDTOByUserNameByStatus(user.getUsername());
 
