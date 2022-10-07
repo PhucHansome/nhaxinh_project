@@ -50,18 +50,18 @@ page.element.listProductColor = $(".productColorList")
 page.element.ErrorCreate = $(".ErrorCreate")
 page.element.frmCreateProduct = $("#frmCreateProduct")
 
-page.commands.formatNumber = () => {
-
-    $(document).on('input', '#priceProduct', function (e) {
-        $(this).val(App.formatNumberSpace($(this).val()));
-    })
-    $('input#priceProduct').on("keypress", function (e) {
-        let charCode = (e.which) ? e.which : e.keyCode
-
-        if (String.fromCharCode(charCode).match(/[^0-9]/g))
-            return false;
-    });
-}
+// page.commands.formatNumber = () => {
+//
+//     $(document).on('input', '#priceProduct', function (e) {
+//         $(this).val(App.formatNumberSpace($(this).val()));
+//     })
+//     $('input#priceProduct').on("keypress", function (e) {
+//         let charCode = (e.which) ? e.which : e.keyCode
+//
+//         if (String.fromCharCode(charCode).match(/[^0-9]/g))
+//             return false;
+//     });
+// }
 
 
 page.dialogs.loadData.drawListCategory = () => {
@@ -109,7 +109,7 @@ page.commands.afterValidationCreateProduct = () => {
     formData.append("title", page.element.productName.val());
     formData.append("price", page.element.priceProduct.val());
     formData.append("quantity", page.element.quantityProduct.val());
-    formData.append("status", "Đang chờ");
+    formData.append("status", "Còn Hàng");
     formData.append("description", page.element.descriptionProduct.val());
     formData.append("slug", page.element.slugProduct.val());
     formData.append("size", page.element.productSize.val());

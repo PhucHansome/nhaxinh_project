@@ -28,6 +28,17 @@ public interface CartItemRepository extends JpaRepository<CartItem,Long> {
             "c.product , " +
             "c.price ," +
             "c.quantity, " +
+            "c.grandTotal" +
+            " )  " +
+            "FROM CartItem c  WHERE c.product.id Like ?1   And c.deleted = false ")
+    List<CartItemsDTO> findCartItemDTOByProductId(String id);
+
+    @Query("SELECT NEW com.cg.model.dto.CartItemsDTO(" +
+            "c.id, " +
+            "c.userName, " +
+            "c.product , " +
+            "c.price ," +
+            "c.quantity, " +
             "c.grandTotal " +
             " )  " +
 

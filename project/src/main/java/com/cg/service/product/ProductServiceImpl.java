@@ -4,10 +4,9 @@ import com.cg.exception.DataInputException;
 import com.cg.model.Product;
 import com.cg.model.ProductMedia;
 import com.cg.model.Tag;
-import com.cg.model.dto.IProductDTO;
-import com.cg.model.dto.ProductDTO;
-import com.cg.model.dto.TagDTO;
+import com.cg.model.dto.*;
 import com.cg.model.enums.FileType;
+import com.cg.repository.CartItemRepository;
 import com.cg.repository.ProductMediaRepository;
 import com.cg.repository.ProductRepository;
 import com.cg.repository.TagRepository;
@@ -43,6 +42,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private UploadUtils uploadUtils;
+
+    @Autowired
+    private CartItemRepository cartItemRepository ;
 
     @Override
     public Iterable<Product> findAll() {
@@ -229,6 +231,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product deleteSoft(Product product) {
+        Optional<TagDTO> tagDTO = tagRepository.findTagDTOByProductId(product.getId());
+        if(tagDTO.isPresent()){
+            tagDTO.get().setDeleted(true);
+            tagRepository.save(tagDTO.get().toTag());
+            product.setDeleted(true);
+            return productRepository.save(product);
+        }
         product.setDeleted(true);
         return productRepository.save(product);
     }
