@@ -109,7 +109,7 @@ page.commands.afterValidationCreateProduct = () => {
     formData.append("title", page.element.productName.val());
     formData.append("price", page.element.priceProduct.val());
     formData.append("quantity", page.element.quantityProduct.val());
-    formData.append("status", "Đang chờ");
+    formData.append("status", "Còn Hàng");
     formData.append("description", page.element.descriptionProduct.val());
     formData.append("slug", page.element.slugProduct.val());
     formData.append("size", page.element.productSize.val());
