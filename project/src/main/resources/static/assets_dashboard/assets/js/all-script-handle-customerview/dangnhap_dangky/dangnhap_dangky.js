@@ -105,9 +105,9 @@ page.dialogs.commands.login = () => {
                     $(".ErrorInLogin").addClass("d-none")
                     return;
                 }
-                let str = `<ul>
+                let str =       `<ul>
                                     <li>${item}</li>
-                                    </ul>
+                                </ul>
                                 `
                 $(".ErrorInLogin").append(str)
             })
@@ -130,6 +130,7 @@ page.commands.getUserByUserName = () => {
         user = data
     }).fail((jqXHR) => {
         console.log(jqXHR)
+
         App.SweetAlert.showErrorAlert("Email không tồn tại vui lòng nhập lại!")
         $(".temploadding").html("")
     })

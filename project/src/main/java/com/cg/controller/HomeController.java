@@ -929,7 +929,6 @@ public class HomeController {
         String patternVND = ",###₫";
         DecimalFormat decimalFormat = new DecimalFormat(patternVND);
         customerInfo.get().setFormatDebt(decimalFormat.format(customerInfo.get().getDebt()));
-        modelAndView.addObject("locationRegion", customerInfo.get().getLocationRegion());
         modelAndView.addObject("customerInfo", customerInfo.get());
         int sumSLOrder = 0;
         BigDecimal sumOrderQuantity = BigDecimal.valueOf(0);

@@ -523,6 +523,7 @@ const handleChangeInputItem = (id) => {
             $("#inputQuantity_" + cartItems.id).val(cartItems.quantity)
             return;
         }
+
         cartItems.quantity = $("#inputQuantity_" + cartItems.id).val();
         cartItems.grandTotal = Number(cartItems.price) * Number(cartItems.quantity);
         $.ajax({

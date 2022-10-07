@@ -34,6 +34,7 @@ public class CustomerInfoDTO implements Validator {
     private String fullName;
 
     @NotBlank(message = "Số điện thoại không được để trống")
+    @Pattern(regexp = "^[0][1-9][0-9]{8,9}$",message = "Số điện thoai gồm 10 hoặc 11 số và bắt đầu bằng số 0")
     private String phone;
 
     private BigDecimal debt;

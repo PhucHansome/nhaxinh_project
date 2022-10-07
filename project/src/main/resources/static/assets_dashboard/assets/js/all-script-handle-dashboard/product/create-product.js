@@ -365,7 +365,7 @@ page.element.frmCreateProduct.validate({
 page.initializeControlEvent = () => {
     page.dialogs.loadData.drawListCategory();
     page.dialogs.loadData.drawListProductColor();
-    page.commands.formatNumber();
+    // page.commands.formatNumber();
 }
 
 $(()=> {
