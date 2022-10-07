@@ -36,9 +36,9 @@ public class StatisticsAPI {
         return new ResponseEntity<>(orderDetailDTOS, HttpStatus.OK);
     }
 
-//    @GetMapping("/sales-statistics-by-year/{year}")
-//    public ResponseEntity<?> getSalesStatisticsByYear(@PathVariable int year) {
-//        List<OrderDetailDTO> orderDetailDTOS = orderDetailService.findOderByCreateYear(year);
+//    @GetMapping("/sales-statistics-by-betweenDate/{date1}/{date2}")
+//    public ResponseEntity<?> getSalesStatisticsByBetweenDate(@PathVariable Date date1, @PathVariable Date date2) {
+//        List<OrderDTO> orderDTOS = orderService.findOderByCreateBetween(date1,date2);
 //        return new ResponseEntity<>(orderDTOS, HttpStatus.OK);
 //    }
 

@@ -69,6 +69,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "o.orderDetail " +
             " )  " +
             "FROM Order o  WHERE o.customerInfo.userName Like ?1 AND o.statusOrder Like ?2")
+
     List<OrderDTO> findOrderDTOByUserNameAndStatus(String userName, String status);
 
 

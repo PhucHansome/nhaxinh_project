@@ -340,7 +340,7 @@ page.commands.reloadPageFinishUpdate = (productId) => {
                                         <img width="100px" style="padding-top: 15px;"
                                              src="${item.fileUrl}" alt="">
                                     </div>
-                        `
+                                `
                     $(".imageUpdate").append(str2);
                 })
                 page.commands.handleDeleteProduct();
