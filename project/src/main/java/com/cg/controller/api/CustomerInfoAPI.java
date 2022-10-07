@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/customerInfo")
@@ -76,6 +77,8 @@ public class CustomerInfoAPI {
             throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
         }
         customerInfoDT0.getLocationRegion().setId(0L);
+        UUID uuid = UUID.randomUUID();
+        customerInfoDT0.setId(String.valueOf(uuid));
         try {
             CustomerInfo customerInfo = customerInfoService.save(customerInfoDT0.toCustomerInfo());
             return new ResponseEntity<>(customerInfo.toCustomerInfoDTO(), HttpStatus.OK);
@@ -92,10 +95,6 @@ public class CustomerInfoAPI {
             return appUtils.mapErrorToResponse(bindingResult);
         }
 
-        Boolean exitByPhone = customerInfoService.existsByPhone(customerInfoDTO.getPhone());
-        if (exitByPhone) {
-            throw new EmailExistsException("Số điện thoại đã tồn tại! Vui lòng nhập số điện thoại khác");
-        }
         customerInfoDTO.setUserName(appUtils.getPrincipal());
         customerInfoDTO.getLocationRegion().setId(0L);
         try {

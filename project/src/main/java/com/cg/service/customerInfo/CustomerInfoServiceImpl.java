@@ -52,12 +52,6 @@ public class CustomerInfoServiceImpl implements ICustomerInfoService {
 
     @Override
     public CustomerInfo save(CustomerInfo customerInfo) {
-        Optional<CustomerInfoDTO> customerInfoDTO = customerInfoRepository.findUserDTOById(customerInfo.getId());
-        if (!customerInfoDTO.isPresent()){
-            LocationRegion locationRegion = locationRegionRepository.save(customerInfo.getLocationRegion());
-            customerInfo.setLocationRegion(locationRegion);
-            return customerInfoRepository.save(customerInfo);
-        }
         LocationRegion locationRegion = locationRegionRepository.save(customerInfo.getLocationRegion());
         customerInfo.setLocationRegion(locationRegion);
         return customerInfoRepository.save(customerInfo);
