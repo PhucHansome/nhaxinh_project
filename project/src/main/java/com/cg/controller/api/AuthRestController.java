@@ -111,7 +111,6 @@ public class AuthRestController {
         try {
             Optional<UserDTO> userDTO = userService.findUserDTOByUserNameByStatus(user.getUsername());
 
-
             if(!userDTO.isPresent()){
                 throw  new DataInputException("Mật khẩu hoặc tài khoản không đúng vui lòng nhập lại");
             }

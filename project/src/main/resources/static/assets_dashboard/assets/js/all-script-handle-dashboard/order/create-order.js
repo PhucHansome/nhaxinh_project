@@ -365,7 +365,6 @@ page.commands.SelectedCustomer = () => {
             })
             handleUpdateCustomer(customerInfo);
             getAllCartItem(customerInfo.userName)
-            handleCreateOrder();
         })
     })
 }
@@ -383,7 +382,6 @@ page.commands.removeCustomerSelected = () => {
     $(".billingAddress").html("")
     getAllCartItem()
     page.commands.drawCustomer()
-    handleCreateOrder();
 }
 
 const handleUpdateCustomer = (customerInfo) => {
@@ -566,7 +564,6 @@ const handleCreateOrder = () => {
                 "data": JSON.stringify(order)
             }).done((dataOrder) => {
                 App.IziToast.showSuccessAlert("Bạn đã tạo đơn hàng thành công")
-                $(".btn-create-Order").off();
                 getAllCartItem($("#userCustomer").val())
             }).fail((e) => {
                 console.log(e)
